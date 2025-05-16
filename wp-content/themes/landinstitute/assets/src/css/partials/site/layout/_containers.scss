@@ -1,0 +1,81 @@
+/****
+ *
+ * containers
+ *
+****/
+
+.wrapper {
+	max-width: 1300px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+
+.wrapper {
+	margin: 0 auto;
+	max-width: 1500px;
+	padding-left: 30px;
+	padding-right: 30px;
+	width: 100%;
+
+	@media(max-width: 1220px) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+.container-1280 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 1340px;
+		padding-left: 30px;
+		padding-right: 30px;
+		width: 100%;
+
+		@media(max-width: 1220px) {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+}
+
+.container-1180 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 1240px;
+		padding-left: 30px;
+		padding-right: 30px;
+		position: relative;
+
+		@media(max-width: 1220px) {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+}
+
+.container-980 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 1040px;
+		padding-left: 30px;
+		padding-right: 30px;
+		position: relative;
+
+		@media(max-width: 1220px) {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+	}
+}
+
+.full-width-ctn {
+	.wrapper {
+		max-width: 100%;
+		width: 100%;
+	}
+}
+
+.navy-ctn {
+	background-color: var(--wp--preset--color--navy);
+}

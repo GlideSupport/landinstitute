@@ -1,0 +1,142 @@
+<?php
+/**
+ * The template for displaying website header
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package Base Theme Package
+ * @since 1.0.0
+ */
+
+list($bst_var_post_id, $bst_fields, $bst_option_fields) = BaseTheme::defaults();
+
+// Page Tags - Advanced custom fields variables.
+$bst_var_tracking = $bst_option_fields['custom_scripts'] ?? '';
+$bst_var_ccss = $bst_option_fields['custom_css'] ?? '';
+$bst_var_hscripts = $bst_option_fields['head_scripts'] ?? '';
+$bst_var_bscripts = $bst_option_fields['body_scripts'] ?? '';
+
+//hello bar
+$bst_var_tbar_vsblty = $bst_option_fields['bst_var_tbar_vsblty'] ?? null;
+$bst_var_hb_content = $bst_option_fields['bst_var_hb_content'] ?? null;
+$cookie_days = $bst_option_fields['hello_bar_cookie_days'] ?? 1;
+$bst_var_tbar_btn = $bst_option_fields['bst_var_tbar_btn'] ?? null;
+
+//page HelloBar Options
+$base_theme_option_global_manual = $bst_fields['base_theme_option_global_manual'] ?? 'global';
+$base_theme_option_content = $bst_fields['base_theme_option_content'] ?? null;
+$base_theme_option_button = $bst_fields['base_theme_option_button'] ?? null;
+
+//header section
+$bst_var_header_logo = $bst_option_fields['bst_var_header_logo'] ?? null;
+$bst_var_tohdr_btn = $bst_option_fields['bst_var_tohdr_btn'] ?? null;
+$bst_var_tohdr_btn_two = $bst_option_fields['bst_var_tohdr_btn_two'] ?? null;
+
+
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <?php
+    // Add Head Scripts.
+    if (BaseTheme::if_live()) {
+
+        if ('' !== $bst_var_hscripts) {
+            echo html_entity_decode($bst_var_hscripts, ENT_QUOTES);
+        }
+    }
+    ?>
+
+    <?php 
+    // Ensure the theme supports 'site_icon' 
+    if (function_exists('has_site_icon') && has_site_icon()) {
+        wp_site_icon();
+    } else { ?>
+       <link rel="apple-touch-icon" sizes="180x180"
+        href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/favicon-16x16.png">
+    <link rel="icon" sizes="any"
+        href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/favicon.ico">
+    <link rel="icon" type="image/svg+xml"
+        href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/icon.svg">
+   <?php }
+    ?>
+  
+
+    
+    <link rel="manifest"
+        href="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/site.webmanifest">
+    <meta name="theme-color" content="#0047FE">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Base Theme Package">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton_color" content="#0047FE">
+    <meta name="msapplication-TileColor" content="#0047FE">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="msapplication-TileImage"
+        content="<?php echo esc_url(get_template_directory_uri()); ?>/assets/build/images/pwa/pwa-icon-144.png">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0047FE">
+    <?php
+    // Tracking Code.
+    if ('' !== $bst_var_tracking) {
+        echo html_entity_decode($bst_var_tracking, ENT_QUOTES);
+    }
+
+    // Custom CSS.
+    if ('' !== $bst_var_ccss) {
+        echo '<style type="text/css">';
+        echo html_entity_decode($bst_var_ccss, ENT_QUOTES);
+        echo '</style>';
+    }
+    ?>
+    <?php wp_head(); ?>
+
+</head>
+<?php
+$cookie_name = 'helloBarClosed';
+$cookie_class = 'hello-bar-appear';
+
+$body_classes = array();
+
+if (isset($_COOKIE[$cookie_name])) {
+    // If cookie is set, remove the class
+    $cookie_class = '';
+} else {
+    // If cookie is not set, keep the default class
+    $cookie_class = 'hello-bar-appear';
+}
+
+if (!empty($cookie_class)) {
+    $body_classes[] = $cookie_class;
+}
+?>
+
+
+<body <?php body_class($body_classes); ?>> <?php wp_body_open(); ?>
+    <?php
+    if (BaseTheme::if_live()) {
+        if ('' !== $bst_var_bscripts) {
+            ?>
+            <div style="display: none;">
+                <?php echo html_entity_decode($bst_var_bscripts, ENT_QUOTES); ?>
+            </div>
+            <?php
+        }
+    }
+    ?>
+
+<a class="skip-link screen-reader-text"
+    href="#page-section"><?php esc_html_e('Skip to content', 'land_institute'); ?></a>
+<?php include get_template_directory() . '/partials/header/header-main.php'; ?>
+<!-- Main Area Start -->
+<main id="main-section" class="main-section">
