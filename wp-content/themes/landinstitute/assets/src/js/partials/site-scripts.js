@@ -15,6 +15,52 @@ document.addEventListener("scroll", () => {
 	}
 });
 
+// Function to set a cookie
+function setCookie(name, value, days) {
+	const date = new Date();
+	date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // Set expiration to dynamic days
+	document.cookie = `${name}=${value}; expires=${date.toUTCString()}; path=/`;
+}
+
+// Function to get a cookie
+function getCookie(name) {
+	const nameEQ = `${name}=`;
+	const cookies = document.cookie.split(";");
+	for (let cookie of cookies) {
+		cookie = cookie.trim();
+		if (cookie.indexOf(nameEQ) === 0) {
+			return cookie.substring(nameEQ.length);
+		}
+	}
+	return null;
+}
+
+// Hide hello bar if cookie exists
+document.addEventListener("DOMContentLoaded", () => {
+	const helloBar = document.querySelector(".top-bar");
+	if (helloBar) {
+		const cookieDays = parseInt(
+			helloBar.getAttribute("data-cookie-days"),
+			10,
+		); // Convert data-cookie-days to integer
+
+		if (getCookie("helloBarClosed")) {
+			helloBar.style.display = "none"; // Hide the hello bar if cookie exists
+		} else {
+			helloBar.style.display = "flex"; // Show the hello bar if cookie does not exist
+		}
+		// Add event listener to the close button
+		const closeButton = helloBar.querySelector(".top-bar-cross");
+		if (closeButton) {
+			closeButton.addEventListener("click", (e) => {
+				e.preventDefault();
+				helloBar.style.display = "none"; // Hide the hello bar
+				setCookie("helloBarClosed", "true", cookieDays); // Use dynamic value from the data attribute
+			});
+		}
+	}
+});
+
 // Accessibility: Add aria-label to links that open in a new tab
 document.querySelectorAll('a[target="_blank"]').forEach((link) => {
 	// Check if the link already has an aria-label
@@ -109,6 +155,33 @@ document.addEventListener("click", (event) => {
 		}
 	}
 });
+
+// Offcanvas Menu
+// document.addEventListener("DOMContentLoaded", () => {
+// 	const openMenuButton = document.getElementById("openMenu");
+// 	const closeMenuButton = document.getElementById("closeMenu");
+// 	const offCanvasMenu = document.getElementById("offCanvasMenu");
+// 	const overlay = document.getElementById("overlay");
+
+// 	openMenuButton.addEventListener("click", () => {
+// 		offCanvasMenu.classList.add("open");
+// 		overlay.classList.add("show");
+// 		document.documentElement.classList.add("popup-overflow-hidden");
+// 	});
+
+// 	closeMenuButton.addEventListener("click", () => {
+// 		offCanvasMenu.classList.remove("open");
+// 		overlay.classList.remove("show");
+// 		document.documentElement.classList.remove("popup-overflow-hidden");
+// 	});
+
+// 	overlay.addEventListener("click", () => {
+// 		offCanvasMenu.classList.remove("open");
+// 		overlay.classList.remove("show");
+// 		document.documentElement.classList.remove("popup-overflow-hidden");
+// 	});
+// });
+
 // Tab DropDown
 document.addEventListener("DOMContentLoaded", () => {
 	const dropdowns = document.querySelectorAll(".tab-dropdown");
@@ -219,3 +292,243 @@ document.addEventListener("DOMContentLoaded", function () {
 		observer.observe(counter.closest(".counter-number"));
 	});
 });
+
+// popup
+// document.addEventListener("click", (e) => {
+// 	if (
+// 		e.target.tagName === "A" &&
+// 		e.target.getAttribute("href").startsWith("#")
+// 	) {
+// 		e.preventDefault();
+// 		// const id = e.target.getAttribute("href").substring(1);
+// 		// const popup = document.getElementById(id);
+// 		const openPopup = document.querySelector(".custom-popup");
+// 		const overflowHidden = document.querySelector("html");
+
+// 		if (openPopup) {
+// 			openPopup.classList.add("is-opened");
+// 			overflowHidden.classList.add("overflow-hidden");
+// 			const iframe = openPopup.querySelector("iframe");
+// 			if (iframe) {
+// 				openPopup.classList.add("youtube");
+// 			}
+// 		}
+// 	}
+// 	if (e.target.classList.contains("close-popup")) {
+// 		const openPopup = document.querySelector(".custom-popup.is-opened");
+// 		const overflowHidden = document.querySelector(".overflow-hidden");
+// 		// setTimeout(() => {
+// 		openPopup.classList.remove("is-opened", "youtube");
+// 		overflowHidden.classList.remove("overflow-hidden");
+// 		// }, 200);
+// 	}
+// });
+
+// document.addEventListener("keydown", (e) => {
+// 	if (e.key === "Escape" || e.code === "Escape") {
+// 		const openPopup = document.querySelector(".custom-popup.is-opened");
+// 		if (openPopup) {
+// 			setTimeout(() => {
+// 				openPopup.classList.remove("is-opened");
+// 			}, 200);
+// 		}
+// 	}
+// });
+
+document.addEventListener("click", (e) => {
+	if (
+		e.target.tagName === "A" &&
+		e.target.getAttribute("href").startsWith("#")
+	) {
+		e.preventDefault();
+
+		// Dynamically create the popup HTML if not already present
+		let openPopup = document.querySelector(".custom-popup");
+		if (!openPopup) {
+			const popupHTML = `
+				<div class="custom-popup">
+					<div class="popup-wrap">
+						<div class="popup-container">
+							<div class="popup-content">
+								<div id="popupcard" class="popup-card-normal">
+									<div class="popup-block-design">
+										<h4 class="heading-4 popup-title mb-0 center-align">
+											Gift the Joy of Cooking </h4>
+										<div class="gl-s24"></div>
+										<div class="popup-description center-align">
+											<p>Give the gift of culinary exploration with &amp; a Culinary Center of Kansas City
+												gift certificate.</p>
+										</div>
+										<div class="gl-s48"></div>
+										<div class="popup-column-text">
+											<div class="column-text">
+												<div class="column-col">
+													<div class="ui-label-m-poppins-regular body-title">
+														For Every Skill Level </div>
+													<div class="gl-s12"></div>
+													<div class="body-content body-text-s-light">
+														<p>Perfect for foodies of all levels – choose from classes like knife
+															skills, baking, or global
+															cuisines.</p>
+													</div>
+												</div>
+												<div class="column-col">
+													<div class="ui-label-m-poppins-regular body-title">
+														Flexible &amp; Fun </div>
+													<div class="gl-s12"></div>
+													<div class="body-content body-text-s-light">
+														<p>Recipients pick their favorite class – from quick weeknight sessions
+															to immersive full-day courses.
+														</p>
+													</div>
+												</div>
+												<div class="column-col">
+													<div class="ui-label-m-poppins-regular body-title">
+														Available in Any Amount </div>
+													<div class="gl-s12"></div>
+													<div class="body-content body-text-s-light">
+														<p>Gift cards in any denomination. Let them discover new flavors and
+															skills they’ll savor for years.</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="gl-s48"></div>
+										<div class="two-btn-row">
+											<a class="site-btn border-primary-white" href="#" target="_self"
+												data-text="Check Balance">
+												<span>Check Balance</span>
+											</a>
+
+											<a class="site-btn" href="#" target="_self" data-text="Purchase a Gift Card">
+												<span>Purchase a Gift Card</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="popup-iframe-contanier">
+									<iframe width="560" height="315"
+										src="https://www.youtube.com/embed/lT8jeRdCTos?si=SVYwDn4-3RCOaDxM"
+										title="YouTube video player" frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+										referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+								</div>
+							</div>
+							<button class="close-popup" type="button">x</button>
+						</div>
+					</div>
+				</div>`;
+			document.body.insertAdjacentHTML("beforeend", popupHTML);
+			openPopup = document.querySelector(".custom-popup");
+		}
+
+		// Show the popup
+		openPopup.classList.add("is-opened");
+		document.querySelector("html").classList.add("overflow-hidden");
+		const iframe = openPopup.querySelector("iframe");
+		if (iframe) {
+			openPopup.classList.add("youtube");
+		}
+	}
+
+	// Handle click on close button
+	if (e.target.classList.contains("close-popup")) {
+		const openPopup = document.querySelector(".custom-popup.is-opened");
+		const overflowHidden = document.querySelector("html");
+
+		if (openPopup) {
+			openPopup.classList.remove("is-opened", "youtube");
+			overflowHidden.classList.remove("overflow-hidden");
+			openPopup.remove();
+		}
+	}
+});
+
+// Close popup with Escape key
+document.addEventListener("keydown", (e) => {
+	if (e.key === "Escape" || e.code === "Escape") {
+		const openPopup = document.querySelector(".custom-popup.is-opened");
+		const overflowHidden = document.querySelector("html");
+
+		if (openPopup) {
+			openPopup.classList.remove("is-opened", "youtube");
+			overflowHidden.classList.remove("overflow-hidden");
+			openPopup.remove();
+		}
+	}
+});
+
+// popup
+// document.addEventListener("click", (e) => {
+// 	if (
+// 		e.target.tagName === "A" &&
+// 		e.target.getAttribute("href").startsWith("#")
+// 	) {
+// 		e.preventDefault();
+// 		// const id = e.target.getAttribute("href").substring(1);
+// 		// const popup = document.getElementById(id);
+// 		const openPopup = document.querySelector(".custom-popup");
+// 		const overflowHidden = document.querySelector("html");
+
+// 		if (openPopup) {
+// 			createPopup(openPopup.innerHTML);
+// 			openPopup.classList.add("is-opened");
+// 			overflowHidden.classList.add("overflow-hidden");
+// 			const iframe = openPopup.querySelector("iframe");
+// 			if (iframe) {
+// 				openPopup.classList.add("youtube");
+// 			}
+// 		}
+// 	}
+// 	if (e.target.classList.contains("close-popup")) {
+// 		// const openPopup = document.querySelector(".custom-popup.is-opened");
+// 		// const overflowHidden = document.querySelector(".overflow-hidden");
+// 		// // setTimeout(() => {
+// 		// openPopup.classList.remove("is-opened", "youtube");
+// 		// overflowHidden.classList.remove("overflow-hidden");
+// 		// }, 200);
+// 		removePopup();
+// 	}
+// });
+
+// function createPopup(content) {
+// 	const popup = document.createElement("div");
+// 	// popup.id = "custom-popup";
+// 	popup.className = "custom-popup is-opened";
+// 	popup.innerHTML = `
+//     <div class="popup-content">
+//       <button class="close-popup">Close</button>
+//       ${content}
+//     </div>
+//   `;
+// 	document.body.appendChild(popup);
+// 	document.querySelector("html").classList.add("overflow-hidden");
+
+// 	// Check if the popup contains an iframe
+// 	const iframe = popup.querySelector("iframe");
+// 	if (iframe) {
+// 		popup.classList.add("youtube");
+// 	}
+// }
+
+// function removePopup() {
+// 	const popup = document.querySelector(".custom-popup");
+// 	if (popup) {
+// 		popup.classList.remove("is-opened", "youtube");
+// 		// setTimeout(() => {
+// 		popup.remove(); // Remove the popup from the DOM
+// 		document.querySelector("html").classList.remove("overflow-hidden");
+// 		// }, 200); // Match the transition duration
+// 	}
+// }
+
+// document.addEventListener("keydown", (e) => {
+// 	if (e.key === "Escape" || e.code === "Escape") {
+// 		const openPopup = document.querySelector(".custom-popup.is-opened");
+// 		if (openPopup) {
+// 			setTimeout(() => {
+// 				openPopup.classList.remove("is-opened");
+// 			}, 200);
+// 		}
+// 	}
+// });

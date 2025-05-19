@@ -1,0 +1,111 @@
+.all-resources-block {
+    .block-title {
+        max-width: 560px;
+    }
+}
+
+
+.custom-cursor {
+    position: fixed;
+    background-image: url(../images/drag-button.svg);
+    width: 107px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 4;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+.border-variable-slider {
+    margin-left: calc(-50vw + 50% - 1px);
+    margin-right: calc(-50vw + 50% - 1px);
+    border-top: 2px solid var(--gb_base_brown);
+
+    .swiper-container {
+        cursor: none;
+    }
+
+    .swiper-slide {
+        height: auto;
+        width: clamp(243px, calc(15.1875rem + ((1vw - 7.68px) * 40.7216)), 480px);
+
+        &.slide-larg {
+            width: clamp(297px, calc(18.5625rem + ((1vw - 7.68px) * 72.6804)), 720px);
+        }
+    }
+
+    a {
+        &.border-image-content {
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--gb_primary_butter_yellow);
+            }
+        }
+    }
+
+    .border-image-content {
+        border-left: 2px solid var(--gb_base_brown);
+        border-right: 2px solid var(--gb_base_brown);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-left: -1px;
+        margin-right: -1px;
+        text-decoration: none;
+        background-color: var(--gb_base_cream);
+        cursor: none;
+
+        .variable-image {
+            border-bottom: 2px solid var(--gb_base_brown);
+            display: flex;
+
+            &.pattern-image {
+                position: relative;
+
+                .pattern-child-image {
+                    height: clamp(132px, calc(8.25rem + ((1vw - 7.68px) * 21.9931)), 260px);
+                    left: 50%;
+                    overflow: hidden;
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    width: clamp(161px, calc(10.0625rem + ((1vw - 7.68px) * 27.1478)), 319px);
+
+                    img {
+                        height: 100%;
+                        object-fit: cover;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .border-card-content {
+            padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+            .block-title {}
+        }
+    }
+
+    .slide-larg {
+        .border-image-content {
+            .border-card-content {
+                .block-title {
+                    @extend .heading-5;
+                }
+            }
+        }
+    }
+}

@@ -2,108 +2,316 @@ body {
 
     .site-btn,
     .wp-block-button .wp-block-button__link {
-        background-color: var(--gb_theme_btn_bgcolor);
-        border: 1px solid transparent;
-        border-radius: 100px;
-        color: var(--gb_theme_btn_color);
+        background: var(--gb_base_cream);
+        border: 2px solid var(--gb_base_brown);
+        border-radius: 0px;
+        color: var(--gb_base_brown);
         display: inline-flex;
+        font-size: var(--gb_font_size_14);
+        font-weight: 600;
+        letter-spacing: -0.36px;
+        line-height: 110%;
         outline: none;
-        overflow: hidden;
-        padding: 14px 24px;
+        padding: 22px 82px 22px 34px;
         position: relative;
-        text-align: center;
         text-decoration: none;
         transition: 0.35s;
 
-        font-size: 18px;
-
         @media(max-width: 640px) {
-            padding: 12px 20px 13px;
+            border-width: 1.5px;
+            letter-spacing: -0.32px;
+            padding: 19px 23px;
         }
 
-        &:last-child {
-            margin-right: 0;
+        &:after {
+            align-items: center;
+            animation: shrink-back 0.4s forwards;
+            background-color: var(--gb_base_brown);
+            background-image: url(../images/button-arrow.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 0px;
+            border-radius: 100px;
+            content: '';
+            display: flex;
+            height: 22px;
+            justify-content: center;
+            position: absolute;
+            right: 26px;
+            top: 20px;
+            transform: scale(0.27);
+            transition: transform 0.4s ease-in-out;
+            width: 22px;
         }
 
         &:hover {
-            background-color: var(--gb_theme_btn_bgcolor_hover);
-            color: var(--gb_theme_btn_color_hover);
-        }
+            background-color: var(--gb_primary_lilac);
+            border-color: var(--gb_base_brown);
+            color: var(--gb_base_brown);
 
-        &.site-white-btn {
-            background-color: var(--gb_white);
-            color: var(--gb_theme_btn_bgcolor);
-
-            &:hover {
-                background-color: #F1E8E2;
-                color: #000;
+            &:after {
+                animation: bubble-pop 0.4s forwards;
+                background-size: auto;
             }
         }
 
-        &.site-border-btn {
-            background-color: var(--gb_transparent);
-            box-shadow: inset 0 0px 0px 1px var(--gb_button_border_color);
-            color: var(--gb_button_border_color);
-
-            &:hover {
-                background: var(--gb_button_bgcolor_hover);
-                box-shadow: inset 0 0px 0px 1px var(--gb_button_bgcolor_hover);
-                color: var(--gb_button_color_hover);
+        &.arrow-pointing-top {
+            &:after {
+                background-image: url(../images/button-arrow-top.svg);
             }
         }
 
-        &.arrow-icon {
-            align-items: center;
+        &.arrow-heart-symbol {
+            &:after {
+                background-image: url(../images/button-heart.svg);
+            }
+        }
 
-            &::after {
-                background-image: url("../images/site-btn-arrow.svg");
-                background-repeat: no-repeat;
-                background-size: contain;
-                content: "";
-                flex: 14px 0 0;
-                height: 14px;
-                margin-left: 8px;
-                position: relative;
-                top: 1px;
-                transition: all 0.2s ease-in-out;
-                width: 14px;
-
-                @media (max-width: 375px) {
-                    flex: 13px 0 0;
-                    height: 13px;
-                    width: 13px;
-                }
+        &.arrow-plus {
+            &:after {
+                background-image: url(../images/button-plus.svg);
             }
 
             &:hover {
                 &:after {
-                    background-image: url("../images/site-btn-arrow-black.svg");
+                    background-size: 9px;
                 }
             }
         }
 
-        &.sm-btn {
-            padding: 9px 16px;
+        &.arrow-minus {
+            &:after {
+                background-image: url(../images/button-minus.svg);
+                background-position: center 10px;
+            }
+        }
 
-            @media(max-width: 640px) {
-                padding: 9px 14px 8px;
+        &.btn-sunflower-yellow {
+            background-color: var(--gb_primary_sunflower_yellow);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+        }
+
+        &.btn-lilac {
+            background-color: var(--gb_primary_lilac);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+        }
+
+        &.btn-sky-blue {
+            background-color: var(--gb_primary_sky_blue);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+        }
+
+        &.btn-lime-green {
+            background-color: var(--gb_primary_lime_green);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+        }
+
+        &.btn-butter-yellow {
+            background-color: var(--gb_primary_butter_yellow);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+        }
+
+        &.btn-lemon-yellow {
+            background-color: var(--gb_primary_lemon_yellow);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+        }
+
+        &.sm-btn {
+            padding: 22px 64px 22px 22px;
+
+            &:after {
+                right: 16px;
+            }
+        }
+
+        &.btn-brown {
+            background-color: var(--gb_base_brown);
+            color: var(--gb_white);
+            padding: 22px 64px 22px 22px;
+
+            &:after {
+                background-color: var(--gb_primary_lilac);
+                background-image: url(../images/button-brown-arrow.svg);
+                background-size: 0px;
+                right: 16px;
+            }
+
+            &:hover {
+                background-color: var(--gb_base_brown);
+                color: var(--gb_white);
+
+                &:after {
+                    background-size: 9px;
+                }
             }
         }
 
         &.text-link {
             background-color: transparent;
-            color: var(--gb_black);
-            padding: 0;
+            border: none;
+            color: var(--gb_base_brown);
+            font-size: var(--gb_font_size_13);
+            letter-spacing: var(--letter_spacing_04);
+            line-height: var(--line_height_110per);
+            padding: 16px 0 16px;
 
-            &.arrow-icon {
+            &:after {
+                align-items: center;
+                animation: shrink-back 0.4s forwards;
+                background-color: var(--gb_base_brown);
+                background-image: url(../images/button-arrow-white.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 0px;
+                border-radius: 100px;
+                content: '';
+                display: flex;
+                height: 22px;
+                justify-content: center;
+                margin-left: 8px;
+                position: inherit;
+                right: 0;
+                top: -2px;
+                transform: scale(0.27);
+                transition: transform 0.4s ease-in-out;
+                width: 22px;
+            }
+
+            &:before {
+                animation: bubble-shrink-back 0.4s forwards;
+                background-color: var(--gb_base_brown);
+                bottom: 0;
+                content: '';
+                height: 2px;
+                left: 0;
+                position: absolute;
+                transition: width 0.2s ease-in-out;
+                width: 28px;
+            }
+
+            &:hover {
+                background-color: transparent;
+                border-color: transparent;
+                color: var(--gb_base_brown);
+
                 &:after {
-                    filter: brightness(0) saturate(100%) invert(9%) sepia(5%) saturate(1017%) hue-rotate(169deg) brightness(92%) contrast(83%);
+                    animation: bubble-pop 0.4s forwards;
+                    background-size: auto;
+                }
+
+                &:before {
+                    animation: bubble-width 0.4s forwards;
+                    width: 100%;
                 }
             }
+        }
+
+        &.arrow-btn {
+            background-color: var(--gb_primary_butter_yellow);
+            border-width: 0px 0px 2px 0px;
+            padding: 23px 30px 23px 30px;
+            width: 100%;
+
+            &:after {
+                animation: inherit;
+                background-color: transparent;
+                background-image: url(../images/bottom-arrow.svg);
+                background-size: 10px;
+                border-radius: 0;
+                height: 20px;
+                padding: 0;
+                top: 22px;
+                transform: inherit;
+                width: 20px;
+            }
+        }
+    }
+
+    .border-text-btn {
+        background-image: linear-gradient(transparent calc(100% - 1px), var(--gb_base_brown) 1px);
+        background-position: 100%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        display: inline-flex;
+        padding-bottom: 2px;
+        position: relative;
+        text-decoration: none;
+        transition: all .2s;
+
+        @extend .body-18-16-regular;
+
+        &:hover {
+            background-size: 0 100%;
         }
     }
 }
 
+// keyframes For buttons
+@keyframes bubble-pop {
+    0% {
+        transform: scale(0.27);
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shrink-back {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.27);
+    }
+}
+
+@keyframes bubble-width {
+    0% {
+        width: 28px;
+    }
+
+    60% {
+        width: 104%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes bubble-shrink-back {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 28px;
+    }
+}
 
 .is-style-outline-boxed {
     .wp-block-button__link {

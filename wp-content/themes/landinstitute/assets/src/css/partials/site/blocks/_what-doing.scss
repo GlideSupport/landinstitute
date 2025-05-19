@@ -1,0 +1,31 @@
+.block-what-doing {
+    .row-flex {
+        display: grid;
+        gap: 160px;
+        grid-template-columns: 480px 1fr;
+    }
+
+    &.with-parallax-image {
+        .row-flex {
+            display: flex;
+            gap: 160px;
+        }
+
+        .parallax-img {
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+            width: 480px;
+
+            img {
+                display: block;
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+        .col-right {
+            flex: 1 1 0;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.block-chart {
+    .block-head {
+        .block-title {
+            max-width: 922px;
+        }
+
+        .block-content {
+            max-width: 640px;
+        }
+    }
+
+    .chart-data {
+        @media (max-width: 1440px) {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+        }
+    }
+}

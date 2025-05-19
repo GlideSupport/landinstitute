@@ -1,6 +1,19 @@
 import Swiper from 'swiper/bundle';
 
 document.addEventListener( 'DOMContentLoaded', function() {
+	const caseStudySlider = new Swiper('.case-study-slider', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 	const sliders = document.querySelectorAll( '.our-history-slide' );
 
 	if ( sliders.length > 0 ) {

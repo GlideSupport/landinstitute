@@ -21,14 +21,16 @@ a {
 
 	a,
 	&:visited {
-		color: var(--gb_link_color);
-		border-bottom: 1px solid var(--gb_link_border_color);
-		padding-bottom: 2px;
+		border: none;
+		color: var(--gb_base_brown);
+		text-decoration: underline;
+		text-decoration-color: var(--gb_base_brown);
+		text-decoration-thickness: 1px;
 
 		&:hover,
 		&:active {
-			color: var(--gb_link_color_hover);
-			border-color: var(--gb_link_border_color_hover);
+			color: var(--gb_base_brown);
+			text-decoration-color: var(--gb_base_brown);
 		}
 	}
 }
