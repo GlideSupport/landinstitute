@@ -18,7 +18,7 @@
 		},
 		"bgWidth": {
 			"type": "string",
-			"default": "ctn"
+			"default": "container-1280"
 		},
 		"ctnShape": {
 			"type": "string",

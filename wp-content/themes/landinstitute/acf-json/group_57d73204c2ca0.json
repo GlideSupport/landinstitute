@@ -103,40 +103,17 @@
                 ]
             ],
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
             "wysiwyg_height": "",
+            "allow_in_bindings": 1,
             "tabs": "all",
             "toolbar": "full",
             "media_upload": 0,
             "delay": 0
-        },
-        {
-            "key": "field_6458cf9b2a26e",
-            "label": "Button",
-            "name": "bst_var_tbar_btn",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6458cfe12a26f",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
         },
         {
             "key": "field_67333c4e5244c",
@@ -192,7 +169,7 @@
             "name": "bst_var_header_logo",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 88px by 88px (Regular Display) - Maximum 176px by 176px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -213,6 +190,43 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_6827342a0f9c0",
+            "label": "Nav Menu Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_68273202344d8",
+            "label": "Header Main Menu",
+            "name": "_bst_var_main_menu",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_5ed4cfcc4548c",
             "label": "Button",
             "name": "bst_var_tohdr_btn",
@@ -226,12 +240,304 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array"
+            "return_format": "array",
+            "allow_in_bindings": 1
         },
         {
-            "key": "field_62685c755920a",
-            "label": "Button Two",
-            "name": "bst_var_tohdr_btn_two",
+            "key": "field_682734380f9c1",
+            "label": "Nav Menu Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
+        },
+        {
+            "key": "field_682734bb7d603",
+            "label": "Mega Menu Option 1",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_682735ac7d605",
+            "label": "Nav Menu Title 1",
+            "name": "landinstitute_nav_menu_title_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682736127d607",
+            "label": "Select Nav Menu 1",
+            "name": "landinstitute_select_nav_menu_1",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68273810c38a3",
+            "label": "Nav Menu Title 2",
+            "name": "landinstitute_nav_menu_title_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_68273867c38a4",
+            "label": "Select Nav Menu 2",
+            "name": "landinstitute_select_nav_menu_2",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68273a0dfeb40",
+            "label": "Nav Menu Title 3",
+            "name": "landinstitute_nav_menu_title_3",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_68273a0ffeb41",
+            "label": "Select Nav Menu 3",
+            "name": "landinstitute_select_nav_menu_3",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68273c05fff65",
+            "label": "Nav Menu Title 4",
+            "name": "landinstitute_nav_menu_title_4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_68273c04fff64",
+            "label": "Select Nav Menu 4",
+            "name": "landinstitute_select_nav_menu_4",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682734cd7d604",
+            "label": "Mega Menu Option 1",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
+        },
+        {
+            "key": "field_68273efdf3e12",
+            "label": "Mega Menu Option 2",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_682abe38d5ce2",
+            "label": "Title",
+            "name": "landinstitute_title_two",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682abe99d5ce3",
+            "label": "Text",
+            "name": "landinstitute_text_two",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_682abec0d5ce4",
+            "label": "Button 1",
+            "name": "landinstitute_button_one",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682abed1d5ce5",
+            "label": "Button 2",
+            "name": "landinstitute_button_two",
             "aria-label": "",
             "type": "link",
             "instructions": "",
@@ -242,7 +548,308 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "array"
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682abed9d5ce6",
+            "label": "Button 3",
+            "name": "landinstitute_button_three",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68274468e946c",
+            "label": "Nav Menu Title 1",
+            "name": "landinstitute_nav_menu_title_mega_two_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6827446de946d",
+            "label": "Select Nav Menu 1",
+            "name": "landinstitute_select_nav_menu_mega_two_1",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6827449ae946e",
+            "label": "Nav Menu Title 2",
+            "name": "landinstitute_nav_menu_title_mega_two_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682744a8e9470",
+            "label": "Select Nav Menu 2",
+            "name": "landinstitute_select_nav_menu_mega_two_2",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68273f04f3e13",
+            "label": "Mega Menu Option 2",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
+        },
+        {
+            "key": "field_682ac0a89fc10",
+            "label": "Search Popup Details",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_682ac1839fc12",
+            "label": "Select Post",
+            "name": "landinstitute_to_select_post",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "post"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "elements": [
+                "featured_image"
+            ],
+            "bidirectional": 0,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_682ac2326ca7a",
+            "label": "Common Search Title",
+            "name": "landinstitute_to_common_search_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682ac2686ca7b",
+            "label": "Common Search Text",
+            "name": "landinstitute_to_common_search_text",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_682ac2936ca7c",
+                    "label": "Search Text",
+                    "name": "landinstitute_search_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_682ac2686ca7b"
+                }
+            ]
+        },
+        {
+            "key": "field_682ac2dc27ac6",
+            "label": "Popular topics Title",
+            "name": "landinstitute_to_popular_topics_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682ac2f327ac7",
+            "label": "Popular topics",
+            "name": "landinstitute_to_popular_topics",
+            "aria-label": "",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "category",
+            "add_term": 0,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "id",
+            "field_type": "multi_select",
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "bidirectional": 0,
+            "multiple": 0,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_682ac0e09fc11",
+            "label": "Search Popup Details",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
         },
         {
             "key": "field_642e880af2dc6",
@@ -272,64 +879,28 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
             "maxlength": "",
+            "allow_in_bindings": 1,
             "placeholder": "",
             "prepend": "",
             "append": ""
         },
         {
-            "key": "field_642e88a0f2dc9",
-            "label": "Text",
-            "name": "bst_var_tocta_text",
-            "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "wysiwyg_height": "",
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 0,
-            "delay": 0
-        },
-        {
-            "key": "field_642e889ff2dc8",
-            "label": "Button",
-            "name": "bst_var_tocta_button",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
             "key": "field_642e8909f2dca",
-            "label": "Image",
-            "name": "bst_var_tocta_image",
+            "label": "BG Image",
+            "name": "bst_var_tocta_bg_image",
             "aria-label": "",
             "type": "image",
             "instructions": "<div class=\"upload-instructions\">\r\n\r\n<b>Recommended Size:<\/b> Minimum 430px by 520px (Regular Display) - Maximum 850px by  1040px (Retina Display) - (width x height)<br \/>\r\n\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio, but the width of the image must meet the recommended size.<br \/>\r\n\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n\r\n<\/div>",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -342,7 +913,42 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
+            "allow_in_bindings": 1,
             "preview_size": "medium"
+        },
+        {
+            "key": "field_642e889ff2dc8",
+            "label": "Button 1",
+            "name": "bst_var_tocta_button_one",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_68272f63d8d60",
+            "label": "Button 2",
+            "name": "bst_var_tocta_button_two",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
         },
         {
             "key": "field_5ed4d0274548d",
@@ -363,34 +969,16 @@
             "selected": 0
         },
         {
-            "key": "field_6231add3e61b3",
-            "label": "For allocation of menus , please go to Appearance -> Menus -> Manage Locations or <a href=\"\/wp-admin\/nav-menus.php\">Click here<\/a>",
-            "name": "",
-            "aria-label": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "new_lines": "wpautop",
-            "esc_html": 0
-        },
-        {
             "key": "field_676e8bfa9814b",
             "label": "Footer Logo",
             "name": "bst_var_footer_logo",
             "aria-label": "",
             "type": "image",
-            "instructions": "<strong>Image Upload Instructions<\/strong><br>\r\n<strong>Recommended Size for Image:<\/strong> Minimum 192px by 52px (Regular Display) – Maximum 184px by 104px (Retina Display) – (width x height)<br>\r\n<strong>Image Height:<\/strong> Height of the image can vary slightly due to the aspect ratio, but the width of the image must meet the recommended size.<br>\r\n<strong>Resources:<\/strong> Make sure to upload a compressed image in.WEBP image format. – <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> – <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>",
+            "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 96px by 96px (Regular Display) - Maximum 192px by 192px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -404,7 +992,7 @@
             "max_size": "",
             "mime_types": "",
             "allow_in_bindings": 0,
-            "preview_size": "medium"
+            "preview_size": "thumbnail"
         },
         {
             "key": "field_6231ae11e61b4",
@@ -416,15 +1004,16 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_62669b7be5b29",
@@ -448,6 +1037,65 @@
             "wysiwyg_height": ""
         },
         {
+            "key": "field_682ad2337fefc",
+            "label": "Form Title",
+            "name": "bst_var_ftrop_form_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682ad24c7fefd",
+            "label": "Form Selector",
+            "name": "bst_var_ftrop_form_selector",
+            "aria-label": "",
+            "type": "forms",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "allow_null": 1,
+            "multiple": 0,
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682b019b5e5c2",
+            "label": "Select Footer Legal menu",
+            "name": "landinstitute_select_footer_legal_menu",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_62683b44efa45",
             "label": "Copyright",
             "name": "bst_var_ftrop_copyright",
@@ -466,6 +1114,573 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_6231add3e61b3",
+            "label": "For allocation of menus , please go to Appearance -> Menus -> Manage Locations or <a href=\"\/wp-admin\/nav-menus.php\">Click here<\/a>",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_682afb3a019bf",
+            "label": "Footer Menu",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_682afb55019c1",
+            "label": "Footer Menu Label 1",
+            "name": "landinstitute_footer_menu_label_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afb89019c2",
+            "label": "Footer Menu Link 1",
+            "name": "landinstitute_footer_menu_link_1",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afb9b019c3",
+            "label": "Select Footer Menu 1",
+            "name": "landinstitute_select_footer_menu_1",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afcac855a7",
+            "label": "Footer Menu Label 2",
+            "name": "landinstitute_footer_menu_label_1",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afcbc855a8",
+            "label": "Footer Menu Link 2",
+            "name": "landinstitute_footer_menu_link_2",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afcc9855a9",
+            "label": "Select Footer Menu 2",
+            "name": "landinstitute_select_footer_menu_2",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afd6a23d7c",
+            "label": "Footer Menu Label 3",
+            "name": "landinstitute_footer_menu_label_2",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afd7223d7d",
+            "label": "Footer Menu Link 3",
+            "name": "landinstitute_footer_menu_link_3",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afd7623d7e",
+            "label": "Select Footer Menu 3",
+            "name": "landinstitute_select_footer_menu_3",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afdc2dcc24",
+            "label": "Footer Menu Label 4",
+            "name": "landinstitute_footer_menu_label_4",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afdcddcc25",
+            "label": "Footer Menu Link 4",
+            "name": "landinstitute_footer_menu_link_4",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afdd3dcc26",
+            "label": "Select Footer Menu 4",
+            "name": "landinstitute_select_footer_menu_4",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afde3dcc29",
+            "label": "Footer Menu Label 5",
+            "name": "landinstitute_footer_menu_label_5",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afddedcc28",
+            "label": "Footer Menu Link 5",
+            "name": "landinstitute_footer_menu_link_5",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afddcdcc27",
+            "label": "Select Footer Menu 5",
+            "name": "landinstitute_select_footer_menu_5",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afdecdcc2a",
+            "label": "Footer Menu Label 6",
+            "name": "landinstitute_footer_menu_label_6",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afdefdcc2b",
+            "label": "Footer Menu Link 6",
+            "name": "landinstitute_footer_menu_link_6",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afdf4dcc2c",
+            "label": "Select Footer Menu 6",
+            "name": "landinstitute_select_footer_menu_6",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afe04dcc2f",
+            "label": "Footer Menu Label 7",
+            "name": "landinstitute_footer_menu_label_7",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afdfddcc2e",
+            "label": "Footer Menu Link 7",
+            "name": "landinstitute_footer_menu_link_7",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afdfcdcc2d",
+            "label": "Select Footer Menu 7",
+            "name": "landinstitute_select_footer_menu_7",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afe13dcc32",
+            "label": "Footer Menu Label 8",
+            "name": "landinstitute_footer_menu_label_8",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afe0fdcc31",
+            "label": "Footer Menu Link 8",
+            "name": "landinstitute_footer_menu_link_8",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afe0cdcc30",
+            "label": "Select Footer Menu 8",
+            "name": "landinstitute_select_footer_menu_8",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afe1edcc35",
+            "label": "Footer Menu Label 9",
+            "name": "landinstitute_footer_menu_label_9",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_682afe1adcc34",
+            "label": "Footer Menu Link 9",
+            "name": "landinstitute_footer_menu_link_9",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 1
+        },
+        {
+            "key": "field_682afe18dcc33",
+            "label": "Select Footer Menu 9",
+            "name": "landinstitute_select_footer_menu_9",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_682afb4f019c0",
+            "label": "Footer Menu",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 1
         },
         {
             "key": "field_5ed4d0794548f",
@@ -1446,5 +2661,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1735298099
+    "modified": 1747649801
 }

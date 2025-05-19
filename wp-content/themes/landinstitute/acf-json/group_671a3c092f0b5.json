@@ -44,7 +44,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "70",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -55,31 +55,6 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
-        },
-        {
-            "key": "field_671a3e88cf265",
-            "label": "Button",
-            "name": "base_theme_option_button",
-            "aria-label": "",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_671a3c09cf263",
-                        "operator": "==",
-                        "value": "manual"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "30",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -107,5 +82,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1735295371
+    "modified": 1747398224
 }

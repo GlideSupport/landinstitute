@@ -20,17 +20,14 @@ $bst_var_bscripts = $bst_option_fields['body_scripts'] ?? '';
 $bst_var_tbar_vsblty = $bst_option_fields['bst_var_tbar_vsblty'] ?? null;
 $bst_var_hb_content = $bst_option_fields['bst_var_hb_content'] ?? null;
 $cookie_days = $bst_option_fields['hello_bar_cookie_days'] ?? 1;
-$bst_var_tbar_btn = $bst_option_fields['bst_var_tbar_btn'] ?? null;
 
 //page HelloBar Options
 $base_theme_option_global_manual = $bst_fields['base_theme_option_global_manual'] ?? 'global';
 $base_theme_option_content = $bst_fields['base_theme_option_content'] ?? null;
-$base_theme_option_button = $bst_fields['base_theme_option_button'] ?? null;
 
 //header section
 $bst_var_header_logo = $bst_option_fields['bst_var_header_logo'] ?? null;
 $bst_var_tohdr_btn = $bst_option_fields['bst_var_tohdr_btn'] ?? null;
-$bst_var_tohdr_btn_two = $bst_option_fields['bst_var_tohdr_btn_two'] ?? null;
 
 
 ?>

@@ -62,9 +62,11 @@ export default function Edit( props ) {
 								selected={ bgWidth }
 								options={ [
 
-									{ label: 'Width 1180px (Default)', value: 'ctn' },
-									{ label: 'Width 980px', value: 'ctn-980' },
-									{ label: 'Width 760px', value: 'ctn-760' },
+									{ label: 'Width 1280px (Default)', value: 'container-1280' },
+									{ label: 'Width 1120px', value: 'container-1120' },
+									{ label: 'Width 960px', value: 'container-960' },
+									{ label: 'Width 800px', value: 'container-800' },
+									{ label: 'Width 720px', value: 'container-720' },
 								]
 								}
 								onChange={ ( value ) => setAttributes( {
@@ -84,9 +86,12 @@ export default function Edit( props ) {
 							DesignKey="bgDesignType"
 							help="Click to select value"
 							options={ [
-								{ label: 'Container Red', value: 'ctn-red', display: '#ff0000' },
-								{ label: 'Container Black', value: 'ctn-black', display: 'ctn-black.png' },
-								{ label: 'Container Sea Green', value: 'ctn-sea-green', display: 'ctn-sea-green.png' },
+								{ label: 'Container Butter Yellow', value: 'bg-butter-yellow', display: 'bg-butter-yellow.png' },
+								{ label: 'Container Lemon Yellow', value: 'bg-lemon-yellow', display: 'bg-lemon-yellow.jpg' },
+								{ label: 'Container Sunflower Yellow', value: 'bg-sunflower-yellow', display: 'bg-sunflower-yellow.png' },
+								{ label: 'Container Sky Blue', value: 'bg-sky-blue', display: 'bg-sky-blue.png' },
+								{ label: 'Container lilac', value: 'bg-lilac', display: 'bg-lilac.png' },
+								{ label: 'Container Lime Green', value: 'bg-lime-green', display: 'bg-lime-green.jpg' },
 							] }
 						/>
 					</PanelBody>

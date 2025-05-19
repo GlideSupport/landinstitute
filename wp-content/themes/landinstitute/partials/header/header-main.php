@@ -20,15 +20,11 @@
                         );
                         ?>
                     </nav>
-                    <?php if ($bst_var_tohdr_btn || $bst_var_tohdr_btn_two) { ?>
+                    <?php if ($bst_var_tohdr_btn) { ?>
                         <div class="header-btns desktop-hide">
                             <?php
                             if ($bst_var_tohdr_btn) {
                                 echo BaseTheme::button($bst_var_tohdr_btn, 'button');
-                            }
-
-                            if ($bst_var_tohdr_btn_two) {
-                                echo BaseTheme::button($bst_var_tohdr_btn_two, 'button');
                             }
                             ?>
 
@@ -42,15 +38,11 @@
                 <span class="bottom"></span>
             </div>
         </div>
-        <?php if ($bst_var_tohdr_btn || $bst_var_tohdr_btn_two) { ?>
+        <?php if ($bst_var_tohdr_btn) { ?>
             <div class="header-btns">
                 <?php
                 if ($bst_var_tohdr_btn) {
                     echo BaseTheme::button($bst_var_tohdr_btn, 'button');
-                }
-
-                if ($bst_var_tohdr_btn_two) {
-                    echo BaseTheme::button($bst_var_tohdr_btn_two, 'button');
                 }
                 ?>
             </div>

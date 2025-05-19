@@ -69,10 +69,6 @@ class WP_Theme_Setup {
 		register_nav_menus(
 			array(
 				'header-nav'       => __( 'Header Nav', 'land_institute' ),
-				'footer-nav-one'   => __( 'Footer Nav One', 'land_institute' ),
-				'footer-nav-two'   => __( 'Footer Nav Two', 'land_institute' ),
-				'footer-nav-three' => __( 'Footer Nav Three', 'land_institute' ),
-				'legal-nav'        => __( 'Legal Nav', 'land_institute' ),
 			)
 		);
 
