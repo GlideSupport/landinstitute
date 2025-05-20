@@ -287,7 +287,7 @@ picture {
 	}
 }
 
-section:has(.all-resources-block) {
+section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block) {
 	overflow: hidden;
 }
 
@@ -304,7 +304,9 @@ section:has(.has-border-bottom) {
 	width: 100vw;
 
 	.site-btn {
-		width: 100%;
+		width: -webkit-fill-available;
+		margin-left: -2px;
+		margin-right: -2px;
 	}
 }
 

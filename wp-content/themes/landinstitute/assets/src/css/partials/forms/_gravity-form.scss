@@ -72,13 +72,6 @@ button {
 	top: 0;
 }
 
-.gfield_description {
-	font-size: var(--gb_font_size_17);
-	font-style: normal;
-	font-weight: 500;
-	line-height: var(--line_height_130per);
-}
-
 .gform_wrapper.gform-theme .gfield--type-consent .gfield_label {
 	display: none;
 }
@@ -261,10 +254,9 @@ table.ui-datepicker_calendar {
 	background: transparent;
 	border-radius: 0px;
 	bottom: inherit;
-	color: var(--gb_red);
-	display: inline-block;
-	font-size: 16px;
-	margin-top: 6px;
+	color: var(--gb_various_error_red);
+	display: flex;
+	margin-top: 4px;
 	padding: 0;
 	position: relative;
 	right: 0;
@@ -272,9 +264,7 @@ table.ui-datepicker_calendar {
 	top: 0;
 	width: 100%;
 
-	@media (max-width: 1199px) {
-		position: static;
-	}
+	@extend .ui-16-15-bold;
 
 	&:empty {
 		display: none;
@@ -295,31 +285,28 @@ table.ui-datepicker_calendar {
 
 	input,
 	textarea {
-		background-color: #FFF1F1;
-		border-color: #D30000;
-		color: var(--gb_regular_text);
+		background-color: transparent;
+		border-color: var(--gb_various_error_red);
 
 		&::placeholder {
-			color: var(--gb_regular_text);
 			opacity: 1;
 		}
 
 		&:focus {
-			background-color: var(--gb_white);
-			border-color: var(--gb_Secondary_Dark_Beige);
-			box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+			background-color: transparent;
 		}
 	}
 
 	select {
-		background-color: #FFF1F1;
-		border-color: #D30000;
-		color: var(--gb_valiation_message_color);
+		background-color: transparent;
+		border-color: var(--gb_various_error_red);
+
+		&::placeholder {
+			opacity: 1;
+		}
 
 		&:focus {
-			background-color: var(--gb_white);
-			border-color: var(--gb_Secondary_Dark_Beige);
-			box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+			background-color: transparent;
 		}
 	}
 }
@@ -530,54 +517,68 @@ table.ui-datepicker_calendar {
 	.gfield_label,
 	.gform-field-label {
 		display: flex;
-		font-size: 16px;
-		margin-bottom: 8px;
+		margin-bottom: 0;
+
+		@extend .ui-18-16-bold;
 	}
 }
 
 .gform_footer {
-	margin-top: 48px;
+	margin-top: 44px;
 	overflow: hidden;
 	position: relative;
 	text-align: left;
+	display: inline-flex;
 
 	input[type="submit"] {
-		background-color: var(--gb_theme_btn_bgcolor);
-		border: none;
-		border-radius: 100px;
-		color: var(--gb_theme_btn_color);
-		cursor: pointer;
+		background-color: var(--gb_base_brown);
+		border: 2px solid var(--gb_base_brown);
+		border-radius: 0px;
+		color: var(--gb_white);
 		display: inline-flex;
-		font-size: 18px;
-		margin: 0;
+		font-size: var(--gb_font_size_14);
+		font-weight: 600;
+		height: auto;
+		letter-spacing: -0.36px;
+		line-height: 110%;
 		outline: none;
-		overflow: hidden;
-		padding: 14px 50px;
+		padding: 14px 50px 14px 22px;
 		position: relative;
-		text-align: center;
 		text-decoration: none;
-		transform: translate(0);
-		transition: all .2s ease-in-out;
 		transition: 0.35s;
-
-		@media(max-width: 640px) {
-			height: 44px;
-			min-height: inherit;
-			padding: 13px 53px 12px;
-		}
-
-		&:last-child {
-			margin-right: 0;
-		}
-
-		&:hover {
-			background-color: var(--gb_theme_btn_bgcolor_hover);
-			color: var(--gb_theme_btn_color_hover);
-		}
+		margin: 0;
 	}
 
-	@media(max-width: 991px) {
-		margin-top: 36px;
+	&:after {
+		align-items: center;
+		animation: shrink-back 0.4s forwards;
+		background-color: var(--gb_primary_lilac);
+		background-image: url(../images/button-brown-arrow.svg);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 0px;
+		border-radius: 100px;
+		content: '';
+		display: flex;
+		height: 22px;
+		justify-content: center;
+		position: absolute;
+		right: 16px;
+		top: 14px;
+		transform: scale(0.27);
+		transition: transform 0.4s ease-in-out;
+		width: 22px;
+	}
+
+	&:hover {
+		background-color: var(--gb_base_brown);
+		border-color: var(--gb_base_brown);
+		color: var(--gb_white);
+
+		&:after {
+			animation: bubble-pop 0.4s forwards;
+			background-size: 9px;
+		}
 	}
 }
 
@@ -590,23 +591,5 @@ table.ui-datepicker_calendar {
 			margin: 0 auto;
 			max-width: 213px;
 		}
-	}
-}
-
-.error-top {
-	.validation_message {
-		background: var(--gb_valiation_message_color);
-		border-radius: 3px;
-		bottom: inherit;
-		color: var(--gb_white);
-		display: inline-block;
-		font-size: .875rem;
-		padding: 1px 6px;
-		position: absolute;
-		right: 0;
-		text-align: center;
-		top: calc(100% - 78px);
-		width: auto;
-		margin: 0;
 	}
 }

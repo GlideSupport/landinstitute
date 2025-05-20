@@ -178,6 +178,20 @@ h6,
 	}
 }
 
+.ui-20-18-regular {
+	color: var(--gb_base_brown);
+	font-family: "Universal Sans Display";
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: var(--letter_spacing_04);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_036);
+	}
+}
+
 .ui-18-16-bold {
 	color: var(--gb_base_brown);
 	font-family: "Universal Sans Display";

@@ -27,6 +27,7 @@
                 grid-column: span 6;
                 padding: clamp(64px, calc(4rem + ((1vw - 7.68px) * 17.354)), 165px) clamp(0px, calc(0rem + ((1vw - 9.92px) * 22.3464)), 80px) clamp(38px, calc(2.375rem + ((1vw - 7.68px) * 4.4674)), 64px) 0;
                 position: relative;
+                border-right: 2px solid var(--gb_base_brown);
 
                 &:before {
                     content: '';
