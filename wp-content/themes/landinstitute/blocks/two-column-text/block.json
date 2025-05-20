@@ -1,0 +1,25 @@
+{
+	"name": "acf/two-column-text",
+	"title": "Two Column Text",
+	"description": "A custom Two Column Text block.",
+	"category": "theme-blocks",
+	"icon": "columns",
+	"keywords": ["two-column-text" , "two Column Text" , "Two Column Text", "Text"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-two-column-text.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "two-column-text-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

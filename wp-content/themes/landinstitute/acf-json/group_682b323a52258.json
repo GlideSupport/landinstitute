@@ -1,0 +1,53 @@
+{
+    "key": "group_682b323a52258",
+    "title": "BG Color Options",
+    "fields": [
+        {
+            "key": "field_682b323b7cfe9",
+            "label": "BG Color Options",
+            "name": "li_globel_bg_color_options",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "bg-lilac": "Lilac",
+                "bg-sky-blue": "Sky Blue",
+                "bg-lime-green": "Lime Green",
+                "bg-butter-yellow": "Butter Yellow",
+                "lemon-yellow": "Lemon Yellow",
+                "bg-lemon-yellow": "Sunflower Yellow"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1747661616
+}

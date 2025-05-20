@@ -37,17 +37,15 @@ if ( $block['name'] ) {
 }
 
 // Block variables.
-$ch_hero_headline = $bst_block_fields['ch_hero_headline'] ?? null;
-$choose_variation = $bst_block_fields['ch_hero_choose_varaition'] ?? null;
-$ch_hero_headline_check = BaseTheme::headline_check($ch_hero_headline);
+$li_hero_headline = $bst_block_fields['li_hero_headline'] ?? null;
+$li_hero_choose_variation = $bst_block_fields['li_hero_choose_variation'] ?? null;
+$li_hero_headline_check = BaseTheme::headline_check($li_hero_headline);
 
 
 ?>
-<div id="<?php echo esc_html($bst_block_html_id); ?>"
-    class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>"
-    style="<?php echo esc_html($bst_block_styles); ?> ">
+<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 	<?php 
-	if($choose_variation == 'home'):
+	if($li_hero_choose_variation == 'home'):
 		include 'part/home.php';
 	endif;
 		

@@ -39,6 +39,18 @@ class WP_Theme_Blocks {
 
 		// Register a block - Hero.
 		self::register_acf_block('hero');
+		
+		// Register a block - Two Column Text.
+		self::register_acf_block('two-column-text');
+		
+		// Register a block - Internal Link List.
+		self::register_acf_block('internal-link-list');
+		
+		// Register a block - Impact Map.
+		self::register_acf_block('impact-map');
+		
+		// Register a block - Post Teaser.
+		self::register_acf_block('post-teaser');
 
 		// [register_here].
 	}

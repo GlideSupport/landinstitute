@@ -22,15 +22,24 @@ $bst_var_pocta_button_one = $bst_fields['bst_var_pocta_button_one'] ?? $bst_var_
 $bst_var_pocta_button_two = $bst_fields['bst_var_pocta_button_two'] ?? $bst_var_tocta_button_two;
 
 ?>
-<section id="cta-section" class="cta-section">
-	<!-- cta Start -->
-	<div class="cta-single">
+<!-- cta Start -->
+<div class="footer-cta">
 		<div class="wrapper">
-			<?php echo !empty($bst_var_pocta_bg_image) ? '<div class="footer-logo">' . wp_get_attachment_image($bst_var_pocta_bg_image, 'thumb_200') . '</div>' : ''; ?>
-			<?php echo !empty($bst_var_pocta_title) ? '<div class="gl-s52"></div><h2 class="heading-2 block-title mb-0">' . esc_html($bst_var_pocta_title) . '</h2>' : ''; ?>
-			<?php echo !empty($bst_var_pocta_button_one) ? '<div class="gl-s52"></div><div class="block-btn center-align">' . BaseTheme::button($bst_var_pocta_button_one, 'site-btn btn-red-cta') . '</div>' : ''; ?>
-			<?php echo !empty($bst_var_pocta_button_two) ? '<div class="gl-s52"></div><div class="block-btn center-align">' . BaseTheme::button($bst_var_pocta_button_two, 'site-btn btn-red-cta') . '</div>' : ''; ?>
+			<div class="row-grid">
+				<div class="col-left">
+					<?php echo !empty($bst_var_pocta_title) ? '<div class="gl-s156"></div><h2 class="heading-2 block-title mb-0">' . esc_html($bst_var_pocta_title) . '</h2><div class="gl-s156"></div>' : ''; ?>
+				</div>
+				<div class="col-right">
+				<?php echo !empty($bst_var_pocta_bg_image) ? '<div class="pattern6">' . wp_get_attachment_image($bst_var_pocta_bg_image, 'thumb_200', false, ['class' => 'desktop-img']) . '</div><div class="gl-s156"></div>' : ''; ?>
+					<div class="right-col-content">
+						<?php echo !empty($bst_var_pocta_button_one) ? '<div class="two-row-btn">' . BaseTheme::button($bst_var_pocta_button_one, 'site-btn btn-sunflower-yellow') . '</div>' : ''; ?>
+						<?php echo (!empty($bst_var_pocta_button_one) && !empty($bst_var_pocta_button_two)) ? '<div class="gl-s12"></div>' : ''; ?>
+						<?php echo !empty($bst_var_pocta_button_two) ? '<div class="two-row-btn">' . BaseTheme::button($bst_var_pocta_button_two, 'site-btn btn-sky-blue') . '</div>' : ''; ?>
+					</div>
+					<div class="gl-s156"></div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!-- cta End -->
-</section>
+<!-- cta End -->
+
