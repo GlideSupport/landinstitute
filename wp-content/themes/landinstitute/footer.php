@@ -107,8 +107,9 @@ $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_
                     </div>
                     
                     <div class="footer-newsletter">
-                    <?php echo $bst_var_ftrop_form_title ? ' <div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>' : ''; ?>	
+                        <?php echo $bst_var_ftrop_form_title ? ' <div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>' : ''; ?>	
                     </div>
+                    <?php echo do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" description="false" ajax="true" tabindex="0"]'); ?>
                     <div class="gl-s64"></div>
                     <div class="social-icons">
                         <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
@@ -146,18 +147,14 @@ $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_
                             role="<?php echo esc_attr($link['title']); ?>"
                             aria-label="<?php echo esc_attr($link['title']); ?>">
                         <?php endif; ?>
-
                         <div class="footer-nav-title"> <?php echo esc_html($label); ?></div>
                         <div class="gl-s16"></div>
-
                         <?php if (!empty($link)) : ?>
                             </a>
                         <?php endif; ?>
-
                         <div class="footer-nav-item" role="navigation">
                             <nav>
-                                <?php
-                                if (!empty($menu) && is_array($menu) && !empty($menu['slug'])) {
+                                <?php if (!empty($menu) && is_array($menu) && !empty($menu['slug'])) {
                                     wp_nav_menu(
                                         array(
                                             'menu'        => $menu['slug'],
@@ -165,8 +162,7 @@ $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_
                                             'container'   => false,
                                         )
                                     );
-                                }
-                                ?>
+                                } ?>
                             </nav>
                         </div>
                     </div>

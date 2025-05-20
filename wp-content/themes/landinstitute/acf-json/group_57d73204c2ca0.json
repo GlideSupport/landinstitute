@@ -1823,6 +1823,34 @@
                     "min": "",
                     "max": "1"
                 },
+                "layout_682c672910b50": {
+                    "key": "layout_682c672910b50",
+                    "name": "threads",
+                    "label": "Threads",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_682c672910b51",
+                            "label": "Social Link",
+                            "name": "social_link",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 1,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
                 "layout_6597e8e1a58ed": {
                     "key": "layout_6597e8e1a58ed",
                     "name": "youtube",
@@ -2875,5 +2903,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1747735500
+    "modified": 1747740632
 }
