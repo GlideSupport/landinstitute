@@ -44,10 +44,25 @@ $li_hero_headline_check = BaseTheme::headline_check($li_hero_headline);
 
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
-	<?php 
-	if($li_hero_choose_variation == 'home'):
-		include 'part/home.php';
-	endif;
-		
-	?>
+<?php
+$variation = sanitize_key( $li_hero_choose_variation );
+
+switch ( $variation ) {
+    case 'home':
+    case 'menu':
+	case 'standard':
+    case 'video':
+    case 'text-only':
+    case 'simple':
+    case 'form':
+	// This will look for: part/{variation}.php
+	// e.g. part/home.php, part/menu.php, etc.
+	get_template_part( 'part/' . $variation );
+	break;
+    default:
+	// Optionally load a fallback or do nothing
+	// get_template_part( 'part/default-hero' );
+	break;
+}
+?>
 </div>

@@ -1,0 +1,25 @@
+{
+	"name": "acf/impact-map",
+	"title": "Impact Map",
+	"description": "A custom Impact Map block.",
+	"category": "theme-blocks",
+	"icon": "admin-site",
+	"keywords": ["impact-map" , "Impact Map"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-impact-map.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "impact-map-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

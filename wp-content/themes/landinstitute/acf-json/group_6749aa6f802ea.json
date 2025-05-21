@@ -118,7 +118,12 @@
                 "id": ""
             },
             "choices": {
-                "home": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-variation-one.webp\"><br>Home"
+                "home": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-home.webp\"><br>Home",
+                "menu": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-menu.webp\"><br>Menu",
+                "standard": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-standard.webp\"><br>Standard",
+                "video": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-video.webp\"><br>Video",
+                "text-only": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-text-only.webp\"><br>Text Only",
+                "form": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/hero-form.webp\"><br>Form"
             },
             "default_value": "",
             "return_format": "value",
@@ -208,7 +213,7 @@
                         "id": ""
                     },
                     "return_format": "id",
-                    "library": "all",
+                    "library": "",
                     "min_width": "",
                     "min_height": "",
                     "min_size": "",
@@ -221,6 +226,516 @@
                 },
                 {
                     "key": "field_682b3295167d2",
+                    "label": "BG Color",
+                    "name": "bg_color",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_682b323a52258"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
+        },
+        {
+            "key": "field_682d7aa66171a",
+            "label": "Menu",
+            "name": "li_hero_menu",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6749aad56a347",
+                        "operator": "==",
+                        "value": "menu"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_682d7ac461722",
+                    "label": "Menu Label",
+                    "name": "menu_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_682d7ad561723",
+                    "label": "Menu Selector",
+                    "name": "menu_selector",
+                    "aria-label": "",
+                    "type": "nav_menu",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "save_format": "menu",
+                    "container": "div",
+                    "allow_null": 0,
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_682d7aa66171f",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 480px by 579px (Regular Display) - Maximum 960px by 1158px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_682d7aa661720",
+                    "label": "BG Image",
+                    "name": "bg_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1440px by 1450px (Regular Display) - Maximum 2880px by 2900px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_682d7aa661721",
+                    "label": "BG Color",
+                    "name": "bg_color",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_682b323a52258"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
+        },
+        {
+            "key": "field_682d70e2557bc",
+            "label": "Standard",
+            "name": "li_hero_standard",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6749aad56a347",
+                        "operator": "==",
+                        "value": "standard"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_682d720450dc2",
+                    "label": "Kicker",
+                    "name": "kicker",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_682d7a7f6b9e8",
+                    "label": "WYSIWYG",
+                    "name": "wysiwyg",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "wysiwyg_height": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 0,
+                    "delay": 0
+                },
+                {
+                    "key": "field_682d711f557c3",
+                    "label": "Button",
+                    "name": "button",
+                    "aria-label": "",
+                    "type": "link",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_682d719c17c53",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 480px by 579px (Regular Display) - Maximum 960px by 1158px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_682d70e2557c1",
+                    "label": "BG Image",
+                    "name": "bg_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1440px by 1450px (Regular Display) - Maximum 2880px by 2900px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_682d70e2557c2",
+                    "label": "BG Color",
+                    "name": "bg_color",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_682b323a52258"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
+        },
+        {
+            "key": "field_682d7ed33e2d6",
+            "label": "Text Only",
+            "name": "li_hero_text_only",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6749aad56a347",
+                        "operator": "==",
+                        "value": "text-only"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_682d7eef3e2dd",
+                    "label": "Kicker",
+                    "name": "kicker",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_682d7ed33e2dc",
+                    "label": "BG Color",
+                    "name": "bg_color",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_682b323a52258"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
+        },
+        {
+            "key": "field_682d68aaef45c",
+            "label": "Form",
+            "name": "li_hero_form",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6749aad56a347",
+                        "operator": "==",
+                        "value": "form"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_682d68caef462",
+                    "label": "WYSIWYG",
+                    "name": "wysiwyg",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "wysiwyg_height": "",
+                    "allow_in_bindings": 0,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 0,
+                    "delay": 0
+                },
+                {
+                    "key": "field_682d68d6ef463",
+                    "label": "Form",
+                    "name": "form",
+                    "aria-label": "",
+                    "type": "forms",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "allow_in_bindings": 0
+                },
+                {
+                    "key": "field_682d68eaef464",
+                    "label": "Image",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 480px by 579px (Regular Display) - Maximum 960px by 1158px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail"
+                },
+                {
+                    "key": "field_682d68fdef465",
+                    "label": "BG Image",
+                    "name": "bg_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1440px by 1450px (Regular Display) - Maximum 2880px by 2900px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "medium"
+                },
+                {
+                    "key": "field_682d6918ef466",
                     "label": "BG Color",
                     "name": "bg_color",
                     "aria-label": "",
@@ -262,5 +777,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1747661493
+    "modified": 1747812104
 }
