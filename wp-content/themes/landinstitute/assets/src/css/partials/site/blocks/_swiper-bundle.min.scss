@@ -276,19 +276,32 @@
     --swiper-navigation-size: 44px
 }
 
+.slider-btn {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
-    position: absolute;
-    top: var(--swiper-navigation-top-offset, 50%);
-    width: calc(var(--swiper-navigation-size)/ 44 * 27);
-    height: var(--swiper-navigation-size);
-    margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
-    z-index: 10;
+    position: relative;
+    top: 0;
+    width: 53px;
+    height: 53px;
+    margin-top: 0;
+    z-index: 2;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--swiper-navigation-color, var(--swiper-theme-color))
+    color: var(--swiper-navigation-color, var(--swiper-theme-color));
+    border-radius: 50%;
+    background-color: var(--primary_dark_green);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.11);
+    }
 }
 
 .swiper-button-next.swiper-button-disabled,
@@ -325,13 +338,13 @@
 
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next {
-    left: var(--swiper-navigation-sides-offset, 10px);
+    left: 0;
     right: auto
 }
 
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
-    right: var(--swiper-navigation-sides-offset, 10px);
+    right: 0;
     left: auto
 }
 
@@ -341,28 +354,34 @@
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-    font-family: swiper-icons;
-    font-size: var(--swiper-navigation-size);
+    background-image: url(../images/slider-arrow-yellow.svg);
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
     text-transform: none !important;
     letter-spacing: 0;
     font-variant: initial;
-    line-height: 1
+    line-height: 1;
+    font-size: 0;
 }
 
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
-    content: 'prev'
+    content: 'prev';
 }
 
 .swiper-button-next,
 .swiper-rtl .swiper-button-prev {
-    right: var(--swiper-navigation-sides-offset, 10px);
+    right: 0;
     left: auto
 }
 
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-    content: 'next'
+    content: 'next';
+    transform: scale(-1)
 }
 
 .swiper-pagination {

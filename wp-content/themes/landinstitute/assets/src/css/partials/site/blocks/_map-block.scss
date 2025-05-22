@@ -1,0 +1,103 @@
+.impact-map-block {
+    .map-image {
+        margin: 0 auto;
+        max-width: 1010px;
+    }
+
+    .map-content-value {
+        .swiper-slide-container {
+            position: relative;
+
+            .map-values {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+
+                .map-values-col {
+                    margin-bottom: 36px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .swiper-slide-active {
+            .swiper-slide-container {
+
+                .map-values {}
+            }
+        }
+    }
+
+    .map-bottom-cta {
+        border-top: 2px solid var(--gb_base_brown);
+        display: flex;
+        justify-content: flex-end;
+        margin-left: calc(-50vw + 50%);
+        width: 100vw;
+
+        .map-cta-btn {
+            margin-bottom: -2px;
+            width: 50%;
+
+            .site-btn {
+                border-bottom: 0px;
+                border-top: 0px;
+                width: 100%;
+            }
+        }
+    }
+
+    .map-thumb-year {
+        padding-left: 2px;
+
+        .swiper-slide {
+            height: auto;
+            width: 160px;
+
+            &.swiper-slide-active {
+                .slide-year {
+                    opacity: 1;
+
+                    @extend .ui-24-21-bold;
+
+                    &:after {
+                        height: 28px;
+                    }
+                }
+            }
+
+            .slide-year {
+                align-items: flex-end;
+                cursor: pointer;
+                display: flex;
+                height: 100%;
+                justify-content: center;
+                min-height: 71px;
+                opacity: 0.5;
+                padding-bottom: 43px;
+                pointer-events: none;
+                position: relative;
+                text-align: center;
+                transition: all 0.7s ease-in-out;
+
+                @extend .ui-16-15-bold;
+
+                &:after {
+                    background-color: var(--gb_base_brown);
+                    bottom: 0;
+                    content: '';
+                    height: 18px;
+                    left: 0;
+                    margin: 0 auto;
+                    position: absolute;
+                    right: 0;
+                    transition: all 0.7s ease-in-out;
+                    width: 2px;
+                }
+            }
+        }
+    }
+}

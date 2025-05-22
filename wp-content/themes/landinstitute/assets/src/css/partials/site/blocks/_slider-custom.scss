@@ -4,21 +4,20 @@
     }
 }
 
-
 .custom-cursor {
-    position: fixed;
     background-image: url(../images/drag-button.svg);
-    width: 107px;
-    height: 50px;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 4;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
+    height: 50px;
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
+    position: fixed;
+    transform: translate(-50%, -50%);
     transition: opacity 0.2s ease, visibility 0.2s ease;
+    visibility: hidden;
+    width: 107px;
+    z-index: 4;
+    z-index: 9999;
 
     &.visible {
         opacity: 1;
@@ -26,11 +25,10 @@
     }
 }
 
-
 .border-variable-slider {
+    border-top: 2px solid var(--gb_base_brown);
     margin-left: calc(-50vw + 50% - 1px);
     margin-right: calc(-50vw + 50% - 1px);
-    border-top: 2px solid var(--gb_base_brown);
 
     .swiper-container {
         cursor: none;
@@ -56,16 +54,16 @@
     }
 
     .border-image-content {
+        background-color: var(--gb_base_cream);
         border-left: 2px solid var(--gb_base_brown);
         border-right: 2px solid var(--gb_base_brown);
+        cursor: none;
         display: flex;
         flex-direction: column;
         height: 100%;
         margin-left: -1px;
         margin-right: -1px;
         text-decoration: none;
-        background-color: var(--gb_base_cream);
-        cursor: none;
 
         .variable-image {
             border-bottom: 2px solid var(--gb_base_brown);
@@ -107,5 +105,56 @@
                 }
             }
         }
+    }
+}
+
+.drag-arrows {
+    align-items: center;
+    background: var(--gb_primary_sunflower_yellow);
+    border-radius: 200px;
+    bottom: 17px;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 131px;
+    z-index: 2;
+
+    span {
+        display: inline-flex;
+
+        @extend .ui-16-15-bold-uc;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        background-image: url(../images/slider-arrow.svg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 20px;
+        color: var(--gb_base_brown);
+        height: 20px;
+        margin-top: 0;
+        margin-top: -2px;
+        position: inherit;
+        top: inherit;
+        transform: inherit;
+        width: 20px;
+
+        &:focus {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .swiper-button-prev {
+        transform: scale(-1);
     }
 }

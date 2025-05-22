@@ -178,6 +178,21 @@ h6,
 	}
 }
 
+.ui-20-18-bold-uc {
+	color: var(--gb_base_brown);
+	font-family: "Universal Sans Display";
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: var(--letter_spacing_04);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_036);
+	}
+}
+
 .ui-20-18-regular {
 	color: var(--gb_base_brown);
 	font-family: "Universal Sans Display";
@@ -228,6 +243,21 @@ h6,
 	font-weight: 600;
 	letter-spacing: var(--letter_spacing_032);
 	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_03);
+	}
+}
+
+.ui-16-15-bold-uc {
+	color: var(--gb_base_brown);
+	font-family: "Universal Sans Display";
+	font-size: var(--gb_font_size_15);
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: var(--letter_spacing_032);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
 
 	@media(max-width: 640px) {
 		letter-spacing: var(--letter_spacing_03);

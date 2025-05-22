@@ -10,9 +10,41 @@
     }
 
     .chart-data {
+        display: flex;
+
         @media (max-width: 1440px) {
             width: 100vw;
             margin-left: calc(-50vw + 50%);
+        }
+    }
+}
+
+.testimonial-single-view-slider {
+    border-left: 2px solid var(--gb_base_brown);
+    padding-left: 80px;
+
+    .slider-btn {
+        margin-top: -30px;
+    }
+
+    .slide-head {
+        .card-title {
+            max-width: 880px;
+        }
+    }
+
+    .slide-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 80px;
+
+        .col-left {
+            flex: 720px 0 0;
+        }
+
+        .col-right {
+            flex: 1 0 0;
+            display: flex;
         }
     }
 }
