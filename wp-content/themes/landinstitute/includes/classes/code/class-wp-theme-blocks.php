@@ -51,6 +51,106 @@ class WP_Theme_Blocks {
 		
 		// Register a block - Post Teaser.
 		self::register_acf_block('post-teaser');
+		
+		// Register a block - CTA Grid.
+		self::register_acf_block('cta-grid');
+		
+		// Register a block - Full Width Image.
+		self::register_acf_block('full-width-image');
+
+		// Register a block - Testimonial.
+		self::register_acf_block('testimonial');
+
+		// Register a block - Airtable Map.
+		self::register_acf_block('airtable-map');
+
+		// Register a block - Stats.
+		self::register_acf_block('stats');
+
+		// Register a block - Logo Grid.
+		self::register_acf_block('logo-grid');
+
+		// Register a block - Theme Button.
+		self::register_acf_block('theme-button');
+
+		// Register a block - Numbered Grid.
+		self::register_acf_block('numbered-grid');
+
+		// Register a block - Midpage CTA.
+		self::register_acf_block('midpage-cta');
+
+		// Register a block - Staff List.
+		self::register_acf_block('staff-list');
+
+		// Register a block - Theme Form.
+		self::register_acf_block('theme-form');
+
+		// Register a block - Lead Paragraph.
+		self::register_acf_block('lead-paragraph');
+
+		// Register a block - CTA Slider.
+		self::register_acf_block('cta-slider');
+
+		// Register a block - Logos w/ Text.
+		self::register_acf_block('logos-w-text');
+
+		// Register a block - FAQ.
+		self::register_acf_block('faq');
+
+		// Register a block - Text List .
+		self::register_acf_block('text-list');
+
+		// Register a block - Image Gallery.
+		self::register_acf_block('image-gallery');
+
+		// Register a block - CTA Columns.
+		self::register_acf_block('cta-columns');
+
+		// Register a block - CTA Rows.
+		self::register_acf_block('cta-rows');
+
+		// Register a block - Timeline.
+		self::register_acf_block('timeline');
+		
+		// Register a block - Image Alongside Text.
+		self::register_acf_block('image-alongside-text');
+		
+		// Register a block - Scrolling Text.
+		self::register_acf_block('scrolling-text');
+		
+		// Register a block - Event Teaser.
+		self::register_acf_block('event-teaser');
+		
+		// Register a block - Theme Divider.
+		self::register_acf_block('theme-divider');
+		
+		// Register a block - Image List.
+		self::register_acf_block('image-list');
+		
+		// Register a block - Icon Grid.
+		self::register_acf_block('icon-grid');
+		
+		// Register a block - Video Alongside Text.
+		self::register_acf_block('video-alongside-text');
+		
+		// Register a block - Theme Video.
+		self::register_acf_block('theme-video');
+		
+		// Register a block - Block Quote.
+		self::register_acf_block('block-quote');
+		
+		// Register a block - Tabbed Content.
+		self::register_acf_block('tabbed-content');
+		
+		// Register a block - Map Embed.
+		self::register_acf_block('map-embed');
+		
+		// Register a block - Letter.
+		self::register_acf_block('letter');
+		
+		// Register a block - Download List.
+		self::register_acf_block('download-list');
+		
 
 		// [register_here].
 	}

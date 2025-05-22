@@ -40,29 +40,29 @@ if ( $block['name'] ) {
 $li_hero_headline = $bst_block_fields['li_hero_headline'] ?? null;
 $li_hero_choose_variation = $bst_block_fields['li_hero_choose_variation'] ?? null;
 $li_hero_headline_check = BaseTheme::headline_check($li_hero_headline);
-
-
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
-<?php
-$variation = sanitize_key( $li_hero_choose_variation );
-
-switch ( $variation ) {
-    case 'home':
-    case 'menu':
-	case 'standard':
-    case 'video':
-    case 'text-only':
-    case 'simple':
-    case 'form':
-	// This will look for: part/{variation}.php
-	// e.g. part/home.php, part/menu.php, etc.
-	get_template_part( 'part/' . $variation );
-	break;
-    default:
-	// Optionally load a fallback or do nothing
-	// get_template_part( 'part/default-hero' );
-	break;
-}
-?>
+	<?php 
+	if($li_hero_choose_variation == 'home'):
+		include 'part/home.php';
+	endif;
+	if($li_hero_choose_variation == 'menu'):
+		include 'part/menu.php';
+	endif;
+	if($li_hero_choose_variation == 'standard'):
+		include 'part/standard.php';
+	endif;
+	if($li_hero_choose_variation == 'video'):
+		include 'part/video.php';
+	endif;
+	if($li_hero_choose_variation == 'blog-teaser'):
+		include 'part/blog-teaser.php';
+	endif;
+	if($li_hero_choose_variation == 'text-only'):
+		include 'part/text-only.php';
+	endif;
+	if($li_hero_choose_variation == 'form'):
+		include 'part/form.php';
+	endif;	
+	?>
 </div>

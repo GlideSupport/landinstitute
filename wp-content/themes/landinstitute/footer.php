@@ -83,94 +83,93 @@ $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_
 
 ?>
 </main>
-<footer id="footer-section" class="footer-section">
+<footer id="footer-section" class="footer-section site-footer">
    
     <?php get_template_part('partials/cta'); ?>
     <!-- Footer Start -->
     <div class="footer-main">
         <div class="gl-s96"></div>
-        <div class="wrapper">
-            <div class="footer-row">
-                <div class="col-left">
-                    <?php if ($bst_var_footer_logo): ?>
-                        <div class="footer-logo">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" role="button" aria-label="Site URL" data-text="Site URL">
-                                <?php echo wp_get_attachment_image($bst_var_footer_logo, 'thumb_200') ?>
-                            </a>
+            <div class="wrapper">
+                <div class="footer-row">
+                    <div class="col-left">
+                        <?php if ($bst_var_footer_logo): ?>
+                            <div class="footer-logo">
+                                <a href="<?php echo esc_url(home_url('/')); ?>" role="button" aria-label="Site URL" data-text="Site URL">
+                                    <?php echo wp_get_attachment_image($bst_var_footer_logo, 'thumb_200') ?>
+                                </a>
+                            </div>
+                            <div class="gl-s36"></div>
+                        <?php endif; ?>
+                        <div class="footer-intro">
+                        <?php echo $bst_var_ftrop_title ? '<h5 class="heading-5 block-title mb-0">' . html_entity_decode($bst_var_ftrop_title) . '</h5><div class="gl-s12"></div>' : ''; ?>
+                        <?php echo $bst_var_ftrop_text ? '<div class="intro-content body-20-18-regular">' . html_entity_decode($bst_var_ftrop_text) . '</div><div class="gl-s64"></div>' : ''; ?>	
                         </div>
-                        <div class="gl-s36"></div>
-                    <?php endif; ?>
-                    
-                    <div class="footer-intro">
-                    <?php echo $bst_var_ftrop_title ? '<h5 class="heading-5 block-title mb-0">' . html_entity_decode($bst_var_ftrop_title) . '</h5><div class="gl-s12"></div>' : ''; ?>
-                    <?php echo $bst_var_ftrop_text ? '<div class="intro-content body-20-18-regular">' . html_entity_decode($bst_var_ftrop_text) . '</div><div class="gl-s64"></div>' : ''; ?>	
-                    </div>
-                    
-                    <div class="footer-newsletter">
-                        <?php echo $bst_var_ftrop_form_title ? ' <div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>' : ''; ?>	
-                    </div>
-                    <?php echo do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" description="false" ajax="true" tabindex="0"]'); ?>
-                    <div class="gl-s64"></div>
-                    <div class="social-icons">
-                        <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
-                    </div>
-                    <div class="gl-s64"></div>
-                    <div class="legal-nav">
-                        <nav>
-                            <?php
-                            if (!empty($li_select_footer_legal_menu) && is_array($li_select_footer_legal_menu) && !empty($li_select_footer_legal_menu['slug'])) {
-                                wp_nav_menu(
-                                    array(
-                                        'menu'             => $li_select_footer_legal_menu['slug'],
-                                        'fallback_cb'      => 'BaseTheme::nav_fallback',
-                                        'container'   => false,
-                                    )
-                                );
-                            }
-                            ?>
-                        </nav>
-                    </div>
-                    <div class="gl-s8"></div>
-                    <?php echo !empty($bst_var_ftrop_copyright) ? '<div class="copy-right">&copy; ' . date('Y') . ' ' . html_entity_decode($bst_var_ftrop_copyright) . '</div>' : ''; ?>
-                </div>
-                <div class="col-right">
-                    <?php for ($i = 1; $i <= 9; $i++) :
-                        $label = ${"li_footer_menu_label_" . $i};
-                        $link = ${"li_footer_menu_link_" . $i};
-                        $menu = ${"li_select_footer_menu_" . $i};
-                    ?>
-                    <div class="footer-nav">
-                        <?php if (!empty($link)) : ?>
-                            <a href="<?php echo esc_url($link['url']); ?>"
-                            target="<?php echo esc_attr($link['target']); ?>"
-                            title="<?php echo esc_attr($link['title']); ?>"
-                            role="<?php echo esc_attr($link['title']); ?>"
-                            aria-label="<?php echo esc_attr($link['title']); ?>">
-                        <?php endif; ?>
-                        <div class="footer-nav-title"> <?php echo esc_html($label); ?></div>
-                        <div class="gl-s16"></div>
-                        <?php if (!empty($link)) : ?>
-                            </a>
-                        <?php endif; ?>
-                        <div class="footer-nav-item" role="navigation">
+                        
+                        <div class="footer-newsletter">
+                            <?php echo $bst_var_ftrop_form_title ? ' <div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>' : ''; ?>	
+                        </div>
+                        <?php echo do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" description="false" ajax="true" tabindex="0"]'); ?>
+                        <div class="gl-s64"></div>
+                        <div class="social-icons">
+                            <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
+                        </div>
+                        <div class="gl-s64"></div>
+                        <div class="legal-nav">
                             <nav>
-                                <?php if (!empty($menu) && is_array($menu) && !empty($menu['slug'])) {
+                                <?php
+                                if (!empty($li_select_footer_legal_menu) && is_array($li_select_footer_legal_menu) && !empty($li_select_footer_legal_menu['slug'])) {
                                     wp_nav_menu(
                                         array(
-                                            'menu'        => $menu['slug'],
-                                            'fallback_cb' => 'BaseTheme::nav_fallback',
+                                            'menu'             => $li_select_footer_legal_menu['slug'],
+                                            'fallback_cb'      => 'BaseTheme::nav_fallback',
                                             'container'   => false,
                                         )
                                     );
-                                } ?>
+                                }
+                                ?>
                             </nav>
                         </div>
+                        <div class="gl-s8"></div>
+                        <?php echo !empty($bst_var_ftrop_copyright) ? '<div class="copy-right">&copy; ' . date('Y') . ' ' . html_entity_decode($bst_var_ftrop_copyright) . '</div>' : ''; ?>
                     </div>
-                    <?php endfor; ?>
+                    <div class="col-right">
+                        <?php for ($i = 1; $i <= 9; $i++) :
+                            $label = ${"li_footer_menu_label_" . $i};
+                            $link = ${"li_footer_menu_link_" . $i};
+                            $menu = ${"li_select_footer_menu_" . $i};
+                        ?>
+                        <div class="footer-nav">
+                            <?php if (!empty($link)) : ?>
+                                <a href="<?php echo esc_url($link['url']); ?>"
+                                target="<?php echo esc_attr($link['target']); ?>"
+                                title="<?php echo esc_attr($link['title']); ?>"
+                                role="<?php echo esc_attr($link['title']); ?>"
+                                aria-label="<?php echo esc_attr($link['title']); ?>">
+                            <?php endif; ?>
+                            <div class="footer-nav-title"> <?php echo esc_html($label); ?></div>
+                            <div class="gl-s16"></div>
+                            <?php if (!empty($link)) : ?>
+                                </a>
+                            <?php endif; ?>
+                            <div class="footer-nav-item" role="navigation">
+                                <nav>
+                                    <?php if (!empty($menu) && is_array($menu) && !empty($menu['slug'])) {
+                                        wp_nav_menu(
+                                            array(
+                                                'menu'        => $menu['slug'],
+                                                'fallback_cb' => 'BaseTheme::nav_fallback',
+                                                'container'   => false,
+                                            )
+                                        );
+                                    } ?>
+                                </nav>
+                            </div>
+                        </div>
+                        <?php endfor; ?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="gl-s96"></div>
+            <div class="gl-s96"></div>
 	</div>
     <!-- Footer End -->
     <?php
