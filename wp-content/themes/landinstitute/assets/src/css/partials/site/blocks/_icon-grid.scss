@@ -1,0 +1,45 @@
+.heading-max {
+    max-width: 880px;
+}
+
+.icon-grid-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: 64px;
+
+    .icon-grid-col {
+        grid-column: span 6;
+        padding-right: 52px;
+
+        .icon-grid-image {
+            display: flex;
+
+            img {
+                height: 72px;
+                object-fit: contain;
+                width: 72px;
+            }
+        }
+    }
+}
+
+.logo-grid-row {
+    display: grid;
+    gap: 80px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    position: relative;
+    row-gap: 36px;
+
+    .logo-grid-col {
+        grid-column: span 4;
+
+        .logo-grid-wrap {
+            display: flex;
+
+            img {
+                max-height: 102px;
+                max-width: 194px;
+            }
+        }
+    }
+}

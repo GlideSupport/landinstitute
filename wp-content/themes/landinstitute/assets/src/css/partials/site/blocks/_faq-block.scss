@@ -1,0 +1,135 @@
+.faq_container {
+    margin: 0;
+    padding: 0;
+    transition: all 0.5s ease;
+    background: transparent;
+    border-bottom: 1px solid var(--gb_base_brown);
+    margin-bottom: 0;
+
+    &:hover {
+        background: transparent;
+        border-bottom-color: var(--primary_dark_green);
+
+        .faq_question-text {
+            .faq-title {
+                color: var(--primary_dark_green);
+            }
+        }
+
+        .icon {
+            .icon-shape {
+
+                &::before,
+                &::after {
+                    background-color: var(--primary_dark_green);
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+        border-bottom: 1px solid transparent;
+    }
+
+    .faq_question {
+        align-items: start;
+        cursor: pointer;
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        padding: 30px 0;
+        position: relative;
+
+        .faq-title {
+            transition: all 0.2s ease-in-out;
+        }
+
+        &.active {
+            .faq-title {
+                color: var(--primary_dark_green);
+            }
+
+            .icon {
+                .icon-shape {
+
+                    &::before,
+                    &::after {
+                        background-color: var(--primary_dark_green);
+                    }
+                }
+            }
+        }
+    }
+
+    .answercont {
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+
+    .answer {
+        color: var(--gb_base_brown);
+        padding: 0 0 36px;
+
+        ul {
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+
+    .icon {
+        &.active {
+            background: transparent;
+            border: 1px solid var(--gb_color_primary);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .icon-shape {
+            height: 14px;
+            position: relative;
+            width: 14px;
+            top: 6px;
+
+            &::before {
+                background: var(--gb_base_brown);
+                border-radius: 0px;
+                content: "";
+                height: 2px;
+                left: 0px;
+                position: absolute;
+                top: 6px;
+                transition: all 0.5s ease;
+                width: 100%;
+            }
+
+            &:after {
+                background: var(--gb_base_brown);
+                border-radius: 0px;
+                content: "";
+                height: 100%;
+                left: 6px;
+                position: absolute;
+                top: 0px;
+                transition: all 0.5s ease;
+                width: 2px;
+            }
+
+            &.active {
+                &::before {
+                    transform: rotate(45deg);
+                    transition: all 0.5s ease;
+                }
+
+                &::after {
+                    transform: rotate(45deg);
+                    transition: all 0.5s ease;
+                }
+            }
+        }
+    }
+}

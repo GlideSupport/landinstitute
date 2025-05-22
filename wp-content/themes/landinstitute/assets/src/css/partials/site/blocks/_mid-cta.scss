@@ -7,14 +7,16 @@
 
         &:before {
             background-color: var(--gb_base_brown);
-            top: 0;
             content: '';
             height: 2px;
             left: 0;
             margin-left: calc(-50vw + 50%);
             position: absolute;
+            top: 0;
             width: 100vw;
+            z-index: 1;
         }
+
 
         .cta-grid-box-col {
             border-right: 2px solid var(--gb_base_brown);
@@ -29,10 +31,11 @@
                 grid-row: 1;
 
                 &:after {
+                    left: 0;
                     margin-left: 0;
                     margin-right: calc(-50vw + 50%);
-                    left: 0;
                     right: inherit;
+                    margin-left: 0;
                 }
             }
 
@@ -42,10 +45,11 @@
                 grid-row: 2;
 
                 &:after {
+                    left: 0;
                     margin-left: 0;
                     margin-right: calc(-50vw + 50%);
-                    left: 0;
                     right: inherit;
+                    margin-left: 0;
                 }
             }
 
@@ -54,10 +58,10 @@
                 grid-row: 3;
 
                 &:after {
-                    margin-right: 0;
-                    margin-left: calc(-50vw + 50%);
-                    right: 0;
                     left: inherit;
+                    margin-left: calc(-50vw + 50%);
+                    margin-right: 0;
+                    right: 0;
                 }
             }
 
@@ -66,10 +70,10 @@
                 grid-row: 4;
 
                 &:after {
-                    margin-right: 0;
-                    margin-left: calc(-50vw + 50%);
-                    right: 0;
                     left: inherit;
+                    margin-left: calc(-50vw + 50%);
+                    margin-right: 0;
+                    right: 0;
                 }
             }
 
@@ -78,10 +82,11 @@
                 grid-row: span 2;
 
                 &:after {
+                    left: 0;
                     margin-left: 0;
                     margin-right: calc(-50vw + 50%);
-                    left: 0;
                     right: inherit;
+                    margin-left: 0;
                 }
             }
 
@@ -90,9 +95,9 @@
                 bottom: 0;
                 content: '';
                 height: 2px;
-                right: 0;
                 margin-left: calc(-50vw + 50%);
                 position: absolute;
+                right: 0;
                 width: 1000%;
             }
 
@@ -102,9 +107,23 @@
                 overflow: hidden;
                 text-decoration: none;
                 width: 100%;
+
+                &:hover {
+                    background-color: var(--gb_primary_butter_yellow);
+                }
             }
 
             &.big-box {
+                .cta-grid-click {
+                    padding-top: 52px;
+                }
+
+                .cta-contents {
+                    max-width: 511px;
+                    position: relative;
+                    z-index: 1;
+                }
+
                 .cta-image {
                     display: flex;
                     justify-content: flex-end;
@@ -124,6 +143,10 @@
 
                 .cta-grid-click {
                     gap: 58px;
+
+                    &:hover {
+                        background-color: var(--gb_primary_lilac);
+                    }
                 }
 
                 .cta-contents {
@@ -145,6 +168,8 @@
                     img {
                         max-height: 262px;
                         max-width: 262px;
+                        object-fit: contain;
+                        object-position: bottom;
                     }
                 }
             }
@@ -152,6 +177,13 @@
             &.item-three {
                 margin-right: calc(-50vw + 50%);
                 width: 50vw;
+
+                .cta-grid-click {
+
+                    &:hover {
+                        background-color: var(--gb_primary_lemon_yellow);
+                    }
+                }
 
                 .cta-contents {
                     align-self: center;
@@ -200,8 +232,13 @@
             }
 
             &.item-four {
-                // margin-left: calc(-50vw + 50%);
-                // width: 50vw;
+
+                .cta-grid-click {
+
+                    &:hover {
+                        background-color: var(--gb_primary_sky_blue);
+                    }
+                }
 
                 .cta-contents {
                     align-self: center;
@@ -252,15 +289,20 @@
             }
 
             &.item-five {
-                // margin-left: calc(-50vw + 50%);
-                // width: 50vw;
+
+                .cta-grid-click {
+
+                    &:hover {
+                        background-color: var(--gb_primary_lilac);
+                    }
+                }
 
                 .cta-contents {
                     align-self: center;
                     flex: 1 0 0;
-                    order: 2;
-                    padding-left: 64px;
-                    padding-right: 80px;
+                    order: 0;
+                    padding-left: 0;
+                    padding-right: 15px;
 
                     .box-title,
                     .box-content {
@@ -269,9 +311,10 @@
                 }
 
                 .cta-image {
+                    display: flex;
                     flex: 301px 0 0;
                     margin-left: -40px;
-                    order: 1;
+                    order: 0;
                     position: relative;
 
                     .vector-icon {
@@ -297,6 +340,28 @@
                         img {
                             height: 100%;
                             object-fit: cover;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+            &.item-six {
+                margin-right: calc(-50vw + 50%);
+                width: 50vw;
+
+                .cta-grid-click {
+                    .cta-contents {
+                        padding-left: 80px;
+                    }
+
+                    .cta-image {
+                        margin: -60px 0 0;
+
+                        img {
+                            height: 100%;
+                            max-height: 100%;
+                            max-width: 100%;
                             width: 100%;
                         }
                     }
