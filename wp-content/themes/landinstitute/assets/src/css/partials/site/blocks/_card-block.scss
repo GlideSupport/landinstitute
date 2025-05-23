@@ -4,23 +4,23 @@
         flex-wrap: wrap;
 
         .category-image {
-            position: relative;
+            border-bottom: 2px solid var(--gb_base_brown);
             display: flex;
             height: 181px;
             overflow: hidden;
+            position: relative;
             width: 100%;
-            border-bottom: 2px solid var(--gb_base_brown);
 
             img {
-                width: 100%;
                 height: 100%;
                 object-fit: cover;
+                width: 100%;
             }
 
             .tag-label {
-                position: absolute;
-                left: 30px;
                 bottom: 20px;
+                left: 30px;
+                position: absolute;
             }
         }
 
@@ -30,17 +30,61 @@
     }
 }
 
-
 .bg-pattern-fixed {
-    height: 480px;
-    overflow: hidden;
     display: flex;
-    width: 100vw;
+    height: clamp(340px, calc(21.25rem + ((1vw - 7.68px) * 20.8333)), 480px);
     margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    width: 100vw;
 
     img {
-        width: 100%;
         height: 100%;
         object-fit: cover;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+}
+
+.timeline-slides-block {
+    .swiper-horizontal {
+        padding-right: clamp(54px, calc(3.375rem + ((1vw - 7.68px) * 16.2202)), 163px);
+
+        @media(max-width: 319px) {
+            padding-right: 0;
+        }
+    }
+
+    .swiper-wrapper {
+        justify-content: center;
+
+        @media(max-width: 640px) {
+            justify-content: flex-start;
+        }
+    }
+
+    .swiper-slide {
+        height: auto;
+
+        .border-card {
+            height: 100%;
+
+            .border-card-click {
+                height: 100%;
+            }
+        }
+    }
+}
+
+.border-card {
+    margin-right: -2px;
+
+    .border-card-click {
+        border: 2px solid var(--gb_base_brown);
+        display: flex;
+        flex-direction: column;
+        padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+        text-decoration: none;
     }
 }

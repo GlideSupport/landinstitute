@@ -1,0 +1,30 @@
+.letter-block {
+    padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+    border: 2px solid var(--gb_base_brown);
+
+    .letter-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 80px;
+
+        .cl-left {
+            flex: 1 0 0;
+
+            .signature-img {
+                max-width: 179px;
+                display: flex;
+            }
+        }
+
+        .cl-right {
+            flex: 240px 0 0;
+            display: flex;
+
+            img {
+                height: clamp(185px, calc(11.5625rem + ((1vw - 7.68px) * 23.3677)), 321px);
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

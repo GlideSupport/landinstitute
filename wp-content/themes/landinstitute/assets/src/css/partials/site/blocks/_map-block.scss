@@ -9,9 +9,9 @@
             position: relative;
 
             .map-values {
-                position: absolute;
-                left: 0;
                 bottom: 0;
+                left: 0;
+                position: absolute;
 
                 .map-values-col {
                     margin-bottom: 36px;
@@ -25,7 +25,6 @@
 
         .swiper-slide-active {
             .swiper-slide-container {
-
                 .map-values {}
             }
         }
@@ -96,6 +95,72 @@
                     right: 0;
                     transition: all 0.7s ease-in-out;
                     width: 2px;
+                }
+            }
+        }
+    }
+}
+
+.map-embed-block {
+    .map-block-group {
+        display: flex;
+        height: clamp(520px, calc(32.5rem + ((1vw - 7.68px) * 34.3643)), 720px);
+        margin-left: calc(-50vw + 50%);
+        overflow: hidden;
+        position: relative;
+        width: 100vw;
+
+        .map-info-box {
+            background: var(--gb_primary_butter_yellow);
+            border: 2px solid var(--gb_base_brown);
+            border-left: 0px;
+            border-top: 0px;
+            left: 0;
+            max-width: 480px;
+            padding: 0 44px;
+            position: absolute;
+            top: 0;
+        }
+
+        >img,
+        iframe {
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+
+    &.contact-info-block {
+        .row-flex {
+            display: flex;
+            flex-wrap: wrap;
+
+            .cl-left {
+                flex: 400px 0 0;
+                padding-right: 80px;
+            }
+
+            .cl-right {
+                border-left: 2px solid var(--gb_base_brown);
+                flex: 1 0 0;
+                margin-right: calc(-50vw + 50%);
+                width: 50vw;
+
+                .map-img {
+                    display: flex;
+                    min-height: clamp(520px, calc(32.5rem + ((1vw - 7.68px) * 34.3643)), 720px);
+                    overflow: hidden;
+
+                    >img,
+                    iframe {
+                        height: 100%;
+                        object-fit: cover;
+                        width: 100%;
+                    }
+
+                    >img {
+                        height: auto;
+                    }
                 }
             }
         }
