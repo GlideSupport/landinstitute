@@ -287,7 +287,7 @@ picture {
 	}
 }
 
-section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block, .cta-grid-mosaic-block, .video-alongside-text, .theme-video) {
+section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block, .cta-grid-mosaic-block, .video-alongside-text, .theme-video, .tabbed-content-block, .map-embed-block, .timeline-block) {
 	overflow: hidden;
 }
 
@@ -306,6 +306,7 @@ section:has(.has-border-bottom) {
 	.site-btn {
 		margin-left: -2px;
 		margin-right: -2px;
+		margin-bottom: -2px;
 		width: -webkit-fill-available;
 	}
 }
@@ -464,6 +465,10 @@ section:has(.has-border-bottom) {
 }
 
 // bg color
+.bg-base-cream {
+	background-color: var(--gb_base_cream);
+}
+
 .bg-butter-yellow {
 	background: var(--gb_primary_butter_yellow);
 }

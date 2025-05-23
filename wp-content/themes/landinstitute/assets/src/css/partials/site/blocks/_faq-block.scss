@@ -1,10 +1,10 @@
 .faq_container {
-    margin: 0;
-    padding: 0;
-    transition: all 0.5s ease;
     background: transparent;
     border-bottom: 1px solid var(--gb_base_brown);
+    margin: 0;
     margin-bottom: 0;
+    padding: 0;
+    transition: all 0.5s ease;
 
     &:hover {
         background: transparent;
@@ -28,8 +28,8 @@
     }
 
     &:last-child {
-        margin-bottom: 0;
         border-bottom: 1px solid transparent;
+        margin-bottom: 0;
     }
 
     .faq_question {
@@ -92,8 +92,8 @@
         .icon-shape {
             height: 14px;
             position: relative;
-            width: 14px;
             top: 6px;
+            width: 14px;
 
             &::before {
                 background: var(--gb_base_brown);
@@ -129,6 +129,99 @@
                     transform: rotate(45deg);
                     transition: all 0.5s ease;
                 }
+            }
+        }
+    }
+}
+
+.tabbed-content-block {
+    .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        list-style: none;
+        margin: 0;
+        padding: 16px 0;
+        position: relative;
+
+        &:after,
+        &:before {
+            background-color: var(--gb_base_brown);
+            bottom: 0;
+            content: '';
+            height: 2px;
+            left: 0;
+            margin-left: calc(-50vw + 50%);
+            position: absolute;
+            width: 1000%;
+        }
+
+        &:before {
+            bottom: inherit;
+            top: 0;
+        }
+
+        .tab-link {
+            border-radius: 100px;
+            cursor: pointer;
+            margin: 0;
+            padding: 6px 16px;
+            transition: all 0.2s ease-in-out;
+
+            @extend .ui-20-18-bold;
+
+            &:before {
+                display: none;
+            }
+
+            &.current,
+            &:hover {
+                background: var(--gb_primary_lilac);
+            }
+        }
+    }
+
+    .tab-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+
+        &.current {
+            display: block;
+            opacity: 1;
+        }
+
+        &.fade-in {
+            opacity: 1;
+        }
+    }
+}
+
+.tab-row-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+
+    .cl-left {
+        flex: 720px 0 0;
+    }
+
+    .cl-right {
+        border-left: 2px solid var(--gb_base_brown);
+        flex: 1 0 0;
+        margin-right: calc(-50vw + 50%);
+        width: 50vw;
+
+        .tab-image {
+            display: flex;
+            height: 100%;
+            max-height: 432px;
+            overflow: hidden;
+
+            img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
             }
         }
     }

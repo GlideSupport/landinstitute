@@ -188,8 +188,8 @@
 .lity-close:focus,
 .lity-close:active,
 .lity-close:visited {
-    background: var(--gb_color_secondary);
-    border-color: var(--gb_white);
+    background: var(--gb_base_brown);
+    border-color: var(--gb_base_brown);
 
     &:after {
         background-image: url(../images/lity-popup-close-white.svg);
@@ -349,6 +349,13 @@
     height: clamp(260px, calc(16.25rem + ((1vw - 7.68px) * 76.1168)), 703px);
     overflow: hidden;
     position: relative;
+
+    .videos,
+    iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
     .play-icon {
         position: absolute;
