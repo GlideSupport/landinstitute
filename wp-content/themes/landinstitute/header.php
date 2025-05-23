@@ -27,7 +27,46 @@ $base_theme_option_content = $bst_fields['base_theme_option_content'] ?? null;
 
 //header section
 $bst_var_header_logo = $bst_option_fields['bst_var_header_logo'] ?? null;
+$bst_var_main_menu = $bst_option_fields['bst_var_main_menu'] ?? null;
 $bst_var_tohdr_btn = $bst_option_fields['bst_var_tohdr_btn'] ?? null;
+
+
+//Our Work Mega Menu 1
+$landinstitute_nav_menu_title_1 = $bst_option_fields['landinstitute_nav_menu_title_1'] ?? null;
+$landinstitute_select_nav_menu_1 = $bst_option_fields['landinstitute_select_nav_menu_1'] ?? null;
+
+$landinstitute_nav_menu_title_2 = $bst_option_fields['landinstitute_nav_menu_title_2'] ?? null;
+$landinstitute_select_nav_menu_2 = $bst_option_fields['landinstitute_select_nav_menu_2'] ?? null;
+
+$landinstitute_nav_menu_title_3 = $bst_option_fields['landinstitute_nav_menu_title_3'] ?? null;
+$landinstitute_select_nav_menu_3 = $bst_option_fields['landinstitute_select_nav_menu_3'] ?? null;
+
+$landinstitute_nav_menu_title_4 = $bst_option_fields['landinstitute_nav_menu_title_4'] ?? null;
+$landinstitute_select_nav_menu_4 = $bst_option_fields['landinstitute_select_nav_menu_4'] ?? null;
+
+//Learn Mega Menu 2
+$landinstitute_title_two = $bst_option_fields['landinstitute_title_two'] ?? null;
+$landinstitute_text_two = $bst_option_fields['landinstitute_text_two'] ?? null;
+$landinstitute_button_one = $bst_option_fields['landinstitute_button_one'] ?? null;
+$landinstitute_button_two = $bst_option_fields['landinstitute_button_two'] ?? null;
+$landinstitute_button_three = $bst_option_fields['landinstitute_button_three'] ?? null;
+
+
+$landinstitute_nav_menu_title_mega_two_1 = $bst_option_fields['landinstitute_nav_menu_title_mega_two_1'] ?? null;
+$landinstitute_select_nav_menu_mega_two_1 = $bst_option_fields['landinstitute_select_nav_menu_mega_two_1'] ?? null;
+
+$landinstitute_nav_menu_title_mega_two_2 = $bst_option_fields['landinstitute_nav_menu_title_mega_two_2'] ?? null;
+$landinstitute_select_nav_menu_mega_two_2 = $bst_option_fields['landinstitute_select_nav_menu_mega_two_2'] ?? null;
+
+
+//Search Popup
+$landinstitute_to_select_post = $bst_option_fields['landinstitute_to_select_post'] ?? null;
+$landinstitute_to_common_search_title = $bst_option_fields['landinstitute_to_common_search_title'] ?? null;
+$landinstitute_to_common_search_text = $bst_option_fields['landinstitute_to_common_search_text'] ?? null;
+$landinstitute_to_popular_topics_title = $bst_option_fields['landinstitute_to_popular_topics_title'] ?? null;
+$landinstitute_to_popular_topics = $bst_option_fields['landinstitute_to_popular_topics'] ?? null;
+
+
 
 
 ?>

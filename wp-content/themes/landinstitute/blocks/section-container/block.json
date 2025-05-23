@@ -17,7 +17,7 @@
   "attributes": {
     "bgDesignType": {
       "type": "string",
-      "default": ""
+      "default": "bg-base-cream"
     },
     "bgWidth": {
       "type": "string",

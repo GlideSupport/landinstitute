@@ -85,7 +85,8 @@ export default function Edit( props ) {
 							value={ bgDesignType }
 							DesignKey="bgDesignType"
 							help="Click to select value"
-							options={ [
+							options={[
+								{ label: 'Container Base Cream', value: 'bg-base-cream', display: 'bg-base-cream.png' },
 								{ label: 'Container Butter Yellow', value: 'bg-butter-yellow', display: 'bg-butter-yellow.png' },
 								{ label: 'Container Lemon Yellow', value: 'bg-lemon-yellow', display: 'bg-lemon-yellow.jpg' },
 								{ label: 'Container Sunflower Yellow', value: 'bg-sunflower-yellow', display: 'bg-sunflower-yellow.png' },
