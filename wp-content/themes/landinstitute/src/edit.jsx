@@ -96,43 +96,6 @@ export default function Edit( props ) {
 							] }
 						/>
 					</PanelBody>
-					<PanelBody
-						title={ __( 'Container Overlay' ) }
-						className="dc-media-component"
-						initialOpen={ true }
-					>
-						<PanelRow>
-							<Media
-								props={ props }
-								help="Please upload the overlay image."
-							/>
-
-						</PanelRow>
-					</PanelBody>
-
-					<PanelBody
-						title={ __( 'Popup Options (Test)' ) }
-						className="dc-popup-component"
-						initialOpen={ true }
-					>
-						<PanelRow>
-							<Popup
-								props={ props }
-								PopupKey="ctnShape"
-								PopupValue={ ctnShape }
-								ButtonText="Click for Options"
-								help="Click to change or remove the value."
-								options={ [
-									{ label: 'Container Light Gray', value: 'ctn-lgray', display: 'ctn-lgray.png' },
-									{ label: 'Container White', value: 'ctn-white', display: 'ctn-white.png' },
-									{ label: 'Container Green', value: 'ctn-green', display: '#bfff00' },
-									{ label: 'Container Purple', value: 'ctn-purple', display: 'ctn-purple.png' },
-								] }
-							/>
-
-						</PanelRow>
-					</PanelBody>
-
 				</Panel>
 
 			</InspectorControls>
