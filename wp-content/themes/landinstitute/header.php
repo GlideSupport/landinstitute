@@ -27,7 +27,7 @@ $base_theme_option_content = $bst_fields['base_theme_option_content'] ?? null;
 
 //header section
 $bst_var_header_logo = $bst_option_fields['bst_var_header_logo'] ?? null;
-$bst_var_main_menu = $bst_option_fields['bst_var_main_menu'] ?? null;
+$landinstitute_header_main_menu = $bst_option_fields['landinstitute_header_main_menu'] ?? null;
 $bst_var_tohdr_btn = $bst_option_fields['bst_var_tohdr_btn'] ?? null;
 
 

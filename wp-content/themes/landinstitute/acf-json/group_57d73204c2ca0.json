@@ -210,7 +210,7 @@
         {
             "key": "field_68273202344d8",
             "label": "Header Main Menu",
-            "name": "bst_var_main_menu",
+            "name": "landinstitute_header_main_menu",
             "aria-label": "",
             "type": "nav_menu",
             "instructions": "",
@@ -2903,5 +2903,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1747917630
+    "modified": 1748006895
 }

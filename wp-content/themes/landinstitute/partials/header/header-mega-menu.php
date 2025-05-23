@@ -1,9 +1,8 @@
 <?php
-print_r($bst_var_main_menu);
-	if (!empty($bst_var_main_menu) && is_array($bst_var_main_menu) && !empty($bst_var_main_menu['slug'])) {
+	if (!empty($landinstitute_header_main_menu) && is_array($landinstitute_header_main_menu) && !empty($landinstitute_header_main_menu['slug'])) {
 		wp_nav_menu(
 			array(
-				'menu'             => $bst_var_main_menu['slug'],
+				'menu'             => $landinstitute_header_main_menu['slug'],
 				'fallback_cb'      => 'BaseTheme::nav_fallback',
 				'container'   => false,
 			)
