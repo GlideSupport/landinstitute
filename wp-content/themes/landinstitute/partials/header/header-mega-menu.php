@@ -49,8 +49,8 @@
 						$landinstitute_select_nav_menu_2 = wp_get_nav_menu_items($landinstitute_select_nav_menu_2['slug']);
 						if ($landinstitute_select_nav_menu_2) :
 							foreach ($landinstitute_select_nav_menu_2 as $li_select_nav_menu_2) :
-								$icon = get_field('landinstitute_menu_icon', $li_select_nav_menu_2);
-								$description = get_field('landinstitute_menu_description', $li_select_nav_menu_2);
+								$icon = get_field('landinstitute_menu_icon', $li_select_nav_menu_2->ID);
+								$description = get_field('landinstitute_menu_description', $li_select_nav_menu_2->ID);
 						?>
 							<div class="icon-content-col">
 								<!-- Add class when hover on this on other element not same "active-hover" -->
