@@ -60,6 +60,7 @@ $landinstitute_select_nav_menu_mega_two_2 = $bst_option_fields['landinstitute_se
 
 
 //Search Popup
+$landinstitute_to_title = $bst_option_fields['landinstitute_to_title'] ?? null;
 $landinstitute_to_select_post = $bst_option_fields['landinstitute_to_select_post'] ?? null;
 $landinstitute_to_common_search_title = $bst_option_fields['landinstitute_to_common_search_title'] ?? null;
 $landinstitute_to_common_search_text = $bst_option_fields['landinstitute_to_common_search_text'] ?? null;

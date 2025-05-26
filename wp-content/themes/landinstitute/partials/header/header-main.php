@@ -21,113 +21,98 @@
 							</div>
 							<div class="search-drop">
 								<!-- Add "active-search" on click of "search-popup" it will open sub menu of search  -->
-								<a href="" class="search-popup">
+								<a href="javascript:void(0)" class="search-popup">
 									<!-- when hover on menu add "active-hover" class -->
-									<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="" /></a>
+									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" /></a>
 								<div class="mega-dropdown search-mega-dropdown" id="mega-dropdown-product">
 									<div class="mega-dropdown-card">
 										<div class="col-left">
-											<div class="search-everything">
-												<a class="site-btn arrow-btn" href="">Search everything</a>
-											</div>
-											<div class="image-category-card">
-												<a class="image-cat-group" href="">
-													<div class="category-image">
-														<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Modeling-carbon.jpg"
-															width="" height="" alt="" />
-														<div class="tag-label"><span class="tags">Popular
-																Resource</span>
+											<?php if (!empty($landinstitute_to_title)): ?>	
+												<div class="search-everything">
+													<a class="site-btn arrow-btn" href=""><?php echo esc_html($landinstitute_to_title); ?></a>
+												</div>
+											<?php endif; ?>
+											<?php
+												if ($landinstitute_to_select_post) :
+													$query = new WP_Query([
+														'post_type' => 'post',
+														'post__in' => $landinstitute_to_select_post,
+														'post_status' => 'publish',
+													]);
+
+													if ($query->have_posts()) :
+														while ($query->have_posts()) : $query->the_post();
+														$post_type = get_post_type();
+														$eyebrow = ucfirst($post_type); // or use a custom field/taxonomy
+														$title = get_the_title();
+														$permalink = get_permalink();
+												?>
+												<div class="image-category-card">
+													<a class="image-cat-group" href="<?php echo esc_url($permalink); ?>">
+														<div class="category-image">
+														<?php if (has_post_thumbnail()) : ?>
+															<?php echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_400'); ?>
+														<?php else : ?>
+															<img src="<?php echo esc_url(BASETHEME_DEFAULT_IMAGE); ?>" alt="Default thumbnail" width="367" height="232" />
+														<?php endif; ?>
+															<div class="tag-label">
+																<span class="tags">Popular Resource</span> <!-- You can customize or make this dynamic -->
+															</div>
 														</div>
-													</div>
-													<div class="post-content">
-														<div class="gl-s30"></div>
-														<div class="ui-eyebrow-16-15-regular eyebrow-label">Podcast
+														<div class="post-content">
+															<div class="gl-s30"></div>
+															<div class="ui-eyebrow-16-15-regular eyebrow-label"><?php echo esc_html($eyebrow); ?></div>
+															<div class="gl-s6"></div>
+															<div class="heading-7 card-title mb-0"><?php echo esc_html($title); ?></div>
+															<div class="gl-s30"></div>
 														</div>
-														<div class="gl-s6"></div>
-														<div class="heading-7 card-title mb-0">Modeling carbon
-															allocation
-															strategies for high-yielding perennial crops</div>
-														<div class="gl-s30"></div>
-													</div>
-												</a>
-											</div>
+													</a>
+												</div>
+												<?php
+													endwhile;
+													wp_reset_postdata();
+												endif;
+											endif;
+											?>
 										</div>
 										<div class="col-right">
 											<div class="popup-search">
-												<form role="search" method="get" action="">
-													<input type="text" name="s" placeholder="What are you serching for?"
-														autofocus="">
-													<button class="site-btn btn-lemon-yellow sm-btn"
-														type="submit">Search</button>
-												</form>
+											<form role="search" method="get" action="<?php echo esc_url(home_url( '/' )); ?>">
+												<input type="text" name="s" placeholder="What are you serching for?" autofocus>
+												<button class="site-btn btn-lemon-yellow sm-btn" type="submit">Search</button>
+											</form>
 											</div>
 											<div class="search-content">
 												<div class="mega-menu-row">
 													<div class="mega-col">
-														<div class="ui-24-21-bold mega-menu-title">Common Searches</div>
-														<div class="gl-s16"></div>
-														<ul class="dot-hover">
-															<li>
-																<a href="">Research & Publications</a>
-															</li>
-															<li>
-																<a href="">Research & Publications</a>
-															</li>
-															<li>
-																<a href="">Interviews</a>
-															</li>
-															<li>
-																<a href="">Interviews</a>
-															</li>
-															<li>
-																<a href="">Podcasts</a>
-															</li>
-															<li>
-																<a href="">Podcasts</a>
-															</li>
-															<li>
-																<a href="">Stories</a>
-															</li>
-															<li>
-																<a href="">Stories</a>
-															</li>
-														</ul>
+														<?php if (!empty($landinstitute_to_common_search_title)): ?>	
+															<div class="ui-24-21-bold mega-menu-title"><?php echo esc_html($landinstitute_to_common_search_title); ?></div>
+															<div class="gl-s16"></div>
+														<?php endif; ?>
+														<?php if (!empty($landinstitute_to_common_search_text)) : ?>
+															<ul class="dot-hover">
+																<?php foreach ($landinstitute_to_common_search_text as $li_to_common_search_text) :
+																	$text = $li_to_common_search_text['landinstitute_search_text']; ?>
+																	<li> <?php echo BaseTheme::button($text, ''); ?></li>
+																<?php endforeach; ?>
+															</ul>
+													<?php endif; ?>
 													</div>
 												</div>
 												<div class="gl-s30"></div>
 												<div class="tags-cols">
-													<div class="ui-24-21-bold topics-title">Popular topics</div>
-													<div class="gl-s20"></div>
-													<ul>
-														<li>
-															<span class="tags">
-																Research</span>
-														</li>
-														<li>
-															<span class="tags">
-																Kernza</span>
-														</li>
-														<li>
-															<span class="tags">
-																Perennial crops</span>
-														</li>
-														<li>
-															<span class="tags">
-																Crop Development</span>
-														</li>
-														<li>
-															<span class="tags">
-																Rice</span>
-														</li>
-														<li>
-															<span class="tags">
-																Podcasts</span>
-														</li>
-														<li>
-															<span class="tags">
-																Global Network</span>
-														</li>
-													</ul>
+													<?php if (!empty($landinstitute_to_popular_topics_title)): ?>	
+														<div class="ui-24-21-bold topics-title"><?php echo esc_html($landinstitute_to_popular_topics_title); ?></div>
+														<div class="gl-s20"></div>
+													<?php endif; ?>
+													<?php if (!empty($landinstitute_to_popular_topics)) : ?>
+														<ul>
+															<?php foreach ($landinstitute_to_popular_topics as $li_to_popular_topics) :
+																$landinstitute_topics = $li_to_popular_topics['landinstitute_topics']; ?>
+																<li><span class="tags"><?php echo esc_html($landinstitute_topics); ?></span></li>
+															<?php endforeach; ?>
+														</ul>
+													<?php endif; ?>
 												</div>
 											</div>
 										</div>

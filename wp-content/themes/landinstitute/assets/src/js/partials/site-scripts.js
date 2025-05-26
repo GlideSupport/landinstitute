@@ -266,3 +266,18 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 	}
 });
 // Header Mega menu append js End
+
+
+// Search button click search popup js start
+document.addEventListener('DOMContentLoaded', function () {
+	const searchBtn = document.querySelector('.search-btn');
+	const searchPopup = document.querySelector('.search-drop');
+  
+	if (searchBtn && searchPopup) {
+	  searchBtn.addEventListener('click', function (e) {
+		e.preventDefault(); // prevent default anchor link behavior
+		searchPopup.classList.toggle('active-search');
+	  });
+	}
+  });
+// Search button click search popup js End  
