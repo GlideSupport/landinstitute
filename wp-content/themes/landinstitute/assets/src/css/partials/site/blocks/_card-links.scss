@@ -10,6 +10,17 @@
         position: relative;
         text-decoration: none;
 
+        @media(max-width: 640px) {
+            gap: 12px;
+            padding: 22px 0;
+        }
+
+        &:last-child {
+            @media(max-width: 640px) {
+                border-bottom: 0px;
+            }
+        }
+
         .card-item-left {
             flex: 1 0 0;
         }
@@ -27,11 +38,21 @@
                         position: absolute;
                         transition: 0.3s;
                         width: 44px;
+
+                        @media(max-width: 640px) {
+                            width: 32px;
+                            height: 32px;
+                        }
                     }
 
                     img {
                         display: block;
                         position: relative;
+
+                        @media(max-width: 640px) {
+                            width: 32px;
+                            height: 32px;
+                        }
                     }
                 }
 
@@ -68,6 +89,10 @@
                     object-fit: cover;
                     width: 100%;
                 }
+
+                @media(max-width: 1200px) {
+                    display: none;
+                }
             }
         }
     }
@@ -94,18 +119,21 @@ section:has(.text-featured-block) {
                 position: relative;
 
                 @media(max-width: 991px) {
-                    margin-right: -24px;
-                    border-right: 0px;
                     border-bottom: 2px solid var(--gb_base_brown);
+                    border-right: 0px;
+                    margin-left: -24px;
+                    margin-right: -24px;
+                    padding-left: 24px;
                 }
 
                 &:last-child {
                     border-right: none;
 
                     @media(max-width: 991px) {
-                        margin-right: 0;
-                        margin-left: -24px;
                         border-bottom: 0px;
+                        margin-left: -24px;
+                        margin-right: 0;
+                        padding-left: 0;
                     }
                 }
 
@@ -126,10 +154,10 @@ section:has(.text-featured-block) {
                         width: 50vw;
 
                         @media(max-width: 991px) {
-                            position: relative;
-                            width: auto;
                             margin-left: -24px;
                             margin-right: -24px;
+                            position: relative;
+                            width: auto;
                         }
 
                         .site-btn {
@@ -260,11 +288,22 @@ section:has(.text-featured-block) {
                     position: absolute;
                     transition: 0.3s;
                     width: 44px;
+
+                    @media(max-width: 640px) {
+                        width: 32px;
+                        height: 32px;
+                    }
+
                 }
 
                 img {
                     display: block;
                     position: relative;
+
+                    @media(max-width: 640px) {
+                        width: 32px;
+                        height: 32px;
+                    }
                 }
             }
         }

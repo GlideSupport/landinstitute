@@ -117,3 +117,26 @@ Mixin for transition
 		letter-spacing: var(--letter_spacing_032);
 	}
 }
+
+@mixin heading-4 {
+	font-size: var(--gb_font_size_4);
+	letter-spacing: var(--letter_spacing_076);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_054);
+	}
+}
+
+@mixin ui-14-13-bold {
+	color: var(--gb_base_brown);
+	font-family: "Universal Sans Display";
+	font-size: var(--gb_font_size_16);
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: var(--letter_spacing_028);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_026);
+	}
+}

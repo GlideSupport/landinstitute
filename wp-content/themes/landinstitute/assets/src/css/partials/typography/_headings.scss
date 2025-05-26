@@ -21,6 +21,10 @@ h6,
 	line-height: var(--line_height_110per);
 	margin: 0 0 clamp(28px, calc(1.75rem + ((1vw - 7.68px) * 1.3746)), 36px);
 	text-transform: initial;
+
+	@media(max-width: 319px) {
+		word-break: break-all;
+	}
 }
 
 h1,
@@ -31,6 +35,11 @@ h1,
 
 	@media(max-width: 640px) {
 		letter-spacing: var(--letter_spacing_1144);
+	}
+
+
+	@media(max-width: 319px) {
+		font-size: 46px;
 	}
 }
 

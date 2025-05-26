@@ -530,6 +530,10 @@ table.ui-datepicker_calendar {
 	text-align: left;
 	display: inline-flex;
 
+	@media(max-width: 640px) {
+		margin-top: 22px;
+	}
+
 	input[type="submit"] {
 		background-color: var(--gb_base_brown);
 		border: 2px solid var(--gb_base_brown);

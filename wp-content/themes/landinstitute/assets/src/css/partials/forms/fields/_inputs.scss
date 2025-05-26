@@ -64,6 +64,11 @@ textarea,
 
 	@extend .ui-20-18-regular;
 
+	@media(max-width: 640px) {
+		height: 40px;
+		padding: 10px 0 10px 0;
+	}
+
 	&:focus {
 		background-color: transparent;
 		box-shadow: none;
@@ -207,7 +212,7 @@ textarea {
 	position: relative;
 
 	@media(max-width: 640px) {
-		margin-bottom: 20px;
+		margin-bottom: 22px;
 	}
 
 	&:last-child {

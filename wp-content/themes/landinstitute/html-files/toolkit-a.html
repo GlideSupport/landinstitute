@@ -448,16 +448,29 @@
 							</div>
 						</div>
 					</div>
-					<div class="menu-btn menu-hamburger-icon">
-						<a href="#" id="trigger" class="menu-trigger">
-							<span class="top"></span>
-							<span class="middle"></span>
-							<span class="bottom"></span>
-						</a>
+					<div class="menu-btn">
+						<span class="top"></span>
+						<span class="middle"></span>
+						<span class="bottom"></span>
 					</div>
 					<div class="header-btns">
 						<a href="#" class="site-btn btn-sunflower-yellow sm-btn arrow-heart-symbol"
 							title="Donate">Donate</a>
+					</div>
+				</div>
+			</div>
+			<div class="right-top-head top-head-mobile">
+				<div class="top-list-menu">
+					<div class="top-bar" id="top-bar-ajax">
+						<div class="top-bar-text"><span>Don’t Miss:</span>Venenatis ac ut id cursus dictumst
+							maecenas mauris nisl consectetur.
+						</div>
+						<div class="top-bar-cross">
+							<span>
+								<img src="../assets/src/images/topbar-cross-icon.svg" width="16" height="16"
+									alt="Top bar">
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1160,13 +1173,15 @@
 						<div class="social-icons">
 							<a href="#" class="facebook"><img src="../assets/src/images/social-icons/facebook.svg"
 									alt="Facebook Icon" /></a>
+							<a href="#" class="instagram"><img src="../assets/src/images/social-icons/instagram.svg"
+									alt="Instagram Icon" /></a>
 							<!-- add active class on hover in other elements not same "active-hover" -->
 							<a href="#" class="tweeter"><img src="../assets/src/images/social-icons/linkedin.svg"
 									alt="LinkedIn Icon" /></a>
 							<a href="#" class="linkdhin"><img src="../assets/src/images/social-icons/twitter.svg"
 									alt="Twitter Icon" /></a>
-							<a href="#" class="instagram"><img src="../assets/src/images/social-icons/instagram.svg"
-									alt="Instagram Icon" /></a>
+							<a href="#" class="threads"><img src="../assets/src/images/social-icons/threads.svg"
+									alt="threads Icon" /></a>
 						</div>
 						<div class="gl-s64"></div>
 						<div class="legal-nav">
@@ -1487,6 +1502,32 @@
 
 <script>
 
+	document.querySelectorAll(".footer-nav-title").forEach((title) => {
+		title.addEventListener("click", () => {
+			if (window.innerWidth <= 991) {
+				const parent = title.closest(".footer-nav");
+
+				// Close all others
+				document.querySelectorAll(".footer-nav").forEach((nav) => {
+					if (nav !== parent) {
+						nav.classList.remove("active");
+					}
+				});
+
+				// Toggle the clicked one
+				parent.classList.toggle("active");
+			}
+		});
+	});
+
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 991) {
+			document.querySelectorAll(".footer-nav").forEach((nav) => {
+				nav.classList.remove("active");
+			});
+		}
+	});
+
 	// Dropdown 
 	document.addEventListener("DOMContentLoaded", () => {
 		const toggleButton = document.querySelector(".dropdown-toggle");
@@ -1678,33 +1719,6 @@
 		window.addEventListener('resize', handleResize);
 	});
 
-
-	// 
-	document.querySelectorAll(".footer-nav-title").forEach((title) => {
-		title.addEventListener("click", () => {
-			if (window.innerWidth <= 768) {
-				const parent = title.closest(".footer-nav");
-
-				// Close all others
-				document.querySelectorAll(".footer-nav").forEach((nav) => {
-					if (nav !== parent) {
-						nav.classList.remove("active");
-					}
-				});
-
-				// Toggle the clicked one
-				parent.classList.toggle("active");
-			}
-		});
-	});
-
-	window.addEventListener("resize", () => {
-		if (window.innerWidth > 768) {
-			document.querySelectorAll(".footer-nav").forEach((nav) => {
-				nav.classList.remove("active");
-			});
-		}
-	});
 </script>
 
 
