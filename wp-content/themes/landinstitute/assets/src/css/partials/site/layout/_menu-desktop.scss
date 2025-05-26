@@ -1,4 +1,4 @@
-@media (min-width: 1271px) {
+@media (min-width: 1201px) {
 	body {
 		&.megamenu-hover-active {
 			position: relative;
@@ -162,6 +162,10 @@
 						flex: 1 0 0;
 						padding: 36px 44px;
 
+						@media(max-width: 1350px) {
+							padding: 36px 34px;
+						}
+
 						.mega-menu-row {
 							display: flex;
 							flex-wrap: wrap;
@@ -198,6 +202,10 @@
 							.mega-menu-row {
 								gap: 44px;
 
+								@media(max-width: 1350px) {
+									gap: 20px;
+								}
+
 								.mega-col {
 									&:last-child {
 										flex: 161px 0 0;
@@ -215,6 +223,11 @@
 						gap: 24px;
 						padding: 20px 44px;
 
+						@media(max-width: 1350px) {
+							padding: 20px 30px;
+							gap: 18px;
+						}
+
 						span {
 							flex: 63px 0 0;
 							text-transform: uppercase;
@@ -226,6 +239,10 @@
 							flex-wrap: wrap;
 							gap: 24px;
 							margin: 0;
+
+							@media(max-width: 1350px) {
+								gap: 18px;
+							}
 
 							li {
 								margin: 0;

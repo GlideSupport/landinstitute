@@ -142,6 +142,15 @@ body {
             }
         }
 
+        &.xsm-btn {
+            padding: 14px 54px 14px 22px;
+
+            &:after {
+                right: 16px;
+                top: 13px;
+            }
+        }
+
         &.btn-brown {
             background-color: var(--gb_base_brown);
             color: var(--gb_white);

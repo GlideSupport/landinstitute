@@ -1,23 +1,6 @@
 @use "sass:math";
 
-@media (max-width: 1003px) {
-
-	.header-inner {
-		padding: 19px 0;
-	}
-
-	.right-heade {
-		width: 100%;
-		float: none;
-	}
-
-	.logo {
-		max-width: 190px;
-
-		a {
-			margin-top: 1px;
-		}
-	}
+@media (max-width: 1200px) {
 
 	.nav-overlay .header-nav {
 		ul {
@@ -244,8 +227,8 @@
 	}
 
 	// menu buttons variable
-	$menu_height: 20px;
-	$menu_weight: 26px;
+	$menu_height: 16px;
+	$menu_weight: 28px;
 
 	.menu-btn {
 		top: 0;

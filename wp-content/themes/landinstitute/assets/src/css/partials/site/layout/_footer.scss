@@ -112,8 +112,12 @@
 
         @media (min-width: 768px) {
             display: grid;
-            gap: 160px;
+            gap: 80px;
             grid-template-columns: 1fr 1fr;
+        }
+
+        @media (min-width: 1200px) {
+            gap: 160px;
         }
     }
 

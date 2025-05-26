@@ -1,20 +1,26 @@
 .internal-link-list-block {
     .row-flex {
         display: grid;
-        gap: 160px;
+        gap: clamp(80px, calc(5rem + ((1vw - 9.92px) * 17.8571)), 160px);
         grid-template-columns: 480px 1fr;
+
+        @media(max-width: 991px) {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
     }
 
     &.with-parallax-image {
         .row-flex {
             display: flex;
-            gap: 160px;
+            gap: clamp(80px, calc(5rem + ((1vw - 9.92px) * 17.8571)), 160px);
         }
 
         .parallax-img {
             margin-left: calc(-50vw + 50%);
             overflow: hidden;
             width: 480px;
+            border-right: 2px solid var(--gb_base_brown);
 
             img {
                 display: block;

@@ -1,5 +1,9 @@
 .heading-max {
     max-width: 880px;
+
+    &.max-800 {
+        max-width: 800px;
+    }
 }
 
 .icon-grid-row {
