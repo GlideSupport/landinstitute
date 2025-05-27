@@ -44,7 +44,52 @@ class WP_Theme_Settings {
 		// Hook add aria-label and role attributes
 		add_filter('nav_menu_link_attributes', array($this, 'add_menu_item_attributes'), 10, 3);
 
+		//custom function for mega menu
+		add_filter('nav_menu_css_class', [ '\BaseTheme\Settings\WP_Theme_Settings', 'li_add_custom_nav_menu_classes' ], 10, 4);
+
 	}
+
+	/**
+	 * Adds custom classes to menu items for mega menus and parent items.
+	 *
+	 * @param array    $classes The CSS classes that are applied to the menu item's <li> element.
+	 * @param WP_Post  $item    The current menu item.
+	 * @param stdClass $args    An object of wp_nav_menu() arguments.
+	 * @param int      $depth   Depth of menu item. Used for padding.
+	 *
+	 * @return array Modified array of CSS classes.
+	 */
+	public static function li_add_custom_nav_menu_classes($classes, $item, $args, $depth = 0) {
+		$mega_menu_classes = ['our-work', 'learn'];
+	
+		$is_mega_menu = false;
+	
+		foreach ($mega_menu_classes as $mega_class) {
+			if (in_array($mega_class, $item->classes)) {
+				$is_mega_menu = true;
+				break;
+			}
+		}
+	
+		$menu_items = [];
+		if (isset($args->menu) && is_object($args->menu) && isset($args->menu->term_id)) {
+			$menu_items = wp_get_nav_menu_items($args->menu->term_id);
+		}
+	
+		$has_children = false;
+		foreach ($menu_items as $menu_item) {
+			if ((int) $menu_item->menu_item_parent === (int) $item->ID) {
+				$has_children = true;
+				break;
+			}
+		}
+	
+		if ($is_mega_menu || $has_children) {
+			$classes[] = 'menu-item-has-children';
+		}
+	
+		return $classes;
+		}
 
 	/**
 	 * Handle ACF save action and purge cache.
