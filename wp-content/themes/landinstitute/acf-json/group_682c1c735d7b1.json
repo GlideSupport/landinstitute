@@ -119,8 +119,8 @@
                 "id": ""
             },
             "choices": {
-                "two-column": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/tct-variation-featured.webp\"><br>2 Column",
-                "image": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/tct-variation-standard.webp\"><br>Image"
+                "two-column": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/ill-variation-two-column.webp\"><br>2 Column",
+                "image": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/ill-variation-image.webp\"><br>Image"
             },
             "default_value": "",
             "return_format": "value",
@@ -316,5 +316,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1747722677
+    "modified": 1748331547
 }
