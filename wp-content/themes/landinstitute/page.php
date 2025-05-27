@@ -15,7 +15,7 @@ get_header();
 list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults();
 ?>
 
-<section id="page-section" class="page-section">
+<div id="page-section" class="page-section">
 	<!-- Content Start -->
 	<?php
 		global $wp_query;
@@ -33,5 +33,5 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 	}
 	?>
 	<!-- Content End -->
-</section>
+</div>
 <?php get_footer(); ?>

@@ -48,6 +48,8 @@ $li_tct_choose_variation = $bst_block_fields['li_tct_choose_variation'] ?? 'feat
 $li_tct_repeater = $bst_block_fields['li_tct_repeater'] ?? null;
 $li_tct_kicker = $bst_block_fields['li_tct_kicker'] ?? null;
 $li_tct_wysiwyg = $bst_block_fields['li_tct_wysiwyg'] ?? null;
+$border_options = $bst_block_fields['li_globel_border_options'] ?? 'none';
+
 
 
 ?>

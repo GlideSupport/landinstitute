@@ -1,5 +1,5 @@
 <?php if (!empty($li_ill_headline_check) || !empty($li_ill_wysiwyg) || !empty($li_ill_repeater)) { ?>
-<div class="internal-link-list-block has-border-bottom">
+<div class="internal-link-list-block <?php echo esc_attr($border_options); ?>">
 		<div class="row-flex">
 			<div class="col-left">
 				<div class="gl-s24"></div>

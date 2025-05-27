@@ -23,7 +23,7 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 	</div>
 	<!-- Hero End -->
 </section>
-<section id="page-section" class="page-section">
+<div id="page-section" class="page-section">
 	<!-- Content Start -->
 	<div class="wrapper">
 		<div class="<?php BaseTheme::have_post_class( 'three-columns' ); ?>">
@@ -56,5 +56,5 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 		<div class="ts-80"></div>
 	</div>
 	<!-- Content End -->
-</section>
+</div>
 <?php get_footer(); ?>

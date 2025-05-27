@@ -21,7 +21,7 @@ $bst_var_error_search = $bst_option_fields['bst_var_error_search'] ?? false;
 
 ?>
 <section id="hero-section" class="hero-section hero-section-default">
-	<section id="page-section" class="page-section">
+	<div id="page-section" class="page-section">
 		<div class="center-align error-page-hero">
 			<div class="gl-s156"></div>
 			<div class="wrapper">
@@ -58,7 +58,7 @@ $bst_var_error_search = $bst_option_fields['bst_var_error_search'] ?? false;
 			</div>
 			<div class="gl-s156"></div>
 		</div>
-	</section>
+	</div>
 
 </section>
 <?php

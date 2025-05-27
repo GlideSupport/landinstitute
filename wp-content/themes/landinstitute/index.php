@@ -13,7 +13,7 @@ get_header();
 
 ?>
 
-<section id="page-section" class="page-section">
+<div id="page-section" class="page-section">
 	<div class="wrapper">
 		<div class="<?php BaseTheme::have_post_class( 'three-columns' ); ?>">
 			<!-- Content Start -->
@@ -22,5 +22,5 @@ get_header();
 			<!-- Content End -->
 		</div>
 	</div>
-</section>
+</div>
 <?php get_footer(); ?>

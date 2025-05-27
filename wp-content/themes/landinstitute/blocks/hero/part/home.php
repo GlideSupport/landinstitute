@@ -15,12 +15,13 @@ $button = $li_hero_home['button'] ?? null;
 $image = $li_hero_home['image'] ?? null;
 $bg_image = $li_hero_home['bg_image'] ?? null;
 $bg_color = $li_hero_home['li_globel_bg_color_options'] ?? 'bg-lilac';
+$border_options = $li_hero_home['li_globel_border_options'] ?? 'none';
 
 
 if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !empty($bg_image)): ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-pattern">
 		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
-		<div class="hero-default has-border-bottom">
+		<div class="hero-default <?php echo esc_attr($border_options); ?>">
 			<div class="wrapper">
 				<div class="hero-alongside-block">
 					<div class="col-left <?php echo esc_attr($bg_color); ?>">

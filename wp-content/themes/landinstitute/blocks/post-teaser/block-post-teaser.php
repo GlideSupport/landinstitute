@@ -45,6 +45,7 @@ $li_pt_headline_check = BaseTheme::headline_check($li_pt_headline);
 $li_pt_post_select_option = $bst_block_fields['li_pt_post_select_option'] ?? 'manual';
 $li_pt_select_manual_post = $bst_block_fields['li_pt_select_manual_post'] ?? null;
 $li_pt_button = $bst_block_fields['li_pt_button'] ?? null;
+$border_options = $bst_block_fields['li_globel_border_options'] ?? 'none';
 
 // Query posts based on selection
 $args = array(
@@ -72,22 +73,25 @@ switch ($li_pt_post_select_option) {
 $posts_query = new WP_Query($args);
 if(!empty($li_pt_headline_check) && $posts_query->have_posts()): ?>
 	<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
-	<div class="all-resources-block">
+	<div class="all-resources-block <?php echo esc_attr($border_options); ?>">
 			<?php echo !empty($li_pt_headline_check) ? BaseTheme::headline($li_pt_headline, 'heading-2 block-title mb-0') . '<div class="gl-s52"></div>' : ''; ?>
 			<div class="border-variable-slider">
 				<!-- Swiper -->
 				<div class="swiper-container variable-slide-preview cursor-drag-icon">
 					<div class="swiper-wrapper">
 						<?php 
-						$first_post = true;
+						$slide_classes = ['slide-larg', 'slide-xlarg', 'slide-smlarg', 'slide-xsmlarg'];
+						$index = 0;						
 						while ($posts_query->have_posts()) : $posts_query->the_post(); 
 							$post_id = get_the_ID();
 							$title = get_the_title();
 							$permalink = get_the_permalink();
 							$bg_pattern_image = get_field('li_po_bg_image',$post_id);
 							$has_pattern = !empty($bg_pattern_image);
+							// Calculate class for current slide
+    						$class = $slide_classes[$index % count($slide_classes)];
 						?>
-						<div class="swiper-slide <?php echo $first_post ? 'slide-larg' : ''; ?>">
+						<div class="swiper-slide <?php echo esc_attr($class); ?>">
 							<a href="<?php echo esc_url($permalink); ?>" class="border-image-content">
 								<div class="variable-image <?php echo $has_pattern ? 'pattern-image' : ''; ?>">
 									<?php if ($has_pattern && $bg_pattern_image) : ?>
@@ -113,7 +117,7 @@ if(!empty($li_pt_headline_check) && $posts_query->have_posts()): ?>
 							</a>
 						</div>
 						<?php 
-							$first_post = false;
+							$index++;
 						endwhile; 
 						wp_reset_postdata();
 						?>

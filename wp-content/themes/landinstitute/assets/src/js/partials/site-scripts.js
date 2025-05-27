@@ -179,66 +179,66 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-// Counter
+// Counter js start
 document.addEventListener("DOMContentLoaded", function () {
-	const counters = document.querySelectorAll(".counter-number .count");
-	const speed = 2000; // Duration for all counters to finish counting (in milliseconds)
-
-	const getMaxTarget = () => {
-		return Math.max(
-			...Array.from(counters).map(
-				(counter) =>
-					+counter
-						.closest(".counter-number")
-						.getAttribute("data-target"),
-			),
-		);
-	};
-
-	const maxTarget = getMaxTarget(); // Find the highest target value
-
-	const countUp = (counter) => {
-		const target = +counter
-			.closest(".counter-number")
-			.getAttribute("data-target");
-		const startTime = performance.now();
-
-		const updateCount = (currentTime) => {
-			const elapsedTime = currentTime - startTime;
-			const progress = Math.min(elapsedTime / speed, 1); // Progress from 0 to 1 over the speed duration
-			const currentCount = Math.ceil(progress * target);
-
-			counter.innerText = currentCount;
-
-			if (progress < 1) {
-				requestAnimationFrame(updateCount);
-			} else {
-				counter.innerText = target; // Ensure the final value is the target
-			}
-		};
-
-		requestAnimationFrame(updateCount);
-	};
-
-	const options = {
-		threshold: 0.1,
-	};
-
-	const observer = new IntersectionObserver((entries, observer) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				const counter = entry.target.querySelector(".count");
-				countUp(counter);
-				observer.unobserve(entry.target);
-			}
-		});
-	}, options);
-
-	counters.forEach((counter) => {
-		observer.observe(counter.closest(".counter-number"));
-	});
+    const counters = document.querySelectorAll(".counter-number .count");
+    const speed = 3000; // Duration for all counters to finish counting (in milliseconds)
+ 
+    const getMaxTarget = () => {
+        return Math.max(
+            ...Array.from(counters).map(
+                (counter) =>
+                    +counter
+                        .closest(".counter-number")
+                        .getAttribute("data-target"),
+            ),
+        );
+    };
+ 
+    const maxTarget = getMaxTarget(); // Find the highest target value
+ 
+    const countUp = (counter) => {
+        const target = +counter
+            .closest(".counter-number")
+            .getAttribute("data-target");
+        const startTime = performance.now();
+ 
+        const updateCount = (currentTime) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / speed, 1); // Progress from 0 to 1 over the speed duration
+            const currentCount = Math.ceil(progress * target);
+ 
+            counter.innerText = currentCount.toLocaleString();
+ 
+            if (progress < 1) {
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.innerText = target.toLocaleString(); // Ensure the final value is the target
+            }
+        };
+ 
+        requestAnimationFrame(updateCount);
+    };
+ 
+    const options = {
+        threshold: 0.1,
+    };
+ 
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const counter = entry.target.querySelector(".count");
+                countUp(counter);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+ 
+    counters.forEach((counter) => {
+        observer.observe(counter.closest(".counter-number"));
+    });
 });
-
+//counter js end
 
 
 // Header Mega menu append js start

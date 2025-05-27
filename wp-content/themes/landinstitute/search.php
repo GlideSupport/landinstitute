@@ -36,7 +36,7 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 </section>
 <div class="ts-100"></div>
 
-<section id="page-section" class="page-section">
+<div id="page-section" class="page-section">
 	<div class="wrapper">
 		<div class="post-archive <?php BaseTheme::have_post_class( 'three-columns' ); ?>">
 			<!-- Content Start -->
@@ -68,5 +68,5 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 			<!-- Content End -->
 		</div>
 	</div>
-</section>
+</div>
 <?php get_footer(); ?>
