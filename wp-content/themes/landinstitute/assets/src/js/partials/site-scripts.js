@@ -117,31 +117,45 @@ document.addEventListener("click", (event) => {
 // Tab DropDown
 document.addEventListener("DOMContentLoaded", () => {
 	const dropdowns = document.querySelectorAll(".tab-dropdown");
+
 	document.addEventListener("click", (event) => {
 		let clickedDropdown = null;
+
 		dropdowns.forEach((dropdown) => {
 			const toggle = dropdown.querySelector(".dropdown-toggle");
-			if (!dropdown.contains(event.target)) {
-				toggle.setAttribute("aria-expanded", false);
+
+			// Check if click is inside this dropdown
+			if (dropdown.contains(event.target)) {
+				if (event.target === toggle || toggle.contains(event.target)) {
+					clickedDropdown = dropdown;
+				}
+			} else {
+				// Close other dropdowns
+				toggle?.setAttribute("aria-expanded", "false");
 				dropdown.classList.remove("open");
-			} else if (event.target === toggle) {
-				clickedDropdown = dropdown;
 			}
 		});
+
+		// Handle toggle for clicked dropdown
 		if (clickedDropdown) {
 			const toggle = clickedDropdown.querySelector(".dropdown-toggle");
 			const menu = clickedDropdown.querySelector(".dropdown-menu");
-			const isExpanded = toggle.getAttribute("aria-expanded") === "true";
-			toggle.setAttribute("aria-expanded", !isExpanded);
-			clickedDropdown.classList.toggle("open", !isExpanded);
-			if (!isExpanded) {
-				menu.querySelectorAll("li").forEach((item, index) => {
-					item.style.animationDelay = `${index * 0.1}s`;
-				});
+
+			if (toggle && menu) {
+				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				toggle.setAttribute("aria-expanded", String(!isExpanded));
+				clickedDropdown.classList.toggle("open", !isExpanded);
+
+				if (!isExpanded) {
+					menu.querySelectorAll("li").forEach((item, index) => {
+						item.style.animationDelay = `${index * 0.1}s`;
+					});
+				}
 			}
 		}
 	});
 });
+
 
 // Sticky Social Start
 document.addEventListener("DOMContentLoaded", () => {
