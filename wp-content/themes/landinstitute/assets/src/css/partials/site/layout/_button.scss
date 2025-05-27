@@ -209,8 +209,8 @@ body {
             padding: 16px 0 16px;
 
             @media(max-width: 640px) {
-                padding: 14px 0 14px;
                 letter-spacing: -0.36px;
+                padding: 14px 0 14px;
             }
 
             &:after {
@@ -300,6 +300,61 @@ body {
 
         &:hover {
             background-size: 0 100%;
+        }
+    }
+
+    .jump-arrow {
+        align-items: center;
+        background: var(--gb_base_cream);
+        border: 2px solid var(--gb_base_brown);
+        cursor: pointer;
+        display: flex;
+        height: auto;
+        justify-content: space-between;
+        margin: 0;
+        max-width: 100%;
+        padding: 13px 22px 13px 22px;
+        stroke-width: 1px;
+        transition: background-color 0.3s, color 0.3s;
+        will-change: background-color, color;
+
+        @extend .ui-18-16-bold;
+
+        @media(max-width: 640px) {
+            min-width: 100%;
+        }
+
+        .arrow-icon {
+            border-radius: 100%;
+            height: 22px;
+            position: relative;
+            width: 22px;
+
+            &::after {
+                animation: bubbleJump-shrink 0.4s ease-in-out 2;
+                background-image: url(../images/bottom-arrow.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 8px;
+                content: "";
+                display: inline-block;
+                height: 22px;
+                transition: transform 0.3s ease;
+                width: 22px;
+            }
+        }
+
+        &:hover {
+            background-color: var(--gb_primary_lilac);
+
+            .arrow-icon {
+                background-color: var(--gb_base_brown);
+
+                &:after {
+                    animation: bubbleJump 0.4s ease-in-out 2;
+                    background-image: url(../images/bottom-arrow-white.svg);
+                }
+            }
         }
     }
 }

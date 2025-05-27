@@ -16,3 +16,16 @@
         }
     }
 }
+
+.state-grid-block {
+    .state-grid-row {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 64px;
+
+        .state-grid-col {
+            flex: 50% 0 0;
+            padding-right: 44px;
+        }
+    }
+}

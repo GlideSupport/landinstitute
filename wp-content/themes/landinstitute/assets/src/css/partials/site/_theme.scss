@@ -287,7 +287,7 @@ picture {
 	}
 }
 
-section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block, .cta-grid-mosaic-block, .video-alongside-text, .theme-video, .tabbed-content-block, .map-embed-block, .timeline-block) {
+section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block, .cta-grid-mosaic-block, .video-alongside-text, .theme-video, .tabbed-content-block, .map-embed-block, .timeline-block, .logo-grid-links-block, .cta-grid-slider-block) {
 	overflow: hidden;
 }
 
@@ -302,11 +302,13 @@ section:has(.has-border-bottom) {
 .full-width-button {
 	margin-left: calc(-50vw + 50%);
 	width: 100vw;
+	position: relative;
+	z-index: 1;
 
 	.site-btn {
+		margin-bottom: -2px;
 		margin-left: -2px;
 		margin-right: -2px;
-		margin-bottom: -2px;
 		width: -webkit-fill-available;
 	}
 }
@@ -347,17 +349,24 @@ section:has(.has-border-bottom) {
 			min-width: 100%;
 		}
 
-		&::after {
-			background-image: url(../images/bottom-arrow.svg);
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: 8px;
+		.arrow-icon {
 			border-radius: 100%;
-			content: "";
-			display: inline-block;
 			height: 22px;
-			transition: all 0.2s ease-in-out;
+			position: relative;
 			width: 22px;
+
+			&::after {
+				background-image: url(../images/bottom-arrow.svg);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 8px;
+				content: "";
+				display: inline-block;
+				height: 22px;
+				transition: transform 0.3s ease;
+				width: 22px;
+				animation: bubbleJump-shrink 0.4s ease-in-out 2;
+			}
 		}
 
 		&:disabled {
@@ -370,21 +379,57 @@ section:has(.has-border-bottom) {
 		&:hover {
 			background-color: var(--gb_primary_lilac);
 
-			&:after {
+			.arrow-icon {
 				background-color: var(--gb_base_brown);
-				background-image: url(../images/bottom-arrow-white.svg);
+
+				&:after {
+					animation: bubbleJump 0.4s ease-in-out 2;
+					background-image: url(../images/bottom-arrow-white.svg);
+				}
 			}
 		}
 	}
 
 	&.open {
 		.dropdown-toggle {
-			&:after {
+			.arrow-icon {
 				background-color: var(--gb_base_brown);
-				background-image: url(../images/bottom-arrow-white.svg);
-				transform: rotate(180deg);
+
+				&:after {
+					background-image: url(../images/bottom-arrow-white.svg);
+					transform: rotate(180deg);
+					animation: inherit !important;
+				}
 			}
 		}
+	}
+}
+
+@keyframes bubbleJump {
+	0% {
+		transform: translateY(0);
+	}
+
+	60% {
+		transform: translateY(1.5px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes bubbleJump-shrink {
+	0% {
+		transform: translateY(0);
+	}
+
+	60% {
+		transform: translateY(1.5px);
+	}
+
+	100% {
+		transform: translateY(0);
 	}
 }
 

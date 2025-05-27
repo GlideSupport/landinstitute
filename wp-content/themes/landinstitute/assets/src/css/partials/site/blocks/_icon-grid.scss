@@ -47,3 +47,53 @@
         }
     }
 }
+
+.logo-grid-links-row {
+    display: grid;
+    gap: 44px;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+
+    .logo-grid-link-col {
+        grid-column: span 4;
+
+        .logo-grid-link {
+            display: flex;
+            flex-direction: column;
+            padding: 24px 0 0;
+            border-top: 1px solid var(--gb_base_brown);
+            text-decoration: none;
+
+            .logo-image {
+                display: flex;
+
+                img {
+                    max-height: 102px;
+                    max-width: 194px;
+                }
+            }
+
+            .card-list {
+                .card-item {
+                    padding: 0;
+                    border: none;
+                }
+            }
+
+            &:hover {
+                .card-list {
+                    .card-item {
+                        &.link-with-title {
+                            &.with-arrow {
+                                .dot-btn {
+                                    &:before {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
