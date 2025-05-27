@@ -44,7 +44,6 @@ if ($block['name']) {
 // Block variables.
 $li_im_title = $bst_block_fields['li_im_title'] ?? null;
 $li_im_repeater = $bst_block_fields['li_im_repeater'] ?? null;
-$li_im_image = $bst_block_fields['li_im_image'] ?? null;
 
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
@@ -58,12 +57,14 @@ $li_im_image = $bst_block_fields['li_im_image'] ?? null;
 				<?php foreach ($li_im_repeater as $row) : 
 					$year = $row['li_im_year'] ?? '';
 					$stats = $row['li_im_stats_details'] ?? [];
+					$image = $row['li_im_image'] ?? [];
+					
 				?>
 					<div class="swiper-slide">
 						<div class="swiper-slide-container">
-							<?php if ($li_im_image) : ?>
+							<?php if ($image) : ?>
 								<div class="map-image">
-								<?php echo wp_get_attachment_image( $li_im_image, 'full', false, array( 'width'  => 1003, 'height' => 534, 'alt' => 'Map Image') ); ?>
+								<?php echo wp_get_attachment_image($image, 'full', false, array( 'width'  => 1003, 'height' => 534, 'alt' => 'Map Image') ); ?>
 
 								</div>
 							<?php endif; ?>
