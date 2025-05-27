@@ -42,17 +42,20 @@ if ($block['name']) {
 }
 
 // Block variables.
-$cckc_tct_headline = $bst_block_fields['cckc_tct_headline'] ?? null;
-$cckc_tct_headline_check = BaseTheme::headline_check($cckc_tct_headline);
-$cckc_tct_content = $bst_block_fields['cckc_tct_content'] ?? null;
+$li_ill_headline = $bst_block_fields['li_ill_headline'] ?? null;
+$li_ill_headline_check = BaseTheme::headline_check($li_ill_headline);
+$li_ill_choose_variation = $bst_block_fields['li_ill_choose_variation'] ?? 'two-column';
+$li_ill_wysiwyg = $bst_block_fields['li_ill_wysiwyg'] ?? null;
+$li_ill_repeater = $bst_block_fields['li_ill_repeater'] ?? null;
+$li_ill_image = $bst_block_fields['li_ill_image'] ?? null;
 
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 	<?php 
-	if($li_hero_choose_varaition == 'two-column'):
+	if($li_ill_choose_variation == 'two-column'):
 		include 'part/two-column.php';
 	endif;
-	if($li_hero_choose_varaition == 'image'):
+	if($li_ill_choose_variation == 'image'):
 		include 'part/image.php';
 	endif;
 	?>

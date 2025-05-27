@@ -14,7 +14,7 @@
 <div class="mega-dropdown our-work-mega-dropdown" id="mega-dropdown-our-work" style="display: none;">
 	<div class="mega-dropdown-card">
 		<div class="col-left">
-			<div class="group-content">
+			<div class="group-content mega-one">
 				<?php if (!empty($landinstitute_nav_menu_title_1)): ?>
 					<div class="gl-s36"></div>
 						<div class="ui-24-21-bold mega-title"><?php echo html_entity_decode($landinstitute_nav_menu_title_1); ?></div>
@@ -38,7 +38,7 @@
 		</div>
 		<div class="col-right">
 			<div class="mega-menu-row">
-				<div class="mega-col">
+				<div class="mega-col mega-two">
 					<?php if (!empty($landinstitute_nav_menu_title_2)): ?>
 						<div class="ui-24-21-bold mega-menu-title"><?php echo html_entity_decode($landinstitute_nav_menu_title_2); ?></div>
 						<div class="gl-s16"></div>
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="mega-col">
+				<div class="mega-col mega-three">
 				<?php if (!empty($landinstitute_nav_menu_title_3)): ?>
 					<div class="ui-24-21-bold mega-menu-title"><?php echo html_entity_decode($landinstitute_nav_menu_title_3); ?></div>
 					<div class="gl-s16"></div>

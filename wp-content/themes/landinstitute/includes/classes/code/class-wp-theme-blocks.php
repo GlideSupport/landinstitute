@@ -150,6 +150,9 @@ class WP_Theme_Blocks {
 		
 		// Register a block - Download List.
 		self::register_acf_block('download-list');
+
+		// Register a block - BG Pattern.
+		self::register_acf_block('bg-pattern');
 		
 
 		// [register_here].

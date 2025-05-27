@@ -1,0 +1,27 @@
+{
+	"name": "acf/bg-pattern",
+	"title": "BG Pattern",
+	"description": "A custom BG Pattern block.",
+	"editorScript": ["block-bg-pattern"],
+	"script": ["block-bg-pattern"],
+	"category": "theme-blocks",
+	"icon": "cover-image",
+	"keywords": ["BG Pattern", "Pattern"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-bg-pattern.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "bg-pattern-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

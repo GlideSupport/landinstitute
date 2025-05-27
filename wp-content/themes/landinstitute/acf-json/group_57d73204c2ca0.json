@@ -187,7 +187,7 @@
             "max_size": "",
             "mime_types": "",
             "allow_in_bindings": 1,
-            "preview_size": "medium"
+            "preview_size": "thumbnail"
         },
         {
             "key": "field_6827342a0f9c0",
@@ -2727,7 +2727,7 @@
         {
             "key": "field_682b18438d7d0",
             "label": "Choose Video Type",
-            "name": "choose_video_type",
+            "name": "li_hero_to_choose_video_type",
             "aria-label": "",
             "type": "button_group",
             "instructions": "",
@@ -2753,7 +2753,7 @@
         {
             "key": "field_682b18718d7d1",
             "label": "Image (Video Thumbnail)",
-            "name": "image_video_thumbnail",
+            "name": "li_hero_to_image_video_thumbnail",
             "aria-label": "",
             "type": "image",
             "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 129px by 85px (Regular Display) - Maximum 258px by 170px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
@@ -2794,7 +2794,7 @@
         {
             "key": "field_682b18a28d7d2",
             "label": "Youtube Video Embed ID",
-            "name": "youtube_video_embed_id",
+            "name": "li_hero_to_youtube_video_embed_id",
             "aria-label": "",
             "type": "text",
             "instructions": "<strong>Add the video ID of the YouTube video<\/strong>",
@@ -2823,7 +2823,7 @@
         {
             "key": "field_682b18bf8d7d3",
             "label": "Vimeo Video Embed ID",
-            "name": "vimeo_video_embed_id",
+            "name": "li_hero_to_vimeo_video_embed_id",
             "aria-label": "",
             "type": "text",
             "instructions": "<strong>Add the video ID of the Vimeo video<\/strong>",
@@ -2852,7 +2852,7 @@
         {
             "key": "field_682b18d88d7d4",
             "label": "Video File",
-            "name": "video_file",
+            "name": "li_hero_to_video_file",
             "aria-label": "",
             "type": "file",
             "instructions": "",
@@ -2881,7 +2881,7 @@
         {
             "key": "field_682b16f92a5cc",
             "label": "Title",
-            "name": "title",
+            "name": "li_hero_to_title",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -2902,7 +2902,7 @@
         {
             "key": "field_682b16ff2a5cd",
             "label": "Text",
-            "name": "text",
+            "name": "li_hero_to_text",
             "aria-label": "",
             "type": "textarea",
             "instructions": "",
@@ -2939,5 +2939,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748245564
+    "modified": 1748257176
 }

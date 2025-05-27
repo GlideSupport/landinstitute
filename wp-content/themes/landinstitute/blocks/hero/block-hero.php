@@ -11,6 +11,8 @@
  */
 
 list( $bst_block_id, $bst_block_fields ) = BaseTheme::defaults( $block['id'] );
+list($bst_var_post_id, $bst_fields, $bst_option_fields) = BaseTheme::defaults(get_the_ID());
+
 
 // Set the block name for it's ID & class from it's file name.
 $bst_block_name   = $block['name'];
@@ -38,7 +40,7 @@ if ( $block['name'] ) {
 
 // Block variables.
 $li_hero_headline = $bst_block_fields['li_hero_headline'] ?? null;
-$li_hero_choose_variation = $bst_block_fields['li_hero_choose_variation'] ?? null;
+$li_hero_choose_variation = $bst_block_fields['li_hero_choose_variation'] ?? 'home';
 $li_hero_headline_check = BaseTheme::headline_check($li_hero_headline);
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">

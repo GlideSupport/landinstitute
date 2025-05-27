@@ -47,6 +47,7 @@
 														$title = get_the_title();
 														$permalink = get_permalink();
 												?>
+												<!-- TO DO -->
 												<div class="image-category-card">
 													<a class="image-cat-group" href="<?php echo esc_url($permalink); ?>">
 														<div class="category-image">
@@ -92,9 +93,11 @@
 														<?php if (!empty($landinstitute_to_common_search_text)) : ?>
 															<ul class="dot-hover">
 																<?php foreach ($landinstitute_to_common_search_text as $li_to_common_search_text) :
-																	$text = $li_to_common_search_text['landinstitute_search_text']; ?>
-																	<li> <?php echo BaseTheme::button($text, ''); ?></li>
-																<?php endforeach; ?>
+																	$text = $li_to_common_search_text['landinstitute_search_text'];
+																	if (!empty($text)) : ?>
+																		<li> <?php echo BaseTheme::button($text, ''); ?></li>
+																	<?php endif;
+																endforeach; ?>
 															</ul>
 													<?php endif; ?>
 													</div>
@@ -108,11 +111,14 @@
 													<?php if (!empty($landinstitute_to_popular_topics)) : ?>
 														<ul>
 															<?php foreach ($landinstitute_to_popular_topics as $li_to_popular_topics) :
-																$landinstitute_topics = $li_to_popular_topics['landinstitute_topics']; ?>
-																<li><span class="tags"><?php echo esc_html($landinstitute_topics); ?></span></li>
-															<?php endforeach; ?>
+																$landinstitute_topics = $li_to_popular_topics['landinstitute_topics'];
+																if (!empty($landinstitute_topics)) : ?>
+																	<li><span class="tags"><?php echo esc_html($landinstitute_topics); ?></span></li>
+																<?php endif;
+															endforeach; ?>
 														</ul>
 													<?php endif; ?>
+
 												</div>
 											</div>
 										</div>

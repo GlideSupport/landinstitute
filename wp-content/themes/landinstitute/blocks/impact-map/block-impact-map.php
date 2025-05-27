@@ -42,11 +42,78 @@ if ($block['name']) {
 }
 
 // Block variables.
-$cckc_tct_headline = $bst_block_fields['cckc_tct_headline'] ?? null;
-$cckc_tct_headline_check = BaseTheme::headline_check($cckc_tct_headline);
-$cckc_tct_content = $bst_block_fields['cckc_tct_content'] ?? null;
+$li_im_title = $bst_block_fields['li_im_title'] ?? null;
+$li_im_repeater = $bst_block_fields['li_im_repeater'] ?? null;
+$li_im_image = $bst_block_fields['li_im_image'] ?? null;
 
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
+<div class="impact-map-block has-border-bottom">
+	<?php echo !empty($li_im_title) ? '<div class="gl-s44"></div><div class="ui-20-18-bold-uc block-title mb-0">' . esc_html($li_im_title) . '</div>' : ''; ?>
+	<!-- Years slider -->
+	<?php if (!empty($li_im_repeater)) : ?>
+	<div class="map-content-value">
+		<div class="swiper map-slides">
+			<div class="swiper-wrapper">
+				<?php foreach ($li_im_repeater as $row) : 
+					$year = $row['li_im_year'] ?? '';
+					$stats = $row['li_im_stats_details'] ?? [];
+				?>
+					<div class="swiper-slide">
+						<div class="swiper-slide-container">
+							<?php if ($li_im_image) : ?>
+								<div class="map-image">
+								<?php echo wp_get_attachment_image( $li_im_image, 'full', false, array( 'width'  => 1003, 'height' => 534, 'alt' => 'Map Image') ); ?>
+
+								</div>
+							<?php endif; ?>
+							<?php if (!empty($stats)) : ?>
+								<div class="map-values">
+									<?php foreach ($stats as $stat) :
+										$target_number = $stat['stat_number'] ?? 0; ?>
+										<div class="map-values-col" >
+											<div class="map-counter" data-target="<?php echo esc_attr($target_number); ?>">	
+												<h2 class="mb-0 block-title heading-2">
+												<span class="count">0</span><?php echo esc_html(($stat['stat_postfix'] ?? '')); ?>
+												</h2>
+											</div>
+											<div class="ui-16-15-bold map-content">
+												<?php echo esc_html($stat['stat_label'] ?? ''); ?>
+											</div>
+										</div>
+									<?php endforeach; ?>
+								</div>
+							<?php endif; ?>
+						</div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		<!-- Add Arrows -->
+		<div class="drag-arrows">
+			<div class="swiper-button-next"></div>
+			<span>Drag</span>
+			<div class="swiper-button-prev"></div>
+		</div>
+	</div>
+
+	<div class="map-thumb-year">
+		<div class="swiper-container map-years">
+			<div class="swiper-wrapper">
+				<?php foreach ($li_im_repeater as $row) : ?>
+					<div class="swiper-slide">
+						<div class="slide-year"><?php echo esc_html($row['li_im_year'] ?? ''); ?></div>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
+
 	
+	<div class="map-bottom-cta">
+		<div class="map-cta-btn">
+			<a href="" class="site-btn">See Future Landscapes</a>
+		</div>
+	</div>
+</div>
 </div>

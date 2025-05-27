@@ -17,6 +17,7 @@
                 "id": ""
             },
             "choices": {
+                "bg-none": "None",
                 "bg-lilac": "Lilac",
                 "bg-sky-blue": "Sky Blue",
                 "bg-lime-green": "Lime Green",
@@ -49,5 +50,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1747661616
+    "modified": 1748262407
 }

@@ -246,6 +246,7 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			dropdown.style.opacity = "1";
 			dropdown.style.overflow = "visible";
 			dropdown.style.visibility = "visible";
+			document.body.classList.add('megamenu-hover-active');
 		});
 
 		// Hide when leaving dropdown or menu item
@@ -254,6 +255,7 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			dropdown.style.opacity = "0";
 			dropdown.style.overflow = "hidden";
 			dropdown.style.visibility = "hidden";
+			document.body.classList.remove('megamenu-hover-active');
 		};
 
 		menuItem.addEventListener("mouseleave", hideDropdown);
@@ -268,16 +270,56 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 // Header Mega menu append js End
 
 
-// Search button click search popup js start
 document.addEventListener('DOMContentLoaded', function () {
-	const searchBtn = document.querySelector('.search-btn');
-	const searchPopup = document.querySelector('.search-drop');
+
+	// Search button click search popup js start
+		const searchBtn = document.querySelector('.search-btn');
+		const searchPopup = document.querySelector('.search-drop');
+	  
+		if (searchBtn && searchPopup) {
+		  searchBtn.addEventListener('click', function (e) {
+			e.preventDefault(); // prevent default anchor link behavior
+			searchPopup.classList.toggle('active-search');
+		  });
+		}
+
+	// Search button click search popup js End
+
+	//hover add class in menu js start
+	/**
+	 * Adds hover behavior on items: 
+	 * When hovering one item, add class to all others; 
+	 * remove class on mouse leave.
+	 * 
+	 * @param {string} selector - CSS selector for items
+	 * @param {string} hoverClass - class to toggle on other items
+	 */
+	function addHoverEffect(selector, hoverClass) {
+	  const items = document.querySelectorAll(selector);
   
-	if (searchBtn && searchPopup) {
-	  searchBtn.addEventListener('click', function (e) {
-		e.preventDefault(); // prevent default anchor link behavior
-		searchPopup.classList.toggle('active-search');
+	  items.forEach(item => {
+		item.addEventListener('mouseenter', () => {
+		  items.forEach(otherItem => {
+			if (otherItem !== item) {
+			  otherItem.classList.add(hoverClass);
+			}
+		  });
+		});
+  
+		item.addEventListener('mouseleave', () => {
+		  items.forEach(otherItem => {
+			otherItem.classList.remove(hoverClass);
+		  });
+		});
 	  });
 	}
+  
+	addHoverEffect('.header-nav .menu > li', 'hover-active');
+	addHoverEffect('.mega-two .icon-content-col', 'active-hover');
+	addHoverEffect('.mega-bottom-menu ul#menu-issue > li', 'hover-active');
+	addHoverEffect('.social-icons a', 'active-hover');
+	
+	//hover add class in menu js end
+
   });
-// Search button click search popup js End  
+  
