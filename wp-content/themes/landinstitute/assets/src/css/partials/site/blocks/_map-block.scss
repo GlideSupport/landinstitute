@@ -126,6 +126,7 @@
         .swiper-slide {
             height: auto;
             width: 160px;
+            cursor: pointer;
 
             @media(max-width: 767px) {
                 width: 73px;
