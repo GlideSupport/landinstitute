@@ -135,13 +135,7 @@
 }
 
 .tabbed-content-block {
-    .tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-        list-style: none;
-        margin: 0;
-        padding: 16px 0;
+    .tabs-listing {
         position: relative;
 
         &:after,
@@ -160,6 +154,21 @@
             bottom: inherit;
             top: 0;
         }
+    }
+
+    .tabs {
+        display: flex;
+        gap: 4px;
+        list-style: none;
+        margin: 0;
+        padding: 16px 0;
+        position: relative;
+        white-space: nowrap;
+        overflow-y: auto;
+
+        @media (max-width: 767px) {
+            padding: 12px 0px;
+        }
 
         .tab-link {
             border-radius: 100px;
@@ -167,8 +176,11 @@
             margin: 0;
             padding: 6px 16px;
             transition: all 0.2s ease-in-out;
-
             @extend .ui-20-18-bold;
+
+            @media (max-width: 767px) {
+                padding: 6px 14px;
+            }
 
             &:before {
                 display: none;

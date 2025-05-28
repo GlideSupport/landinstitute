@@ -368,3 +368,29 @@
         }
     }
 }
+
+.midpage-cta {
+    &.variation-text-only {
+        padding: 0 0 0 80px;
+        position: relative;
+
+        &:before {
+            content: "";
+            display: block;
+            width: 2px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--gb_base_brown);
+        }
+
+        @media (max-width: 991px) {
+            padding: 0 0 0 48px;
+        }
+
+        @media (max-width: 767px) {
+            padding: 0 0 0 24px;
+        }
+    }
+}

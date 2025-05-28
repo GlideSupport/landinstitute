@@ -113,6 +113,94 @@
         }
     }
 
+    &.hero-text-only {
+        overflow: hidden;
+        position: relative;
+
+        .hero-alongside-block {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: clamp(328px, calc(20.5rem + ((1vw - 7.68px) * 22.3368)), 458px);
+
+            @media (max-width: 767px) {
+                min-height: inherit;
+            }
+
+            .hero-content {
+                max-width: 1040px;
+            }
+
+            .col-content {
+                position: relative;
+                display: flex;
+                align-items: flex-end;
+
+                &:before,
+                &:after {
+                    content: "";
+                    height: 100%;
+                    position: absolute;
+                    right: 100%;
+                    top: 0;
+                    width: 100vw;
+                }
+
+
+                &:after {
+                    left: 100%;
+                }
+
+                &.bg-lime-green {
+
+                    &:before,
+                    &:after {
+                        background-color: var(--gb_primary_lime_green);
+                    }
+                }
+
+                &.bg-butter-yellow {
+
+                    &:before,
+                    &:after {
+                        background-color: var(--gb_primary_butter_yellow);
+                    }
+                }
+
+                &.bg-lilac {
+
+                    &:before,
+                    &:after {
+                        background-color: var(--gb_primary_lilac);
+                    }
+                }
+
+                &.bg-sky-blue {
+
+                    &:before,
+                    &:after {
+                        background-color: var(--gb_primary_sky_blue);
+                    }
+                }
+
+                &.bg-sunflower-yellow {
+
+                    &:before,
+                    &:after {
+                        background-color: var(--gb_primary_sunflower_yellow);
+                    }
+                }
+
+                &.bg-lemon-yellow {
+
+                    &:before,
+                    &:after {
+                        background-color: var(--gb_primary_lemon_yellow);
+                    }
+                }
+            }
+        }
+    }
+
     &.hero-alongside-menu {
         overflow: hidden;
         position: relative;

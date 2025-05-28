@@ -110,6 +110,45 @@
             order: 2;
         }
     }
+
+    &.variation-pattern {
+        gap: clamp(40px, calc(2.5rem + ((1vw - 9.92px) * 33.5196)), 160px);
+
+        @media (max-width: 991px) {
+            flex-wrap: wrap;
+            gap: 0px;
+        }
+
+        .col-left {
+            border-right: 2px solid var(--gb_base_brown);
+            flex: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 55.8659)), 480px) 0 0;
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+            width: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 55.8659)), 480px);
+
+            @media (max-width: 991px) {
+                width: 100vw;
+                flex: 100vw 0 0;
+                border-right: none;
+                border-bottom: 2px solid var(--gb_base_brown);
+            }
+
+            img {
+                border: none;
+                display: block;
+                height: 100%;
+                width: 100%;
+
+                @media (max-width: 991px) {
+                    height: clamp(147px, calc(9.1875rem + ((1vw - 3.75px) * 21.5909)), 280px);
+                }
+            }
+        }
+
+        .col-right {
+            flex: 1 1 0;
+        }
+    }
 }
 
 .video-alongside-row {
@@ -187,19 +226,33 @@
 .sticky-lft-block {
     .row-flex {
         display: flex;
-        gap: 160px;
+        gap: clamp(40px, calc(2.5rem + ((1vw - 9.92px) * 33.5196)), 160px);
+
+        @media (max-width: 991px) {
+            flex-wrap: wrap;
+            gap: 0px;
+        }
 
         .col-left {
             align-self: flex-start;
             border-bottom: 2px solid var(--gb_base_brown);
-            border-right: 2px solid var(--gb_base_brown);
             display: flex;
+            margin-bottom: -2px;
             margin-left: calc(-50vw + 50%);
             overflow: hidden;
-            position: sticky;
-            top: 0;
-            width: 480px;
-            margin-bottom: -2px;
+            width: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 55.8659)), 480px);
+
+            @media (min-width: 992px) {
+                height: 100vh;
+                position: sticky;
+                top: 0;
+                border-right: 2px solid var(--gb_base_brown);
+            }
+
+            @media (max-width: 991px) {
+                width: 100vw;
+                flex: 100vw 0 0;
+            }
 
             img {
                 -o-object-fit: cover;
@@ -207,6 +260,10 @@
                 height: 100%;
                 object-fit: cover;
                 width: 100%;
+
+                @media (max-width: 991px) {
+                    height: clamp(147px, calc(9.1875rem + ((1vw - 3.75px) * 21.5909)), 280px);
+                }
             }
         }
 
