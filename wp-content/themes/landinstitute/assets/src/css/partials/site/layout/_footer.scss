@@ -332,10 +332,9 @@
 
                     a {
                         color: var(--gb_base_brown);
-                        font-family: "Universal Sans Display";
+                        @include font(universalsans, reg);
                         font-size: 18px;
                         font-style: normal;
-                        font-weight: 400;
                         letter-spacing: -0.36px;
                         line-height: 110%;
                         padding-left: 0px;
@@ -409,10 +408,9 @@
                     a {
                         color: var(--gb_base_brown);
                         display: flex;
-                        font-family: "Universal Sans Display";
+                        @include font(universalsans, reg);
                         font-size: 18px;
                         font-style: normal;
-                        font-weight: 400;
                         letter-spacing: -0.396px;
                         line-height: 92%;
                     }

@@ -46,7 +46,7 @@ input[type="string"],
 select,
 textarea,
 .gform-text-input-reset {
-	@include font(axi, reg);
+	@include font(universalsans, reg);
 	@include transition(all, 0.2s, ease-in-out);
 	background: transparent;
 	border: none;

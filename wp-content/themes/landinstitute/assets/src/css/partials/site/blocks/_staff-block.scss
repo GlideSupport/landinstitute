@@ -28,6 +28,14 @@
 
             .cl-right {
                 flex: 1 0 0;
+
+                .team-content {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
             }
         }
     }

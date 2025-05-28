@@ -102,7 +102,7 @@
 }
 
 .editor-styles-wrapper {
-	@include font(axi, reg);
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_5);
 	color: var(--gb_body_color);
 	line-height: 1.5;
@@ -824,20 +824,20 @@ body {
 }
 
 .post-type-project {
-    .editor-styles-wrapper {
-        .wp-block-post-featured-image {
-            &.alignright {
-                float: none;
-            }
+	.editor-styles-wrapper {
+		.wp-block-post-featured-image {
+			&.alignright {
+				float: none;
+			}
 
-            &.alignleft {
-                float: none;
-            }
-        }
-    }
+			&.alignleft {
+				float: none;
+			}
+		}
+	}
 }
 
 
 #imagify-pricing-modal {
-    display: none;
+	display: none;
 }

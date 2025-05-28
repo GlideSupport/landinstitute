@@ -170,10 +170,9 @@ ol ul {
 	li {
 		a {
 			color: #4D3016;
-			font-family: "Universal Sans Display";
+			@include font(universalsans, reg);
 			font-size: 18px;
 			font-style: normal;
-			font-weight: 400;
 			letter-spacing: -0.36px;
 			line-height: 110%;
 			padding-left: 0px;

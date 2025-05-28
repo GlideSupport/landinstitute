@@ -105,10 +105,9 @@ h6,
 
 .ui-128-78-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_8);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_256);
 	line-height: var(--line_height_100per);
 
@@ -119,10 +118,9 @@ h6,
 
 .ui-72-52-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_9);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_144);
 	line-height: var(--line_height_110per);
 
@@ -133,10 +131,9 @@ h6,
 
 .ui-34-28-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_10);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_068);
 	line-height: var(--line_height_110per);
 
@@ -147,10 +144,9 @@ h6,
 
 .ui-26-23-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_11);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_052);
 	line-height: var(--line_height_110per);
 
@@ -161,10 +157,9 @@ h6,
 
 .ui-24-21-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_12);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_048);
 	line-height: var(--line_height_110per);
 
@@ -175,10 +170,9 @@ h6,
 
 .ui-20-18-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_13);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_04);
 	line-height: var(--line_height_110per);
 
@@ -189,10 +183,9 @@ h6,
 
 .ui-20-18-bold-uc {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_13);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_04);
 	line-height: var(--line_height_110per);
 	text-transform: uppercase;
@@ -204,10 +197,9 @@ h6,
 
 .ui-20-18-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_13);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_04);
 	line-height: var(--line_height_110per);
 
@@ -218,10 +210,9 @@ h6,
 
 .ui-18-16-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_036);
 	line-height: var(--line_height_110per);
 
@@ -232,10 +223,9 @@ h6,
 
 .ui-18-16-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_036);
 	line-height: var(--line_height_110per);
 
@@ -246,10 +236,9 @@ h6,
 
 .ui-16-15-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_15);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_032);
 	line-height: var(--line_height_110per);
 
@@ -260,10 +249,9 @@ h6,
 
 .ui-16-15-bold-uc {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_15);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_032);
 	line-height: var(--line_height_110per);
 	text-transform: uppercase;
@@ -275,10 +263,9 @@ h6,
 
 .ui-16-15-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_15);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_032);
 	line-height: var(--line_height_110per);
 
@@ -289,10 +276,9 @@ h6,
 
 .ui-14-13-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_16);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_028);
 	line-height: var(--line_height_110per);
 
@@ -303,10 +289,9 @@ h6,
 
 .ui-12-11-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_17);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_024);
 	line-height: var(--line_height_110per);
 
@@ -317,10 +302,9 @@ h6,
 
 .ui-eyebrow-20-18-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_13);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_2);
 	line-height: var(--line_height_110per);
 	text-transform: uppercase;
@@ -332,10 +316,9 @@ h6,
 
 .ui-eyebrow-18-16-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_18);
 	line-height: var(--line_height_110per);
 	text-transform: uppercase;
@@ -347,10 +330,9 @@ h6,
 
 .ui-eyebrow-16-15-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_15);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_16);
 	line-height: var(--line_height_110per);
 	text-transform: uppercase;
@@ -362,10 +344,9 @@ h6,
 
 .body-26-23-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_11);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_052);
 	line-height: var(--line_height_130per);
 
@@ -376,10 +357,9 @@ h6,
 
 .body-22-20-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_18);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_022);
 	line-height: var(--line_height_150per);
 
@@ -390,10 +370,9 @@ h6,
 
 .body-20-18-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_13);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_02);
 	line-height: var(--line_height_150per);
 
@@ -404,10 +383,9 @@ h6,
 
 .body-18-16-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_018);
 	line-height: var(--line_height_150per);
 

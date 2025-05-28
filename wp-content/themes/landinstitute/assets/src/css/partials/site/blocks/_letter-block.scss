@@ -28,3 +28,11 @@
         }
     }
 }
+
+.newsletter-block {
+    .block-row {
+        padding: 0 0 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+        position: relative;
+        border-left: 2px solid var(--gb_base_brown);
+    }
+}

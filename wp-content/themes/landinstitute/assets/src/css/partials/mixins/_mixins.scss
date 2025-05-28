@@ -92,10 +92,9 @@ Mixin for transition
 
 @mixin ui-18-16-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_036);
 	line-height: var(--line_height_110per);
 
@@ -106,10 +105,9 @@ Mixin for transition
 
 @mixin ui-18-16-regular {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, reg);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
-	font-weight: 400;
 	letter-spacing: var(--letter_spacing_036);
 	line-height: var(--line_height_110per);
 
@@ -129,10 +127,9 @@ Mixin for transition
 
 @mixin ui-14-13-bold {
 	color: var(--gb_base_brown);
-	font-family: "Universal Sans Display";
+	@include font(universalsans, sbold);
 	font-size: var(--gb_font_size_16);
 	font-style: normal;
-	font-weight: 600;
 	letter-spacing: var(--letter_spacing_028);
 	line-height: var(--line_height_110per);
 

@@ -17,7 +17,7 @@
 	a:visited,
 	span.current {
 		@include font-size(15);
-		@include font(axi, reg);
+		@include font(universalsans, reg);
 		@include transition(all, 0.4s, ease-in-out);
 		align-items: center;
 		background-color: var(--gb_pagination_bgcolor);

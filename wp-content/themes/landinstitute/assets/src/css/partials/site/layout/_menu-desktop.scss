@@ -495,7 +495,6 @@
 			margin: 0 0;
 			padding: 0;
 
-			//@include font(solway, reg);
 			@media (min-width: 1271px) and (max-width: 1439px) {
 				margin: 0 clamp(16px, calc(1rem + ((1vw - 12.8px) * 8.805)), 30px) 0 0;
 			}
@@ -603,7 +602,6 @@
 					padding-bottom: 2px;
 					position: relative;
 
-					//@include font(solway, reg);
 					&::after {
 						bottom: -4px;
 					}

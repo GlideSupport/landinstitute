@@ -15,11 +15,15 @@
 
 html {
 	box-sizing: border-box;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
+	scroll-behavior: smooth;
 }
 
 body {
-
-	@include font(axi, reg, family weight);
+	text-rendering: optimizeLegibility;
+	font-smoothing: antialiased;
+	@include font(universalsans, reg);
 	position: relative;
 	@extend .body-22-20-regular;
 	color: var(--gb_body_color);

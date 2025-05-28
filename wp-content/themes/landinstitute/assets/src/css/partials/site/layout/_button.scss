@@ -8,7 +8,7 @@ body {
         color: var(--gb_base_brown);
         display: inline-flex;
         font-size: var(--gb_font_size_14);
-        font-weight: 600;
+        @include font(universalsans, sbold);
         letter-spacing: -0.36px;
         line-height: 110%;
         outline: none;
@@ -197,6 +197,17 @@ body {
                     background-size: 9px;
                 }
             }
+        }
+
+        &.arrow-pointing-left {
+            padding: 22px 36px 22px 66px;
+
+            &::after {
+                right: unset;
+                left: 26px;
+                background-image: url(../images/button-left-arrow.svg);
+            }
+
         }
 
         &.text-link {

@@ -25,7 +25,7 @@ input[type="reset"] {
 	outline: none;
 
 
-	@include font(axi, reg);
+	@include font(universalsans, reg);
 
 	font-size: var(--gb_font_size_3);
 	height: 50px;
@@ -50,11 +50,13 @@ input[type="reset"] {
 		background-color: var(--gb_theme_btn_bgcolor_hover);
 	}
 }
+
 .is-style-fill-boxed {
 	a.wp-block-button__link {
 		border-radius: inherit;
 	}
 }
+
 .is-style-outline-boxed {
 	a.wp-block-button__link {
 		color: black;
