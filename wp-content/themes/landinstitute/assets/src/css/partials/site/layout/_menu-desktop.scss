@@ -122,13 +122,15 @@
 							.site-btn {
 								background: transparent;
 								padding-left: 40px;
+								padding-right: 36px;
+								width: 100%;
 
 								&:hover {
 									background-color: var(--gb_primary_lilac);
 								}
 
 								&:after {
-									right: 29px;
+									right: 28px;
 								}
 							}
 
@@ -494,6 +496,7 @@
 			line-height: 1;
 			margin: 0 0;
 			padding: 0;
+			transition: all 0.2s ease-in-out;
 
 			@media (min-width: 1271px) and (max-width: 1439px) {
 				margin: 0 clamp(16px, calc(1rem + ((1vw - 12.8px) * 8.805)), 30px) 0 0;
