@@ -18,7 +18,7 @@ header {
 .top-bar {
 	background-color: var(--gb_topbar_bgcolor);
 	color: var(--gb_topbar_color);
-	padding: 9px 16px 10px 32px;
+	padding: 11px 16px 12px 32px;
 	position: relative;
 	transition: all 0.4s ease-in-out;
 	width: 100%;
@@ -35,7 +35,7 @@ header {
 	display: flex;
 	padding: 0 27px 0 0;
 
-	@extend .ui-18-16-regular;
+	@extend .ui-16-15-regular;
 
 	@media(max-width: 991px) {
 		display: inline-block;
@@ -336,6 +336,19 @@ header {
 
 		@media(max-width: 1200px) {
 			display: block;
+		}
+	}
+}
+
+body {
+	.header-btns {
+
+		.site-btn {
+
+			&.sm-btn {
+				padding-top: 23px;
+				padding-bottom: 23px;
+			}
 		}
 	}
 }
