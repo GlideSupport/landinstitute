@@ -503,36 +503,38 @@
 					<div class="wrapper">
 						<div class="hero-alongside-block">
 							<div class="col-left bg-lime-green">
-								<h1 class="heading-1 mb-0 block-title">Perennial agriculture is our future</h1>
-								<div class="gl-s30"></div>
-								<div class="block-btn">
-									<a class="site-btn text-link" href="" title="" title="Button" role="Button"
-										aria-label="Button">See Our Work</a>
-								</div>
-								<div class="gl-s64"></div>
-								<div class="announcement-toggle">
-									<div class="announcement-left">
-										<div class="announcement-image">
-											<div class="video-mask"></div>
-											<!-- <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/video-cover.jpg" width="" height=""
+								<div class="left-content">
+									<h1 class="heading-1 mb-0 block-title">Perennial agriculture is our future</h1>
+									<div class="gl-s30"></div>
+									<div class="block-btn">
+										<a class="site-btn text-link" href="" title="" title="Button" role="Button"
+											aria-label="Button">See Our Work</a>
+									</div>
+									<div class="gl-s64"></div>
+									<div class="announcement-toggle">
+										<div class="announcement-left">
+											<div class="announcement-image">
+												<div class="video-mask"></div>
+												<!-- <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/video-cover.jpg" width="" height=""
 												alt="" /> -->
-											<div class="video-play">
-												<video class="videos" playsinline="playsinline" muted="muted"
-													preload="metadata" autoplay="autoplay" loop="loop"
-													poster="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/video-cover.jpg"
-													data-video-init="">
-													<source
-														src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/agriculture-video.mp4"
-														type="video/mp4">
-												</video>
+												<div class="video-play">
+													<video class="videos" playsinline="playsinline" muted="muted"
+														preload="metadata" autoplay="autoplay" loop="loop"
+														poster="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/video-cover.jpg"
+														data-video-init="">
+														<source
+															src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/agriculture-video.mp4"
+															type="video/mp4">
+													</video>
+												</div>
 											</div>
 										</div>
-									</div>
-									<div class="announcement-right">
-										<div class="ui-18-16-bold cta-title">Lorem Ipsum Announcement</div>
-										<div class="gl-s4"></div>
-										<div class="ui-18-16-regular cta-content">Magna leo eleifend donec fames
-											porttitor.</div>
+										<div class="announcement-right">
+											<div class="ui-18-16-bold cta-title">Lorem Ipsum Announcement</div>
+											<div class="gl-s4"></div>
+											<div class="ui-18-16-regular cta-content">Magna leo eleifend donec fames
+												porttitor.</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1462,6 +1464,27 @@
 
 
 	<script>
+
+		function adjustContentMinHeight() {
+			const header = document.querySelector('.header-section');
+			const contentElements = document.querySelectorAll(`
+    .hero-section.hero-alongside-pattern,
+    .hero-section.hero-alongside-pattern .hero-default,
+    .hero-section.hero-alongside-pattern .hero-default .wrapper,
+    .hero-section.hero-alongside-pattern .hero-alongside-block
+  `);
+
+			const headerHeight = header.offsetHeight;
+
+			contentElements.forEach(el => {
+				el.style.minHeight = `calc(100vh - ${headerHeight}px - 2px)`;
+			});
+		}
+
+		// Run on load and resize
+		window.addEventListener('load', adjustContentMinHeight);
+		window.addEventListener('resize', adjustContentMinHeight);
+
 
 
 		document.querySelectorAll(".footer-nav-title").forEach((title) => {

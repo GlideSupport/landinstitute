@@ -23,7 +23,7 @@ html {
 body {
 	text-rendering: optimizeLegibility;
 	font-smoothing: antialiased;
-	font-family: 'Universal Sans Display', sans-serif;
+	@include font(universalsans, reg);
 	position: relative;
 	@extend .body-22-20-regular;
 	color: var(--gb_body_color);
