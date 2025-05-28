@@ -23,17 +23,30 @@ html {
 body {
 	text-rendering: optimizeLegibility;
 	font-smoothing: antialiased;
-	@include font(universalsans, reg);
+	font-family: 'Universal Sans Display', sans-serif;
 	position: relative;
 	@extend .body-22-20-regular;
 	color: var(--gb_body_color);
 	background-color: var(--gb_body_bg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 
 // body,
 // html {
 // 	overflow-x: hidden;
 // }
+
+html,
+body {
+	-webkit-font-smoothing: antialiased;
+	/* Chrome */
+	-moz-osx-font-smoothing: grayscale;
+	/* Firefox on macOS */
+	text-rendering: optimizeLegibility;
+	/* Improves kerning, ligatures */
+}
 
 p {
 	margin: 0 0 24px;
