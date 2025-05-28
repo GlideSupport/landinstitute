@@ -14,8 +14,6 @@ $li_hero_home = $bst_block_fields['li_hero_home'] ?? null;
 $button = $li_hero_home['button'] ?? null;
 $image = $li_hero_home['image'] ?? null;
 $bg_image = $li_hero_home['bg_image'] ?? null;
-$bg_color = $li_hero_home['li_globel_bg_color_options'] ?? 'bg-lilac';
-$border_options = $li_hero_home['li_globel_border_options'] ?? 'none';
 
 
 if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !empty($bg_image)): ?>

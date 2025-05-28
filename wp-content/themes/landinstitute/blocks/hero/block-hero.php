@@ -42,7 +42,12 @@ if ( $block['name'] ) {
 $li_hero_headline = $bst_block_fields['li_hero_headline'] ?? null;
 $li_hero_choose_variation = $bst_block_fields['li_hero_choose_variation'] ?? 'home';
 $li_hero_headline_check = BaseTheme::headline_check($li_hero_headline);
+
+
+$bg_color = $bst_block_fields['bg_color']['li_globel_bg_color_options'] ?? 'bg-lilac';
+$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
 ?>
+
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 	<?php 
 	if($li_hero_choose_variation == 'home'):

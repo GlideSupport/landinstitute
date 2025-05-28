@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			adminBarHeight + (headerSection?.offsetHeight || 0);
 		setInitialPadding();
 		adjustHeader();
+		adjustContentMinHeight(); 
 	});
 
 	// Event listeners
@@ -129,6 +130,23 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		return null;
 	}
+	//Home Hero banner js start
+	function adjustContentMinHeight() {
+		const header = document.querySelector('.header-section');
+		const contentElements = document.querySelectorAll(`
+		.hero-section.hero-alongside-pattern,
+		.hero-section.hero-alongside-pattern .hero-default,
+		.hero-section.hero-alongside-pattern .hero-default .wrapper,
+		.hero-section.hero-alongside-pattern .hero-alongside-block
+		`);
+
+		const headerHeight = header.offsetHeight;
+
+		contentElements.forEach(el => {
+			el.style.minHeight = `calc(100vh - ${headerHeight}px - 2px)`;
+		});
+	}
+	//Home Hero banner js end
 
 	// Hide hello bar if cookie exists
 	const helloBar = document.querySelector(".top-bar");

@@ -49,5 +49,113 @@ $li_ig_repeater = $bst_block_fields['li_ig_repeater'] ?? null;
 
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-   
+<div class="has-border-bottom icon-grid-block">
+    <div class="heading-max">
+        <h2 class="heading-2 mb-0 block-title">Icon Grid</h2>
+        <div class="gl-s30"></div>
+        <div class="block-content body-20-18-regular">Quisque cras purus sed nulla diam convallis
+            porta egestas. Leo lorem pellentesque enim mattis sollicitudin etiam. Dui
+            ornare nunc aenean nibh quis. Vitae aliquet tellus rhoncus quam. Sed purus purus in ut
+            facilisi netus facilisis a. Quis
+            vel suscipit tempor commodo venenatis volutpat rutrum bibendum.</div>
+    </div>
+    <div class="gl-s64"></div>
+    <div class="icon-grid-row">
+        <div class="icon-grid-col">
+            <div class="icon-grid-image">
+                <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Crop-Development.svg"
+                    width="" height="" />
+            </div>
+            <div class="gl-s24"></div>
+            <div class="ui-24-21-bold cta-title">Crop Development</div>
+            <div class="gl-s4"></div>
+            <div class="cta-content body-20-18-regular">Perennial crops that are better for the
+                world</div>
+            <div class="gl-s8"></div>
+            <div class="cta-links">
+                <a href="" class="border-text-btn">
+                    Read more </a>
+            </div>
+        </div>
+        <div class="icon-grid-col">
+            <div class="icon-grid-image">
+                <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Civic-Science-thin.svg"
+                    width="" height="" />
+            </div>
+            <div class="gl-s24"></div>
+            <div class="ui-24-21-bold cta-title">Participatory science</div>
+            <div class="gl-s4"></div>
+            <div class="cta-content body-20-18-regular">Collaborating with communities</div>
+            <div class="gl-s8"></div>
+            <div class="cta-links">
+                <a href="" class="border-text-btn">
+                    Read more </a>
+            </div>
+        </div>
+        <div class="icon-grid-col">
+            <div class="icon-grid-image">
+                <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Natural-Systems-thin.svg"
+                    width="" height="" />
+            </div>
+            <div class="gl-s24"></div>
+            <div class="ui-24-21-bold cta-title">Natural Systems</div>
+            <div class="gl-s4"></div>
+            <div class="cta-content body-20-18-regular">Using nature to improve soil and
+                sustainabilityUsing nature to improve soil and sustainability</div>
+            <div class="gl-s8"></div>
+            <div class="cta-links">
+                <a href="" class="border-text-btn">
+                    Read more </a>
+            </div>
+        </div>
+        <div class="icon-grid-col">
+            <div class="icon-grid-image">
+                <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Scaling-Sustainability-thin.svg"
+                    width="" height="" />
+            </div>
+            <div class="gl-s24"></div>
+            <div class="ui-24-21-bold cta-title">Scaling Sustainability</div>
+            <div class="gl-s4"></div>
+            <div class="cta-content body-20-18-regular">Bringing perennial crops from farm to
+                marketBringing perennial crops from farm to market</div>
+            <div class="gl-s8"></div>
+            <div class="cta-links">
+                <a href="" class="border-text-btn">
+                    Read more </a>
+            </div>
+        </div>
+        <div class="icon-grid-col">
+            <div class="icon-grid-image">
+                <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Shifting-the-Culture-thin.svg"
+                    width="" height="" />
+            </div>
+            <div class="gl-s24"></div>
+            <div class="ui-24-21-bold cta-title">Shifting the Culture</div>
+            <div class="gl-s4"></div>
+            <div class="cta-content body-20-18-regular">Building knowledge for sustainable
+                agriculture</div>
+            <div class="gl-s8"></div>
+            <div class="cta-links">
+                <a href="" class="border-text-btn">
+                    Read more </a>
+            </div>
+        </div>
+        <div class="icon-grid-col">
+            <div class="icon-grid-image">
+                <img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Future-Landscapes-thin.svg"
+                    width="" height="" />
+            </div>
+            <div class="gl-s24"></div>
+            <div class="ui-24-21-bold cta-title">Future Landscapes</div>
+            <div class="gl-s4"></div>
+            <div class="cta-content body-20-18-regular">Exploring the future for perennial success
+            </div>
+            <div class="gl-s8"></div>
+            <div class="cta-links">
+                <a href="" class="border-text-btn">
+                    Read more </a>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
