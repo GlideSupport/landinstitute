@@ -46,32 +46,35 @@ $li_ig_headline = $bst_block_fields['li_ig_headline'] ?? null;
 $li_ig_headline_check = BaseTheme::headline_check($li_ig_headline);
 $li_ig_wysiwyg = $bst_block_fields['li_ig_wysiwyg'] ?? null;
 $li_ig_repeater = $bst_block_fields['li_ig_repeater'] ?? null;
+$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
 
-?>
+if (!empty($li_ig_headline_check) || !empty($li_ig_wysiwyg) || !empty($li_ig_repeater)): ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-<div class="has-border-bottom icon-grid-block">
-    <div class="heading-max">
-        <?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'heading-2 mb-0 block-title') : ''; ?>
-        <?php echo (!empty($li_ig_headline_check) && !empty($li_ig_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
-        <?php echo !empty($li_ig_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_ig_wysiwyg) . '</div>' : ''; ?>   
+    <div class="<?php echo esc_attr($border_options); ?> icon-grid-block">
+        <div class="heading-max">
+            <?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'heading-2 mb-0 block-title') : ''; ?>
+            <?php echo (!empty($li_ig_headline_check) && !empty($li_ig_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
+            <?php echo !empty($li_ig_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_ig_wysiwyg) . '</div>' : ''; ?>   
+        </div>
+        <?php echo (!empty($li_ig_wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
+        <?php if (!empty($li_ig_repeater)) { ?>
+                <div class="icon-grid-row">
+                    <?php   foreach ($li_ig_repeater as $li_ig_rep) {
+                            $title = $li_ig_rep['title'];
+                            $text = $li_ig_rep['text']; 
+                            $link = $li_ig_rep['link']; 
+                            $icon = $li_ig_rep['icon']; ?>
+                            <div class="icon-grid-col">
+                                <?php echo !empty($icon) ? '<div class="icon-grid-image">' . wp_get_attachment_image($icon, 'thumb_100') . '</div>' : ''; ?>
+                                <?php echo (!empty($icon) && !empty($title)) ? ' <div class="gl-s24"></div>' : ''; ?>
+                                <?php echo !empty($title) ? '<div class="ui-24-21-bold cta-title">' . esc_html($title) . '</div>' : ''; ?>
+                                <?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
+                                <?php echo !empty($text) ? '<div class="cta-content body-20-18-regular">' . esc_html($text) . '</div><div class="gl-s8"></div>' : ''; ?>
+                                <?php echo !empty($link) ? ' <div class="cta-links">' . BaseTheme::button($link, 'border-text-btn') . '</div>' : ''; ?>
+                            </div>
+                    <?php   } ?>
+                </div>
+        <?php } ?>
     </div>
-    <?php echo (!empty($li_ig_wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
-    <?php if (!empty($li_ig_repeater)) { ?>
-            <div class="icon-grid-row">
-                <?php   foreach ($li_ig_repeater as $li_ig_rep) {
-                        $title = $li_ig_rep['title'];
-                        $text = $li_ig_rep['text']; 
-                        $link = $li_ig_rep['link']; 
-                        $icon = $li_ig_rep['icon']; ?>
-                        <div class="icon-grid-col">
-                            <?php echo !empty($icon) ? '<div class="icon-grid-image">' . wp_get_attachment_image($icon, 'thumb_100') . '</div>' : ''; ?>
-                            <?php echo (!empty($icon) && !empty($title)) ? ' <div class="gl-s24"></div>' : ''; ?>
-                            <?php echo !empty($title) ? '<div class="ui-24-21-bold cta-title">' . esc_html($title) . '</div>' : ''; ?>
-                            <?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
-                            <?php echo !empty($text) ? '<div class="cta-content body-20-18-regular">' . esc_html($text) . '</div><div class="gl-s8"></div>' : ''; ?>
-                            <?php echo !empty($link) ? ' <div class="cta-links">' . BaseTheme::button($link, 'border-text-btn') . '</div>' : ''; ?>
-                        </div>
-                <?php   } ?>
-            </div>
-    <?php } ?>
 </div>
+<?php endif; ?>

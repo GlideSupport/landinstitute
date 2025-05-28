@@ -48,20 +48,20 @@ $li_iat_choose_variation = $bst_block_fields['li_iat_choose_variation'] ?? 'patt
 $li_iat_kicker = $bst_block_fields['li_iat_kicker'] ?? null;
 $li_iat_wysiwyg = $bst_block_fields['li_iat_wysiwyg'] ?? null;
 $li_iat_button = $bst_block_fields['li_iat_button'] ?? null;
-$li_iat_image_position = $bst_block_fields['li_iat_image_position'] ?? null;
+$li_iat_image_position = $bst_block_fields['li_iat_image_position'] ?? 'left';
 $li_iat_image = $bst_block_fields['li_iat_image'] ?? null;
 $li_iat_bg_image = $bst_block_fields['li_iat_bg_image'] ?? null;
+$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
+$image_position_class = ($li_iat_image_position == 'right') ? 'block-rtl' : '';
 ?>
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-
-    <?php
-    $variation = sanitize_key( $li_iat_choose_variation );
-    switch ( $variation ) {
-        case 'pattern':
-        case 'standard':
-        get_template_part( 'part/' . $variation );
-        break;
-    }
+<?php 
+	if($li_iat_choose_variation == 'pattern'):
+		include 'part/pattern.php';
+	endif;
+	if($li_iat_choose_variation == 'standard'):
+		include 'part/standard.php';
+	endif;
     ?>
 </div>
