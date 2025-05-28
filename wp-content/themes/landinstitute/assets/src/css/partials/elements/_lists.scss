@@ -275,11 +275,25 @@ ol ul {
 		flex-wrap: wrap;
 		row-gap: 80px;
 
+		@media(max-width: 991px) {
+			row-gap: 50px;
+		}
+
 		li {
 			border-top: 1px solid var(--gb_base_brown);
 			flex: calc(50% - 44px) 0 0;
 			padding: 44px 0 0;
 			margin: 0 44px 0 0;
+
+			@media(max-width: 991px) {
+				flex: 100% 0 0;
+				padding: 32px 0 0;
+				margin: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 
 			&::before {
 				align-items: center;
@@ -288,11 +302,11 @@ ol ul {
 				color: var(--gb_white);
 				content: counters(list, ".");
 				display: flex;
-				height: 41px;
+				height: clamp(37px, calc(2.3125rem + ((1vw - 7.68px) * 0.6873)), 41px);
 				justify-content: center;
-				margin-bottom: 24px;
+				margin-bottom: clamp(18px, calc(1.125rem + ((1vw - 7.68px) * 1.0309)), 24px);
 				position: inherit;
-				width: 41px;
+				width: clamp(37px, calc(2.3125rem + ((1vw - 7.68px) * 0.6873)), 41px);
 
 				@extend .ui-18-16-bold;
 			}

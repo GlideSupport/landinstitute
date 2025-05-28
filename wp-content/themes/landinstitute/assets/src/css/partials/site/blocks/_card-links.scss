@@ -16,7 +16,7 @@
         }
 
         &:last-child {
-            @media(max-width: 640px) {
+            @media(max-width: 991px) {
                 border-bottom: 0px;
             }
         }
@@ -47,9 +47,9 @@
 
                     img {
                         display: block;
+                        height: 44px;
                         position: relative;
                         width: 44px;
-                        height: 44px;
 
                         @media(max-width: 640px) {
                             height: 32px;
@@ -332,6 +332,12 @@ section:has(.text-featured-block) {
     .swiper-slide {
         height: auto;
     }
+
+    // .swiper-horizontal {
+    //     @media(max-width: 640px) {
+    //         padding-right: 109px;
+    //     }
+    // }
 }
 
 .trans-border-card {
@@ -342,22 +348,31 @@ section:has(.text-featured-block) {
         border: 2px solid var(--gb_base_brown);
         display: flex;
         flex-direction: column;
-        padding: 36px 20px 0 19px;
-        text-decoration: none;
         height: 100%;
         margin-right: -2px;
+        padding: 36px 20px 0 19px;
+        text-decoration: none;
+
+        @media(max-width: 640px) {
+            padding: 28px 16px 0 16px;
+        }
 
         .card-content-group {
             padding: 0 16px 12px 17px;
+
+            @media(max-width: 640px) {
+                padding: 0 8px 10px 8px;
+            }
         }
 
         .card-img {
-            margin-top: auto;
             display: flex;
+            margin-top: auto;
 
             img {
-                max-height: 281px;
-                max-width: 281px;
+                max-height: clamp(188px, calc(11.75rem + ((1vw - 7.68px) * 15.9794)), 281px);
+                max-width: 100%;
+                object-fit: contain;
             }
         }
 
@@ -366,8 +381,6 @@ section:has(.text-featured-block) {
         }
     }
 }
-
-
 
 .filter-cards-grid {
     display: grid;
@@ -390,9 +403,9 @@ section:has(.text-featured-block) {
         }
 
         .filter-card-link {
-            text-decoration: none;
-            height: 100%;
             display: block;
+            height: 100%;
+            text-decoration: none;
 
             &:hover {
                 background-color: var(--gb_primary_butter_yellow);
@@ -400,14 +413,14 @@ section:has(.text-featured-block) {
         }
 
         .image {
-            width: 100%;
             display: flex;
             height: clamp(201px, calc(12.5625rem + ((1vw - 7.68px) * 9.7938)), 258px);
+            width: 100%;
 
             img {
-                width: 100%;
                 height: 100%;
                 object-fit: cover;
+                width: 100%;
             }
         }
 
@@ -419,8 +432,8 @@ section:has(.text-featured-block) {
             }
 
             .description {
-                line-height: var(--line_height_150per);
                 letter-spacing: var(--letter_spacing_018);
+                line-height: var(--line_height_150per);
             }
         }
     }
@@ -431,11 +444,11 @@ section:has(.text-featured-block) {
 
     .desktop-pages {
         align-items: center;
+        border-top: 1px solid var(--gb_base_brown);
         display: flex;
         gap: 6px;
         justify-content: space-between;
         width: 100%;
-        border-top: 1px solid var(--gb_base_brown);
 
         @media (max-width: 991px) {
             display: none;
@@ -447,14 +460,15 @@ section:has(.text-featured-block) {
 
             .page-btn {
                 background: transparent;
+                background-color: var(--gb_primary_lilac);
                 border: none;
+                border-radius: 100px;
+                height: 31px;
                 margin: 0;
                 padding: 6px 0;
-                height: 31px;
-                @extend .ui-18-16-bold;
                 width: 31px;
-                border-radius: 100px;
-                background-color: var(--gb_primary_lilac);
+
+                @extend .ui-18-16-bold;
 
                 &.active {
                     background-color: var(--primary_dark_green);
@@ -468,26 +482,26 @@ section:has(.text-featured-block) {
             }
 
             .dots {
-                @extend .ui-18-16-bold;
-                width: 31px;
                 height: 31px;
                 padding: 6px 0;
                 text-align: center;
+                width: 31px;
+                @extend .ui-18-16-bold;
             }
         }
 
         .arrow-btn {
-            flex: 288px 0 0;
             cursor: pointer;
+            flex: 288px 0 0;
 
             @media (max-width: 1200px) {
                 flex: 228px 0 0;
             }
 
             .site-btn {
-                width: 100%;
-                border-top: 0;
                 border-bottom: 0;
+                border-top: 0;
+                width: 100%;
             }
 
             &.prev {
@@ -495,9 +509,9 @@ section:has(.text-featured-block) {
                     padding: 22px 36px 22px 66px;
 
                     &::after {
-                        right: unset;
-                        left: 26px;
                         background-image: url(../images/button-left-arrow.svg);
+                        left: 26px;
+                        right: unset;
                     }
                 }
             }
@@ -506,28 +520,28 @@ section:has(.text-featured-block) {
 
     .mobile-pagination {
         align-items: center;
+        border-top: 1px solid var(--gb_base_brown);
         display: flex;
         gap: 6px;
         justify-content: space-between;
         width: 100%;
-        border-top: 1px solid var(--gb_base_brown);
 
         @media (min-width: 992px) {
             display: none;
         }
 
         .arrow-btn {
+            align-items: center;
             background: transparent;
             border: none;
+            border-left: 2px solid var(--gb_base_brown);
+            cursor: pointer;
+            display: flex;
+            flex: 125px 0 0;
+            justify-content: center;
             margin: 0;
             padding: 0;
             width: 125px;
-            border-left: 2px solid var(--gb_base_brown);
-            flex: 125px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
 
             &#prevBtn {
                 transform: scale(-1);
@@ -541,9 +555,9 @@ section:has(.text-featured-block) {
         .page-trigger {
             background: transparent;
             border: none;
+            height: 42px;
             margin: 0;
             padding: 12px;
-            height: 42px;
             width: 125px;
         }
     }
@@ -576,13 +590,14 @@ section:has(.text-featured-block) {
 
         .page-btn {
             background: transparent;
+            background: var(--gb_base_cream);
             border: none;
+            border: 1.5px solid var(--gb_base_brown);
+            height: 42px;
             margin: 0;
             padding: 0;
-            border: 1.5px solid var(--gb_base_brown);
-            background: var(--gb_base_cream);
             width: 125px;
-            height: 42px;
+
             @extend .ui-18-16-bold;
 
             &.active {
@@ -611,12 +626,12 @@ section:has(.text-featured-block) {
     }
 
     .filter-title {
-        padding: 16px 24px;
-        min-width: 146px;
-        text-align: center;
+        background-color: var(--gb_primary_lemon_yellow);
         border-bottom: 2px solid var(--gb_base_brown);
         border-top: 2px solid var(--gb_base_brown);
-        background-color: var(--gb_primary_lemon_yellow);
+        min-width: 146px;
+        padding: 16px 24px;
+        text-align: center;
 
         @media (max-width: 767px) {
             display: none;
@@ -624,9 +639,9 @@ section:has(.text-featured-block) {
     }
 
     .filter-mobile-dropdown {
+        background-color: var(--gb_primary_lemon_yellow);
         border-bottom: 2px solid var(--gb_base_brown);
         border-top: 2px solid var(--gb_base_brown);
-        background-color: var(--gb_primary_lemon_yellow);
         padding: 12px 24px;
 
         @media (min-width: 768px) {
@@ -635,8 +650,8 @@ section:has(.text-featured-block) {
     }
 
     .filter-dropdown-row {
-        display: flex;
         align-items: center;
+        display: flex;
         width: 100%;
 
         @media (max-width: 767px) {
@@ -648,8 +663,8 @@ section:has(.text-featured-block) {
             width: 100%;
 
             .dropdown-toggle {
-                min-width: 100%;
                 border-right: 0;
+                min-width: 100%;
             }
         }
     }
@@ -657,8 +672,8 @@ section:has(.text-featured-block) {
     &.category-block {
         .filter {
             position: fixed;
-            width: 100%;
             top: 109px;
+            width: 100%;
 
             @media (max-width: 1200px) {
                 top: 92px;

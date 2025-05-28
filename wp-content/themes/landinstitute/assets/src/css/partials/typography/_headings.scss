@@ -16,380 +16,380 @@ h5,
 h6,
 .heading-6,
 .heading-7 {
-    @include font(valueserif, bold);
-    color: var(--gb_heading_color);
-    line-height: var(--line_height_110per);
-    margin: 0 0 clamp(28px, calc(1.75rem + ((1vw - 7.68px) * 1.3746)), 36px);
-    text-transform: initial;
+	@include font(valueserif, bold);
+	color: var(--gb_heading_color);
+	line-height: var(--line_height_110per);
+	margin: 0 0 clamp(28px, calc(1.75rem + ((1vw - 7.68px) * 1.3746)), 36px);
+	text-transform: initial;
 
-    @media(max-width: 319px) {
-        word-break: break-all;
-    }
+	@media(max-width: 319px) {
+		word-break: break-all;
+	}
 }
 
 h1,
 .heading-1 {
-    font-size: var(--gb_font_size_1);
-    letter-spacing: var(--letter_spacing_1672);
-    line-height: var(--line_height_100per);
+	font-size: var(--gb_font_size_1);
+	letter-spacing: var(--letter_spacing_1672);
+	line-height: var(--line_height_100per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_1144);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_1144);
+	}
 
 
-    @media(max-width: 319px) {
-        font-size: 46px;
-    }
+	@media(max-width: 319px) {
+		font-size: 46px;
+	}
 }
 
 h2,
 .heading-2 {
-    font-size: var(--gb_font_size_2);
-    letter-spacing: var(--letter_spacing_1408);
-    line-height: var(--line_height_100per);
+	font-size: var(--gb_font_size_2);
+	letter-spacing: var(--letter_spacing_1408);
+	line-height: var(--line_height_100per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_0924);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_0924);
+	}
 }
 
 h3,
 .heading-3 {
-    font-size: var(--gb_font_size_3);
-    letter-spacing: var(--letter_spacing_1012);
+	font-size: var(--gb_font_size_3);
+	letter-spacing: var(--letter_spacing_1012);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_0682);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_0682);
+	}
 }
 
 h4,
 .heading-4 {
-    font-size: var(--gb_font_size_4);
-    letter-spacing: var(--letter_spacing_076);
+	font-size: var(--gb_font_size_4);
+	letter-spacing: var(--letter_spacing_076);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_054);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_054);
+	}
 }
 
 h5,
 .heading-5 {
-    font-size: var(--gb_font_size_5);
-    letter-spacing: var(--letter_spacing_06);
+	font-size: var(--gb_font_size_5);
+	letter-spacing: var(--letter_spacing_06);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_048);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_048);
+	}
 }
 
 h6,
 .heading-6 {
-    font-size: var(--gb_font_size_6);
-    letter-spacing: var(--letter_spacing_052);
+	font-size: var(--gb_font_size_6);
+	letter-spacing: var(--letter_spacing_052);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_044);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_044);
+	}
 }
 
 .heading-7 {
-    font-size: var(--gb_font_size_7);
-    letter-spacing: var(--letter_spacing_048);
+	font-size: var(--gb_font_size_7);
+	letter-spacing: var(--letter_spacing_048);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_04);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_04);
+	}
 }
 
 .ui-128-78-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_8);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_256);
-    line-height: var(--line_height_100per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_8);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_256);
+	line-height: var(--line_height_100per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_156);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_156);
+	}
 }
 
 .ui-72-52-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_9);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_144);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_9);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_144);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_104);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_104);
+	}
 }
 
 .ui-34-28-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_10);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_068);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_10);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_068);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_056);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_056);
+	}
 }
 
 .ui-26-23-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_11);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_052);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_11);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_052);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_046);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_046);
+	}
 }
 
 .ui-24-21-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_12);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_048);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_12);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_048);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_042);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_042);
+	}
 }
 
 .ui-20-18-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_13);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_04);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_04);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_036);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_036);
+	}
 }
 
 .ui-20-18-bold-uc {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_13);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_04);
-    line-height: var(--line_height_110per);
-    text-transform: uppercase;
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_04);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_036);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_036);
+	}
 }
 
 .ui-20-18-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_13);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_04);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_04);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_036);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_036);
+	}
 }
 
 .ui-18-16-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_14);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_036);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_14);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_036);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_032);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_032);
+	}
 }
 
 .ui-18-16-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_14);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_036);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_14);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_036);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_032);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_032);
+	}
 }
 
 .ui-16-15-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_15);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_032);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_15);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_032);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_03);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_03);
+	}
 }
 
 .ui-16-15-bold-uc {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_15);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_032);
-    line-height: var(--line_height_110per);
-    text-transform: uppercase;
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_15);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_032);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_03);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_03);
+	}
 }
 
 .ui-16-15-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_15);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_032);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_15);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_032);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_03);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_03);
+	}
 }
 
 .ui-14-13-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_16);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_028);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_16);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_028);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_026);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_026);
+	}
 }
 
 .ui-12-11-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_17);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_024);
-    line-height: var(--line_height_110per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_17);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_024);
+	line-height: var(--line_height_110per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_022);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_022);
+	}
 }
 
 .ui-eyebrow-20-18-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_13);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_2);
-    line-height: var(--line_height_110per);
-    text-transform: uppercase;
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_2);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_18);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_18);
+	}
 }
 
 .ui-eyebrow-18-16-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_14);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_18);
-    line-height: var(--line_height_110per);
-    text-transform: uppercase;
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_14);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_18);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_16);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_16);
+	}
 }
 
 .ui-eyebrow-16-15-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_15);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_16);
-    line-height: var(--line_height_110per);
-    text-transform: uppercase;
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_15);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_16);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_15);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_15);
+	}
 }
 
 .body-26-23-bold {
-    color: var(--gb_base_brown);
-    @include font(universalsans, sbold);
-    font-size: var(--gb_font_size_11);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_052);
-    line-height: var(--line_height_130per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_11);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_052);
+	line-height: var(--line_height_130per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_046);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_046);
+	}
 }
 
 .body-22-20-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_18);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_022);
-    line-height: var(--line_height_150per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_18);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_022);
+	line-height: var(--line_height_150per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_2);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_02);
+	}
 }
 
 .body-20-18-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_13);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_02);
-    line-height: var(--line_height_150per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_13);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_02);
+	line-height: var(--line_height_150per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_018);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_018);
+	}
 }
 
 .body-18-16-regular {
-    color: var(--gb_base_brown);
-    @include font(universalsans, reg);
-    font-size: var(--gb_font_size_14);
-    font-style: normal;
-    letter-spacing: var(--letter_spacing_018);
-    line-height: var(--line_height_150per);
+	color: var(--gb_base_brown);
+	@include font(universalsans, reg);
+	font-size: var(--gb_font_size_14);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_018);
+	line-height: var(--line_height_150per);
 
-    @media(max-width: 640px) {
-        letter-spacing: var(--letter_spacing_016);
-    }
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_016);
+	}
 }
