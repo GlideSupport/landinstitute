@@ -651,15 +651,16 @@
 						</div>
 						<div class="gl-s52"></div>
 						<div class="tabbed-block-content">
-							<ul class="tabs">
-								<li class="tab-link current" data-tab="tab-1">Flights</li>
-								<li class="tab-link" data-tab="tab-2">Bus Service</li>
-								<li class="tab-link" data-tab="tab-3">Airport Shuttle Service</li>
-								<li class="tab-link" data-tab="tab-4">Public Transportation</li>
-								<li class="tab-link" data-tab="tab-5">Rental Cars</li>
-								<li class="tab-link" data-tab="tab-6">Taxis</li>
-							</ul>
-
+							<div class="tabs-listing">
+								<ul class="tabs">
+									<li class="tab-link current" data-tab="tab-1">Flights</li>
+									<li class="tab-link" data-tab="tab-2">Bus Service</li>
+									<li class="tab-link" data-tab="tab-3">Airport Shuttle Service</li>
+									<li class="tab-link" data-tab="tab-4">Public Transportation</li>
+									<li class="tab-link" data-tab="tab-5">Rental Cars</li>
+									<li class="tab-link" data-tab="tab-6">Taxis</li>
+								</ul>
+							</div>
 							<div class="tab-content-group">
 								<div id="tab-1" class="tab-content current">
 									<div class="tab-row-block">
@@ -2302,39 +2303,38 @@
 </body>
 
 <script>
-
-	document.querySelectorAll(".footer-nav-title").forEach((title) => {
-		title.addEventListener("click", () => {
+	document.querySelectorAll('.footer-nav-title').forEach((title) => {
+		title.addEventListener('click', () => {
 			if (window.innerWidth <= 991) {
-				const parent = title.closest(".footer-nav");
+				const parent = title.closest('.footer-nav');
 
 				// Close all others
-				document.querySelectorAll(".footer-nav").forEach((nav) => {
+				document.querySelectorAll('.footer-nav').forEach((nav) => {
 					if (nav !== parent) {
-						nav.classList.remove("active");
+						nav.classList.remove('active');
 					}
 				});
 
 				// Toggle the clicked one
-				parent.classList.toggle("active");
+				parent.classList.toggle('active');
 			}
 		});
 	});
 
-	window.addEventListener("resize", () => {
+	window.addEventListener('resize', () => {
 		if (window.innerWidth > 991) {
-			document.querySelectorAll(".footer-nav").forEach((nav) => {
-				nav.classList.remove("active");
+			document.querySelectorAll('.footer-nav').forEach((nav) => {
+				nav.classList.remove('active');
 			});
 		}
 	});
 
-	document.addEventListener("DOMContentLoaded", function () {
+	document.addEventListener('DOMContentLoaded', function () {
 		new Swiper('.timeline-slider', {
 			loop: true,
 			navigation: {
 				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
+				prevEl: '.swiper-button-prev',
 			},
 			centeredSlides: true,
 			slidesPerView: 1,
@@ -2354,65 +2354,65 @@
 					slidesPerView: 2,
 					spaceBetween: 0,
 					centeredSlides: false,
-				}
-			}
+				},
+			},
 		});
 	});
 
-	document.addEventListener("DOMContentLoaded", function () {
-		const tabs = document.querySelectorAll("ul.tabs li");
-		const contents = document.querySelectorAll(".tab-content");
+	document.addEventListener('DOMContentLoaded', function () {
+		const tabs = document.querySelectorAll('ul.tabs li');
+		const contents = document.querySelectorAll('.tab-content');
 
 		tabs.forEach(function (tab) {
-			tab.addEventListener("click", function () {
-				const tab_id = this.getAttribute("data-tab");
+			tab.addEventListener('click', function () {
+				const tab_id = this.getAttribute('data-tab');
 
-				tabs.forEach(t => t.classList.remove("current"));
+				tabs.forEach((t) => t.classList.remove('current'));
 
-				contents.forEach(content => {
-					content.classList.remove("current", "fade-in");
+				contents.forEach((content) => {
+					content.classList.remove('current', 'fade-in');
 					content.style.opacity = 0;
 				});
 
-				this.classList.add("current");
+				this.classList.add('current');
 
 				const activeContent = document.getElementById(tab_id);
-				activeContent.classList.add("current");
+				activeContent.classList.add('current');
 
 				// Trigger reflow to enable transition
 				void activeContent.offsetWidth;
 
-				activeContent.classList.add("fade-in");
+				activeContent.classList.add('fade-in');
 				activeContent.style.opacity = 1;
 			});
 		});
 	});
 
-	// Dropdown 
-	document.addEventListener("DOMContentLoaded", () => {
-		const toggleButton = document.querySelector(".dropdown-toggle");
-		const tabDropdown = document.querySelector(".tab-dropdown");
-		const dropdownMenu = document.querySelector(".dropdown-menu");
+	// Dropdown
+	document.addEventListener('DOMContentLoaded', () => {
+		const toggleButton = document.querySelector('.dropdown-toggle');
+		const tabDropdown = document.querySelector('.tab-dropdown');
+		const dropdownMenu = document.querySelector('.dropdown-menu');
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
 			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-			dropdownMenu.style.position = "absolute";
+			dropdownMenu.style.position = 'absolute';
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
 			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
 			dropdownMenu.style.width = `${rect.width}px`; // Match width
 		}
 
 		function closeDropdown() {
-			toggleButton.setAttribute("aria-expanded", false);
-			dropdownMenu.style.display = "none";
-			tabDropdown.classList.remove("open");
-			dropdownMenu.classList.remove("open");
+			toggleButton.setAttribute('aria-expanded', false);
+			dropdownMenu.style.display = 'none';
+			tabDropdown.classList.remove('open');
+			dropdownMenu.classList.remove('open');
 		}
 
-		document.addEventListener("click", (event) => {
+		document.addEventListener('click', (event) => {
 			const isToggle = toggleButton.contains(event.target);
 			const isMenu = dropdownMenu.contains(event.target);
 
@@ -2422,18 +2422,18 @@
 			}
 
 			if (isToggle) {
-				const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
-				toggleButton.setAttribute("aria-expanded", !isExpanded);
+				const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+				toggleButton.setAttribute('aria-expanded', !isExpanded);
 
 				if (!isExpanded) {
-					dropdownMenu.style.display = "block";
-					tabDropdown.classList.add("open");
-					dropdownMenu.classList.add("open");
+					dropdownMenu.style.display = 'block';
+					tabDropdown.classList.add('open');
+					dropdownMenu.classList.add('open');
 
 					positionDropdown(); // Position it initially
 
 					// Animate list items
-					dropdownMenu.querySelectorAll("li").forEach((item, index) => {
+					dropdownMenu.querySelectorAll('li').forEach((item, index) => {
 						item.style.animationDelay = `${index * 0.1}s`;
 					});
 				} else {
@@ -2443,15 +2443,14 @@
 		});
 
 		// Recalculate position and width on window resize
-		window.addEventListener("resize", () => {
-			if (toggleButton.getAttribute("aria-expanded") === "true") {
+		window.addEventListener('resize', () => {
+			if (toggleButton.getAttribute('aria-expanded') === 'true') {
 				positionDropdown();
 			}
 		});
 	});
 
-
-	document.addEventListener("DOMContentLoaded", function () {
+	document.addEventListener('DOMContentLoaded', function () {
 		new Swiper('.single-view-slide', {
 			loop: true,
 			navigation: {
@@ -2463,7 +2462,7 @@
 		});
 	});
 
-	// header 
+	// header
 	document.addEventListener('DOMContentLoaded', function () {
 		const mainSection = document.querySelector('.main-section');
 		const herofullSection = document.querySelector('.hero-section');
@@ -2471,7 +2470,7 @@
 		const navContainer = document.querySelector('.nav-container');
 		const topBar = document.querySelector('.top-bar');
 		const topBarCross = document.querySelector('.top-bar-cross');
-		let lastScrollTop = 0;
+		const lastScrollTop = 0;
 
 		const adminBarHeight = document.getElementById('wpadminbar')?.offsetHeight || 0;
 		let headerInitialSectionHeight = adminBarHeight + (headerSection?.offsetHeight || 0);
@@ -2539,7 +2538,9 @@
 		// Hide top bar
 		function hideTopBar() {
 			const topBar = document.querySelector('.top-bar');
-			if (!topBar || !headerSection) return;
+			if (!topBar || !headerSection) {
+				return;
+			}
 
 			topBar.classList.add('hide-top-bar');
 
@@ -2565,9 +2566,8 @@
 			topBarCross.addEventListener('click', hideTopBar);
 		}
 
-
-		if (topBar && getComputedStyle(topBar).display === "none") {
-			headerWrapper.classList.add("top-bar-hidden");
+		if (topBar && getComputedStyle(topBar).display === 'none') {
+			headerWrapper.classList.add('top-bar-hidden');
 		}
 
 		// Initial setup
