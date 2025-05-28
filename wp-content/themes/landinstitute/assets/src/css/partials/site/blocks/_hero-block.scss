@@ -8,20 +8,20 @@
             position: relative;
 
             @media(min-width: 992px) {
-                //min-height: calc(100vh - 113px);
+                min-height: 100vh;
             }
 
             .wrapper {
-                // @media(min-width: 992px) {
-                //     min-height: calc(100vh - 113px);
-                // }
+                @media(min-width: 992px) {
+                    min-height: 100vh;
+                }
             }
         }
 
         .hero-alongside-block {
             display: grid;
             grid-template-columns: repeat(12, minmax(0, 1fr));
-            //min-height: calc(100vh - 113px);
+            min-height: 100vh;
 
             .col-left {
                 border-right: 2px solid var(--gb_base_brown);
