@@ -90,7 +90,6 @@
         width: 100vw;
 
         .map-cta-btn {
-            margin-bottom: -2px;
             width: 50%;
 
             @media(max-width: 767px) {
@@ -181,6 +180,42 @@
                     transition: all 0.7s ease-in-out;
                     width: 2px;
                 }
+            }
+        }
+    }
+
+    &.stats-map-block {
+        .map-content-value {
+            padding-bottom: 71px;
+
+            @media(max-width: 991px) {
+                padding-bottom: 45px;
+            }
+
+            .swiper-slide-container {
+                .map-values {
+                    bottom: 25px;
+                }
+            }
+        }
+
+        .map-bottom-cta {
+            justify-content: flex-start;
+
+            .map-cta-btn {
+                width: 100%;
+
+                .site-btn {
+                    border-left: 0px;
+                }
+            }
+        }
+    }
+
+    &.has-border-bottom {
+        .map-bottom-cta {
+            .map-cta-btn {
+                margin-bottom: -2px;
             }
         }
     }
