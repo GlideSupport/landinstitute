@@ -297,7 +297,7 @@
                     "library": "all",
                     "min_size": "",
                     "max_size": "",
-                    "mime_types": "",
+                    "mime_types": "mp4",
                     "allow_in_bindings": 1
                 }
             ]
@@ -343,5 +343,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748509147
+    "modified": 1748522372
 }
