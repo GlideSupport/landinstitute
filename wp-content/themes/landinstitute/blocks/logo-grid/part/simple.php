@@ -18,7 +18,7 @@
 					? '<a class="logo-grid-wrap" href="' . esc_url($li_lg_url) . '">' 
 					: '<div class="logo-grid-wrap">';
 				
-				echo wp_get_attachment_image($li_lg_logo, 'thumb_300');
+				echo wp_get_attachment_image($li_lg_logo, 'full', false, array( 'width'  => 194, 'height' => 102, 'alt' => 'logos') );
 				
 				echo !empty($li_lg_url) ? '</a>' : '</div>';
 				echo '</div>';
