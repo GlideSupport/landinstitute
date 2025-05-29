@@ -15,6 +15,14 @@ document.addEventListener("scroll", () => {
 	}
 });
 
+//blog detail and category detail page popup code start
+document.addEventListener( 'click', function( event ) {
+	const lightboxElement = event.target.closest( '[data-lightbox]' );
+	if ( lightboxElement ) {
+		lity( event );
+	}
+} );
+//end
 
 
 // Accessibility: Add aria-label to links that open in a new tab

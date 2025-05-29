@@ -120,8 +120,10 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	// Trigger for initial slide
 	const initialSlide = galleryTop.slides[galleryTop.activeIndex];
-	const initialMapCounters = initialSlide.querySelectorAll('.map-counter');
-	initialMapCounters.forEach((counterContainer) => observer.observe(counterContainer));
+	if (initialSlide) {
+		const initialMapCounters = initialSlide.querySelectorAll('.map-counter');
+		initialMapCounters.forEach((counterContainer) => observer.observe(counterContainer));
+	}
 
 	// map slider with counter end
 

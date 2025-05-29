@@ -42,41 +42,24 @@ if ($block['name']) {
 }
 
 // Block variables.
-$aot_lg_kicker_text = $bst_block_fields['aot_lg_kicker_text'] ?? null;
-$aot_lg_logo = $bst_block_fields['aot_lg_logo'] ?? null;
+$li_lg_headline = $bst_block_fields['li_lg_headline'] ?? null;
+$li_lg_headline_check = BaseTheme::headline_check($li_lg_headline);
+$li_lg_choose_variation = $bst_block_fields['li_lg_choose_variation'] ?? 'home';
+$li_lg_wysiwyg = $bst_block_fields['li_lg_wysiwyg'] ?? null;
+$li_lg_repeater_logos = $bst_block_fields['li_lg_repeater_logos'] ?? null;
+$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
 ?>
 
-<?php if (!empty($aot_lg_kicker_text) || !empty($aot_lg_logo)) { ?>
-		<div id="<?php echo esc_html($bst_block_html_id); ?>"
-			class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>"
-			style="<?php echo esc_html($bst_block_styles); ?>	">
-
-			<div class="logo-grid">
-				<?php if($aot_lg_kicker_text){ ?>
-					<div class="block-label label-s-med center-align">
-						<?php echo html_entity_decode($aot_lg_kicker_text); ?>
-					</div>
-					<div class="gl-s36"></div>
-				<?php } ?>
-
-				<?php if(!empty($aot_lg_logo)){ ?>
-					<div class="logo-grid-row">
-						<?php foreach ($aot_lg_logo as $logo):
-							$logogird = $logo['logo'];
-							?>
-							<?php if(!empty($logogird)){ ?>
-								<div class="logo-grid-column">
-									<div class="logo-brand-group">
-										<div class="mask-mode"
-											style="mask-image: url(<?php echo esc_url(wp_get_attachment_image_url($logogird, 'thumb_300')); ?>);">
-											<?php echo wp_get_attachment_image($logogird, 'thumb_300', false, array('class' => 'brand-logo')); ?>
-										</div>
-									</div>
-								</div>
-							<?php } ?>
-						<?php endforeach; ?>
-					</div>
-				<?php } ?>
-			</div>
-		</div>
-<?php } ?>
+<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
+	<?php 
+	if($li_lg_choose_variation == 'simple'):
+		include 'part/simple.php';
+	endif;
+	if($li_lg_choose_variation == 'filters'):
+		include 'part/filters.php';
+	endif;
+	if($li_lg_choose_variation == 'links'):
+		include 'part/links.php';
+	endif;
+	?>
+</div>

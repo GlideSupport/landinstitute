@@ -1,8 +1,8 @@
 <?php
 /**
- * Block Name: Video Alongside Text
+ * Block Name: Theme Video
  *
- * The template for displaying the custom Gutenberg block named Video Alongside Text.
+ * The template for displaying the custom Gutenberg block named Theme Video.
  *
  * @link https://www.advancedcustomfields.com/resources/blocks/
  *
@@ -42,20 +42,19 @@ if ( $block['name'] ) {
 }
 
 // Block variables.
-$li_vat_headline = $bst_block_fields['li_vat_headline'] ?? null;
-$li_vat_headline_check = BaseTheme::headline_check($li_vat_headline);
-$li_vat_kicker = $bst_block_fields['li_vat_kicker'] ?? null;
-$li_vat_wysiwyg = $bst_block_fields['li_vat_wysiwyg'] ?? null;
-$li_vat_short_video_poster = $bst_block_fields['li_vat_short_video_poster'] ?? null;
-$li_vat_short_video = $bst_block_fields['li_vat_short_video'] ?? null;
-$video_group = $bst_block_fields['li_vat_video'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
+$li_tv_headline = $bst_block_fields['li_tv_headline'] ?? null;
+$li_tv_headline_check = BaseTheme::headline_check($li_tv_headline);
+$li_tv_kicker = $bst_block_fields['li_tv_kicker'] ?? null;
+$li_tv_short_video_poster = $bst_block_fields['li_tv_short_video_poster'] ?? null;
+$li_tv_short_video = $bst_block_fields['li_tv_short_video'] ?? null;
+$video_group = $bst_block_fields['li_tv_video'] ?? null;
+$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';    
 
 // Modal video handling
-$video_type     = $video_group['li_vat_choose_video_type'] ?? '';
-$youtube_id     = $video_group['li_vat_youtube_video_url'] ?? '';
-$vimeo_id       = $video_group['li_vat_vimeo_video_url'] ?? '';
-$uploaded_video = $video_group['li_vat_video_file'] ?? '';
+$video_type     = $video_group['li_tv_choose_video_type'] ?? '';
+$youtube_id     = $video_group['li_tv_youtube_video_url'] ?? '';
+$vimeo_id       = $video_group['li_tv_vimeo_video_url'] ?? '';
+$uploaded_video = $video_group['li_tv_video_file'] ?? '';
 
 $modal_video_embed = '';
 switch ($video_type) {
@@ -74,7 +73,7 @@ switch ($video_type) {
     case 'Upload':
         if ($uploaded_video) {
             $modal_video_embed = '
-                <video class="videos" playsinline autoplay muted loop controls poster="' . esc_url($li_vat_short_video_poster) . '">
+                <video class="videos" playsinline autoplay muted loop controls poster="' . esc_url($li_tv_short_video_poster) . '">
                     <source src="' . esc_url($uploaded_video) . '" type="video/mp4">
                 </video>';
         }
@@ -82,37 +81,27 @@ switch ($video_type) {
 }
 
 ?>
-
-<div class="video-alongside-text <?php echo esc_attr($border_options); ?>">
+<div class="theme-video <?php echo esc_attr($border_options); ?>">
     <div class="heading-max">
-        <?php echo !empty($li_vat_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_vat_kicker) . '</div>' : ''; ?>
-        <?php echo (!empty($li_vat_headline_check) && !empty($li_vat_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
-        <?php echo !empty($li_vat_headline_check) ? BaseTheme::headline($li_vat_headline, 'heading-2 block-title mb-0') : ''; ?>
+    <?php echo !empty($li_tv_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_tv_kicker) . '</div>' : ''; ?>
+    <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
+    <?php echo !empty($li_tv_headline_check) ? BaseTheme::headline($li_tv_headline, 'heading-2 block-title mb-0') : ''; ?>
     </div>
     <div class="gl-s52"></div>
-    <div class="video-alongside-row">
-        <div class="cl-left">
-            <?php echo !empty($li_vat_wysiwyg) ? '<div class="block-content">' . html_entity_decode($li_vat_wysiwyg) . '</div><div class="gl-s96"></div>' : ''; ?> 
-        </div>
-        <div class="cl-right">
-            <div class="video-play-group">
-                <div class="video-play">
-                    <video class="videos" playsinline="playsinline" muted="muted" preload="metadata" autoplay="autoplay" loop="loop"
-                        poster="<?php echo esc_url($li_vat_short_video_poster); ?>" data-video-init="">
-                        <source src="<?php echo esc_url($li_vat_short_video); ?>"  type="video/mp4">
-                    </video>
-                    <?php if ($modal_video_embed): ?>
-                        <div class="play-icon">
-                            <a href="#lity-iframe-video" class="site-btn sm-btn arrow-plus" data-lity>Play Video</a>
-                        </div>
-                    <?php endif; ?>
-                </div>
+    <div class="full-width-video">
+        <video class="videos" playsinline="playsinline" muted="muted" preload="metadata" autoplay="autoplay" loop="loop"
+            poster="<?php echo esc_url($li_tv_short_video_poster); ?>" data-video-init="">
+            <source src="<?php echo esc_url($li_tv_short_video); ?>"  type="video/mp4">
+        </video>
+        <?php if ($modal_video_embed): ?>
+            <div class="play-icon">
+                <a href="#lity-iframe-video-full" class="site-btn sm-btn arrow-plus" data-lity>Play Video</a>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </div>
 <?php if ($modal_video_embed): ?>
-    <div id="lity-iframe-video" class="lity-hide popup-block">
+    <div id="lity-iframe-video-full" class="lity-hide popup-block">
         <div class="popup-video popup-block-design">
             <div class="video-play">
                 <?php echo $modal_video_embed; ?>

@@ -1,0 +1,27 @@
+{
+    "name": "acf/theme-form",
+    "title": "Theme Form",
+    "description": "A custom theme-form block.",
+    "category": "theme-blocks",
+    "icon": "feedback",
+    "keywords": [
+        "Theme Form"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-theme-form.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "preview-theme-form.webp"
+            }
+        }
+    },
+    "align": "full"
+}
