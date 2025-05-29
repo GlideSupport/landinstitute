@@ -8,14 +8,22 @@
 		<div class="gl-s52"></div>
 		<?php if (!empty($li_lg_repeater_logos)) { ?>
 		<div class="logo-grid-row">
-			<?php foreach ($li_lg_repeater_logos as $li_lg_repeater_logo) {
-				$li_lg_logo = $li_lg_repeater_logo['li_lg_logo'] ?? '';
-				if (!empty($li_lg_logo)) { ?>
-					<div class="logo-grid-col">
-						<?php echo wp_get_attachment_image($li_lg_logo, 'thumb_300', false, ['class' => 'logo-grid-wrap']); ?>
-					</div>
-				<?php } ?>
-			<?php } ?>
+		<?php foreach ($li_lg_repeater_logos as $li_lg_repeater_logo) {
+			$li_lg_logo = $li_lg_repeater_logo['li_lg_logo'] ?? '';
+			$li_lg_url = $li_lg_repeater_logo['li_lg_url'] ?? '';
+			
+			if (!empty($li_lg_logo)) {
+				echo '<div class="logo-grid-col">';
+				echo !empty($li_lg_url) 
+					? '<a class="logo-grid-wrap" href="' . esc_url($li_lg_url) . '">' 
+					: '<div class="logo-grid-wrap">';
+				
+				echo wp_get_attachment_image($li_lg_logo, 'thumb_300');
+				
+				echo !empty($li_lg_url) ? '</a>' : '</div>';
+				echo '</div>';
+			}
+		} ?>
 		</div>
 	<?php } ?>
 	</div>

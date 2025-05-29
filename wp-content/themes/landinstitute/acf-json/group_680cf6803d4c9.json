@@ -183,7 +183,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -198,6 +198,25 @@
                     "mime_types": "",
                     "allow_in_bindings": 0,
                     "preview_size": "thumbnail",
+                    "parent_repeater": "field_680cf760dfc71"
+                },
+                {
+                    "key": "field_683857016d926",
+                    "label": "URL",
+                    "name": "li_lg_url",
+                    "aria-label": "",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
                     "parent_repeater": "field_680cf760dfc71"
                 }
             ]
@@ -243,5 +262,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748521267
+    "modified": 1748522788
 }
