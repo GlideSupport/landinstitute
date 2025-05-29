@@ -47,6 +47,25 @@
             align-items: inherit;
             flex-direction: column;
             max-width: 100%;
+            position: relative;
+        }
+
+        &:before {
+            background: var(--gb_base_brown);
+            bottom: 0;
+            content: "";
+            display: block;
+            display: none;
+            height: 2px;
+            left: 0;
+            margin-left: -24px;
+            margin-right: -24px;
+            position: absolute;
+            width: 100vw;
+
+            @media(max-width: 991px) {
+                display: block;
+            }
         }
     }
 
@@ -331,8 +350,8 @@
                     }
 
                     a {
-                        color: var(--gb_base_brown);
                         @include font(universalsans, reg);
+                        color: var(--gb_base_brown);
                         font-size: 18px;
                         font-style: normal;
                         letter-spacing: -0.36px;
@@ -369,9 +388,9 @@
 }
 
 .footer-sub-nav-sticky {
+    bottom: 0;
     position: fixed;
     width: 100%;
-    bottom: 0;
     z-index: 6;
 
     .row-flex {
@@ -406,9 +425,9 @@
                     margin: 0;
 
                     a {
+                        @include font(universalsans, reg);
                         color: var(--gb_base_brown);
                         display: flex;
-                        @include font(universalsans, reg);
                         font-size: 18px;
                         font-style: normal;
                         letter-spacing: -0.396px;

@@ -185,6 +185,11 @@ section:has(.text-featured-block) {
                             margin-left: 0;
                             margin-left: 0;
                             margin-right: calc(-50vw + 50%);
+
+                            @media(max-width: 991px) {
+                                margin-left: -24px;
+                                margin-right: -24px;
+                            }
                         }
                     }
                 }
