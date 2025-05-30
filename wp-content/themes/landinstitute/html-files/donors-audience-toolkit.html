@@ -921,6 +921,71 @@
 					</div>
 				</div>
 			</section>
+			<section class="container-1280 bg-butter-yellow">
+				<div class="gl-s156"></div>
+				<div class="wrapper">
+					<div class="cta-slider-block">
+						<div class="heading-max">
+							<div class="ui-eyebrow-18-16-regular block-subhead">Featured Projects</div>
+							<h2 class="heading-2 block-title mb-0">Your Donations at Work
+							</h2>
+						</div>
+						<div class="gl-s64"></div>
+						<div class="cta-slider-box">
+							<div class="swiper-container cta-work-slider">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<div class="video-alongside-row">
+											<div class="cl-left">
+												<div class="block-content">
+													Diam urna pretium et sodales pellentesque in enim. Enim nulla dictum
+													amet non auctor
+													lacus. Ac velit sagittis quis
+													interdum viverra nec. Praesent donec egestas erat lobortis amet. Id
+													libero in sit
+													sed etiam id magna auctor. Amet turpis
+													aenean integer malesuada lorem et turpis gravida malesuada. At
+													tortor placerat eu
+													pharetra et.
+												</div>
+												<div class="gl-s96"></div>
+											</div>
+											<div class="cl-right">
+												<div class="video-play-group">
+													<div class="video-play">
+														<video class="videos" playsinline="playsinline" muted="muted"
+															preload="metadata" autoplay="autoplay" loop="loop"
+															poster="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/intro-optimized.jpg"
+															data-video-init="">
+															<source
+																src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/intro-optimized.mp4"
+																type="video/mp4">
+														</video>
+
+														<div class="play-icon">
+															<a href="#lity-iframe-video"
+																class="site-btn sm-btn arrow-plus" data-lity="">Play
+																Video</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+							</div>
+						</div>
+						<div class="block-ctn-btn">
+							<a href="" class="site-btn btn-butter-yellow">View All Projects</a>
+						</div>
+					</div>
+				</div>
+			</section>
 			<section class="container-1280 bg-lilac">
 				<div class="gl-s156"></div>
 				<div class="wrapper">
@@ -2041,6 +2106,25 @@
 </body>
 
 <script>
+
+	// Your Donations at Work
+	document.addEventListener("DOMContentLoaded", function () {
+		new Swiper('.cta-work-slider', {
+			loop: true,
+			effect: 'fade',
+			fadeEffect: {
+				crossFade: true
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			slidesPerView: 1,
+			spaceBetween: 0,
+		});
+	});
+
+
 
 	var swiper = new Swiper('.variable-slide-preview', {
 		slidesPerView: 'auto',
