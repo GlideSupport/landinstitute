@@ -223,6 +223,7 @@
         @media(min-width: 1921px) {
             margin-left: 0;
             width: 100%;
+            left: 0;
         }
 
         @media(max-width: 1350px) {
@@ -231,8 +232,11 @@
 
         .site-btn {
             width: 50%;
-            border-left: 0px;
             border-right: 0px;
+
+            @media(max-width: 1920px) {
+                border-left: 0px;
+            }
         }
     }
 
