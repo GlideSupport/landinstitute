@@ -25,11 +25,11 @@
 
             .col-left {
                 border-right: 2px solid var(--gb_base_brown);
+                display: flex;
+                flex-wrap: wrap;
                 grid-column: span 6;
                 padding: clamp(64px, calc(4rem + ((1vw - 7.68px) * 17.354)), 165px) clamp(0px, calc(0rem + ((1vw - 9.92px) * 22.3464)), 80px) clamp(38px, calc(2.375rem + ((1vw - 7.68px) * 4.4674)), 64px) 0;
                 position: relative;
-                display: flex;
-                flex-wrap: wrap;
 
                 @media(max-width: 991px) {
                     border-right: 0px;
@@ -137,9 +137,9 @@
             }
 
             .col-content {
-                position: relative;
-                display: flex;
                 align-items: flex-end;
+                display: flex;
+                position: relative;
 
                 &:before,
                 &:after {
@@ -150,7 +150,6 @@
                     top: 0;
                     width: 100vw;
                 }
-
 
                 &:after {
                     left: 100%;
@@ -350,11 +349,7 @@
 
                     img {
                         @media(max-width: 480px) {
-                            transform: translate(0, -50%);
-                            top: calc(50% - 50px);
                             position: relative;
-                            width: 1191.622px;
-                            height: 561px;
                         }
                     }
                 }
@@ -406,6 +401,32 @@
         height: 100%;
         object-fit: cover;
         width: 100%;
+    }
+}
+
+.hero-alongside-block {
+    .bg-pattern {
+        img {
+            @media(max-width: 640px) {
+                height: 558px;
+                left: 50%;
+                object-position: center center;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 800px;
+            }
+        }
+
+        &.pattern-top-align {
+            img {
+                @media(max-width: 640px) {
+                    left: 0;
+                    object-position: top center;
+                    top: 0;
+                    transform: inherit;
+                }
+            }
+        }
     }
 }
 
