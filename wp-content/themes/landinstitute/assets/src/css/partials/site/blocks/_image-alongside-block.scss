@@ -218,6 +218,12 @@
             margin-right: calc(-50vw + 50%);
             width: 50vw;
 
+            @media(min-width: 1921px) {
+                margin-right: 0;
+                width: 100%;
+                border-right: 2px solid var(--gb_base_brown);
+            }
+
             .video-play {
                 height: clamp(260px, calc(16.25rem + ((1vw - 7.68px) * 40.8935)), 498px);
                 overflow: hidden;
@@ -464,7 +470,6 @@
         display: grid;
         gap: 160px;
         grid-template-columns: 1fr 1fr;
-        height: 100%;
 
         @media(max-width: 991px) {
             gap: 0;

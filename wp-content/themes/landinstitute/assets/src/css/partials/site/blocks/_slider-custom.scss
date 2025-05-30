@@ -205,3 +205,111 @@
         transform: scale(-1);
     }
 }
+
+
+.cta-slider-block {
+    position: relative;
+
+    .block-ctn-btn {
+        display: flex;
+        justify-content: flex-start;
+        width: 100vw;
+        margin-bottom: -2px;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: calc(-50vw + 50% + 1px);
+
+        @media(min-width: 1921px) {
+            margin-left: 0;
+            width: 100%;
+        }
+
+        @media(max-width: 1350px) {
+            left: calc(-50vw + 50%);
+        }
+
+        .site-btn {
+            width: 50%;
+            border-left: 0px;
+            border-right: 0px;
+        }
+    }
+
+    .slide-counter {
+        margin-bottom: -22px;
+        @extend .ui-eyebrow-16-15-regular;
+        padding-bottom: 4px;
+    }
+
+    .swiper-container {
+        position: relative;
+
+        .swiper-slide {
+            height: auto;
+        }
+
+        .slider-btn {
+            margin-top: -53px;
+            bottom: 161px;
+            position: absolute;
+        }
+
+        .cta-slider-lft-block {}
+    }
+}
+
+.cta-slider-lft-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 80px;
+    height: 100%;
+    position: relative;
+
+    @media(max-width: 1350px) {
+        gap: 0;
+    }
+
+    .cl-left {
+        flex: 561px 0 0;
+        padding-top: 22px;
+        padding-bottom: 214px;
+
+        @media(max-width: 1350px) {
+            flex: 1 0 0
+        }
+
+        .slide-content {
+            @media(max-width: 1350px) {
+                padding-right: 80px;
+            }
+        }
+    }
+
+    .cl-right {
+        flex: 1 0 0;
+        align-self: flex-end;
+
+        .cta-image {
+            margin-right: calc(-50vw + 50%);
+            width: 50vw;
+            display: flex;
+            border-left: 2px solid var(--gb_base_brown);
+            border-top: 2px solid var(--gb_base_brown);
+            overflow: hidden;
+
+            @media(min-width: 1921px) {
+                margin-right: 0;
+                width: 100%;
+                border-right: 2px solid var(--gb_base_brown);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+    }
+}

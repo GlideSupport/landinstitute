@@ -924,7 +924,7 @@
 			<section class="container-1280 bg-butter-yellow">
 				<div class="gl-s156"></div>
 				<div class="wrapper">
-					<div class="cta-slider-block">
+					<div class="cta-slider-block has-border-bottom">
 						<div class="heading-max">
 							<div class="ui-eyebrow-18-16-regular block-subhead">Featured Projects</div>
 							<h2 class="heading-2 block-title mb-0">Your Donations at Work
@@ -934,41 +934,69 @@
 						<div class="cta-slider-box">
 							<div class="swiper-container cta-work-slider">
 								<!-- Additional required wrapper -->
+								<div class="slide-counter">
+									<div class="slide-counter" style="display: none;">1 / 1
+									</div>
+								</div>
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
-										<div class="video-alongside-row">
+										<div class="cta-slider-lft-block">
 											<div class="cl-left">
-												<div class="block-content">
-													Diam urna pretium et sodales pellentesque in enim. Enim nulla dictum
-													amet non auctor
-													lacus. Ac velit sagittis quis
-													interdum viverra nec. Praesent donec egestas erat lobortis amet. Id
-													libero in sit
-													sed etiam id magna auctor. Amet turpis
-													aenean integer malesuada lorem et turpis gravida malesuada. At
-													tortor placerat eu
-													pharetra et.
+												<div class="slide-content">
+													<div class="ui-34-28-bold block-title">Project Title</div>
+													<div class="gl-s24"></div>
+													<div class="block-content">
+														Donec velit ac in id vestibulum eget. Sit sit ullamcorper congue
+														ac
+														purus quam risus quis. Diam ac urna enim mauris
+														ipsum convallis cursus. Platea etiam nulla ac mauris mollis
+														duis.
+														Orci felis facilisis amet vehicula maecenas volutpat
+														egestas.
+													</div>
+													<div class="gl-s24"></div>
+													<div class="block-btn">
+														<a class="site-btn text-link" href="" title="" role="Button"
+															aria-label="Button">Project Details</a>
+													</div>
+													<div class="gl-s64"></div>
 												</div>
-												<div class="gl-s96"></div>
 											</div>
 											<div class="cl-right">
-												<div class="video-play-group">
-													<div class="video-play">
-														<video class="videos" playsinline="playsinline" muted="muted"
-															preload="metadata" autoplay="autoplay" loop="loop"
-															poster="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/intro-optimized.jpg"
-															data-video-init="">
-															<source
-																src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/intro-optimized.mp4"
-																type="video/mp4">
-														</video>
-
-														<div class="play-icon">
-															<a href="#lity-iframe-video"
-																class="site-btn sm-btn arrow-plus" data-lity="">Play
-																Video</a>
-														</div>
+												<div class="cta-image">
+													<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/Donations-at-Work.jpg"
+														width="" height="" alt="" />
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="swiper-slide">
+										<div class="cta-slider-lft-block">
+											<div class="cl-left">
+												<div class="slide-content">
+													<div class="ui-34-28-bold block-title">Project Title</div>
+													<div class="gl-s24"></div>
+													<div class="block-content">
+														Donec velit ac in id vestibulum eget. Sit sit ullamcorper congue
+														ac
+														purus quam risus quis. Diam ac urna enim mauris
+														ipsum convallis cursus. Platea etiam nulla ac mauris mollis
+														duis.
+														Orci felis facilisis amet vehicula maecenas volutpat
+														egestas.
 													</div>
+													<div class="gl-s24"></div>
+													<div class="block-btn">
+														<a class="site-btn text-link" href="" title="" role="Button"
+															aria-label="Button">Project Details</a>
+													</div>
+													<div class="gl-s64"></div>
+												</div>
+											</div>
+											<div class="cl-right">
+												<div class="cta-image">
+													<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/Donations-at-Work.jpg"
+														width="" height="" alt="" />
 												</div>
 											</div>
 										</div>
@@ -976,8 +1004,10 @@
 								</div>
 
 								<!-- If we need navigation buttons -->
-								<div class="swiper-button-prev"></div>
-								<div class="swiper-button-next"></div>
+								<div class="slider-btn">
+									<div class="swiper-button-prev"></div>
+									<div class="swiper-button-next"></div>
+								</div>
 							</div>
 						</div>
 						<div class="block-ctn-btn">
@@ -2107,9 +2137,21 @@
 
 <script>
 
+	// const clLeft = document.querySelector('.cta-slider-lft-block .cl-left .slide-content');
+	// const sliderBtn = document.querySelector('.slider-btn');
+
+	// if (clLeft && sliderBtn) {
+	// 	const clLeftRect = clLeft.getBoundingClientRect();
+	// 	const offsetTop = clLeft.offsetTop + clLeft.offsetHeight;
+
+	// 	sliderBtn.style.position = 'absolute'; 
+	// 	sliderBtn.style.top = `${offsetTop}px`;
+	// 	sliderBtn.style.left = `${clLeft.offsetLeft}px`; 
+	// }
+
 	// Your Donations at Work
 	document.addEventListener("DOMContentLoaded", function () {
-		new Swiper('.cta-work-slider', {
+		const swiper = new Swiper('.cta-work-slider', {
 			loop: true,
 			effect: 'fade',
 			fadeEffect: {
@@ -2121,8 +2163,36 @@
 			},
 			slidesPerView: 1,
 			spaceBetween: 0,
+			on: {
+				init: function () {
+					updateCounter(this);
+				},
+				slideChange: function () {
+					updateCounter(this);
+				}
+			}
 		});
+
+		function updateCounter(swiperInstance) {
+			const counterEl = document.querySelector('.slide-counter');
+
+			// Count actual slides, ignoring duplicated slides from looping
+			const realSlides = swiperInstance.slides.filter(slide =>
+				!slide.classList.contains('swiper-slide-duplicate')
+			);
+			const totalSlides = realSlides.length;
+
+			if (totalSlides <= 1) {
+				counterEl.style.display = 'none';
+			} else {
+				const currentIndex = swiperInstance.realIndex + 1;
+				counterEl.textContent = `${currentIndex} / ${totalSlides}`;
+				counterEl.style.display = 'block';
+			}
+		}
 	});
+
+
 
 
 
