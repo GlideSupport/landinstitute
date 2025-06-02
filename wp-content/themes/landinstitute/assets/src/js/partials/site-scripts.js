@@ -343,5 +343,43 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	//hover add class in menu js end
 
+	// Tab Content js start
+		const tabContainers = document.querySelectorAll('.tabbed-block-content');
+		if (!tabContainers.length) return; // Exit early if no tab blocks on the page
+		tabContainers.forEach(container => {
+			const tabs = container.querySelectorAll('ul.tabs li');
+			const contents = container.querySelectorAll('.tab-content');
+
+			// Skip if either tabs or contents are missing in this container
+			if (!tabs.length || !contents.length) return;
+
+			tabs.forEach(tab => {
+				tab.addEventListener('click', function () {
+					const tabId = this.getAttribute('data-tab');
+
+					tabs.forEach(t => t.classList.remove('current'));
+					contents.forEach(content => {
+						content.classList.remove('current', 'fade-in');
+						content.style.opacity = 0;
+					});
+
+					this.classList.add('current');
+
+					const activeContent = container.querySelector('#' + tabId);
+					if (activeContent) {
+						activeContent.classList.add('current');
+
+						// Trigger reflow
+						void activeContent.offsetWidth;
+
+						activeContent.classList.add('fade-in');
+						activeContent.style.opacity = 1;
+					}
+				});
+			});
+		});
+	// Tab Content js end
+
+
   });
   
