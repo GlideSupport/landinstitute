@@ -388,6 +388,134 @@
             }
         }
     }
+
+    &.hero-video {
+        overflow: hidden;
+        position: relative;
+
+        .bg-pattern {
+            @media(max-width: 991px) {
+                display: none;
+            }
+        }
+
+        .hero-default {
+            position: relative;
+        }
+
+        .hero-alongside-block {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            min-height: 579px;
+
+            .col-left {
+                border-right: 2px solid var(--gb_base_brown);
+                display: flex;
+                flex-wrap: wrap;
+                grid-column: span 6;
+                padding: clamp(64px, calc(4rem + ((1vw - 7.68px) * 17.354)), 165px) clamp(0px, calc(0rem + ((1vw - 9.92px) * 22.3464)), 80px) clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 6.8729)), 96px) 0;
+                position: relative;
+                z-index: 1;
+
+                @media(max-width: 991px) {
+                    border-right: 0px;
+                    border-bottom: 2px solid var(--gb_base_brown);
+                    grid-column: span 12;
+                    margin-left: -24px;
+                    margin-right: -24px;
+                    padding-left: 24px;
+                    padding-right: 24px;
+                }
+
+                &:before {
+                    content: '';
+                    height: 100%;
+                    position: absolute;
+                    right: 100%;
+                    top: 0;
+                    width: 100vw;
+                }
+
+                &.bg-lime-green {
+                    &:before {
+                        background-color: var(--gb_primary_lime_green);
+                    }
+                }
+
+                &.bg-butter-yellow {
+                    &:before {
+                        background-color: var(--gb_primary_butter_yellow);
+                    }
+                }
+
+                &.bg-lilac {
+                    &:before {
+                        background-color: var(--gb_primary_lilac);
+                    }
+                }
+
+                &.bg-sky-blue {
+                    &:before {
+                        background-color: var(--gb_primary_sky_blue);
+                    }
+                }
+
+                &.bg-sunflower-yellow {
+                    &:before {
+                        background-color: var(--gb_primary_sunflower_yellow);
+                    }
+                }
+
+                &.bg-lemon-yellow {
+                    &:before {
+                        background-color: var(--gb_primary_lemon_yellow);
+                    }
+                }
+
+                .left-content {
+                    align-self: flex-end;
+                }
+            }
+
+            .col-right {
+                align-items: center;
+                display: flex;
+                grid-column: span 6;
+                justify-content: center;
+                justify-content: center;
+                margin-right: calc(-50vw + 50%);
+                width: 50vw;
+
+                @media(max-width: 991px) {
+                    grid-column: span 12;
+                    flex: 100% 0 0;
+                    flex-wrap: wrap;
+                    margin-left: -24px;
+                    margin-right: 0;
+                    margin-right: -24px;
+                    width: auto;
+                }
+
+                .video-play-group {
+                    align-self: flex-end;
+                    border-top: 2px solid var(--gb_base_brown);
+                    position: relative;
+                }
+
+                .bg-pattern {
+                    display: none;
+                    height: clamp(180px, 11.25rem + (1vw - 3.75px) * 19.4805, 300px);
+                    overflow: hidden;
+                    position: relative;
+                    width: 100%;
+
+                    @media(max-width: 991px) {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .bg-pattern {

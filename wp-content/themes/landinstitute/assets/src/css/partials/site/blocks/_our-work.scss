@@ -72,11 +72,24 @@
 }
 
 .testimonial-traditional-slider {
-    border-left: 2px solid var(--gb_base_brown);
-    padding-left: 80px;
+
+    .swiper-horizontal {
+        padding-right: 180px;
+    }
 
     .slider-btn {
-        margin-top: -30px;
+        padding-left: 80px;
+        border-left: 2px solid var(--gb_base_brown);
+        padding-top: 64px;
+
+        @media(max-width: 640px) {
+            padding-top: 44px;
+        }
+    }
+
+    .testimonial-slide-group {
+        border-left: 2px solid var(--gb_base_brown);
+        padding-left: 80px;
     }
 
     .slide-inner {

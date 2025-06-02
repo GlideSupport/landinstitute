@@ -254,9 +254,11 @@
         }
 
         .slider-btn {
-            margin-top: -53px;
-            bottom: 161px;
+            margin-top: 22px;
+            bottom: inherit;
             position: absolute;
+            transform: translateY(-50%);
+            z-index: 1;
         }
 
         .cta-slider-lft-block {}
@@ -277,7 +279,7 @@
     .cl-left {
         flex: 561px 0 0;
         padding-top: 22px;
-        padding-bottom: 214px;
+        padding-bottom: 215px;
 
         @media(max-width: 1350px) {
             flex: 1 0 0

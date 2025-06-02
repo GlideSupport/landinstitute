@@ -245,5 +245,11 @@
         display: grid;
         gap: 160px;
         grid-template-columns: clamp(375px, calc(23.4375rem + ((1vw - 9.92px) * 29.3296)), 480px) 1fr;
+
+
+        @media(max-width: 991px) {
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
     }
 }
