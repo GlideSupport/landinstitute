@@ -1351,6 +1351,66 @@
 					</div>
 				</div>
 			</section>
+			<section class="container-1280 bg-butter-yellow">
+				<div class="gl-s156"></div>
+				<div class="wrapper">
+					<div class="testimonial-traditional-block">
+						<div class="ui-20-18-bold-uc block-sub-title">Donor Stories</div>
+						<div class="gl-s52"></div>
+						<div class="testimonial-traditional-slider">
+							<div class="traditional-slide swiper has-border-top">
+								<div class="swiper-wrapper">
+									<!-- Slide 1 -->
+									<div class="swiper-slide">
+										<div class="testimonial-slide-group">
+											<div class="slide-inner">
+												<div class="col-left">
+													<h3 class="heading-3 card-title mb-0">
+														Semper Blandit Blandit Magna Nullam Id Gravida Integer Eget
+													</h3>
+													<div class="gl-s36"></div>
+													<div class="card-content body-20-18-regular">
+														<p>
+															“Sed at tortor neque vitae lobortis tellus facilisi
+															tristique
+															at. Aliquet tellus dolor egestas semper at tempus eget
+															tristique scelerisque. Metus non netus arcu ultricies
+															ultrices
+															auctor. Id varius ac netus felis vivamus eleifend pretium
+															orci habitasse. Ullamcorper rhoncus rutrum ac fringilla.”
+														</p>
+													</div>
+													<div class="gl-s30"></div>
+													<div class="author-name ui-eyebrow-18-16-regular">
+														Janet Wyatt
+													</div>
+													<div class="author-description body-18-16-regular">
+														Title
+													</div>
+													<div class="gl-s64"></div>
+												</div>
+												<div class="col-right">
+													<div class="testimonial-author-image">
+														<div class="optional-title ui-14-13-bold">Placeholder Image
+														</div>
+														<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/JERRY-GLOVER.jpg"
+															alt="" width="241" height="321" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="slider-btn">
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="gl-s156"></div>
+			</section>
 			<section class="container-1280 bg-lime-green">
 				<div class="wrapper">
 					<div class="midpage-cta-image-right has-border-bottom">
@@ -1389,7 +1449,6 @@
 					</div>
 				</div>
 			</section>
-
 			<section class="container-1280 bg-base-cream">
 				<div class="gl-s128"></div>
 				<div class="wrapper">
@@ -2136,18 +2195,17 @@
 </body>
 
 <script>
-
-	// const clLeft = document.querySelector('.cta-slider-lft-block .cl-left .slide-content');
-	// const sliderBtn = document.querySelector('.slider-btn');
-
-	// if (clLeft && sliderBtn) {
-	// 	const clLeftRect = clLeft.getBoundingClientRect();
-	// 	const offsetTop = clLeft.offsetTop + clLeft.offsetHeight;
-
-	// 	sliderBtn.style.position = 'absolute'; 
-	// 	sliderBtn.style.top = `${offsetTop}px`;
-	// 	sliderBtn.style.left = `${clLeft.offsetLeft}px`; 
-	// }
+	document.addEventListener("DOMContentLoaded", function () {
+		new Swiper('.traditional-slide', {
+			loop: true,
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			slidesPerView: 1,
+			spaceBetween: 10,
+		});
+	});
 
 	// Your Donations at Work
 	document.addEventListener("DOMContentLoaded", function () {
