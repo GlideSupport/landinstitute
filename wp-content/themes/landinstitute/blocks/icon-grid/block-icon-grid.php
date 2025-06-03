@@ -46,7 +46,7 @@ $li_ig_headline = $bst_block_fields['li_ig_headline'] ?? null;
 $li_ig_headline_check = BaseTheme::headline_check($li_ig_headline);
 $li_ig_wysiwyg = $bst_block_fields['li_ig_wysiwyg'] ?? null;
 $li_ig_repeater = $bst_block_fields['li_ig_repeater'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 if (!empty($li_ig_headline_check) || !empty($li_ig_wysiwyg) || !empty($li_ig_repeater)): ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">

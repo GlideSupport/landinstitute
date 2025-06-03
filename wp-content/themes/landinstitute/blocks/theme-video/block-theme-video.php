@@ -48,7 +48,7 @@ $li_tv_kicker = $bst_block_fields['li_tv_kicker'] ?? null;
 $li_tv_short_video_poster = $bst_block_fields['li_tv_short_video_poster'] ?? null;
 $li_tv_short_video = $bst_block_fields['li_tv_short_video'] ?? null;
 $video_group = $bst_block_fields['li_tv_video'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';    
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';    
 
 // Modal video handling
 $video_type     = $video_group['li_tv_choose_video_type'] ?? '';

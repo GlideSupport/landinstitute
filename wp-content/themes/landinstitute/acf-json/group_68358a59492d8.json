@@ -5,7 +5,7 @@
         {
             "key": "field_68358a594f81e",
             "label": "Border Options",
-            "name": "li_globel_border_options",
+            "name": "li_global_border_options",
             "aria-label": "",
             "type": "button_group",
             "instructions": "",
@@ -45,5 +45,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748340278
+    "modified": 1748945143
 }

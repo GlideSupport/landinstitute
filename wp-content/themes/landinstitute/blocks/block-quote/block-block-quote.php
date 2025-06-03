@@ -43,7 +43,7 @@ $li_bq_kicker = $bst_block_fields['li_bq_kicker'] ?? null;
 $li_bq_quote = $bst_block_fields['li_bq_quote'] ?? null;
 $li_bq_name = $bst_block_fields['li_bq_name'] ?? null;
 $li_bq_title = $bst_block_fields['li_bq_title'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';    
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';    
 
 
 if (!empty($li_bq_kicker) || !empty($li_bq_quote) || !empty($li_bq_name) || !empty($li_bq_title)) : ?>

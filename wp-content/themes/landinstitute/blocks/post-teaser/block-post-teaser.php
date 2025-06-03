@@ -45,7 +45,7 @@ $li_pt_headline_check = BaseTheme::headline_check($li_pt_headline);
 $li_pt_post_select_option = $bst_block_fields['li_pt_post_select_option'] ?? 'manual';
 $li_pt_select_manual_post = $bst_block_fields['li_pt_select_manual_post'] ?? null;
 $li_pt_button = $bst_block_fields['li_pt_button'] ?? null;
-$border_options = $bst_block_fields['li_globel_border_options'] ?? 'none';
+$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 // Query posts based on selection
 $args = array(

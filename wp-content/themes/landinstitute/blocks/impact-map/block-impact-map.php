@@ -44,7 +44,7 @@ if ($block['name']) {
 // Block variables.
 $li_im_title = $bst_block_fields['li_im_title'] ?? null;
 $li_im_repeater = $bst_block_fields['li_im_repeater'] ?? null;
-$border_options = $bst_block_fields['li_globel_border_options'] ?? 'none';
+$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 <div class="impact-map-block <?php echo esc_attr($border_options); ?>">

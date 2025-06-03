@@ -46,7 +46,7 @@ $li_tc_headline = $bst_block_fields['li_tc_headline'] ?? null;
 $li_tc_headline_check = BaseTheme::headline_check($li_tc_headline);
 $li_tc_wysiwyg = $bst_block_fields['li_tc_wysiwyg'] ?? null;
 $li_tc_repeater = $bst_block_fields['li_tc_repeater'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 
 if (!empty($li_tc_headline_check) || !empty($li_tc_wysiwyg) || !empty($li_tc_repeater)): ?>

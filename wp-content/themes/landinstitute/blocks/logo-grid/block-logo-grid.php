@@ -47,7 +47,7 @@ $li_lg_headline_check = BaseTheme::headline_check($li_lg_headline);
 $li_lg_choose_variation = $bst_block_fields['li_lg_choose_variation'] ?? 'home';
 $li_lg_wysiwyg = $bst_block_fields['li_lg_wysiwyg'] ?? null;
 $li_lg_repeater_logos = $bst_block_fields['li_lg_repeater_logos'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">

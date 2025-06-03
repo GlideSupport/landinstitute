@@ -1,0 +1,27 @@
+{
+	"name": "acf/letter",
+	"title": "Letter",
+	"description": "A custom Letter block.",
+	"editorScript": ["block-letter"],
+	"script": ["block-letter"],
+	"category": "theme-blocks",
+	"icon": "tablet",
+	"keywords": ["Letter"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-letter.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "letter-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

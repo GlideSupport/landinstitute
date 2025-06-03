@@ -51,7 +51,7 @@ $li_iat_button = $bst_block_fields['li_iat_button'] ?? null;
 $li_iat_image_position = $bst_block_fields['li_iat_image_position'] ?? 'left';
 $li_iat_image = $bst_block_fields['li_iat_image'] ?? null;
 $li_iat_bg_image = $bst_block_fields['li_iat_bg_image'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_globel_border_options'] ?? 'none';
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 $image_position_class = ($li_iat_image_position == 'right') ? 'block-rtl' : '';
 ?>
 
