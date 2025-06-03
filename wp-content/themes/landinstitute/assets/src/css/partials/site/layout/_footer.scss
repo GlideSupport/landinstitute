@@ -445,4 +445,14 @@
             }
         }
     }
+
+    &.footer-subnav-variation {
+        .row-flex {
+            flex-direction: row-reverse;
+
+            .cl-right {
+                border-right: 0;
+            }
+        }
+    }
 }

@@ -329,10 +329,40 @@ body {
         transition: background-color 0.3s, color 0.3s;
         will-change: background-color, color;
 
+
         @extend .ui-18-16-bold;
 
         @media(max-width: 640px) {
             min-width: 100%;
+        }
+
+        &.btn-sunflower-yellow {
+            background-color: var(--gb_primary_sunflower_yellow);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+            }
+
+            .arrow-icon {
+                &:after {
+                    background-image: url(../images/button-brown-arrow.svg);
+                    background-size: 10px;
+                    animation: inherit !important;
+                }
+            }
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
+
+                .arrow-icon {
+                    background-color: var(--gb_base_brown);
+
+                    &:after {
+                        animation: inherit !important;
+                        background-image: url(../images/button-arrow-white.svg);
+                    }
+                }
+            }
         }
 
         .arrow-icon {
