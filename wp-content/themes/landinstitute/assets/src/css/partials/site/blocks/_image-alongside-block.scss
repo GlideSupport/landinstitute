@@ -429,7 +429,7 @@
             }
 
             .text-card-btn {
-                margin-left: calc(-50vw + 50%);
+                margin-left: calc(-50vw + 642px);
                 margin-top: auto;
                 width: 50vw;
 
@@ -482,6 +482,54 @@
             .text-card-btn {
                 .site-btn {
                     margin-bottom: -2px;
+                }
+            }
+        }
+    }
+}
+
+.container-1120 {
+    .midpage-cta-map {
+        .row-flex {
+            .cl-left {
+                .text-card-btn {
+                    margin-left: calc(-50vw + 560px);
+                }
+            }
+        }
+    }
+}
+
+.container-960 {
+    .midpage-cta-map {
+        .row-flex {
+            .cl-left {
+                .text-card-btn {
+                    margin-left: calc(-50vw + 480px);
+                }
+            }
+        }
+    }
+}
+
+.container-800 {
+    .midpage-cta-map {
+        .row-flex {
+            .cl-left {
+                .text-card-btn {
+                    margin-left: calc(-50vw + 400px);
+                }
+            }
+        }
+    }
+}
+
+.container-720 {
+    .midpage-cta-map {
+        .row-flex {
+            .cl-left {
+                .text-card-btn {
+                    margin-left: calc(-50vw + 360px);
                 }
             }
         }
