@@ -142,6 +142,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "templates\/template-landing.php"
             }
         ],
         [
@@ -161,5 +166,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1747649567
+    "modified": 1749028361
 }
