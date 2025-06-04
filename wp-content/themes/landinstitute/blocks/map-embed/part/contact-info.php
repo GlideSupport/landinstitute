@@ -1,6 +1,6 @@
 
 <?php if (!empty($li_me_headline_check) || !empty($li_me_wysiwyg) || !empty($li_me_hours_title) || !empty($li_me_hours_wysiwyg) || !empty($li_me_iframe)): ?>
-	<div class="map-embed-block contact-info-block has-border-bottom">
+	<div class="map-embed-block contact-info-block <?php echo esc_attr($border_options); ?>">
 		<div class="row-flex">
 			<div class="cl-left">
 				<div class="gl-s64"></div>

@@ -46,7 +46,7 @@ $li_bp_bg_pattern = $bst_block_fields['li_bp_bg_pattern'] ?? null;
 $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 if (!empty($li_bp_bg_pattern)): ?>
-    <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-        <?php echo !empty($li_bp_bg_pattern) ? ' <div class="bg-pattern-fixed '. esc_attr($border_options) .' ">' . wp_get_attachment_image($li_bp_bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
-    </div>
+<section id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
+    <?php echo !empty($li_bp_bg_pattern) ? ' <div class="bg-pattern-fixed '. esc_attr($border_options) .' ">' . wp_get_attachment_image($li_bp_bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
+</section>
 <?php endif; ?>
