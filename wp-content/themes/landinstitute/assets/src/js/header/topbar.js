@@ -6,9 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	const topBarCross = document.querySelector(".top-bar-cross");
 	let lastScrollTop = 0;
 
-	const adminBarHeight =
-		document.getElementById("wpadminbar")?.offsetHeight || 0;
-
+	const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+	// hero banner min-height set
+	const heroHeight = document.querySelector('.header-section').offsetHeight;
+	document.querySelector('.variation-equal  .hero-alongside-block').style.minHeight = `calc(100vh - ${heroHeight}px - 2px)`;
+	//end
 	let headerInitialSectionHeight = 0;
 
 	// Set padding top based on header height
