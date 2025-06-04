@@ -1,5 +1,5 @@
 <?php if(!empty($li_s_headline_check) || !empty($li_s_wysiwyg) || !empty($li_s_button) ): ?>
-	<div class="stats-with-text has-border-bottom">
+	<div class="stats-with-text <?php echo esc_attr($border_options); ?>">
 		<div class="row-flex">
 		<?php if (!empty($li_s_repeater_one)) : ?>	
 			<div class="col-left">
@@ -8,16 +8,17 @@
 					$li_s_number_one  = $repeater_one['li_s_number_one'] ?? '';
 					$li_s_postfix_one = $repeater_one['li_s_postfix_one'] ?? '';
 					$li_s_label_one   = $repeater_one['li_s_label_one'] ?? '';
-				?>
-					<div class="state-group">
-						<div class="ui-128-78-bold head-bold mb-0 counter-number" data-target="<?php echo esc_attr($li_s_number_one); ?>">
-							<?php echo esc_html($li_s_prefix_one); ?><span class="count">0</span><?php echo esc_html($li_s_postfix_one); ?>
+					if(!empty($li_s_prefix_one) || !empty($li_s_number_one) || !empty($li_s_postfix_one) || !empty($li_s_label_one)): ?>
+						<div class="state-group">
+							<div class="ui-128-78-bold head-bold mb-0 counter-number" data-target="<?php echo esc_attr($li_s_number_one); ?>">
+								<?php echo esc_html($li_s_prefix_one); ?><span class="count">0</span><?php echo esc_html($li_s_postfix_one); ?>
+							</div>
+							<div class="ui-24-21-bold counter-content">
+								<?php echo esc_html($li_s_label_one); ?>
+							</div>
 						</div>
-						<div class="ui-24-21-bold counter-content">
-							<?php echo esc_html($li_s_label_one); ?>
-						</div>
-					</div>
-					<div class="gl-s44"></div>
+						<div class="gl-s44"></div>
+					<?php endif; ?>
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
