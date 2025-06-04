@@ -19,24 +19,48 @@
         .row-flex {
             display: flex;
             gap: clamp(80px, calc(5rem + ((1vw - 9.92px) * 17.8571)), 160px);
+
+            @media (max-width: 991px) {
+                flex-wrap: wrap;
+                gap: 0px;
+            }
         }
 
         .parallax-img {
             margin-left: calc(-50vw + 50%);
             overflow: hidden;
-            width: 480px;
+            width: clamp(280px, 17.5rem + (1vw - 9.92px) * 55.8659, 480px);
             border-right: 2px solid var(--gb_base_brown);
+
+            @media (max-width: 991px) {
+                border-bottom: 2px solid var(--gb_base_brown);
+                border-right: none;
+                flex: 100vw 0 0;
+                width: 100vw;
+            }
 
             img {
                 display: block;
                 height: 100%;
                 object-fit: cover;
                 width: 100%;
+
+                @media (max-width: 991px) {
+                    height: clamp(147px, calc(9.1875rem + ((1vw - 3.75px) * 21.5909)), 280px);
+                }
             }
         }
 
         .col-right {
             flex: 1 1 0;
+
+            .card-list {
+                .card-item {
+                    @media(max-width: 640px) {
+                        padding: 28px 0;
+                    }
+                }
+            }
         }
     }
 }

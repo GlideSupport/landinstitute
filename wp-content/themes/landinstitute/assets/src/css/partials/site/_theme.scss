@@ -318,10 +318,6 @@ section:has(.has-border-bottom) {
 	display: flex;
 	position: relative;
 
-	@media(max-width: 991px) {
-		justify-content: center;
-	}
-
 	@media(max-width: 640px) {
 		width: 100%;
 	}
@@ -347,6 +343,7 @@ section:has(.has-border-bottom) {
 
 		@media(max-width: 640px) {
 			min-width: 100%;
+			padding: 8px 18px 8px 18px;
 		}
 
 		.arrow-icon {
@@ -474,6 +471,10 @@ section:has(.has-border-bottom) {
 			transition: background-color .15s;
 
 			@extend .ui-18-16-regular;
+
+			@media(max-width: 640px) {
+				padding: 8px 18px 8px 18px;
+			}
 
 			&:hover {
 				background-color: var(--gb_primary_lilac);

@@ -21,10 +21,18 @@
 
 .testimonial-single-view-slider {
     border-left: 2px solid var(--gb_base_brown);
-    padding-left: 80px;
+    padding-left: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+    @media(max-width: 768px) {
+        padding-bottom: 94px;
+    }
 
     .slider-btn {
         margin-top: -30px;
+
+        @media(max-width: 991px) {
+            margin-top: -147px;
+        }
     }
 
     .slide-head {
@@ -36,21 +44,33 @@
     .slide-inner {
         display: flex;
         flex-wrap: wrap;
-        gap: 80px;
+        gap: clamp(44px, calc(2.75rem + ((1vw - 7.68px) * 6.1856)), 80px);
+
+        @media(max-width: 991px) {
+            gap: 0;
+        }
 
         .col-left {
-            flex: 718px 0 0;
+            flex: clamp(500px, calc(31.25rem + ((1vw - 9.92px) * 60.8939)), 718px) 0 0;
+
+            @media(max-width: 991px) {
+                flex: 100% 0 0;
+            }
         }
 
         .col-right {
             display: flex;
             flex: 1 0 0;
 
+            @media(max-width: 991px) {
+                justify-content: flex-end;
+            }
+
             .testimonial-author-image {
                 display: flex;
-                height: 321px;
+                height: clamp(147px, calc(9.1875rem + ((1vw - 7.68px) * 29.8969)), 321px);
                 position: relative;
-                width: 240px;
+                width: clamp(110px, calc(6.875rem + ((1vw - 7.68px) * 22.3368)), 240px);
 
                 .optional-title {
                     bottom: 15px;
