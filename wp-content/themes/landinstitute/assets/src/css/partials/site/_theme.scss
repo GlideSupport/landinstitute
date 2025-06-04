@@ -307,9 +307,9 @@ section:has(.has-border-bottom) {
 
 	.site-btn {
 		margin-bottom: -2px;
-		margin-left: -2px;
-		margin-right: -2px;
-		width: -webkit-fill-available;
+		border-right: 0;
+		border-left: 0;
+		width: 100%;
 	}
 }
 
