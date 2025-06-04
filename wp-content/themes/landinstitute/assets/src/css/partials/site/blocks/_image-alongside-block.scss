@@ -75,10 +75,14 @@
 .image-alongside-text {
     display: flex;
     flex-wrap: wrap;
-    gap: 80px;
+    gap: clamp(44px, calc(2.75rem + ((1vw - 9.91px) * 10.0279)), 80px);
 
     .cl-left {
-        flex: 560px 0 0;
+        flex: clamp(450px, calc(28.125rem + ((1vw - 9.91px) * 30.6407)), 560px) 0 0;
+
+        @media(max-width: 640px) {
+            flex: 100% 0 0;
+        }
 
         .pattern-image-group {
             border: 2px solid var(--gb_base_brown);
@@ -87,13 +91,13 @@
 
             .pattern-image {
                 border-bottom: 2px solid var(--gb_base_brown);
-                height: 101px;
+                height: clamp(59px, calc(3.6875rem + ((1vw - 7.68px) * 7.2165)), 101px);
                 object-fit: cover;
                 width: 100%;
             }
 
             .visual-image {
-                height: 589px;
+                height: clamp(344px, calc(21.5rem + ((1vw - 7.68px) * 42.0962)), 589px);
                 object-fit: cover;
                 width: 100%;
             }
@@ -103,11 +107,17 @@
     .cl-right {
         align-self: center;
         flex: 1 0 0;
+
+        @media(max-width: 991px) {
+            flex: 100% 0 0;
+        }
     }
 
     &.block-rtl {
         .cl-left {
-            order: 2;
+            @media(min-width: 992px) {
+                order: 2;
+            }
         }
     }
 
@@ -256,10 +266,18 @@
 .video-alongside-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 80px;
+    gap: clamp(24px, calc(1.5rem + ((1vw - 9.91px) * 15.5989)), 80px);
+
+    @media(max-width: 991px) {
+        gap: 0;
+    }
 
     .cl-left {
-        flex: 561px 0 0;
+        flex: clamp(410px, calc(25.625rem + ((1vw - 9.91px) * 42.0613)), 561px) 0 0;
+
+        @media(max-width: 991px) {
+            flex: 100% 0 0;
+        }
     }
 
     .cl-right {
@@ -267,14 +285,20 @@
         margin-right: calc(-50vw + 50%);
         width: 50vw;
 
-        @media(min-width: 1921px) {
-            margin-right: 0;
-            width: 100%;
+        @media(max-width: 991px) {
+            flex: auto 0 0;
+            margin-left: -24px;
+            margin-right: -24px;
+            width: 100vw;
         }
 
         .video-play-group {
             border-left: 2px solid var(--gb_base_brown);
             border-top: 2px solid var(--gb_base_brown);
+
+            @media(max-width: 991px) {
+                border-left: 0
+            }
 
             @media(min-width: 1921px) {
                 border-right: 2px solid var(--gb_base_brown);
@@ -314,8 +338,17 @@
             padding-top: 15px;
             width: 100%;
 
+            @media(max-width: 640px) {
+                padding-bottom: 11px;
+                padding-top: 11px;
+            }
+
             &:after {
                 top: 16px;
+
+                @media(max-width: 640px) {
+                    top: 9px;
+                }
             }
         }
     }
@@ -323,9 +356,14 @@
 
 .get-in-touch-block {
     display: grid;
-    gap: 160px;
+    gap: clamp(50px, calc(3.125rem + ((1vw - 9.92px) * 30.7263)), 160px);
     grid-template-columns: 1fr 1fr;
     position: relative;
+
+    @media(max-width: 991px) {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
 
     &:before {
         border-left: 2px solid var(--gb_base_brown);
@@ -335,6 +373,31 @@
         left: 50%;
         position: absolute;
         top: 0;
+
+        @media(max-width: 991px) {
+            display: none;
+        }
+    }
+
+    .cl-left {
+        position: relative;
+
+        &:before {
+            background-color: var(--gb_base_brown);
+            bottom: 0;
+            content: "";
+            display: block;
+            display: none;
+            height: 2px;
+            left: 0;
+            margin-left: -24px;
+            position: absolute;
+            width: 100vw;
+
+            @media(max-width: 991px) {
+                display: block;
+            }
+        }
     }
 }
 
@@ -385,8 +448,8 @@
             flex: 1 1 0;
 
             .block-btn {
-                margin-right: calc((100vw - 1280px) / -2);
                 margin-left: clamp(-160px, calc(-2.5rem + ((1vw - 9.92px) * -33.5196)), -40px);
+                margin-right: calc((100vw - 1280px) / -2);
 
                 @media(max-width: 1340px) {
                     margin-right: -30px;

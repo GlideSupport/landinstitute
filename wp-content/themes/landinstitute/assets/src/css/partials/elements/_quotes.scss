@@ -185,7 +185,7 @@ cite {
 	}
 
 	blockquote {
-		padding: 0 0 0 80px;
+		padding: 0 0 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 		position: relative;
 		border-left: 2px solid var(--gb_base_brown);
 
@@ -206,7 +206,7 @@ cite {
 					float: left;
 					margin-left: -16px;
 
-					@media(max-width: 640px) {
+					@media(max-width: 768px) {
 						margin-left: 0;
 					}
 				}
@@ -219,7 +219,7 @@ cite {
 		}
 
 		@media(max-width: 640px) {
-			padding: 0 24px 0 24px;
+			padding: 0 0 0 24px;
 		}
 	}
 }

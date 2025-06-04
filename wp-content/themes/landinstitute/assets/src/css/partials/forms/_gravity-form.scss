@@ -552,6 +552,10 @@ table.ui-datepicker_calendar {
 		text-decoration: none;
 		transition: 0.35s;
 		margin: 0;
+
+		@media(max-width: 640px) {
+			padding: 10px 47px 10px 20px;
+		}
 	}
 
 	&:after {
@@ -573,6 +577,10 @@ table.ui-datepicker_calendar {
 		transform: scale(0.27);
 		transition: transform 0.4s ease-in-out;
 		width: 22px;
+
+		@media(max-width: 640px) {
+			top: 9px;
+		}
 	}
 
 	&:hover {
