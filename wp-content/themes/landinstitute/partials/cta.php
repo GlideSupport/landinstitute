@@ -30,7 +30,7 @@ $bst_var_pocta_button_two = $bst_fields['bst_var_pocta_button_two'] ?? $bst_var_
 					<?php echo !empty($bst_var_pocta_title) ? '<div class="gl-s156"></div><h2 class="heading-2 block-title mb-0">' . esc_html($bst_var_pocta_title) . '</h2><div class="gl-s156"></div>' : ''; ?>
 				</div>
 				<div class="col-right">
-				<?php echo !empty($bst_var_pocta_bg_image) ? '<div class="pattern6">' . wp_get_attachment_image($bst_var_pocta_bg_image, 'thumb_200', false, ['class' => 'desktop-img']) . '</div><div class="gl-s156"></div>' : ''; ?>
+				<?php echo !empty($bst_var_pocta_bg_image) ? '<div class="pattern6">' . wp_get_attachment_image($bst_var_pocta_bg_image, 'thumb_1000', false, ['class' => 'desktop-img']) . '</div><div class="gl-s156"></div>' : ''; ?>
 					<div class="right-col-content">
 						<?php echo !empty($bst_var_pocta_button_one) ? '<div class="two-row-btn">' . BaseTheme::button($bst_var_pocta_button_one, 'site-btn btn-sunflower-yellow') . '</div>' : ''; ?>
 						<?php echo (!empty($bst_var_pocta_button_one) && !empty($bst_var_pocta_button_two)) ? '<div class="gl-s12"></div>' : ''; ?>

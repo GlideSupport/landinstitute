@@ -1,0 +1,27 @@
+{
+	"name": "acf/memorial-pdfs",
+	"title": "Memorial PDFS",
+	"description": "A custom Memorial PDFS block.",
+	"editorScript": ["block-memorial-pdfs"],
+	"script": ["block-memorial-pdfs"],
+	"category": "theme-blocks",
+	"icon": "pdf",
+	"keywords": ["Memorial PDFS"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-memorial-pdfs.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "memorial-pdfs-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

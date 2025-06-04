@@ -1,0 +1,33 @@
+{
+    "name": "acf/timeline",
+    "title": "Timeline",
+    "description": "A custom timeline block.",
+    "editorScript": [
+        "block-timeline"
+    ],
+    "script": [
+        "block-timeline"
+    ],
+    "category": "theme-blocks",
+    "icon": "slides",
+    "keywords": [
+        "timeline"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-timeline.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "preview-timeline.webp"
+            }
+        }
+    },
+    "align": "full"
+}

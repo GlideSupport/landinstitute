@@ -154,6 +154,9 @@ class WP_Theme_Blocks {
 		// Register a block - BG Pattern.
 		self::register_acf_block('bg-pattern');
 		
+		// Register a block - Memorial PDFS.
+		self::register_acf_block('memorial-pdfs');
+		
 
 		// [register_here].
 	}

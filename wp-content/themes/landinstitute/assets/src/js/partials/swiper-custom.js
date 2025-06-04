@@ -127,6 +127,52 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 	// map slider with counter end
 
+	//Timeline js start
+
+	const timelineBlocks = document.querySelectorAll(".timeline-block");
+	timelineBlocks.forEach((block, index) => {
+		const slider = block.querySelector(".timeline-slider");
+		const nextBtn = block.querySelector(".swiper-button-next");
+		const prevBtn = block.querySelector(".swiper-button-prev");
+
+		// Generate unique class names
+		const nextClass = `swiper-button-next-${index}`;
+		const prevClass = `swiper-button-prev-${index}`;
+
+		// Assign unique classes to nav buttons
+		nextBtn.classList.add(nextClass);
+		prevBtn.classList.add(prevClass);
+
+		// Initialize Swiper for each instance
+		new Swiper(slider, {
+			loop: true,
+			centeredSlides: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			navigation: {
+				nextEl: `.${nextClass}`,
+				prevEl: `.${prevClass}`,
+			},
+			breakpoints: {
+				640: {
+					slidesPerView: 2,
+					centeredSlides: false,
+				},
+				1028: {
+					slidesPerView: 2,
+					centeredSlides: false,
+				},
+				1920: {
+					slidesPerView: 2,
+					centeredSlides: false,
+				},
+			},
+		});
+	});
+	
+	//Timeline js end
+	
+
 
 	
 
