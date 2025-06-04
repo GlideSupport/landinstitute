@@ -8,8 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
 	// hero banner min-height set
-	const heroHeight = document.querySelector('.header-section').offsetHeight;
-	document.querySelector('.variation-equal  .hero-alongside-block').style.minHeight = `calc(100vh - ${heroHeight}px - 2px)`;
+	const herobanner = document.querySelector('.header-section');
+	const heroBlock = document.querySelector('.variation-equal .hero-alongside-block');
+
+	if (herobanner && heroBlock) {
+		const heroHeight = herobanner.offsetHeight;
+		heroBlock.style.minHeight = `calc(100vh - ${heroHeight}px - 2px)`;
+	}
 	//end
 	let headerInitialSectionHeight = 0;
 
