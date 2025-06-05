@@ -51,6 +51,10 @@ body {
 p {
 	margin: 0 0 24px;
 
+	@media(max-width: 640px) {
+		margin: 0 0 20px;
+	}
+
 	&:last-child {
 		margin: 0 0 0;
 	}

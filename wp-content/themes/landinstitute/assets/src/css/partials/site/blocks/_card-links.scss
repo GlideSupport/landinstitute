@@ -288,6 +288,10 @@ section:has(.text-featured-block) {
         position: relative;
         text-decoration: none;
 
+        @media(max-width: 640px) {
+            gap: 12px;
+        }
+
         &:last-child {
             border-bottom: 0;
         }

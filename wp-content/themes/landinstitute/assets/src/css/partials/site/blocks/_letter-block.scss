@@ -5,19 +5,32 @@
     .letter-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 80px;
+        gap: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
+
+        @media(max-width: 640px) {
+            gap: 0;
+            justify-content: flex-end;
+        }
 
         .cl-left {
             flex: 1 0 0;
 
+            @media(max-width: 640px) {
+                flex: 100% 0 0;
+            }
+
             .signature-img {
                 max-width: 179px;
                 display: flex;
+
+                @media(max-width: 640px) {
+                    max-width: 164px;
+                }
             }
         }
 
         .cl-right {
-            flex: 240px 0 0;
+            flex: clamp(139px, calc(8.6875rem + ((1vw - 7.68px) * 17.354)), 240px) 0 0;
             display: flex;
 
             img {

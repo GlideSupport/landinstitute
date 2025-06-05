@@ -230,6 +230,12 @@
         position: relative;
         width: 100vw;
 
+        @media(max-width: 767px) {
+            flex-wrap: wrap;
+            margin-left: -24px;
+            height: auto;
+        }
+
         .map-info-box {
             background: var(--gb_primary_butter_yellow);
             border: 2px solid var(--gb_base_brown);
@@ -240,6 +246,14 @@
             padding: 0 44px;
             position: absolute;
             top: 0;
+
+            @media(max-width: 767px) {
+                max-width: 100%;
+                width: 100%;
+                border-right: 0;
+                padding: 0 24px;
+                position: relative;
+            }
         }
 
         >img,
@@ -247,6 +261,10 @@
             height: 100%;
             object-fit: cover;
             width: 100%;
+
+            @media(max-width: 991px) {
+                height: clamp(520px, calc(32.5rem + ((1vw - 7.68px) * 34.3643)), 720px);
+            }
         }
     }
 
@@ -256,8 +274,13 @@
             flex-wrap: wrap;
 
             .cl-left {
-                flex: 400px 0 0;
-                padding-right: 80px;
+                flex: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 55.8659)), 480px) 0 0;
+                padding-right: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
+
+                @media(max-width: 767px) {
+                    flex: 100% 0 0;
+                    padding-right: 0;
+                }
             }
 
             .cl-right {
@@ -266,9 +289,18 @@
                 margin-right: calc(-50vw + 50%);
                 width: 50vw;
 
+                @media(max-width: 767px) {
+                    flex: auto 0 0;
+                    width: 100vw;
+                    margin-right: -24px;
+                    margin-left: -24px;
+                    border-left: 0;
+                    border-top: 2px solid var(--gb_base_brown);
+                }
+
                 .map-img {
                     display: flex;
-                    min-height: clamp(520px, calc(32.5rem + ((1vw - 7.68px) * 34.3643)), 720px);
+                    height: clamp(520px, calc(32.5rem + ((1vw - 7.68px) * 34.3643)), 720px);
                     overflow: hidden;
 
                     >img,

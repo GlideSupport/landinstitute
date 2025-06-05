@@ -299,11 +299,6 @@
     background-color: var(--primary_dark_green);
     transition: all 0.2s ease-in-out;
 
-    @media(max-width: 640px) {
-        width: 51px;
-        height: 51px;
-    }
-
     &:hover {
         transform: scale(1.11);
     }

@@ -145,6 +145,10 @@
         display: grid;
         grid-template-columns: repeat(12, minmax(0, 1fr));
 
+        @media(max-width: 991px) {
+            column-gap: 10px;
+        }
+
         .designation-col {
             grid-column: span 3;
 

@@ -10,7 +10,7 @@
 				<?php echo !empty($li_me_hours_title) ? '<div class="ui-20-18-bold-uc address-title">' . esc_html($li_me_hours_title) . '</div>' : ''; ?>   
 				
 				<?php echo (!empty($li_me_hours_title) && !empty($li_me_hours_wysiwyg)) ? '<div class="gl-s8"></div>' : ''; ?>
-				<?php echo !empty($li_me_hours_wysiwyg) ? '<div class="ui-20-18-regular address-title">' . html_entity_decode($li_me_hours_wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>   
+				<?php echo !empty($li_me_hours_wysiwyg) ? '<div class="body-20-18-regular address-title">' . html_entity_decode($li_me_hours_wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>   
 				
 			</div>
 			<div class="cl-right">
