@@ -80,7 +80,9 @@ $li_footer_menu_label_9 = $bst_option_fields['landinstitute_footer_menu_label_9'
 $li_footer_menu_link_9 = $bst_option_fields['landinstitute_footer_menu_link_9'] ?? '';
 $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_9'] ?? '';
 
-
+//Page options
+$li_po_nav_button = $bst_fields['li_po_nav_button'] ?? null;
+$li_po_sub_nav_sticky = $bst_fields['li_po_sub_nav_sticky'] ?? null;
 ?>
 </main>
 <footer id="footer-section" class="footer-section site-footer">
@@ -171,6 +173,36 @@ $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_
             </div>
             <div class="gl-s96"></div>
 	</div>
+    <?php if(!empty($li_po_nav_button) && !empty($li_po_sub_nav_sticky) && is_array($li_po_sub_nav_sticky) && !empty($li_po_sub_nav_sticky['slug'])): ?>
+    <div class="footer-sub-nav-sticky bg-base-cream">
+        <div class="row-flex">
+            <div class="cl-left">
+                <?php if( $li_po_nav_button ): 
+                $link_url = $li_po_nav_button['url'];
+                $link_title = $li_po_nav_button['title'];
+                $link_target = $li_po_nav_button['target'] ? $li_po_nav_button['target'] : '_self'; ?>
+                <a class="jump-arrow" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?>
+                <div class="arrow-icon"></div></a>
+                <?php endif; ?>
+            </div>
+            <div class="cl-right">
+            <?php
+            if (!empty($li_po_sub_nav_sticky) && is_array($li_po_sub_nav_sticky) && !empty($li_po_sub_nav_sticky['slug'])) {
+                wp_nav_menu(
+                    array(
+                        'menu'           => $li_po_sub_nav_sticky['slug'],
+                        'fallback_cb'    => 'BaseTheme::nav_fallback',
+                        'container'      => false,
+                        'menu_class'     => '',
+                        'depth'          => 1,
+                    )
+                );
+            }
+            ?>   
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
     <!-- Footer End -->
     <?php
     if ($bst_var_schema_check) {
