@@ -186,6 +186,30 @@ header {
 			}
 		}
 
+		.header-wrapper {
+			.nav-overlay {
+				border-top-color: transparent;
+			}
+
+			.header-btns {
+				.site-btn {
+					border-top-color: transparent;
+				}
+			}
+
+			&.header-cta-variation {
+				.bottom-head {
+					border-top: transparent;
+
+					.header-btns {
+						.site-btn {
+							border-top: 2px solid var(--gb_base_brown);
+						}
+					}
+				}
+			}
+		}
+
 		.header-wrapper:has(.top-bar.hide-top-bar) {
 			.bottom-head {
 				.nav-overlay {
