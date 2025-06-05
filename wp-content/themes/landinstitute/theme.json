@@ -145,6 +145,11 @@
 					"slug": "24-pixels"
 				},
 				{
+					"name": "28 Pixels",
+					"size": "var(--gb_space_20)",
+					"slug": "28-pixels"
+				},
+				{
 					"name": "30 Pixels",
 					"size": "var(--gb_space_9)",
 					"slug": "30-pixels"
@@ -155,14 +160,24 @@
 					"slug": "36-pixels"
 				},
 				{
-					"name": "48 Pixels",
+					"name": "44 Pixels",
 					"size": "var(--gb_space_11)",
-					"slug": "48-pixels"
+					"slug": "44-pixels"
 				},
 				{
-					"name": "72 Pixels",
+					"name": "52 Pixels",
+					"size": "var(--gb_space_19)",
+					"slug": "52-pixels"
+				},
+				{
+					"name": "64 Pixels",
+					"size": "var(--gb_space_18)",
+					"slug": "64-pixels"
+				},
+				{
+					"name": "80 Pixels",
 					"size": "var(--gb_space_12)",
-					"slug": "72-pixels"
+					"slug": "80-pixels"
 				},
 				{
 					"name": "96 Pixels",
@@ -188,6 +203,11 @@
 					"name": "236 Pixels",
 					"size": "var(--gb_space_17)",
 					"slug": "236-pixels"
+				},
+				{
+					"name": "160 Pixels",
+					"size": "var(--gb_space_21)",
+					"slug": "160-pixels"
 				}
 			]
 		},
