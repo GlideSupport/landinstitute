@@ -137,10 +137,10 @@
 			padding-top: 10px;
 
 			label {
-				font-size: var(--gb_font_size_8);
+				font-size: var(--gb_font_size_13);
 				margin: 8px 0;
 				text-align: center;
-				@include font(poppins, bold);
+				@include font(universalsans, sbold);
 			}
 		}
 	}
@@ -153,10 +153,10 @@
 		padding-top: 10px;
 
 		label {
-			font-size: var(--gb_font_size_8);
+			font-size: var(--gb_font_size_13);
 			margin: 8px 0;
 			text-align: center;
-			@include font(poppins, bold);
+			@include font(universalsans, sbold);
 		}
 	}
 }

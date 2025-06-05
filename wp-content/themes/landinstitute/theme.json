@@ -227,48 +227,7 @@
 			"textTransform": false,
 			"dropCap": false,
 			"fontFamilies": [
-				// {
-				// 	"fontFamily": "Friday",
-				// 	"slug": "friday",
-				// 	"name": "Friday",
-				// 	"fontFace": [
-				// 		{
-				// 			"fontFamily": "Friday",
-				// 			"fontWeight": 600,
-				// 			"src": [
-				// 				"https://texasspeci1dev.wpenginepowered.com/wp-content/themes/texasspecial/assets/build/fonts/Friday-Rounded.woff2"
-				// 			]
-				// 		}
-				// 	]
-				// },
-				// {
-				// 	"fontFamily": "Ultralife Sans Clean",
-				// 	"slug": "ultralife-sans-clean",
-				// 	"name": "ultralife sans clean",
-				// 	"fontFace": [
-				// 		{
-				// 			"fontFamily": "Ultralife Sans Clean",
-				// 			"fontWeight": 600,
-				// 			"src": [
-				// 				"https://texasspeci1dev.wpenginepowered.com/wp-content/themes/texasspecial/assets/build/fonts/UltralifeSansClean.woff2"
-				// 			]
-				// 		}
-				// 	]
-				// },
-				// {
-				// 	"fontFamily": "Pimento",
-				// 	"slug": "pimento",
-				// 	"name": "pimento",
-				// 	"fontFace": [
-				// 		{
-				// 			"fontFamily": "Pimento",
-				// 			"fontWeight": 600,
-				// 			"src": [
-				// 				"https://texasspeci1dev.wpenginepowered.com/wp-content/themes/texasspecial/assets/build/fonts/PimentoRegular.woff2"
-				// 			]
-				// 		}
-				// 	]
-				// }
+				
 			],
 			"fontSizes": [
 				{
