@@ -6,8 +6,11 @@ $wysiwyg = $li_hero_standard['wysiwyg'] ?? null;
 $button = $li_hero_standard['button'] ?? null;
 $image = $li_hero_standard['image'] ?? null;
 $bg_image = $li_hero_standard['bg_image'] ?? null;
+$li_hero_choose_layout = $li_hero_standard['li_hero_choose_layout'] ?? 'global-network';
+$variation_class = ($li_hero_choose_layout == 'global-network') ? 'variation-width-no' : 'variation-width';
+
 if (!empty($li_hero_headline_check) || !empty($kicker) || !empty($wysiwyg) || !empty($button) || !empty($image) || !empty($bg_image)): ?>
-	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-width">
+	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu <?php echo esc_attr($variation_class); ?>">
 		<!-- hero start -->
 		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
 		<div class="hero-default <?php echo esc_attr($border_options); ?>">

@@ -369,6 +369,30 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_6841484cc92a5",
+                    "label": "Choose layout",
+                    "name": "li_hero_choose_layout",
+                    "aria-label": "",
+                    "type": "button_group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "global-network": "Global Network Banner",
+                        "toolkit": "Toolkit Banner"
+                    },
+                    "default_value": "",
+                    "return_format": "value",
+                    "allow_null": 0,
+                    "allow_in_bindings": 0,
+                    "layout": "horizontal"
+                },
+                {
                     "key": "field_682d720450dc2",
                     "label": "Kicker",
                     "name": "kicker",
@@ -790,5 +814,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749022919
+    "modified": 1749109064
 }
