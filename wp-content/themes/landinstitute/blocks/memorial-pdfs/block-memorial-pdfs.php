@@ -57,7 +57,9 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
             <?php echo (!empty($li_mp_headline_check) && !empty($li_mp_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
             <?php echo !empty($li_mp_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_mp_wysiwyg) . '</div>' : ''; ?>
         </div>
-        <?php if (!empty($li_mp_main_repeater)): ?>
+        <?php if (!empty($li_mp_main_repeater)):
+            $total_groups = count($li_mp_main_repeater);
+            $current_index = 0;?>
                 <div class="gl-s52"></div>
                 <?php foreach ($li_mp_main_repeater as $group): 
                     $group_title = $group['li_mp_title'] ?? '';
@@ -88,7 +90,10 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="gl-s52"></div>
+                        <?php
+                            $current_index++;
+                            echo ($current_index === $total_groups) ? '' : '<div class="gl-s52"></div>';
+                        ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
