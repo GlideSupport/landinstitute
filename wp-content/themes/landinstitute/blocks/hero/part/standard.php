@@ -27,6 +27,7 @@ if (!empty($li_hero_headline_check) || !empty($kicker) || !empty($wysiwyg) || !e
 						</div>
 					</div>
 					<div class="col-right">
+					<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
 					<?php echo !empty($image) ? '<div class="block-image-center">' . wp_get_attachment_image($image, 'thumb_900') . '</div>' : ''; ?>
 					</div>
 				</div>
