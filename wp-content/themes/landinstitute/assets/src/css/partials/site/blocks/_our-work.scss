@@ -116,12 +116,12 @@
 
 .testimonial-traditional-slider {
     .swiper-horizontal {
-        padding-right: 180px;
+        padding-right: clamp(120px, calc(7.5rem + ((1vw - 9.92px) * 16.7598)), 180px);
     }
 
     .slider-btn {
         border-left: 2px solid var(--gb_base_brown);
-        padding-left: 80px;
+        padding-left: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
         padding-top: 64px;
 
         @media(max-width: 640px) {
@@ -131,7 +131,7 @@
 
     .testimonial-slide-group {
         border-left: 2px solid var(--gb_base_brown);
-        padding-left: 80px;
+        padding-left: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
     }
 
     .slide-inner {
@@ -140,7 +140,7 @@
         gap: 80px;
 
         .col-left {
-            flex: 560px 0 0;
+            flex: clamp(450px, calc(28.125rem + ((1vw - 7.68px) * 18.9003)), 560px) 0 0;
         }
 
         .col-right {
@@ -149,9 +149,10 @@
 
             .testimonial-author-image {
                 display: flex;
-                height: 321px;
+                height: clamp(208px, calc(13rem + ((1vw - 7.68px) * 19.4158)), 321px);
                 position: relative;
-                width: 240px;
+                width: clamp(156px, calc(9.75rem + ((1vw - 7.68px) * 14.433)), 240px);
+                ;
 
                 .optional-title {
                     bottom: 15px;

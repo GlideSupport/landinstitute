@@ -159,12 +159,12 @@
         .logos-w-text-col {
             border-left: 2px solid var(--gb_base_brown);
             max-width: 1120px;
-            padding: 0 80px 0;
+            padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px) 0;
 
             .row-flex {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 80px;
+                gap: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
                 .logo-left {
                     flex: 160px 0 0;
@@ -237,8 +237,8 @@
                 display: flex;
 
                 img {
-                    max-height: 102px;
-                    max-width: 194px;
+                    max-height: clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 7.9038)), 102px);
+                    max-width: clamp(106px, calc(6.625rem + ((1vw - 7.68px) * 15.1203)), 194px);
                 }
             }
 
@@ -248,9 +248,9 @@
                     background: var(--gb_primary_lilac);
                     border-radius: 50%;
                     display: flex;
-                    height: 80px;
+                    height: clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 4.1237)), 80px);
                     justify-content: center;
-                    width: 80px;
+                    width: clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 4.1237)), 80px);
 
                     @extend .ui-24-21-bold;
                 }

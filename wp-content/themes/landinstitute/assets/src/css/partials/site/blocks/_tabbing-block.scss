@@ -4,7 +4,7 @@
         grid-template-columns: 1fr 1fr;
 
         .cl-left {
-            padding-right: 80px;
+            padding-right: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
         }
 
         .cl-right {

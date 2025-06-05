@@ -692,7 +692,7 @@
         .cl-left {
             border-right: 2px solid var(--gb_base_brown);
             flex: 1 0 0;
-            padding-right: 80px;
+            padding-right: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
             .pattern-max-cards {
                 align-self: center;
@@ -703,7 +703,7 @@
 
         .cl-right {
             flex: 1 0 0;
-            padding-left: 80px;
+            padding-left: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
             &.bg-base-cream {
                 position: relative;

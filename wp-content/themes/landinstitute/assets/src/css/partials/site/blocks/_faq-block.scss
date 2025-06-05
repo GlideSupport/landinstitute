@@ -285,7 +285,7 @@
 .faq-two-column {
     .row-flex {
         display: grid;
-        gap: 160px;
+        gap: clamp(80px, calc(5rem + ((1vw - 7.68px) * 13.7457)), 160px);
         grid-template-columns: clamp(375px, calc(23.4375rem + ((1vw - 9.92px) * 29.3296)), 480px) 1fr;
 
 
