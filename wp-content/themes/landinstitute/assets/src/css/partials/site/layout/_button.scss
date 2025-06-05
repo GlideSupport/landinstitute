@@ -398,6 +398,15 @@ body {
             }
         }
     }
+
+    .radius-btn {
+        @extend .ui-16-15-bold-uc;
+        background-color: var(--gb_primary_sunflower_yellow);
+        border-radius: 200px;
+        padding: 12px 22px 11px;
+        text-align: center;
+        text-decoration: none;
+    }
 }
 
 // keyframes For buttons

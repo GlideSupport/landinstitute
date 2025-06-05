@@ -246,6 +246,12 @@
                         padding: 32px 24px 32px 0;
                     }
 
+                    @media(max-width: 319px) {
+                        order: 1;
+                        flex: 100% 0 0;
+                        padding: 32px 24px 12px 24px;
+                    }
+
                     .box-title,
                     .box-content {
                         max-width: 321px;
@@ -328,6 +334,11 @@
                         margin-right: -52px;
                     }
 
+                    @media(max-width: 319px) {
+                        flex: 100% 0 0;
+                        margin-right: 0;
+                    }
+
                     .vector-icon {
                         position: absolute;
                         right: 76px;
@@ -336,6 +347,13 @@
 
                         @media(max-width: 640px) {
                             right: 40px;
+                        }
+
+                        @media(max-width: 319px) {
+                            right: 0;
+                            left: 0;
+                            margin: 0 auto;
+                            text-align: center;
                         }
 
                         img {
@@ -373,6 +391,14 @@
                             width: 164px;
                         }
 
+                        @media(max-width: 319px) {
+                            width: 100%;
+                            border-radius: 0;
+                            margin-bottom: 0;
+                            margin-right: 0;
+                            margin-top: 0;
+                        }
+
                         img {
                             height: 100%;
                             object-fit: cover;
@@ -405,6 +431,10 @@
                         padding: 32px 24px;
                     }
 
+                    @media(max-width: 319px) {
+                        order: 1;
+                    }
+
                     .box-title,
                     .box-content {
                         max-width: 319px;
@@ -427,6 +457,11 @@
                         margin-left: -52px;
                     }
 
+                    @media(max-width: 319px) {
+                        flex: 100% 0 0;
+                        margin-left: 0;
+                    }
+
                     .vector-icon {
                         position: absolute;
                         right: 75px;
@@ -435,6 +470,13 @@
 
                         @media(max-width: 640px) {
                             right: 40px;
+                        }
+
+                        @media(max-width: 319px) {
+                            right: 0;
+                            left: 0;
+                            margin: 0 auto;
+                            text-align: center;
                         }
 
                         img {
@@ -470,6 +512,14 @@
                             margin-top: -15px;
                             overflow: hidden;
                             width: 164px;
+                        }
+
+                        @media(max-width: 319px) {
+                            width: 100%;
+                            border-radius: 0;
+                            margin-bottom: 0;
+                            margin-right: 0;
+                            margin-top: 0;
                         }
 
                         img {
@@ -511,6 +561,12 @@
                         padding: 32px 12px 32px 24px;
                     }
 
+                    @media(max-width: 319px) {
+                        padding: 12px 24px 32px 24px;
+                        flex: 100% 0 0;
+                        order: 2;
+                    }
+
                     .box-title,
                     .box-content {
                         max-width: 321px;
@@ -531,6 +587,10 @@
 
                     @media(max-width: 640px) {
                         flex: 138px 0 0;
+                    }
+
+                    @media(max-width: 319px) {
+                        margin-left: auto;
                     }
 
                     img {
