@@ -413,9 +413,22 @@
             display: inline-flex;
             flex: 240px 0 0;
 
+            @media(max-width: 991px) {
+                flex: 200px 0 0;
+            }
+
+            @media(max-width: 767px) {
+                flex: 100% 0 0;
+            }
+
             .jump-arrow {
                 padding: 10px 16px 10px 24px;
                 width: 100%;
+
+                @media(max-width: 767px) {
+                    border-left: 0;
+                    border-right: 0;
+                }
             }
         }
 
@@ -424,6 +437,10 @@
             border-left: 0px;
             flex: 1 0 0;
 
+            @media(max-width: 767px) {
+                display: none;
+            }
+
             ul {
                 display: flex;
                 flex-wrap: wrap;
@@ -431,6 +448,10 @@
                 height: 100%;
                 margin: 0;
                 padding: 0 40px;
+
+                @media(max-width: 991px) {
+                    padding: 0 18px;
+                }
 
                 li {
                     align-self: center;

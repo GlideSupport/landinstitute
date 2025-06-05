@@ -3,16 +3,31 @@
         display: flex;
         flex-wrap: wrap;
 
+        @media(max-width: 991px) {
+            row-gap: 64px;
+        }
+
         .col-left {
-            flex: 400px 0 0;
-            padding-right: 80px;
+            flex: clamp(300px, calc(18.75rem + ((1vw - 9.92px) * 27.933)), 400px) 0 0;
+            padding-right: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
+
+            @media(max-width: 991px) {
+                flex: 100% 0 0;
+                padding-right: 0;
+            }
         }
 
         .col-right {
             flex: 1 0 0;
-            padding-left: 160px;
-            padding-right: 80px;
+            padding-left: clamp(80px, calc(5rem + ((1vw - 9.92px) * 22.3464)), 160px);
+            padding-right: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
             border-left: 2px solid var(--gb_base_brown);
+
+            @media(max-width: 991px) {
+                flex: 100% 0 0;
+                padding-left: 24px;
+                padding-right: 0;
+            }
         }
     }
 }
@@ -23,9 +38,18 @@
         flex-wrap: wrap;
         row-gap: 64px;
 
+        @media(max-width: 767px) {
+            row-gap: 44px;
+        }
+
         .state-grid-col {
             flex: 50% 0 0;
             padding-right: 44px;
+
+            @media(max-width: 767px) {
+                flex: 100% 0 0;
+                padding-right: 0;
+            }
         }
     }
 }
