@@ -315,12 +315,22 @@
         overflow: hidden;
         position: relative;
 
+        @media(max-width: 640px) {
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
         .videos,
         iframe {
             height: 100%;
             object-fit: cover;
             object-position: bottom center;
             width: 100%;
+
+            @media(max-width: 640px) {
+                height: clamp(260px, calc(16.25rem + ((1vw - 7.68px) * 40.8935)), 498px);
+            }
         }
     }
 
@@ -329,6 +339,10 @@
         left: 0;
         position: absolute;
         width: 100%;
+
+        @media(max-width: 640px) {
+            position: relative;
+        }
 
         .site-btn {
             border-bottom: 0;

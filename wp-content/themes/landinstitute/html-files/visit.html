@@ -777,7 +777,7 @@
 							</div>
 						</div>
 						<div class="block-ctn-btn">
-							<a href="" class="site-btn btn-butter-yellow">View All Projects</a>
+							<a href="" class="site-btn btn-butter-yellow">Visit Salina</a>
 						</div>
 					</div>
 				</div>
@@ -1546,7 +1546,7 @@
 			<div class="row-flex">
 				<div class="cl-left">
 					<a href="" class="jump-arrow btn-sunflower-yellow">Sign Up for a Tour<div class="arrow-icon"></div>
-						</a>
+					</a>
 				</div>
 				<div class="cl-right">
 					<ul>
@@ -1596,17 +1596,6 @@
 		});
 	});
 
-	document.addEventListener("DOMContentLoaded", function () {
-		new Swiper('.traditional-slide', {
-			loop: false,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-			slidesPerView: 1,
-			spaceBetween: 20,
-		});
-	});
 
 	// Your Donations at Work
 	document.addEventListener("DOMContentLoaded", function () {
@@ -1676,63 +1665,6 @@
 	});
 
 
-
-
-
-
-	var swiper = new Swiper('.variable-slide-preview', {
-		slidesPerView: 'auto',
-		spaceBetween: 0,
-	});
-
-	const customCursor = document.createElement("div");
-	customCursor.classList.add("custom-cursor");
-	document.body.appendChild(customCursor);
-
-	const swiperContainer = document.querySelector(".cursor-drag-icon");
-
-	swiperContainer.addEventListener("pointerenter", () => {
-		customCursor.classList.add("visible");
-	});
-
-	swiperContainer.addEventListener("pointerleave", () => {
-		customCursor.classList.remove("visible");
-	});
-
-	swiperContainer.addEventListener("pointermove", (e) => {
-		customCursor.style.left = `${e.clientX}px`;
-		customCursor.style.top = `${e.clientY}px`;
-	});
-
-	document.addEventListener('DOMContentLoaded', function () {
-		new Swiper('.cta-card-slide', {
-			loop: false,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			breakpoints: {
-				1920: {
-					slidesPerView: 4,
-					spaceBetween: 0
-				},
-				1028: {
-					slidesPerView: 4,
-					spaceBetween: 0
-				},
-				641: {
-					slidesPerView: 3,
-					spaceBetween: 0
-				},
-				580: {
-					slidesPerView: 2.5,
-					spaceBetween: 0
-				},
-				375: {
-					slidesPerView: 1.5,
-					spaceBetween: 0
-				}
-			}
-		});
-	});
 
 	document.querySelectorAll(".footer-nav-title").forEach((title) => {
 		title.addEventListener("click", () => {

@@ -414,10 +414,6 @@
             flex: 240px 0 0;
 
             @media(max-width: 991px) {
-                flex: 200px 0 0;
-            }
-
-            @media(max-width: 767px) {
                 flex: 100% 0 0;
             }
 
@@ -425,7 +421,7 @@
                 padding: 10px 16px 10px 24px;
                 width: 100%;
 
-                @media(max-width: 767px) {
+                @media(max-width: 991px) {
                     border-left: 0;
                     border-right: 0;
                 }
@@ -437,7 +433,7 @@
             border-left: 0px;
             flex: 1 0 0;
 
-            @media(max-width: 767px) {
+            @media(max-width: 991px) {
                 display: none;
             }
 
@@ -449,8 +445,9 @@
                 margin: 0;
                 padding: 0 40px;
 
-                @media(max-width: 991px) {
+                @media(max-width: 1200px) {
                     padding: 0 18px;
+                    gap: 12px;
                 }
 
                 li {

@@ -772,6 +772,10 @@ section:has(.text-featured-block) {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
+    @media(max-width: 991px) {
+        grid-template-columns: 1fr;
+    }
+
     .cta-two-column-col {
         .cta-border-card {
             border-right: 2px solid var(--gb_base_brown);
@@ -781,6 +785,10 @@ section:has(.text-featured-block) {
             height: 100%;
             text-decoration: none;
             margin-bottom: -2px;
+
+            @media(max-width: 991px) {
+                border-right: 0;
+            }
 
             .cta-image {
                 border-bottom: 2px solid var(--gb_base_brown);
@@ -829,6 +837,12 @@ section:has(.text-featured-block) {
             }
         }
 
+        &:first-child {
+            @media(max-width: 991px) {
+                border-top: 2px solid var(--gb_base_brown);
+            }
+        }
+
         &:nth-child(2n) {
             .cta-border-card {
                 @media(min-width: 991px) {
@@ -861,20 +875,36 @@ section:has(.text-featured-block) {
             background-color: var(--gb_base_cream);
 
             .cta-rows-list-image {
-                flex: 400px 0 0;
+                flex: clamp(300px, calc(18.75rem + ((1vw - 7.68px) * 17.1821)), 400px) 0 0;
                 border-right: 2px solid var(--gb_base_brown);
                 display: flex;
+
+                @media(max-width: 767px) {
+                    flex: 100% 0 0;
+                    height: clamp(202px, calc(12.625rem + ((1vw - 3.75px) * 37.7551)), 350px);
+                    overflow: hidden;
+                    border-bottom: 2px solid var(--gb_base_brown);
+                    border-right: 0;
+                }
 
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+
+                    @media(max-width: 767px) {
+                        object-position: top;
+                    }
                 }
             }
 
             .cta-rows-list-content {
                 flex: 1 0 0;
                 padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+                @media(max-width: 767px) {
+                    flex: 100% 0 0;
+                }
             }
         }
     }
