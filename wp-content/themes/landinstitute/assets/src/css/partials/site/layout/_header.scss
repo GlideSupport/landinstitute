@@ -198,6 +198,18 @@ header {
 					}
 				}
 			}
+
+			&.header-cta-variation {
+				.bottom-head {
+					border-top: transparent;
+
+					.header-btns {
+						.site-btn {
+							border-top: 2px solid var(--gb_base_brown);
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -218,6 +230,7 @@ header {
 	&.header-cta-variation {
 		.bottom-head {
 			justify-content: flex-end;
+			border-top: 2px solid var(--gb_base_brown);
 		}
 
 		.header-btns {
@@ -227,6 +240,8 @@ header {
 			top: 0;
 
 			.site-btn {
+				border-top: 0;
+
 				@media(max-width: 1200px) {
 					border: 2px solid var(--gb_base_brown);
 				}
