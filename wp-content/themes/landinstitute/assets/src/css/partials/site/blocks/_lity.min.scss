@@ -386,3 +386,51 @@
         }
     }
 }
+
+
+.lity:has(.map-modal) {
+    background: var(--gb_base_cream);
+
+    .lity-wrap {
+        margin-top: 0;
+        display: flex;
+
+        .lity-container {
+            height: 100%;
+            display: flex;
+
+            .lity-content {
+                align-self: center;
+            }
+
+            .map-modal {
+                padding: 0;
+
+                .popup-block-design {
+                    background-color: transparent;
+                    padding: 0;
+
+                    .map-play {
+                        height: 80vh;
+                        overflow-x: auto;
+                        overflow-y: hidden;
+                        white-space: nowrap;
+
+                        img {
+                            height: 100%;
+                            object-fit: cover;
+                            width: auto;
+                            max-width: inherit;
+                        }
+                    }
+                }
+            }
+
+            .lity-close {
+                background-color: transparent;
+                top: 20px;
+                bottom: inherit;
+            }
+        }
+    }
+}
