@@ -204,6 +204,11 @@ header {
 					.header-btns {
 						.site-btn {
 							border-top: transparent;
+
+							@media(max-width: 1200px) {
+								border-top: 2px solid var(--gb_base_brown);
+								border-bottom: transparent;
+							}
 						}
 					}
 				}
@@ -230,6 +235,11 @@ header {
 					.header-btns {
 						.site-btn {
 							border-top: 2px solid var(--gb_base_brown);
+
+							@media(max-width: 1200px) {
+								border-top: 2px solid var(--gb_base_brown);
+								border-bottom: transparent;
+							}
 						}
 					}
 				}
@@ -255,6 +265,12 @@ header {
 		.bottom-head {
 			justify-content: flex-end;
 			border-top: 2px solid var(--gb_base_brown);
+
+			@media(max-width: 1200px) {
+				border-top: transparent;
+				padding-right: 0;
+				border-right: 0;
+			}
 		}
 
 		.header-btns {
@@ -268,6 +284,7 @@ header {
 
 				@media(max-width: 1200px) {
 					border: 2px solid var(--gb_base_brown);
+					border-right: 0;
 				}
 
 				@media(max-width: 319px) {
