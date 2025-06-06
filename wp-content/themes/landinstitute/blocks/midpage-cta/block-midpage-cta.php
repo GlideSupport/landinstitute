@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Block Name: CTA Grid
+ * Block Name: Midpage CTA
  *
- * The template for displaying the custom gutenberg block named CTA Grid.
+ * The template for displaying the custom gutenberg block named Midpage CTA.
  *
  * @link https://www.advancedcustomfields.com/resources/blocks/
  *
@@ -42,24 +42,34 @@ if ($block['name']) {
 }
 
 // Block variables.
-$li_cg_headline = $bst_block_fields['li_cg_headline'] ?? null;
-$li_cg_headline_check = BaseTheme::headline_check($li_cg_headline);
-$li_cg_choose_variation = $bst_block_fields['li_cg_choose_variation'] ?? 'mosaic';
-$li_cg_kicker = $bst_block_fields['li_cg_kicker'] ?? null;
-$li_cg_wysiwyg = $bst_block_fields['li_cg_wysiwyg'] ?? null;
-$li_cg_repeater = $bst_block_fields['li_cg_repeater'] ?? null;
-$li_cg_repeater_mosaic = $bst_block_fields['li_cg_repeater_mosaic'] ?? null;
+$li_mpc_headline = $bst_block_fields['li_mpc_headline'] ?? null;
+$li_mpc_headline_check = BaseTheme::headline_check($li_mpc_headline);
+$li_mpc_choose_variation = $bst_block_fields['li_mpc_choose_variation'] ?? 'map';
+$li_mpc_kicker = $bst_block_fields['li_mpc_kicker'] ?? null;
+$li_mpc_wysiwyg = $bst_block_fields['li_mpc_wysiwyg'] ?? null;
+$li_mpc_image = $bst_block_fields['li_mpc_image'] ?? null;
+$li_mpc_link = $bst_block_fields['li_mpc_link'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none'; ?>
 
+
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-<?php 
-	if($li_cg_choose_variation == 'mosaic'):
-		include 'part/mosaic.php';
+    <?php 
+	if($li_mpc_choose_variation == 'map'):
+		include 'part/map.php';
 	endif;
-	if($li_cg_choose_variation == 'slider'):
-		include 'part/slider.php';
+	if($li_mpc_choose_variation == 'material'):
+		include 'part/material.php';
 	endif;
-	if($li_cg_choose_variation == 'traditional'):
-		include 'part/traditional.php';
-	endif;?>
+	if($li_mpc_choose_variation == 'image-left'):
+		include 'part/image-left.php';
+	endif;
+    if($li_mpc_choose_variation == 'image-right'):
+		include 'part/image-right.php';
+	endif;
+    if($li_mpc_choose_variation == 'text-only'):
+		include 'part/text-only.php';
+	endif;
+	?>
+
+
 </div>

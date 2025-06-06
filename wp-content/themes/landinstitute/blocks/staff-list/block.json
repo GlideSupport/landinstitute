@@ -1,0 +1,27 @@
+{
+	"name": "acf/staff-list",
+	"title": "Staff List",
+	"description": "A custom Staff List block.",
+	"editorScript": ["block-staff-list"],
+	"script": ["block-staff-list"],
+	"category": "theme-blocks",
+	"icon": "table-col-after",
+	"keywords": ["staff"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-staff-list.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "staff-list.webp"
+			}
+		}
+	},
+	"align": "full"
+}

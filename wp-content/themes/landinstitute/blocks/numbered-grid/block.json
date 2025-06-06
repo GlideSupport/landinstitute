@@ -1,0 +1,27 @@
+{
+	"name": "acf/numbered-grid",
+	"title": "Numbered Grid",
+	"description": "A custom Numbered Grid block.",
+	"editorScript": ["block-numbered-grid"],
+	"script": ["block-numbered-grid"],
+	"category": "theme-blocks",
+	"icon": "editor-ol",
+	"keywords": ["numbered","Numbered Grid"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-numbered-grid.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "numbered-faq.webp"
+			}
+		}
+	},
+	"align": "full"
+}

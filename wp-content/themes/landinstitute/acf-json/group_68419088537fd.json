@@ -130,6 +130,35 @@
             "layout": "horizontal"
         },
         {
+            "key": "field_6842c06ba9cd8",
+            "label": "Kicker",
+            "name": "li_cg_kicker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6841912e8af33",
+                        "operator": "!=",
+                        "value": "mosaic"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_684191ee8af39",
             "label": "WYSIWYG",
             "name": "li_cg_wysiwyg",
@@ -476,5 +505,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749132024
+    "modified": 1749205139
 }

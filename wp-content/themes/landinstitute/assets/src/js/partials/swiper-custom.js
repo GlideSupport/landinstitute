@@ -171,6 +171,43 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	});
 	
 	//Timeline js end
+
+	//CTA Card Slide js start
+	const ctaSliders = document.querySelectorAll('.cta-card-slide');
+	if (!ctaSliders.length) return;
+	ctaSliders.forEach((slider, index) => {
+		slider.classList.add(`cta-card-slide-${index}`);
+
+		new Swiper(slider, {
+			loop: false,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			breakpoints: {
+				1920: {
+					slidesPerView: 4,
+					spaceBetween: 0
+				},
+				1028: {
+					slidesPerView: 4,
+					spaceBetween: 0
+				},
+				641: {
+					slidesPerView: 3,
+					spaceBetween: 0
+				},
+				580: {
+					slidesPerView: 2.5,
+					spaceBetween: 0
+				},
+				375: {
+					slidesPerView: 1.5,
+					spaceBetween: 0
+				}
+			}
+		});
+	});
+	//CTA Card Slide js end
+
 	
 	// Testimonial Single View Slider start
 	const testimonial_single_view_Sliders = document.querySelectorAll(".testimonial-single-view-slider");

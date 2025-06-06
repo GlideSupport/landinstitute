@@ -65,7 +65,7 @@
         {
             "key": "field_683590b4ce317",
             "label": "Border Options",
-            "name": "li_bp_border_options",
+            "name": "border_options",
             "aria-label": "",
             "type": "clone",
             "instructions": "",
@@ -103,5 +103,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748340938
+    "modified": 1749209736
 }
