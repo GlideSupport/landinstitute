@@ -285,9 +285,9 @@
                         "class": "",
                         "id": ""
                     },
-                    "save_format": "menu",
+                    "save_format": "object",
                     "container": "div",
-                    "allow_null": 0,
+                    "allow_null": 1,
                     "allow_in_bindings": 0
                 },
                 {
@@ -814,5 +814,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749109064
+    "modified": 1749126575
 }

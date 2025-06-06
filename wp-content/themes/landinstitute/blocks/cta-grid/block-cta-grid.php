@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Block Name: BG Pattern
+ * Block Name: CTA Grid
  *
- * The template for displaying the custom gutenberg block named BG Pattern.
+ * The template for displaying the custom gutenberg block named CTA Grid.
  *
  * @link https://www.advancedcustomfields.com/resources/blocks/
  *
@@ -42,11 +42,23 @@ if ($block['name']) {
 }
 
 // Block variables.
-$li_bp_bg_pattern = $bst_block_fields['li_bp_bg_pattern'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
+$li_cg_headline = $bst_block_fields['li_cg_headline'] ?? null;
+$li_cg_headline_check = BaseTheme::headline_check($li_cg_headline);
+$li_cg_choose_variation = $bst_block_fields['li_cg_choose_variation'] ?? 'mosaic';
+$li_cg_wysiwyg = $bst_block_fields['li_cg_wysiwyg'] ?? null;
+$li_cg_repeater = $bst_block_fields['li_cg_repeater'] ?? null;
+$li_cg_repeater_mosaic = $bst_block_fields['li_cg_repeater_mosaic'] ?? null;
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none'; ?>
 
-if (!empty($li_bp_bg_pattern)): ?>
-<section id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-    <?php echo !empty($li_bp_bg_pattern) ? ' <div class="bg-pattern-fixed '. esc_attr($border_options) .' ">' . wp_get_attachment_image($li_bp_bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
-</section>
-<?php endif; ?>
+<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
+<?php 
+	if($li_cg_choose_variation == 'mosaic'):
+		include 'part/mosaic.php';
+	endif;
+	if($li_cg_choose_variation == 'slider'):
+		include 'part/slider.php';
+	endif;
+	if($li_cg_choose_variation == 'traditional'):
+		include 'part/traditional.php';
+	endif;?>
+</div>

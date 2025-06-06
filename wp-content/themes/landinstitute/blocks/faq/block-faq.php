@@ -45,7 +45,7 @@ $li_faq_choose_variation = $bst_block_fields['li_faq_choose_variation'] ?? 'one-
 $li_faq_wysiwyg = $bst_block_fields['li_faq_wysiwyg'] ?? null;
 $li_faq_button = $bst_block_fields['li_faq_button'] ?? null;
 $li_faq_details = $bst_block_fields['li_faq_details'] ?? null;
-$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';    
 ?>
 
 

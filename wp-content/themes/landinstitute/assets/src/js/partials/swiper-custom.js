@@ -172,6 +172,43 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	
 	//Timeline js end
 	
+	// Testimonial Single View Slider start
+	const testimonial_single_view_Sliders = document.querySelectorAll(".testimonial-single-view-slider");
+
+	testimonial_single_view_Sliders.forEach((sliderWrapper, index) => {
+		const slider = sliderWrapper.querySelector(".single-view-slide");
+		const nextBtn = sliderWrapper.querySelector(".swiper-button-next");
+		const prevBtn = sliderWrapper.querySelector(".swiper-button-prev");
+
+		// Generate unique class names
+		const nextClass = `swiper-button-next-${index}`;
+		const prevClass = `swiper-button-prev-${index}`;
+
+		// Assign unique classes to nav buttons (only if they exist)
+		if (nextBtn) nextBtn.classList.add(nextClass);
+		if (prevBtn) prevBtn.classList.add(prevClass);
+
+		// Count slides
+		const slidesCount = slider.querySelectorAll(".swiper-slide").length;
+
+		// Hide arrows if only one slide
+		if (slidesCount <= 1) {
+			if (nextBtn) nextBtn.style.display = 'none';
+			if (prevBtn) prevBtn.style.display = 'none';
+		}
+
+		// Initialize Swiper
+		new Swiper(slider, {
+			loop: slidesCount > 1,
+			slidesPerView: 1,
+			spaceBetween: 10,
+			navigation: {
+				nextEl: nextBtn ? `.${nextClass}` : null,
+				prevEl: prevBtn ? `.${prevClass}` : null,
+			},
+		});
+	});
+	// Testimonial Single View Slider end
 
 
 	

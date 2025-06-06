@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Block Name: BG Pattern
+ * Block Name: Testimonial
  *
- * The template for displaying the custom gutenberg block named BG Pattern.
+ * The template for displaying the custom gutenberg block named Testimonial.
  *
  * @link https://www.advancedcustomfields.com/resources/blocks/
  *
@@ -42,11 +42,21 @@ if ($block['name']) {
 }
 
 // Block variables.
-$li_bp_bg_pattern = $bst_block_fields['li_bp_bg_pattern'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
+$li_t_choose_variation = $bst_block_fields['li_t_choose_variation'] ?? 'single-view-slider';
+$li_t_kicker = $bst_block_fields['li_t_kicker'] ?? null;
+$li_t_selector_testimonial = $bst_block_fields['li_t_selector_testimonial'] ?? null;
+$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none'; ?>
 
-if (!empty($li_bp_bg_pattern)): ?>
-<section id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-    <?php echo !empty($li_bp_bg_pattern) ? ' <div class="bg-pattern-fixed '. esc_attr($border_options) .' ">' . wp_get_attachment_image($li_bp_bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
-</section>
-<?php endif; ?>
+<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
+    <?php 
+        if($li_t_choose_variation == 'single-view-slider'):
+            include 'part/single-view-slider.php';
+        endif;
+        if($li_t_choose_variation == 'traditional-slider'):
+            include 'part/traditional-slider.php';
+        endif;
+        if($li_t_choose_variation == 'single'):
+            include 'part/single.php';
+        endif;
+    ?>
+</div>

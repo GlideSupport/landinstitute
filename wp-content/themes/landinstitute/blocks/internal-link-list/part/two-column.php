@@ -17,23 +17,19 @@
 					$link = $li_ill_rep['link'];
 					$link_url = $link['url'] ?? '';
 					if (!empty($title) || !empty($text) || !empty($image) || !empty($link)) { ?>
-						<?php if (!empty($link_url)) : ?>
-							<a href="<?php echo esc_url($link_url); ?>" class="card-item link-with-title with-arrow hover-img">
-						<?php else : ?>
-							<div class="card-item link-with-title with-arrow hover-img">
-						<?php endif; ?>
-							<?php echo !empty($image) ? '<div class="card-img">' . wp_get_attachment_image($image, 'thumb_200') . '</div>' : ''; ?>
-							<div class="card-item-left">
-							<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
-							<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
-							<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
-							</div>
-							<div class="card-item-right">
-								<div class="dot-btn">
-									<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
+							<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title with-arrow hover-img">' : '<div class="card-item link-with-title with-arrow hover-img">'; ?>
+								<?php echo !empty($image) ? '<div class="card-img">' . wp_get_attachment_image($image, 'thumb_200') . '</div>' : ''; ?>
+								<div class="card-item-left">
+								<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
+								<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
+								<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
 								</div>
-							</div>
-						<?php echo !empty($link_url) ? '</a>' : '</div>'; ?>
+								<div class="card-item-right">
+									<div class="dot-btn">
+										<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
+									</div>
+								</div>
+							<?php echo !empty($link_url) ? '</a>' : '</div>'; ?>
 						<?php }
 					} ?>
 					</div>
