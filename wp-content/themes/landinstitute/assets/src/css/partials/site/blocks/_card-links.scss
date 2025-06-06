@@ -728,7 +728,8 @@ section:has(.text-featured-block) {
 
         .filter,
         .filter-cards-grid,
-        .fillter-bottom {
+        .fillter-bottom,
+        .filter-content-cards-grid {
             margin-left: calc(-50vw + 50%);
             width: 100vw;
         }
@@ -756,6 +757,14 @@ section:has(.text-featured-block) {
 .resoruce-filter-title {
     .filter-block {
         .filter-cards-grid {
+            margin-bottom: -2px;
+        }
+    }
+}
+
+.news-list-filter-title {
+    .filter-block {
+        .filter-content-cards-grid {
             margin-bottom: -2px;
         }
     }
@@ -1029,6 +1038,85 @@ section:has(.text-featured-block) {
                 @media(min-width: 991px) {
                     border-right: 0px;
                 }
+            }
+        }
+    }
+}
+
+
+
+
+.filter-content-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-content: center;
+
+    @media (max-width: 991px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-content-card-item {
+        border-bottom: 2px solid var(--gb_base_brown);
+        border-right: 2px solid var(--gb_base_brown);
+
+        &:nth-child(3n) {
+            @media(min-width: 992px) {
+                border-right: none;
+            }
+        }
+
+        &:nth-child(2n) {
+            @media (min-width: 640px) and (max-width: 991px) {
+                border-right: none;
+            }
+        }
+
+        @media(max-width: 640px) {
+            border-right: 0px;
+        }
+
+        .filter-content-card-link {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            min-height: clamp(285px, calc(17.8125rem + ((1vw - 7.68px) * 34.5361)), 486px);
+
+            &:hover {
+                background-color: var(--gb_primary_butter_yellow);
+            }
+        }
+
+        .image {
+            border-bottom: 2px solid var(--gb_base_brown);
+            display: flex;
+            height: clamp(201px, calc(12.5625rem + ((1vw - 7.68px) * 9.7938)), 258px);
+            width: 100%;
+
+            img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+        .filter-card-content {
+            padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+            .top-sub-list {
+                gap: 10px;
+            }
+
+            .card-title {
+                margin: 0;
+            }
+
+            .description {
+                letter-spacing: var(--letter_spacing_018);
+                line-height: var(--line_height_150per);
             }
         }
     }

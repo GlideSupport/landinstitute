@@ -258,3 +258,50 @@
         }
     }
 }
+
+
+.logo-list-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 44px;
+
+    .logo-list-col {
+        .brand-logo-img {
+            display: flex;
+
+            img {
+                max-width: 152px;
+                max-height: 80px;
+            }
+        }
+
+        .card-list {
+            .card-item {
+                padding: 0;
+                gap: 24px;
+            }
+        }
+    }
+
+    a {
+        &.logo-list-col {
+            text-decoration: none;
+
+            &:hover {
+                .card-list {
+                    .card-item {
+                        &.link-with-title {
+                            &.with-arrow {
+                                .dot-btn {
+                                    &:before {
+                                        opacity: 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
