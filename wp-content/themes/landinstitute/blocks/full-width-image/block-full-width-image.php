@@ -54,7 +54,7 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none'; ?>
             <div class="block-head">
                 <?php echo !empty($li_fwi_headline_check) ? BaseTheme::headline($li_fwi_headline, 'heading-2 block-title mb-0') : ''; ?>
                 <?php echo (!empty($li_fwi_headline_check) || !empty($li_fwi_wysiwyg)) ? ' <div class="gl-s30"></div>' : ''; ?>
-                <?php echo !empty($li_fwi_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_fwi_wysiwyg) . '</div<div class="gl-s36"></div>' : ''; ?>    
+                <?php echo !empty($li_fwi_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_fwi_wysiwyg) . '</div><div class="gl-s36"></div>' : ''; ?>    
             </div>
             <?php echo !empty($li_fwi_image) ? '<div class="chart-data">' . wp_get_attachment_image($li_fwi_image, 'thumb_1600') . '<div class="map-icon desktop-none"><a href="#map-popup" class="radius-btn" data-lity="data-lity">Zoom chart</a></div></div>' : ''; ?>
         </div>
