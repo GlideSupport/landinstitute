@@ -381,5 +381,82 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Tab Content js end
 
 
-  });
-  
+});
+function initDropdownMenus() {
+	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
+
+	if (!tabDropdowns.length) return;
+
+	tabDropdowns.forEach((tabDropdown) => {
+		if (!tabDropdown) return;
+
+		const toggleButton = tabDropdown.querySelector(".dropdown-toggle");
+		const dropdownMenu = tabDropdown.querySelector(".dropdown-menu");
+
+		if (!toggleButton || !dropdownMenu) return;
+
+		function positionDropdown() {
+			const rect = toggleButton.getBoundingClientRect();
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+			dropdownMenu.style.position = "absolute";
+			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
+			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
+			dropdownMenu.style.width = `${rect.width}px`; // match width to toggle button
+		}
+
+		function closeDropdown() {
+			toggleButton.setAttribute("aria-expanded", "false");
+			dropdownMenu.style.display = "none";
+			tabDropdown.classList.remove("open");
+			dropdownMenu.classList.remove("open");
+		}
+
+		// Toggle dropdown on button click
+		toggleButton.addEventListener("click", (event) => {
+			event.stopPropagation();
+
+			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+			toggleButton.setAttribute("aria-expanded", !isExpanded);
+
+			if (!isExpanded) {
+				dropdownMenu.style.display = "block";
+				tabDropdown.classList.add("open");
+				dropdownMenu.classList.add("open");
+				positionDropdown();
+
+				const listItems = dropdownMenu.querySelectorAll("li");
+				if (listItems.length) {
+					listItems.forEach((item, index) => {
+						if (item) item.style.animationDelay = `${index * 0.1}s`;
+					});
+				}
+			} else {
+				closeDropdown();
+			}
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", (event) => {
+			if (!tabDropdown.contains(event.target)) {
+				closeDropdown();
+			}
+		});
+
+		// Reposition on window resize
+		window.addEventListener("resize", () => {
+			if (toggleButton.getAttribute("aria-expanded") === "true") {
+				positionDropdown();
+			}
+		});
+	});
+}
+
+// Run on DOM ready
+document.addEventListener("DOMContentLoaded", initDropdownMenus);
+
+// For ACF block preview / dynamic load
+if (typeof window.acf !== 'undefined') {
+	window.acf.addAction('render_block_preview', initDropdownMenus);
+}
