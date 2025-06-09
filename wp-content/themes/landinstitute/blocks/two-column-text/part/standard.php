@@ -6,6 +6,6 @@
 		<?php echo !empty($li_tct_headline_check) ? BaseTheme::headline($li_tct_headline, 'heading-2 block-title mb-0') : ''; ?>
 	</div>
 	<?php echo (!empty($li_tct_headline_check) && !empty($li_tct_wysiwyg)) ? '<div class="gl-s44"></div>' : ''; ?>
-	<?php echo !empty($li_tct_wysiwyg) ? '<div class="two-col-content"><div class="text-column body-20-18-regular">' . html_entity_decode($li_tct_wysiwyg) . '</div></div>' : ''; ?>
+	<?php echo !empty($li_tct_wysiwyg) ? '<div class="two-col-content text-column body-20-18-regular">' . html_entity_decode($li_tct_wysiwyg) . '</div>' : ''; ?>
 </div>
 <?php endif; ?>
