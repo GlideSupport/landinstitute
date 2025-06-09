@@ -245,6 +245,23 @@
             ]
         },
         {
+            "key": "field_68468bf21ba24",
+            "label": "Button",
+            "name": "li_im_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_683592235e42e",
             "label": "Border Options",
             "name": "li_im_border_options",
@@ -285,5 +302,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748341311
+    "modified": 1749454022
 }

@@ -59,5 +59,8 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 	if($li_ill_choose_variation == 'image'):
 		include 'part/image.php';
 	endif;
+	if($li_ill_choose_variation == 'w-h-image'):
+		include 'part/w-h-image.php';
+	endif;
 	?>
 </div>
