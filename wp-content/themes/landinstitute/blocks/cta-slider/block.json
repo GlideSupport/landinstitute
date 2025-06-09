@@ -1,0 +1,27 @@
+{
+	"name": "acf/cta-slider",
+	"title": "CTA Slider",
+	"description": "A custom CTA Slider block.",
+	"editorScript": ["block-cta-slider"],
+	"script": ["block-cta-slider"],
+	"category": "theme-blocks",
+	"icon": "slides",
+	"keywords": ["CTA Slider","CTA", "slider"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-cta-slider.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "cta-slider.png"
+			}
+		}
+	},
+	"align": "full"
+}
