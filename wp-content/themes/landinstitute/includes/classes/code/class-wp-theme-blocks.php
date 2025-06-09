@@ -157,6 +157,9 @@ class WP_Theme_Blocks {
 		// Register a block - Memorial PDFS.
 		self::register_acf_block('memorial-pdfs');
 		
+		// Register a block - Accordion with Image.
+		self::register_acf_block('accordion-with-image');
+		
 
 		// [register_here].
 	}
