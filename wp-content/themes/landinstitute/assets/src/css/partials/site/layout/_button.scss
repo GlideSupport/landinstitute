@@ -315,6 +315,30 @@ body {
         }
     }
 
+    .link-with-icon {
+        text-decoration: none;
+        display: inline-block;
+        @extend .body-18-16-regular;
+
+        .link-content {
+            word-break: break-all;
+            border-bottom: 1px solid var(--gb_base_brown);
+            padding-bottom: 0;
+
+            .link-text {
+                display: inline;
+                word-wrap: break-word;
+
+            }
+
+            .icon {
+                display: inline;
+                margin-left: 6px;
+            }
+        }
+
+    }
+
     .jump-arrow {
         align-items: center;
         background: var(--gb_base_cream);
@@ -490,4 +514,33 @@ button[disabled]:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+
+    &.btn-no-gap {
+        gap: 0;
+    }
+}
+
+.btn-in-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+
+    .site-btn {
+        flex: 1 0 0;
+        margin-right: -1px;
+        margin-left: -1px;
+
+        @media(max-width: 640px) {
+            flex: 100% 0 0;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: -2px;
+        }
+
+        &:last-child {
+            @media(max-width: 640px) {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
