@@ -33,7 +33,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	
 	// map slider with counter start
 	const speed = 2000;
-
 	const countUp = (mapCounter) => {
 		const container = mapCounter.closest(".map-counter");
 		if (!container || container.dataset.counted === "true") return;
@@ -88,6 +87,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			}
 		}
 	});
+
 
 	// Swiper thumbs
 	const galleryThumbs = new Swiper('.map-years', {
@@ -172,6 +172,36 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	
 	//Timeline js end
 
+	// Testimonial Traditional js start
+		const sliderWrappers = document.querySelectorAll(".testimonial-traditional-block");
+		sliderWrappers.forEach((wrapper, index) => {
+			const swiperContainer = wrapper.querySelector(".traditional-slide");
+			const swiperWrapper = swiperContainer?.querySelector(".swiper-wrapper");
+			const slides = swiperWrapper?.querySelectorAll(".swiper-slide");
+			const nextBtn = wrapper.querySelector(".swiper-button-next");
+			const prevBtn = wrapper.querySelector(".swiper-button-prev");
+
+			// Skip if container or slides are missing or less than 1 slide
+			if (!swiperContainer || !swiperWrapper || !slides || slides.length < 1) return;
+
+			// Add unique class names
+			const uniqueClass = `swiper-instance-${index}`;
+			swiperContainer.classList.add(uniqueClass);
+			if (nextBtn) nextBtn.classList.add(`next-${index}`);
+			if (prevBtn) prevBtn.classList.add(`prev-${index}`);
+
+			new Swiper(`.${uniqueClass}`, {
+				loop: false,
+				slidesPerView: 1,
+				spaceBetween: 20,
+				navigation: {
+					nextEl: nextBtn ? `.next-${index}` : null,
+					prevEl: prevBtn ? `.prev-${index}` : null,
+				},
+			});
+		});
+	//Testimonial Traditional js end
+
 	//CTA Card Slide js start
 	const ctaSliders = document.querySelectorAll('.cta-card-slide');
 	if (!ctaSliders.length) return;
@@ -211,7 +241,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	
 	// Testimonial Single View Slider start
 	const testimonial_single_view_Sliders = document.querySelectorAll(".testimonial-single-view-slider");
-
 	testimonial_single_view_Sliders.forEach((sliderWrapper, index) => {
 		const slider = sliderWrapper.querySelector(".single-view-slide");
 		const nextBtn = sliderWrapper.querySelector(".swiper-button-next");
@@ -249,6 +278,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
 
 
 	
-
+	
 
 } );
