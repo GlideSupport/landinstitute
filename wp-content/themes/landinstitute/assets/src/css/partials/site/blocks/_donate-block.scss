@@ -1,0 +1,35 @@
+.sticky-part-row {
+    display: flex;
+    flex-wrap: wrap;
+
+    .col-left {
+        flex: 1 0 0;
+        position: relative;
+        padding-right: clamp(40px, calc(2.5rem + ((1vw - 9.92px) * 33.5196)), 160px);
+        margin-left: calc(-50vw + 50%);
+
+        .single-logo {
+
+            .site-logo {
+                display: flex;
+            }
+        }
+
+        &.bg-base-cream {
+            &:after {
+                content: '';
+                position: absolute;
+                right: 100%;
+                top: 0;
+                height: 100%;
+                width: 100vw;
+                background-color: var(--gb_base_cream);
+            }
+        }
+
+    }
+
+    .col-right {
+        flex: 480px 0 0;
+    }
+}
