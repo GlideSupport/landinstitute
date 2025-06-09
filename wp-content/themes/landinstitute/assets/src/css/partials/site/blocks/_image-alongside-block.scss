@@ -508,19 +508,31 @@
 }
 
 .two-col-content {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 18px;
 
     @media(max-width: 991px) {
         gap: 18px;
+        grid-template-columns: 1fr;
     }
 
-    .text-column {
-        flex: 50% 0 0;
+    p {
+        break-inside: avoid;
         padding-right: 44px;
+        @extend .body-20-18-regular;
+        margin: 0;
 
         @media(max-width: 991px) {
             flex: 100% 0 0;
+            padding-right: 0;
+        }
+    }
+
+    &:not(:has(p:nth-child(2))) {
+        display: block;
+
+        p {
             padding-right: 0;
         }
     }

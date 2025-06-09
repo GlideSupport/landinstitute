@@ -342,6 +342,20 @@ h6,
 	}
 }
 
+.ui-eyebrow-16-15-bold {
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_15);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_16);
+	line-height: var(--line_height_110per);
+	text-transform: uppercase;
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_15);
+	}
+}
+
 .body-26-23-bold {
 	color: var(--gb_base_brown);
 	@include font(universalsans, sbold);
