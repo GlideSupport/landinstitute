@@ -460,3 +460,76 @@ document.addEventListener("DOMContentLoaded", initDropdownMenus);
 if (typeof window.acf !== 'undefined') {
 	window.acf.addAction('render_block_preview', initDropdownMenus);
 }
+
+//dropdown menu js start
+document.addEventListener("DOMContentLoaded", () => {
+	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
+
+	tabDropdowns.forEach((tabDropdown) => {
+		const toggleButton = tabDropdown.querySelector(".dropdown-toggle");
+		if (!toggleButton) return;
+
+		const menuId = toggleButton.getAttribute("aria-controls");
+		const dropdownMenu = document.querySelector(`ul#${menuId}.dropdown-menu`);
+		if (!dropdownMenu) return;
+
+		function positionDropdown() {
+			const rect = toggleButton.getBoundingClientRect();
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+			dropdownMenu.style.position = "absolute";
+			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
+			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
+			dropdownMenu.style.width = `${rect.width}px`;
+		}
+
+		function closeDropdown() {
+			toggleButton.setAttribute("aria-expanded", false);
+			dropdownMenu.style.display = "none";
+			tabDropdown.classList.remove("open");
+			dropdownMenu.classList.remove("open");
+		}
+
+		toggleButton.addEventListener("click", (event) => {
+			event.stopPropagation();
+
+			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+
+			// Close all open dropdowns first
+			document.querySelectorAll(".dropdown-menu.open").forEach((menu) => {
+				menu.style.display = "none";
+				menu.classList.remove("open");
+			});
+			document.querySelectorAll(".tab-dropdown.open").forEach((drop) => {
+				drop.classList.remove("open");
+			});
+			document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
+				btn.setAttribute("aria-expanded", false);
+			});
+
+			if (!isExpanded) {
+				toggleButton.setAttribute("aria-expanded", true);
+				dropdownMenu.style.display = "block";
+				dropdownMenu.classList.add("open");
+				tabDropdown.classList.add("open");
+				positionDropdown();
+			} else {
+				closeDropdown();
+			}
+		});
+
+		document.addEventListener("click", (e) => {
+			if (!tabDropdown.contains(e.target) && !dropdownMenu.contains(e.target)) {
+				closeDropdown();
+			}
+		});
+
+		window.addEventListener("resize", () => {
+			if (toggleButton.getAttribute("aria-expanded") === "true") {
+				positionDropdown();
+			}
+		});
+	});
+});
+//dropdown menu js end

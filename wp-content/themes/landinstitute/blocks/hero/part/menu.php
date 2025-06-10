@@ -35,19 +35,9 @@ if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($select_men
 								$menu_items = !empty($menu_object) ? wp_get_nav_menu_items($menu_object->term_id) : [];
 								$first_menu_title = !empty($menu_items) ? $menu_items[0]->title : 'Select'; ?>
 								<div class="tab-dropdown">
-									<button class="dropdown-toggle" id="category-view" aria-expanded="false" aria-haspopup="true" aria-controls="category-view">
+									<button class="dropdown-toggle" id="hero-menu" aria-expanded="false" aria-haspopup="true" aria-controls="hero-menu">
 										<?php echo esc_html($first_menu_title); ?><div class="arrow-icon"></div>
 									</button>
-									<?php
-									wp_nav_menu(array(
-										'menu'           => $menu_value,
-										'fallback_cb'    => 'BaseTheme::nav_fallback',
-										'container'      => false,
-										'menu_class'     => 'dropdown-menu',
-										'menu_id'        => 'category-view',
-										'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menu" aria-labelledby="category-view">%3$s</ul>',
-									));
-									?>
 								</div>
 							<?php endif; ?>
 							<div class="gl-s96"></div>
@@ -62,3 +52,13 @@ if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($select_men
 		</div>
 	</section>
 <?php endif; ?>
+<?php
+wp_nav_menu(array(
+	'menu'           => $menu_value,
+	'fallback_cb'    => 'BaseTheme::nav_fallback',
+	'container'      => false,
+	'menu_class'     => 'dropdown-menu',
+	'menu_id'        => 'hero-menu',
+	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menu" aria-labelledby="hero-menu">%3$s</ul>',
+));
+?>
