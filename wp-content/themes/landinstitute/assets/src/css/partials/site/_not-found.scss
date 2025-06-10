@@ -55,15 +55,23 @@
     form {
         position: relative;
         display: block;
+        background: var(--gb_primary_butter_yellow);
 
         input[type="text"],
         input[type="search"] {
-            height: 87px;
-            padding-right: clamp(20px, calc(1.25rem + ((1vw - 7.68px) * 25.7732)), 170px);
+            height: 68px;
+            padding-right: 170px;
+            padding-left: 30px;
             width: 100%;
+            border: 2px solid var(--gb_base_brown);
+            @extend .ui-18-16-bold;
+
+            @media(max-width: 767px) {
+                height: 58px;
+            }
 
             @media(max-width: 640px) {
-                height: 45px;
+                padding-left: 24px;
             }
         }
 
@@ -78,17 +86,23 @@
             margin: 0;
             top: 50%;
             transform: translate(0, -50%);
-            height: auto;
-            padding: 14px 22px 14px 22px;
+            height: 100%;
+            align-items: center;
 
             @media(max-width: 640px) {
+                min-width: 163px;
+            }
+
+            @media(max-width: 319px) {
                 margin: 0;
                 position: relative;
                 right: 0;
                 top: 0;
                 transform: inherit;
-                margin-top: 10px;
+                margin-top: 0;
                 width: 100%;
+                border-top: 0;
+                border-left: 0;
             }
         }
 

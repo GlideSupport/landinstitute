@@ -147,6 +147,14 @@ body {
 
             &:after {
                 right: 16px;
+
+                @media(max-width: 991px) {
+                    top: 21px;
+                }
+
+                @media(max-width: 640px) {
+                    top: 16px;
+                }
             }
 
             @media(max-width: 991px) {
@@ -353,8 +361,7 @@ body {
         stroke-width: 1px;
         transition: background-color 0.3s, color 0.3s;
         will-change: background-color, color;
-
-
+        text-decoration: none;
         @extend .ui-18-16-bold;
 
         @media(max-width: 640px) {
@@ -387,6 +394,14 @@ body {
                         background-image: url(../images/button-arrow-white.svg);
                     }
                 }
+            }
+        }
+
+        &.btn-butter-yellow {
+            background-color: var(--gb_primary_butter_yellow);
+
+            &:hover {
+                background-color: var(--gb_primary_lilac);
             }
         }
 

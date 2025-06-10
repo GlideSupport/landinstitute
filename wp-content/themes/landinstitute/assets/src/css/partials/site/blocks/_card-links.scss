@@ -1165,6 +1165,11 @@ section:has(.text-featured-block) {
                 padding: 6px 14px;
             }
 
+            @media (max-width: 640px) {
+                flex: 1 0 0;
+                text-align: center;
+            }
+
             &:before {
                 display: none;
             }
