@@ -514,6 +514,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				dropdownMenu.classList.add("open");
 				tabDropdown.classList.add("open");
 				positionDropdown();
+
+				// ➕ Add animation-delay to each li
+				dropdownMenu.querySelectorAll("li").forEach((li, index) => {
+					li.style.animationDelay = `${index * 0.1}s`;
+				});
 			} else {
 				closeDropdown();
 			}
@@ -532,4 +537,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 });
+
 //dropdown menu js end
