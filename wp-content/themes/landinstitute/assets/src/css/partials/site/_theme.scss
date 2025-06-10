@@ -430,71 +430,74 @@ section:has(.has-border-bottom) {
 	}
 }
 
-.dropdown-menu {
-	background: var(--gb_base_cream);
-	border: 2px solid var(--gb_base_brown);
-	border-top: 0;
-	left: 0;
-	margin: 0;
-	opacity: 0;
-	padding: 0 0;
-	position: fixed;
-	top: 100%;
-	transform: translateY(-10px);
-	visibility: hidden;
-	width: 100%;
-	z-index: 7;
-
-	transition: opacity 0.3s ease,
-		transform 0.3s ease,
-		visibility 0.3s;
-
-	li {
-		border-bottom: 2px solid var(--gb_base_brown);
-		list-style-type: none;
+.page-section {
+	.dropdown-menu {
+		background: var(--gb_base_cream);
+		border: 2px solid var(--gb_base_brown);
+		border-top: 0;
+		left: 0;
 		margin: 0;
-		padding: 0;
+		opacity: 0;
+		padding: 0 0;
+		position: fixed;
+		top: 100%;
+		transform: translateY(-10px);
+		visibility: hidden;
+		width: 100%;
+		z-index: 7;
 
-		&:last-child {
-			border-bottom: 0;
-		}
-
-		&:before {
-			display: none;
-		}
-
-		a {
-			display: block;
-			padding: 12px 24px;
-			text-align: left;
-			text-decoration: none;
-			transition: background-color .15s;
-
-			@extend .ui-18-16-regular;
-
-			@media(max-width: 640px) {
-				padding: 8px 18px 8px 18px;
-			}
-
-			&:hover {
-				background-color: var(--gb_primary_lilac);
-			}
-		}
-	}
-
-	&.open {
-		-webkit-transform: translateY(0);
-		opacity: 1;
-		transform: translateY(0);
-		visibility: visible;
+		transition: opacity 0.3s ease,
+			transform 0.3s ease,
+			visibility 0.3s;
 
 		li {
-			animation: fadeIn 0.3s ease forwards;
-			opacity: 0;
-			transform: translateY(10px);
+			border-bottom: 2px solid var(--gb_base_brown);
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+
+			&:before {
+				display: none;
+			}
+
+			a {
+				display: block;
+				padding: 12px 24px;
+				text-align: left;
+				text-decoration: none;
+				transition: background-color .15s;
+
+				@extend .ui-18-16-regular;
+
+				@media(max-width: 640px) {
+					padding: 8px 18px 8px 18px;
+				}
+
+				&:hover {
+					background-color: var(--gb_primary_lilac);
+				}
+			}
+		}
+
+		&.open {
+			-webkit-transform: translateY(0);
+			opacity: 1;
+			transform: translateY(0);
+			visibility: visible;
+
+			li {
+				animation: fadeIn 0.3s ease forwards;
+				opacity: 0;
+				transform: translateY(10px);
+			}
 		}
 	}
 }
+
 
 @keyframes fadeIn {
 	to {
