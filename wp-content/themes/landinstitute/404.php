@@ -21,11 +21,12 @@ $bst_var_error_search = $bst_option_fields['bst_var_error_search'] ?? false;
 
 ?>
 <section id="hero-section" class="hero-section hero-section-default">
-	<div id="page-section" class="page-section">
+	<section id="page-section" class="page-section">
 		<div class="center-align error-page-hero">
 			<div class="gl-s156"></div>
 			<div class="wrapper">
 				<h1 class="block-title mb-0 heading-1"><?php echo esc_html($bst_var_error_headline); ?></h1>
+				</h1>
 				<div class="gl-s24"></div>
 				<div class="banner-text">
 					<h2 class="heading-5 mb-0 block-title"><?php echo esc_html($bst_var_error_sub_headline); ?></h2>
@@ -35,22 +36,24 @@ $bst_var_error_search = $bst_option_fields['bst_var_error_search'] ?? false;
 					<div class="page-content">
 						<?php
 						if ($bst_var_error_text) {
-							echo esc_html($bst_var_error_text);
+							echo html_entity_decode($bst_var_error_text);
 						}
 						?>
 					</div>
-					<div class="gl-s48"></div>
-					<div class="form-404">
-
-						<?php
-						if (!$bst_var_error_search) {
-							get_search_form();
-						}
-						?>
+					<div class="gl-s30"></div>
+					<div class="form-404 search-popup-content">
+						<div class="popup-search">
+							<?php
+							if (!$bst_var_error_search) {
+								get_search_form();
+							}
+							?>
+						</div>
 					</div>
-					<div class="gl-s48"></div>
-					<div class="back-btn">
-						<a href="<?php echo esc_url(home_url('/')); ?>" title="Back To Home" role="Back To Home" aria-label="Back To Home" class="site-btn">
+					<div class="gl-s52"></div>
+					<div class="back-to-home">
+						<a href="<?php echo esc_url(home_url('/')); ?>" title="Back To Home" role="Back To Home"
+							aria-label="Back To Home" class="site-btn">
 							Back To Home </a>
 
 					</div>
@@ -58,8 +61,7 @@ $bst_var_error_search = $bst_option_fields['bst_var_error_search'] ?? false;
 			</div>
 			<div class="gl-s156"></div>
 		</div>
-	</div>
-
+	</section>
 </section>
 <?php
 get_footer();

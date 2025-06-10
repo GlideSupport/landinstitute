@@ -50,3 +50,52 @@
         margin: 0 auto;
     }
 }
+
+.not-found-search {
+    form {
+        position: relative;
+        display: block;
+
+        input[type="text"],
+        input[type="search"] {
+            height: 87px;
+            padding-right: clamp(20px, calc(1.25rem + ((1vw - 7.68px) * 25.7732)), 170px);
+            width: 100%;
+
+            @media(max-width: 640px) {
+                height: 45px;
+            }
+        }
+
+        .search-submit {
+            @extend .site-btn;
+        }
+
+        .site-btn,
+        .search-submit {
+            position: absolute;
+            right: 0;
+            margin: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: auto;
+            padding: 14px 22px 14px 22px;
+
+            @media(max-width: 640px) {
+                margin: 0;
+                position: relative;
+                right: 0;
+                top: 0;
+                transform: inherit;
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+
+        label {
+            margin: 0;
+            display: block;
+            width: 100%;
+        }
+    }
+}
