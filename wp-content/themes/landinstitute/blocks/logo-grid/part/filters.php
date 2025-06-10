@@ -66,7 +66,7 @@
 							<?php endif; ?>
 							<div class="logo-content">
 								<div class="gl-s24"></div>
-								<div class="ui-20-18-bold logo-title"><?php the_title(); ?></div>
+								<div class="ui-20-18-bold logo-title"><?php echo get_the_title(); ?></div>
 								<div class="gl-s2"></div>
 								<?php if ($level_name) : ?>
 									<div class="body-18-16-regular logo-content"><?php echo esc_html($level_name); ?></div>
