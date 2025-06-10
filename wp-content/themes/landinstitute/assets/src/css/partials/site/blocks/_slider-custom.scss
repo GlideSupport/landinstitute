@@ -460,3 +460,17 @@
         }
     }
 }
+
+
+.image-gallery-slider {
+    margin-right: calc(-50vw + 50%);
+
+    .swiper-slide {
+        height: auto;
+        cursor: pointer;
+    }
+
+    .img-grid-block {
+        display: flex;
+    }
+}

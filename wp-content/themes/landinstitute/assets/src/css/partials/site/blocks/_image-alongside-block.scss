@@ -316,9 +316,9 @@
         position: relative;
 
         @media(max-width: 640px) {
-            height: auto;
             display: flex;
             flex-wrap: wrap;
+            height: auto;
         }
 
         .videos,
@@ -375,8 +375,8 @@
     position: relative;
 
     @media(max-width: 991px) {
-        grid-template-columns: 1fr;
         gap: 0;
+        grid-template-columns: 1fr;
     }
 
     &:before {
@@ -519,9 +519,10 @@
 
     p {
         break-inside: avoid;
-        padding-right: 44px;
-        @extend .body-20-18-regular;
         margin: 0;
+        padding-right: 44px;
+
+        @extend .body-20-18-regular;
 
         @media(max-width: 991px) {
             flex: 100% 0 0;
@@ -807,43 +808,137 @@
     }
 }
 
-
 .image-alongside-text-touch {
     .row-flex {
         display: flex;
         flex-wrap: wrap;
 
         .cl-left {
+            border-right: 2px solid var(--gb_base_brown);
             margin-left: calc(-50vw + 50%);
             width: 50vw;
-            border-right: 2px solid var(--gb_base_brown);
 
             @media(max-width: 991px) {
                 flex: auto 0 0;
-                width: 100vw;
                 margin-left: -24px;
                 margin-right: -24px;
+                width: 100vw;
             }
 
             .alongside-image {
                 display: flex;
 
                 img {
-                    width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    width: 100%;
                 }
             }
         }
 
         .cl-right {
+            align-self: center;
             flex: 1 0 0;
             padding-left: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
-            align-self: center;
 
             @media(max-width: 991px) {
                 flex: 100% 0 0;
                 padding-left: 0;
+            }
+        }
+    }
+}
+
+.image-list-row {
+    .image-list-col {
+        margin-bottom: clamp(28px,
+                calc(1.75rem + ((1vw - 7.68px) * 1.3746)),
+                36px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .row-flex {
+            display: flex;
+            flex-wrap: wrap;
+
+            column-gap: clamp(18px,
+                    calc(1.125rem + ((1vw - 7.68px) * 2.0619)),
+                    30px);
+
+            .cl-left {
+                flex: clamp(110px,
+                        calc(6.875rem + ((1vw - 7.68px) * 3.0928)),
+                        128px) 0 0;
+
+                @media (max-width: 319px) {
+                    margin-bottom: 8px;
+                }
+
+                .team-img {
+                    overflow: hidden;
+
+                    height: clamp(146px,
+                            calc(9.125rem + ((1vw - 7.68px) * 4.2955)),
+                            171px);
+
+                    img {
+                        height: 100%;
+                        object-fit: cover;
+                        width: 100%;
+                    }
+                }
+            }
+
+            .cl-right {
+                flex: 1 0 0;
+
+                @media (max-width: 319px) {
+                    flex: 100% 0 0;
+                }
+
+                .team-content {
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 4;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    @media (max-width: 768px) {
+                        -webkit-line-clamp: none;
+                    }
+                }
+
+                .team-desc {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    @media (max-width: 768px) {
+                        display: none;
+                    }
+                }
+            }
+
+            .team-desc {
+                display: none;
+
+                .team-content {
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 4;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+
+                    @media (max-width: 768px) {
+                        -webkit-line-clamp: none;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    display: flex;
+                    flex-direction: column;
+                }
             }
         }
     }
