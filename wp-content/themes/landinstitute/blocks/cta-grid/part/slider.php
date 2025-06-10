@@ -17,11 +17,14 @@
 							$title = $li_cg_rep['title'];
 							$text = $li_cg_rep['text']; 
 							$link = $li_cg_rep['link']; 
+							$link_url = $link['url'] ?? '';
+							$link_title = $link['title'] ?? '';
+							$link_target = $link['target'] ? $link['target'] : '_self';
 							$image = $li_cg_rep['image']; 
 							if(!empty($title) || !empty($text) || !empty($link) || !empty($image)): ?>
 								<div class="swiper-slide">
 									<div class="trans-border-card">
-									<?php echo !empty($link) ? '<a href="' . esc_url($url) . '" target="' . esc_attr($target) . '" class="trans-border-on">' : '<div class="trans-border-on">'; ?>
+									<?php echo !empty($link) ? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="trans-border-on">' : '<div class="trans-border-on">'; ?>
 											<div class="card-content-group">
 												<?php echo !empty($title) ? '<div class="ui-24-21-bold card-title">' . esc_html($title) . '</div>' : ''; ?>
 												<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
