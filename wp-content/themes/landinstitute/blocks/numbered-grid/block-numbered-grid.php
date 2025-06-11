@@ -59,7 +59,7 @@ if (!empty($li_ng_headline_check) || !empty($li_ng_wysiwyg) || !empty($li_ng_rep
 						if (!empty($title) || !empty($wysiwyg)): ?>
 							<li>
 								<?php echo !empty($title) ? '<div class="ui-24-21-bold number-title">' . esc_html($title) . '</div>' : ''; ?>
-								<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s4"></div>' : ''; ?>
+								<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s6"></div>' : ''; ?>
 								<?php echo !empty($wysiwyg) ? '<div class="body-20-18-regular number-content">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
 							</li>
 					<?php endif; endforeach; ?>
