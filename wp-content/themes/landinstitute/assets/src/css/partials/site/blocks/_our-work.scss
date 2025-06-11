@@ -136,6 +136,7 @@
     .testimonial-slide-group {
         border-left: 2px solid var(--gb_base_brown);
         padding-left: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
+        height: 100%;
     }
 
     .slide-inner {
