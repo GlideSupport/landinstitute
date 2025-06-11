@@ -9,15 +9,20 @@
 
         .cl-right {
             align-self: flex-end;
+            margin-right: calc(-50vw + 50%);
+            width: 50vw;
+
+            @media(min-width: 1921px) {
+                margin-right: 0;
+                width: 100%;
+            }
 
             .tab-image {
                 border-left: 2px solid var(--gb_base_brown);
                 border-top: 2px solid var(--gb_base_brown);
                 display: flex;
                 height: clamp(370px, calc(23.125rem + ((1vw - 7.68px) * 39.5189)), 600px);
-                margin-right: calc(-50vw + 50%);
                 overflow: hidden;
-                width: 50vw;
 
                 @media(min-width: 1921px) {
                     border-right: 2px solid var(--gb_base_brown);

@@ -324,14 +324,23 @@
     .cl-right {
         flex: 1 0 0;
         align-self: flex-end;
+        margin-right: calc(-50vw + 50%);
+        width: 50vw;
+
+        @media(min-width: 1921px) {
+            margin-right: 0;
+            width: 100%;
+        }
 
         @media(max-width: 991px) {
             flex: 100% 0 0;
+            width: 100vw;
+            margin-right: -24px;
+            margin-left: -24px;
         }
 
         .cta-image {
-            margin-right: calc(-50vw + 50%);
-            width: 50vw;
+
             display: flex;
             border-left: 2px solid var(--gb_base_brown);
             border-top: 2px solid var(--gb_base_brown);
@@ -344,9 +353,6 @@
             }
 
             @media(max-width: 991px) {
-                width: 100vw;
-                margin-right: -24px;
-                margin-left: -24px;
                 border-left: 0;
                 height: clamp(301px, calc(18.8125rem + ((1vw - 3.75px) * 16.0714)), 400px);
             }
