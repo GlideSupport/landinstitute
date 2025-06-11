@@ -188,26 +188,26 @@ header {
 
 		.header-wrapper {
 			.nav-overlay {
-				border-top-color: transparent;
+				//border-top-color: transparent;
 			}
 
 			.header-btns {
 				.site-btn {
-					border-top-color: transparent;
+					//border-top-color: transparent;
 				}
 			}
 
 			&.header-cta-variation {
 				.bottom-head {
-					border-top: transparent;
+					//border-top: transparent;
 
 					.header-btns {
 						.site-btn {
-							border-top: transparent;
+							//border-top: transparent;
 
 							@media(max-width: 1200px) {
 								border-top: 2px solid var(--gb_base_brown);
-								border-bottom: transparent;
+								//border-bottom: transparent;
 							}
 						}
 					}
@@ -234,11 +234,11 @@ header {
 
 					.header-btns {
 						.site-btn {
-							border-top: 2px solid var(--gb_base_brown);
+							border-top-color: transparent;
 
 							@media(max-width: 1200px) {
 								border-top: 2px solid var(--gb_base_brown);
-								border-bottom: transparent;
+								//border-bottom: transparent;
 							}
 						}
 					}
