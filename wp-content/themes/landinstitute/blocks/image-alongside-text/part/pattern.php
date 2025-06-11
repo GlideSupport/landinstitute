@@ -1,6 +1,6 @@
 <?php if (!empty($li_iat_headline_check) || !empty($li_iat_kicker) || !empty($li_iat_wysiwyg) || !empty($li_iat_button) || !empty($li_iat_bg_image)): ?>
 	<div class="image-alongside-text <?php echo esc_attr($border_options); ?> variation-pattern ">
-		<?php echo !empty($li_iat_bg_image) ? '<div class="col-left">' . wp_get_attachment_image($li_iat_bg_image, 'thumb_800', false) . '</div>' : ''; ?>
+		<?php echo !empty($li_iat_bg_image) ? '<div class="col-left">' . wp_get_attachment_image($li_iat_bg_image, 'thumb_1200', false) . '</div>' : ''; ?>
 		<div class="col-right">
 			<div class="gl-s156"></div>
 				<?php echo !empty($li_iat_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_iat_kicker) . '</div>' : ''; ?>
