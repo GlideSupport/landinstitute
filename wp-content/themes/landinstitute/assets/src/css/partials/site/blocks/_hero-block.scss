@@ -86,6 +86,12 @@
                 .left-content {
                     align-self: flex-end;
                 }
+
+                .right-top-head {
+                    @media(max-width: 1200px) {
+                        display: none;
+                    }
+                }
             }
 
             .col-right {
