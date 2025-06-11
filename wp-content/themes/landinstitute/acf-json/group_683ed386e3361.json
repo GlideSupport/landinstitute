@@ -238,7 +238,7 @@
         {
             "key": "field_683ed386efc78",
             "label": "Border Options",
-            "name": "li_bp_border_options",
+            "name": "border_options",
             "aria-label": "",
             "type": "clone",
             "instructions": "",
@@ -276,5 +276,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748949775
+    "modified": 1749618818
 }

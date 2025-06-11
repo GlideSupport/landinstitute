@@ -2,34 +2,68 @@ import Swiper from 'swiper/bundle';
 
 document.addEventListener( 'DOMContentLoaded', function() {
 	
-	//Post Teaser start
-	var swiper = new Swiper('.variable-slide-preview', {
-		slidesPerView: 'auto',
-		spaceBetween: 0,
+	// Initialize multiple timeline fancy sliders
+	document.querySelectorAll('.timeline-slider-fancy').forEach((el, index) => {
+		new Swiper(el, {
+			loop: false,
+			navigation: {
+				nextEl: el.closest('.swiper-container-wrapper')?.querySelector('.swiper-button-next'),
+				prevEl: el.closest('.swiper-container-wrapper')?.querySelector('.swiper-button-prev'),
+			},
+			centeredSlides: true,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			breakpoints: {
+				640: {
+					slidesPerView: 2,
+					spaceBetween: 0,
+					centeredSlides: false,
+				},
+				1028: {
+					slidesPerView: 2,
+					spaceBetween: 0,
+					centeredSlides: false,
+				},
+				1920: {
+					slidesPerView: 2,
+					spaceBetween: 0,
+					centeredSlides: false,
+				},
+			},
+		});
 	});
-	
-	const customCursor = document.createElement("div");
-	customCursor.classList.add("custom-cursor");
-	document.body.appendChild(customCursor);
-	
-	const swiperContainer = document.querySelector(".cursor-drag-icon");
-	
-	// Check if swiperContainer exists before adding event listeners
-	if (swiperContainer) {
-		swiperContainer.addEventListener("pointerenter", () => {
+
+	// Initialize multiple post teaser sliders
+	document.querySelectorAll('.variable-slide-preview').forEach((el) => {
+		new Swiper(el, {
+			slidesPerView: 'auto',
+			spaceBetween: 0,
+		});
+	});
+
+	// Create one global custom cursor element
+	let customCursor = document.querySelector(".custom-cursor");
+	if (!customCursor) {
+		customCursor = document.createElement("div");
+		customCursor.classList.add("custom-cursor");
+		document.body.appendChild(customCursor);
+	}
+
+	// Add cursor behavior for all drag-icon zones
+	document.querySelectorAll('.cursor-drag-icon').forEach((container) => {
+		container.addEventListener("pointerenter", () => {
 			customCursor.classList.add("visible");
 		});
-	
-		swiperContainer.addEventListener("pointerleave", () => {
+		container.addEventListener("pointerleave", () => {
 			customCursor.classList.remove("visible");
 		});
-	
-		swiperContainer.addEventListener("pointermove", (e) => {
+		container.addEventListener("pointermove", (e) => {
 			customCursor.style.left = `${e.clientX}px`;
 			customCursor.style.top = `${e.clientY}px`;
 		});
-	} 
-	//Post Teaser end
+	});
+	//end
+
 
 	// CTA Slider JS start
 		const ctaSliderWrappers = document.querySelectorAll(".cta-work-wrapper");
@@ -208,46 +242,49 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	// Map slider with counter end
 
 	//Timeline js start
-		const timelineBlocks = document.querySelectorAll(".timeline-block");
-		timelineBlocks.forEach((block, index) => {
-			const slider = block.querySelector(".timeline-slider");
-			const nextBtn = block.querySelector(".swiper-button-next");
-			const prevBtn = block.querySelector(".swiper-button-prev");
+	const timelineBlocks = document.querySelectorAll(".timeline-block");
+	timelineBlocks.forEach((block, index) => {
+	    const slider = block.querySelector(".timeline-slider");
+	    const nextBtn = block.querySelector(".swiper-button-next");
+	    const prevBtn = block.querySelector(".swiper-button-prev");
 
-			// Generate unique class names
-			const nextClass = `swiper-button-next-${index}`;
-			const prevClass = `swiper-button-prev-${index}`;
+	    // Skip if essential elements are missing
+	    if (!slider || !nextBtn || !prevBtn) return;
 
-			// Assign unique classes to nav buttons
-			nextBtn.classList.add(nextClass);
-			prevBtn.classList.add(prevClass);
+	    // Generate unique class names
+	    const nextClass = `swiper-button-next-${index}`;
+	    const prevClass = `swiper-button-prev-${index}`;
 
-			// Initialize Swiper for each instance
-			new Swiper(slider, {
-				loop: true,
-				centeredSlides: true,
-				slidesPerView: 1,
-				spaceBetween: 0,
-				navigation: {
-					nextEl: `.${nextClass}`,
-					prevEl: `.${prevClass}`,
-				},
-				breakpoints: {
-					640: {
-						slidesPerView: 2,
-						centeredSlides: false,
-					},
-					1028: {
-						slidesPerView: 2,
-						centeredSlides: false,
-					},
-					1920: {
-						slidesPerView: 2,
-						centeredSlides: false,
-					},
-				},
-			});
-		});
+	    // Assign unique classes to nav buttons
+	    nextBtn.classList.add(nextClass);
+	    prevBtn.classList.add(prevClass);
+
+	    // Initialize Swiper for each instance
+	    new Swiper(slider, {
+	        loop: true,
+	        centeredSlides: true,
+	        slidesPerView: 1,
+	        spaceBetween: 0,
+	        navigation: {
+	            nextEl: `.${nextClass}`,
+	            prevEl: `.${prevClass}`,
+	        },
+	        breakpoints: {
+	            640: {
+	                slidesPerView: 2,
+	                centeredSlides: false,
+	            },
+	            1028: {
+	                slidesPerView: 2,
+	                centeredSlides: false,
+	            },
+	            1920: {
+	                slidesPerView: 2,
+	                centeredSlides: false,
+	            },
+	        },
+	    });
+	});
 	//Timeline js end
 
 	// Testimonial Traditional js start

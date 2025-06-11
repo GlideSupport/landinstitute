@@ -45,6 +45,8 @@ if ($block['name']) {
 $li_t_choose_variation = $bst_block_fields['li_t_choose_variation'] ?? 'single-view-slider';
 $li_t_kicker = $bst_block_fields['li_t_kicker'] ?? null;
 $li_t_selector_testimonial = $bst_block_fields['li_t_selector_testimonial'] ?? null;
+$li_t_selector_testimonial_single = $bst_block_fields['li_t_selector_testimonial_single'] ?? null;
+$li_t_button = $bst_block_fields['li_t_button'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none'; ?>
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">

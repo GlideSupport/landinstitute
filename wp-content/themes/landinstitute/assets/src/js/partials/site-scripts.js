@@ -539,3 +539,102 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //dropdown menu js end
+
+//Scrolling Text block js start
+document.addEventListener('DOMContentLoaded', function () {
+    // Find all sticky elements and their related components
+    const stickyElements = document.querySelectorAll('.sticky-top-touch');
+    
+    if (!stickyElements.length) return;
+
+    stickyElements.forEach(function(subNav) {
+        const headerSection = document.querySelector('.header-section');
+        const parentSection = subNav.closest('.sticky-parent')?.parentElement?.parentElement;
+        const stickyParent = subNav.closest('.sticky-parent');
+
+        if (!headerSection || !parentSection || !stickyParent) return;
+
+        let headerHeight = headerSection.offsetHeight;
+
+        function updateStickyWidth() {
+            const stickyParentWidth = stickyParent.offsetWidth;
+            subNav.style.width = stickyParentWidth + 'px';
+        }
+
+        function onScroll() {
+            if (window.innerWidth <= 991) {
+                // Reset styles on smaller screens
+                subNav.classList.remove('scrolled');
+                subNav.style.position = '';
+                subNav.style.top = '';
+                subNav.style.bottom = '';
+                subNav.style.width = '';
+                return;
+            }
+
+            const scrollY = window.scrollY || window.pageYOffset;
+
+            const parentTop = parentSection.offsetTop;
+            const parentHeight = parentSection.offsetHeight;
+            const parentBottom = parentTop + parentHeight;
+
+            const stickyHeight = subNav.offsetHeight;
+
+            if (scrollY + headerHeight >= parentTop && scrollY + headerHeight < parentBottom - stickyHeight) {
+                subNav.classList.add('scrolled');
+                subNav.style.position = 'fixed';
+                subNav.style.top = headerHeight + 'px';
+                updateStickyWidth();
+                subNav.style.bottom = '';
+            } else if (scrollY + headerHeight >= parentBottom - stickyHeight) {
+                subNav.classList.remove('scrolled');
+                subNav.style.position = 'absolute';
+                subNav.style.top = '';
+                subNav.style.bottom = '0';
+                updateStickyWidth();
+            } else {
+                subNav.classList.remove('scrolled');
+                subNav.style.position = '';
+                subNav.style.top = '';
+                subNav.style.bottom = '';
+                subNav.style.width = '';
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+
+        // Only add one resize listener that handles all instances
+        if (!window.stickyResizeHandlerAdded) {
+            window.addEventListener('resize', function() {
+                headerHeight = headerSection.offsetHeight;
+                
+                stickyElements.forEach(function(nav) {
+                    if (window.innerWidth > 991 && (nav.style.position === 'fixed' || nav.style.position === 'absolute')) {
+                        const navStickyParent = nav.closest('.sticky-parent');
+                        if (navStickyParent) {
+                            nav.style.width = navStickyParent.offsetWidth + 'px';
+                        }
+                    } else {
+                        nav.style.width = '';
+                        nav.style.position = '';
+                        nav.style.top = '';
+                        nav.style.bottom = '';
+                        nav.classList.remove('scrolled');
+                    }
+                    
+                    // Trigger the scroll handler for each element
+                    const scrollHandler = nav.onScrollHandler;
+                    if (scrollHandler) scrollHandler();
+                });
+            });
+            
+            window.stickyResizeHandlerAdded = true;
+        }
+        
+        // Store the onScroll function reference on the element
+        subNav.onScrollHandler = onScroll;
+
+        onScroll();
+    });
+});
+//Scrolling Text block js end

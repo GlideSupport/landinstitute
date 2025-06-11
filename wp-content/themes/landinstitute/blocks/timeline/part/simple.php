@@ -9,23 +9,23 @@
 						$title = $item['li_t_title'] ?? '';
 						$content = $item['li_t_wysiwyg'] ?? '';
 						$link = $item['li_t_link']['url'] ?? '#';
-						$link_target = $item['li_t_link']['target'] ?? '_self';
-					?>
-						<div class="swiper-slide">
-							<div class="border-card">
-								<a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>" class="border-card-click">
-									<div class="gl-s52"></div>
-									<?php echo $year ? '<div class="ui-20-18-bold card-sub-head">' . esc_html($year) . '</div><div class="gl-s4"></div>' : ''; ?>
-									<?php echo $title ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4><div class="gl-s20"></div>' : ''; ?>
-									<?php echo $content ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div><div class="gl-s12"></div>' : ''; ?>
-									<div class="block-btn">
-										<div class="site-btn text-link">Learn More</div>
-									</div>
-									<div class="gl-s64"></div>
-								</a>
+						$link_target = $item['li_t_link']['target'] ?? '_self'; 
+						if(!empty($year) || !empty($title) || !empty($content) || !empty($link)): ?>
+							<div class="swiper-slide">
+								<div class="border-card">
+									<a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>" class="border-card-click">
+										<div class="gl-s52"></div>
+										<?php echo $year ? '<div class="ui-20-18-bold card-sub-head">' . esc_html($year) . '</div><div class="gl-s4"></div>' : ''; ?>
+										<?php echo $title ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4><div class="gl-s20"></div>' : ''; ?>
+										<?php echo $content ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div><div class="gl-s12"></div>' : ''; ?>
+										<div class="block-btn">
+											<div class="site-btn text-link">Learn More</div>
+										</div>
+										<div class="gl-s64"></div>
+									</a>
+								</div>
 							</div>
-						</div>
-					<?php endforeach; ?>
+					<?php endif; endforeach; ?>
 				</div>
 			</div>
 
