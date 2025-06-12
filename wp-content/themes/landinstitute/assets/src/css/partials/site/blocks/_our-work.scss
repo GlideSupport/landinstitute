@@ -34,11 +34,7 @@
     padding-left: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
     @media(max-width: 768px) {
-        padding-bottom: 94px;
-    }
-
-    @media(max-width: 319px) {
-        padding-bottom: 0;
+        padding-bottom: 50px;
     }
 
     .slider-btn {
@@ -80,10 +76,6 @@
             display: flex;
             flex: 1 0 0;
 
-            @media(max-width: 991px) {
-                justify-content: flex-end;
-            }
-
             @media(max-width: 319px) {
                 flex: 100% 0 0;
                 justify-content: flex-start;
@@ -91,9 +83,9 @@
 
             .testimonial-author-image {
                 display: flex;
-                height: clamp(147px, calc(9.1875rem + ((1vw - 7.68px) * 29.8969)), 321px);
+                height: clamp(208px, calc(13rem + ((1vw - 7.68px) * 19.4158)), 321px);
                 position: relative;
-                width: clamp(110px, calc(6.875rem + ((1vw - 7.68px) * 22.3368)), 240px);
+                width: clamp(156px, calc(9.75rem + ((1vw - 7.68px) * 14.433)), 240px);
 
                 .optional-title {
                     bottom: 15px;
@@ -102,6 +94,10 @@
                     opacity: 0.56;
                     position: absolute;
                     text-transform: uppercase;
+
+                    @media(max-width: 640px) {
+                        font-size: 10px;
+                    }
                 }
 
                 img {
