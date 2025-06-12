@@ -18,7 +18,7 @@
 }
 
 .white_text {
-	color: var(--wp--preset--color--white);
+	color: var(--gb_white);
 }
 
 .float-right {
@@ -544,4 +544,8 @@ section:has(.has-border-bottom) {
 
 .bg-primary-pink {
 	background-color: var(--gb_primary_pink);
+}
+
+.bg-dark-green {
+	background-color: var(--primary_dark_green);
 }

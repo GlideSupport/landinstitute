@@ -340,6 +340,16 @@
 										<a href="#">Get Involved</a>
 									</li>
 								</ul>
+								<div class="popup-search desktop-hide">
+									<form role="search" method="get"
+										action="https://davisphinnedev.wpenginepowered.com/">
+										<button class="search-icon" type="submit"><img
+												src="../assets/src/images/search-icon.svg" width="29" height="29"
+												alt=""></button>
+										<input type="text" name="s" placeholder="Search" autofocus="">
+									</form>
+
+								</div>
 								<div class="header-btns desktop-hide">
 									<a href="#" class="site-btn btn-sunflower-yellow sm-btn arrow-heart-symbol"
 										title="Donate">Donate</a>
@@ -1464,6 +1474,31 @@
 
 
 	<script>
+
+		// header padding top 
+		function updateNavPadding() {
+			if (window.innerWidth < 1201) {
+				const header = document.querySelector('.header-wrapper .bottom-head');
+				const navContainer = document.querySelector('.header-wrapper .bottom-head .nav-overlay .nav-container');
+
+				if (header && navContainer) {
+					const headerHeight = header.offsetHeight;
+					navContainer.style.paddingTop = `${headerHeight}px`;
+				}
+			} else {
+				// Optional: reset padding if over 1200px
+				const navContainer = document.querySelector('.header-wrapper .bottom-head .nav-overlay .nav-container');
+				if (navContainer) {
+					navContainer.style.paddingTop = '';
+				}
+			}
+		}
+		// end
+
+
+		// Run on load and resize
+		window.addEventListener('DOMContentLoaded', updateNavPadding);
+		window.addEventListener('resize', updateNavPadding);
 
 		function adjustContentMinHeight() {
 			const header = document.querySelector('.header-section');

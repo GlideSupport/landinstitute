@@ -137,3 +137,16 @@ Mixin for transition
 		letter-spacing: var(--letter_spacing_026);
 	}
 }
+
+@mixin ui-24-21-bold {
+	color: var(--gb_base_brown);
+	@include font(universalsans, sbold);
+	font-size: var(--gb_font_size_12);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_048);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_042);
+	}
+}
