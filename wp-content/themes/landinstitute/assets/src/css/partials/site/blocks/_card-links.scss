@@ -944,7 +944,7 @@ section:has(.text-featured-block) {
             border-top: 2px solid var(--gb_base_brown);
 
             .event-teaser-list-image {
-                flex: 400px 0 0;
+                flex: clamp(320px, calc(20rem + ((1vw - 9.92px) * 22.3464)), 400px) 0 0;
                 border-right: 2px solid var(--gb_base_brown);
                 display: flex;
 
