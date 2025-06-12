@@ -293,5 +293,9 @@
             grid-template-columns: 1fr;
             gap: 22px;
         }
+
+        @media(max-width: 640px) {
+            gap: 38px;
+        }
     }
 }

@@ -117,6 +117,18 @@
 .testimonial-traditional-slider {
     .swiper-horizontal {
         padding-right: clamp(120px, calc(7.5rem + ((1vw - 9.92px) * 16.7598)), 180px);
+
+        @media(max-width: 991px) {
+            padding-right: 40px;
+        }
+
+        @media(max-width: 767px) {
+            padding-right: 0;
+        }
+
+        @media(max-width: 640px) {
+            overflow: hidden;
+        }
     }
 
     .swiper-slide {
@@ -130,6 +142,7 @@
 
         @media(max-width: 640px) {
             padding-top: 44px;
+            padding-bottom: 20px;
         }
     }
 
@@ -142,10 +155,14 @@
     .slide-inner {
         display: flex;
         flex-wrap: wrap;
-        gap: 80px;
+        gap: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
         .col-left {
             flex: clamp(450px, calc(28.125rem + ((1vw - 7.68px) * 18.9003)), 560px) 0 0;
+
+            @media(max-width: 640px) {
+                flex: 100% 0 0;
+            }
         }
 
         .col-right {

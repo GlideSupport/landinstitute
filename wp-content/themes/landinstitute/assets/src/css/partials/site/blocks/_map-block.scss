@@ -195,6 +195,28 @@
             .swiper-slide-container {
                 .map-values {
                     bottom: 25px;
+
+                    @media(max-width: 991px) {
+                        margin-top: 14px;
+                        bottom: 0;
+                        gap: 24px;
+                    }
+
+                    .map-values-col {
+                        @media(max-width: 991px) {
+                            margin-bottom: 0;
+                        }
+
+                        .block-title {
+                            font-size: var(--gb_font_size_2);
+                        }
+
+                        .map-content {
+                            @media(max-width: 640px) {
+                                font-size: 15px;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -210,7 +232,16 @@
                 }
             }
         }
+
+        .map-image {
+            @media(max-width: 991px) {
+                order: 1;
+                margin-top: 31px;
+                margin-bottom: 0;
+            }
+        }
     }
+
 
     &.has-border-bottom {
         .map-bottom-cta {

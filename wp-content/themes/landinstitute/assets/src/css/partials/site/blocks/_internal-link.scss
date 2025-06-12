@@ -13,6 +13,17 @@
             grid-template-columns: 1fr;
             gap: 22px;
         }
+
+        .col-right {
+
+            .card-list {
+                .card-item {
+                    @media(max-width: 640px) {
+                        padding: 28px 0;
+                    }
+                }
+            }
+        }
     }
 
     &.with-parallax-image {
