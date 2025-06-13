@@ -192,6 +192,13 @@
                         "operator": "==",
                         "value": "simple"
                     }
+                ],
+                [
+                    {
+                        "field": "field_68384cd7e4aaf",
+                        "operator": "==",
+                        "value": "links"
+                    }
                 ]
             ],
             "wrapper": {
@@ -356,5 +363,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749475340
+    "modified": 1749796746
 }

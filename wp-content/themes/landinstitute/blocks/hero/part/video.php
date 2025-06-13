@@ -2,6 +2,7 @@
 // Block Fields
 $li_hero_video = $bst_block_fields['li_hero_video'] ?? null;
 $bg_image = $li_hero_video['bg_image'] ?? null;
+$button = $li_hero_video['button'] ?? null;
 $short_video_poster = $li_hero_video['short_video_poster'] ?? null;
 $short_video = $li_hero_video['short_video'] ?? null;
 $video_group = $li_hero_video['video_group'] ?? null;
@@ -48,7 +49,9 @@ switch ($video_type) {
             <div class="hero-alongside-block">
                 <div class="col-left bg-lime-green">
                     <div class="left-content">
-                        <?php echo $li_hero_headline_check ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
+                    <?php echo $li_hero_headline_check ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
+                    <?php echo ($li_hero_headline_check && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
+                    <?php echo !empty($button) ? '<div class="block-btn">' . BaseTheme::button($button, 'site-btn text-link') . '</div>' : ''; ?>
                     </div>
                 </div>
                 <div class="col-right">

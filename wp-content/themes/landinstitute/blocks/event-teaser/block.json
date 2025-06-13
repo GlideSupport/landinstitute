@@ -1,0 +1,33 @@
+{
+    "name": "acf/event-teaser",
+    "title": "Event Teaser",
+    "description": "A custom event-teaser block.",
+    "editorScript": [
+        "block-event-teaser"
+    ],
+    "script": [
+        "block-event-teaser"
+    ],
+    "category": "theme-blocks",
+    "icon": "slides",
+    "keywords": [
+        "event-teaser","event","teaser"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-event-teaser.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "preview-event-teaser.png"
+            }
+        }
+    },
+    "align": "full"
+}

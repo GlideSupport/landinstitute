@@ -160,6 +160,8 @@ class WP_Theme_Blocks {
 		// Register a block - Accordion with Image.
 		self::register_acf_block('accordion-with-image');
 		
+		// Register a block - Text List.
+		self::register_acf_block('text-list');
 
 		// [register_here].
 	}
