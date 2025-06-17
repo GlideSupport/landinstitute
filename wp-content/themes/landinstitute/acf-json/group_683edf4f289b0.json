@@ -212,6 +212,7 @@
                     "collapsed": "",
                     "button_label": "Add Row",
                     "rows_per_page": 20,
+                    "parent_repeater": "field_683ee6ba8cf08",
                     "sub_fields": [
                         {
                             "key": "field_683ee7028cf0b",
@@ -257,15 +258,14 @@
                             "append": "",
                             "parent_repeater": "field_683ee6e48cf0a"
                         }
-                    ],
-                    "parent_repeater": "field_683ee6ba8cf08"
+                    ]
                 }
             ]
         },
         {
             "key": "field_683edf4f35926",
             "label": "Border Options",
-            "name": "li_bp_border_options",
+            "name": "border_options",
             "aria-label": "",
             "type": "clone",
             "instructions": "",
@@ -303,5 +303,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1748953608
+    "modified": 1750164639
 }

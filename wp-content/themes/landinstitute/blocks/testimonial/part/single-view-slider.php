@@ -13,7 +13,7 @@ if ($li_t_choose_variation === 'single-view-slider' && !empty($li_t_selector_tes
     if ($testimonial_query->have_posts()) :
 		$total_testimonials = $testimonial_query->found_posts; ?>
         <div class="testimonial-single-view-slider">
-            <div class="single-view-slide swiper has-border-top">
+            <div class="single-view-slide swiper has-border-top <?php echo esc_attr($border_options); ?>">
                 <div class="swiper-wrapper">
                     <?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post(); ?>
                         <?php

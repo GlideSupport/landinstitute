@@ -1,5 +1,5 @@
 <?php if (!empty($li_t_repeater)) : ?>
-	<div class="timeline-block">
+	<div class="timeline-block <?php echo esc_attr($border_options); ?>">
 	<?php echo $li_t_kicker ? '<h2 class="heading-2 block-title mb-0">' . esc_html($li_t_kicker) . '</h2><div class="gl-s44"></div>' : ''; ?>
 		<div class="timeline-slides-block">
 			<div class="swiper-container timeline-slider">
