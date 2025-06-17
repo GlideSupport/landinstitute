@@ -221,6 +221,11 @@
                         "field": "field_6842d2feb72ca",
                         "operator": "!=",
                         "value": "material"
+                    },
+                    {
+                        "field": "field_6842d2feb72ca",
+                        "operator": "!=",
+                        "value": "text-only"
                     }
                 ]
             ],
@@ -477,5 +482,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749464766
+    "modified": 1750068816
 }

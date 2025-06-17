@@ -48,7 +48,7 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
 												$link_title  = $button['title'] ?? 'Learn More';
 												$link_target = $button['target'] ?? '_self';
 											?>
-												<?php echo !empty($button) ? '<div class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</div>' : ''; ?>
+												<?php echo !empty($button) ? '<a class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</a>' : ''; ?>
 												<?php echo !empty($button) ? '<div class="gl-s16"></div>' : ''; ?>
 											<?php endforeach; ?>
 										</div>

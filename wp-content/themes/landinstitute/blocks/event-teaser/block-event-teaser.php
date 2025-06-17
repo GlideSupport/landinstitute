@@ -113,6 +113,7 @@ if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 									Event Details
 								</div>
 							</div>
+							<div class="gl-s64"></div>
 						</div>
 					</a>
 				</div>
