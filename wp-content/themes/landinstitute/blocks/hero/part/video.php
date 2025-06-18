@@ -17,6 +17,8 @@ $youtube_id = $video_group['youtube_video_url'] ?? '';
 $vimeo_id = $video_group['vimeo_video_url'] ?? '';
 $uploaded_video = $video_group['video_file'] ?? '';
 
+$unique_id = uniqid('hero-video-');
+
 $modal_video_embed = '';
 switch ($video_type) {
     case 'youtube':
@@ -49,27 +51,27 @@ switch ($video_type) {
             <div class="hero-alongside-block">
                 <div class="col-left bg-lime-green">
                     <div class="left-content">
-                    <?php echo $li_hero_headline_check ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
-                    <?php echo ($li_hero_headline_check && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
-                    <?php echo !empty($button) ? '<div class="block-btn">' . BaseTheme::button($button, 'site-btn text-link') . '</div>' : ''; ?>
+                        <?php echo $li_hero_headline_check ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
+                        <?php echo ($li_hero_headline_check && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
+                        <?php echo !empty($button) ? '<div class="block-btn">' . BaseTheme::button($button, 'site-btn text-link') . '</div>' : ''; ?>
                     </div>
                 </div>
                 <div class="col-right">
-                <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+                    <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
                     <?php if ($short_video): ?>
-                    <div class="video-play-group">
-                        <div class="video-play">
-                            <video class="videos" playsinline muted preload="metadata" autoplay loop
-                                poster="<?php echo esc_url($short_video_poster); ?>" data-video-init>
-                                <source src="<?php echo esc_url($short_video); ?>" type="video/mp4">
-                            </video>
-                            <?php if ($modal_video_embed): ?>
-                                <div class="play-icon">
-                                    <a href="#hero-video" class="site-btn sm-btn arrow-plus" data-lity>Play Video</a>
-                                </div>
-                            <?php endif; ?>
+                        <div class="video-play-group">
+                            <div class="video-play">
+                                <video class="videos" playsinline muted preload="metadata" autoplay loop
+                                    poster="<?php echo esc_url($short_video_poster); ?>" data-video-init>
+                                    <source src="<?php echo esc_url($short_video); ?>" type="video/mp4">
+                                </video>
+                                <?php if ($modal_video_embed): ?>
+                                    <div class="play-icon">
+                                        <a href="#<?php echo esc_attr($unique_id); ?>" class="site-btn sm-btn arrow-plus" data-lity>Play Video</a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -77,8 +79,8 @@ switch ($video_type) {
     </div>
 </section>
 
-<?php if ($modal_video_embed && $short_video ): ?>
-    <div id="hero-video" class="lity-hide popup-block">
+<?php if ($modal_video_embed && $short_video): ?>
+    <div id="<?php echo esc_attr($unique_id); ?>" class="lity-hide popup-block">
         <div class="popup-video popup-block-design">
             <div class="video-play">
                 <?php echo $modal_video_embed; ?>
