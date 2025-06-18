@@ -152,6 +152,32 @@
             "delay": 0
         },
         {
+            "key": "field_6852c816bca3e",
+            "label": "image_upload_instructions",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_682c1c736c213",
+                        "operator": "!=",
+                        "value": "w-h-image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 55px by 73px (Regular Display) - Maximum 110px by 146px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_682c1c736c71e",
             "label": "Repeater",
             "name": "li_ill_repeater",
@@ -223,7 +249,7 @@
                     "name": "image",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 55px by 73px (Regular Display) - Maximum 110px by 146px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": [
                         [
@@ -354,5 +380,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749452110
+    "modified": 1750255788
 }
