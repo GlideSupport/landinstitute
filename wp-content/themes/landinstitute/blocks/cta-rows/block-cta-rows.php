@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block Name: CTA Rows
  */
@@ -29,34 +30,35 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
 						$repeater_buttons = $li_cr_rep['repeater_buttons'] ?? '';
 						$image  = $li_cr_rep['image'] ?? '';
 					?>
-						<div class="cta-rows-list-col">
-							<div href="" class="cta-rows-list-card">
-								<?php echo !empty($image) ? '<div class="cta-rows-list-image">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
-								<div class="cta-rows-list-content">
-									<?php echo (!empty($title) || !empty($time) || !empty($text) || !empty($repeater_buttons)) ? '<div class="gl-s80"></div>' : ''; ?>
-									<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
-									<?php echo (!empty($title) && !empty($time)) ? '<div class="gl-s4"></div>' : ''; ?>
-									<?php echo !empty($time) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($time) . '</div>' : ''; ?>
-									<?php echo (!empty($title) || !empty($time)) && !empty($text) ? '<div class="gl-s16"></div>' : ''; ?>
-									<?php echo !empty($text) ? '<div class="block-content body-20-18-regular">' . esc_html($text) . '</div>' : ''; ?>
-									<?php echo (!empty($text) && !empty($repeater_buttons)) ? '<div class="gl-s16"></div>' : ''; ?>
-									<?php if (!empty($repeater_buttons)) : ?>
-										<div class="block-btns">
-											<?php foreach ($repeater_buttons as $rep) :
-												$button      = $rep['button'] ?? '';
-												$link_url    = $button['url'] ?? '#';
-												$link_title  = $button['title'] ?? 'Learn More';
-												$link_target = $button['target'] ?? '_self';
-											?>
-												<?php echo !empty($button) ? '<a class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</a>' : ''; ?>
-												<?php echo !empty($button) ? '<div class="gl-s16"></div>' : ''; ?>
-											<?php endforeach; ?>
-										</div>
-									<?php endif; ?>
-									<?php echo (!empty($title) || !empty($text) || !empty($repeater_buttons)) ? '<div class="gl-s80"></div>' : ''; ?>
+						<?php if($title || $text || $image): ?>
+							<div class="cta-rows-list-col">
+								<div href="" class="cta-rows-list-card">
+									<?php echo !empty($image) ? '<div class="cta-rows-list-image">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
+									<div class="cta-rows-list-content">
+										<?php echo (!empty($title) || !empty($time) || !empty($text) || !empty($repeater_buttons)) ? '<div class="gl-s80"></div>' : ''; ?>
+										<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
+										<?php echo (!empty($title) && !empty($time)) ? '<div class="gl-s4"></div>' : ''; ?>
+										<?php echo !empty($time) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($time) . '</div>' : ''; ?>
+										<?php echo (!empty($title) || !empty($time)) && !empty($text) ? '<div class="gl-s16"></div>' : ''; ?>
+										<?php echo !empty($text) ? '<div class="block-content body-20-18-regular">' . esc_html($text) . '</div>' : ''; ?>
+										<?php echo (!empty($text) && !empty($repeater_buttons)) ? '<div class="gl-s16"></div>' : ''; ?>
+										<?php if (!empty($repeater_buttons)) : ?>
+											<div class="block-btns">
+												<?php foreach ($repeater_buttons as $rep) :
+													$button = $rep['button'] ?? '';
+													if (!empty($button)) :
+														echo BaseTheme::button($button, 'site-btn text-link');
+														echo '<div class="gl-s16"></div>';
+													endif;
+												endforeach; ?>
+											</div>
+										<?php endif; ?>
+										<?php echo (!empty($title) || !empty($text) || !empty($repeater_buttons)) ? '<div class="gl-s80"></div>' : ''; ?>
+									</div>
 								</div>
-							</div>
-						</div>
+							</div>	
+						<?php endif; ?>
+						
 					<?php endforeach; ?>
 				<?php endif; ?>
 			</div>

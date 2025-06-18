@@ -1,3 +1,8 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 /**
  * Sticky Header
  * Adds a class to header on scroll
@@ -16,14 +21,13 @@ document.addEventListener("scroll", () => {
 });
 
 //blog detail and category detail page popup code start
-document.addEventListener( 'click', function( event ) {
-	const lightboxElement = event.target.closest( '[data-lightbox]' );
-	if ( lightboxElement ) {
-		lity( event );
+document.addEventListener("click", function (event) {
+	const lightboxElement = event.target.closest("[data-lightbox]");
+	if (lightboxElement) {
+		lity(event);
 	}
-} );
+});
 //end
-
 
 // Accessibility: Add aria-label to links that open in a new tab
 document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -120,8 +124,6 @@ document.addEventListener("click", (event) => {
 	}
 });
 
-
-
 // Tab DropDown
 document.addEventListener("DOMContentLoaded", () => {
 	const dropdowns = document.querySelectorAll(".tab-dropdown");
@@ -150,7 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			const menu = clickedDropdown.querySelector(".dropdown-menu");
 
 			if (toggle && menu) {
-				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				const isExpanded =
+					toggle.getAttribute("aria-expanded") === "true";
 				toggle.setAttribute("aria-expanded", String(!isExpanded));
 				clickedDropdown.classList.toggle("open", !isExpanded);
 
@@ -163,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 });
-
 
 // Sticky Social Start
 document.addEventListener("DOMContentLoaded", () => {
@@ -189,65 +191,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Counter js start
 document.addEventListener("DOMContentLoaded", function () {
-    const counters = document.querySelectorAll(".counter-number .count");
-    const speed = 3000; // Duration for all counters to finish counting (in milliseconds)
- 
-    const getMaxTarget = () => {
-        return Math.max(
-            ...Array.from(counters).map(
-                (counter) =>
-                    +counter
-                        .closest(".counter-number")
-                        .getAttribute("data-target"),
-            ),
-        );
-    };
- 
-    const maxTarget = getMaxTarget(); // Find the highest target value
- 
-    const countUp = (counter) => {
-        const target = +counter
-            .closest(".counter-number")
-            .getAttribute("data-target");
-        const startTime = performance.now();
- 
-        const updateCount = (currentTime) => {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / speed, 1); // Progress from 0 to 1 over the speed duration
-            const currentCount = Math.ceil(progress * target);
- 
-            counter.innerText = currentCount.toLocaleString();
- 
-            if (progress < 1) {
-                requestAnimationFrame(updateCount);
-            } else {
-                counter.innerText = target.toLocaleString(); // Ensure the final value is the target
-            }
-        };
- 
-        requestAnimationFrame(updateCount);
-    };
- 
-    const options = {
-        threshold: 0.1,
-    };
- 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const counter = entry.target.querySelector(".count");
-                countUp(counter);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
- 
-    counters.forEach((counter) => {
-        observer.observe(counter.closest(".counter-number"));
-    });
+	const counters = document.querySelectorAll(".counter-number .count");
+	const speed = 3000; // Duration for all counters to finish counting (in milliseconds)
+
+	const getMaxTarget = () => {
+		return Math.max(
+			...Array.from(counters).map(
+				(counter) =>
+					+counter
+						.closest(".counter-number")
+						.getAttribute("data-target"),
+			),
+		);
+	};
+
+	const maxTarget = getMaxTarget(); // Find the highest target value
+
+	const countUp = (counter) => {
+		const target = +counter
+			.closest(".counter-number")
+			.getAttribute("data-target");
+		const startTime = performance.now();
+
+		const updateCount = (currentTime) => {
+			const elapsedTime = currentTime - startTime;
+			const progress = Math.min(elapsedTime / speed, 1); // Progress from 0 to 1 over the speed duration
+			const currentCount = Math.ceil(progress * target);
+
+			counter.innerText = currentCount.toLocaleString();
+
+			if (progress < 1) {
+				requestAnimationFrame(updateCount);
+			} else {
+				counter.innerText = target.toLocaleString(); // Ensure the final value is the target
+			}
+		};
+
+		requestAnimationFrame(updateCount);
+	};
+
+	const options = {
+		threshold: 0.1,
+	};
+
+	const observer = new IntersectionObserver((entries, observer) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				const counter = entry.target.querySelector(".count");
+				countUp(counter);
+				observer.unobserve(entry.target);
+			}
+		});
+	}, options);
+
+	counters.forEach((counter) => {
+		observer.observe(counter.closest(".counter-number"));
+	});
 });
 //counter js end
-
 
 // Header Mega menu append js start
 const HeadermenuAppend = [
@@ -257,7 +258,9 @@ const HeadermenuAppend = [
 
 HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 	const dropdown = document.querySelector(dropdownId);
-	const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
+	const menuItem = document.querySelector(
+		`.header-nav ul.menu li.${menuClass}`,
+	);
 
 	if (dropdown && menuItem) {
 		menuItem.appendChild(dropdown);
@@ -268,7 +271,7 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			dropdown.style.opacity = "1";
 			dropdown.style.overflow = "visible";
 			dropdown.style.visibility = "visible";
-			document.body.classList.add('megamenu-hover-active');
+			document.body.classList.add("megamenu-hover-active");
 		});
 
 		// Hide when leaving dropdown or menu item
@@ -277,7 +280,7 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			dropdown.style.opacity = "0";
 			dropdown.style.overflow = "hidden";
 			dropdown.style.visibility = "hidden";
-			document.body.classList.remove('megamenu-hover-active');
+			document.body.classList.remove("megamenu-hover-active");
 		};
 
 		menuItem.addEventListener("mouseleave", hideDropdown);
@@ -291,96 +294,92 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 });
 // Header Mega menu append js End
 
-
-document.addEventListener('DOMContentLoaded', function () {
-
+document.addEventListener("DOMContentLoaded", function () {
 	// Search button click search popup js start
-		const searchBtn = document.querySelector('.search-btn');
-		const searchPopup = document.querySelector('.search-drop');
-	  
-		if (searchBtn && searchPopup) {
-		  searchBtn.addEventListener('click', function (e) {
+	const searchBtn = document.querySelector(".search-btn");
+	const searchPopup = document.querySelector(".search-drop");
+
+	if (searchBtn && searchPopup) {
+		searchBtn.addEventListener("click", function (e) {
 			e.preventDefault(); // prevent default anchor link behavior
-			searchPopup.classList.toggle('active-search');
-		  });
-		}
+			searchPopup.classList.toggle("active-search");
+		});
+	}
 
 	// Search button click search popup js End
 
 	//hover add class in menu js start
 	/**
-	 * Adds hover behavior on items: 
-	 * When hovering one item, add class to all others; 
+	 * Adds hover behavior on items:
+	 * When hovering one item, add class to all others;
 	 * remove class on mouse leave.
-	 * 
+	 *
 	 * @param {string} selector - CSS selector for items
 	 * @param {string} hoverClass - class to toggle on other items
 	 */
 	function addHoverEffect(selector, hoverClass) {
-	  const items = document.querySelectorAll(selector);
-  
-	  items.forEach(item => {
-		item.addEventListener('mouseenter', () => {
-		  items.forEach(otherItem => {
-			if (otherItem !== item) {
-			  otherItem.classList.add(hoverClass);
-			}
-		  });
-		});
-  
-		item.addEventListener('mouseleave', () => {
-		  items.forEach(otherItem => {
-			otherItem.classList.remove(hoverClass);
-		  });
-		});
-	  });
-	}
-  
-	addHoverEffect('.header-nav .menu > li', 'hover-active');
-	addHoverEffect('.mega-two .icon-content-col', 'active-hover');
-	addHoverEffect('.mega-bottom-menu ul#menu-issue > li', 'hover-active');
-	addHoverEffect('.social-icons a', 'active-hover');
-	
-	//hover add class in menu js end
+		const items = document.querySelectorAll(selector);
 
-	// Tab Content js start
-		const tabContainers = document.querySelectorAll('.tabbed-block-content');
-		if (!tabContainers.length) return; // Exit early if no tab blocks on the page
-		tabContainers.forEach(container => {
-			const tabs = container.querySelectorAll('ul.tabs li');
-			const contents = container.querySelectorAll('.tab-content');
-
-			// Skip if either tabs or contents are missing in this container
-			if (!tabs.length || !contents.length) return;
-
-			tabs.forEach(tab => {
-				tab.addEventListener('click', function () {
-					const tabId = this.getAttribute('data-tab');
-
-					tabs.forEach(t => t.classList.remove('current'));
-					contents.forEach(content => {
-						content.classList.remove('current', 'fade-in');
-						content.style.opacity = 0;
-					});
-
-					this.classList.add('current');
-
-					const activeContent = container.querySelector('#' + tabId);
-					if (activeContent) {
-						activeContent.classList.add('current');
-
-						// Trigger reflow
-						void activeContent.offsetWidth;
-
-						activeContent.classList.add('fade-in');
-						activeContent.style.opacity = 1;
+		items.forEach((item) => {
+			item.addEventListener("mouseenter", () => {
+				items.forEach((otherItem) => {
+					if (otherItem !== item) {
+						otherItem.classList.add(hoverClass);
 					}
 				});
 			});
+
+			item.addEventListener("mouseleave", () => {
+				items.forEach((otherItem) => {
+					otherItem.classList.remove(hoverClass);
+				});
+			});
 		});
+	}
+
+	addHoverEffect(".header-nav .menu > li", "hover-active");
+	addHoverEffect(".mega-two .icon-content-col", "active-hover");
+	addHoverEffect(".mega-bottom-menu ul#menu-issue > li", "hover-active");
+	addHoverEffect(".social-icons a", "active-hover");
+
+	//hover add class in menu js end
+
+	// Tab Content js start
+	const tabContainers = document.querySelectorAll(".tabbed-block-content");
+	if (!tabContainers.length) return; // Exit early if no tab blocks on the page
+	tabContainers.forEach((container) => {
+		const tabs = container.querySelectorAll("ul.tabs li");
+		const contents = container.querySelectorAll(".tab-content");
+
+		// Skip if either tabs or contents are missing in this container
+		if (!tabs.length || !contents.length) return;
+
+		tabs.forEach((tab) => {
+			tab.addEventListener("click", function () {
+				const tabId = this.getAttribute("data-tab");
+
+				tabs.forEach((t) => t.classList.remove("current"));
+				contents.forEach((content) => {
+					content.classList.remove("current", "fade-in");
+					content.style.opacity = 0;
+				});
+
+				this.classList.add("current");
+
+				const activeContent = container.querySelector("#" + tabId);
+				if (activeContent) {
+					activeContent.classList.add("current");
+
+					// Trigger reflow
+					void activeContent.offsetWidth;
+
+					activeContent.classList.add("fade-in");
+					activeContent.style.opacity = 1;
+				}
+			});
+		});
+	});
 	// Tab Content js end
-
-
 });
 function initDropdownMenus() {
 	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
@@ -397,8 +396,10 @@ function initDropdownMenus() {
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+			const scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft =
+				window.pageXOffset || document.documentElement.scrollLeft;
 
 			dropdownMenu.style.position = "absolute";
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
@@ -417,7 +418,8 @@ function initDropdownMenus() {
 		toggleButton.addEventListener("click", (event) => {
 			event.stopPropagation();
 
-			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+			const isExpanded =
+				toggleButton.getAttribute("aria-expanded") === "true";
 			toggleButton.setAttribute("aria-expanded", !isExpanded);
 
 			if (!isExpanded) {
@@ -457,8 +459,8 @@ function initDropdownMenus() {
 document.addEventListener("DOMContentLoaded", initDropdownMenus);
 
 // For ACF block preview / dynamic load
-if (typeof window.acf !== 'undefined') {
-	window.acf.addAction('render_block_preview', initDropdownMenus);
+if (typeof window.acf !== "undefined") {
+	window.acf.addAction("render_block_preview", initDropdownMenus);
 }
 
 //dropdown menu js start
@@ -470,13 +472,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!toggleButton) return;
 
 		const menuId = toggleButton.getAttribute("aria-controls");
-		const dropdownMenu = document.querySelector(`ul#${menuId}.dropdown-menu`);
+		const dropdownMenu = document.querySelector(
+			`ul#${menuId}.dropdown-menu`,
+		);
 		if (!dropdownMenu) return;
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+			const scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft =
+				window.pageXOffset || document.documentElement.scrollLeft;
 
 			dropdownMenu.style.position = "absolute";
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
@@ -494,7 +500,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		toggleButton.addEventListener("click", (event) => {
 			event.stopPropagation();
 
-			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+			const isExpanded =
+				toggleButton.getAttribute("aria-expanded") === "true";
 
 			// Close all open dropdowns first
 			document.querySelectorAll(".dropdown-menu.open").forEach((menu) => {
@@ -525,7 +532,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 
 		document.addEventListener("click", (e) => {
-			if (!tabDropdown.contains(e.target) && !dropdownMenu.contains(e.target)) {
+			if (
+				!tabDropdown.contains(e.target) &&
+				!dropdownMenu.contains(e.target)
+			) {
 				closeDropdown();
 			}
 		});
@@ -541,100 +551,291 @@ document.addEventListener("DOMContentLoaded", () => {
 //dropdown menu js end
 
 //Scrolling Text block js start
-document.addEventListener('DOMContentLoaded', function () {
-    // Find all sticky elements and their related components
-    const stickyElements = document.querySelectorAll('.sticky-top-touch');
-    
-    if (!stickyElements.length) return;
+document.addEventListener("DOMContentLoaded", function () {
+	// Find all sticky elements and their related components
+	const stickyElements = document.querySelectorAll(".sticky-top-touch");
 
-    stickyElements.forEach(function(subNav) {
-        const headerSection = document.querySelector('.header-section');
-        const parentSection = subNav.closest('.sticky-parent')?.parentElement?.parentElement;
-        const stickyParent = subNav.closest('.sticky-parent');
+	if (!stickyElements.length) return;
 
-        if (!headerSection || !parentSection || !stickyParent) return;
+	stickyElements.forEach(function (subNav) {
+		const headerSection = document.querySelector(".header-section");
+		const parentSection =
+			subNav.closest(".sticky-parent")?.parentElement?.parentElement;
+		const stickyParent = subNav.closest(".sticky-parent");
 
-        let headerHeight = headerSection.offsetHeight;
+		if (!headerSection || !parentSection || !stickyParent) return;
 
-        function updateStickyWidth() {
-            const stickyParentWidth = stickyParent.offsetWidth;
-            subNav.style.width = stickyParentWidth + 'px';
-        }
+		let headerHeight = headerSection.offsetHeight;
 
-        function onScroll() {
-            if (window.innerWidth <= 991) {
-                // Reset styles on smaller screens
-                subNav.classList.remove('scrolled');
-                subNav.style.position = '';
-                subNav.style.top = '';
-                subNav.style.bottom = '';
-                subNav.style.width = '';
-                return;
-            }
+		function updateStickyWidth() {
+			const stickyParentWidth = stickyParent.offsetWidth;
+			subNav.style.width = stickyParentWidth + "px";
+		}
 
-            const scrollY = window.scrollY || window.pageYOffset;
+		function onScroll() {
+			if (window.innerWidth <= 991) {
+				// Reset styles on smaller screens
+				subNav.classList.remove("scrolled");
+				subNav.style.position = "";
+				subNav.style.top = "";
+				subNav.style.bottom = "";
+				subNav.style.width = "";
+				return;
+			}
 
-            const parentTop = parentSection.offsetTop;
-            const parentHeight = parentSection.offsetHeight;
-            const parentBottom = parentTop + parentHeight;
+			const scrollY = window.scrollY || window.pageYOffset;
 
-            const stickyHeight = subNav.offsetHeight;
+			const parentTop = parentSection.offsetTop;
+			const parentHeight = parentSection.offsetHeight;
+			const parentBottom = parentTop + parentHeight;
 
-            if (scrollY + headerHeight >= parentTop && scrollY + headerHeight < parentBottom - stickyHeight) {
-                subNav.classList.add('scrolled');
-                subNav.style.position = 'fixed';
-                subNav.style.top = headerHeight + 'px';
-                updateStickyWidth();
-                subNav.style.bottom = '';
-            } else if (scrollY + headerHeight >= parentBottom - stickyHeight) {
-                subNav.classList.remove('scrolled');
-                subNav.style.position = 'absolute';
-                subNav.style.top = '';
-                subNav.style.bottom = '0';
-                updateStickyWidth();
-            } else {
-                subNav.classList.remove('scrolled');
-                subNav.style.position = '';
-                subNav.style.top = '';
-                subNav.style.bottom = '';
-                subNav.style.width = '';
-            }
-        }
+			const stickyHeight = subNav.offsetHeight;
 
-        window.addEventListener('scroll', onScroll);
+			if (
+				scrollY + headerHeight >= parentTop &&
+				scrollY + headerHeight < parentBottom - stickyHeight
+			) {
+				subNav.classList.add("scrolled");
+				subNav.style.position = "fixed";
+				subNav.style.top = headerHeight + "px";
+				updateStickyWidth();
+				subNav.style.bottom = "";
+			} else if (scrollY + headerHeight >= parentBottom - stickyHeight) {
+				subNav.classList.remove("scrolled");
+				subNav.style.position = "absolute";
+				subNav.style.top = "";
+				subNav.style.bottom = "0";
+				updateStickyWidth();
+			} else {
+				subNav.classList.remove("scrolled");
+				subNav.style.position = "";
+				subNav.style.top = "";
+				subNav.style.bottom = "";
+				subNav.style.width = "";
+			}
+		}
 
-        // Only add one resize listener that handles all instances
-        if (!window.stickyResizeHandlerAdded) {
-            window.addEventListener('resize', function() {
-                headerHeight = headerSection.offsetHeight;
-                
-                stickyElements.forEach(function(nav) {
-                    if (window.innerWidth > 991 && (nav.style.position === 'fixed' || nav.style.position === 'absolute')) {
-                        const navStickyParent = nav.closest('.sticky-parent');
-                        if (navStickyParent) {
-                            nav.style.width = navStickyParent.offsetWidth + 'px';
-                        }
-                    } else {
-                        nav.style.width = '';
-                        nav.style.position = '';
-                        nav.style.top = '';
-                        nav.style.bottom = '';
-                        nav.classList.remove('scrolled');
-                    }
-                    
-                    // Trigger the scroll handler for each element
-                    const scrollHandler = nav.onScrollHandler;
-                    if (scrollHandler) scrollHandler();
-                });
-            });
-            
-            window.stickyResizeHandlerAdded = true;
-        }
-        
-        // Store the onScroll function reference on the element
-        subNav.onScrollHandler = onScroll;
+		window.addEventListener("scroll", onScroll);
 
-        onScroll();
-    });
+		// Only add one resize listener that handles all instances
+		if (!window.stickyResizeHandlerAdded) {
+			window.addEventListener("resize", function () {
+				headerHeight = headerSection.offsetHeight;
+
+				stickyElements.forEach(function (nav) {
+					if (
+						window.innerWidth > 991 &&
+						(nav.style.position === "fixed" ||
+							nav.style.position === "absolute")
+					) {
+						const navStickyParent = nav.closest(".sticky-parent");
+						if (navStickyParent) {
+							nav.style.width =
+								navStickyParent.offsetWidth + "px";
+						}
+					} else {
+						nav.style.width = "";
+						nav.style.position = "";
+						nav.style.top = "";
+						nav.style.bottom = "";
+						nav.classList.remove("scrolled");
+					}
+
+					// Trigger the scroll handler for each element
+					const scrollHandler = nav.onScrollHandler;
+					if (scrollHandler) scrollHandler();
+				});
+			});
+
+			window.stickyResizeHandlerAdded = true;
+		}
+
+		// Store the onScroll function reference on the element
+		subNav.onScrollHandler = onScroll;
+
+		onScroll();
+	});
 });
 //Scrolling Text block js end
+
+//Image Gallery js start
+
+const galleryGrid = document.querySelector(".gallery-grid");
+const galleryBlock = document.querySelector(".gallery-block");
+const customCursor = document.querySelector(".custom-cursor");
+
+let isDragging = false;
+let startX = 0,
+	startY = 0;
+let targetX = 0,
+	targetY = 0;
+let hasDragged = false;
+let tween = null;
+
+let maxX = 0;
+let maxY = 0;
+
+function calculateBounds() {
+	const isMobile = window.innerWidth <= 767;
+
+	if (isMobile) {
+		maxX = galleryBlock.clientWidth / 0.6;
+		maxY = galleryBlock.clientHeight / 1.5;
+	} else {
+		maxX = galleryBlock.clientWidth / 2;
+		maxY = galleryBlock.clientHeight / 1.5;
+	}
+}
+
+calculateBounds();
+
+window.addEventListener("resize", () => {
+	calculateBounds();
+	targetX = Math.max(-maxX, Math.min(targetX, maxX));
+	targetY = Math.max(-maxY, Math.min(targetY, maxY));
+	updateTransform();
+});
+
+document.querySelectorAll(".gallery-grid img").forEach((img) => {
+	img.setAttribute("draggable", "false");
+	img.style.userSelect = "none";
+	img.style.pointerEvents = "none";
+});
+
+function updateTransform() {
+	if (tween) {
+		tween.kill();
+	}
+	tween = gsap.to(galleryGrid, {
+		x: targetX,
+		y: targetY,
+		duration: 0.1,
+		ease: "power1.out",
+	});
+}
+
+function getEventPosition(e) {
+	if (e.type.startsWith("touch")) {
+		const touch = e.touches[0] || e.changedTouches[0];
+		return { x: touch.clientX, y: touch.clientY };
+	}
+	return { x: e.clientX, y: e.clientY };
+}
+
+function startDrag(e) {
+	isDragging = true;
+	hasDragged = false;
+	const pos = getEventPosition(e);
+	startX = pos.x;
+	startY = pos.y;
+	galleryBlock.style.cursor = "grabbing";
+	document.body.style.userSelect = "none";
+	customCursor.classList.add("dragging");
+}
+
+function moveDrag(e) {
+	if (!isDragging) {
+		return;
+	}
+
+	const pos = getEventPosition(e);
+	const dx = pos.x - startX;
+	const dy = pos.y - startY;
+
+	if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+		hasDragged = true;
+	}
+
+	targetX += dx;
+	targetY += dy;
+
+	targetX = Math.max(-maxX, Math.min(targetX, maxX));
+	targetY = Math.max(-maxY, Math.min(targetY, maxY));
+
+	updateTransform();
+
+	startX = pos.x;
+	startY = pos.y;
+
+	// Move custom cursor on drag
+	updateCursorPosition(e);
+}
+
+function endDrag() {
+	if (!isDragging) {
+		return;
+	}
+	isDragging = false;
+	galleryBlock.style.cursor = "grab";
+	document.body.style.userSelect = "";
+	customCursor.classList.remove("dragging");
+}
+
+// Mouse events
+galleryBlock.addEventListener("mousedown", startDrag);
+window.addEventListener("mousemove", moveDrag);
+window.addEventListener("mouseup", endDrag);
+window.addEventListener("mouseleave", endDrag);
+
+// Touch events
+galleryBlock.addEventListener("touchstart", startDrag, { passive: false });
+window.addEventListener("touchmove", moveDrag, { passive: false });
+window.addEventListener("touchend", endDrag);
+window.addEventListener("touchcancel", endDrag);
+
+// Reset on click/tap if not dragged
+galleryBlock.addEventListener("click", () => {
+	if (hasDragged) {
+		hasDragged = false;
+		return;
+	}
+	targetX = 0;
+	targetY = 0;
+	updateTransform();
+});
+
+// Initial cursor style
+galleryBlock.style.cursor = "grab";
+
+// ----------------------------
+// CUSTOM CURSOR HANDLING
+// ----------------------------
+
+// Follow mouse or touch
+function updateCursorPosition(e) {
+	const pos = getEventPosition(e);
+	customCursor.style.left = `${pos.x}px`;
+	customCursor.style.top = `${pos.y}px`;
+}
+
+// Show cursor
+function showCursor() {
+	customCursor.style.opacity = "1";
+}
+
+// Hide cursor
+function hideCursor() {
+	customCursor.style.opacity = "0";
+	customCursor.classList.remove("dragging");
+}
+
+// Mouse movement for cursor
+galleryBlock.addEventListener("mousemove", updateCursorPosition);
+galleryBlock.addEventListener("mouseenter", showCursor);
+galleryBlock.addEventListener("mouseleave", hideCursor);
+
+// Touch movement for cursor
+galleryBlock.addEventListener(
+	"touchstart",
+	(e) => {
+		updateCursorPosition(e);
+		showCursor();
+	},
+	{ passive: false },
+);
+
+galleryBlock.addEventListener("touchmove", updateCursorPosition, {
+	passive: false,
+});
+galleryBlock.addEventListener("touchend", hideCursor);
+galleryBlock.addEventListener("touchcancel", hideCursor);

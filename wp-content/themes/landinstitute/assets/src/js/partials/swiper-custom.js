@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Initialize Swiper
 		const swiper = new Swiper(`.${uniqueClass}`, {
-			loop: true,
+			loop: false,
 			effect: "fade",
 			fadeEffect: { crossFade: true },
 			slidesPerView: 1,
@@ -368,7 +368,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Initialize Swiper
 		new Swiper(slider, {
-			loop: slideElements.length > 1,
+			loop: false,
 			slidesPerView: 1,
 			spaceBetween: 10,
 			navigation: {
