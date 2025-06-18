@@ -825,10 +825,17 @@
                 margin-left: -24px;
                 margin-right: -24px;
                 width: 100vw;
+                border-right: 0;
+                border-bottom: 2px solid var(--gb_base_brown);
             }
 
             .alongside-image {
                 display: flex;
+                height: 100%;
+
+                @media(max-width: 991px) {
+                    height: clamp(202px, calc(12.625rem + ((1vw - 3.75px) * 24.026)), 350px);
+                }
 
                 img {
                     height: 100%;

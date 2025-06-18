@@ -1161,6 +1161,10 @@ section:has(.text-featured-block) {
         .filter-content-card-item {
             .filter-content-card-link {
                 min-height: clamp(342px, calc(21.375rem + ((1vw - 7.68px) * 13.4021)), 420px);
+
+                @media(max-width: 640px) {
+                    min-height: inherit;
+                }
             }
         }
     }
