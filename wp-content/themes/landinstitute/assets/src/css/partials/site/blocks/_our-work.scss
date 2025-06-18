@@ -37,6 +37,10 @@
         padding-bottom: 98px;
     }
 
+    @media(max-width: 319px) {
+        padding-bottom: 0;
+    }
+
     .slider-btn {
         margin-top: -30px;
 

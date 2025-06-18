@@ -943,10 +943,21 @@ section:has(.text-featured-block) {
             min-height: 344px;
             border-top: 2px solid var(--gb_base_brown);
 
+            &:hover {
+                background-color: var(--gb_primary_butter_yellow);
+            }
+
             .event-teaser-list-image {
-                flex: clamp(320px, calc(20rem + ((1vw - 9.92px) * 22.3464)), 400px) 0 0;
+                flex: clamp(250px, calc(15.625rem + ((1vw - 7.68px) * 25.7732)), 400px) 0 0;
                 border-right: 2px solid var(--gb_base_brown);
                 display: flex;
+
+                @media(max-width: 767px) {
+                    flex: 100% 0 0;
+                    height: clamp(202px, calc(12.625rem + ((1vw - 3.76px) * 25.0639)), 300px);
+                    border-bottom: 2px solid var(--gb_base_brown);
+                    border-right: 0;
+                }
 
                 img {
                     width: 100%;
@@ -958,6 +969,10 @@ section:has(.text-featured-block) {
             .event-teaser-list-content {
                 flex: 1 0 0;
                 padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+                @media(max-width: 767px) {
+                    flex: 100% 0 0;
+                }
             }
 
             &:hover {
@@ -995,6 +1010,10 @@ section:has(.text-featured-block) {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
+    @media(max-width: 991px) {
+        grid-template-columns: 1fr;
+    }
+
     .cta-grid-traditional-col {
         .cta-grid-traditional-card {
             border-right: 2px solid var(--gb_base_brown);
@@ -1005,6 +1024,10 @@ section:has(.text-featured-block) {
             text-decoration: none;
             margin-bottom: -2px;
             padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+            @media(max-width: 991px) {
+                border-right: 0;
+            }
 
             &:hover {
                 background-color: var(--gb_primary_lemon_yellow);
@@ -1029,10 +1052,18 @@ section:has(.text-featured-block) {
             }
         }
 
+        &:first-child {
+            .cta-grid-traditional-card {
+                @media(max-width: 991px) {
+                    border-top: 2px solid var(--gb_base_brown);
+                }
+            }
+        }
+
         &:first-child,
         &:nth-child(2) {
             .cta-grid-traditional-card {
-                @media(min-width: 991px) {
+                @media(min-width: 992px) {
                     border-top: 2px solid var(--gb_base_brown);
                 }
             }
@@ -1040,7 +1071,7 @@ section:has(.text-featured-block) {
 
         &:nth-child(2n) {
             .cta-grid-traditional-card {
-                @media(min-width: 991px) {
+                @media(min-width: 992px) {
                     border-right: 0px;
                 }
             }
