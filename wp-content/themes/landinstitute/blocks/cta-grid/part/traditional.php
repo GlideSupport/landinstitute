@@ -15,7 +15,7 @@
 					$link_url = $link['url'] ?? '';
 					$link_title = $link['title'] ?? 'Learn More';
 					$link_target = $link['target'] ?? '_self';
-					if (!empty($title) || !empty($text) || !empty($link)): ?>
+					if (!empty($title) || !empty($text)): ?>
 					<div class="cta-grid-traditional-col">						
 						<?php echo (!empty($link)) ? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="cta-grid-traditional-card">' : '<div class="cta-grid-traditional-card">'; ?>
 							<?php echo (!empty($title) || !empty($text) || !empty($link)) ? '<div class="gl-s96"></div>' : ''; ?>

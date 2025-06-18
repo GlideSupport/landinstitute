@@ -15,7 +15,7 @@
 					$text = $li_ill_rep['text'];
 					$link = $li_ill_rep['link'];
 					$link_url = $link['url'] ?? '';
-					if (!empty($title) || !empty($text) || !empty($link)) { ?>
+					if (!empty($title) || !empty($text)) { ?>
 							<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title with-arrow hover-img">' : '<div class="card-item link-with-title with-arrow hover-img">'; ?>
 								<div class="card-item-left">
 								<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>

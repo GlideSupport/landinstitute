@@ -47,7 +47,7 @@
 					$initials = $first_initial . $last_initial;
 					$image_html = '';
 					if ($image_id) {
-						$image_html = wp_get_attachment_image($image_id, 'full', false, [ 'width'  => 200, 'height' => 102, 'alt'    => get_the_title()]);
+						$image_html = wp_get_attachment_image($image_id, 'thumb_200', false, [ 'width'  => 200, 'height' => 102, 'alt'    => get_the_title()]);
 					}
 					// Get donation level terms (taxonomy)
 					$levels = get_the_terms(get_the_ID(), 'donation-level');
