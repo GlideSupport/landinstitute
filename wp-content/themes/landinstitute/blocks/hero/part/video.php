@@ -77,7 +77,7 @@ switch ($video_type) {
     </div>
 </section>
 
-<?php if ($modal_video_embed): ?>
+<?php if ($modal_video_embed && $short_video ): ?>
     <div id="hero-video" class="lity-hide popup-block">
         <div class="popup-video popup-block-design">
             <div class="video-play">

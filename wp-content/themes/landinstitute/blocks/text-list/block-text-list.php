@@ -47,7 +47,7 @@ $li_tl_link = $bst_block_fields['li_tl_link'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
-<?php if (!empty($li_tl_headline_check) || !empty($li_tl_wysiwyg) || !empty($li_tl_repeater) || !empty($li_tl_image) || !empty($li_tl_link) ): ?>
+<?php if (!empty($li_tl_headline_check) || !empty($li_tl_wysiwyg) || !empty($li_tl_repeater) || !empty($li_tl_image) || !empty($li_tl_link)): ?>
     <div class="download-list sticky-lft-block <?php echo esc_attr($border_options); ?>">
         <div class="row-flex">
             <?php if (!empty($li_tl_image)) : ?>
@@ -62,22 +62,22 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
                 <?php echo (!empty($li_tl_wysiwyg)) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_tl_wysiwyg) . '</div>' : ''; ?>
                 <?php echo (!empty($li_tl_wysiwyg) && !empty($li_tl_repeater)) ? '<div class="gl-s30"></div>' : ''; ?>
                 <?php if (!empty($li_tl_repeater)) : ?>
-                <div class="card-list">
+                    <div class="card-list">
                         <?php foreach ($li_tl_repeater as $li_tl_rep) :
                             $title = $li_tl_rep['title'] ?? '';
                             $wysiwyg = $li_tl_rep['wysiwyg'] ?? '';
-                            if(!empty($title) || !empty($$wysiwyg) ): ?>
-                            <a href="#" class="card-item link-with-title">
-                                <div class="card-item-left">
-                                    <?php echo (!empty($title)) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
-                                    <?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s4"></div>' : ''; ?>
-                                    <?php echo (!empty($wysiwyg)) ? '<div class="card-content body-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
+                            if (!empty($title) || !empty($wysiwyg)): ?>
+                                <div class="card-item link-with-title">
+                                    <div class="card-item-left">
+                                        <?php echo (!empty($title)) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
+                                        <?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s4"></div>' : ''; ?>
+                                        <?php echo (!empty($wysiwyg)) ? '<div class="card-content body-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
+                                    </div>
                                 </div>
-                            </a>
                             <?php endif; ?>
                         <?php endforeach; ?>
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
                 <?php echo (!empty($li_tl_repeater) && !empty($li_tl_link)) ? '<div class="gl-s96"></div>' : ''; ?>
                 <?php echo (!empty($li_tl_link)) ? '<div class="block-btn">' . BaseTheme::button($li_tl_link, 'site-btn') . '</div>' : ''; ?>
             </div>
