@@ -290,7 +290,7 @@
                     "allow_in_bindings": 0,
                     "tabs": "all",
                     "toolbar": "full",
-                    "media_upload": 1,
+                    "media_upload": 0,
                     "delay": 0
                 },
                 {
@@ -1082,5 +1082,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750230516
+    "modified": 1750233051
 }
