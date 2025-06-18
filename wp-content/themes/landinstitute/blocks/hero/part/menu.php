@@ -5,6 +5,7 @@ $menu_label = $li_hero_menu['menu_label'] ?? null;
 $select_menu = $li_hero_menu['menu_selector'] ?? null;
 $image = $li_hero_menu['image'] ?? null;
 $bg_image = $li_hero_menu['bg_image'] ?? null;
+$content = $li_hero_menu['content'] ?? null;
 
 // Get menu slug or ID safely
 $menu_value = null;
@@ -16,7 +17,7 @@ if (is_array($select_menu) && isset($select_menu['slug'])) {
     $menu_value = (int) $select_menu;
 }
 
-if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($select_menu) || !empty($image) || !empty($bg_image)): ?>
+if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($content) || !empty($select_menu) || !empty($image) || !empty($bg_image)): ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu">
 		<!-- hero start -->
 		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
@@ -27,6 +28,7 @@ if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($select_men
 						<div class="hero-content">
 						<?php echo !empty($li_hero_headline_check) ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
 						<?php echo (!empty($li_hero_headline_check) || !empty($menu_label)) ? '<div class="gl-s36"></div>' : ''; ?>
+						<?php echo !empty($content) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($content) . '</div>' : ''; ?>
 							<?php echo !empty($menu_label) ? '<div class="ui-18-16-bold sub-head">' . esc_html($menu_label) . '</div>' : ''; ?>
 							<div class="gl-s12"></div>
 							<!-- TO DO -->
@@ -62,3 +64,4 @@ wp_nav_menu(array(
 	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menu" aria-labelledby="hero-menu">%3$s</ul>',
 ));
 ?>
+
