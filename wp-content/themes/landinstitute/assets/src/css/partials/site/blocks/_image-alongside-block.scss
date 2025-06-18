@@ -432,12 +432,14 @@
             margin-left: calc(-50vw + 50%);
             overflow: hidden;
             width: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 55.8659)), 480px);
+            margin-bottom: 0;
 
             @media (min-width: 992px) {
                 border-right: 2px solid var(--gb_base_brown);
                 height: 100vh;
                 position: sticky;
                 top: 0;
+                margin-bottom: -2px;
             }
 
             @media (max-width: 991px) {
