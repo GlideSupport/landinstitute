@@ -106,7 +106,7 @@
         },
         {
             "key": "field_6852b4e5aac19",
-            "label": "Image Upload Instruction",
+            "label": "Image Upload Instructions",
             "name": "",
             "aria-label": "",
             "type": "message",
@@ -322,5 +322,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750250740
+    "modified": 1750255159
 }

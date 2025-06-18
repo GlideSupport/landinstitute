@@ -129,6 +129,24 @@
             "layout": "horizontal"
         },
         {
+            "key": "field_6852c561cb23a",
+            "label": "Image Upload Instructions",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 300px by 402px (Regular Display) - Maximum 600px by 804px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_684aae93a46f7",
             "label": "Repeater",
             "name": "li_ig_repeater",
@@ -220,5 +238,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749733298
+    "modified": 1750254995
 }
