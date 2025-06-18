@@ -34,7 +34,7 @@
             },
             "instructions_title": "",
             "instructions_title_tag": "",
-            "is_h1": "yes",
+            "is_h1": "no",
             "allow_in_bindings": 0,
             "sub_fields": [
                 {
@@ -69,7 +69,7 @@
                     "prefix": "acf",
                     "type": "headings",
                     "value": null,
-                    "is_h1": "yes",
+                    "is_h1": "no",
                     "menu_order": 0,
                     "instructions": "",
                     "required": "",
@@ -236,5 +236,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749209017
+    "modified": 1750240352
 }

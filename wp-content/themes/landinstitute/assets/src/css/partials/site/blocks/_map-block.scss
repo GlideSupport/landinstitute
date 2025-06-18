@@ -3,6 +3,7 @@
         margin: 0 auto;
         max-width: 1010px;
         display: flex;
+        height: clamp(203px, calc(12.6875rem + ((1vw - 7.68px) * 59.2596)), 547.891px);
 
         @media(max-width: 991px) {
             order: 2;
@@ -12,6 +13,12 @@
         @media(max-width: 640px) {
             margin-left: -20px;
             margin-right: -24px;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
         }
     }
 
@@ -24,8 +31,13 @@
             }
         }
 
+        .swiper-slide {
+            height: auto;
+        }
+
         .swiper-slide-container {
             position: relative;
+            height: 100%;
 
             @media(max-width: 991px) {
                 display: flex;
