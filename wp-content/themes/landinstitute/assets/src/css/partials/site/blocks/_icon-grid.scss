@@ -288,17 +288,21 @@
 
 
 .logo-list-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 44px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr;
+    // gap: 44px;
+
+    @media(max-width: 1024px) {
+        margin-right: -24px;
+    }
 
     .logo-list-col {
         .brand-logo-img {
             display: flex;
 
             img {
-                max-width: 152px;
-                max-height: 80px;
+                max-width: clamp(121px, calc(7.5625rem + ((1vw - 7.68px) * 5.3265)), 152px);
+                max-height: clamp(64px, calc(4rem + ((1vw - 7.68px) * 2.7491)), 80px);
             }
         }
 
@@ -306,6 +310,10 @@
             .card-item {
                 padding: 0;
                 gap: 24px;
+
+                @media(max-width: 1024px) {
+                    gap: 20px;
+                }
             }
         }
     }

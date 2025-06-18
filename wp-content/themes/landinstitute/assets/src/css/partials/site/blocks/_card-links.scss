@@ -1121,6 +1121,10 @@ section:has(.text-featured-block) {
             text-decoration: none;
             min-height: clamp(285px, calc(17.8125rem + ((1vw - 7.68px) * 34.5361)), 486px);
 
+            @media(max-width: 640px) {
+                min-height: inherit;
+            }
+
             &:hover {
                 background-color: var(--gb_primary_butter_yellow);
             }
@@ -1141,6 +1145,7 @@ section:has(.text-featured-block) {
 
         .filter-card-content {
             padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+            height: 100%;
 
             .top-sub-list {
                 gap: 10px;
