@@ -301,6 +301,38 @@
             ]
         },
         {
+            "key": "field_6852a0e2d1d20",
+            "label": "Select Design",
+            "name": "li_tct_select_design",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_682b2690595d1",
+                        "operator": "==",
+                        "value": "standard"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "content": "Content",
+                "content_with_image": "Content With Image"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_682b36b5b4e1e",
             "label": "Kicker",
             "name": "li_tct_kicker",
@@ -360,6 +392,40 @@
             "delay": 0
         },
         {
+            "key": "field_6852a091d5d5f",
+            "label": "BG Image",
+            "name": "li_tct_bg_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6852a0e2d1d20",
+                        "operator": "==",
+                        "value": "content_with_image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
             "key": "field_68358d738b46f",
             "label": "Border Options",
             "name": "border_options",
@@ -400,5 +466,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749204861
+    "modified": 1750245703
 }

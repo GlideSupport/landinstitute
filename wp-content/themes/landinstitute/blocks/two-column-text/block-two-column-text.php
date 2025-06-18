@@ -46,8 +46,10 @@ $li_tct_headline = $bst_block_fields['li_tct_headline'] ?? null;
 $li_tct_headline_check = BaseTheme::headline_check($li_tct_headline);
 $li_tct_choose_variation = $bst_block_fields['li_tct_choose_variation'] ?? 'featured';
 $li_tct_repeater = $bst_block_fields['li_tct_repeater'] ?? null;
+$li_tct_select_design = $bst_block_fields['li_tct_select_design'] ?? 'content';
 $li_tct_kicker = $bst_block_fields['li_tct_kicker'] ?? null;
 $li_tct_wysiwyg = $bst_block_fields['li_tct_wysiwyg'] ?? null;
+$li_tct_bg_image = $bst_block_fields['li_tct_bg_image'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
