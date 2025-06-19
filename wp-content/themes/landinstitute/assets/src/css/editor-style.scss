@@ -629,6 +629,55 @@
 	}
 }
 
+// keyframes For buttons
+@keyframes bubble-pop {
+	0% {
+		transform: scale(0.27);
+	}
+
+	60% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes shrink-back {
+	0% {
+		transform: scale(1);
+	}
+
+	100% {
+		transform: scale(0.27);
+	}
+}
+
+@keyframes bubble-width {
+	0% {
+		width: 28px;
+	}
+
+	60% {
+		width: 104%;
+	}
+
+	100% {
+		width: 100%;
+	}
+}
+
+@keyframes bubble-shrink-back {
+	0% {
+		width: 100%;
+	}
+
+	100% {
+		width: 28px;
+	}
+}
+
 html :where(.editor-styles-wrapper) {
 	padding: 8px;
 }
