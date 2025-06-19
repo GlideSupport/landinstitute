@@ -152,6 +152,30 @@
             "delay": 0
         },
         {
+            "key": "field_6853a35db4ffe",
+            "label": "Show or Hide Arrow",
+            "name": "li_ill_show_or_hide_arrow",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "with-arrow": "With Arrow",
+                "without-arrow": "Without Arrow"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_6852c816bca3e",
             "label": "image_upload_instructions",
             "name": "",
@@ -380,5 +404,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750255788
+    "modified": 1750329072
 }

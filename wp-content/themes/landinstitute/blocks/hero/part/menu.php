@@ -33,8 +33,7 @@ if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($content) |
 							<div class="gl-s36"></div>
 						<?php endif; ?>
 						<?php echo !empty($content) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($content) . '</div>' : ''; ?> 
-							<?php echo !empty($menu_label) ? '<div class="ui-18-16-bold sub-head">' . esc_html($menu_label) . '</div>' : ''; ?>
-							<div class="gl-s12"></div>
+							<?php echo !empty($menu_label) ? '<div class="ui-18-16-bold sub-head">' . esc_html($menu_label) . '</div><div class="gl-s12"></div>' : ''; ?>
 							<!-- TO DO -->
 							<?php if (!empty($menu_value)) :
 								$menu_object = wp_get_nav_menu_object($menu_value);

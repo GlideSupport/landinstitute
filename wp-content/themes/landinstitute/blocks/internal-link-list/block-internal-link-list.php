@@ -48,6 +48,7 @@ $li_ill_choose_variation = $bst_block_fields['li_ill_choose_variation'] ?? 'two-
 $li_ill_wysiwyg = $bst_block_fields['li_ill_wysiwyg'] ?? null;
 $li_ill_repeater = $bst_block_fields['li_ill_repeater'] ?? null;
 $li_ill_image = $bst_block_fields['li_ill_image'] ?? null;
+$li_ill_show_or_hide_arrow = $bst_block_fields['li_ill_show_or_hide_arrow'] ?? 'with-arrow';
 $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 ?>

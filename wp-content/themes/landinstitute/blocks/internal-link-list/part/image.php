@@ -1,4 +1,4 @@
-<?php if (!empty($li_ill_headline_check) || !empty($li_ill_wysiwyg) || !empty($li_ill_repeater) || !empty($li_ill_image)) { ?>
+<?php if (!empty($li_ill_headline_check) || !empty($li_ill_wysiwyg) || !empty($li_ill_show_or_hide_arrow) || !empty($li_ill_repeater) || !empty($li_ill_image)) { ?>
 	<div class="internal-link-list-block with-parallax-image <?php echo esc_attr($border_options); ?>">
 		<div class="row-flex">
 		<?php echo !empty($li_ill_image) ? '<div class="col-left parallax-img">' . wp_get_attachment_image($li_ill_image, 'thumb_1400') . '</div>' : ''; ?>
@@ -10,25 +10,27 @@
 				<?php if (!empty($li_ill_repeater)) { ?>
 				<div class="card-list">
 					<?php foreach ($li_ill_repeater as $li_ill_rep) {
-							$title = $li_ill_rep['title'];
-							$text = $li_ill_rep['text'];
-							$link = $li_ill_rep['link'];
-							$link_url = $link['url'] ?? '';
-							if (!empty($title) || !empty($text) || !empty($link)) { ?>
-								<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title with-arrow">' : '<div class="card-item link-with-title with-arrow">'; ?>
-									<div class="card-item-left">
-										<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
-										<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
-										<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
-									</div>
+						$title = $li_ill_rep['title'];
+						$text = $li_ill_rep['text'];
+						$link = $li_ill_rep['link'];
+						$link_url = $link['url'] ?? '';
+						if (!empty($title) || !empty($text) || !empty($link)) { ?>
+							<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title with-arrow">' : '<div class="card-item link-with-title with-arrow">'; ?>
+								<div class="card-item-left">
+									<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
+									<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
+									<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
+								</div>
+								<?php if($li_ill_show_or_hide_arrow == 'with-arrow'){?>
 									<div class="card-item-right">
 										<div class="dot-btn">
 											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
 										</div>
 									</div>
-								<?php echo !empty($link_url) ? '</a>' : '</div>'; ?>
-					<?php 	}
-						} ?>
+								<?php } ?>
+							<?php echo !empty($link_url) ? '</a>' : '</div>'; ?>
+						<?php }
+					} ?>
 				</div>
 				<?php } ?>
 				<div class="gl-s156"></div>
