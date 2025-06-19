@@ -126,6 +126,8 @@
 	margin-bottom: 30px;
 }
 
+@import "partials/site/layout/button";
+
 .editor-styles-wrapper {
 	@include font(universalsans, reg);
 	color: var(--gb_base_brown);
@@ -173,7 +175,6 @@
 
 	@import "vendors/magnific-popup.css";
 
-	@import "partials/site/layout/button";
 }
 
 /*  Vendor CSS Owl carousel */
