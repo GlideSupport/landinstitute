@@ -27,8 +27,28 @@ wp.blocks.registerBlockStyle('core/button', {
 	name: 'btn-brown',
 });
 wp.blocks.registerBlockStyle('core/button', {
+	label: 'Arrow Minus',
+	name: 'arrow-minus',
+});
+wp.blocks.registerBlockStyle('core/button', {
+	label: 'Arrow Plus',
+	name: 'arrow-plus',
+});
+wp.blocks.registerBlockStyle('core/button', {
+	label: 'Arrow Heart Symbol',
+	name: 'arrow-heart-symbol',
+});
+wp.blocks.registerBlockStyle('core/button', {
+	label: 'Arrow Pointing Top',
+	name: 'arrow-pointing-top',
+});
+wp.blocks.registerBlockStyle('core/button', {
 	label: 'Border Text Btn',
 	name: 'border-text-btn',
+});
+wp.blocks.registerBlockStyle('core/button', {
+	label: 'text link',
+	name: 'text-link',
 });
 wp.domReady(() => {
 	wp.blocks.unregisterBlockStyle('core/button', 'outline');
