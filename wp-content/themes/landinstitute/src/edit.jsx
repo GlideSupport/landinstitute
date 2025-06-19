@@ -94,7 +94,7 @@ export default function Edit( props ) {
 								{ label: 'Container lilac', value: 'bg-lilac', display: 'bg-lilac.png' },
 								{ label: 'Container Lime Green', value: 'bg-lime-green', display: 'bg-lime-green.jpg' },
 								{ label: 'Container Primary Pink', value: 'bg-primary-pink', display: 'bg-primary-pink.jpg' },
-								{ label: 'Container Dark Green', value: 'bg-dark-green', display: 'bg-dark-green.jpg' },
+								{ label: 'Container Dark Green', value: 'bg-dark-green', display: 'bg-dark-green.png' },
 							] }
 						/>
 					</PanelBody>
