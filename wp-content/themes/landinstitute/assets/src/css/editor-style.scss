@@ -172,6 +172,8 @@
 	/*  Vendor CSS Magnific popup */
 
 	@import "vendors/magnific-popup.css";
+
+	@import "partials/site/layout/button";
 }
 
 /*  Vendor CSS Owl carousel */
@@ -182,7 +184,7 @@
 	@import "partials/site/layout/fluid-margins";
 	@import "partials/site/layout/fluid-spacers";
 	@import "partials/site/layout/fluid-spacers";
-	@import "partials/site/layout/button";
+
 
 	/*-------------------------------------------------
 	>> Styles for Spacers
@@ -353,53 +355,53 @@
 	}
 }
 
-.wp-block-button {
-	margin: 0 !important;
+// .wp-block-button {
+// 	margin: 0 !important;
 
-	.wp-block-button__link {
-		align-items: center;
-		background: linear-gradient(270deg, #FECB00 24.18%, #EA7125 145.08%);
-		border-radius: 2px;
-		box-shadow: 0 0 0px 1px transparent;
-		color: var(--gb_button_color);
-		display: inline-flex;
-		justify-content: center;
-		padding: 15px 24px;
+// 	.wp-block-button__link {
+// 		align-items: center;
+// 		background: linear-gradient(270deg, #FECB00 24.18%, #EA7125 145.08%);
+// 		border-radius: 2px;
+// 		box-shadow: 0 0 0px 1px transparent;
+// 		color: var(--gb_button_color);
+// 		display: inline-flex;
+// 		justify-content: center;
+// 		padding: 15px 24px;
 
-		&:hover {
-			box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.40);
-		}
+// 		&:hover {
+// 			box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.40);
+// 		}
 
-		span {
-			&::after {
-				opacity: 1;
-			}
-		}
-	}
+// 		span {
+// 			&::after {
+// 				opacity: 1;
+// 			}
+// 		}
+// 	}
 
-	&.is-style-fill-boxed {
-		.wp-block-button__link {}
-	}
+// 	&.is-style-fill-boxed {
+// 		.wp-block-button__link {}
+// 	}
 
-	&.is-style-outline-boxed {
-		.wp-block-button__link {
-			background: transparent;
-			box-shadow: 0 0 0px 1px var(--gb_white);
-			color: var(--gb_white);
+// 	&.is-style-outline-boxed {
+// 		.wp-block-button__link {
+// 			background: transparent;
+// 			box-shadow: 0 0 0px 1px var(--gb_white);
+// 			color: var(--gb_white);
 
-			&:hover {
-				background: rgba(39, 8, 65, 0.50);
-				box-shadow: 0 0 0px 1px var(--gb_white);
-			}
-		}
-	}
+// 			&:hover {
+// 				background: rgba(39, 8, 65, 0.50);
+// 				box-shadow: 0 0 0px 1px var(--gb_white);
+// 			}
+// 		}
+// 	}
 
-	&.is-style-white-button {
-		.wp-block-button__link {
-			background: var(--gb_white);
-		}
-	}
-}
+// 	&.is-style-white-button {
+// 		.wp-block-button__link {
+// 			background: var(--gb_white);
+// 		}
+// 	}
+// }
 
 html :where(.editor-styles-wrapper) {
 	padding: 8px;
