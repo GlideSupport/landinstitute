@@ -13,6 +13,10 @@ if ($li_t_choose_variation === 'single-view-slider' && !empty($li_t_selector_tes
     if ($testimonial_query->have_posts()) :
         $total_testimonials = $testimonial_query->found_posts; ?>
         <div class="testimonial-single-view-slider">
+            <?php if (!empty($li_t_kicker)) : ?>
+                <div class="eyebrow-title ui-eyebrow-18-16-regular"><?php echo esc_html($li_t_kicker); ?></div>
+                <div class="gl-s12"></div>
+            <?php endif; ?>
             <div class="single-view-slide swiper has-border-top <?php echo esc_attr($border_options); ?>">
                 <div class="swiper-wrapper">
                     <?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post(); ?>
@@ -27,10 +31,6 @@ if ($li_t_choose_variation === 'single-view-slider' && !empty($li_t_selector_tes
                         <div class="swiper-slide">
                             <div class="testimonial-slide-group">
                                 <div class="slide-head">
-                                    <?php if (!empty($li_t_kicker)) : ?>
-                                        <div class="eyebrow-title ui-eyebrow-18-16-regular"><?php echo esc_html($li_t_kicker); ?></div>
-                                        <div class="gl-s12"></div>
-                                    <?php endif; ?>
                                     <h2 class="heading-2 card-title mb-0"><?php echo esc_html($title); ?></h2>
                                     <div class="gl-s44"></div>
                                 </div>

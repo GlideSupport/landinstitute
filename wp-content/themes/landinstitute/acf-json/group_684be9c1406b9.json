@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_684be9c27f577",
-            "label": "Kicker",
+            "label": "Event Date",
             "name": "li_cpt_event_kicker",
             "aria-label": "",
             "type": "text",
@@ -12,7 +12,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -33,7 +33,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -64,5 +64,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749810541
+    "modified": 1750325100
 }

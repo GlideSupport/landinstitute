@@ -52,7 +52,7 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 $args = array(
     'post_type'      => 'event',
     'post_status'    => 'publish',
-    'posts_per_page' => 10,
+    'posts_per_page' => 2,
 	'orderby'        => 'date',
     'order'          => 'ASC',
 );

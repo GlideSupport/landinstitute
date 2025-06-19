@@ -22,7 +22,7 @@
 							<?php echo !empty($li_lg_url) ? '<a href="' . esc_url($li_lg_url) . '" class="logo-grid-link">' : '<div class="logo-grid-link">'; ?>
 							<?php if($img_url): ?>
 								<div class="logo-image">
-									<img src="<?php echo esc_url($img_url); ?>" width="194" height="102" alt="logos" loading="lazy" decoding="async" />
+									<img src="<?php echo esc_url($img_url); ?>" width="200" height="110" alt="logos" loading="lazy" decoding="async" />
 								</div>
 								<div class="gl-s24"></div>
 							<?php endif; ?>
