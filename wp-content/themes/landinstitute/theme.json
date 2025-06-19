@@ -63,6 +63,71 @@
 					"slug": "transparent",
 					"color": "var(--gb_transparent)",
 					"name": "Transparent"
+				},
+				{
+					"slug": "base-brown",
+					"color": "var(--gb_base_brown)",
+					"name": "Base Brown"
+				},
+				{
+					"slug": "base-cream",
+					"color": "var(--gb_base_cream)",
+					"name": "Base Cream"
+				},
+				{
+					"slug": "primary-orange",
+					"color": "var(--gb_primary_orange)",
+					"name": "Primary Orange"
+				},
+				{
+					"slug": "sunflower-yellow",
+					"color": "var(--gb_primary_sunflower_yellow)",
+					"name": "Primary Sunflower Yellow"
+				},
+				{
+					"slug": "primary-lemon-yellow",
+					"color": "var(--gb_primary_lemon_yellow)",
+					"name": "Primary Lemon Yellow"
+				},
+				{
+					"slug": "primary-lilac",
+					"color": "var(--gb_primary_lilac)",
+					"name": "Primary Lilac"
+				},
+				{
+					"slug": "primary-sky-blue",
+					"color": "var(--gb_primary_sky_blue)",
+					"name": "Primary Sky Blue"
+				},
+				{
+					"slug": "primary-lime-green",
+					"color": "var(--gb_primary_lime_green)",
+					"name": "Primary Lime Green"
+				},
+				{
+					"slug": "primary-plum",
+					"color": "var(--gb_primary_plum)",
+					"name": "Primary Plum"
+				},
+				{
+					"slug": "primary-dark-green",
+					"color": "var(--primary_dark_green)",
+					"name": "Primary Dark Green"
+				},
+				{
+					"slug": "primary-butter-yellow",
+					"color": "var(--gb_primary_butter_yellow)",
+					"name": "Primary Butter Yellow"
+				},
+				{
+					"slug": "primary-pink",
+					"color": "var(--gb_primary_pink)",
+					"name": "Primary Pink"
+				},
+				{
+					"slug": "various-error-red",
+					"color": "var(--gb_various_error_red)",
+					"name": "Various Error Red"
 				}
 			],
 			"gradients": [
@@ -203,11 +268,6 @@
 					"name": "236 Pixels",
 					"size": "var(--gb_space_17)",
 					"slug": "236-pixels"
-				},
-				{
-					"name": "160 Pixels",
-					"size": "var(--gb_space_21)",
-					"slug": "160-pixels"
 				}
 			]
 		},
@@ -227,7 +287,32 @@
 			"textTransform": false,
 			"dropCap": false,
 			"fontFamilies": [
-				
+				{
+					"fontFamily": "Value Serif Pro",
+					"slug": "Value-Serif-Pro",
+					"name": "Value-Serif-Pro",
+					"fontFace": [
+						{
+							"fontFamily": "Value Serif Pro",
+							"src": [
+								"https://landinstdev.wpenginepowered.com/wp-content/themes/landinstitute/assets/src/fonts/ValueSerifPro-Bold.woff2"
+							]
+						}
+					]
+				},
+				{
+					"fontFamily": "Universal Sans Display 400",
+					"slug": "Universal-Sans-Display-400",
+					"name": "Universal Sans Display 400",
+					"fontFace": [
+						{
+							"fontFamily": "Universal Sans Display 400",
+							"src": [
+								"https://landinstdev.wpenginepowered.com/wp-content/themes/landinstitute/assets/src/fonts/UniversalSansDisplay-400.woff2"
+							]
+						}
+					]
+				}
 			],
 			"fontSizes": [
 				{
@@ -262,19 +347,64 @@
 				},
 				{
 					"slug": "font-size-7",
-					"size": "var(--gb_font_size_1)",
-					"name": "Large Text"
+					"size": "var(--gb_font_size_7)",
+					"name": "Heading 7"
 				},
 				{
-					"slug": "font-size-8",
-					"size": "var(--gb_font_size_5)",
-					"name": "Small Text"
+					"slug": "ui-128-78-bold",
+					"size": "var(--gb_font_size_8)",
+					"name": "ui 128 78 bold"
 				},
 				{
-					"slug": "font-size-9",
-					"size": "var(--gb_font_size_4)",
-					"name": "Regular Text"
-				}
+					"slug": "ui-72-52-bold",
+					"size": "var(--gb_font_size_9)",
+					"name": "ui 72 52 bold"
+				},
+				{
+					"slug": "ui-34-28-bold",
+					"size": "var(--gb_font_size_10)",
+					"name": "ui 34 28 bold"
+				},
+				{
+					"slug": "ui-26-23-bold",
+					"size": "var(--gb_font_size_11)",
+					"name": "ui 26 23 bold"
+				},
+				{
+					"slug": "ui-24-21-bold",
+					"size": "var(--gb_font_size_12)",
+					"name": "ui 24 21 bold"
+				},
+				{
+					"slug": "ui-20-18-bold",
+					"size": "var(--gb_font_size_13)",
+					"name": "ui 20 18 bold"
+				},
+				{
+					"slug": "ui-18-16-bold",
+					"size": "var(--gb_font_size_14)",
+					"name": "ui 18 16 bold"
+				},
+				{
+					"slug": "ui-16-15-bold",
+					"size": "var(--gb_font_size_15)",
+					"name": "ui 16 15 bold"
+				},
+				{
+					"slug": "ui-14-13-bold",
+					"size": "var(--gb_font_size_16)",
+					"name": "ui 14 13 bold"
+				},
+				{
+					"slug": "ui-12-11-bold",
+					"size": "var(--gb_font_size_17)",
+					"name": "ui 12 11 bold"
+				},
+				{
+					"slug": "body-22-20-regular",
+					"size": "var(--gb_font_size_18)",
+					"name": "body 22 20 regular"
+				}				
 			]
 		},
 		"blocks": {
