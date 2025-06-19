@@ -354,7 +354,7 @@
 
 
 .wp-block-button {
-	.wp-block-button__link:not(.is-style-border-text-btn .wp-block-button__link) {
+	.wp-block-button__link {
 		background: var(--gb_base_cream);
 		border: 2px solid var(--gb_base_brown);
 		border-radius: 0px;
@@ -623,11 +623,17 @@
 		background-color: transparent;
 		padding: 0;
 		border-radius: 0;
+		border: none;
 
 		@extend .body-18-16-regular;
 
 		&:hover {
 			background-size: 0 100%;
+			background-color: transparent;
+		}
+
+		&:after {
+			display: none;
 		}
 	}
 }
