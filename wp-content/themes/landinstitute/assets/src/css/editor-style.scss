@@ -620,11 +620,20 @@
 		position: relative;
 		text-decoration: none;
 		transition: all .2s;
+		background-color: transparent;
+		padding: 0;
+		border-radius: 0;
+		border: none;
 
 		@extend .body-18-16-regular;
 
 		&:hover {
 			background-size: 0 100%;
+			background-color: transparent;
+		}
+
+		&:after {
+			display: none;
 		}
 	}
 }
