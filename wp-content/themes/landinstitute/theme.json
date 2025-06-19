@@ -30,36 +30,6 @@
 					"name": "Black"
 				},
 				{
-					"slug": "primary",
-					"color": "var(--gb_color_primary)",
-					"name": "Primary"
-				},
-				{
-					"slug": "secondary",
-					"color": "var(--gb_color_secondary)",
-					"name": "Secondary"
-				},
-				{
-					"slug": "danger",
-					"color": "var(--gb_danger)",
-					"name": "Danger"
-				},
-				{
-					"slug": "success",
-					"color": "var(--gb_success)",
-					"name": "Success"
-				},
-				{
-					"slug": "warning",
-					"color": "var(--gb_warning)",
-					"name": "Warning"
-				},
-				{
-					"slug": "info",
-					"color": "var(--gb_info)",
-					"name": "Info"
-				},
-				{
 					"slug": "transparent",
 					"color": "var(--gb_transparent)",
 					"name": "Transparent"
@@ -131,31 +101,7 @@
 				}
 			],
 			"gradients": [
-				{
-					"slug": "orrange-to-yellow",
-					"gradient": "linear-gradient(95deg, #ef664f 0%, #faaf42 100%)",
-					"name": "Diagonal Orange to Yellow"
-				},
-				{
-					"slug": "yelloe-to-light-yellow",
-					"gradient": "linear-gradient(95deg, #faaf42 0%, #f6da76 100%)",
-					"name": "Diagonal Yellow to light Yellow"
-				},
-				{
-					"slug": "green-to-light-green",
-					"gradient": "linear-gradient(95deg, #65bfa1 0%, #85e0a3 100%)",
-					"name": "Diagonal Green to Light Green"
-				},
-				{
-					"slug": "purple-to-light-purple",
-					"gradient": "linear-gradient(95deg, #8578f6 0%, #bcb2fb 100%)",
-					"name": "Diagonal purple to Light purple"
-				},
-				{
-					"slug": "blue-to-light-blue",
-					"gradient": "linear-gradient(95deg, #396fb0 0%, #7eaee6 100%)",
-					"name": "Diagonal Blue to Light Blue"
-				}
+				
 			]
 		},
 
