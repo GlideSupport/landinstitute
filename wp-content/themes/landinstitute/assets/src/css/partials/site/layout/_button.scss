@@ -94,7 +94,8 @@ body {
             }
         }
 
-        &.btn-sunflower-yellow {
+        &.btn-sunflower-yellow,
+        &.is-style-btn-sunflower-yellow .wp-block-button__link {
             background-color: var(--gb_primary_sunflower_yellow);
 
             &:hover {
@@ -102,7 +103,8 @@ body {
             }
         }
 
-        &.btn-lilac {
+        &.btn-lilac,
+        &.is-style-btn-lilac .wp-block-button__link {
             background-color: var(--gb_primary_lilac);
 
             &:hover {
@@ -110,7 +112,8 @@ body {
             }
         }
 
-        &.btn-sky-blue {
+        &.btn-sky-blue,
+        &.is-style-btn-sky-blue .wp-block-button__link {
             background-color: var(--gb_primary_sky_blue);
 
             &:hover {
@@ -118,7 +121,8 @@ body {
             }
         }
 
-        &.btn-lime-green {
+        &.btn-lime-green,
+        &.is-style-btn-lime-green .wp-block-button__link {
             background-color: var(--gb_primary_lime_green);
 
             &:hover {
@@ -126,7 +130,8 @@ body {
             }
         }
 
-        &.btn-butter-yellow {
+        &.btn-butter-yellow,
+        &.is-style-btn-butter-yellow .wp-block-button__link {
             background-color: var(--gb_primary_butter_yellow);
 
             &:hover {
@@ -134,7 +139,8 @@ body {
             }
         }
 
-        &.btn-lemon-yellow {
+        &.btn-lemon-yellow,
+        &.is-style-btn-lemon-yellow .wp-block-button__link {
             background-color: var(--gb_primary_lemon_yellow);
 
             &:hover {
@@ -185,7 +191,8 @@ body {
             }
         }
 
-        &.btn-brown {
+        &.btn-brown,
+        &.is-style-btn-brown .wp-block-button__link {
             background-color: var(--gb_base_brown);
             color: var(--gb_base_cream);
             padding: 14px 64px 14px 22px;
@@ -305,7 +312,8 @@ body {
         }
     }
 
-    .border-text-btn {
+    .border-text-btn,
+    .is-style-border-text-btn .wp-block-button__link {
         background-image: linear-gradient(transparent calc(100% - 1px), var(--gb_base_brown) 1px);
         background-position: 100%;
         background-repeat: no-repeat;

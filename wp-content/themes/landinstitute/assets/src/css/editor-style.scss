@@ -182,6 +182,7 @@
 	@import "partials/site/layout/fluid-margins";
 	@import "partials/site/layout/fluid-spacers";
 	@import "partials/site/layout/fluid-spacers";
+	@import "partials/site/layout/button";
 
 	/*-------------------------------------------------
 	>> Styles for Spacers
@@ -653,6 +654,10 @@ body {
 				border-color: #000;
 				color: #000;
 				background-color: var(--gb_color_secondary);
+
+				background-color: var(--gb_base_brown);
+				border-color: var(--gb_base_brown);
+				color: var(--gb_base_cream);
 			}
 		}
 	}
@@ -691,6 +696,19 @@ body {
 	}
 
 	.block-editor-block-list__block {
+		.selection {
+			ul {
+				li {
+					padding: 0;
+					list-style: none;
+
+					&:before {
+						display: none;
+					}
+				}
+			}
+		}
+
 		ul {
 			list-style: none;
 			margin-left: 0;

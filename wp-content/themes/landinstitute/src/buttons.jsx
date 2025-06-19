@@ -3,17 +3,19 @@ import { unregisterBlockStyle, registerBlockStyle } from '@wordpress/blocks';
 import { InspectorControls } from '@wordpress/block-editor';
 import { Panel, PanelBody, SelectControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
-registerBlockStyle( 'core/button', {
-	label: 'Fill Boxed',
-	name: 'fill-boxed',
-} );
-registerBlockStyle( 'core/button', {
-	label: 'Outline Boxed',
-	name: 'outline-boxed',
-} );
-function addCustomAttributes( settings, name ) {
-	if ( 'core/button' === name ) {
-		if ( settings.attributes ) {
+
+// registerBlockStyle('core/button', {
+// 	label: 'Fill Boxed',
+// 	name: 'fill-boxed',
+// });
+// registerBlockStyle('core/button', {
+// 	label: 'Outline Boxed',
+// 	name: 'outline-boxed',
+// });
+
+function addCustomAttributes(settings, name) {
+	if ('core/button' === name) {
+		if (settings.attributes) {
 			settings.attributes.size = {
 				type: 'string',
 				default: '',
@@ -29,15 +31,15 @@ wp.hooks.addFilter(
 	addCustomAttributes
 );
 
-const withCoreButton = createHigherOrderComponent( ( BlockEdit ) => {
-	return ( props ) => {
+const withCoreButton = createHigherOrderComponent((BlockEdit) => {
+	return (props) => {
 		const { attributes, setAttributes } = props;
-		unregisterBlockStyle( 'core/button', 'outline' );
-		unregisterBlockStyle( 'core/button', 'fill' );
+		unregisterBlockStyle('core/button', 'outline');
+		unregisterBlockStyle('core/button', 'fill');
 
 		return (
 			<>
-				<BlockEdit { ...props } />
+				<BlockEdit {...props} />
 				{ /* <InspectorControls group="styles">
 					<Panel>
 						<PanelBody>
@@ -62,7 +64,7 @@ const withCoreButton = createHigherOrderComponent( ( BlockEdit ) => {
 			</>
 		);
 	};
-}, 'withCoreButton' );
+}, 'withCoreButton');
 
 wp.hooks.addFilter(
 	'editor.BlockEdit',
