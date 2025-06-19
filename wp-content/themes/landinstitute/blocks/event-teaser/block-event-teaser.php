@@ -42,38 +42,52 @@ if ( $block['name'] ) {
 // Block variables.
 $li_et_headline = $bst_block_fields['li_et_headline'] ?? null;
 $li_et_headline_check = BaseTheme::headline_check($li_et_headline);
-$li_et_post_select_option = $bst_block_fields['li_et_post_select_option'] ?? 'manual';
-$li_et_select_manual_post = $bst_block_fields['li_et_select_manual_post'] ?? null;
+$li_et_event_select_option = $bst_block_fields['li_et_event_select_option'] ?? 'manual';
+$li_et_select_manual_event = $bst_block_fields['li_et_select_manual_event'] ?? null;
 $li_et_kicker = $bst_block_fields['li_et_kicker'] ?? null;
 $li_et_button = $bst_block_fields['li_et_button'] ?? null;
 $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 // Query posts based on selection
+$today = date('Ymd');
+
 $args = array(
-    'post_type'      => 'event',
-    'post_status'    => 'publish',
-    'posts_per_page' => 2,
-	'orderby'        => 'date',
-    'order'          => 'ASC',
+	'post_type'      => 'event',
+	'post_status'    => 'publish',
+	'posts_per_page' => 2,
+	'orderby'        => 'meta_value',
+	'order'          => 'ASC',
+	'meta_key'       => 'li_cpt_event_start_date', 
+	'meta_type'      => 'DATE',
+	'meta_query'     => array(
+		array(
+			'key'     => 'li_cpt_event_start_date',
+			'value'   => $today,
+			'compare' => '>=',
+			'type'    => 'DATE',
+		),
+	),
 );
 
-switch ($li_et_post_select_option) {
-    case 'manual':
-        if (!empty($li_et_select_manual_post)) {
-            $args['post__in'] = $li_et_select_manual_post;
-            $args['orderby'] = 'post__in';
-            $args['posts_per_page'] = count($li_et_select_manual_post);
-        }
-        break;
-        
-    case 'most-recent':
-        // Default args are already set for most recent
-        break;
-        
-    // You could add more cases here for other selection options
+// Modify args based on selection
+switch ($li_et_event_select_option) {
+	case 'manual':
+		if (!empty($li_et_select_manual_event)) {
+			
+			$args['post__in'] = $li_et_select_manual_event;
+			$args['orderby'] = 'post__in';
+			$args['posts_per_page'] = count($li_et_select_manual_event);
+			unset($args['meta_query'], $args['meta_key'], $args['meta_type']); // Remove upcoming filter for manual
+		}
+		break;
+
+	case 'most-recent':
+		// already handled above
+		break;
 }
 
 $events_query = new WP_Query($args);
+
 if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 	<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 		<div class="event-teaser-list-block <?php echo esc_attr($border_options); ?>">
@@ -88,20 +102,79 @@ if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 			<div class="event-teaser-list-row">
 				<?php while ($events_query->have_posts()) : $events_query->the_post(); 
 					$event_id = get_the_ID();
-					$title = get_the_title();						
-					$kicker = get_field('li_cpt_event_kicker', $event_id);
+					$title = get_the_title();
+					$permalink = get_the_permalink();
+					$start_date = get_field('li_cpt_event_start_date', $event_id);
+					$end_date = get_field('li_cpt_event_end_date', $event_id);
+					$start_time = get_field('li_cpt_event_start_time', $event_id);
+					$end_time = get_field('li_cpt_event_end_time', $event_id);
+					$all_day = get_field('li_cpt_event_all_day', $event_id);
 					$wysiwyg = get_field('li_cpt_event_wysiwyg', $event_id);
+
+					//Date Format
+					$start_date = $start_date ? strtotime($start_date) : false;
+					$end_date   = $end_date ? strtotime($end_date) : false;
+
+					// Format
+					$start_day_full = $start_date ? date('l, F j, Y', $start_date) : '';
+					$end_day_full   = $end_date ? date('l, F j, Y', $end_date) : '';
+					$start_day_short = $start_date ? date('M j, Y', $start_date) : '';
+					$start_time_fmt = $start_time ? date('g:i a', strtotime($start_time)) . ' CDT' : '';
+					$end_time_fmt   = $end_time ? date('g:i a', strtotime($end_time)) . ' CDT' : '';
+
+					$event_date = '';
+
+					if ($start_date && $end_date) {
+						// Multi-day
+						if (date('Ymd', $start_date) !== date('Ymd', $end_date)) {
+							if ($all_day) {
+								// Example: Friday, May 2, 2025 - Saturday, May 3, 2025 All Day
+								$event_date = "$start_day_full - $end_day_full All Day";
+							} elseif ($start_time && $end_time) {
+								// Example: Friday, May 2, 2025 12:00 pm CDT - Saturday, May 3, 2025 1:00 pm CDT
+								$event_date = "$start_day_full $start_time_fmt - $end_day_full $end_time_fmt";
+							} else {
+								$event_date = "$start_day_short";
+							}
+						} else {
+							// Single-day
+							if ($all_day) {
+								// Example: Friday, May 2, 2025 All Day
+								$event_date = "$start_day_full All Day";
+							} elseif ($start_time && $end_time) {
+								// Example: Friday, May 2, 2025 12:00 pm CDT - 1:00 pm CDT
+								$event_date = "$start_day_full $start_time_fmt - $end_time_fmt";
+							} else {
+								$event_date = "$start_day_short";
+							}
+						}
+					} elseif ($start_date) {
+						// Only start date
+						if ($all_day) {
+							$event_date = "$start_day_full All Day";
+						} elseif ($start_time && $end_time) {
+							$event_date = "$start_day_full $start_time_fmt - $end_time_fmt";
+						} else {
+							$event_date = "$start_day_short";
+						}
+					} else {
+						$event_date = '';
+					}
+					
 				?>
 				<div class="event-teaser-list-col">
-					<a href="" class="event-teaser-list-card">
+					<a href="<?php echo esc_url($permalink); ?>" class="event-teaser-list-card">
 						<div class="event-teaser-list-image">
 							<?php echo wp_get_attachment_image(get_post_thumbnail_id($event_id), 'thumb_800'); ?>
 						</div>
 						<div class="event-teaser-list-content">
 	
 							<?php echo (!empty($kicker) || !empty($title) || !empty($wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
-	
-							<?php echo !empty($kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($kicker) . '</div>' : ''; ?>
+
+							<div class="ui-eyebrow-18-16-regular block-subhead">
+								<?php echo esc_html($event_date); ?>
+							</div>
+
 							<?php echo (!empty($kicker) && !empty($title)) ? '<div class="gl-s4"></div>' : ''; ?>
 							<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
 							<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s16"></div>' : ''; ?>
