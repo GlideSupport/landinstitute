@@ -17,7 +17,7 @@ if ($li_t_choose_variation === 'single-view-slider' && !empty($li_t_selector_tes
                 <div class="eyebrow-title ui-eyebrow-18-16-regular"><?php echo esc_html($li_t_kicker); ?></div>
                 <div class="gl-s12"></div>
             <?php endif; ?>
-            <div class="single-view-slide swiper has-border-top <?php echo esc_attr($border_options); ?>">
+            <div class="single-view-slide swiper has-border-top">
                 <div class="swiper-wrapper">
                     <?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post(); ?>
                         <?php
