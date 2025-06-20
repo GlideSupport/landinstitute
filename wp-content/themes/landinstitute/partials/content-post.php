@@ -37,9 +37,7 @@ $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 					if ( ! has_post_thumbnail( $bst_var_post_id ) ) {
 						echo '<img class="" src="' . esc_url( get_template_directory_uri() ) . '/assets/build/images/admin/defaults/default-image.webp" >';
 					} else {
-						echo get_the_post_thumbnail(
-							$bst_var_post_id,
-							'thumb_900',
+						echo get_the_post_thumbnail( $bst_var_post_id, 'thumb_900',
 						);
 					}
 					?>
