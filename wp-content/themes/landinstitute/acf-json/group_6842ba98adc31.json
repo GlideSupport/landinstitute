@@ -129,47 +129,6 @@
             "layout": "horizontal"
         },
         {
-            "key": "field_6842baf5cdf15",
-            "label": "Selector",
-            "name": "li_sl_selector",
-            "aria-label": "",
-            "type": "relationship",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6842c62a602a2",
-                        "operator": "==",
-                        "value": "variation-one"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "team"
-            ],
-            "post_status": [
-                "publish"
-            ],
-            "taxonomy": "",
-            "filters": [
-                "search",
-                "taxonomy"
-            ],
-            "return_format": "id",
-            "min": "",
-            "max": "",
-            "allow_in_bindings": 0,
-            "elements": "",
-            "bidirectional": 0,
-            "bidirectional_target": []
-        },
-        {
             "key": "field_68550564bb10f",
             "label": "Staff Selector",
             "name": "li_sl_staff_selector",
@@ -177,15 +136,7 @@
             "type": "relationship",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6842c62a602a2",
-                        "operator": "==",
-                        "value": "variation-two"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -251,5 +202,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750402447
+    "modified": 1750421579
 }
