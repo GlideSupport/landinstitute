@@ -491,15 +491,17 @@
 					<div class="staff-detail-layout bg-lilac">
 						<div class="row-flex">
 							<div class="col-left">
-								<div class="sticky-block">
-									<div class="back-btn">
-										<a class="site-btn arrow-pointing-left btn-lilac" href="" title="" role="Button"
-											aria-label="Button">Back to All
-											Staff</a>
-									</div>
-									<div class="staff-image">
-										<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/terry-pacocha.png"
-											alt="" width="" height="" />
+								<div class="sticky-parent">
+									<div class="sticky-top-touch">
+										<div class="back-btn">
+											<a class="site-btn arrow-pointing-left btn-lilac" href="" title=""
+												role="Button" aria-label="Button">Back to All
+												Staff</a>
+										</div>
+										<div class="staff-image">
+											<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/terry-pacocha.png"
+												alt="" width="" height="" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -681,17 +683,6 @@
 		</div>
 	</main>
 
-	<ul id="category-view" class="dropdown-menu" role="menu" aria-labelledby="category-view">
-		<li class="active"><a href="#slide1">All</a></li>
-		<li><a href="#slide2">Healthcare Industry Insights</a></li>
-		<li><a href="#slide3">Career Tips & Guides for Healthcare Professionals</a>
-		</li>
-		<li><a href="#slide4">Client and Partner Resources</a></li>
-		<li><a href="#slide5">Life as a Travel or Locum Tenens Professional</a></li>
-		<li><a href="#slide6">Healthcare Staffing Agency Updates</a></li>
-		<li><a href="#slide7">Healthcare Staffing & Trends</a></li>
-		<li><a href="#slide8">Compliance & Credentialing</a></li>
-	</ul>
 
 	<footer id="" class="site-footer">
 		<div class="footer-cta">
@@ -1165,31 +1156,6 @@
 </body>
 
 <script>
-	function adjustPadding() {
-		const header = document.querySelector('.header-section');
-		const content = document.querySelector('.staff-detail-layout .sticky-block');
-
-		if (window.innerWidth >= 768 && header && content) {
-			const headerHeight = header.offsetHeight;
-			content.style.top = `${headerHeight}px`;
-		} else if (content) {
-			content.style.top = ''; // Reset top if below 768px
-		}
-	}
-
-	// Run on load, resize, and scroll
-	window.addEventListener('load', adjustPadding);
-	window.addEventListener('resize', adjustPadding);
-	window.addEventListener('scroll', adjustPadding);
-
-	// Use ResizeObserver for dynamic height changes
-	const header = document.querySelector('.header-section');
-	if (header && 'ResizeObserver' in window) {
-		const resizeObserver = new ResizeObserver(() => {
-			adjustPadding();
-		});
-		resizeObserver.observe(header);
-	}
 
 	document.addEventListener('DOMContentLoaded', function () {
 		const tabs = document.querySelectorAll('ul.tabs li');
@@ -1430,10 +1396,10 @@
 
 		// Initial setup
 		setInitialPadding();
-		adjustHeader();
+		//adjustHeader();
 
 		// Event listeners
-		window.addEventListener('scroll', adjustHeader);
+		//window.addEventListener('scroll', adjustHeader);
 		window.addEventListener('resize', handleResize);
 	});
 

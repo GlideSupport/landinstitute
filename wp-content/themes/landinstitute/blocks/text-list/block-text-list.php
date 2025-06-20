@@ -50,9 +50,11 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
 <?php if (!empty($li_tl_headline_check) || !empty($li_tl_wysiwyg) || !empty($li_tl_repeater) || !empty($li_tl_image) || !empty($li_tl_link)): ?>
     <div class="download-list sticky-lft-block <?php echo esc_attr($border_options); ?>">
         <div class="row-flex">
-            <?php if (!empty($li_tl_image)) : ?>
+            <?php if (!empty($li_tl_image)): ?>
                 <div class="col-left sticky-img">
-                    <?php echo wp_get_attachment_image($li_tl_image, 'thumb_800', false); ?>
+                    <div class="sticky-image-stick">
+                        <?php echo wp_get_attachment_image($li_tl_image, 'thumb_800', false); ?>
+                    </div>
                 </div>
             <?php endif; ?>
             <div class="cl-right">
@@ -61,9 +63,9 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
                 <?php echo (!empty($li_tl_headline_check) && !empty($li_tl_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
                 <?php echo (!empty($li_tl_wysiwyg)) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_tl_wysiwyg) . '</div>' : ''; ?>
                 <?php echo (!empty($li_tl_wysiwyg) && !empty($li_tl_repeater)) ? '<div class="gl-s30"></div>' : ''; ?>
-                <?php if (!empty($li_tl_repeater)) : ?>
+                <?php if (!empty($li_tl_repeater)): ?>
                     <div class="card-list">
-                        <?php foreach ($li_tl_repeater as $li_tl_rep) :
+                        <?php foreach ($li_tl_repeater as $li_tl_rep):
                             $title = $li_tl_rep['title'] ?? '';
                             $wysiwyg = $li_tl_rep['wysiwyg'] ?? '';
                             if (!empty($title) || !empty($wysiwyg)): ?>

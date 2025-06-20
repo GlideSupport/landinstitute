@@ -993,11 +993,13 @@
 			</section>
 			<section class="container-1280 bg-base-cream">
 				<div class="wrapper">
-					<div class="download-list sticky-lft-block variation-2">
+					<div class="download-list sticky-lft-block variation-2 has-border-bottom">
 						<div class="row-flex">
 							<div class="col-left sticky-img">
-								<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-mollisol-orange.png"
-									width="" height="" alt="" />
+								<div class="sticky-image-stick">
+									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-mollisol-orange.png"
+										width="" height="" alt="" />
+								</div>
 							</div>
 							<div class="cl-right">
 								<div class="gl-s156"></div>
@@ -1223,17 +1225,6 @@
 		</div>
 	</main>
 
-	<ul id="category-view" class="dropdown-menu" role="menu" aria-labelledby="category-view">
-		<li class="active"><a href="#slide1">All</a></li>
-		<li><a href="#slide2">Healthcare Industry Insights</a></li>
-		<li><a href="#slide3">Career Tips & Guides for Healthcare Professionals</a>
-		</li>
-		<li><a href="#slide4">Client and Partner Resources</a></li>
-		<li><a href="#slide5">Life as a Travel or Locum Tenens Professional</a></li>
-		<li><a href="#slide6">Healthcare Staffing Agency Updates</a></li>
-		<li><a href="#slide7">Healthcare Staffing & Trends</a></li>
-		<li><a href="#slide8">Compliance & Credentialing</a></li>
-	</ul>
 
 	<footer id="" class="site-footer">
 		<div class="footer-cta">
@@ -1705,6 +1696,87 @@
 </body>
 
 <script>
+	// Sticky image 
+	document.addEventListener("DOMContentLoaded", function () {
+		const header = document.querySelector(".header-section");
+		const stickyWrappers = document.querySelectorAll(".sticky-img");
+
+		function getHeaderHeight() {
+			return header?.offsetHeight || 0;
+		}
+
+		function updateStickyPosition() {
+			if (window.innerWidth < 992) {
+				// Reset all sticky styles for mobile
+				stickyWrappers.forEach((wrapper) => {
+					const inner = wrapper.querySelector(".sticky-image-stick");
+					Object.assign(inner.style, {
+						position: "relative",
+						top: "0",
+						left: "0",
+						width: "100%"
+					});
+				});
+				return;
+			}
+
+			const headerHeight = getHeaderHeight();
+
+			stickyWrappers.forEach((wrapper) => {
+				const container = wrapper.closest(".sticky-lft-block");
+				const rightSide = container.querySelector(".cl-right");
+				const inner = wrapper.querySelector(".sticky-image-stick");
+				const image = inner.querySelector("img");
+
+				const containerTop = container.offsetTop;
+				const containerHeight = container.offsetHeight;
+				const imageHeight = image.offsetHeight;
+				const scrollY = window.scrollY;
+
+				const wrapperRect = wrapper.getBoundingClientRect();
+				const wrapperLeft = wrapperRect.left + window.scrollX;
+				const wrapperWidth = wrapperRect.width;
+
+				const rightSideBottom = rightSide.offsetTop + rightSide.offsetHeight;
+				const stickyTop = scrollY + headerHeight;
+				const stickyBottom = stickyTop + imageHeight;
+
+				const maxFixedTop = rightSideBottom - imageHeight;
+
+				// Stick the image while scrolling within container bounds
+				if (stickyTop > containerTop && stickyBottom < rightSideBottom) {
+					inner.style.position = "fixed";
+					inner.style.top = `${headerHeight}px`;
+					inner.style.left = `${wrapperLeft}px`;
+					inner.style.width = `${wrapperWidth}px`;
+					inner.style.bottom = "auto";
+				}
+				// Lock image at the bottom of container
+				else if (stickyBottom >= rightSideBottom) {
+					const offsetBottom = rightSideBottom - containerTop - imageHeight;
+					inner.style.position = "absolute";
+					inner.style.top = `${offsetBottom}px`;
+					inner.style.left = `0`;
+					inner.style.width = "100%";
+					inner.style.bottom = "auto";
+				}
+				// Reset to top
+				else {
+					inner.style.position = "absolute";
+					inner.style.top = "0";
+					inner.style.left = "0";
+					inner.style.width = "100%";
+					inner.style.bottom = "auto";
+				}
+			});
+		}
+
+		window.addEventListener("scroll", updateStickyPosition);
+		window.addEventListener("resize", updateStickyPosition);
+		updateStickyPosition(); // Run once on load
+	});
+
+	// Sticky image end
 
 	// Dropdown
 	document.addEventListener("DOMContentLoaded", () => {
