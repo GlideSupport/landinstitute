@@ -8,7 +8,7 @@
 			"color": false,
 			"radius": false,
 			"style": false,
-			"width": false
+			"width": true
 		},
 		"color": {
 			"custom": false,
