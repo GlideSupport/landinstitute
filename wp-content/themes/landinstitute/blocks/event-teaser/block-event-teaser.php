@@ -169,13 +169,13 @@ if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 						</div>
 						<div class="event-teaser-list-content">
 	
-							<?php echo (!empty($kicker) || !empty($title) || !empty($wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
+							<?php echo (!empty($title) || !empty($wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
 
 							<div class="ui-eyebrow-18-16-regular block-subhead">
 								<?php echo esc_html($event_date); ?>
 							</div>
 
-							<?php echo (!empty($kicker) && !empty($title)) ? '<div class="gl-s4"></div>' : ''; ?>
+							<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s4"></div>' : ''; ?>
 							<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
 							<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s16"></div>' : ''; ?>
 							<?php echo !empty($wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
