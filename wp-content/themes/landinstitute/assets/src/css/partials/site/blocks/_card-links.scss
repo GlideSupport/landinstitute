@@ -715,9 +715,9 @@ section:has(.text-featured-block) {
         .tab-dropdown {
             height: 100%;
             width: 100%;
+            margin: 0 -1px;
 
             .dropdown-toggle {
-                border-right: 0;
                 min-width: 100%;
             }
         }
