@@ -77,6 +77,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		if (!swiperContainer || !nextBtn || !prevBtn) return;
 
+		const slides = swiperContainer.querySelectorAll(".swiper-slide");
+		const totalSlides = slides.length;
+
+		if (totalSlides <= 1) {
+			if (counterEl) {
+				counterEl.style.display = "none";
+			}
+			// Hide navigation buttons
+			arrowBtns.forEach((btn) => {
+				btn.style.display = "none";
+			});
+			return; // Don't initialize Swiper for single slide
+		}
+
 		// Add unique classes to avoid cross-slider control conflicts
 		const uniqueClass = `cta-work-slider-${index}`;
 		swiperContainer.classList.add(uniqueClass);

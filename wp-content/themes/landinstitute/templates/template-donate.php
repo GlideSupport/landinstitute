@@ -53,8 +53,10 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                     <?php endif; ?>
                     <div class="donate-form">
                         <script src="https://raisedonorsprod.azureedge.net/embed/embed.js"
-                            data-rd="82f05fbf-c026-42c8-ad6d-015f2d9bcba3" data-organizationId="41634">
+                            data-rd="e0c9d635-5f7d-4336-b1db-a6ee62a3c595"
+                            data-organizationId="41634">
                         </script>
+                       
                     </div>
                     <div class="gl-s80"></div>
                     <div class="card-arrow-links">

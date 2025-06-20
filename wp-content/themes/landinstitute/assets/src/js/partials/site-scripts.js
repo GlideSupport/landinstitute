@@ -665,7 +665,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const customCursor = document.querySelector(".custom-cursor");
 
 	if (!galleryBlock) {
-		console.warn("Element .gallery-block not found");
 		return;
 	}
 
@@ -869,4 +868,33 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	galleryBlock.addEventListener("touchend", hideCursor);
 	galleryBlock.addEventListener("touchcancel", hideCursor);
+
+	//staff tab js
+	const tabs = document.querySelectorAll("ul.tabs li");
+	const contents = document.querySelectorAll(".tab-content");
+
+	tabs.forEach(function (tab) {
+		tab.addEventListener("click", function () {
+			const tab_id = this.getAttribute("data-tab");
+
+			tabs.forEach((t) => t.classList.remove("current"));
+
+			contents.forEach((content) => {
+				content.classList.remove("current", "fade-in");
+				content.style.opacity = 0;
+			});
+
+			this.classList.add("current");
+
+			const activeContent = document.getElementById(tab_id);
+			activeContent.classList.add("current");
+
+			// Trigger reflow to enable transition
+			void activeContent.offsetWidth;
+
+			activeContent.classList.add("fade-in");
+			activeContent.style.opacity = 1;
+		});
+	});
+	//staff js end
 });
