@@ -56,7 +56,7 @@ $staff_email = get_field('staff_email_address', $bst_var_post_id);
 							<?php echo html_entity_decode($staff_designation); ?>
 						</div>
 					<?php endif; ?>
-					<?php if($staff_designation && $staff_description): ?>
+					<?php if($staff_designation || $staff_description): ?>
 						<div class="gl-s52"></div>
 					<?php endif; ?>
 					<?php if ($staff_description): ?>
