@@ -264,8 +264,9 @@
                 display: flex;
 
                 img {
-                    max-height: clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 7.9038)), 102px);
-                    max-width: clamp(106px, calc(6.625rem + ((1vw - 7.68px) * 15.1203)), 194px);
+                    height: clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 7.9038)), 102px);
+                    width: clamp(106px, calc(6.625rem + ((1vw - 7.68px) * 15.1203)), 194px);
+                    object-fit: contain;
                 }
             }
 
