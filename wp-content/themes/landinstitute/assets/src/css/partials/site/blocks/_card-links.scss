@@ -484,6 +484,7 @@ section:has(.text-featured-block) {
         gap: 6px;
         justify-content: space-between;
         width: 100%;
+        background-color: var(--gb_base_cream);
 
         @media (max-width: 991px) {
             display: none;
