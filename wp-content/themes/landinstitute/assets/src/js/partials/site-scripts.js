@@ -91,6 +91,89 @@ if (menuBtn && navOverlay) {
 	});
 }
 
+//sticky image with scroll start
+document.addEventListener("DOMContentLoaded", function () {
+	const header = document.querySelector(".header-section");
+	const stickyWrappers = document.querySelectorAll(".sticky-img");
+
+	function getHeaderHeight() {
+		return header?.offsetHeight || 0;
+	}
+
+	function updateStickyPosition() {
+		if (window.innerWidth < 992) {
+			// Reset all sticky styles for mobile
+			stickyWrappers.forEach((wrapper) => {
+				const inner = wrapper.querySelector(".sticky-image-stick");
+				Object.assign(inner.style, {
+					position: "relative",
+					top: "0",
+					left: "0",
+					width: "100%",
+				});
+			});
+			return;
+		}
+
+		const headerHeight = getHeaderHeight();
+
+		stickyWrappers.forEach((wrapper) => {
+			const container = wrapper.closest(".sticky-lft-block");
+			const rightSide = container.querySelector(".cl-right");
+			const inner = wrapper.querySelector(".sticky-image-stick");
+			const image = inner.querySelector("img");
+
+			const containerTop = container.offsetTop;
+			const containerHeight = container.offsetHeight;
+			const imageHeight = image.offsetHeight;
+			const scrollY = window.scrollY;
+
+			const wrapperRect = wrapper.getBoundingClientRect();
+			const wrapperLeft = wrapperRect.left + window.scrollX;
+			const wrapperWidth = wrapperRect.width;
+
+			const rightSideBottom =
+				rightSide.offsetTop + rightSide.offsetHeight;
+			const stickyTop = scrollY + headerHeight;
+			const stickyBottom = stickyTop + imageHeight;
+
+			const maxFixedTop = rightSideBottom - imageHeight;
+
+			// Stick the image while scrolling within container bounds
+			if (stickyTop > containerTop && stickyBottom < rightSideBottom) {
+				inner.style.position = "fixed";
+				inner.style.top = `${headerHeight}px`;
+				inner.style.left = `${wrapperLeft}px`;
+				inner.style.width = `${wrapperWidth}px`;
+				inner.style.bottom = "auto";
+			}
+			// Lock image at the bottom of container
+			else if (stickyBottom >= rightSideBottom) {
+				const offsetBottom =
+					rightSideBottom - containerTop - imageHeight;
+				inner.style.position = "absolute";
+				inner.style.top = `${offsetBottom}px`;
+				inner.style.left = `0`;
+				inner.style.width = "100%";
+				inner.style.bottom = "auto";
+			}
+			// Reset to top
+			else {
+				inner.style.position = "absolute";
+				inner.style.top = "0";
+				inner.style.left = "0";
+				inner.style.width = "100%";
+				inner.style.bottom = "auto";
+			}
+		});
+	}
+
+	window.addEventListener("scroll", updateStickyPosition);
+	window.addEventListener("resize", updateStickyPosition);
+	updateStickyPosition(); // Run once on load
+});
+//end
+
 // Slide Up/Down internal sub-menu when mobile menu arrow clicked
 document.addEventListener("click", (event) => {
 	if (event.target.matches(".header-nav .menu-item span")) {
