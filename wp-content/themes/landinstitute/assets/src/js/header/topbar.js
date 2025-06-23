@@ -6,10 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	const topBarCross = document.querySelector(".top-bar-cross");
 	let lastScrollTop = 0;
 
-	const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+	const adminBarHeight =
+		document.getElementById("wpadminbar")?.offsetHeight || 0;
 	// hero banner min-height set
-	const herobanner = document.querySelector('.header-section');
-	const heroBlock = document.querySelector('.variation-equal .hero-alongside-block');
+	const herobanner = document.querySelector(".header-section");
+	const heroBlock = document.querySelector(
+		".variation-equal .hero-alongside-block",
+	);
 
 	if (herobanner && heroBlock) {
 		const heroHeight = herobanner.offsetHeight;
@@ -29,8 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		if (navContainer) {
 			if (window.innerWidth < 1024) {
-				navContainer.style.paddingTop =
-					headerInitialSectionHeight + "px";
+				navContainer.style.paddingTop = "";
 			} else {
 				navContainer.style.paddingTop = "";
 			}
@@ -111,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			adminBarHeight + (headerSection?.offsetHeight || 0);
 		setInitialPadding();
 		adjustHeader();
-		adjustContentMinHeight(); 
+		adjustContentMinHeight();
 	});
 
 	// Event listeners
@@ -139,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	//Home Hero banner js start
 	function adjustContentMinHeight() {
-		const header = document.querySelector('.header-section');
+		const header = document.querySelector(".header-section");
 		const contentElements = document.querySelectorAll(`
 		.hero-section.hero-alongside-pattern,
 		.hero-section.hero-alongside-pattern .hero-default,
@@ -149,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		const headerHeight = header.offsetHeight;
 
-		contentElements.forEach(el => {
+		contentElements.forEach((el) => {
 			el.style.minHeight = `calc(100vh - ${headerHeight}px - 2px)`;
 		});
 	}
