@@ -95,10 +95,6 @@ input:focus::input-placeholder {
 	color: var(--gb_base_brown);
 }
 
-input:focus::placeholder {
-	opacity: 1;
-}
-
 input[type="text"]:disabled {
 	background-color: var(--gb_disabled_input_bgcolor);
 	border: 1px solid var(--gb_disabled_input_border_color);
