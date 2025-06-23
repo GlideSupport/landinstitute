@@ -12,7 +12,7 @@ if ($li_t_choose_variation === 'single-view-slider' && !empty($li_t_selector_tes
 
     if ($testimonial_query->have_posts()) :
         $total_testimonials = $testimonial_query->found_posts; ?>
-        <div class="testimonial-single-view-slider">
+        <div class="testimonial-single-view-slider <?php echo esc_attr($border_options); ?>">
             <?php if (!empty($li_t_kicker)) : ?>
                 <div class="eyebrow-title ui-eyebrow-18-16-regular"><?php echo esc_html($li_t_kicker); ?></div>
                 <div class="gl-s12"></div>
