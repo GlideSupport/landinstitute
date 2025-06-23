@@ -3,14 +3,125 @@
     "title": "Sticky Sub Nav",
     "fields": [
         {
+            "key": "field_685933d047074",
+            "label": "Nav Button Position",
+            "name": "li_po_nav_button_position",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Left Side",
+                "right": "Right Side",
+                "both": "Left and Right Side"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_6859322a88820",
+            "label": "Nav Left Button",
+            "name": "li_po_nav_left_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_685933d047074",
+                        "operator": "==",
+                        "value": "left"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_685933d047074",
+                        "operator": "==",
+                        "value": "both"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6859324388821",
+            "label": "Left Button Arrow Position",
+            "name": "li_po_left_btn_arrow_position",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_685933d047074",
+                        "operator": "==",
+                        "value": "left"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_685933d047074",
+                        "operator": "==",
+                        "value": "both"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "left": "Left Arrow",
+                "right": "Right Arrow"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_68414b4189a1f",
-            "label": "Nav Button",
+            "label": "Nav Right Button",
             "name": "li_po_nav_button",
             "aria-label": "",
             "type": "link",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_685933d047074",
+                        "operator": "==",
+                        "value": "right"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_685933d047074",
+                        "operator": "==",
+                        "value": "both"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -64,5 +175,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749116894
+    "modified": 1750677380
 }
