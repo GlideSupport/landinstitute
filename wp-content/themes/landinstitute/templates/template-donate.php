@@ -25,6 +25,7 @@ $li_td_kicker = $bst_fields['li_td_kicker'];
 $li_td_text = $bst_fields['li_td_text'];
 $li_td_sub_text = $bst_fields['li_td_sub_text'];
 $li_td_content = $bst_fields['li_td_content'];
+$li_td_form_embed = $bst_fields['li_td_form_embed'];
 
 $logo_url = wp_get_attachment_url($bst_var_header_logo);
 ?>
@@ -52,11 +53,7 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                         <div class="gl-s44"></div>
                     <?php endif; ?>
                     <div class="donate-form">
-                        <script src="https://raisedonorsprod.azureedge.net/embed/embed.js"
-                            data-rd="e0c9d635-5f7d-4336-b1db-a6ee62a3c595"
-                            data-organizationId="41634">
-                        </script>
-                       
+                        <?php echo html_entity_decode($li_td_form_embed); ?> 
                     </div>
                     <div class="gl-s80"></div>
                     <div class="card-arrow-links">
