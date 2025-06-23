@@ -1053,6 +1053,10 @@ section:has(.text-featured-block) {
                     }
                 }
             }
+
+            .block-btn {
+                margin-top: auto;
+            }
         }
 
         &:first-child {

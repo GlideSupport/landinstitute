@@ -466,6 +466,14 @@
                 }
             }
         }
+
+        .left-site-btn {
+            order: 1;
+
+            @media(max-width: 1200px) {
+                display: none;
+            }
+        }
     }
 
     &.footer-subnav-variation {
@@ -474,6 +482,20 @@
 
             .cl-right {
                 border-right: 0;
+            }
+
+            .cl-left {
+                .jump-arrow {
+                    border-right: 0;
+                }
+            }
+
+            .left-site-btn {
+                .jump-arrow {
+                    &.previous-arrow {
+                        border-left: 0;
+                    }
+                }
             }
         }
     }

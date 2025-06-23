@@ -775,7 +775,8 @@ section:has(.has-border-bottom) {
 
 		.sub-head,
 		.block-title,
-		.block-content {
+		.block-content,
+		.block-subhead {
 			color: var(--gb_base_cream);
 		}
 	}
@@ -1117,7 +1118,7 @@ section:has(.has-border-bottom) {
 
 			.faq_question-text {
 				.faq-title {
-					color: var(--gb_primary_lime_green);
+					color: var(--gb_base_cream);
 				}
 			}
 
@@ -1133,4 +1134,282 @@ section:has(.has-border-bottom) {
 		}
 	}
 
+	.image-list-block {
+		.block-title {
+			color: var(--gb_base_cream);
+		}
+
+		.image-list-row {
+			.image-list-col {
+				.cl-right {
+
+					.block-title,
+					.team-sub {
+						color: var(--gb_base_cream);
+					}
+				}
+
+				.team-desc {
+					.team-content {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
+		}
+	}
+
+	.image-gallery {
+		.block-title {
+			color: var(--gb_base_cream);
+		}
+	}
+
+	.theme-form-heading {
+
+		.block-title,
+		.block-content {
+			color: var(--gb_base_cream);
+		}
+	}
+
+	.gform_wrapper .gfield_label,
+	.gform_wrapper .gform-field-label {
+		color: var(--gb_base_cream);
+	}
+
+	input[type=text],
+	input[type=number],
+	input[type=email],
+	input[type=tel],
+	input[type=url],
+	input[type=search],
+	input[type=password],
+	input[type=time],
+	input[type=date],
+	input[type=datetime-local],
+	input[type=week],
+	input[type=month],
+	input[type=file],
+	input[type=range],
+	input[list],
+	input[type=string],
+	select,
+	textarea,
+	.gform-text-input-reset {
+		color: var(--gb_base_cream);
+		border-color: var(--gb_base_cream);
+	}
+
+	input::input-placeholder {
+		opacity: 0.5;
+		color: var(--gb_base_cream);
+	}
+
+	input:focus::input-placeholder {
+		opacity: 1;
+	}
+
+	input::input-placeholder {
+		opacity: 0.5;
+		color: var(--gb_base_cream);
+	}
+
+	input::placeholder {
+		opacity: 0.5;
+		color: var(--gb_base_cream);
+	}
+
+	.read-more-block {
+		.block-title {
+			color: var(--gb_base_cream);
+		}
+	}
+
+	.newsletter-block {
+		.block-row {
+			border-color: var(--gb_primary_lime_green02);
+
+			.sub-head {
+				color: var(--gb_base_cream);
+			}
+
+			.block-title {
+				color: var(--gb_base_cream);
+			}
+		}
+	}
+
+	.image-alongside-text-touch {
+		.row-flex {
+			.cl-right {
+
+				.eybrow-title,
+				.block-subhead,
+				.block-title,
+				.block-content {
+					color: var(--gb_base_cream);
+				}
+
+				.block-btn {
+					.site-btn {
+						&.text-link {
+							color: var(--gb_base_cream);
+
+							&:before {
+								background-color: var(--gb_primary_lime_green);
+							}
+
+							&:after {
+								background-color: var(--gb_primary_lime_green);
+								background-image: url(../images/button-brown-arrow.svg);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.event-teaser-list-row {
+		.category-filter {
+			.tabs {
+				.tab-link:not(.current, :hover) {
+					color: var(--gb_base_cream);
+				}
+			}
+		}
+
+		.event-teaser-list-col {
+			.event-teaser-list-card:not(:hover) {
+				.event-teaser-list-content {
+
+					.block-subhead,
+					.block-title,
+					.block-content {
+						color: var(--gb_base_cream);
+					}
+				}
+
+				.block-btns {
+					.site-btn {
+						&.text-link {
+							color: var(--gb_base_cream);
+
+							&:before {
+								background-color: var(--gb_primary_lime_green);
+							}
+
+							&:after {
+								background-color: var(--gb_primary_lime_green);
+								background-image: url(../images/button-brown-arrow.svg);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.past-event-filter-title {
+		.block-title {
+			color: var(--gb_base_cream);
+		}
+
+		.filter-block {
+			.filter-content-cards-grid {
+				.filter-content-card-item {
+					.filter-content-card-link:not(:hover) {
+						.filter-card-content {
+
+							.eyebrow,
+							.card-title,
+							.description {
+								color: var(--gb_base_cream);
+							}
+
+							.read-more-link {
+								.border-text-btn {
+									background-image: linear-gradient(transparent calc(100% - 1px), var(--gb_base_cream) 1px);
+									color: var(--gb_base_cream);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	.cta-grid-traditional-block {
+		.cta-grid-traditional-row {
+			.cta-grid-traditional-col {
+				.cta-grid-traditional-card:not(:hover) {
+
+					.card-title,
+					.card-content {
+						color: var(--gb_base_cream);
+					}
+
+					.block-btn {
+						.site-btn {
+							&.text-link {
+								color: var(--gb_base_cream);
+
+								&:before {
+									background-color: var(--gb_primary_lime_green);
+								}
+
+								&:after {
+									background-color: var(--gb_primary_lime_green);
+									background-image: url(../images/button-brown-arrow.svg);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.logo-grid-links-row {
+		.logo-grid-link-col {
+			.logo-grid-link {
+				border-color: var(--gb_primary_lime_green02);
+			}
+		}
+	}
+
+	.stats-with-text {
+		.row-flex {
+			.col-left {
+				.counter-number {
+
+					.count,
+					.counter-content {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.single-event,
+.single-post {
+	.bg-dark-green {
+		.wrapper {
+
+			>.wp-block-heading,
+			>p>ul li {
+				color: var(--gb_base_cream);
+			}
+
+			>ul li a {
+				color: var(--gb_base_cream);
+				text-decoration-color: var(--gb_base_cream);
+			}
+		}
+	}
 }
