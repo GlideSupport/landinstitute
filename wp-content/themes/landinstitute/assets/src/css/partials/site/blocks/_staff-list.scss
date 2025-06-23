@@ -84,6 +84,12 @@
                 background-color: var(--gb_primary_sunflower_yellow);
             }
 
+            &.bg-primary-pink {
+                &:before {
+                    background-color: var(--gb_primary_pink);
+                }
+            }
+
             &:hover {
                 background-color: var(--gb_primary_butter_yellow);
             }

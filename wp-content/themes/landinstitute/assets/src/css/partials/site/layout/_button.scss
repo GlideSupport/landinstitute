@@ -406,15 +406,13 @@ body {
             height: 22px;
             position: relative;
             width: 22px;
-            transition: all 0.3s ease;
 
             &::after {
                 animation: bubbleJump-shrink 0.4s ease-in-out 2;
-                background-image: url(../images/button-brown-arrow.svg);
-                background-size: 10px;
-                animation: inherit !important;
+                background-image: url(../images/bottom-arrow.svg);
                 background-position: center;
                 background-repeat: no-repeat;
+                background-size: 8px;
                 content: "";
                 display: inline-block;
                 height: 22px;
@@ -430,14 +428,34 @@ body {
                 background-color: var(--gb_base_brown);
 
                 &:after {
-                    animation: inherit !important;
-                    background-image: url(../images/button-arrow-white.svg);
+                    animation: bubbleJump 0.4s ease-in-out 2;
+                    background-image: url(../images/bottom-arrow-white.svg);
                 }
             }
         }
 
         &.previous-arrow {
             flex-direction: row-reverse;
+
+            .arrow-icon {
+                &:after {
+                    background-image: url(../images/button-brown-arrow.svg);
+                    background-size: 10px;
+                    animation: inherit !important;
+                }
+            }
+
+            &:hover {
+
+                .arrow-icon {
+                    background-color: var(--gb_base_brown);
+
+                    &:after {
+                        animation: inherit !important;
+                        background-image: url(../images/button-arrow-white.svg);
+                    }
+                }
+            }
 
             .arrow-icon {
                 transform: scale(-1);

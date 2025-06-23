@@ -273,6 +273,12 @@ section:has(.text-featured-block) {
                         background-color: var(--gb_primary_lemon_yellow);
                     }
                 }
+
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
+                    }
+                }
             }
         }
     }
@@ -442,6 +448,7 @@ section:has(.text-featured-block) {
             display: block;
             height: 100%;
             text-decoration: none;
+            background-color: var(--gb_base_cream);
 
             &:hover {
                 background-color: var(--gb_primary_butter_yellow);
@@ -1127,6 +1134,7 @@ section:has(.text-featured-block) {
             height: 100%;
             text-decoration: none;
             min-height: clamp(285px, calc(17.8125rem + ((1vw - 7.68px) * 34.5361)), 486px);
+            background-color: var(--gb_base_cream);
 
             @media(max-width: 640px) {
                 min-height: inherit;

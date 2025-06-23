@@ -83,6 +83,12 @@
                     }
                 }
 
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
+                    }
+                }
+
                 .left-content {
                     align-self: flex-end;
                 }
@@ -228,6 +234,12 @@
                         background-color: var(--gb_primary_lemon_yellow);
                     }
                 }
+
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
+                    }
+                }
             }
         }
     }
@@ -320,6 +332,12 @@
                 &.bg-lemon-yellow {
                     &:before {
                         background-color: var(--gb_primary_lemon_yellow);
+                    }
+                }
+
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
                     }
                 }
 
@@ -522,6 +540,12 @@
                     }
                 }
 
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
+                    }
+                }
+
                 .hero-content {
                     align-self: flex-end;
                     max-width: 720px;
@@ -663,6 +687,12 @@
                 &.bg-lemon-yellow {
                     &:before {
                         background-color: var(--gb_primary_lemon_yellow);
+                    }
+                }
+
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
                     }
                 }
 
@@ -842,6 +872,12 @@
                 &.bg-lemon-yellow {
                     &:before {
                         background-color: var(--gb_primary_lemon_yellow);
+                    }
+                }
+
+                &.bg-primary-pink {
+                    &:before {
+                        background-color: var(--gb_primary_pink);
                     }
                 }
 

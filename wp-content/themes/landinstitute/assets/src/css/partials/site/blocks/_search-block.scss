@@ -21,6 +21,11 @@
             .event-teaser-list-col {
                 .event-teaser-list-card {
                     min-height: inherit;
+                    background-color: var(--gb_base_cream);
+
+                    &:hover {
+                        background-color: var(--gb_primary_butter_yellow);
+                    }
 
                     .event-teaser-list-content {
                         margin: 0 auto;

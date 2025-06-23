@@ -171,6 +171,11 @@
 
             @media (min-width: 992px) {
                 column-count: 2;
+                column-gap: 40px;
+            }
+
+            @media (min-width: 1200px) {
+                column-gap: 80px;
             }
 
             .footer-nav {
@@ -274,6 +279,10 @@
 
                     @extend .ui-18-16-regular;
                 }
+
+                &.active-hover {
+                    opacity: 0.5;
+                }
             }
         }
     }
@@ -327,6 +336,10 @@
                 justify-content: space-between;
                 padding: 8px 0;
                 position: relative;
+            }
+
+            >a {
+                color: var(--gb_base_brown);
             }
 
             &:after {
