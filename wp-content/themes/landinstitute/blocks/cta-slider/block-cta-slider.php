@@ -46,6 +46,14 @@ $li_cs_kicker = $bst_block_fields['li_cs_kicker'] ?? null;
 $li_cs_repeater = $bst_block_fields['li_cs_repeater'] ?? null;
 $li_cs_link = $bst_block_fields['li_cs_link'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
+
+$total_cta_count = count($li_cs_repeater);
+
+if($total_cta_count > 1){
+	$swiper_class= "swiper-wrapper";
+}else{
+	$swiper_class = "";
+}
 ?>
 
 <div class="cta-slider-block <?php echo esc_attr($border_options); ?>">
@@ -58,8 +66,7 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
 		<div class="cta-slider-box">
 			<div class="swiper-container cta-work-slider">
 				<div class="slide-counter" style="display: none;">1 / 1</div>
-
-				<div class="swiper-wrapper">
+				<div class="<?php echo $swiper_class; ?>">
 					<?php
 					foreach ($li_cs_repeater as $li_cs_rep) :
 						$title = $li_cs_rep['title'];
