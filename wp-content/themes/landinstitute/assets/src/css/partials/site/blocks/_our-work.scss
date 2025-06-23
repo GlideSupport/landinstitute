@@ -34,7 +34,7 @@
     padding-left: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
     @media(max-width: 768px) {
-        padding-bottom: 98px;
+        padding-bottom: 50px;
     }
 
     @media(max-width: 319px) {
@@ -112,6 +112,25 @@
                     height: 100%;
                     object-fit: cover;
                     width: 100%;
+                }
+            }
+        }
+    }
+
+    &.testimonial-no-slide {
+        @media(max-width: 991px) {
+            padding-bottom: 50px;
+        }
+
+        .slide-inner {
+            .col-right {
+                @media(max-width: 991px) {
+                    justify-content: flex-start;
+                }
+
+                .testimonial-author-image {
+                    height: clamp(208px, calc(13rem + ((1vw - 7.68px) * 19.4158)), 321px);
+                    width: clamp(156px, calc(9.75rem + ((1vw - 7.68px) * 14.433)), 240px);
                 }
             }
         }
