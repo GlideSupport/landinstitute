@@ -58,6 +58,7 @@
         transition: transform 0.4s ease-out;
         width: 100%;
         will-change: transform;
+        z-index: 2;
 
         .gallery-image {
             align-items: center;

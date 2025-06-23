@@ -516,6 +516,24 @@
     }
 }
 
+.download-list {
+    &.sticky-lft-block {
+        .row-flex {
+            .col-left {
+                margin-bottom: 0px;
+            }
+        }
+
+        &.has-border-bottom {
+            .row-flex {
+                .col-left {
+                    margin-bottom: -2px;
+                }
+            }
+        }
+    }
+}
+
 .two-col-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
