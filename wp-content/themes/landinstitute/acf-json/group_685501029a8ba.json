@@ -3,6 +3,28 @@
     "title": "CPT - Staff",
     "fields": [
         {
+            "key": "field_6858e0659730a",
+            "label": "Bio Description",
+            "name": "staff_bio_description",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "wysiwyg_height": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
             "key": "field_68550105b5e8d",
             "label": "Designation",
             "name": "staff_designation",
@@ -25,7 +47,7 @@
         },
         {
             "key": "field_68550130b5e8e",
-            "label": "Staff Email Address",
+            "label": "Email Address",
             "name": "staff_email_address",
             "aria-label": "",
             "type": "email",
@@ -62,5 +84,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750403849
+    "modified": 1750655113
 }
