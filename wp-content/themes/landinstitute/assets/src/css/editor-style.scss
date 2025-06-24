@@ -2109,8 +2109,8 @@ html body .editor-styles-wrapper :where(.wp-block) {
 		}
 
 
-		>ol,
-		>ul {
+		ol,
+		ul {
 			&.block-editor-block-list__block {
 				>li {
 					color: var(--gb_base_cream);
@@ -2127,7 +2127,7 @@ html body .editor-styles-wrapper :where(.wp-block) {
 			}
 		}
 
-		>ol {
+		ol {
 			&.block-editor-block-list__block {
 				>li {
 
