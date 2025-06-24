@@ -347,7 +347,7 @@
 
 	// fixed variable Colors
 
-	--gb_success: #198754;
+	--gb_success: var(--primary_dark_green);
 	--gb_info: #0dcaf0;
 	--gb_warning: #ffc107;
 	--gb_danger: var(--gb_various_error_red);
