@@ -424,6 +424,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	addHoverEffect(".mega-two .icon-content-col", "active-hover");
 	addHoverEffect(".mega-bottom-menu ul#menu-issue > li", "hover-active");
 	addHoverEffect(".social-icons a", "active-hover");
+	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
 
 	//hover add class in menu js end
 

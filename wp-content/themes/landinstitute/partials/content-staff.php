@@ -19,9 +19,15 @@ $staff_bio_description = get_field('staff_bio_description', $bst_var_post_id);
 $staff_designation = get_field('staff_designation', $bst_var_post_id);
 $staff_email = get_field('staff_email_address', $bst_var_post_id);
 
-
-
 ?>
+
+<section id="hero-section" class="hero-section hero-section-default hero-text-only">
+	<!-- hero start -->
+	<div class="bg-pattern">
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/tli-pattern-Dandelion-Lilac-scaledbg.jpg"
+			width="" height="" alt="" />
+	</div>
+</section>
 <section class="container-1280">
 	<div class="wrapper">
 		<div class="staff-detail-layout bg-lilac">
