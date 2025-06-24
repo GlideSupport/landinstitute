@@ -1267,25 +1267,25 @@ section:has(.has-border-bottom) {
 		color: var(--gb_base_cream);
 	}
 
-	input[type=text]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=number]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=email]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=tel]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=url]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=search]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=password]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=time]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
+	input[type=text],
+	input[type=number],
+	input[type=email],
+	input[type=tel],
+	input[type=url],
+	input[type=search],
+	input[type=password],
+	input[type=time],
 	input[type=date],
-	input[type=datetime-local]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=week]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=month]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=file]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=range]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[list]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	input[type=string]:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	select:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	textarea:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select),
-	.gform-text-input-reset:not(.acf-editor-wrap input, .acf-editor-wrap textarea, .acf-editor-wrap select) {
+	input[type=datetime-local],
+	input[type=week],
+	input[type=month],
+	input[type=file],
+	input[type=range],
+	input[list],
+	input[type=string],
+	select,
+	textarea,
+	.gform-text-input-reset {
 		color: var(--gb_base_cream);
 		border-color: var(--gb_base_cream);
 	}
