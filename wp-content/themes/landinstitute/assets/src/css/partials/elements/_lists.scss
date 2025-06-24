@@ -125,6 +125,10 @@ ol ul {
 				position: absolute;
 				top: 0;
 			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
 		}
 
 		ol {
