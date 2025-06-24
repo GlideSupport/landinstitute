@@ -12,6 +12,10 @@
                 padding-left: 0;
                 padding-right: 0;
             }
+
+            @media(max-width: 767px) {
+                margin-left: -24px;
+            }
         }
     }
 
@@ -34,12 +38,20 @@
             grid-template-columns: 1fr 1fr;
         }
 
+        @media (max-width: 319px) {
+            grid-template-columns: 1fr;
+        }
+
         .card-item {
             border-bottom: 2px solid var(--gb_base_brown);
             border-right: 2px solid var(--gb_base_brown);
             text-decoration: none;
             display: flex;
             flex-direction: column;
+
+            @media(max-width: 319px) {
+                border-right: 0;
+            }
 
             &:nth-child(even) {
                 @media (max-width: 767px) {
