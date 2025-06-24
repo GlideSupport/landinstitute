@@ -168,25 +168,26 @@
             .row-flex {
                 display: flex;
                 flex-wrap: wrap;
-                gap: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+                gap: clamp(32px, calc(2rem + ((1vw - 7.68px) * 8.2474)), 80px);
 
                 .logo-left {
                     flex: 160px 0 0;
+                    display: flex;
 
                     img {
                         max-height: 160px;
                         max-width: 160px;
 
                         @media(max-width: 640px) {
-                            max-height: 110px;
-                            max-width: 110px;
+                            max-height: 96px;
+                            max-width: 96px;
                         }
                     }
                 }
 
                 .cl-right {
                     flex: 1 0 0;
-                    padding: 0 0 60px;
+                    padding: 0 0 clamp(44px, calc(2.75rem + ((1vw - 7.68px) * 3.4364)), 64px);
 
                     @media(max-width: 767px) {
                         flex: 100% 0 0;
@@ -196,6 +197,10 @@
                         li {
                             margin: 0 0 20px;
                             padding: 0;
+
+                            @media(max-width: 640px) {
+                                margin: 0 0 16px;
+                            }
 
                             &:last-child {
                                 margin-bottom: 0;
