@@ -2,7 +2,7 @@
 <div class="internal-link-list-block <?php echo esc_attr($border_options); ?>">
 		<div class="row-flex">
 			<div class="col-left">
-				<div class="gl-s24"></div>
+				<div class="gl-s24 md-none"></div>
 				<?php echo !empty($li_ill_headline_check) ? BaseTheme::headline($li_ill_headline, 'heading-2 block-title mb-0') : ''; ?>
 				<?php echo (!empty($li_ill_headline_check) && !empty($li_ill_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 				<?php echo !empty($li_ill_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_ill_wysiwyg) . '</div>' : ''; ?>
