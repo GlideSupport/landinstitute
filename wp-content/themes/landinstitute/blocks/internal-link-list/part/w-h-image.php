@@ -16,14 +16,18 @@
 					$link = $li_ill_rep['link'];
 					$link_url = $link['url'] ?? '';
 					if (!empty($title) || !empty($text)) { ?>
-							<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title with-arrow hover-img">' : '<div class="card-item link-with-title with-arrow hover-img">'; ?>
+					<?php echo !empty($link_url) 
+						? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title' . 
+						(($li_ill_show_or_hide_arrow === 'with-arrow' && !empty($link_url)) ? ' with-arrow' : '') . 
+						(!empty($image) ? ' hover-img' : '') . '">' 
+						: '<div class="card-item link-with-title' . 
+						(!empty($image) ? ' hover-img' : '') . '">'; ?>
 								<div class="card-item-left">
 									<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
 									<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
 									<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
 								</div>
-								<?php if($li_ill_show_or_hide_arrow == 'with-arrow'){?>
-									<div class="card-item-right">
+								<?php if($li_ill_show_or_hide_arrow == 'with-arrow' && !empty($link_url)){?>									<div class="card-item-right">
 										<div class="dot-btn">
 											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
 										</div>
