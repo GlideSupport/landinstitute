@@ -1134,6 +1134,11 @@ section:has(.has-border-bottom) {
 				.block-title,
 				.block-content {
 					color: var(--gb_base_cream);
+
+					a {
+						color: var(--gb_base_cream);
+						text-decoration-color: var(--gb_base_cream);
+					}
 				}
 
 				.block-btn {
@@ -1199,6 +1204,48 @@ section:has(.has-border-bottom) {
 			.answer {
 				.faq-content {
 					color: var(--gb_base_cream);
+
+					a {
+						color: var(--gb_base_cream);
+						text-decoration-color: var(--gb_base_cream);
+					}
+				}
+
+				ul {
+					margin: 20px 0 0;
+
+					li {
+						color: var(--gb_base_cream);
+						@extend .body-20-18-regular;
+
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+
+						a {
+							color: var(--gb_base_cream);
+							text-decoration-color: var(--gb_base_cream);
+						}
+
+					}
+				}
+
+				ol {
+					margin: 20px 0 0;
+
+					li {
+						color: var(--gb_base_cream);
+						@extend .body-20-18-regular;
+
+						&:before {
+							color: var(--gb_base_cream);
+						}
+
+						a {
+							color: var(--gb_base_cream);
+							text-decoration-color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 		}

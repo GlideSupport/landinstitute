@@ -211,10 +211,26 @@ body {
         &.arrow-pointing-left {
             padding: 22px 36px 22px 66px;
 
+            @media(max-width: 991px) {
+                padding: 18px 24px 18px 62px;
+            }
+
+            @media(max-width: 640px) {
+                padding: 18px 24px 18px 54px;
+            }
+
             &::after {
                 right: unset;
                 left: 26px;
                 background-image: url(../images/button-left-arrow.svg);
+
+                @media(max-width: 991px) {
+                    left: 25px;
+                }
+
+                @media(max-width: 640px) {
+                    left: 16px;
+                }
             }
 
         }
