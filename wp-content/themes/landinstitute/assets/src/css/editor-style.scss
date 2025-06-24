@@ -2095,15 +2095,13 @@ html body .editor-styles-wrapper :where(.wp-block) {
 			}
 		}
 
-		.editor-styles-wrapper {
-			.block-editor-block-list__block {
+		.block-editor-block-list__block {
 
-				ol,
-				ul {
-					>li {
-						&:before {
-							color: var(--gb_base_cream);
-						}
+			ol,
+			ul {
+				>li {
+					&:before {
+						color: var(--gb_base_cream);
 					}
 				}
 			}
