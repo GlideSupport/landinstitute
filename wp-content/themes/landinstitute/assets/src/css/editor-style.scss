@@ -2111,7 +2111,7 @@ html body .editor-styles-wrapper :where(.wp-block) {
 			ul {
 				>li {
 					&:before {
-						color: var(--gb_base_cream);
+						background-color: var(--gb_base_cream);
 					}
 
 					a {
@@ -2194,7 +2194,7 @@ html body .editor-styles-wrapper :where(.wp-block) {
 
 .editor-styles-wrapper {
 	a:where(:not(.wp-element-button)) {
-		text-decoration: none !important;
+		// text-decoration: none !important;
 	}
 }
 

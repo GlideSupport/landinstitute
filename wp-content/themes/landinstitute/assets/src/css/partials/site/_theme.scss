@@ -598,7 +598,7 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 
 					&:before {
-						color: var(--gb_base_cream);
+						background-color: var(--gb_base_cream);
 					}
 
 					a {
