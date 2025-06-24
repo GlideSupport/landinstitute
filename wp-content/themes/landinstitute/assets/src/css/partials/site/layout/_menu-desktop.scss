@@ -304,10 +304,9 @@
 
 						ul {
 							margin: 0;
-							row-gap: 8px;
 
 							li {
-								margin-bottom: 0;
+								margin-bottom: 8px;
 
 								&:last-child {
 									margin-bottom: 0;
@@ -370,9 +369,10 @@
 
 							ul {
 								margin: 0;
+								row-gap: 8px;
 
 								li {
-									margin-bottom: 8px;
+									margin-bottom: 0;
 
 									&:last-child {
 										margin-bottom: 0;
