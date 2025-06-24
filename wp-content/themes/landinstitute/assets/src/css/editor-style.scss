@@ -2078,6 +2078,18 @@ html body .editor-styles-wrapper :where(.wp-block) {
 				}
 			}
 		}
+
+		.block-editor-inner-blocks {
+			.block-editor-block-list__layout {
+				.rich-text {
+					color: var(--gb_base_cream);
+				}
+
+				.wp-block-heading {
+					color: var(--gb_base_cream);
+				}
+			}
+		}
 	}
 }
 

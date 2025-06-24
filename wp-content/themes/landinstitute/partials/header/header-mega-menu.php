@@ -41,7 +41,7 @@
 				<div class="mega-col mega-two">
 					<?php if (!empty($landinstitute_nav_menu_title_2)): ?>
 						<div class="ui-24-21-bold mega-menu-title"><?php echo html_entity_decode($landinstitute_nav_menu_title_2); ?></div>
-						<div class="gl-s16"></div>
+						<div class="gl-s20"></div>
 					<?php endif; ?>
 					<div class="icon-content-list-block">
 						<div class="icon-content-row">
@@ -73,7 +73,7 @@
 				<div class="mega-col mega-three">
 				<?php if (!empty($landinstitute_nav_menu_title_3)): ?>
 					<div class="ui-24-21-bold mega-menu-title"><?php echo html_entity_decode($landinstitute_nav_menu_title_3); ?></div>
-					<div class="gl-s16"></div>
+					<div class="gl-s20"></div>
 				<?php endif; ?>
 				<?php
 					if (!empty($landinstitute_select_nav_menu_3) && is_array($landinstitute_select_nav_menu_3) && !empty($landinstitute_select_nav_menu_3['slug'])) {

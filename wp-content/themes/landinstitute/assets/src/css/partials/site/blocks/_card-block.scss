@@ -21,6 +21,10 @@
                 bottom: 20px;
                 left: 30px;
                 position: absolute;
+
+                .tags {
+                    @extend .ui-14-13-bold;
+                }
             }
         }
 
