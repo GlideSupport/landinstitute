@@ -579,6 +579,37 @@ section:has(.has-border-bottom) {
 .bg-dark-green {
 	background-color: var(--primary_dark_green);
 
+	>.wrapper {
+
+		>.wp-block-heading,
+		>p {
+			color: var(--gb_base_cream);
+
+			a {
+				color: var(--gb_base_cream);
+				text-decoration-color: var(--gb_base_cream);
+			}
+		}
+
+		>ol,
+		>ul {
+			&.wp-block-list {
+				>li {
+					color: var(--gb_base_cream);
+
+					&:before {
+						color: var(--gb_base_cream);
+					}
+
+					a {
+						color: var(--gb_base_cream);
+						text-decoration-color: var(--gb_base_cream);
+					}
+				}
+			}
+		}
+	}
+
 	.internal-link-list-block {
 
 		.block-title,
