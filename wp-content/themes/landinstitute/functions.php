@@ -173,3 +173,91 @@ function ajax_filter_logo_grid_filter() {
 
     wp_send_json_success($response);
 }
+
+
+//news list filter
+add_action('wp_ajax_filter_news_posts', 'filter_news_posts_callback');
+add_action('wp_ajax_nopriv_filter_news_posts', 'filter_news_posts_callback');
+
+function filter_news_posts_callback() {
+	$type  = sanitize_text_field($_POST['news_type'] ?? 'all');
+	$topic = sanitize_text_field($_POST['news_topic'] ?? 'all');
+
+	$args = [
+		'post_type' => 'news',
+		'post_status' => 'publish',
+		'posts_per_page' => 9,
+		'order'          => 'DESC',
+		'orderby'        => 'date',
+		'tax_query' => [],
+	];
+
+	if ($type !== 'all') {
+		$args['tax_query'][] = [
+			'taxonomy' => 'news-type',
+			'field'    => 'slug',
+			'terms'    => $type,
+		];
+	}
+
+	if ($topic !== 'all') {
+		$args['tax_query'][] = [
+			'taxonomy' => 'news-topic',
+			'field'    => 'slug',
+			'terms'    => $topic,
+		];
+	}
+
+	if (!empty($tax_query)) {
+		$args['tax_query'] = $tax_query;
+	}
+
+	$query = new WP_Query($args);
+
+	if ($query->have_posts()) :
+		while ($query->have_posts()) : $query->the_post();
+			$title = get_the_title();
+					$date = get_the_date( 'M j, Y' );
+					$permalink = get_the_permalink();
+					$short_Desc = get_the_excerpt();
+					$short_content = wp_trim_words($short_Desc, 15, '...');
+					$topics = get_the_terms(get_the_ID(), 'news-topic');
+					$topics_name = !empty($topics) && !is_wp_error($topics) ? $topics[0]->name : '';
+
+				?>
+				<div class="filter-content-card-item">
+					<a href="<?php echo esc_html($permalink); ?>" class="filter-content-card-link">
+						<div class="filter-card-content">
+							<div class="gl-s52"></div>
+							<div class="top-sub-list d-flex flex-wrap">
+								<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($date); ?></div>
+								<?php if($topics_name): ?>
+									<div class="ui-eyebrow-16-15-regular">•</div>
+								<?php endif; ?>
+								<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($topics_name); ?></div>
+							</div>
+							<div class="gl-s8"></div>
+							<div class="card-title heading-7"><?php echo esc_html($title); ?>
+							</div>
+							<?php if($short_content): ?>
+							<div class="gl-s16"></div>
+							<div class="description ui-18-16-regular"><?php echo html_entity_decode($short_content); ?>
+							</div>
+							<?php endif; ?>
+							
+							<div class="gl-s20"></div>
+							<div class="read-more-link">
+								<div class="border-text-btn">Read more</div>
+							</div>
+							<div class="gl-s80"></div>
+						</div>
+					</a>
+				</div>
+		<?php endwhile;
+	else :
+		echo '<p>No posts found.</p>';
+	endif;
+
+	wp_reset_postdata();
+	wp_die();
+}
