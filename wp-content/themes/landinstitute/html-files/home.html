@@ -563,13 +563,73 @@
 					<div class="two-column-text text-featured-block has-border-bottom">
 						<div class="row-flex">
 							<div class="text-card-col bg-lilac">
-								<a href="" class="text-card-col-group">
+								<div class="text-card-col-group">
 									<div class="gl-s156"></div>
 									<div class="ui-eyebrow-20-18-regular">We believe</div>
 									<div class="gl-s24"></div>
-									<h3 class="heading-3 mb-0 block-title">To reconcile our place in nature and
-										secure
-										a future for humanity, we must transform agriculture.</h3>
+									<h2 class="heading-3 mb-0 block-title">To reconcile our place in nature and secure a
+										future for humanity, we
+										must transform agriculture.</h2>
+									<div class="gl-s200"></div>
+								</div>
+							</div>
+							<div class="text-card-col bg-butter-yellow">
+								<a href="" class="text-card-col-group">
+									<div class="gl-s156"></div>
+									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
+									<div class="gl-s24"></div>
+									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
+										a global movement to realize perennial agriculture.</h3>
+									<div class="gl-s200"></div>
+									<div class="text-card-btn">
+										<div href="" class="site-btn">Get Involved</div>
+									</div>
+								</a>
+							</div>
+							<div class="text-card-col bg-butter-yellow">
+								<a href="" class="text-card-col-group">
+									<div class="gl-s156"></div>
+									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
+									<div class="gl-s24"></div>
+									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
+										a global movement to realize perennial agriculture.</h3>
+									<div class="gl-s200"></div>
+									<div class="text-card-btn">
+										<div href="" class="site-btn">Get Involved</div>
+									</div>
+								</a>
+							</div>
+							<div class="text-card-col bg-lilac">
+								<div class="text-card-col-group">
+									<div class="gl-s156"></div>
+									<div class="ui-eyebrow-20-18-regular">We believe</div>
+									<div class="gl-s24"></div>
+									<h2 class="heading-3 mb-0 block-title">To reconcile our place in nature and secure a
+										future for humanity, we
+										must transform agriculture.</h2>
+									<div class="gl-s200"></div>
+								</div>
+							</div>
+							<div class="text-card-col bg-butter-yellow">
+								<a href="" class="text-card-col-group">
+									<div class="gl-s156"></div>
+									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
+									<div class="gl-s24"></div>
+									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
+										a global movement to realize perennial agriculture.</h3>
+									<div class="gl-s200"></div>
+									<div class="text-card-btn">
+										<div href="" class="site-btn">Get Involved</div>
+									</div>
+								</a>
+							</div>
+							<div class="text-card-col bg-butter-yellow">
+								<a href="" class="text-card-col-group">
+									<div class="gl-s156"></div>
+									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
+									<div class="gl-s24"></div>
+									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
+										a global movement to realize perennial agriculture.</h3>
 									<div class="gl-s200"></div>
 									<div class="text-card-btn">
 										<div href="" class="site-btn">Get Involved</div>
@@ -1475,6 +1535,40 @@
 
 	<script>
 
+		function applyCardSpacing() {
+			const rowFlex = document.querySelector('.two-column-text.text-featured-block .row-flex');
+			const cards = rowFlex?.querySelectorAll('.text-card-col');
+
+			if (!rowFlex || !cards.length) return;
+
+			// Clear all margin-related classes first
+			cards.forEach(card => {
+				card.classList.remove('no-margin-top', 'no-margin-bottom');
+			});
+
+			// Only apply logic above 991px (2-column layout)
+			if (window.innerWidth > 991) {
+				const columnCount = 2;
+				const totalRows = Math.ceil(cards.length / columnCount);
+
+				cards.forEach((card, index) => {
+					const currentRow = Math.floor(index / columnCount);
+
+					// Add margin-top reset to every card in each row
+					card.classList.add('no-margin-top');
+
+					// Remove margin-bottom from all but the last row
+					if (currentRow < totalRows - 1) {
+						card.classList.add('no-margin-bottom');
+					}
+				});
+			}
+		}
+
+		// Run on page load and on window resize
+		document.addEventListener('DOMContentLoaded', applyCardSpacing);
+		window.addEventListener('resize', applyCardSpacing);
+
 		// header padding top 
 		function updateNavPadding() {
 			if (window.innerWidth < 1201) {
@@ -1683,10 +1777,10 @@
 
 			// Initial setup
 			setInitialPadding();
-			adjustHeader();
+			//adjustHeader();
 
 			// Event listeners
-			window.addEventListener('scroll', adjustHeader);
+			//window.addEventListener('scroll', adjustHeader);
 			window.addEventListener('resize', handleResize);
 		});
 
