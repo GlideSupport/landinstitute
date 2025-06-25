@@ -53,7 +53,7 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 		<!-- Years slider -->
 		<?php if (!empty($li_im_repeater)) : ?>
 		<div class="map-content-value">
-			<div class="swiper map-slides">
+			<div class="swiper-container map-slides">
 				<div class="swiper-wrapper">
 					<?php foreach ($li_im_repeater as $row) : 
 						$year = $row['li_im_year'] ?? '';
@@ -90,6 +90,7 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 						</div>
 					<?php endforeach; ?>
 				</div>
+			</div>
 			<!-- Add Arrows -->
 			<div class="drag-arrows">
 				<div class="swiper-button-next"></div>

@@ -45,10 +45,14 @@
 
     a {
         &.border-image-content {
-            cursor: pointer;
+            cursor: none;
 
             &:hover {
                 background-color: var(--gb_primary_butter_yellow);
+            }
+
+            .border-text-btn {
+                cursor: pointer;
             }
         }
     }

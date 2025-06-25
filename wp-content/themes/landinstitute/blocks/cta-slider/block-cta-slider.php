@@ -56,50 +56,80 @@ if($total_cta_count > 1){
 }
 ?>
 
-<div class="cta-slider-block <?php echo esc_attr($border_options); ?>">
+<div class="cta-slider-block <?php echo ($total_cta_count == 1) ? 'variation-static ' : ''; ?><?php echo esc_attr($border_options); ?>">
 	<div class="heading-max">
 		<?php echo !empty($li_cs_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_cs_kicker) . '</div><div class="gl-s12"></div>' : ''; ?>
 		<?php echo !empty($li_cs_headline_check) ? BaseTheme::headline($li_cs_headline, 'heading-2 block-title mb-0') : ''; ?>
 	</div>
 	<div class="gl-s64"></div>
-	<?php if (!empty($li_cs_repeater)): ?>
-		<div class="cta-slider-box">
-			<div class="swiper-container cta-work-slider">
-				<div class="slide-counter" style="display: none;">1 / 1</div>
+	<?php if (($total_cta_count>1)):?>
+		<?php if (!empty($li_cs_repeater)): ?>
+			<div class="cta-slider-box">
+				<div class="swiper-container cta-work-slider">
+					<div class="slide-counter" style="display: none;">1 / 1</div>
+					<div class="<?php echo $swiper_class; ?>">
+						<?php
+						foreach ($li_cs_repeater as $li_cs_rep) :
+							$title = $li_cs_rep['title'];
+							$wysiwyg = $li_cs_rep['wysiwyg'];
+							$link = $li_cs_rep['link']; 
+							$image = $li_cs_rep['image'];
+							if (!empty($title) || !empty($wysiwyg) || !empty($link) || !empty($image)): ?>
+								<div class="swiper-slide">
+									<div class="cta-slider-lft-block">
+										<div class="cl-left">
+											<div class="slide-content">
+												<?php echo !empty($title) ? '<div class="ui-34-28-bold block-title">' . esc_html($title) . '</div>' : ''; ?>
+												<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s24"></div>' : ''; ?>
+												<?php echo !empty($wysiwyg) ? '<div class="block-content">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>
+												<?php echo !empty($link) ? '<div class="block-btn">' . BaseTheme::button($link, 'site-btn text-link') . '</div><div class="gl-s64"></div>' : ''; ?>
+											</div>
+										</div>
+										<div class="cl-right">
+											<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image, 'thumb_1000') . '</div>' : ''; ?>
+										</div>
+									</div>
+								</div>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+
+					<!-- If we need navigation buttons -->
+					<div class="slider-btn">
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+	<?php else : ?>
+		<?php if (!empty($li_cs_repeater)): ?>
+			<div class="cta-slider-box">
 				<div class="<?php echo $swiper_class; ?>">
 					<?php
 					foreach ($li_cs_repeater as $li_cs_rep) :
 						$title = $li_cs_rep['title'];
 						$wysiwyg = $li_cs_rep['wysiwyg'];
-						$link = $li_cs_rep['link'];
+						$link = $li_cs_rep['link']; 
 						$image = $li_cs_rep['image'];
 						if (!empty($title) || !empty($wysiwyg) || !empty($link) || !empty($image)): ?>
-							<div class="swiper-slide">
-								<div class="cta-slider-lft-block">
-									<div class="cl-left">
-										<div class="slide-content">
-											<?php echo !empty($title) ? '<div class="ui-34-28-bold block-title">' . esc_html($title) . '</div>' : ''; ?>
-											<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s24"></div>' : ''; ?>
-											<?php echo !empty($wysiwyg) ? '<div class="block-content">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>
-											<?php echo !empty($link) ? '<div class="block-btn">' . BaseTheme::button($link, 'site-btn text-link') . '</div><div class="gl-s64"></div>' : ''; ?>
-										</div>
+							<div class="cta-slider-lft-block">
+								<div class="cl-left">
+									<div class="slide-content">
+										<?php echo !empty($wysiwyg) ? '<div class="block-content">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>
 									</div>
-									<div class="cl-right">
-										<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image, 'thumb_1000') . '</div>' : ''; ?>
-									</div>
+								</div>
+								<div class="cl-right">
+									<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image, 'thumb_1000') . '</div>' : ''; ?>
 								</div>
 							</div>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</div>
-
-				<!-- If we need navigation buttons -->
-				<div class="slider-btn">
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
-				</div>
 			</div>
-		</div>
+		<?php endif; ?>
 	<?php endif; ?>
 	<?php echo !empty($li_cs_link) ? '<div class="block-ctn-btn">' . BaseTheme::button($li_cs_link, 'site-btn btn-butter-yellow') . '</div>' : ''; ?>
 </div>
+
+
