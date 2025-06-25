@@ -2,7 +2,7 @@
 
 /**
  * Template Name: News
- * Template Post Type: News
+ * Template Post Type: page
  *
  * This template is for displaying News page.
  *
