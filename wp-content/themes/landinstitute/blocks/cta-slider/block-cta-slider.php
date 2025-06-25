@@ -56,7 +56,7 @@ if($total_cta_count > 1){
 }
 ?>
 
-<div class="cta-slider-block <?php echo esc_attr($border_options); ?>">
+<div class="cta-slider-block <?php echo ($total_cta_count == 1) ? 'variation-static ' : ''; ?><?php echo esc_attr($border_options); ?>">
 	<div class="heading-max">
 		<?php echo !empty($li_cs_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_cs_kicker) . '</div><div class="gl-s12"></div>' : ''; ?>
 		<?php echo !empty($li_cs_headline_check) ? BaseTheme::headline($li_cs_headline, 'heading-2 block-title mb-0') : ''; ?>
