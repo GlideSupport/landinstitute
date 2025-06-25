@@ -377,6 +377,36 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 });
 // Header Mega menu append js End
 
+function applyCardSpacing() {
+	const rowFlex = document.querySelector('.two-column-text.text-featured-block .row-flex');
+	const cards = rowFlex?.querySelectorAll('.text-card-col');
+
+	if (!rowFlex || !cards.length) return;
+
+	// Clear all margin-related classes first
+	cards.forEach(card => {
+		card.classList.remove('no-margin-top', 'no-margin-bottom');
+	});
+
+	// Only apply logic above 991px (2-column layout)
+	if (window.innerWidth > 991) {
+		const columnCount = 2;
+		const totalRows = Math.ceil(cards.length / columnCount);
+
+		cards.forEach((card, index) => {
+			const currentRow = Math.floor(index / columnCount);
+
+			// Add margin-top reset to every card in each row
+			card.classList.add('no-margin-top');
+
+			// Remove margin-bottom from all but the last row
+			if (currentRow < totalRows - 1) {
+				card.classList.add('no-margin-bottom');
+			}
+		});
+	}
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 	// Search button click search popup js start
 	const searchBtn = document.querySelector(".search-btn");
@@ -986,7 +1016,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				// Trigger reflow to enable transition
 				void activeContent.offsetWidth;
 
-				activeContent.classList.add("fade-in");
+				activeContent.classList.add("fade-in");  
 				activeContent.style.opacity = 1;
 			}
 		});
@@ -995,120 +1025,120 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // news list js 
-document.addEventListener("DOMContentLoaded", () => {
-	const tabDropdowns = document.querySelectorAll(".tab-dropdown-filter");
+// document.addEventListener("DOMContentLoaded", () => {
+// 	const tabDropdowns = document.querySelectorAll(".tab-dropdown-filter");
 
-	function closeAllDropdowns() {
-		tabDropdowns.forEach((dropdown) => {
-			const toggle = dropdown.querySelector(".dropdown-toggle");
-			const menu = dropdown.querySelector(".dropdown-menu");
-			if (toggle && menu) {
-				toggle.setAttribute("aria-expanded", "false");
-				menu.style.display = "none";
-				menu.classList.remove("open");
-				dropdown.classList.remove("open");
-			}
-		});
-	}
+// 	function closeAllDropdowns() {
+// 		tabDropdowns.forEach((dropdown) => {
+// 			const toggle = dropdown.querySelector(".dropdown-toggle");
+// 			const menu = dropdown.querySelector(".dropdown-menu");
+// 			if (toggle && menu) {
+// 				toggle.setAttribute("aria-expanded", "false");
+// 				menu.style.display = "none";
+// 				menu.classList.remove("open");
+// 				dropdown.classList.remove("open");
+// 			}
+// 		});
+// 	}
 
-	function positionDropdown(toggle, menu) {
-		const rect = toggle.getBoundingClientRect();
-		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+// 	function positionDropdown(toggle, menu) {
+// 		const rect = toggle.getBoundingClientRect();
+// 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+// 		const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-		menu.style.position = "absolute";
-		menu.style.top = `${rect.height}px`;
-		menu.style.left = `${scrollLeft}px`;
-		menu.style.width = `${rect.width}px`;
-	}
+// 		menu.style.position = "absolute";
+// 		menu.style.top = `${rect.height}px`;
+// 		menu.style.left = `${scrollLeft}px`;
+// 		menu.style.width = `${rect.width}px`;
+// 	}
 
-	function getSelectedTerm(taxonomy) {
-		const active = document.querySelector(`#news-${taxonomy} li.active a`);
-		return active?.getAttribute("data-term") || "all";
-	}
+// 	function getSelectedTerm(taxonomy) {
+// 		const active = document.querySelector(`#news-${taxonomy} li.active a`);
+// 		return active?.getAttribute("data-term") || "all";
+// 	}
 
-	function fetchFilteredPosts(newsType, newsTopic) {
-		const data = new URLSearchParams();
-		data.append("action", "filter_news_posts");
-		data.append("news_type", newsType);
-		data.append("news_topic", newsTopic);
+// 	function fetchFilteredPosts(newsType, newsTopic) {
+// 		const data = new URLSearchParams();
+// 		data.append("action", "filter_news_posts");
+// 		data.append("news_type", newsType);
+// 		data.append("news_topic", newsTopic);
 
-		const container = document.querySelector(".filter-content-cards-grid");
-		if (container) container.innerHTML = "<p>Loading...</p>";
+// 		const container = document.querySelector(".filter-content-cards-grid");
+// 		if (container) container.innerHTML = "<p>Loading...</p>";
 
-		fetch(localVars.ajax_url, {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: data.toString()
-		})
-			.then((res) => res.text())
-			.then((html) => {
-				if (container) container.innerHTML = html;
-			})
-			.catch((err) => {
-				console.error("AJAX Error", err);
-			});
-	}
+// 		fetch(localVars.ajax_url, {
+// 			method: "POST",
+// 			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+// 			body: data.toString()
+// 		})
+// 			.then((res) => res.text())
+// 			.then((html) => {
+// 				if (container) container.innerHTML = html;
+// 			})
+// 			.catch((err) => {
+// 				console.error("AJAX Error", err);
+// 			});
+// 	}
 
-	tabDropdowns.forEach((dropdown) => {
-		const toggle = dropdown.querySelector(".dropdown-toggle");
-		const menu = dropdown.querySelector(".dropdown-menu");
+// 	tabDropdowns.forEach((dropdown) => {
+// 		const toggle = dropdown.querySelector(".dropdown-toggle");
+// 		const menu = dropdown.querySelector(".dropdown-menu");
 
-		if (!toggle || !menu) return;
+// 		if (!toggle || !menu) return;
 
-		// Open dropdown
-		toggle.addEventListener("click", (e) => {
-			e.stopPropagation();
+// 		// Open dropdown
+// 		toggle.addEventListener("click", (e) => {
+// 			e.stopPropagation();
 
-			const isOpen = dropdown.classList.contains("open");
-			closeAllDropdowns();
+// 			const isOpen = dropdown.classList.contains("open");
+// 			closeAllDropdowns();
 
-			if (!isOpen) {
-				toggle.setAttribute("aria-expanded", "true");
-				menu.style.display = "block";
-				menu.classList.add("open");
-				dropdown.classList.add("open");
-				positionDropdown(toggle, menu);
-			}
-		});
+// 			if (!isOpen) {
+// 				toggle.setAttribute("aria-expanded", "true");
+// 				menu.style.display = "block";
+// 				menu.classList.add("open");
+// 				dropdown.classList.add("open");
+// 				positionDropdown(toggle, menu);
+// 			}
+// 		});
 
-		// Click on item
-		menu.querySelectorAll("a").forEach((link) => {
-			link.addEventListener("click", (e) => {
-				e.preventDefault();
-				const term = link.getAttribute("data-term");
-				const taxonomy = link.getAttribute("data-taxonomy");
-				if (!taxonomy || !term) return;
+// 		// Click on item
+// 		menu.querySelectorAll("a").forEach((link) => {
+// 			link.addEventListener("click", (e) => {
+// 				e.preventDefault();
+// 				const term = link.getAttribute("data-term");
+// 				const taxonomy = link.getAttribute("data-taxonomy");
+// 				if (!taxonomy || !term) return;
 
-				// Update label
-				const prefix = toggle.textContent.split(":")[0].trim();
-				toggle.childNodes[0].nodeValue = `${prefix}: ${link.textContent.trim()} `;
+// 				// Update label
+// 				const prefix = toggle.textContent.split(":")[0].trim();
+// 				toggle.childNodes[0].nodeValue = `${prefix}: ${link.textContent.trim()} `;
 
-				// Update active
-				menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
-				link.closest("li").classList.add("active");
+// 				// Update active
+// 				menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
+// 				link.closest("li").classList.add("active");
 
-				closeAllDropdowns();
+// 				closeAllDropdowns();
 
-				// Get current selections and fire AJAX
-				const selectedType = getSelectedTerm("type");
-				const selectedTopic = getSelectedTerm("topic");
-				fetchFilteredPosts(selectedType, selectedTopic);
-			});
-		});
-	});
+// 				// Get current selections and fire AJAX
+// 				const selectedType = getSelectedTerm("type");
+// 				const selectedTopic = getSelectedTerm("topic");
+// 				fetchFilteredPosts(selectedType, selectedTopic);
+// 			});
+// 		});
+// 	});
 
-	// Close when clicking outside
-	document.addEventListener("click", () => {
-		closeAllDropdowns();
-	});
+// 	// Close when clicking outside
+// 	document.addEventListener("click", () => {
+// 		closeAllDropdowns();
+// 	});
 
-	window.addEventListener("resize", () => {
-		const openDropdown = document.querySelector(".tab-dropdown-filter.open");
-		if (openDropdown) {
-			const toggle = openDropdown.querySelector(".dropdown-toggle");
-			const menu = openDropdown.querySelector(".dropdown-menu");
-			if (toggle && menu) positionDropdown(toggle, menu);
-		}
-	});
-});
+// 	window.addEventListener("resize", () => {
+// 		const openDropdown = document.querySelector(".tab-dropdown-filter.open");
+// 		if (openDropdown) {
+// 			const toggle = openDropdown.querySelector(".dropdown-toggle");
+// 			const menu = openDropdown.querySelector(".dropdown-menu");
+// 			if (toggle && menu) positionDropdown(toggle, menu);
+// 		}
+// 	});
+// });
