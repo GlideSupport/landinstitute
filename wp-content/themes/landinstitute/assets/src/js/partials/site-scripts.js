@@ -801,6 +801,33 @@ function calculateBounds(galleryBlock) {
 
 	console.log("Bounds:", maxX, maxY);
 }
+//Footer Menu accordion js start 
+	document.querySelectorAll(".footer-nav-title").forEach((title) => {
+		title.addEventListener("click", () => {
+			if (window.innerWidth <= 991) {
+				const parent = title.closest(".footer-nav");
+
+				// Close all others
+				document.querySelectorAll(".footer-nav").forEach((nav) => {
+					if (nav !== parent) {
+						nav.classList.remove("active");
+					}
+				});
+
+				// Toggle the clicked one
+				parent.classList.toggle("active");
+			}
+		});
+	});
+
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 991) {
+			document.querySelectorAll(".footer-nav").forEach((nav) => {
+				nav.classList.remove("active");
+			});
+		}
+	});
+//Footer Menu accordion end start 
 
 //Image Gallery js start
 document.addEventListener("DOMContentLoaded", () => {
