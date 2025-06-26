@@ -6,35 +6,37 @@ document.addEventListener("DOMContentLoaded", function () {
 		new Swiper(el, {
 			loop: false,
 			navigation: {
-				nextEl: el
-					.closest(".swiper-container-wrapper")
-					?.querySelector(".swiper-button-next"),
-				prevEl: el
-					.closest(".swiper-container-wrapper")
-					?.querySelector(".swiper-button-prev"),
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
 			},
-			centeredSlides: true,
-			slidesPerView: 1,
+			slidesPerView: 1.28,
 			spaceBetween: 0,
 			breakpoints: {
-				640: {
-					slidesPerView: 2,
+				480: {
+					slidesPerView: 1.8,
 					spaceBetween: 0,
-					centeredSlides: false,
+				},
+				767: {
+					slidesPerView: 2.2,
+					spaceBetween: 0,
 				},
 				1028: {
-					slidesPerView: 2,
+					slidesPerView: 2.43,
 					spaceBetween: 0,
-					centeredSlides: false,
 				},
 				1920: {
-					slidesPerView: 2,
+					slidesPerView: 2.43,
 					spaceBetween: 0,
-					centeredSlides: false,
 				},
+			},
+			on: {
+				init(swiper) {
+					swiper.slideTo(3, 0); // index 3 is actual Slide 1
+				}
 			},
 		});
 	});
+
 
 	// Initialize multiple post teaser sliders
 	document.querySelectorAll(".variable-slide-preview").forEach((el) => {
