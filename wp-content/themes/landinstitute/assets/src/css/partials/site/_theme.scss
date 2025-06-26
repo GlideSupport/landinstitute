@@ -632,6 +632,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		.row-flex {
@@ -669,6 +685,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 			}
 
@@ -692,6 +724,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		.map-content-value {
@@ -705,6 +753,22 @@ section:has(.has-border-bottom) {
 						a {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
+						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
 						}
 					}
 				}
@@ -745,6 +809,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 	}
 
@@ -753,6 +833,27 @@ section:has(.has-border-bottom) {
 		.sub-head,
 		.block-title {
 			color: var(--gb_base_cream);
+
+			a {
+				color: var(--gb_base_cream);
+				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		.two-col-content {
@@ -762,6 +863,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
 				}
 			}
 		}
@@ -774,6 +891,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 
@@ -789,6 +922,22 @@ section:has(.has-border-bottom) {
 					a {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
+					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
 					}
 				}
 			}
@@ -806,6 +955,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 
@@ -839,6 +1004,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -854,6 +1035,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		.slide-inner {
@@ -867,6 +1064,22 @@ section:has(.has-border-bottom) {
 					a {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
+					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
 					}
 				}
 
@@ -902,6 +1115,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -913,6 +1142,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 
@@ -929,6 +1174,22 @@ section:has(.has-border-bottom) {
 					a {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
+					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
 					}
 				}
 			}
@@ -978,6 +1239,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1019,6 +1296,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 			}
 		}
@@ -1031,6 +1324,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 
@@ -1047,6 +1356,22 @@ section:has(.has-border-bottom) {
 								color: var(--gb_base_cream);
 								text-decoration-color: var(--gb_base_cream);
 							}
+
+							ul {
+								li {
+									&:before {
+										background-color: var(--gb_base_cream);
+									}
+								}
+							}
+
+							ol {
+								li {
+									&:before {
+										color: var(--gb_base_cream);
+									}
+								}
+							}
 						}
 
 						.team-btn {
@@ -1060,6 +1385,27 @@ section:has(.has-border-bottom) {
 					.team-desc {
 						.team-content {
 							color: var(--gb_base_cream);
+
+							a {
+								color: var(--gb_base_cream);
+								text-decoration-color: var(--gb_base_cream);
+							}
+
+							ul {
+								li {
+									&:before {
+										background-color: var(--gb_base_cream);
+									}
+								}
+							}
+
+							ol {
+								li {
+									&:before {
+										color: var(--gb_base_cream);
+									}
+								}
+							}
 						}
 					}
 				}
@@ -1107,6 +1453,22 @@ section:has(.has-border-bottom) {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
 						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
+						}
 					}
 				}
 			}
@@ -1125,6 +1487,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1136,6 +1514,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 
@@ -1154,6 +1548,22 @@ section:has(.has-border-bottom) {
 						a {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
+						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
 						}
 					}
 
@@ -1203,6 +1613,22 @@ section:has(.has-border-bottom) {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
 						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
+						}
 					}
 
 					ul {
@@ -1235,6 +1661,22 @@ section:has(.has-border-bottom) {
 									color: var(--gb_base_cream);
 									text-decoration-color: var(--gb_base_cream);
 								}
+
+								ul {
+									li {
+										&:before {
+											background-color: var(--gb_base_cream);
+										}
+									}
+								}
+
+								ol {
+									li {
+										&:before {
+											color: var(--gb_base_cream);
+										}
+									}
+								}
 							}
 						}
 					}
@@ -1250,6 +1692,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 
@@ -1269,6 +1727,22 @@ section:has(.has-border-bottom) {
 							a {
 								color: var(--gb_base_cream);
 								text-decoration-color: var(--gb_base_cream);
+							}
+
+							ul {
+								li {
+									&:before {
+										background-color: var(--gb_base_cream);
+									}
+								}
+							}
+
+							ol {
+								li {
+									&:before {
+										color: var(--gb_base_cream);
+									}
+								}
 							}
 						}
 					}
@@ -1294,6 +1768,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 			}
 		}
@@ -1310,6 +1800,22 @@ section:has(.has-border-bottom) {
 					a {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
+					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
 					}
 				}
 
@@ -1348,6 +1854,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 
 			&.active {
@@ -1385,6 +1907,22 @@ section:has(.has-border-bottom) {
 					a {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
+					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
 					}
 				}
 
@@ -1438,6 +1976,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 			}
 
@@ -1475,6 +2029,22 @@ section:has(.has-border-bottom) {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
 						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
+						}
 					}
 				}
 
@@ -1485,6 +2055,22 @@ section:has(.has-border-bottom) {
 						a {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
+						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
 						}
 					}
 				}
@@ -1512,6 +2098,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 	}
@@ -1580,6 +2182,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 
 			.block-title {
@@ -1588,6 +2206,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 		}
@@ -1606,6 +2240,22 @@ section:has(.has-border-bottom) {
 					a {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
+					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
 					}
 				}
 
@@ -1651,6 +2301,22 @@ section:has(.has-border-bottom) {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
 						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
+						}
 					}
 				}
 
@@ -1682,6 +2348,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		.filter-block {
@@ -1698,6 +2380,22 @@ section:has(.has-border-bottom) {
 								a {
 									color: var(--gb_base_cream);
 									text-decoration-color: var(--gb_base_cream);
+								}
+
+								ul {
+									li {
+										&:before {
+											background-color: var(--gb_base_cream);
+										}
+									}
+								}
+
+								ol {
+									li {
+										&:before {
+											color: var(--gb_base_cream);
+										}
+									}
 								}
 							}
 
@@ -1727,6 +2425,22 @@ section:has(.has-border-bottom) {
 						a {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
+						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
 						}
 					}
 
@@ -1786,6 +2500,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 
 				.block-btn {
@@ -1816,6 +2546,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 	}
 
@@ -1841,6 +2587,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		&.variation-text-only {
@@ -1858,6 +2620,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 	}
 
@@ -1871,6 +2649,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 		}
@@ -1892,6 +2686,22 @@ section:has(.has-border-bottom) {
 									color: var(--gb_base_cream);
 									text-decoration-color: var(--gb_base_cream);
 								}
+
+								ul {
+									li {
+										&:before {
+											background-color: var(--gb_base_cream);
+										}
+									}
+								}
+
+								ol {
+									li {
+										&:before {
+											color: var(--gb_base_cream);
+										}
+									}
+								}
 							}
 						}
 
@@ -1909,6 +2719,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 		}
@@ -1940,6 +2766,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 
 				.border-text-btn {
@@ -1961,6 +2803,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 
@@ -1992,6 +2850,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -2008,6 +2882,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 		}
@@ -2036,6 +2926,22 @@ section:has(.has-border-bottom) {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
 				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
+				}
 			}
 		}
 
@@ -2046,6 +2952,22 @@ section:has(.has-border-bottom) {
 				a {
 					color: var(--gb_base_cream);
 					text-decoration-color: var(--gb_base_cream);
+				}
+
+				ul {
+					li {
+						&:before {
+							background-color: var(--gb_base_cream);
+						}
+					}
+				}
+
+				ol {
+					li {
+						&:before {
+							color: var(--gb_base_cream);
+						}
+					}
 				}
 			}
 		}
@@ -2062,6 +2984,22 @@ section:has(.has-border-bottom) {
 							.tab-area-content,
 							.tab-area-content a {
 								color: var(--gb_base_cream);
+
+								ul {
+									li {
+										&:before {
+											background-color: var(--gb_base_cream);
+										}
+									}
+								}
+
+								ol {
+									li {
+										&:before {
+											color: var(--gb_base_cream);
+										}
+									}
+								}
 							}
 
 							.tab-area-content a {
@@ -2088,6 +3026,22 @@ section:has(.has-border-bottom) {
 						color: var(--gb_base_cream);
 						text-decoration-color: var(--gb_base_cream);
 					}
+
+					ul {
+						li {
+							&:before {
+								background-color: var(--gb_base_cream);
+							}
+						}
+					}
+
+					ol {
+						li {
+							&:before {
+								color: var(--gb_base_cream);
+							}
+						}
+					}
 				}
 			}
 		}
@@ -2100,6 +3054,22 @@ section:has(.has-border-bottom) {
 			a {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
+			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
 			}
 		}
 
@@ -2131,6 +3101,22 @@ section:has(.has-border-bottom) {
 				color: var(--gb_base_cream);
 				text-decoration-color: var(--gb_base_cream);
 			}
+
+			ul {
+				li {
+					&:before {
+						background-color: var(--gb_base_cream);
+					}
+				}
+			}
+
+			ol {
+				li {
+					&:before {
+						color: var(--gb_base_cream);
+					}
+				}
+			}
 		}
 
 		.designation-row {
@@ -2145,6 +3131,22 @@ section:has(.has-border-bottom) {
 						a {
 							color: var(--gb_base_cream);
 							text-decoration-color: var(--gb_base_cream);
+						}
+
+						ul {
+							li {
+								&:before {
+									background-color: var(--gb_base_cream);
+								}
+							}
+						}
+
+						ol {
+							li {
+								&:before {
+									color: var(--gb_base_cream);
+								}
+							}
 						}
 					}
 				}
