@@ -407,6 +407,10 @@ function applyCardSpacing() {
 	}
 }
 
+// Run on page load and on window resize
+document.addEventListener('DOMContentLoaded', applyCardSpacing);
+window.addEventListener('resize', applyCardSpacing);
+
 document.addEventListener("DOMContentLoaded", function () {
 	// Search button click search popup js start
 	const searchBtn = document.querySelector(".search-btn");
