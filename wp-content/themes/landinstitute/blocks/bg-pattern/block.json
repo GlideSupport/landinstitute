@@ -1,6 +1,6 @@
 {
 	"name": "acf/bg-pattern",
-	"title": "BG Pattern",
+	"title": "Parallax Background Pattern",
 	"description": "A custom BG Pattern block.",
 	"editorScript": ["block-bg-pattern"],
 	"script": ["block-bg-pattern"],
