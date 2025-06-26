@@ -6,37 +6,35 @@ document.addEventListener("DOMContentLoaded", function () {
 		new Swiper(el, {
 			loop: false,
 			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
+				nextEl: el
+					.closest(".swiper-container-wrapper")
+					?.querySelector(".swiper-button-next"),
+				prevEl: el
+					.closest(".swiper-container-wrapper")
+					?.querySelector(".swiper-button-prev"),
 			},
-			slidesPerView: 1.28,
+			centeredSlides: true,
+			slidesPerView: 1,
 			spaceBetween: 0,
 			breakpoints: {
-				480: {
-					slidesPerView: 1.8,
+				640: {
+					slidesPerView: 2,
 					spaceBetween: 0,
-				},
-				767: {
-					slidesPerView: 2.2,
-					spaceBetween: 0,
+					centeredSlides: false,
 				},
 				1028: {
-					slidesPerView: 2.43,
+					slidesPerView: 2,
 					spaceBetween: 0,
+					centeredSlides: false,
 				},
 				1920: {
-					slidesPerView: 2.43,
+					slidesPerView: 2,
 					spaceBetween: 0,
+					centeredSlides: false,
 				},
-			},
-			on: {
-				init(swiper) {
-					swiper.slideTo(3, 0); // index 3 is actual Slide 1
-				}
 			},
 		});
 	});
-
 
 	// Initialize multiple post teaser sliders
 	document.querySelectorAll(".variable-slide-preview").forEach((el) => {
@@ -265,8 +263,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	// Map slider with counter end
 
-	//Timeline js start
+	// Timeline js start
 	const timelineBlocks = document.querySelectorAll(".timeline-block");
+
 	timelineBlocks.forEach((block, index) => {
 		const slider = block.querySelector(".timeline-slider");
 		const nextBtn = block.querySelector(".swiper-button-next");
@@ -285,31 +284,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Initialize Swiper for each instance
 		new Swiper(slider, {
-			loop: true,
+			loop: false,
 			centeredSlides: true,
-			slidesPerView: 1,
+			slidesPerView: 1.28,
 			spaceBetween: 0,
 			navigation: {
 				nextEl: `.${nextClass}`,
 				prevEl: `.${prevClass}`,
 			},
 			breakpoints: {
-				640: {
-					slidesPerView: 2,
-					centeredSlides: false,
+				480: {
+					slidesPerView: 1.8,
+					centeredSlides: true,
+				},
+				767: {
+					slidesPerView: 2.2,
+					centeredSlides: true,
 				},
 				1028: {
-					slidesPerView: 2,
+					slidesPerView: 2.43,
 					centeredSlides: false,
 				},
 				1920: {
-					slidesPerView: 2,
+					slidesPerView: 2.43,
 					centeredSlides: false,
 				},
 			},
+			on: {
+				init(swiper) {
+					swiper.slideTo(3, 0); // Scroll to slide index 3 on init
+				}
+			},
 		});
 	});
-	//Timeline js end
+	// Timeline js end
 
 	// Testimonial Traditional js start
 	const sliderWrappers = document.querySelectorAll(
