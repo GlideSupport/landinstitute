@@ -171,7 +171,7 @@ body {
             padding: 14px 54px 14px 22px;
 
             @media(max-width: 640px) {
-                padding: 10px 48px 10px 18px;
+                padding: 11px 48px 11px 18px;
             }
 
             &:after {
@@ -180,7 +180,7 @@ body {
 
                 @media(max-width: 640px) {
                     right: 12px;
-                    top: 7px;
+                    top: 9px;
                 }
             }
         }
@@ -394,7 +394,14 @@ body {
                 background-color: var(--gb_primary_lilac);
             }
 
-
+            .arrow-icon {
+                &:after {
+                    background-image: url(../images/button-brown-arrow.svg);
+                    background-size: 10px;
+                    animation: inherit !important;
+                    transition: all 0.2s ease-in-out;
+                }
+            }
 
             &:hover {
                 background-color: var(--gb_primary_lilac);
@@ -459,6 +466,7 @@ body {
                     background-image: url(../images/button-brown-arrow.svg);
                     background-size: 10px;
                     animation: inherit !important;
+                    transition: all 0.2s ease-in-out;
                 }
             }
 
