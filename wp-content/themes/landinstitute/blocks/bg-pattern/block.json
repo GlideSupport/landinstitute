@@ -6,7 +6,7 @@
 	"script": ["block-bg-pattern"],
 	"category": "theme-blocks",
 	"icon": "cover-image",
-	"keywords": ["BG Pattern", "Pattern"],
+	"keywords": ["Parallax","Background","BG Pattern", "Pattern"],
 	"supports": {
 		"align": true,
 		"anchor": true
