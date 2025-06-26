@@ -67,9 +67,9 @@ if (!empty($li_ig_headline_check) || !empty($li_ig_wysiwyg) || !empty($li_ig_rep
                             if (!empty($title) || !empty($text) || !empty($link) || !empty($icon)){ ?>
                                 <div class="icon-grid-col">
                                     <?php echo !empty($icon) ? '<div class="icon-grid-image">' . wp_get_attachment_image($icon, 'thumb_100') . '</div>' : ''; ?>
-                                    <?php echo (!empty($icon) && !empty($title)) ? ' <div class="gl-s24"></div>' : ''; ?>
+                                    <?php echo (!empty($icon) || !empty($title)) ? ' <div class="gl-s24"></div>' : ''; ?>
                                     <?php echo !empty($title) ? '<div class="ui-24-21-bold cta-title">' . esc_html($title) . '</div>' : ''; ?>
-                                    <?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
+                                    <?php echo (!empty($title) || !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
                                     <?php echo !empty($text) ? '<div class="cta-content body-20-18-regular">' . esc_html($text) . '</div><div class="gl-s8"></div>' : ''; ?>
                                     <?php echo !empty($link) ? ' <div class="cta-links">' . BaseTheme::button($link, 'border-text-btn') . '</div>' : ''; ?>
                                 </div>
