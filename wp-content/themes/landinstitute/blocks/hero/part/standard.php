@@ -5,7 +5,7 @@ $kicker = $li_hero_standard['kicker'] ?? null;
 $wysiwyg = $li_hero_standard['wysiwyg'] ?? null;
 $button = $li_hero_standard['button'] ?? null;
 $image = $li_hero_standard['image'] ?? null;
-$bg_image = $li_hero_standard['bg_image'] ?? null;
+$bg_image = $li_hero_standard['bg_image'] ?? 'bg-lime-green';
 $li_hero_choose_layout = $li_hero_standard['li_hero_choose_layout'] ?? 'global-network';
 $variation_class = ($li_hero_choose_layout == 'global-network') ? 'variation-width-no' : 'variation-width';
 

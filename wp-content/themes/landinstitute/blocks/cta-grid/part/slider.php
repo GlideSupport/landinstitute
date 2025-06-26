@@ -30,7 +30,7 @@
 												<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
 												<?php echo !empty($text) ? '<div class="body-18-16-regular card-content">' . esc_html($text) . '</div>' : ''; ?>
 											</div>
-											<?php echo !empty($image) ? '<div class="card-img">' . wp_get_attachment_image($image, 'thumb_300') . '</div>' : ''; ?>
+											<?php echo !empty($image) ? '<div class="card-img">' . wp_get_attachment_image($image, 'thumb_500') . '</div>' : ''; ?>
 										<?php echo !empty($link) ? '</a>' : '</div>'; ?>
 									</div>
 								</div>
