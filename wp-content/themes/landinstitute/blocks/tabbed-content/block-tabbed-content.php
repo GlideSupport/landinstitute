@@ -94,11 +94,11 @@ if (!empty($li_tc_headline_check) || !empty($li_tc_wysiwyg) || !empty($li_tc_rep
                                 </div>
                                 <div class="gl-s80"></div>
                             </div>
-                            <div class="cl-right">
-                                <?php if ($image_id): ?>
+                            <?php if ($image_id): ?>
+                                <div class="cl-right">
                                     <?php echo !empty($image_id) ? '<div class="tab-image">' . wp_get_attachment_image($image_id, 'thumb_700') . '</div>' : ''; ?>
-                                <?php endif; ?>
-                            </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <?php endforeach; ?>
