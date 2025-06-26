@@ -53,8 +53,13 @@
 }
 
 .timeline-slides-block {
+    // margin-right: calc(-50vw + 50%);
+    // margin-left: calc(-50vw + 50%);
+
     .swiper-horizontal {
-        padding-right: clamp(54px, calc(3.375rem + ((1vw - 7.68px) * 16.2202)), 163px);
+        //padding-left: clamp(54px, calc(3.375rem + ((1vw - 7.68px) * 16.2202)), 163px);
+        // margin-right: calc(-50vw + 50%);
+
 
         @media(max-width: 319px) {
             padding-right: 0;
@@ -107,10 +112,11 @@
 }
 
 .border-card {
-    margin-right: -2px;
 
     .border-card-click {
         border: 2px solid var(--gb_base_brown);
+        border-right: 2px solid var(--gb_base_brown);
+        border-left: 0;
         display: flex;
         flex-direction: column;
         padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
