@@ -127,10 +127,10 @@
                 border-radius: 50%;
                 content: counters(list, ".");
                 display: flex;
-                height: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.2027)), 38px);
+                height: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
                 justify-content: center;
                 position: relative;
-                width: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.2027)), 38px);
+                width: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
 
                 @extend .ui-18-16-bold;
             }
