@@ -1,5 +1,5 @@
 <?php if($li_lg_logo_grid_layout=='two-column'):
-			$class="logo-grid-two";
+		$class="logo-grid-two";
 	elseif ($li_lg_logo_grid_layout=='three-column') :
 		$class="logo-grid-three";
 	else :
@@ -32,13 +32,17 @@
 		</div>
 		<div class="gl-s64"></div>
 		<?php
+		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		$args = [
 			'post_type'      => 'donor',
-			'posts_per_page' => -1,
+			'posts_per_page' => 6,
 			'order'          => 'ASC',
 			'post_status'    => 'publish',
+			'paged'          => $paged,
 		];
 		$donors = new WP_Query($args);
+		$total_pages = $donors->max_num_pages;
+		$current_page = max(1, $paged);
 
 		if ($donors->have_posts()) : ?>
 			<div class="filter-logos-row <?php echo $class; ?>">
@@ -85,57 +89,75 @@
 					</div>
 				<?php endwhile; ?>
 			</div>
+			<div class="gl-s64"></div>
 			<?php wp_reset_postdata(); ?>
 		<?php endif; ?>
-
-		<div class="gl-s64"></div>
 		<div class="fillter-bottom">
-			<div class="pagination-container">
-				<div class="desktop-pages">
-					<div class="arrow-btn prev">
-						<div class="site-btn">Previous</div>
-					</div>
-					<div class="pagination-list">
-						<button class="page-btn active">1</button>
-						<button class="page-btn">2</button>
-						<button class="page-btn">3</button>
-						<span class="dots">...</span>
-						<button class="page-btn">12</button>
-					</div>
-					<div class="arrow-btn next">
-						<div class="site-btn">Next</div>
-					</div>
-				</div>
-				<!-- Mobile Pagination -->
-				<div class="mobile-pagination">
-					<button id="prevBtn" class="arrow-btn"><img
-							src="../assets/src/images/right-circle-arrow.svg"></button>
-					<button id="pageTrigger" class="page-trigger ui-18-16-bold">1/26</button>
-					<button id="nextBtn" class="arrow-btn"><img
-							src="../assets/src/images/right-circle-arrow.svg"></button>
-				</div>
+			<?php if ($total_pages > 1): ?>
+				<div class="pagination-container" data-current-page="<?php echo esc_attr($current_page); ?>" data-total-pages="<?php echo esc_attr($total_pages); ?>">
 
-				<!-- Mobile Popup -->
-				<div id="paginationPopup" class="pagination-popup">
-					<div class="popup-body">
-						<div id="popupGrid" class="popup-grid"><button
-								class="page-btn active">1</button><button
-								class="page-btn">2</button><button
-								class="page-btn">3</button><button
-								class="page-btn">4</button><button
-								class="page-btn">5</button><button
-								class="page-btn">6</button><button
-								class="page-btn">7</button><button
-								class="page-btn">8</button><button
-								class="page-btn">9</button><button
-								class="page-btn">10</button><button
-								class="page-btn">11</button><button class="page-btn">12</button>
+					<!-- Desktop Pagination -->
+					<div class="desktop-pages">
+						<div class="arrow-btn prev">
+							<div class="site-btn" id="desktopPrev" <?php if ($current_page == 1) echo 'style="opacity: 0.5; pointer-events: none;"'; ?> aria-label="Previous">Previous</div>
 						</div>
-						<button id="popupPrev" class="arrow-btn"></button>
-						<button id="popupNext" class="arrow-btn"></button>
+
+						<div class="pagination-list" id="paginationList">
+							<?php
+							$range = 2;
+							$show_dots = false;
+
+							for ($i = 1; $i <= $total_pages; $i++) {
+								if (
+									$i == 1 ||
+									$i == $total_pages ||
+									($i >= $current_page - $range && $i <= $current_page + $range)
+								) {
+									if ($show_dots) {
+										echo '<span class="dots">...</span>';
+										$show_dots = false;
+									}
+									$active_class = $i == $current_page ? 'active' : '';
+									echo '<button class="page-btn ' . $active_class . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</button>';
+								} else {
+									$show_dots = true;
+								}
+							}
+							?>
+						</div>
+
+						<div class="arrow-btn next">
+							<div class="site-btn" id="desktopNext" <?php if ($current_page == $total_pages) echo 'style="opacity: 0.5; pointer-events: none;"'; ?> aria-label="Next">Next</div>
+						</div>
 					</div>
+
+					<!-- Mobile Pagination -->
+					<div class="mobile-pagination">
+						<button id="prevBtn" class="arrow-btn" <?php if ($current_page == 1) echo 'disabled'; ?> aria-label="Prev">
+							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous">
+						</button>
+						<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($current_page . '/' . $total_pages); ?></button>
+						<button id="nextBtn" class="arrow-btn" <?php if ($current_page == $total_pages) echo 'disabled'; ?> aria-label="Next">
+							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
+						</button>
+					</div>
+
+					<!-- Mobile Popup -->
+					<div id="paginationPopup" class="pagination-popup">
+						<div class="popup-body">
+							<div id="popupGrid" class="popup-grid">
+								<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+									<?php $active = $i == $current_page ? 'active' : ''; ?>
+									<button class="page-btn <?php echo esc_attr($active); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></button>
+								<?php endfor; ?>
+							</div>
+							<button id="popupPrev" class="arrow-btn" <?php if ($current_page == 1) echo 'disabled'; ?>></button>
+							<button id="popupNext" class="arrow-btn" <?php if ($current_page == $total_pages) echo 'disabled'; ?>></button>
+						</div>
+					</div>
+
 				</div>
-			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 </div>
@@ -157,7 +179,6 @@ $terms = get_terms([
 		<?php endforeach; ?>
 	<?php endif; ?>
 </ul>
-
 <?php
 $terms = get_terms([
 	'taxonomy'   => 'donation-level',

@@ -79,19 +79,15 @@ if (!defined('BASETHEME_DEFAULT_IMAGE')) {
 	endif;
 }
 
+add_action('wp_ajax_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
+add_action('wp_ajax_nopriv_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
 
-
-// Register AJAX actions
-// add_action('wp_ajax_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
-// add_action('wp_ajax_nopriv_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
-
-function ajax_filter_logo_grid_filter()
-{
+function ajax_filter_logo_grid_filter() {
 	check_ajax_referer('ajax_nonce', 'nonce');
 
-	$donor_type = $_POST['donor_type'] ?? 'all';
-	$donation_level = $_POST['donation_level'] ?? 'all';
-	$paged = max(1, $_POST['paged'] ?? 1);
+	$donor_type      = $_POST['donor_type'] ?? 'all';
+	$donation_level  = $_POST['donation_level'] ?? 'all';
+	$paged           = max(1, (int) ($_POST['paged'] ?? 1));
 
 	$tax_query = ['relation' => 'AND'];
 
@@ -128,17 +124,21 @@ function ajax_filter_logo_grid_filter()
 	if ($donors->have_posts()) :
 		while ($donors->have_posts()) : $donors->the_post();
 			$image_id = get_post_thumbnail_id(get_the_ID());
-			$title = get_the_title();
+			$title    = get_the_title();
 			$title_words = explode(' ', trim($title));
 			$first_initial = !empty($title_words[0]) ? strtoupper($title_words[0][0]) : '';
 			$last_initial  = !empty($title_words[1]) ? strtoupper($title_words[1][0]) : '';
 			$initials = $first_initial . $last_initial;
 
-			$image_html = $image_id ? wp_get_attachment_image($image_id, 'full', false, ['width' => 200, 'height' => 102, 'alt' => $title]) : '';
+			$image_html = $image_id ? wp_get_attachment_image($image_id, 'full', false, [
+				'width'  => 200,
+				'height' => 102,
+				'alt'    => esc_attr($title),
+			]) : '';
 
 			$levels = get_the_terms(get_the_ID(), 'donation-level');
-			$level_name = !empty($levels) && !is_wp_error($levels) ? $levels[0]->name : '';
-?>
+			$level_name = (!empty($levels) && !is_wp_error($levels)) ? $levels[0]->name : '';
+			?>
 			<div class="filter-logos-col">
 				<div class="filter-logos-click">
 					<?php if ($image_html) : ?>
@@ -159,21 +159,82 @@ function ajax_filter_logo_grid_filter()
 					</div>
 				</div>
 			</div>
-		<?php
+			<?php
 		endwhile;
 		wp_reset_postdata();
 	else :
 		echo '<div class="no-results">No donors found for this filter.</div>';
 	endif;
+	$html = ob_get_clean();
+	// --- Pagination ---
+	$pagination_html = '';
+	$total_pages = $donors->max_num_pages;
 
-	$response = [
-		'html' => ob_get_clean(),
-		'max_pages' => $donors->max_num_pages,
-		'current_page' => $paged,
-		'total' => $donors->found_posts
-	];
+	if ($total_pages > 1) {
+		ob_start(); ?>
+		<div class="fillter-bottom">
+		<div class="pagination-container">
+			<div class="desktop-pages">
+				<div class="arrow-btn prev">
+					<div class="site-btn"<?php if ($paged <= 1) echo ' style="opacity: 0.5; pointer-events: none;"'; ?>>Previous</div>
+				</div>
+				<div class="pagination-list">
+					<?php
+					$range = 2;
+					$show_dots = false;
 
-	wp_send_json_success($response);
+					for ($i = 1; $i <= $total_pages; $i++) {
+						if ($i == 1 || $i == $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
+							if ($show_dots) {
+								echo '<span class="dots">...</span>';
+								$show_dots = false;
+							}
+							echo '<button class="page-btn' . ($i == $paged ? ' active' : '') . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</button>';
+						} else {
+							$show_dots = true;
+						}
+					}
+					?>
+				</div>
+				<div class="arrow-btn next">
+					<div class="site-btn"<?php if ($paged >= $total_pages) echo ' style="opacity: 0.5; pointer-events: none;"'; ?>>Next</div>
+				</div>
+			</div>
+
+			<div class="mobile-pagination">
+				<button id="prevBtn" class="arrow-btn"<?php if ($paged <= 1) echo ' disabled'; ?>>
+					<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Prev">
+				</button>
+				<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($paged . '/' . $total_pages); ?></button>
+				<button id="nextBtn" class="arrow-btn"<?php if ($paged >= $total_pages) echo ' disabled'; ?>>
+					<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
+				</button>
+			</div>
+
+			<div id="paginationPopup" class="pagination-popup">
+				<div class="popup-body">
+					<div id="popupGrid" class="popup-grid">
+						<?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+							<button class="page-btn<?php echo ($i == $paged ? ' active' : ''); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></button>
+						<?php endfor; ?>
+					</div>
+					<button id="popupPrev" class="arrow-btn"></button>
+					<button id="popupNext" class="arrow-btn"></button>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<?php
+		$pagination_html = ob_get_clean();
+	}
+
+	wp_send_json_success([
+		'html'            => $html,
+		'pagination_html' => $pagination_html,
+		'max_pages'       => $total_pages,
+		'current_page'    => $paged,
+	]);
 }
 
 
