@@ -133,6 +133,10 @@
                 width: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
 
                 @extend .ui-18-16-bold;
+
+                @media(max-width: 767px) {
+                    align-self: center;
+                }
             }
 
             .number-list-show {
