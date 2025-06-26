@@ -38,7 +38,7 @@
         },
         {
             "key": "field_683467ecbc1cc",
-            "label": "Select Background Pattern",
+            "label": "Select Background Pattern (If no pattern is selected, the default background image from the theme settings will be used)",
             "name": "li_bp_bg_pattern",
             "aria-label": "",
             "type": "image",
@@ -103,5 +103,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750940591
+    "modified": 1750947944
 }

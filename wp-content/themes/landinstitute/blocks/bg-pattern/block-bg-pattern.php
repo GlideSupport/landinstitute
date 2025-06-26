@@ -11,7 +11,7 @@
  * @since 1.0.0
  */
 
-list($bst_block_id, $bst_block_fields) = BaseTheme::defaults($block['id']);
+list($bst_block_id, $bst_block_fields, $bst_option_fields) = BaseTheme::defaults($block['id']);
 
 
 // Set the block name for it's ID & class from it's file name.
@@ -42,7 +42,7 @@ if ($block['name']) {
 }
 
 // Block variables.
-$li_bp_bg_pattern = $bst_block_fields['li_bp_bg_pattern'] ?? null;
+$li_bp_bg_pattern = $bst_block_fields['li_bp_bg_pattern'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 if (!empty($li_bp_bg_pattern)): ?>
