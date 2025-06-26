@@ -2404,27 +2404,35 @@
 
 	document.addEventListener('DOMContentLoaded', function () {
 		new Swiper('.timeline-slider', {
-			loop: true,
+			loop: false,
 			navigation: {
 				nextEl: '.swiper-button-next',
 				prevEl: '.swiper-button-prev',
 			},
-			centeredSlides: true,
-			slidesPerView: 1,
+			slidesPerView: 1.28,
 			spaceBetween: 0,
 			breakpoints: {
 				1920: {
-					slidesPerView: 2,
+					slidesPerView: 2.43,
 					spaceBetween: 0,
 				},
 				1028: {
-					slidesPerView: 2,
+					slidesPerView: 2.43,
 					spaceBetween: 0,
 				},
-				640: {
-					slidesPerView: 2,
+				767: {
+					slidesPerView: 2.2,
 					spaceBetween: 0,
 				},
+				480: {
+					slidesPerView: 1.8,
+					spaceBetween: 0,
+				},
+			},
+			on: {
+				init(swiper) {
+					swiper.slideTo(3, 0); // index 3 is actual Slide 1
+				}
 			},
 		});
 	});

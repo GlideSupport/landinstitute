@@ -53,12 +53,13 @@
 }
 
 .timeline-slides-block {
-    // margin-right: calc(-50vw + 50%);
-    // margin-left: calc(-50vw + 50%);
 
     .swiper-horizontal {
         //padding-left: clamp(54px, calc(3.375rem + ((1vw - 7.68px) * 16.2202)), 163px);
         // margin-right: calc(-50vw + 50%);
+        padding-left: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+        margin-right: calc(-50vw + 50%);
+        margin-left: calc(-50vw + 50%);
 
 
         @media(max-width: 319px) {
@@ -81,6 +82,14 @@
 
             .border-card-click {
                 height: 100%;
+            }
+        }
+
+        &:first-child {
+            .border-card {
+                .border-card-click {
+                    border-left: 2px solid var(--gb_base_brown);
+                }
             }
         }
     }
