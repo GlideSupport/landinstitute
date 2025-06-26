@@ -126,6 +126,9 @@ section:has(.text-featured-block) {
 
 .two-column-text {
     &.text-featured-block {
+        // width: 100vw;
+        // margin-left: calc(-50vw + 50%);
+
         .row-flex {
             display: grid;
             gap: 0;

@@ -599,56 +599,6 @@
 									</div>
 								</a>
 							</div>
-							<div class="text-card-col bg-lilac">
-								<div class="text-card-col-group">
-									<div class="gl-s156"></div>
-									<div class="ui-eyebrow-20-18-regular">We believe</div>
-									<div class="gl-s24"></div>
-									<h2 class="heading-3 mb-0 block-title">To reconcile our place in nature and secure a
-										future for humanity, we
-										must transform agriculture.</h2>
-									<div class="gl-s200"></div>
-								</div>
-							</div>
-							<div class="text-card-col bg-butter-yellow">
-								<a href="" class="text-card-col-group">
-									<div class="gl-s156"></div>
-									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
-									<div class="gl-s24"></div>
-									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
-										a global movement to realize perennial agriculture.</h3>
-									<div class="gl-s200"></div>
-									<div class="text-card-btn">
-										<div href="" class="site-btn">Get Involved</div>
-									</div>
-								</a>
-							</div>
-							<div class="text-card-col bg-butter-yellow">
-								<a href="" class="text-card-col-group">
-									<div class="gl-s156"></div>
-									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
-									<div class="gl-s24"></div>
-									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
-										a global movement to realize perennial agriculture.</h3>
-									<div class="gl-s200"></div>
-									<div class="text-card-btn">
-										<div href="" class="site-btn">Get Involved</div>
-									</div>
-								</a>
-							</div>
-							<div class="text-card-col bg-butter-yellow">
-								<a href="" class="text-card-col-group">
-									<div class="gl-s156"></div>
-									<div class="ui-eyebrow-20-18-regular">Our Purpose</div>
-									<div class="gl-s24"></div>
-									<h3 class="heading-3 mb-0 block-title">Mobilize and accelerate
-										a global movement to realize perennial agriculture.</h3>
-									<div class="gl-s200"></div>
-									<div class="text-card-btn">
-										<div href="" class="site-btn">Get Involved</div>
-									</div>
-								</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -1534,6 +1484,36 @@
 
 
 	<script>
+
+		// 
+		function applyDynamicColumnPadding() {
+			const container = document.querySelector('.wrapper');
+			const cards = document.querySelectorAll('.two-column-text.text-featured-block .row-flex .text-card-col');
+
+			if (!container || cards.length === 0) return;
+
+			const containerLeft = container.getBoundingClientRect().left;
+			const wrapperPadding = -30; // Adjust based on your actual wrapper padding
+
+			cards.forEach((card, index) => {
+				card.style.paddingLeft = '';
+				card.style.paddingRight = '';
+
+				if (index % 2 === 0) {
+					// Left column
+					card.style.paddingLeft = `${containerLeft - wrapperPadding}px`;
+				} else {
+					// Right column
+					card.style.paddingRight = `${containerLeft - wrapperPadding}px`;
+				}
+			});
+		}
+
+		window.addEventListener('DOMContentLoaded', applyDynamicColumnPadding);
+		window.addEventListener('resize', applyDynamicColumnPadding);
+
+		// 
+
 
 		function applyCardSpacing() {
 			const rowFlex = document.querySelector('.two-column-text.text-featured-block .row-flex');
