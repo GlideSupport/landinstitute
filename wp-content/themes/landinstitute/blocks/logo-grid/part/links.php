@@ -10,7 +10,7 @@
 	<div class="logo-grid-links-block <?php echo esc_attr($border_options); ?>">
 		<div class="heading-max max-800">
 			<?php echo !empty($li_lg_headline_check) ? BaseTheme::headline($li_lg_headline, 'heading-2 mb-0 block-title') : ''; ?>
-			<?php echo (!empty($li_lg_headline_check) || !empty($li_lg_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
+			<?php echo (!empty($li_lg_headline_check) && !empty($li_lg_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 			<?php echo !empty($li_lg_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_lg_wysiwyg) . '</div>' : ''; ?>
 		</div>
 		<div class="gl-s96"></div>
@@ -45,11 +45,13 @@
 											<?php echo esc_html($li_lg_content); ?>
 										</div>
 									</div>
-									<div class="card-item-right">
-										<div class="dot-btn">
-											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg">
+									<?php if (!empty($li_lg_url)): ?>
+										<div class="card-item-right">
+											<div class="dot-btn">
+												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg">
+											</div>
 										</div>
-									</div>
+									<?php endif; ?>
 								</div>
 							</div>
 							<?php echo !empty($li_lg_url) ? '</a>' : '</div>'; ?>

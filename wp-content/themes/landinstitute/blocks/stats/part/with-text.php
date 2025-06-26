@@ -24,10 +24,11 @@
 		<?php endif; ?>
 			<div class="col-right">
 			<?php echo !empty($li_s_headline_check) ? BaseTheme::headline($li_s_headline, 'heading-2 block-title mb-0') : ''; ?>
-			<?php echo (!empty($li_s_headline_check) || !empty($li_s_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
-			<?php echo !empty($li_s_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_s_wysiwyg) . '</div><div class="gl-s30"></div>' : ''; ?>	
+			<?php echo (!empty($li_s_headline_check) && !empty($li_s_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
+			<?php echo !empty($li_s_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_s_wysiwyg) . '</div>' : ''; ?>	
+			<?php echo (!empty($li_s_button)) ? '<div class="gl-s30"></div>' : ''; ?>
 			<?php echo !empty($li_s_button) ? '<div class="block-btn">' . BaseTheme::button($li_s_button, 'site-btn text-link') . '</div>' : ''; ?>
 			</div>
 		</div>
 	</div>
-<?php endif; ?>
+<?php endif; ?>							

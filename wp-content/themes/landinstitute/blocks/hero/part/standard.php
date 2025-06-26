@@ -24,7 +24,8 @@ if (!empty($li_hero_headline_check) || !empty($kicker) || !empty($wysiwyg) || !e
 							<?php echo (!empty($li_hero_headline_check) || !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
 							<?php echo !empty($wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
 							<?php echo (!empty($wysiwyg) || !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
-							<?php echo !empty($button) ? '<div class="tab-dropdown">' . BaseTheme::button($button, 'site-btn text-link') . '</div><div class="gl-s96"></div>' : ''; ?>
+							<?php echo !empty($button) ? '<div class="tab-dropdown">' . BaseTheme::button($button, 'site-btn text-link') . '</div>' : ''; ?>
+							<div class="gl-s96"></div>
 						</div>
 					</div>
 					<div class="col-right">
