@@ -69,7 +69,7 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
 							</div>
 							<div class="answercont">
 								<div class="answer number-list-show">
-									<?php echo !empty($li_awi_wysiwyg ) ? '<div class="body-20-18-regular faq-content">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
+									<?php echo !empty($wysiwyg ) ? '<div class="body-20-18-regular faq-content">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
 								</div>
 							</div>
 						</li>
