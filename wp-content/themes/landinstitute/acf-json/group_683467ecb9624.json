@@ -1,10 +1,10 @@
 {
     "key": "group_683467ecb9624",
-    "title": "Block - BG Pattern",
+    "title": "Block - Parallax Background",
     "fields": [
         {
             "key": "field_68346b34894c0",
-            "label": "BG Pattern",
+            "label": "Parallax Background Pattern",
             "name": "",
             "aria-label": "",
             "type": "block_label",
@@ -38,7 +38,7 @@
         },
         {
             "key": "field_683467ecbc1cc",
-            "label": "BG Pattern",
+            "label": "Select Background Pattern",
             "name": "li_bp_bg_pattern",
             "aria-label": "",
             "type": "image",
@@ -103,5 +103,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749209736
+    "modified": 1750940591
 }

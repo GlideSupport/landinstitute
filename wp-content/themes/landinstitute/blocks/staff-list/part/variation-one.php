@@ -18,6 +18,7 @@
                             $title = get_the_title();
                             $position = get_field('staff_designation', get_the_ID());
                             $content =  get_the_content();
+                            $company = get_field('staff_company', get_the_ID());
                             $permalink   = get_permalink(get_the_ID());
                         ?>
                         <div class="staff-list-col">
@@ -25,6 +26,7 @@
                             <?php echo !empty($title) ? '<div class="cl-left"><div class="team-img">' . wp_get_attachment_image(get_post_thumbnail_id(get_the_ID(), 'thumb_400')) . '</div></div>' : ''; ?>
                                 <div class="cl-right">
                                 <?php echo !empty($title) ? '<h5 class="heading-5 block-title mb-0">' . esc_html($title) . '</h5><div class="gl-s2"></div>' : ''; ?>
+                                <?php echo !empty($position) || !empty($company) ? '<div class="ui-eyebrow-16-15-regular team-sub">' . esc_html($position) . (!empty($company) ? ', ' . esc_html($company) : '') . '</div><div class="gl-s20"></div>': ''; ?>
                                 <?php echo !empty($content)?'<div class="team-content body-20-18-regular">' . html_entity_decode($content) . '</div><div class="gl-s6"></div>' : ''; ?>
                                 <?php echo !empty($permalink) ? '<div class="team-btn"><a href="' . esc_url($permalink) . '" class="border-text-btn">Read more</a></div>' : ''; ?>
                                 </div>
