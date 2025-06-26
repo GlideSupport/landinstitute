@@ -252,12 +252,33 @@ class WP_Theme_Settings {
 	 *
 	 * @return string
 	 */
-	public function wp_get_attachment_image_callback( $html, $post_thumbnail_id, $size, $icon, $attr ) {
-		if ( 'full' === $size ) {
-			trigger_error( 'You cannot use full as a size', E_USER_WARNING );
+	public function wp_get_attachment_image_callback($html, $attachment_id, $size, $icon) {
+		// Warn if size is 'full'
+		if ($size === 'full') {
+			trigger_error('You cannot use full as a size', E_USER_WARNING);
 		}
+	
+		$mime = get_post_mime_type($attachment_id);
+	
+		if ($mime === 'image/svg+xml') {
+			// Use regex to modify <img> tag attributes
+			if (preg_match('/<img[^>]+>/', $html, $matches)) {
+				$img_tag = $matches[0];
+	
+				// Remove existing width and height
+				$img_tag = preg_replace('/\s(width|height)="[^"]*"/', '', $img_tag);
+	
+				// Add width="100%" and height="100%"
+				$img_tag = str_replace('<img', '<img width="100%" height="100%"', $img_tag);
+	
+				// Replace modified tag in original HTML
+				$html = $img_tag;
+			}
+		}
+	
 		return $html;
 	}
+	
 	/**
 	 * Function to make size full a warning.
 	 *

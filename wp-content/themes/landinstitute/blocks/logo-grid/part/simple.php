@@ -26,7 +26,7 @@
 					? '<a class="logo-grid-wrap" href="' . esc_url($li_lg_url) . '">' 
 					: '<div class="logo-grid-wrap">';
 				
-				echo get_custom_image($li_lg_logo, 'thumb_200');
+				echo wp_get_attachment_image($li_lg_logo, 'thumb_200');
 				
 				echo !empty($li_lg_url) ? '</a>' : '</div>';
 				echo '</div>';
