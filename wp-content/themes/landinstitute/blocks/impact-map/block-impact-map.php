@@ -65,7 +65,7 @@ $border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 							<div class="swiper-slide-container">
 								<?php if ($image) : ?>
 									<div class="map-image">
-									<?php echo wp_get_attachment_image($image, 'full', false, array( 'width'  => 1003, 'height' => 534, 'alt' => 'Map Image') ); ?>
+									<?php echo wp_get_attachment_image($image, 'thumb_1200', false, array( 'width'  => 1003, 'height' => 534, 'alt' => 'Map Image') ); ?>
 
 									</div>
 								<?php endif; ?>
