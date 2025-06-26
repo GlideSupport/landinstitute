@@ -243,6 +243,7 @@ body {
             letter-spacing: var(--letter_spacing_04);
             line-height: var(--line_height_110per);
             padding: 16px 0 16px;
+            padding-right: 2px;
 
             @media(max-width: 640px) {
                 letter-spacing: -0.36px;
@@ -295,7 +296,7 @@ body {
 
                 &:before {
                     animation: bubble-width 0.4s forwards;
-                    width: 100%;
+                    width: calc(100% - 2px);
                 }
             }
         }
