@@ -224,38 +224,40 @@ if ($li_po_nav_button_position == 'left' && $li_po_left_btn_arrow_position == 'l
             </div>
         </div>
     <?php endif; ?>
-    <!-- Footer End -->
-    <?php
-    if ($bst_var_schema_check) {
-    ?>
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org",
-                "@type": "<?php echo esc_html($bst_var_schema_type); ?>",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "<?php echo esc_html($bst_var_schema_locality); ?>",
-                    "addressRegion": "<?php echo esc_html($bst_var_schema_region); ?>",
-                    "postalCode": "<?php echo esc_html($bst_var_schema_postal_code); ?>",
-                    "streetAddress": "<?php echo esc_html($bst_var_schema_street_address); ?>"
-                },
-                "hasMap": "<?php echo esc_html($bst_var_schema_map_short_link); ?>",
-                "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": "<?php echo esc_html($bst_var_schema_latitude); ?>",
-                    "longitude": "<?php echo esc_html($bst_var_schema_longitude); ?>"
-                },
-                "name": "<?php echo esc_html($bst_var_schema_business_name); ?>",
-                "openingHours": "<?php echo esc_html($bst_var_schema_opening_hours); ?>",
-                "telephone": "<?php echo esc_html($bst_var_schema_telephone); ?>",
-                "email": "<?php echo esc_html($bst_var_schema_business_email); ?>",
-                "url": "<?php echo esc_url(home_url()); ?>",
-                "image": "<?php echo esc_html($bst_var_schema_business_logo); ?>",
-                "legalName": "<?php echo esc_html($bst_var_schema_business_legal_name); ?>",
-                "priceRange": "<?php echo esc_html($bst_var_schema_price_range); ?>"
-            }
-        </script> <?php } ?>
 </footer>
+
+<!-- Footer End -->
+<?php
+if ($bst_var_schema_check) {
+?>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "<?php echo esc_html($bst_var_schema_type); ?>",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "<?php echo esc_html($bst_var_schema_locality); ?>",
+                "addressRegion": "<?php echo esc_html($bst_var_schema_region); ?>",
+                "postalCode": "<?php echo esc_html($bst_var_schema_postal_code); ?>",
+                "streetAddress": "<?php echo esc_html($bst_var_schema_street_address); ?>"
+            },
+            "hasMap": "<?php echo esc_html($bst_var_schema_map_short_link); ?>",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "<?php echo esc_html($bst_var_schema_latitude); ?>",
+                "longitude": "<?php echo esc_html($bst_var_schema_longitude); ?>"
+            },
+            "name": "<?php echo esc_html($bst_var_schema_business_name); ?>",
+            "openingHours": "<?php echo esc_html($bst_var_schema_opening_hours); ?>",
+            "telephone": "<?php echo esc_html($bst_var_schema_telephone); ?>",
+            "email": "<?php echo esc_html($bst_var_schema_business_email); ?>",
+            "url": "<?php echo esc_url(home_url()); ?>",
+            "image": "<?php echo esc_html($bst_var_schema_business_logo); ?>",
+            "legalName": "<?php echo esc_html($bst_var_schema_business_legal_name); ?>",
+            "priceRange": "<?php echo esc_html($bst_var_schema_price_range); ?>"
+        }
+    </script>
+<?php } ?>
 <?php wp_footer(); ?>
 <?php
 if ('' !== $bst_var_footer_scripts) {
