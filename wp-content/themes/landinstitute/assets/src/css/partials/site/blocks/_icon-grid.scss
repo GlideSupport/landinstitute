@@ -72,6 +72,7 @@
             img {
                 max-height: clamp(73px, calc(4.5625rem + ((1vw - 7.68px) * 4.9828)), 102px);
                 max-width: clamp(139px, calc(8.6875rem + ((1vw - 7.68px) * 9.4502)), 194px);
+                object-fit: contain;
             }
         }
     }

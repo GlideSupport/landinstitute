@@ -317,7 +317,7 @@
             flex-wrap: wrap;
 
             .cl-left {
-                flex: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 55.8659)), 480px) 0 0;
+                flex: clamp(280px, calc(17.5rem + ((1vw - 9.92px) * 33.5196)), 400px) 0 0;
                 padding-right: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
 
                 @media(max-width: 767px) {

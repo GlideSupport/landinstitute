@@ -62,7 +62,6 @@
     }
 
     .swiper-wrapper {
-        justify-content: center;
 
         @media(max-width: 640px) {
             justify-content: flex-start;
@@ -177,6 +176,30 @@
 
                 @media(max-width: 640px) {
                     padding: 16px 0;
+                }
+            }
+        }
+
+        &.logo-grid-three {
+            .designation-col {
+                grid-column: span 4;
+
+                @media(max-width: 767px) {
+                    grid-column: span 6;
+                }
+
+                @media(max-width: 319px) {
+                    grid-column: span 12;
+                }
+            }
+        }
+
+        &.logo-grid-two {
+            .designation-col {
+                grid-column: span 6;
+
+                @media(max-width: 319px) {
+                    grid-column: span 12;
                 }
             }
         }

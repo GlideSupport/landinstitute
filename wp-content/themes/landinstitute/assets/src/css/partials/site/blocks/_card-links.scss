@@ -368,17 +368,25 @@ section:has(.text-featured-block) {
             align-items: flex-start;
             display: flex;
             gap: 8px;
+            flex: 1 0 0;
 
             .tag-label {
                 background: var(--gb_primary_lilac);
                 border-radius: 100px;
                 padding: 4px 8px;
+                margin-left: 8px;
 
                 @extend .ui-14-13-bold;
             }
         }
 
         .card-item-right {
+            flex: 44px 0 0;
+
+            @media(max-width: 640px) {
+                flex: 32px 0 0;
+            }
+
             .dot-btn {
                 display: flex;
 

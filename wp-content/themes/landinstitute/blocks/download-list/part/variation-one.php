@@ -30,8 +30,9 @@
 											if(!empty($url) && !empty($title)): ?>
 											<?php echo !empty($link) ? '<a href="' . esc_url($url) . '" target="' . esc_attr($link_target) . '" class="card-item">' : '<div class="card-item">'; ?>
 													<div class="card-item-left">
-														<div class="card-title ui-20-18-bold"> <?php echo esc_html($title); ?></div>
-														<div class="card-content tag-label">PDF</div>
+														<div class="card-title ui-20-18-bold"> <?php echo esc_html($title); ?><span class="card-content tag-label">
+														PDF
+													</span></div>
 													</div>
 													<div class="card-item-right">
 														<div class="dot-btn">
