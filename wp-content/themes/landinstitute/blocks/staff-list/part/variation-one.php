@@ -10,14 +10,14 @@
                 'orderby'        => 'post__in',
                 'posts_per_page' => -1,
             ];
-            $team_query = new WP_Query($args);
-            if ($team_query->have_posts()) : ?>
+            $staff_query = new WP_Query($args);
+            if ($staff_query->have_posts()) : ?>
                 <div class="staff-list-row">
-                    <?php while ($team_query->have_posts()) : $team_query->the_post(); ?>
+                    <?php while ($staff_query->have_posts()) : $staff_query->the_post(); ?>
                         <?php
                             $title = get_the_title();
                             $position = get_field('staff_designation', get_the_ID());
-                            $content =  get_the_content();
+                            $content =  get_field('staff_bio_description', get_the_ID());
                             $company = get_field('staff_company', get_the_ID());
                             $permalink   = get_permalink(get_the_ID());
                         ?>
