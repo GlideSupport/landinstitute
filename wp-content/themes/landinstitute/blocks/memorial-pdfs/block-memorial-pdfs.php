@@ -46,10 +46,19 @@ $li_mp_headline = $bst_block_fields['li_mp_headline'] ?? null;
 $li_mp_headline_check = BaseTheme::headline_check($li_mp_headline);
 $li_mp_kicker = $bst_block_fields['li_mp_kicker'] ?? null;
 $li_mp_wysiwyg = $bst_block_fields['li_mp_wysiwyg'] ?? null;
+$li_mp_grid_layout = $bst_block_fields['li_mp_grid_layout'] ?? null;
 $li_mp_main_repeater = $bst_block_fields['li_mp_main_repeater'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
+if($li_mp_grid_layout=='two-column'):
+    $class="logo-grid-two";
+elseif ($li_mp_grid_layout=='three-column') :
+    $class="logo-grid-three";
+else :
+    $class="logo-grid-four";
+endif;
 ?>
+
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
     <div class="contributors-block <?php echo esc_attr($border_options); ?>">
         <div class="heading-max max-800">
@@ -71,7 +80,7 @@ $border_options = $bst_block_fields['border_options']['li_global_border_options'
                             <h4 class="heading-4 block-title mb-0"><?php echo esc_html($group_title); ?></h4>
                             <div class="gl-s16"></div>
                             <?php if (!empty($entries)): ?>
-                                <div class="designation-row">
+                                <div class="designation-row <?php echo $class; ?>">
                                     <?php foreach ($entries as $entry): 
                                         $name = $entry['li_mp_name'] ?? '';
                                         $designation = $entry['li_mp_designation'] ?? ''; 

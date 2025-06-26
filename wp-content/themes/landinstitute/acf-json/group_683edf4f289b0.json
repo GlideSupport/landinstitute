@@ -148,6 +148,31 @@
             "delay": 0
         },
         {
+            "key": "field_685d269612a3a",
+            "label": "Grid Layout",
+            "name": "li_mp_grid_layout",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "two-column": "Two Column",
+                "three-column": "Three Column",
+                "four-column": "Four Column"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_683ee6ba8cf08",
             "label": "Repeater",
             "name": "li_mp_main_repeater",
@@ -303,5 +328,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750164639
+    "modified": 1750936255
 }

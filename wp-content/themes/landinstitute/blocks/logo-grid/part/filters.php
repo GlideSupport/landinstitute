@@ -1,3 +1,11 @@
+<?php if($li_lg_logo_grid_layout=='two-column'):
+			$class="logo-grid-two";
+	elseif ($li_lg_logo_grid_layout=='three-column') :
+		$class="logo-grid-three";
+	else :
+		$class="logo-grid-four";
+	endif;
+?>
 <div class="logo-grid-filters">
 	<div class="heading-max max-800">
 		<?php echo !empty($li_lg_headline_check) ? BaseTheme::headline($li_lg_headline, 'heading-2 block-title mb-0') : ''; ?>
@@ -33,7 +41,7 @@
 		$donors = new WP_Query($args);
 
 		if ($donors->have_posts()) : ?>
-			<div class="filter-logos-row">
+			<div class="filter-logos-row <?php echo $class; ?>">
 				<?php while ($donors->have_posts()) : $donors->the_post(); 
 					// Get featured image
 					$image_id = get_post_thumbnail_id(get_the_ID());

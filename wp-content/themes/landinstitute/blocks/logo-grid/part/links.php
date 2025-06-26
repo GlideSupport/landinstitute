@@ -1,4 +1,12 @@
-<?php if (!empty($li_lg_headline_check) || !empty($li_lg_wysiwyg) || !empty($li_lg_repeater_logos)): ?>
+<?php if (!empty($li_lg_headline_check) || !empty($li_lg_wysiwyg) || !empty($li_lg_repeater_logos) || !empty($li_lg_logo_grid_layout)): ?>
+	<?php if($li_lg_logo_grid_layout=='two-column'):
+			$class="logo-grid-two";
+		elseif ($li_lg_logo_grid_layout=='three-column') :
+			$class="logo-grid-three";
+		else :
+			$class="logo-grid-four";
+		endif;
+	?>
 	<div class="logo-grid-links-block <?php echo esc_attr($border_options); ?>">
 		<div class="heading-max max-800">
 			<?php echo !empty($li_lg_headline_check) ? BaseTheme::headline($li_lg_headline, 'heading-2 mb-0 block-title') : ''; ?>
@@ -8,7 +16,7 @@
 		<div class="gl-s96"></div>
 		<?php if (!empty($li_lg_repeater_logos)) : ?>
 
-			<div class="logo-grid-links-row">
+			<div class="logo-grid-links-row <?php echo $class; ?>">
 				<?php foreach ($li_lg_repeater_logos as $li_lg_repeater_logo) :
 					$li_lg_logo  = $li_lg_repeater_logo['li_lg_logo'] ?? '';
 					$li_lg_url  = $li_lg_repeater_logo['li_lg_url'] ?? '';

@@ -261,3 +261,18 @@ function filter_news_posts_callback() {
 	wp_reset_postdata();
 	wp_die();
 }
+
+function get_custom_image($attachment_id, $size = 'thumbnail') {
+    $mime = get_post_mime_type($attachment_id);
+ 
+    // If it's an SVG, build the <img> manually
+    if ($mime === 'image/svg+xml') {
+        $url = wp_get_attachment_url($attachment_id);
+ 
+        // Use fallback dimensions (200x200 or responsive if needed)
+        return '<img src="' . esc_url($url) . '" width="200" height="200" alt="">';
+    }
+ 
+    // For raster images, use native image function
+    return wp_get_attachment_image($attachment_id, $size);
+}
