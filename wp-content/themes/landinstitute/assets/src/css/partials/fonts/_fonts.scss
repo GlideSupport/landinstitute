@@ -1,26 +1,34 @@
 $base-url: "../";
 $used-fonts: (
 );
-
 $base-font-stack: (
-    plusjakarta: (reg: (family: ("Plus Jakarta Sans", arial, sans-serif),
+    plusjakarta: (reg: (family: ("Plus Jakarta Sans",
+                arial,
+                sans-serif,
+            ),
             weight: 500,
             style: normal,
             font-display: swap,
             font-face: (family: "Plus Jakarta Sans",
                 path: "PlusJakartaSans-Medium",
-                formats: (woff2),
-                weight: "200 800"
-            )),
-        sbold: (family: ("Plus Jakarta Sans", arial, sans-serif),
+                formats: (woff2,
+                ),
+            ),
+        ),
+        sbold: (family: ("Plus Jakarta Sans",
+                arial,
+                sans-serif,
+            ),
             weight: 700,
             style: normal,
             font-display: swap,
             font-face: (family: "Plus Jakarta Sans",
                 path: "PlusJakartaSans-Bold",
-                formats: (woff2),
-                weight: "200 800"
-            ))),
+                formats: (woff2,
+                ),
+            ),
+        ),
+    ),
     valueserif: (reg: (family: ("Value Serif Pro",
                 arial,
                 sans-serif,
@@ -149,9 +157,12 @@ $base-font-stack: (
 }
 }
 
-
+// Add the font-face rules for all used fonts
 @mixin import-fonts($font-stack: $base-font-stack) {
-    @each $group, $variations in $used-fonts {
+
+    @each $group,
+    $variations in $used-fonts {
+
         @each $variant in $variations {
             $font-properties: map-deep-get($font-stack, $group, $variant);
 
@@ -163,19 +174,16 @@ $base-font-stack: (
                     $font-family: map-get($font-face, family);
                     $file-path: map-get($font-face, path);
                     $file-formats: map-get($font-face, formats);
-
-                    // ✅ Updated: check font-face.weight first
-                    $font-weight: if(map-has-key($font-face, weight),
-                            map-get($font-face, weight),
-                            map-get($font-properties, weight));
-
+                    $font-weight: map-get($font-properties, weight);
                     $font-style: map-get($font-properties, style);
 
                     @if $file-formats {
+
                         @include font-face($font-family, $file-path, $font-weight, $font-style, $file-formats);
                     }
 
                     @else {
+
                         @include font-face($font-family, $file-path, $font-weight, $font-style);
                     }
                 }
@@ -183,8 +191,6 @@ $base-font-stack: (
         }
     }
 }
-
-
 
 // Used for creating the source string for fonts using @font-face
 @function font-source($font-family, $file-path, $file-formats) {
