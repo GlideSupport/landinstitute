@@ -268,7 +268,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "all"
+                "value": "acf\/image-list"
             }
         ]
     ],
@@ -281,5 +281,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751001579
+    "modified": 1751015757
 }

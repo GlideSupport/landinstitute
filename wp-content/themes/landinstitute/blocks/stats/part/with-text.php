@@ -3,7 +3,8 @@
 		<div class="row-flex">
 		<?php if (!empty($li_s_repeater_one)) : ?>	
 			<div class="col-left">
-				<?php foreach ($li_s_repeater_one as $repeater_one) : 
+			<?php $last_index = count($li_s_repeater_one) - 1; ?>
+				<?php foreach ($li_s_repeater_one as $index => $repeater_one) : 
 					$li_s_prefix_one  = $repeater_one['li_s_prefix_one'] ?? '';
 					$li_s_number_one  = $repeater_one['li_s_number_one'] ?? '';
 					$li_s_postfix_one = $repeater_one['li_s_postfix_one'] ?? '';
@@ -17,7 +18,9 @@
 								<?php echo esc_html($li_s_label_one); ?>
 							</div>
 						</div>
-						<div class="gl-s44"></div>
+						<?php if ($index !== $last_index) : ?>
+							<div class="gl-s44"></div>
+						<?php endif; ?>
 					<?php endif; ?>
 				<?php endforeach; ?>
 			</div>

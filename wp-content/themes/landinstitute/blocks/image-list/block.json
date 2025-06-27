@@ -1,0 +1,25 @@
+{
+	"name": "acf/image-list",
+	"title": "Image List",
+	"description": "A custom Image List block.",
+	"category": "theme-blocks",
+	"icon": "images-alt",
+	"keywords": ["image-list"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-image-list.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "image-list-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}
