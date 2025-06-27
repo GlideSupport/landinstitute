@@ -38,6 +38,16 @@
         .border-image-content {
             cursor: none;
         }
+
+        a {
+            &.border-image-content {
+                cursor: none;
+            }
+
+            .border-text-btn {
+                cursor: pointer;
+            }
+        }
     }
 
     .swiper-slide {
@@ -51,14 +61,9 @@
 
     a {
         &.border-image-content {
-            cursor: none;
 
             &:hover {
                 background-color: var(--gb_primary_butter_yellow);
-            }
-
-            .border-text-btn {
-                cursor: pointer;
             }
         }
     }

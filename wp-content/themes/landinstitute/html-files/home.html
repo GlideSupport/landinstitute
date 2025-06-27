@@ -1487,31 +1487,31 @@
 	<script>
 
 		// 
-		function applyDynamicColumnPadding() {
-			const container = document.querySelector('.wrapper');
-			const cards = document.querySelectorAll('.two-column-text.text-featured-block .row-flex .text-card-col');
+		// function applyDynamicColumnPadding() { 
+		// 	const container = document.querySelector('.wrapper');
+		// 	const cards = document.querySelectorAll('.two-column-text.text-featured-block .row-flex .text-card-col');
 
-			if (!container || cards.length === 0) return;
+		// 	if (!container || cards.length === 0) return;
 
-			const containerLeft = container.getBoundingClientRect().left;
-			const wrapperPadding = -30; // Adjust based on your actual wrapper padding
+		// 	const containerLeft = container.getBoundingClientRect().left;
+		// 	const wrapperPadding = -30; // Adjust based on your actual wrapper padding
 
-			cards.forEach((card, index) => {
-				card.style.paddingLeft = '';
-				card.style.paddingRight = '';
+		// 	cards.forEach((card, index) => {
+		// 		card.style.paddingLeft = '';
+		// 		card.style.paddingRight = '';
 
-				if (index % 2 === 0) {
-					// Left column
-					card.style.paddingLeft = `${containerLeft - wrapperPadding}px`;
-				} else {
-					// Right column
-					card.style.paddingRight = `${containerLeft - wrapperPadding}px`;
-				}
-			});
-		}
+		// 		if (index % 2 === 0) {
+		// 			// Left column
+		// 			card.style.paddingLeft = `${containerLeft - wrapperPadding}px`;
+		// 		} else {
+		// 			// Right column
+		// 			card.style.paddingRight = `${containerLeft - wrapperPadding}px`;
+		// 		}
+		// 	});
+		// }
 
-		window.addEventListener('DOMContentLoaded', applyDynamicColumnPadding);
-		window.addEventListener('resize', applyDynamicColumnPadding);
+		// window.addEventListener('DOMContentLoaded', applyDynamicColumnPadding);
+		// window.addEventListener('resize', applyDynamicColumnPadding);
 
 		// 
 
