@@ -944,17 +944,6 @@
 		</div>
 	</main>
 
-	<ul id="category-view" class="dropdown-menu" role="menu" aria-labelledby="category-view">
-		<li class="active"><a href="#slide1">All</a></li>
-		<li><a href="#slide2">Healthcare Industry Insights</a></li>
-		<li><a href="#slide3">Career Tips & Guides for Healthcare Professionals</a>
-		</li>
-		<li><a href="#slide4">Client and Partner Resources</a></li>
-		<li><a href="#slide5">Life as a Travel or Locum Tenens Professional</a></li>
-		<li><a href="#slide6">Healthcare Staffing Agency Updates</a></li>
-		<li><a href="#slide7">Healthcare Staffing & Trends</a></li>
-		<li><a href="#slide8">Compliance & Credentialing</a></li>
-	</ul>
 
 	<footer id="" class="site-footer">
 		<div class="footer-cta">
@@ -1428,6 +1417,28 @@
 </body>
 
 <script>
+
+	function parallaxScroll() {
+		const parallax = document.querySelector('.parallax-img');
+		const image = parallax.querySelector('img');
+		const rect = parallax.getBoundingClientRect();
+
+		const windowHeight = window.innerHeight;
+
+		if (rect.top < windowHeight && rect.bottom > 0) {
+			// Element is in the viewport
+			const scrollPercent = (windowHeight - rect.top) / (windowHeight + rect.height);
+			const parallaxDistance = rect.height * 0.3; // Adjust effect strength here
+			const offset = scrollPercent * parallaxDistance - parallaxDistance / 2;
+
+			image.style.transform = `translateY(${offset}px)`;
+		}
+	}
+
+	window.addEventListener('scroll', parallaxScroll);
+	window.addEventListener('resize', parallaxScroll);
+	window.addEventListener('load', parallaxScroll);
+
 
 	document.querySelectorAll(".footer-nav-title").forEach((title) => {
 		title.addEventListener("click", () => {

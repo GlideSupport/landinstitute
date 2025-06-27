@@ -42,6 +42,7 @@
             overflow: hidden;
             width: clamp(280px, 17.5rem + (1vw - 9.92px) * 55.8659, 480px);
             border-right: 2px solid var(--gb_base_brown);
+            position: relative;
 
             @media (max-width: 991px) {
                 border-bottom: 2px solid var(--gb_base_brown);
@@ -55,6 +56,13 @@
                 height: 100%;
                 object-fit: cover;
                 width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                will-change: transform;
+                transform: translateY(0);
+                transition: transform 0.1s ease-out;
 
                 @media (max-width: 991px) {
                     height: clamp(147px, calc(9.1875rem + ((1vw - 3.75px) * 21.5909)), 280px);
