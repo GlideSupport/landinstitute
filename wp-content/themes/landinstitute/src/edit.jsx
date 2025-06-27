@@ -63,7 +63,7 @@ export default function Edit(props) {
 								selected={bgWidth}
 								options={[
 
-									{ label: 'Full Width', value: 'full-width-ctn' },
+									{ label: 'Full Width', value: 'container-full' },
 									{ label: 'Width 1280px (Default)', value: 'container-1280' },
 									{ label: 'Width 1120px', value: 'container-1120' },
 									{ label: 'Width 960px', value: 'container-960' },
