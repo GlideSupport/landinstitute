@@ -603,17 +603,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!toggleButton) return;
 
 		const menuId = toggleButton.getAttribute("aria-controls");
-		const dropdownMenu = document.querySelector(
-			`ul#${menuId}.dropdown-menu`,
-		);
+		const dropdownMenu = document.querySelector(`ul#${menuId}.dropdown-menu`);
 		if (!dropdownMenu) return;
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop =
-				window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft =
-				window.pageXOffset || document.documentElement.scrollLeft;
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
 			dropdownMenu.style.position = "absolute";
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
@@ -622,19 +618,13 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		function closeDropdown() {
-			toggleButton.setAttribute("aria-expanded", false);
+			toggleButton.setAttribute("aria-expanded", "false");
 			dropdownMenu.style.display = "none";
 			tabDropdown.classList.remove("open");
 			dropdownMenu.classList.remove("open");
 		}
 
-		toggleButton.addEventListener("click", (event) => {
-			event.stopPropagation();
-
-			const isExpanded =
-				toggleButton.getAttribute("aria-expanded") === "true";
-
-			// Close all open dropdowns first
+		function closeAllDropdowns() {
 			document.querySelectorAll(".dropdown-menu.open").forEach((menu) => {
 				menu.style.display = "none";
 				menu.classList.remove("open");
@@ -643,34 +633,82 @@ document.addEventListener("DOMContentLoaded", () => {
 				drop.classList.remove("open");
 			});
 			document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-				btn.setAttribute("aria-expanded", false);
+				btn.setAttribute("aria-expanded", "false");
 			});
+		}
 
+		function updateButtonText(selectedText) {
+			const buttonText = toggleButton.childNodes[0];
+			if (buttonText && buttonText.nodeType === Node.TEXT_NODE) {
+				const prefix = toggleButton.id === 'donor-type' ? 'Donor type: ' : 'Donation level: ';
+				buttonText.textContent = prefix + selectedText;
+			}
+		}
+
+		// Toggle dropdown on button click
+		toggleButton.addEventListener("click", (event) => {
+			event.stopPropagation();
+
+			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+
+			// Close all dropdowns first
+			closeAllDropdowns();
+
+			// If this dropdown wasn't expanded, open it
 			if (!isExpanded) {
-				toggleButton.setAttribute("aria-expanded", true);
+				toggleButton.setAttribute("aria-expanded", "true");
 				dropdownMenu.style.display = "block";
 				dropdownMenu.classList.add("open");
 				tabDropdown.classList.add("open");
 				positionDropdown();
 
-				// ➕ Add animation-delay to each li
+				// Add staggered animation delay
 				dropdownMenu.querySelectorAll("li").forEach((li, index) => {
 					li.style.animationDelay = `${index * 0.1}s`;
 				});
-			} else {
+			}
+		});
+
+		// Handle dropdown item selection
+		dropdownMenu.addEventListener("click", (event) => {
+			const clickedItem = event.target.closest("a");
+			if (!clickedItem) return;
+
+			event.preventDefault();
+			event.stopPropagation();
+
+			// Remove active class from all items
+			dropdownMenu.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+			
+			// Add active class to selected item
+			const selectedLi = clickedItem.closest("li");
+			if (selectedLi) {
+				selectedLi.classList.add("active");
+			}
+
+			// Update button text
+			const selectedText = clickedItem.textContent.trim();
+			updateButtonText(selectedText);
+
+			// Close the dropdown
+			closeDropdown();
+
+			// Get the selected term for filtering
+			const selectedTerm = clickedItem.getAttribute("data-term");
+			console.log(`Selected ${toggleButton.id}:`, selectedTerm);
+			
+			// Add your filtering logic here
+			// For example: filterContent(toggleButton.id, selectedTerm);
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", (event) => {
+			if (!tabDropdown.contains(event.target) && !dropdownMenu.contains(event.target)) {
 				closeDropdown();
 			}
 		});
 
-		document.addEventListener("click", (e) => {
-			if (
-				!tabDropdown.contains(e.target) &&
-				!dropdownMenu.contains(e.target)
-			) {
-				closeDropdown();
-			}
-		});
-
+		// Reposition on window resize
 		window.addEventListener("resize", () => {
 			if (toggleButton.getAttribute("aria-expanded") === "true") {
 				positionDropdown();
@@ -1066,6 +1104,28 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 	//staff js end
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+	const swiperContainer = document.querySelector(".swiper-container.variable-slide-preview");
+
+	if (!swiperContainer) return;
+
+	const cardButtons = swiperContainer.querySelectorAll(".border-text-btn");
+	const dragClass = "cursor-drag-icon";
+
+	cardButtons.forEach((btn) => {
+		btn.addEventListener("mouseenter", () => {
+			swiperContainer.classList.remove(dragClass);
+		});
+
+		btn.addEventListener("mouseleave", () => {
+			const totalSlides = swiperContainer.querySelectorAll(".swiper-slide").length;
+			if (totalSlides > 3) {
+				swiperContainer.classList.add(dragClass);
+			}
+		});
+	});
 });
 
 // news list js 
