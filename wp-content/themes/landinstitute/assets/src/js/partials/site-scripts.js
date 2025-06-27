@@ -596,6 +596,13 @@ if (typeof window.acf !== "undefined") {
 
 //dropdown menu js start
 document.addEventListener("DOMContentLoaded", () => {
+	// Wait a bit for all DOM elements to load
+	setTimeout(() => {
+		initDropdowns();
+	}, 100);
+});
+
+function initDropdowns() {
 	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
 
 	tabDropdowns.forEach((tabDropdown) => {
@@ -603,8 +610,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (!toggleButton) return;
 
 		const menuId = toggleButton.getAttribute("aria-controls");
-		const dropdownMenu = document.querySelector(`ul#${menuId}.dropdown-menu`);
-		if (!dropdownMenu) return;
+		
+		// Try to find the dropdown menu - it might be outside the tabDropdown
+		let dropdownMenu = document.querySelector(`ul#${menuId}.dropdown-menu`);
+		
+		// If not found, skip this dropdown for now - it might load later
+		if (!dropdownMenu) {
+			console.warn(`Dropdown menu with ID ${menuId} not found yet`);
+			return;
+		}
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
@@ -615,6 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
 			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
 			dropdownMenu.style.width = `${rect.width}px`;
+			dropdownMenu.style.zIndex = "1000";
 		}
 
 		function closeDropdown() {
@@ -625,11 +640,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		function closeAllDropdowns() {
-			document.querySelectorAll(".dropdown-menu.open").forEach((menu) => {
+			document.querySelectorAll(".dropdown-menu").forEach((menu) => {
 				menu.style.display = "none";
 				menu.classList.remove("open");
 			});
-			document.querySelectorAll(".tab-dropdown.open").forEach((drop) => {
+			document.querySelectorAll(".tab-dropdown").forEach((drop) => {
 				drop.classList.remove("open");
 			});
 			document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
@@ -638,15 +653,28 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		function updateButtonText(selectedText) {
-			const buttonText = toggleButton.childNodes[0];
-			if (buttonText && buttonText.nodeType === Node.TEXT_NODE) {
-				const prefix = toggleButton.id === 'donor-type' ? 'Donor type: ' : 'Donation level: ';
-				buttonText.textContent = prefix + selectedText;
+			const buttonTextNode = toggleButton.childNodes[0];
+			if (buttonTextNode && buttonTextNode.nodeType === Node.TEXT_NODE) {
+				// Get the original button text to extract the prefix
+				const originalText = buttonTextNode.textContent;
+				
+				// Find the colon to split prefix from current value
+				const colonIndex = originalText.indexOf(':');
+				
+				if (colonIndex !== -1) {
+					// Extract the prefix (everything before and including the colon + space)
+					const prefix = originalText.substring(0, colonIndex + 1) + ' ';
+					buttonTextNode.textContent = prefix + selectedText;
+				} else {
+					// Fallback: if no colon found, just replace the entire text
+					buttonTextNode.textContent = selectedText;
+				}
 			}
 		}
 
 		// Toggle dropdown on button click
 		toggleButton.addEventListener("click", (event) => {
+			event.preventDefault();
 			event.stopPropagation();
 
 			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
@@ -669,41 +697,90 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 
-		// Handle dropdown item selection
+		// Handle dropdown item selection - This is the key fix!
 		dropdownMenu.addEventListener("click", (event) => {
-			const clickedItem = event.target.closest("a");
-			if (!clickedItem) return;
+			// Check if clicked element is a link or inside a link
+			const clickedLink = event.target.closest("a");
+			if (!clickedLink) return;
 
-			event.preventDefault();
-			event.stopPropagation();
+			const href = clickedLink.getAttribute("href");
+			const selectedTerm = clickedLink.getAttribute("data-term");
+			const selectedText = clickedLink.textContent.trim();
 
-			// Remove active class from all items
-			dropdownMenu.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+			// Check if this is a filter dropdown (has data-term) or a navigation menu
+			const isFilterDropdown = selectedTerm !== null && selectedTerm !== undefined;
+			const isJavascriptVoid = href === "javascript:void(0)" || href === "#" || href === "";
 			
-			// Add active class to selected item
-			const selectedLi = clickedItem.closest("li");
-			if (selectedLi) {
-				selectedLi.classList.add("active");
+			// If it's a real URL and not a filter, update button text then navigate
+			if (!isJavascriptVoid && !isFilterDropdown && href && href.length > 0) {
+				// Prevent immediate navigation to show the update first
+				event.preventDefault();
+				event.stopPropagation();
+				
+				// Update button text to show selection
+				updateButtonText(selectedText);
+				
+				// Close the dropdown
+				closeDropdown();
+				
+				// Navigate after a short delay to show the text update
+				setTimeout(() => {
+					window.location.href = href;
+				}, 300); // 300ms delay to show the text change
+				
+				return;
 			}
 
-			// Update button text
-			const selectedText = clickedItem.textContent.trim();
-			updateButtonText(selectedText);
+			// If it's a filter dropdown or javascript:void(0), handle as filter
+			if (isFilterDropdown || isJavascriptVoid) {
+				event.preventDefault();
+				event.stopPropagation();
 
-			// Close the dropdown
-			closeDropdown();
+				// Only update UI if it's a filter dropdown
+				if (isFilterDropdown) {
+					// Remove active class from all items in this dropdown
+					dropdownMenu.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+					
+					// Add active class to selected item
+					const selectedLi = clickedLink.closest("li");
+					if (selectedLi) {
+						selectedLi.classList.add("active");
+					}
 
-			// Get the selected term for filtering
-			const selectedTerm = clickedItem.getAttribute("data-term");
-			console.log(`Selected ${toggleButton.id}:`, selectedTerm);
-			
-			// Add your filtering logic here
-			// For example: filterContent(toggleButton.id, selectedTerm);
+					// Update button text
+					updateButtonText(selectedText);
+				}
+
+				// Close the dropdown FIRST
+				closeDropdown();
+				
+				// Only trigger filtering if it's actually a filter dropdown
+				if (isFilterDropdown) {
+					// Then trigger your AJAX filtering
+					console.log(`Selected ${toggleButton.id}:`, selectedTerm);
+					
+					// Add your AJAX filtering logic here
+					if (typeof filterContent === 'function') {
+						filterContent(toggleButton.id, selectedTerm);
+					}
+					
+					// Or trigger a custom event for your AJAX handler
+					const filterEvent = new CustomEvent('dropdownFilterChanged', {
+						detail: {
+							filterType: toggleButton.id,
+							selectedTerm: selectedTerm,
+							selectedText: selectedText
+						}
+					});
+					document.dispatchEvent(filterEvent);
+				}
+			}
 		});
 
 		// Close dropdown when clicking outside
 		document.addEventListener("click", (event) => {
-			if (!tabDropdown.contains(event.target) && !dropdownMenu.contains(event.target)) {
+			if (!tabDropdown.contains(event.target) && 
+				!dropdownMenu.contains(event.target)) {
 				closeDropdown();
 			}
 		});
@@ -715,6 +792,21 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		});
 	});
+}
+
+// Re-initialize dropdowns if new ones are added dynamically
+function reinitDropdowns() {
+	initDropdowns();
+}
+
+// Listen for the custom filter event (for your AJAX implementation)
+document.addEventListener('dropdownFilterChanged', (event) => {
+	const { filterType, selectedTerm, selectedText } = event.detail;
+	console.log(`Filter changed - Type: ${filterType}, Term: ${selectedTerm}, Text: ${selectedText}`);
+	
+	// Add your AJAX call here
+	// Example:
+	// performAjaxFilter(filterType, selectedTerm);
 });
 
 //dropdown menu js end
@@ -1104,28 +1196,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 	//staff js end
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-	const swiperContainer = document.querySelector(".swiper-container.variable-slide-preview");
-
-	if (!swiperContainer) return;
-
-	const cardButtons = swiperContainer.querySelectorAll(".border-text-btn");
-	const dragClass = "cursor-drag-icon";
-
-	cardButtons.forEach((btn) => {
-		btn.addEventListener("mouseenter", () => {
-			swiperContainer.classList.remove(dragClass);
-		});
-
-		btn.addEventListener("mouseleave", () => {
-			const totalSlides = swiperContainer.querySelectorAll(".swiper-slide").length;
-			if (totalSlides > 3) {
-				swiperContainer.classList.add(dragClass);
-			}
-		});
-	});
 });
 
 // news list js 
