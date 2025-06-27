@@ -47,12 +47,15 @@ $li_cs_repeater = $bst_block_fields['li_cs_repeater'] ?? null;
 $li_cs_link = $bst_block_fields['li_cs_link'] ?? null;
 $border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
-$total_cta_count = count($li_cs_repeater);
+$total_cta_count = 0;
+if ($li_cs_repeater) {
+	$total_cta_count = count($li_cs_repeater);
 
-if($total_cta_count > 1){
-	$swiper_class= "swiper-wrapper";
-}else{
-	$swiper_class = "";
+	if ($total_cta_count > 1) {
+		$swiper_class = "swiper-wrapper";
+	} else {
+		$swiper_class = "";
+	}
 }
 ?>
 
@@ -62,7 +65,7 @@ if($total_cta_count > 1){
 		<?php echo !empty($li_cs_headline_check) ? BaseTheme::headline($li_cs_headline, 'heading-2 block-title mb-0') : ''; ?>
 	</div>
 	<div class="gl-s64"></div>
-	<?php if (($total_cta_count>1)):?>
+	<?php if (($total_cta_count > 1)): ?>
 		<?php if (!empty($li_cs_repeater)): ?>
 			<div class="cta-slider-box">
 				<div class="swiper-container cta-work-slider">
@@ -72,7 +75,7 @@ if($total_cta_count > 1){
 						foreach ($li_cs_repeater as $li_cs_rep) :
 							$title = $li_cs_rep['title'];
 							$wysiwyg = $li_cs_rep['wysiwyg'];
-							$link = $li_cs_rep['link']; 
+							$link = $li_cs_rep['link'];
 							$image = $li_cs_rep['image'];
 							if (!empty($title) || !empty($wysiwyg) || !empty($link) || !empty($image)): ?>
 								<div class="swiper-slide">
@@ -110,7 +113,7 @@ if($total_cta_count > 1){
 					foreach ($li_cs_repeater as $li_cs_rep) :
 						$title = $li_cs_rep['title'];
 						$wysiwyg = $li_cs_rep['wysiwyg'];
-						$link = $li_cs_rep['link']; 
+						$link = $li_cs_rep['link'];
 						$image = $li_cs_rep['image'];
 						if (!empty($title) || !empty($wysiwyg) || !empty($link) || !empty($image)): ?>
 							<div class="cta-slider-lft-block">
@@ -131,5 +134,3 @@ if($total_cta_count > 1){
 	<?php endif; ?>
 	<?php echo !empty($li_cs_link) ? '<div class="block-ctn-btn">' . BaseTheme::button($li_cs_link, 'site-btn btn-butter-yellow') . '</div>' : ''; ?>
 </div>
-
-

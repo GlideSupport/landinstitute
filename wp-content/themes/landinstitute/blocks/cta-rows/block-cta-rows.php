@@ -8,7 +8,10 @@ list($bst_block_id, $bst_block_fields) = BaseTheme::defaults($block['id']);
 
 $bst_block_name = str_replace('acf/', '', $block['name']);
 $bst_block_styles = BaseTheme::convert_to_css($block);
-
+// Set the preview thumbnail for this block for gutenberg editor view.
+if ( isset( $block['data']['preview'] ) ) {
+	echo '<img src="' . esc_url( get_template_directory_uri() . '/blocks/' . $bst_block_name . '/' . $block['data']['preview'] ) . '" style="width:100%; height:auto;">';
+}
 // ACF Fields
 $li_cr_headline = $bst_block_fields['li_cr_headline'] ?? null;
 $li_cr_headline_check = BaseTheme::headline_check($li_cr_headline);
