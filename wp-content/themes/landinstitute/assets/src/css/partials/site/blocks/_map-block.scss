@@ -416,21 +416,48 @@ html {
                         list-style: none;
                         padding: 0;
 
-                        li {
+                        >li {
                             margin: 0;
                             padding: 0;
+                            display: flex;
+                            flex-direction: column;
+                            margin-bottom: 8px;
 
                             &::before {
                                 display: none;
                             }
 
+                            >label:not(ul li ul li label) {
+                                padding: 0;
+                                text-transform: uppercase;
+                                font-weight: 700;
+                                margin-bottom: 12px;
+
+                                &:before,
+                                &:after {
+                                    display: none;
+                                }
+                            }
+
+                            &:last-child {
+                                ul {
+                                    margin-bottom: 0;
+                                }
+                            }
+
+
+
                             ul {
-                                margin: 0;
+                                margin: 0 0 30px;
 
                                 li {
                                     label {
-                                        padding: 0 0 0;
                                         @extend .ui-18-16-regular;
+                                        margin: 0;
+                                    }
+
+                                    &:last-child {
+                                        margin-bottom: 0;
                                     }
                                 }
                             }
