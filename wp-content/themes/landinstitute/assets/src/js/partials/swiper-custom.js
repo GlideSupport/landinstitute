@@ -65,6 +65,20 @@ document.addEventListener("DOMContentLoaded", function () {
 			customCursor.style.top = `${e.clientY}px`;
 		});
 	});
+
+	// Remove custom cursor when hovering over border-text-btn elements
+	document.querySelectorAll(".border-text-btn").forEach((btn) => {
+		btn.addEventListener("pointerenter", () => {
+			customCursor.classList.remove("visible");
+		});
+		btn.addEventListener("pointerleave", () => {
+			// Check if we're still inside a cursor-drag-icon container
+			const dragContainer = btn.closest(".cursor-drag-icon");
+			if (dragContainer) {
+				customCursor.classList.add("visible");
+			}
+		});
+	});
 	//end
 
 	// CTA Slider JS start
