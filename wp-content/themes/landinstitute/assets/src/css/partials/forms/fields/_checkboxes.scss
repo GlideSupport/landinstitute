@@ -47,15 +47,16 @@
 	background-color: #D9D963;
 	border-radius: 0;
 	content: "";
-	height: 15px;
-	left: 1px;
+	height: 17px;
+	left: 0;
 	position: absolute;
-	top: 1px;
+	top: 0;
 	transition: all .2s ease;
-	width: 15px;
+	width: 17px;
 	background-image: url(../images/checkmark.svg);
-	background-position: center;
+	background-position: 3px 4px;
 	background-repeat: no-repeat;
+	border: 1px solid #4d3016;
 }
 
 [type="checkbox"]:not(:checked)+label::after,
