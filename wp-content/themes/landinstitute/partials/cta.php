@@ -23,7 +23,8 @@ $bst_var_pocta_button_two = $bst_fields['bst_var_pocta_button_two'] ?? $bst_var_
 
 ?>
 <!-- cta Start -->
-<div class="footer-cta">
+<?php if (($bst_var_cta_visibility == true)): ?>
+	<div class="footer-cta">
 		<div class="wrapper">
 			<div class="row-grid">
 				<div class="col-left">
@@ -41,5 +42,5 @@ $bst_var_pocta_button_two = $bst_fields['bst_var_pocta_button_two'] ?? $bst_var_
 			</div>
 		</div>
 	</div>
+<?php endif; ?>
 <!-- cta End -->
-
