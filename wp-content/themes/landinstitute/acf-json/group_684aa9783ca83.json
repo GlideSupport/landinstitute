@@ -119,8 +119,8 @@
                 "id": ""
             },
             "choices": {
-                "gallery": "Gallery",
-                "slider": "Slider"
+                "gallery": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/ig-gallery.webp\"><br> Gallery",
+                "slider": "<img src=\"\/wp-content\/themes\/landinstitute\/assets\/src\/images\/block-variations\/ig-slider.webp\"><br> Slider"
             },
             "default_value": "",
             "return_format": "value",
@@ -238,5 +238,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750254995
+    "modified": 1751008705
 }

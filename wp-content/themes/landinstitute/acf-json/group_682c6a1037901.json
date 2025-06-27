@@ -58,6 +58,24 @@
             "endpoint": 0
         },
         {
+            "key": "field_685e2a06773d4",
+            "label": "Image Upload Instructions",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1003px by 534px (Regular Display) - Maximum 2006px by 1068px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_682c71186232d",
             "label": "Repeater",
             "name": "li_im_repeater",
@@ -119,10 +137,11 @@
                     },
                     "layout": "table",
                     "min": 0,
-                    "max": 5,
+                    "max": 0,
                     "collapsed": "",
                     "button_label": "Add Stats",
                     "rows_per_page": 20,
+                    "parent_repeater": "field_682c71186232d",
                     "sub_fields": [
                         {
                             "key": "field_682c767a62331",
@@ -214,8 +233,7 @@
                             "append": "",
                             "parent_repeater": "field_682c72ae6232f"
                         }
-                    ],
-                    "parent_repeater": "field_682c71186232d"
+                    ]
                 },
                 {
                     "key": "field_682c7a6b320e7",
@@ -223,7 +241,7 @@
                     "name": "li_im_image",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1003px by 534px (Regular Display) - Maximum 2006px by 1068px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -304,5 +322,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750950854
+    "modified": 1751001642
 }
