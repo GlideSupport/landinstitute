@@ -72,7 +72,7 @@ switch ($li_pt_post_select_option) {
 }
 
 $posts_query = new WP_Query($args);
-if (!empty($li_pt_headline_check) && $posts_query->have_posts()): ?>
+if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 	<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 		<div class="all-resources-block <?php echo esc_attr($border_options); ?>">
 			<?php echo !empty($li_pt_headline_check) ? BaseTheme::headline($li_pt_headline, 'heading-2 block-title mb-0') . '<div class="gl-s52"></div>' : ''; ?>
