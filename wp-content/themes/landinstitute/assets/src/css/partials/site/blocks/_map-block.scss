@@ -145,6 +145,8 @@
             }
 
             &.swiper-slide-active {
+                cursor: default;
+
                 .slide-year {
                     opacity: 1;
 
