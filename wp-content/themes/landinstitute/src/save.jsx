@@ -24,11 +24,12 @@ import { InnerBlocks } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 
-export default function save( { attributes } ) {
+export default function save({ attributes }) {
 	const {
 		bgImage,
 		bgDesignType,
 		bgWidth,
+		bgBorderbottom,
 		className,
 		ctnShape,
 	} = attributes;
@@ -37,24 +38,26 @@ export default function save( { attributes } ) {
 	const myCustomShape = ctnShape ? ctnShape : undefined;
 	const myCustomWidthClass = bgWidth ? bgWidth : undefined;
 	const myCustomClassName = className ? className : undefined;
+	const myCustomBorderBottom = bgBorderbottom ? bgBorderbottom : undefined;
 	let myOverlayClass = '';
 	let myStyle = {
 
 	};
-	if ( bgImage.isOverlay ) {
+	if (bgImage.isOverlay) {
 		myOverlayClass = 'has-overlay';
 	}
-	if ( bgImage.url !== '' ) {
+	if (bgImage.url !== '') {
 		myStyle = {
 			backgroundImage: 'url(' + bgImage.url + ')',
 		};
 	}
-	const classes = [ myCustomDesignClass, myCustomWidthClass, myCustomClassName, myOverlayClass, myCustomShape ];
+	const classes = [myCustomDesignClass, myCustomWidthClass, myCustomClassName, myOverlayClass, myCustomShape];
+	const wrapperClasses = ['wrapper', myCustomBorderBottom];
 
 	return (
 
-		<section className={ classes.join( ' ' ) } style={ myStyle } >
-			<div className="wrapper">
+		<section className={classes.join(' ')} style={myStyle} >
+			<div className={wrapperClasses.join(' ')}>
 				<InnerBlocks.Content />
 			</div>
 		</section>

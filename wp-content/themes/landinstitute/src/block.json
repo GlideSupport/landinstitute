@@ -9,7 +9,10 @@
 	"description": "Block to Manager Available Sections",
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"]
+		"align": [
+			"wide",
+			"full"
+		]
 	},
 	"attributes": {
 		"bgDesignType": {
@@ -32,6 +35,10 @@
 				"url": "",
 				"isOverlay": false
 			}
+		},
+		"bgBorderbottom": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "section-container",

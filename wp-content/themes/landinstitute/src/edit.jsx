@@ -33,35 +33,37 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 
-export default function Edit( props ) {
+export default function Edit(props) {
 	const {
 		attributes,
 		setAttributes,
 	} = props;
-	const { bgDesignType, bgWidth, ctnShape, className } = attributes;
+	const { bgDesignType, bgWidth, bgBorderbottom, ctnShape, className } = attributes;
 
 	const myCustomClassName = className ? className : undefined;
 	const myCustomWidthClass = bgWidth ? 'content-width-border editor-' + bgWidth : undefined;
 	const myCustomDesignClass = bgDesignType ? 'editor-' + bgDesignType : undefined;
 	const myCustomShape = ctnShape ? 'editor-' + ctnShape : undefined;
-	const classes = [ myCustomWidthClass, myCustomDesignClass, myCustomClassName, myCustomShape ];
-	const blockProps = useBlockProps( {
-		className: classes.join( ' ' ),
-	} );
+	const myCustomBorderBottom = bgBorderbottom ? bgBorderbottom : undefined;
+	const classes = [myCustomWidthClass, myCustomDesignClass, myCustomBorderBottom, myCustomClassName, myCustomShape];
+	const blockProps = useBlockProps({
+		className: classes.join(' '),
+	});
 	return (
 
-		<div { ...blockProps }>
+		<div {...blockProps}>
 
 			<InspectorControls>
 				<Panel>
-					<PanelBody title={ __( 'Container Width' ) } initialOpen={ true }>
+					<PanelBody title={__('Container Width')} initialOpen={true}>
 
 						<PanelRow>
 							<RadioControl
-								help={ __( 'Please choose container width.' ) }
-								selected={ bgWidth }
-								options={ [
+								help={__('Please choose container width.')}
+								selected={bgWidth}
+								options={[
 
+									{ label: 'Full Width', value: 'full-width-ctn' },
 									{ label: 'Width 1280px (Default)', value: 'container-1280' },
 									{ label: 'Width 1120px', value: 'container-1120' },
 									{ label: 'Width 960px', value: 'container-960' },
@@ -69,20 +71,20 @@ export default function Edit( props ) {
 									{ label: 'Width 720px', value: 'container-720' },
 								]
 								}
-								onChange={ ( value ) => setAttributes( {
+								onChange={(value) => setAttributes({
 									bgWidth: value,
-								} ) }
+								})}
 							/>
 						</PanelRow>
 					</PanelBody>
 					<PanelBody
-						title={ __( 'Container Design' ) }
+						title={__('Container Design')}
 						className="dc-design-component"
-						initialOpen={ true }
+						initialOpen={true}
 					>
 						<DesignOption
-							props={ props }
-							value={ bgDesignType }
+							props={props}
+							value={bgDesignType}
 							DesignKey="bgDesignType"
 							help="Click to select value"
 							options={[
@@ -95,15 +97,34 @@ export default function Edit( props ) {
 								{ label: 'Container Lime Green', value: 'bg-lime-green', display: 'bg-lime-green.jpg' },
 								{ label: 'Container Primary Pink', value: 'bg-primary-pink', display: 'bg-primary-pink.jpg' },
 								{ label: 'Container Dark Green', value: 'bg-dark-green', display: 'bg-dark-green.png' },
-							] }
+							]}
 						/>
+					</PanelBody>
+
+					<PanelBody title={__('Border Bottom')} initialOpen={true}>
+
+						<PanelRow>
+							<RadioControl
+								help={__('Please Select Border Option.')}
+								selected={bgBorderbottom}
+								options={[
+
+									{ label: 'None (Default)', value: '' },
+									{ label: 'Border Bottom', value: 'has-border-bottom' },
+								]
+								}
+								onChange={(value) => setAttributes({
+									bgBorderbottom: value,
+								})}
+							/>
+						</PanelRow>
 					</PanelBody>
 				</Panel>
 
 			</InspectorControls>
 			<section
 				className={
-					[ bgDesignType, bgWidth ].join( ' ' )
+					[bgDesignType, bgWidth].join(' ')
 				}
 			>
 				<InnerBlocks />

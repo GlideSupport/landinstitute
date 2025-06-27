@@ -35,6 +35,10 @@
         "url": "",
         "isOverlay": false
       }
+    },
+    "bgBorderbottom": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "section-container",
