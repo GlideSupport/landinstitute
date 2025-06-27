@@ -32,47 +32,41 @@ if ($block['name']) {
 }
  
 // Block variables
-$li_il_heading        = $bst_block_fields['li_il_heading'] ?? null;
-$li_il_heading_check  = BaseTheme::headline_check($li_il_heading);
-$li_il_detail         = $bst_block_fields['li_il_detail'] ?? null;
- 
-?>
-<div class="image-list-block">
-    <?php echo !empty($li_il_heading_check) ? BaseTheme::headline($li_il_heading, 'heading-3 block-title mb-0') . '<div class="gl-s36"></div>' : ''; ?>
-    <?php if(!empty($li_il_detail)){?>
-    <div class="image-list-row">
-        <?php foreach($li_il_detail as $details){ 
-            $title=$details['title'];
-            $subtitle=$details['subtitle'];
-            $detail=$details['detail'];
-            $image=$details['image'];?>
-        <div class="image-list-col">
-            <div class="row-flex">
-                <?php if(!empty($image)){ ?>
-                <div class="cl-left">
-                    <div class="team-img">
-                        <?php echo wp_get_attachment_image($image,'thumb_300'); ?>
-                    </div>
-                </div>
-                <?php } ?>
-                <?php if(!empty($title) || !empty($subtitle) || !empty($detail)) {?>
-                <div class="cl-right">
-                    <?php if(!empty($title)){ ?><h5 class="heading-5 block-title mb-0"><?php echo $title; ?></h5><?php } ?>
-                    <?php if(!empty($title)&& !empty($subtitle)){ ?><div class="gl-s4"></div><?php } ?>
-                    <?php if(!empty($subtitle)){ ?><div class="ui-eyebrow-16-15-regular team-sub"><?php echo $subtitle; ?></div><?php } ?>
-                    <?php if(!empty($detail)&& !empty($subtitle)){ ?><div class="gl-s16"></div><?php } ?>
-                    <?php if(!empty($detail)){ ?>
-                    <div class="team-desc">
-                        <div class="team-content body-20-18-regular">
-                            <?php echo html_entity_decode($detail); ?>
+
+$li_il_headline = $bst_block_fields['li_il_headline'] ?? null;
+$li_il_headline_check = BaseTheme::headline_check($li_il_headline);
+$li_il_repeater = $bst_block_fields['li_il_repeater'] ?? null;
+$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
+
+if (!empty($li_il_headline_check) || !empty($li_il_repeater)): ?>
+    <div class="image-list-block">
+        <?php echo !empty($li_il_headline_check) ? BaseTheme::headline($li_il_headline, 'heading-3 block-title mb-0') : ''; ?>
+        <?php echo (!empty($li_il_headline_check) && !empty($li_il_repeater)) ? '<div class="gl-s36"></div>' : ''; ?>
+        <?php if (!empty($li_il_repeater)) : ?>
+            <div class="image-list-row">
+            <?php foreach ($li_il_repeater as $li_il_rep):
+                $title   = $li_il_rep['title'] ?? '';
+                $subtitle = $li_il_rep['subtitle'] ?? '';
+                $wysiwyg = $li_il_rep['wysiwyg'] ?? '';
+                $image = $li_il_rep['image'] ?? '';
+                if (!empty($title) || !empty($subtitle) || !empty($wysiwyg) || !empty($image)): ?>
+                    <div class="image-list-col">
+                        <div class="row-flex">
+                            <div class="cl-left">
+                                <?php echo !empty($image) ? '<div class="team-img">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
+                            </div>
+                            <div class="cl-right">
+                                <?php echo !empty($title) ? '<h5 class="heading-5 block-title mb-0">' . esc_html($title) . '</h5>' : ''; ?>
+								<?php echo (!empty($title) && !empty($subtitle)) ? '<div class="gl-s4"></div>' : ''; ?>
+                                <?php echo !empty($subtitle) ? '<div class="ui-eyebrow-16-15-regular team-sub">' . esc_html($subtitle) . '</div>' : ''; ?>
+                                <?php echo (!empty($subtitle) && !empty($wysiwyg)) ? '<div class="gl-s16"></div>' : ''; ?>
+                                <?php echo !empty($wysiwyg) ? '<div class="team-desc"><div class="team-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div></div>' : ''; ?>
+                            </div>
                         </div>
                     </div>
-                    <?php } ?>
-                </div>
-                <?php } ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
             </div>
-        </div>
-        <?php } ?>
+        <?php endif; ?>
     </div>
-    <?php } ?>
-</div>
+<?php endif; ?>
