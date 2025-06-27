@@ -1418,28 +1418,6 @@
 
 <script>
 
-	function parallaxScroll() {
-		const parallax = document.querySelector('.parallax-img');
-		const image = parallax.querySelector('img');
-		const rect = parallax.getBoundingClientRect();
-
-		const windowHeight = window.innerHeight;
-
-		if (rect.top < windowHeight && rect.bottom > 0) {
-			// Element is in the viewport
-			const scrollPercent = (windowHeight - rect.top) / (windowHeight + rect.height);
-			const parallaxDistance = rect.height * 0.3; // Adjust effect strength here
-			const offset = scrollPercent * parallaxDistance - parallaxDistance / 2;
-
-			image.style.transform = `translateY(${offset}px)`;
-		}
-	}
-
-	window.addEventListener('scroll', parallaxScroll);
-	window.addEventListener('resize', parallaxScroll);
-	window.addEventListener('load', parallaxScroll);
-
-
 	document.querySelectorAll(".footer-nav-title").forEach((title) => {
 		title.addEventListener("click", () => {
 			if (window.innerWidth <= 991) {
