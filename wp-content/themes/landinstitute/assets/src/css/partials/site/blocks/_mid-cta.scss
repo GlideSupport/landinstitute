@@ -818,7 +818,7 @@
             }
 
             .custome-sub-title {
-                @include font(universalsans, sbold);
+                @include font(plusjakarta, sbold);
                 color: var(--gb_base_brown);
                 font-size: clamp(8.834px, calc(0.552125rem + ((1vw - 7.68px) * 1.3931)), 16.942px);
                 font-style: normal;

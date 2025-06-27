@@ -127,7 +127,7 @@
 }
 
 .editor-styles-wrapper {
-	@include font(universalsans, reg);
+	@include font(plusjakarta, reg);
 	color: var(--gb_base_brown);
 	font-size: var(--gb_font_size_13);
 	font-style: normal;
@@ -361,7 +361,7 @@
 		color: var(--gb_base_brown);
 		display: inline-flex;
 		font-size: var(--gb_font_size_14);
-		@include font(universalsans, sbold);
+		@include font(plusjakarta, sbold);
 		letter-spacing: -0.36px;
 		line-height: 110%;
 		outline: none;

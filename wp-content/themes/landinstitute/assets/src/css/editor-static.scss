@@ -140,7 +140,7 @@
 				font-size: var(--gb_font_size_13);
 				margin: 8px 0;
 				text-align: center;
-				@include font(universalsans, sbold);
+				@include font(plusjakarta, sbold);
 			}
 		}
 	}
@@ -156,7 +156,7 @@
 			font-size: var(--gb_font_size_13);
 			margin: 8px 0;
 			text-align: center;
-			@include font(universalsans, sbold);
+			@include font(plusjakarta, sbold);
 		}
 	}
 }

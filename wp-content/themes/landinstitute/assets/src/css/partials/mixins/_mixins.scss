@@ -20,6 +20,28 @@ Rem output with px fallback with !important
 Column width with margin
 */
 
+@mixin font($map, $variant) {
+	$reg: map-get($map, reg);
+	$variant-map: map-get($map, $variant);
+	$font-map: map-merge($reg, $variant-map); // 👈 merges reg with sbold
+
+	$font-face: map-get($font-map, font-face);
+	$family: map-get($font-map, family);
+	$weight: map-get($font-map, weight);
+	$style: map-get($font-map, style);
+	$display: map-get($font-map, font-display);
+	$path: map-get($font-face, path);
+	$formats: map-get($font-face, formats);
+
+	@font-face {
+		font-family: map-get($font-face, family);
+		src: url('/fonts/#{$path}.woff2') format('woff2');
+		font-style: #{$style};
+		font-display: #{$display};
+		font-weight: 200 800; // 👈 Must be declared to support variable weights
+	}
+}
+
 
 /*
 Column width with margin
@@ -92,7 +114,7 @@ Mixin for transition
 
 @mixin ui-18-16-bold {
 	color: var(--gb_base_brown);
-	@include font(universalsans, sbold);
+	@include font(plusjakarta, sbold);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
 	letter-spacing: var(--letter_spacing_036);
@@ -105,7 +127,7 @@ Mixin for transition
 
 @mixin ui-18-16-regular {
 	color: var(--gb_base_brown);
-	@include font(universalsans, reg);
+	@include font(plusjakarta, reg);
 	font-size: var(--gb_font_size_14);
 	font-style: normal;
 	letter-spacing: var(--letter_spacing_036);
@@ -127,7 +149,7 @@ Mixin for transition
 
 @mixin ui-14-13-bold {
 	color: var(--gb_base_brown);
-	@include font(universalsans, sbold);
+	@include font(plusjakarta, sbold);
 	font-size: var(--gb_font_size_16);
 	font-style: normal;
 	letter-spacing: var(--letter_spacing_028);
@@ -140,7 +162,7 @@ Mixin for transition
 
 @mixin ui-24-21-bold {
 	color: var(--gb_base_brown);
-	@include font(universalsans, sbold);
+	@include font(plusjakarta, sbold);
 	font-size: var(--gb_font_size_12);
 	font-style: normal;
 	letter-spacing: var(--letter_spacing_048);

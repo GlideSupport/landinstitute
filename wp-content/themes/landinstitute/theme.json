@@ -247,14 +247,14 @@
 					]
 				},
 				{
-					"fontFamily": "Universal Sans Display 400",
-					"slug": "Universal-Sans-Display-400",
-					"name": "Universal Sans Display 400",
+					"fontFamily": "Plus Jakarta Sans",
+					"slug": "PlusJakartaSans-Regular",
+					"name": "Plus Jakarta Sans",
 					"fontFace": [
 						{
-							"fontFamily": "Universal Sans Display 400",
+							"fontFamily": "Plus Jakarta Sans",
 							"src": [
-								"https://landinstdev.wpenginepowered.com/wp-content/themes/landinstitute/assets/src/fonts/UniversalSansDisplay-400.woff2"
+								"https://landinstdev.wpenginepowered.com/wp-content/themes/landinstitute/assets/src/fonts/PlusJakartaSans-Regular.woff2"
 							]
 						}
 					]

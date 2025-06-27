@@ -34,6 +34,12 @@
         cursor: none;
     }
 
+    &.cursor-drag-icon {
+        .border-image-content {
+            cursor: none;
+        }
+    }
+
     .swiper-slide {
         height: auto;
         width: clamp(243px, calc(15.1875rem + ((1vw - 7.68px) * 40.7216)), 480px);
@@ -61,7 +67,6 @@
         background-color: var(--gb_base_cream);
         border-left: 2px solid var(--gb_base_brown);
         border-right: 2px solid var(--gb_base_brown);
-        cursor: none;
         display: flex;
         flex-direction: column;
         height: 100%;

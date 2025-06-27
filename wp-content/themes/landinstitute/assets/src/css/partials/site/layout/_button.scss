@@ -8,22 +8,22 @@ body {
         color: var(--gb_base_brown);
         display: inline-flex;
         font-size: var(--gb_font_size_14);
-        @include font(universalsans, sbold);
+        @include font(plusjakarta, sbold);
         letter-spacing: -0.36px;
         line-height: 110%;
         outline: none;
-        padding: 22px 82px 22px 34px;
+        padding: 22px 82px 23px 34px;
         position: relative;
         text-decoration: none;
         transition: 0.35s;
 
         @media(max-width: 991px) {
-            padding: 18px 63px 18px 24px;
+            padding: 18px 63px 19px 24px;
         }
 
         @media(max-width: 640px) {
             letter-spacing: -0.32px;
-            padding: 18px 24px;
+            padding: 18px 24px 19px;
         }
 
         &:after {
@@ -143,7 +143,7 @@ body {
         }
 
         &.sm-btn {
-            padding: 22px 64px 22px 22px;
+            padding: 22px 64px 23px 22px;
 
             &:after {
                 right: 16px;
@@ -158,20 +158,20 @@ body {
             }
 
             @media(max-width: 991px) {
-                padding: 18px 63px 18px 24px;
+                padding: 18px 63px 19px 24px;
             }
 
             @media(max-width: 640px) {
                 letter-spacing: -0.32px;
-                padding: 18px 24px;
+                padding: 18px 24px 19px;
             }
         }
 
         &.xsm-btn {
-            padding: 14px 54px 14px 22px;
+            padding: 14px 54px 15px 22px;
 
             @media(max-width: 640px) {
-                padding: 11px 48px 11px 18px;
+                padding: 11px 48px 12px 18px;
             }
 
             &:after {
@@ -509,7 +509,7 @@ body {
             color: var(--gb_base_brown);
             display: inline-flex;
             font-size: var(--gb_font_size_14);
-            @include font(universalsans, sbold);
+            @include font(plusjakarta, sbold);
             letter-spacing: -0.36px;
             line-height: 110%;
             outline: none;

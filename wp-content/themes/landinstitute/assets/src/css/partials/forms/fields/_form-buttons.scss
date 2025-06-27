@@ -25,7 +25,7 @@ input[type="reset"] {
 	outline: none;
 
 
-	@include font(universalsans, reg);
+	@include font(plusjakarta, reg);
 
 	font-size: var(--gb_font_size_3);
 	height: 50px;

@@ -23,7 +23,7 @@ html {
 body {
 	text-rendering: optimizeLegibility;
 	font-smoothing: antialiased;
-	@include font(universalsans, reg);
+	@include font(plusjakarta, reg);
 	position: relative;
 	@extend .body-22-20-regular;
 	color: var(--gb_body_color);

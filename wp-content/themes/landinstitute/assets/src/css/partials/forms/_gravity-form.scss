@@ -537,7 +537,7 @@ table.ui-datepicker_calendar {
 	input[type="submit"] {
 		background-color: var(--gb_base_brown);
 		border: 2px solid var(--gb_base_brown);
-		@include font(universalsans, sbold);
+		@include font(plusjakarta, sbold);
 		border-radius: 0px;
 		color: var(--gb_white);
 		display: inline-flex;

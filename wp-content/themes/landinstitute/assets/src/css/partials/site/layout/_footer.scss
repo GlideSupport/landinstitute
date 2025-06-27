@@ -378,7 +378,7 @@
                     }
 
                     a {
-                        @include font(universalsans, reg);
+                        @include font(plusjakarta, reg);
                         color: var(--gb_base_brown);
                         font-size: 18px;
                         font-style: normal;
@@ -471,7 +471,7 @@
                     margin: 0;
 
                     a {
-                        @include font(universalsans, reg);
+                        @include font(plusjakarta, reg);
                         color: var(--gb_base_brown);
                         display: flex;
                         font-size: 18px;
