@@ -1,5 +1,5 @@
 <?php if (!empty($li_mpc_headline_check) || !empty($li_mpc_kicker) || !empty($li_mpc_wysiwyg) || !empty($li_mpc_link) || !empty($li_mpc_image)): ?>
-	<div class="midpage-cta-map <?php echo esc_attr($border_options); ?>">
+	<div class="midpage-cta-map">
 		<div class="row-flex">
 			<div class="cl-left">
 				<div class="part-content">

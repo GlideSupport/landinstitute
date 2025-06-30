@@ -1,5 +1,5 @@
 <?php if (!empty($li_t_repeater) || !empty($li_t_kicker)) : ?>
-<div class="timeline-block <?php echo esc_attr($border_options); ?>">
+<div class="timeline-block">
     <?php echo !empty($li_t_kicker) ? '<div class="ui-20-18-bold-uc kicker-title mb-0">' . esc_html($li_t_kicker) . '</div><div class="gl-s64"></div>' : ''; ?>
     <?php if (!empty($li_t_repeater)) : ?>
     <div class="timeline-slides-block timeline-block-fancy">

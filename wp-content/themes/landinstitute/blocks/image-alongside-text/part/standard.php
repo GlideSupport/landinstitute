@@ -1,5 +1,5 @@
 <?php if (!empty($li_iat_headline_check) || !empty($li_iat_kicker) || !empty($li_iat_wysiwyg) || !empty($li_iat_button) || !empty($li_iat_image) || !empty($li_iat_bg_image)): ?>
-	<div class="image-alongside-text <?php echo esc_attr($image_position_class); ?> <?php echo esc_attr($border_options); ?>">
+	<div class="image-alongside-text <?php echo esc_attr($image_position_class); ?>">
 		<div class="cl-left">
 			<div class="pattern-image-group">
 				<?php echo !empty($li_iat_bg_image) ? wp_get_attachment_image($li_iat_bg_image, 'thumb_900', false, ['class' => 'pattern-image']) : ''; ?>

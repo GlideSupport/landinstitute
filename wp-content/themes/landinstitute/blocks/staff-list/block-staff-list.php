@@ -38,7 +38,6 @@ $li_sl_choose_variation = $bst_block_fields['li_sl_choose_variation'] ?? 'variat
 $li_sl_selector = $bst_block_fields['li_sl_selector'] ?? null;
 $li_sl_staff_selector = $bst_block_fields['li_sl_staff_selector'] ?? null;
 $bg_color = $bst_block_fields['bg_color']['li_globel_bg_color_options'] ?? 'bg-lilac';
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">

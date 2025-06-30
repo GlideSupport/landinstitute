@@ -49,7 +49,6 @@ $li_vat_wysiwyg = $bst_block_fields['li_vat_wysiwyg'] ?? null;
 $li_vat_short_video_poster = $bst_block_fields['li_vat_short_video_poster'] ?? null;
 $li_vat_short_video = $bst_block_fields['li_vat_short_video'] ?? null;
 $video_group = $bst_block_fields['li_vat_video'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 // Modal video handling
 $video_type     = $video_group['li_vat_choose_video_type'] ?? '';
@@ -83,7 +82,7 @@ switch ($video_type) {
 
 ?>
 
-<div class="video-alongside-text <?php echo esc_attr($border_options); ?>">
+<div class="video-alongside-text">
     <?php if(!empty($li_vat_headline_check) || !empty($li_vat_kicker)): ?>
         <div class="heading-max">
             <?php echo !empty($li_vat_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_vat_kicker) . '</div>' : ''; ?>

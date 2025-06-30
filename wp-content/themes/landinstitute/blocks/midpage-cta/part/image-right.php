@@ -1,5 +1,5 @@
 <?php if (!empty($li_mpc_headline_check) || !empty($li_mpc_kicker) || !empty($li_mpc_wysiwyg) || !empty($li_mpc_link) || !empty($li_mpc_image)) { ?>
-<div class="midpage-cta-image-right <?php echo esc_attr($border_options); ?>">
+<div class="midpage-cta-image-right">
     <div class="row-grid">
         <div class="col-left">
             <div class="gl-s156"></div>

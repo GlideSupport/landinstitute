@@ -48,8 +48,7 @@ $li_mpc_choose_variation = $bst_block_fields['li_mpc_choose_variation'] ?? 'map'
 $li_mpc_kicker = $bst_block_fields['li_mpc_kicker'] ?? null;
 $li_mpc_wysiwyg = $bst_block_fields['li_mpc_wysiwyg'] ?? null;
 $li_mpc_image = $bst_block_fields['li_mpc_image'] ?? null;
-$li_mpc_link = $bst_block_fields['li_mpc_link'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none'; ?>
+$li_mpc_link = $bst_block_fields['li_mpc_link'] ?? null; ?>
 
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">

@@ -2,7 +2,7 @@
 	<div class="image-gallery">
 		<?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'heading-3 block-title mb-0') : ''; ?>
 		<?php echo !empty($li_ig_headline_check) ? '<div class="gl-s36"></div>' : ''; ?>
-		<div class="image-gallery-block <?php echo esc_attr($border_options); ?>">
+		<div class="image-gallery-block">
 			<div class="swiper-container image-gallery-slider cursor-drag-icon">
 				<?php if (!empty($li_ig_repeater)) : ?>
 					<div class="swiper-wrapper">

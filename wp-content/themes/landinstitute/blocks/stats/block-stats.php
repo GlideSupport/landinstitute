@@ -49,7 +49,6 @@ $li_s_wysiwyg = $bst_block_fields['li_s_wysiwyg'] ?? null;
 $li_s_button = $bst_block_fields['li_s_button'] ?? null;
 $li_s_repeater_one = $bst_block_fields['li_s_repeater_one'] ?? null;
 $li_s_repeater_two = $bst_block_fields['li_s_repeater_two'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 ?>
 

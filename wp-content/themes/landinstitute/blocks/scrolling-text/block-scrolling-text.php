@@ -36,10 +36,9 @@ $li_st_headline = $bst_block_fields['li_st_headline'] ?? null;
 $li_st_headline_check = BaseTheme::headline_check($li_st_headline);
 $li_st_wysiwyg    = $bst_block_fields['li_st_wysiwyg'] ?? null;
 $li_st_repeater  = $bst_block_fields['li_st_repeater'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 if(!empty($li_st_headline_check) || !empty($li_st_wysiwyg) || !empty($li_st_repeater) ): ?>
-	<div class="scrolling-text-block <?php echo esc_attr($border_options); ?>">
+	<div class="scrolling-text-block">
 		<div class="col-left">
 			<div class="sticky-parent">
 				<div class="sticky-top-touch">

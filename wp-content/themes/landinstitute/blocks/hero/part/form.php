@@ -12,7 +12,7 @@ $bg_image = $li_hero_form['bg_image'] ?? null;
 if (!empty($li_hero_headline_check) || !empty($wysiwyg) || !empty($button) || !empty($form) || !empty($image) || !empty($bg_image)): ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-equal">
 		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
-		<div class="hero-default <?php echo esc_attr($border_options); ?>">
+		<div class="hero-default">
 			<div class="wrapper">
 				<div class="hero-alongside-block">
 					<div class="col-left <?php echo esc_attr($bg_color); ?>">

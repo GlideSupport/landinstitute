@@ -48,7 +48,6 @@ $li_me_wysiwyg = $bst_block_fields['li_me_wysiwyg'] ?? null;
 $li_me_hours_title = $bst_block_fields['li_me_hours_title'] ?? null;
 $li_me_hours_wysiwyg = $bst_block_fields['li_me_hours_wysiwyg'] ?? null;
 $li_me_iframe = $bst_block_fields['li_me_iframe'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 

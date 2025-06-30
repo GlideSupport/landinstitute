@@ -1,5 +1,5 @@
 <?php if (!empty($li_cg_headline_check) || !empty($li_cg_kicker) || !empty($li_cg_repeater)): ?>
-	<div class="cta-grid-traditional-block <?php echo esc_attr($border_options); ?>">
+	<div class="cta-grid-traditional-block">
 		<div class="heading-max">
 			<?php echo !empty($li_cg_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_cg_kicker) . '</div>' : ''; ?>
 			<?php echo (!empty($li_cg_kicker) && !empty($li_cg_headline_check)) ? '<div class="gl-s12"></div>' : ''; ?>

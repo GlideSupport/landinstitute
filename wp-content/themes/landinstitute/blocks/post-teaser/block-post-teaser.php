@@ -46,7 +46,6 @@ $li_pt_headline_check = BaseTheme::headline_check($li_pt_headline);
 $li_pt_post_select_option = $bst_block_fields['li_pt_post_select_option'] ?? 'manual';
 $li_pt_select_manual_post = $bst_block_fields['li_pt_select_manual_post'] ?? null;
 $li_pt_button = $bst_block_fields['li_pt_button'] ?? null;
-$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 // Query posts based on selection
 $args = array(
@@ -74,7 +73,7 @@ switch ($li_pt_post_select_option) {
 $posts_query = new WP_Query($args);
 if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 	<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
-		<div class="all-resources-block <?php echo esc_attr($border_options); ?>">
+		<div class="all-resources-block">
 			<?php echo !empty($li_pt_headline_check) ? BaseTheme::headline($li_pt_headline, 'heading-2 block-title mb-0') . '<div class="gl-s52"></div>' : ''; ?>
 			<div class="border-variable-slider">
 				<?php

@@ -7,7 +7,7 @@
 			$class="logo-grid-four";
 		endif;
 	?>
-	<div class="logo-grid-links-block <?php echo esc_attr($border_options); ?>">
+	<div class="logo-grid-links-block">
 		<div class="heading-max max-800">
 			<?php echo !empty($li_lg_headline_check) ? BaseTheme::headline($li_lg_headline, 'heading-2 mb-0 block-title') : ''; ?>
 			<?php echo (!empty($li_lg_headline_check) && !empty($li_lg_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>

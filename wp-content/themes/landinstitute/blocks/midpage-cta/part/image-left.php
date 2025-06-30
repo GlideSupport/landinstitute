@@ -1,5 +1,5 @@
 <?php if (!empty($li_mpc_headline_check) || !empty($li_mpc_kicker) || !empty($li_mpc_wysiwyg) || !empty($li_mpc_link) || !empty($li_mpc_image)) { ?>
-<div class="midpage-cta-image-left <?php echo esc_attr($border_options); ?>">
+<div class="midpage-cta-image-left">
 	<?php echo !empty($li_mpc_image)  ? '<div class="col-left">' . wp_get_attachment_image($li_mpc_image, 'thumb_1000') . '</div>' : ''; ?>
 	<div class="col-right">
 		<div class="gl-s156"></div>

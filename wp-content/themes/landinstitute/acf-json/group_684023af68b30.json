@@ -541,28 +541,6 @@
                     "parent_repeater": "field_68402a36c08d5"
                 }
             ]
-        },
-        {
-            "key": "field_684023af74ffb",
-            "label": "Border Options",
-            "name": "border_options",
-            "aria-label": "",
-            "type": "clone",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "clone": [
-                "group_68358a59492d8"
-            ],
-            "display": "seamless",
-            "layout": "block",
-            "prefix_label": 0,
-            "prefix_name": 0
         }
     ],
     "location": [
@@ -583,5 +561,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750255070
+    "modified": 1751267370
 }

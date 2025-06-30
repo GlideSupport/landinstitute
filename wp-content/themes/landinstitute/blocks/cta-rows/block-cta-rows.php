@@ -16,11 +16,10 @@ if ( isset( $block['data']['preview'] ) ) {
 $li_cr_headline = $bst_block_fields['li_cr_headline'] ?? null;
 $li_cr_headline_check = BaseTheme::headline_check($li_cr_headline);
 $li_cr_repeater = $bst_block_fields['li_cr_repeater'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 <?php if (!empty($li_cr_headline_check) || !empty($li_cr_repeater)) : ?>
-	<div class="cta-rows-block <?php echo esc_attr($border_options); ?>">
+	<div class="cta-rows-block">
 		<div class="cta-rows-list-block">
 			<?php echo !empty($li_cr_headline_check) ? BaseTheme::headline($li_cr_headline, 'heading-2 block-title mb-0') : ''; ?>
 			<?php echo (!empty($li_cr_headline_check) && !empty($li_cr_repeater)) ? '<div class="gl-s52"></div>' : ''; ?>

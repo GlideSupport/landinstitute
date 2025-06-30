@@ -1,5 +1,5 @@
 <?php if (!empty($li_s_kicker) || !empty($li_s_repeater_two)): ?>
-	<div class="state-grid-block <?php echo esc_attr($border_options); ?>">
+	<div class="state-grid-block">
 		<div class="ui-20-18-bold-uc sub-titile"><?php echo esc_html($li_s_kicker); ?></div>
 		<div class="gl-s52"></div>
 		<?php if (!empty($li_s_repeater_two)) : ?>

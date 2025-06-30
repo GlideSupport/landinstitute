@@ -1,5 +1,5 @@
 <?php if (!empty($li_tf_headline_check) || !empty($li_tf_wysiwyg) || !empty($li_tf_form_title) || !empty($li_tf_form_selector)) : ?>
-	<div class="get-in-touch-block <?php echo esc_attr($border_options); ?>">
+	<div class="get-in-touch-block">
 		<div class="cl-left">
 			<div class="gl-s80"></div>
 			<?php echo !empty($li_tf_headline_check) ? BaseTheme::headline($li_tf_headline, 'heading-2 mb-0 block-title') : ''; ?>

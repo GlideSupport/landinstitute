@@ -1,5 +1,5 @@
 <?php if(!empty($li_faq_headline_check) || !empty($li_faq_details)): ?>
-	<div class="faq-block-column <?php echo esc_attr($border_options); ?>">
+	<div class="faq-block-column">
 	<div class="heading-max">
 		<?php echo !empty($li_faq_headline_check)  ? BaseTheme::headline($li_faq_headline, 'heading-2 mb-0 block-title') . '' : ''; ?>
 		<?php echo (!empty($li_faq_headline_check) || !empty($li_faq_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>

@@ -36,7 +36,6 @@ if ($block['name']) {
 $li_il_headline = $bst_block_fields['li_il_headline'] ?? null;
 $li_il_headline_check = BaseTheme::headline_check($li_il_headline);
 $li_il_repeater = $bst_block_fields['li_il_repeater'] ?? null;
-$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 if (!empty($li_il_headline_check) || !empty($li_il_repeater)): ?>
     <div class="image-list-block">

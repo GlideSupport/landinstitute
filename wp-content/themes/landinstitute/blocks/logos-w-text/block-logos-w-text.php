@@ -39,11 +39,10 @@ list($bst_block_id, $bst_block_fields) = BaseTheme::defaults($block['id']);
 $li_lwt_headline        = $bst_block_fields['li_lwt_headline'] ?? null;
 $li_lwt_headline_check  = BaseTheme::headline_check($li_lwt_headline);
 $li_lwt_repeater_logo        = $bst_block_fields['li_lwt_repeater_logo'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 <?php if (!empty($li_lwt_headline_check) || !empty($li_lwt_repeater_logo)): ?>
-	<div class="logos-w-text has <?php echo esc_attr($border_options); ?>">
+	<div class="logos-w-text">
 		<div class="heading-max">
 			<?php echo !empty($li_lwt_headline_check) ? BaseTheme::headline($li_lwt_headline, 'heading-2 block-title mb-0') : ''; ?>
 		</div>

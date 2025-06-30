@@ -1,5 +1,5 @@
 <?php if (!empty($li_dl_headline_check) || !empty($li_dl_image) || !empty($li_dl_wysiwyg) || !empty($li_dl_main_repeater_two)): ?>
-	<div class="download-list sticky-lft-block has-border-bottom">
+	<div class="download-list sticky-lft-block">
 		<div class="row-flex">
 			<?php echo !empty($li_dl_image) ? '<div class="col-left sticky-img "><div class="sticky-image-stick">' . wp_get_attachment_image($li_dl_image, 'thumb_1200') . '</div></div>' : ''; ?>
 			<div class="cl-right">

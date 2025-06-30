@@ -1,6 +1,6 @@
 
 <?php if(!empty($li_sl_headline_check)): ?>
-    <div class="staff-list-block <?php echo esc_attr($border_options); ?>">
+    <div class="staff-list-block">
         <?php echo !empty($li_sl_headline_check) ? BaseTheme::headline($li_sl_headline, 'heading-2 block-title mb-0') . '<div class="gl-s52"></div>' : ''; ?>
         <?php
         if ($li_sl_choose_variation === 'variation-one' && !empty($li_sl_staff_selector)) :

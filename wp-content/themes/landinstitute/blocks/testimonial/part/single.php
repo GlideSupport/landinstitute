@@ -12,7 +12,7 @@ if ($li_t_choose_variation === 'single' && !empty($li_t_selector_testimonial_sin
 
     if ($testimonial_query->have_posts()) :
         $total_testimonials = $testimonial_query->found_posts; ?>
-        <div class="testimonial-single-view-slider testimonial-no-slide <?php echo esc_attr($border_options); ?>">
+        <div class="testimonial-single-view-slider testimonial-no-slide">
             <div class="testimonial-slide-group">
                 <?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post();
                     $testimonial_id     = get_the_ID();

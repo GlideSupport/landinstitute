@@ -41,11 +41,10 @@ $li_awi_headline_check  = BaseTheme::headline_check($li_awi_headline);
 $li_awi_wysiwyg       = $bst_block_fields['li_awi_wysiwyg'] ?? null;
 $li_awi_repeater        = $bst_block_fields['li_awi_repeater'] ?? null;
 $li_awi_image       = $bst_block_fields['li_awi_image'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 <?php if (!empty($li_awi_headline_check) || !empty($li_awi_repeater)): ?>
-<div class="tab-content-block has <?php echo esc_attr($border_options); ?>">
+<div class="tab-content-block">
 	<div class="heading-max">
 	    <?php echo !empty($li_awi_headline_check) ? BaseTheme::headline($li_awi_headline, 'heading-2 block-title mb-0') : ''; ?>
 		<div class="gl-s30"></div>

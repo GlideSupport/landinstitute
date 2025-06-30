@@ -1,5 +1,5 @@
 <?php if (!empty($li_cg_headline_check) || !empty($li_cg_repeater_mosaic)): ?>
-	<div class="cta-grid-mosaic-block <?php echo esc_attr($border_options); ?>">
+	<div class="cta-grid-mosaic-block">
 		<?php echo !empty($li_cg_headline_check) ? BaseTheme::headline($li_cg_headline, 'heading-2 mb-0 block-title') : ''; ?>
 		<div class="gl-s44"></div>
 		<div class="cta-grid-box-row">

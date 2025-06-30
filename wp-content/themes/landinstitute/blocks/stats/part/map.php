@@ -1,5 +1,5 @@
 <?php if (!empty($li_s_kicker) || !empty($li_s_image) || !empty($li_s_repeater_one)): ?>
-	<div class="impact-map-block stats-map-block <?php echo esc_attr($border_options); ?>">
+	<div class="impact-map-block stats-map-block">
 		<?php echo !empty($li_s_kicker) ? '<div class="gl-s44"></div><div class="ui-20-18-bold-uc block-title mb-0">' . esc_html($li_s_kicker) . '</div>' : ''; ?>
 		<!-- Years slider -->
 		<div class="map-content-value">

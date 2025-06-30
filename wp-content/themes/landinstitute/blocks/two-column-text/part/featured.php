@@ -1,5 +1,5 @@
 <?php if (!empty($li_tct_repeater)) { ?>
-<div class="two-column-text text-featured-block <?php echo esc_attr($border_options); ?>">
+<div class="two-column-text text-featured-block">
 	<div class="row-flex">
 		<?php foreach ($li_tct_repeater as $section) {
 			$kicker = $section['kicker'];

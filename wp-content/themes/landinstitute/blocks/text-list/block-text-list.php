@@ -44,11 +44,10 @@ $li_tl_wysiwyg = $bst_block_fields['li_tl_wysiwyg'] ?? null;
 $li_tl_repeater = $bst_block_fields['li_tl_repeater'] ?? null;
 $li_tl_image = $bst_block_fields['li_tl_image'] ?? null;
 $li_tl_link = $bst_block_fields['li_tl_link'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 ?>
 
 <?php if (!empty($li_tl_headline_check) || !empty($li_tl_wysiwyg) || !empty($li_tl_repeater) || !empty($li_tl_image) || !empty($li_tl_link)): ?>
-    <div class="download-list sticky-lft-block <?php echo esc_attr($border_options); ?>">
+    <div class="download-list sticky-lft-block">
         <div class="row-flex">
             <?php if (!empty($li_tl_image)): ?>
                 <div class="col-left sticky-img">

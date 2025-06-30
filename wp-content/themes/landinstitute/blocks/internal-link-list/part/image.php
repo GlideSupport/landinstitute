@@ -1,5 +1,5 @@
 <?php if (!empty($li_ill_headline_check) || !empty($li_ill_wysiwyg) || !empty($li_ill_show_or_hide_arrow) || !empty($li_ill_repeater) || !empty($li_ill_image)) { ?>
-	<div class="internal-link-list-block with-parallax-image <?php echo esc_attr($border_options); ?>">
+	<div class="internal-link-list-block with-parallax-image">
 		<div class="row-flex">
 		<?php echo !empty($li_ill_image) ? '<div class="col-left parallax-img">' . wp_get_attachment_image($li_ill_image, 'thumb_1400') . '</div>' : ''; ?>
 			<div class="col-right">

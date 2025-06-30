@@ -1,5 +1,5 @@
 <?php if (!empty($li_ig_headline_check) || !empty($li_ig_repeater)): ?>
-	<div class="image-gallery-block <?php echo esc_attr($border_options); ?>">
+	<div class="image-gallery-block">
 		<div class="custom-cursor"></div>
 		<div class="gallery-block">
 			<div class="bg-lines">

@@ -1,5 +1,5 @@
 <?php if(!empty($li_faq_headline_check) || !empty($li_faq_wysiwyg) || !empty($li_faq_button) || !empty($li_faq_details)): ?>
-	<div class="faq-block-column faq-two-column has-border-bottom">
+	<div class="faq-block-column faq-two-column">
 		<div class="row-flex">
 			<div class="col-left">
 				<div class="gl-s24"></div>

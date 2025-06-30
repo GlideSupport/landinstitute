@@ -45,10 +45,9 @@ if ($block['name']) {
 $li_im_title = $bst_block_fields['li_im_title'] ?? null;
 $li_im_repeater = $bst_block_fields['li_im_repeater'] ?? null;
 $li_im_button = $bst_block_fields['li_im_button'] ?? null;
-$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
-	<div class="impact-map-block <?php echo esc_attr($border_options); ?>">
+	<div class="impact-map-block">
 		<?php echo !empty($li_im_title) ? '<div class="gl-s44"></div><div class="ui-20-18-bold-uc block-title mb-0">' . esc_html($li_im_title) . '</div>' : ''; ?>
 		<!-- Years slider -->
 		<?php if (!empty($li_im_repeater)) : ?>

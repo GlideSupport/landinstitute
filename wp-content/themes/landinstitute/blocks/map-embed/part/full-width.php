@@ -1,5 +1,5 @@
 <?php if (!empty($li_me_title) || !empty($li_me_text) || !empty($li_me_iframe)): ?>
-	<div class="map-embed-block <?php echo esc_attr($border_options); ?>">
+	<div class="map-embed-block">
 		<div class="map-block-group">
 			<div class="map-info-box">
 				<?php echo !empty($li_me_title) ? '<div class="gl-s30"></div><div class="ui-16-15-bold-uc map-title">' . esc_html($li_me_title) . '</div>' : ''; ?>

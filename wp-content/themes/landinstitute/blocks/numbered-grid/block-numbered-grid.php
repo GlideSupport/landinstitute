@@ -40,10 +40,9 @@ $li_ng_headline        = $bst_block_fields['li_ng_headline'] ?? null;
 $li_ng_headline_check  = BaseTheme::headline_check($li_ng_headline);
 $li_ng_wysiwyg         = $bst_block_fields['li_ng_wysiwyg'] ?? null;
 $li_ng_repeater        = $bst_block_fields['li_ng_repeater'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 if (!empty($li_ng_headline_check) || !empty($li_ng_wysiwyg) || !empty($li_ng_repeater) ): ?>
-	<div class="numbered-grid-block <?php echo esc_attr($border_options); ?>">
+	<div class="numbered-grid-block">
 		<div class="heading-max">
 			<?php echo !empty($li_ng_headline_check) ? BaseTheme::headline($li_ng_headline, 'heading-2 block-title mb-0') : ''; ?>
 			<?php echo (!empty($li_ng_headline_check) && !empty($li_ng_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>

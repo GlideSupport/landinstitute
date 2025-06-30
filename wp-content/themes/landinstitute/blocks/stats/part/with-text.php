@@ -1,5 +1,5 @@
 <?php if(!empty($li_s_headline_check) || !empty($li_s_wysiwyg) || !empty($li_s_button) ): ?>
-	<div class="stats-with-text <?php echo esc_attr($border_options); ?>">
+	<div class="stats-with-text">
 		<div class="row-flex">
 		<?php if (!empty($li_s_repeater_one)) : ?>	
 			<div class="col-left">

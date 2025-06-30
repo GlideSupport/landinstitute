@@ -232,28 +232,6 @@
             },
             "return_format": "array",
             "allow_in_bindings": 0
-        },
-        {
-            "key": "field_684bd3b58e630",
-            "label": "Border Options",
-            "name": "li_et_border_options",
-            "aria-label": "",
-            "type": "clone",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "clone": [
-                "group_68358a59492d8"
-            ],
-            "display": "seamless",
-            "layout": "block",
-            "prefix_label": 0,
-            "prefix_name": 0
         }
     ],
     "location": [
@@ -274,5 +252,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749813478
+    "modified": 1751267218
 }

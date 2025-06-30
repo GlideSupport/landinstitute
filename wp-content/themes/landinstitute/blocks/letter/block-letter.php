@@ -48,11 +48,10 @@ $li_l_signature = $bst_block_fields['li_l_signature'] ?? null;
 $li_l_name = $bst_block_fields['li_l_name'] ?? null;
 $li_l_title = $bst_block_fields['li_l_title'] ?? null;
 $li_l_image = $bst_block_fields['li_l_image'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 if (!empty($li_l_kicker) || !empty($li_l_wysiwyg) || !empty($li_l_signature)  || !empty($li_l_name)  || !empty($li_l_title)  || !empty($li_l_image)): ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>	">
-    <div class="letter-block bg-base-cream <?php echo esc_attr($border_options); ?>">
+    <div class="letter-block bg-base-cream">
         <?php echo !empty($li_l_kicker) ? '<div class="gl-s96"></div><div class="ui-26-23-bold letter-title">' . esc_html($li_l_kicker) . '</div>' : ''; ?>
         <?php echo (!empty($li_l_kicker) && !empty($li_l_wysiwyg)) ? '<div class="gl-s24"></div>' : ''; ?>
         <?php echo !empty($li_l_wysiwyg) ? '<div class="letter-content body-20-18-regular">' . html_entity_decode($li_l_wysiwyg) . '</div><div class="gl-s52"></div>' : ''; ?>   

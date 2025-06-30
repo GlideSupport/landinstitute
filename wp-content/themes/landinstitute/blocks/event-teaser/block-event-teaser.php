@@ -46,7 +46,6 @@ $li_et_event_select_option = $bst_block_fields['li_et_event_select_option'] ?? '
 $li_et_select_manual_event = $bst_block_fields['li_et_select_manual_event'] ?? null;
 $li_et_kicker = $bst_block_fields['li_et_kicker'] ?? null;
 $li_et_button = $bst_block_fields['li_et_button'] ?? null;
-$border_options = $bst_block_fields['li_global_border_options'] ?? 'none';
 
 // Query posts based on selection
 $today = date('Ymd');
@@ -90,7 +89,7 @@ $events_query = new WP_Query($args);
 
 if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 	<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
-		<div class="event-teaser-list-block <?php echo esc_attr($border_options); ?>">
+		<div class="event-teaser-list-block">
 			<div class="heading-max max-800">
 				<?php echo !empty($li_et_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_et_kicker) . '</div>' : ''; ?>
 				<?php echo (!empty($li_et_kicker) && !empty($li_et_headline_check)) ? '<div class="gl-s12"></div>' : ''; ?>

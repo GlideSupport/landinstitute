@@ -45,7 +45,6 @@ $li_cs_headline_check = BaseTheme::headline_check($li_cs_headline);
 $li_cs_kicker = $bst_block_fields['li_cs_kicker'] ?? null;
 $li_cs_repeater = $bst_block_fields['li_cs_repeater'] ?? null;
 $li_cs_link = $bst_block_fields['li_cs_link'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';
 
 $total_cta_count = 0;
 if ($li_cs_repeater) {
@@ -59,7 +58,7 @@ if ($li_cs_repeater) {
 }
 ?>
 
-<div class="cta-slider-block <?php echo ($total_cta_count == 1) ? 'variation-static ' : ''; ?><?php echo esc_attr($border_options); ?>">
+<div class="cta-slider-block <?php echo ($total_cta_count == 1) ? 'variation-static ' : ''; ?>">
 	<div class="heading-max">
 		<?php echo !empty($li_cs_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_cs_kicker) . '</div><div class="gl-s12"></div>' : ''; ?>
 		<?php echo !empty($li_cs_headline_check) ? BaseTheme::headline($li_cs_headline, 'heading-2 block-title mb-0') : ''; ?>

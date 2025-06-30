@@ -43,12 +43,12 @@ $li_bq_kicker = $bst_block_fields['li_bq_kicker'] ?? null;
 $li_bq_quote = $bst_block_fields['li_bq_quote'] ?? null;
 $li_bq_name = $bst_block_fields['li_bq_name'] ?? null;
 $li_bq_title = $bst_block_fields['li_bq_title'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';    
+ 
 
 
 if (!empty($li_bq_kicker) || !empty($li_bq_quote) || !empty($li_bq_name) || !empty($li_bq_title)) : ?>
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>">
-	<div class="quote-block <?php echo esc_attr($border_options); ?>">
+	<div class="quote-block">
 		<blockquote class="block-quote">
 		<?php echo !empty($li_bq_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_bq_kicker) . '</div>' : ''; ?>
 		<?php echo (!empty($li_bq_kicker) && !empty($li_bq_quote)) ? '<div class="gl-s12"></div>' : ''; ?>

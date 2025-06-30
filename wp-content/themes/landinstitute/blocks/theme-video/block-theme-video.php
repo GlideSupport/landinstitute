@@ -47,8 +47,7 @@ $li_tv_headline_check = BaseTheme::headline_check($li_tv_headline);
 $li_tv_kicker = $bst_block_fields['li_tv_kicker'] ?? null;
 $li_tv_short_video_poster = $bst_block_fields['li_tv_short_video_poster'] ?? null;
 $li_tv_short_video = $bst_block_fields['li_tv_short_video'] ?? null;
-$video_group = $bst_block_fields['li_tv_video'] ?? null;
-$border_options = $bst_block_fields['border_options']['li_global_border_options'] ?? 'none';    
+$video_group = $bst_block_fields['li_tv_video'] ?? null;  
 
 // Modal video handling
 $video_type     = $video_group['li_tv_choose_video_type'] ?? '';
@@ -81,7 +80,7 @@ switch ($video_type) {
 }
 
 ?>
-<div class="theme-video <?php echo esc_attr($border_options); ?>">
+<div class="theme-video">
     <div class="heading-max">
     <?php echo !empty($li_tv_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_tv_kicker) . '</div>' : ''; ?>
     <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
