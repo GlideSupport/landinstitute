@@ -81,13 +81,14 @@ switch ($video_type) {
 
 ?>
 <div class="theme-video">
-    <div class="heading-max">
-    <?php echo !empty($li_tv_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_tv_kicker) . '</div>' : ''; ?>
-    <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
-    <?php echo !empty($li_tv_headline_check) ? BaseTheme::headline($li_tv_headline, 'heading-2 block-title mb-0') : ''; ?>
-    </div>
+    <?php if(!empty($li_tv_headline_check) || !empty($li_tv_kicker)): ?>
+        <div class="heading-max">
+        <?php echo !empty($li_tv_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_tv_kicker) . '</div>' : ''; ?>
+        <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
+        <?php echo !empty($li_tv_headline_check) ? BaseTheme::headline($li_tv_headline, 'heading-2 block-title mb-0') : ''; ?>
+        </div>
+    <?php endif; ?>
     <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s52"></div>' : ''; ?>
-    <div class="gl-s52"></div>
     <div class="full-width-video">
         <video class="videos" playsinline="playsinline" muted="muted" preload="metadata" autoplay="autoplay" loop="loop"
             poster="<?php echo esc_url($li_tv_short_video_poster); ?>" data-video-init="">
