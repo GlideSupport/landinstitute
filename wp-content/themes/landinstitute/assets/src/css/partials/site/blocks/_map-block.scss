@@ -368,11 +368,12 @@
 html {
     body {
         .international-Initiative-map-filter {
-            // min-height: 100vh;
             overflow: hidden;
             position: relative;
 
+            // min-height: 100vh;
             .wpgmza_map {
+
                 // height: 100% !important;
 
                 .gm-bundled-control {
@@ -386,47 +387,52 @@ html {
                     }
 
                     .gmnoprint {
-                        border-radius: 100px;
-                        border: 2px solid var(--gb_base_brown);
-                        background: var(--gb_base_cream);
+                        background: var(--gb_base_cream) !important;
+                        border: 2px solid var(--gb_base_brown) !important;
+                        border-radius: 100px !important;
 
                         >div {
                             background-color: transparent !important;
-                            box-shadow: none !important;
-                            width: auto !important;
-                            height: auto !important;
                             border-radius: 0 !important;
+                            box-shadow: none !important;
+                            height: auto !important;
+                            width: auto !important;
                         }
 
                         .gm-control-active {
                             background: var(--gb_base_cream);
-                            width: 46px !important;
                             height: 42px !important;
+                            width: 46px !important;
 
                             &:first-child {
                                 border-bottom: 2px solid var(--gb_base_brown);
 
                                 &:before {
+                                    background-image: url(../images/icon-plus.svg);
+                                    background-repeat: no-repeat;
+                                    background-size: 46px 42px;
                                     content: "";
                                     display: block;
-                                    position: absolute;
-                                    top: 0;
+                                    height: 42px;
                                     left: 0;
+                                    position: absolute;
                                     right: 0;
-                                    background-image: url(../images/icon-plus.svg);
+                                    top: 0;
+                                    width: 46px;
                                 }
                             }
 
                             &:last-child {
-
                                 &:before {
+                                    background-image: url(../images/icon-minus.svg);
+                                    background-repeat: no-repeat;
+                                    background-size: 46px 42px;
                                     content: "";
                                     display: block;
-                                    position: absolute;
-                                    top: 0;
                                     left: 0;
+                                    position: absolute;
                                     right: 0;
-                                    background-image: url(../images/icon-minus.svg);
+                                    top: 0;
                                 }
                             }
                         }
@@ -443,11 +449,11 @@ html {
                     min-height: 30px;
                     min-width: 30px;
                     opacity: 1;
+                    opacity: 0;
                     outline: none;
                     right: 18px;
                     top: 30px;
                     width: 30px;
-                    opacity: 0;
 
                     .wpgmza-inner-stack .grouping.visible~.grouping-handle {
                         opacity: 1;
@@ -461,10 +467,10 @@ html {
                             background-size: 16px 16px;
                             content: '';
                             display: block;
+                            filter: brightness(0) saturate(100%) invert(94%) sepia(6%) saturate(0%) hue-rotate(44deg) brightness(105%) contrast(105%);
                             height: 16px;
                             position: absolute;
                             width: 16px;
-                            filter: brightness(0) saturate(100%) invert(94%) sepia(6%) saturate(0%) hue-rotate(44deg) brightness(105%) contrast(105%);
                         }
 
                         &:after {
@@ -578,9 +584,9 @@ html {
 
                 .wpgmza-marker-listing-category-filter {
                     >label {
-                        display: flex;
+                        display: none;
                         margin-bottom: 12px;
-
+                        // display: flex;
                         @extend .ui-18-16-bold-uc;
                     }
 
@@ -647,9 +653,9 @@ html {
                     .grouping {
                         background: var(--gb_base_cream);
                         border-right: 2px solid var(--gb_base_brown);
-                        // border-top: 2px solid var(--gb_base_brown);
                         padding: 36px 36px;
 
+                        // border-top: 2px solid var(--gb_base_brown);
                         &::-webkit-scrollbar {
                             background: transparent;
                             border-radius: 4px !important;
