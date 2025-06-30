@@ -42,7 +42,7 @@ if (!empty($li_to_add_map_shortcode)): ?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const container = document.querySelector('.wpgmza-standalone-component');
-        const filter = document.getElementById('wpgmza_filter_3');
+        const filter = container.querySelector('.wpgmza-marker-listing-category-filter');
 
         if (container && filter) {
             // Hide filter by default
