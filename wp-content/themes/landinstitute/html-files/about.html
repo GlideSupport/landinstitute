@@ -572,7 +572,7 @@
 				<div class="wrapper">
 					<div class="timeline-block has-border-bottom">
 						<div class="ui-20-18-bold-uc kicker-title mb-0">Our Journey</div>
-						<div class="gl-s44"></div>
+						<div class="gl-s64"></div>
 						<div class="timeline-slides-block timeline-block-fancy">
 							<div class="swiper-container timeline-slider-fancy cursor-drag-icon">
 								<!-- Additional required wrapper -->
@@ -1403,16 +1403,16 @@
 </body>
 
 <script>
-
-
-	// sticky 
+	// sticky
 	document.addEventListener('DOMContentLoaded', function () {
 		const subNav = document.querySelector('.sticky-top-touch');
 		const headerSection = document.querySelector('.header-section');
 		const parentSection = subNav.parentElement.parentElement; // Assuming sticky-parent's parent is col-left, col-left's parent is parentSection
 		const stickyParent = document.querySelector('.sticky-parent');
 
-		if (!subNav || !headerSection || !parentSection || !stickyParent) return;
+		if (!subNav || !headerSection || !parentSection || !stickyParent) {
+			return;
+		}
 
 		let headerHeight = headerSection.offsetHeight;
 
@@ -1482,9 +1482,7 @@
 		onScroll();
 	});
 
-
 	// end
-
 
 	document.addEventListener('DOMContentLoaded', function () {
 		new Swiper('.timeline-slider-fancy', {
@@ -1516,54 +1514,52 @@
 		});
 	});
 
-	const customCursor = document.createElement("div");
-	customCursor.classList.add("custom-cursor");
+	const customCursor = document.createElement('div');
+	customCursor.classList.add('custom-cursor');
 	document.body.appendChild(customCursor);
 
-	const swiperContainer = document.querySelector(".cursor-drag-icon");
+	const swiperContainer = document.querySelector('.cursor-drag-icon');
 
-	swiperContainer.addEventListener("pointerenter", () => {
-		customCursor.classList.add("visible");
+	swiperContainer.addEventListener('pointerenter', () => {
+		customCursor.classList.add('visible');
 	});
 
-	swiperContainer.addEventListener("pointerleave", () => {
-		customCursor.classList.remove("visible");
+	swiperContainer.addEventListener('pointerleave', () => {
+		customCursor.classList.remove('visible');
 	});
 
-	swiperContainer.addEventListener("pointermove", (e) => {
+	swiperContainer.addEventListener('pointermove', (e) => {
 		customCursor.style.left = `${e.clientX}px`;
 		customCursor.style.top = `${e.clientY}px`;
 	});
 
-
-	document.querySelectorAll(".footer-nav-title").forEach((title) => {
-		title.addEventListener("click", () => {
+	document.querySelectorAll('.footer-nav-title').forEach((title) => {
+		title.addEventListener('click', () => {
 			if (window.innerWidth <= 991) {
-				const parent = title.closest(".footer-nav");
+				const parent = title.closest('.footer-nav');
 
 				// Close all others
-				document.querySelectorAll(".footer-nav").forEach((nav) => {
+				document.querySelectorAll('.footer-nav').forEach((nav) => {
 					if (nav !== parent) {
-						nav.classList.remove("active");
+						nav.classList.remove('active');
 					}
 				});
 
 				// Toggle the clicked one
-				parent.classList.toggle("active");
+				parent.classList.toggle('active');
 			}
 		});
 	});
 
-	window.addEventListener("resize", () => {
+	window.addEventListener('resize', () => {
 		if (window.innerWidth > 991) {
-			document.querySelectorAll(".footer-nav").forEach((nav) => {
-				nav.classList.remove("active");
+			document.querySelectorAll('.footer-nav').forEach((nav) => {
+				nav.classList.remove('active');
 			});
 		}
 	});
 
-
-	// header 
+	// header
 	document.addEventListener('DOMContentLoaded', function () {
 		const mainSection = document.querySelector('.main-section');
 		const herofullSection = document.querySelector('.hero-section');
@@ -1571,7 +1567,7 @@
 		const navContainer = document.querySelector('.nav-container');
 		const topBar = document.querySelector('.top-bar');
 		const topBarCross = document.querySelector('.top-bar-cross');
-		let lastScrollTop = 0;
+		const lastScrollTop = 0;
 
 		const adminBarHeight = document.getElementById('wpadminbar')?.offsetHeight || 0;
 		let headerInitialSectionHeight = adminBarHeight + (headerSection?.offsetHeight || 0);
@@ -1639,7 +1635,9 @@
 		// Hide top bar
 		function hideTopBar() {
 			const topBar = document.querySelector('.top-bar');
-			if (!topBar || !headerSection) return;
+			if (!topBar || !headerSection) {
+				return;
+			}
 
 			topBar.classList.add('hide-top-bar');
 
@@ -1665,9 +1663,8 @@
 			topBarCross.addEventListener('click', hideTopBar);
 		}
 
-
-		if (topBar && getComputedStyle(topBar).display === "none") {
-			headerWrapper.classList.add("top-bar-hidden");
+		if (topBar && getComputedStyle(topBar).display === 'none') {
+			headerWrapper.classList.add('top-bar-hidden');
 		}
 
 		// Initial setup
