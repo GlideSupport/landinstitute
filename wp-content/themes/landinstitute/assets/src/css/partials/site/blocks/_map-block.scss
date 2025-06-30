@@ -388,53 +388,67 @@ html {
                 border-left: 2px solid var(--gb_base_brown);
                 height: auto;
                 overflow-y: auto;
-                color: var(--gb_base_brown);
-                display: inline-flex;
-                font-size: var(--gb_font_size_14);
-                @include font(plusjakarta, sbold);
-                letter-spacing: -0.51px;
-                line-height: 110%;
-                outline: none;
-                padding: 22px 82px 23px 34px;
-                position: relative;
-                text-decoration: none;
-                transition: 0.35s;
 
-                &:after {
-                    align-items: center;
-                    animation: shrink-back 0.4s forwards;
-                    background-color: var(--gb_base_brown);
-                    background-image: url(../images/button-arrow.svg);
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: 0px;
-                    border-radius: 100px;
-                    content: '';
-                    display: flex;
-                    height: 22px;
-                    justify-content: center;
-                    position: absolute;
-                    right: 26px;
-                    top: 21px;
-                    transform: scale(0.27);
-                    transition: transform 0.4s ease-in-out;
-                    width: 22px;
+                .wpgmza-list {
+                    padding: 36px;
+                }
 
-                    @media(max-width: 991px) {
-                        right: 16px;
-                        top: 16px;
+                .map-filter-toggle {
+                    color: var(--gb_base_brown);
+                    display: inline-flex;
+                    font-size: var(--gb_font_size_14);
+                    @include font(plusjakarta, sbold);
+                    letter-spacing: -0.51px;
+                    line-height: 110%;
+                    outline: none;
+                    padding: 22px 82px 23px 34px;
+                    text-decoration: none;
+                    transition: 0.35s;
+
+                    &:after {
+                        align-items: center;
+                        animation: shrink-back 0.4s forwards;
+                        background-color: var(--gb_base_brown);
+                        background-image: url(../images/button-arrow.svg);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: 0px;
+                        border-radius: 100px;
+                        content: '';
+                        display: flex;
+                        height: 22px;
+                        justify-content: center;
+                        position: absolute;
+                        right: 26px;
+                        top: 21px;
+                        transform: scale(0.27);
+                        transition: transform 0.4s ease-in-out;
+                        width: 22px;
+
+                        @media(max-width: 991px) {
+                            right: 16px;
+                            top: 16px;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: var(--gb_primary_lilac);
+                        border-color: var(--gb_base_brown);
+                        color: var(--gb_base_brown);
+
+                        &:after {
+                            animation: bubble-pop 0.4s forwards;
+                            background-size: auto;
+                        }
                     }
                 }
 
-                &:hover {
-                    background-color: var(--gb_primary_lilac);
-                    border-color: var(--gb_base_brown);
-                    color: var(--gb_base_brown);
 
-                    &:after {
-                        animation: bubble-pop 0.4s forwards;
-                        background-size: auto;
-                    }
+
+
+
+                &.filter-visible {
+                    height: 100%;
                 }
 
                 &::-webkit-scrollbar {
