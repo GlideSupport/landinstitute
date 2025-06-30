@@ -30,6 +30,9 @@ $bst_var_class_name = ( isset( $block['className'] ) ) ? $block['className'] : n
 
 // Making the unique ID for the block.
 $bst_block_html_id = 'block-' . $bst_block_name . '-' . $block['id'];
+if( !empty($block['anchor']) ) {
+	$bst_block_html_id = $block['anchor'];
+}
 
 // Making the unique ID for the block.
 if ( $block['name'] ) {
