@@ -1,11 +1,4 @@
-<?php if($li_lg_logo_grid_layout=='two-column'):
-		$class="logo-grid-two";
-	elseif ($li_lg_logo_grid_layout=='three-column') :
-		$class="logo-grid-three";
-	else :
-		$class="logo-grid-four";
-	endif;
-?>
+<?php $class = ($li_lg_logo_grid_layout == 'two-column') ? 'logo-grid-two' : 'logo-grid-three'; ?>
 <div class="logo-grid-filters">
 	<div class="heading-max max-800">
 		<?php echo !empty($li_lg_headline_check) ? BaseTheme::headline($li_lg_headline, 'heading-2 block-title mb-0') : ''; ?>

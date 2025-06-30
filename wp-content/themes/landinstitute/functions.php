@@ -169,8 +169,9 @@ function ajax_filter_logo_grid_filter() {
 	// --- Pagination ---
 	$pagination_html = '';
 	$total_pages = $donors->max_num_pages;
+	$total_found_posts = $donors->found_posts;
 
-	if ($total_pages > 1) {
+	if ($total_found_posts > 6) {
 		ob_start(); ?>
 		<div class="fillter-bottom">
 		<div class="pagination-container">
@@ -233,9 +234,11 @@ function ajax_filter_logo_grid_filter() {
 		'html'            => $html,
 		'pagination_html' => $pagination_html,
 		'max_pages'       => $total_pages,
+		'found_posts'     => $total_found_posts,
 		'current_page'    => $paged,
 	]);
 }
+
 
 
 //news list filter

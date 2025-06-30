@@ -95,34 +95,33 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function updatePagination(paginationHtml) {
-        const paginationWrapper = document.querySelector(".fillter-bottom .pagination-container");
-    
-        if (paginationWrapper) {
-            // Replace only the inner pagination content without duplicating wrapper
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = paginationHtml;
-    
-            const newPaginationContainer = tempDiv.querySelector(".pagination-container");
-            if (newPaginationContainer) {
-                paginationWrapper.replaceWith(newPaginationContainer);
-            }
-        } else {
-            // If no existing pagination, insert it after donor grid
-            const tempDiv = document.createElement("div");
-            tempDiv.innerHTML = paginationHtml;
-            const newPaginationContainer = tempDiv.querySelector(".pagination-container");
-            if (newPaginationContainer) {
-                const fillterBottom = document.querySelector(".fillter-bottom");
-                if (fillterBottom) {
-                    fillterBottom.appendChild(newPaginationContainer);
-                } else {
-                    donorGrid.insertAdjacentElement("afterend", newPaginationContainer);
-                }
-            }
-        }
-    
-        attachPaginationListeners(); // Re-bind pagination events
-    }
+		const paginationWrapper = document.querySelector(".fillter-bottom .pagination-container");
+	
+		if (paginationHtml.trim() === "") {
+			if (paginationWrapper) paginationWrapper.remove();
+			return;
+		}
+	
+		const tempDiv = document.createElement("div");
+		tempDiv.innerHTML = paginationHtml;
+	
+		const newPaginationContainer = tempDiv.querySelector(".pagination-container");
+		if (newPaginationContainer) {
+			if (paginationWrapper) {
+				paginationWrapper.replaceWith(newPaginationContainer);
+			} else {
+				const fillterBottom = document.querySelector(".fillter-bottom");
+				if (fillterBottom) {
+					fillterBottom.appendChild(newPaginationContainer);
+				} else {
+					donorGrid.insertAdjacentElement("afterend", newPaginationContainer);
+				}
+			}
+		}
+	
+		attachPaginationListeners(); // Re-bind
+	}
+	
     
 
 	function attachPaginationListeners() {
