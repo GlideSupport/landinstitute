@@ -82,7 +82,7 @@ switch ($video_type) {
 
 ?>
 
-<div class="video-alongside-text">
+<div id="<?php echo esc_attr( $bst_block_html_id ); ?>" class="video-alongside-text <?php echo esc_attr( $bst_var_align_class . ' ' . $bst_var_class_name ); ?>">
     <?php if(!empty($li_vat_headline_check) || !empty($li_vat_kicker)): ?>
         <div class="heading-max">
             <?php echo !empty($li_vat_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_vat_kicker) . '</div>' : ''; ?>
@@ -104,7 +104,7 @@ switch ($video_type) {
                     </video>
                     <?php if ($modal_video_embed): ?>
                         <div class="play-icon">
-                            <a href="#lity-iframe-video" class="site-btn sm-btn arrow-plus" data-lity>Play Video</a>
+                            <a href="#<?php echo esc_attr( $bst_block_html_id ); ?>-modal" class="site-btn sm-btn arrow-plus" data-lity>Play Video</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -112,12 +112,12 @@ switch ($video_type) {
         </div>
     </div>
 </div>
-<?php if ($modal_video_embed): ?>
-    <div id="lity-iframe-video" class="lity-hide popup-block">
-        <div class="popup-video popup-block-design">
-            <div class="video-play">
-                <?php echo $modal_video_embed; ?>
-            </div>
-        </div>
-    </div>
+<?php if ( $modal_video_embed ) : ?>
+	<div id="<?php echo esc_attr( $bst_block_html_id ); ?>-modal" class="lity-hide popup-block">
+		<div class="popup-video popup-block-design">
+			<div class="video-play">
+				<?php echo $modal_video_embed; ?>
+			</div>
+		</div>
+	</div>
 <?php endif; ?>
