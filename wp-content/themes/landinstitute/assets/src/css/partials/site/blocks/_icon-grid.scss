@@ -53,6 +53,7 @@
 
     .logo-grid-col {
         grid-column: span 4;
+        display: flex;
 
         @media(max-width: 640px) {
             grid-column: span 6;
