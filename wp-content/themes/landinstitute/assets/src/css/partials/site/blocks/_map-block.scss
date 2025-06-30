@@ -383,19 +383,45 @@ html {
                 bottom: 0;
                 z-index: 1;
                 max-width: 480px !important;
-                background-color: var(--gb_base_cream);
-                border-top: 2px solid var(--gb_base_brown);
-                border-left: 2px solid var(--gb_base_brown);
-                height: auto;
-                overflow-y: auto;
+                // background-color: var(--gb_base_cream);
+                // border-top: 2px solid var(--gb_base_brown);
+                // border-left: 2px solid var(--gb_base_brown);
+                // overflow-y: auto;
+                height: 100%;
 
                 .wpgmza-list {
-                    padding: 36px;
+                    padding: 36px 36px 100px 36px;
+                    border-bottom: 2px solid var(--gb_base_brown);
+                    background-color: var(--gb_base_cream);
+                    border-left: 2px solid var(--gb_base_brown);
+                    height: 100%;
+                    overflow-y: auto;
+
+                    &::-webkit-scrollbar {
+                        background: transparent;
+                        border-radius: 4px !important;
+                        cursor: pointer;
+                        height: 6px;
+                        width: 5px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        -webkit-border-radius: 4px;
+                        background: var(--gb_base_brown);
+                        border-radius: 4px !important;
+                        cursor: pointer;
+                    }
+
+                    &::-webkit-scrollbar-corner {
+                        background: transparent;
+                        cursor: pointer;
+                    }
                 }
 
                 .map-filter-toggle {
-                    color: var(--gb_base_brown);
-                    display: inline-flex;
+                    color: var(--gb_base_brown) !important;
+                    display: inline-flex !important;
+                    margin: 0 !important;
                     font-size: var(--gb_font_size_14);
                     @include font(plusjakarta, sbold);
                     letter-spacing: -0.51px;
@@ -404,6 +430,12 @@ html {
                     padding: 22px 82px 23px 34px;
                     text-decoration: none;
                     transition: 0.35s;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    background-color: var(--gb_base_cream);
+                    border-top: 2px solid var(--gb_base_brown);
+                    border-left: 2px solid var(--gb_base_brown);
 
                     &:after {
                         align-items: center;
@@ -451,25 +483,7 @@ html {
                     height: 100%;
                 }
 
-                &::-webkit-scrollbar {
-                    background: transparent;
-                    border-radius: 4px !important;
-                    cursor: pointer;
-                    height: 6px;
-                    width: 5px;
-                }
 
-                &::-webkit-scrollbar-thumb {
-                    -webkit-border-radius: 4px;
-                    background: var(--gb_base_brown);
-                    border-radius: 4px !important;
-                    cursor: pointer;
-                }
-
-                &::-webkit-scrollbar-corner {
-                    background: transparent;
-                    cursor: pointer;
-                }
 
                 .wpgmza-marker-listing-category-filter {
                     >label {
