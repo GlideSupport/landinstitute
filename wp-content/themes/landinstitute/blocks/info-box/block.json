@@ -1,12 +1,12 @@
 {
-	"name": "acf/info-boxr",
+	"name": "acf/info-box",
 	"title": "Info Box",
 	"description": "A custom Info Box block.",
 	"editorScript": ["block-info-box"],
 	"script": ["block-info-box"],
 	"category": "theme-blocks",
-	"icon": "slides",
-	"keywords": ["Info Box","Info", "box"],
+	"icon": "align-right",
+	"keywords": ["Info Box", "Info", "box"],
 	"supports": {
 		"align": true,
 		"anchor": true
