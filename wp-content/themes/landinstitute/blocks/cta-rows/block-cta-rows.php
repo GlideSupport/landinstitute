@@ -35,7 +35,7 @@ $li_cr_repeater = $bst_block_fields['li_cr_repeater'] ?? null;
 						<?php if($title || $text || $image): ?>
 							<div class="cta-rows-list-col">
 								<div href="" class="cta-rows-list-card">
-									<?php echo !empty($image) ? '<div class="cta-rows-list-image">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
+									<?php echo !empty($image) ? '<div class="cta-rows-list-image">' . wp_get_attachment_image($image, 'thumb_500') . '</div>' : ''; ?>
 									<div class="cta-rows-list-content">
 										<?php echo (!empty($title) || !empty($time) || !empty($text) || !empty($repeater_buttons)) ? '<div class="gl-s80"></div>' : ''; ?>
 										<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
