@@ -47,11 +47,12 @@ $li_awi_image       = $bst_block_fields['li_awi_image'] ?? null;
 <div class="tab-content-block">
 	<div class="heading-max">
 	    <?php echo !empty($li_awi_headline_check) ? BaseTheme::headline($li_awi_headline, 'heading-2 block-title mb-0') : ''; ?>
-		<div class="gl-s30"></div>
+		<?php echo (!empty($li_awi_headline_check) && !empty($li_awi_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 		<?php echo !empty($li_awi_wysiwyg ) ? '<div class="block-content">' . html_entity_decode($li_awi_wysiwyg) . '</div>' : ''; ?>
 	</div>
-	<div class="gl-s64"></div>
+	
 	<?php if (!empty($li_awi_repeater)): ?>
+	<div class="gl-s64"></div>
 	<div class="tab-click-row">
 		<div class="cl-left">
 			<div class="faq-block number-tab-block">

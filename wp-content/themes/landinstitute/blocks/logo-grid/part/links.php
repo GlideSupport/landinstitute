@@ -13,21 +13,23 @@
 			<?php echo (!empty($li_lg_headline_check) && !empty($li_lg_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 			<?php echo !empty($li_lg_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_lg_wysiwyg) . '</div>' : ''; ?>
 		</div>
-		<div class="gl-s96"></div>
+		
 		<?php if (!empty($li_lg_repeater_logos)) : ?>
-
+			<div class="gl-s96"></div>
 			<div class="logo-grid-links-row <?php echo $class; ?>">
 				<?php foreach ($li_lg_repeater_logos as $li_lg_repeater_logo) :
 					$li_lg_logo  = $li_lg_repeater_logo['li_lg_logo'] ?? '';
-					$li_lg_url  = $li_lg_repeater_logo['li_lg_url'] ?? '';
+					$li_lg_link    = $li_lg_repeater_logo['li_lg_link'] ?? [];
+					$link_url      = is_array($li_lg_link) && isset($li_lg_link['url']) ? $li_lg_link['url'] : '';
+    				$link_target   = is_array($li_lg_link) && isset($li_lg_link['target']) ? $li_lg_link['target'] : '_self';
 					$li_lg_text = $li_lg_repeater_logo['li_lg_text'] ?? '';
 					$li_lg_content   = $li_lg_repeater_logo['li_lg_content'] ?? '';
 
 					$img_url = wp_get_attachment_url($li_lg_logo);
 
-					if (!empty($img_url) || !empty($li_lg_url) || !empty($li_lg_text) || !empty($li_lg_content)): ?>
+					if (!empty($img_url) || !empty($li_lg_link) || !empty($li_lg_text) || !empty($li_lg_content)): ?>
 						<div class="logo-grid-link-col">
-							<?php echo !empty($li_lg_url) ? '<a href="' . esc_url($li_lg_url) . '" class="logo-grid-link">' : '<div class="logo-grid-link">'; ?>
+						<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="logo-grid-link">' : '<div class="logo-grid-link">'; ?>
 							<?php if($img_url): ?>
 								<div class="logo-image">
 									<img src="<?php echo esc_url($img_url); ?>" width="200" height="110" alt="logos" loading="lazy" decoding="async" />
@@ -45,7 +47,7 @@
 											<?php echo esc_html($li_lg_content); ?>
 										</div>
 									</div>
-									<?php if (!empty($li_lg_url)): ?>
+									<?php if (!empty($link_url)): ?>
 										<div class="card-item-right">
 											<div class="dot-btn">
 												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg">
@@ -54,7 +56,7 @@
 									<?php endif; ?>
 								</div>
 							</div>
-							<?php echo !empty($li_lg_url) ? '</a>' : '</div>'; ?>
+							<?php echo !empty($link_url) ? '</a>' : '</div>'; ?>
 						</div>
 					<?php endif; ?>
 				<?php endforeach; ?>
