@@ -373,9 +373,9 @@ html {
             position: relative;
 
             .wpgmza_map {
-                // height: 100vh !important;
+                height: 100% !important;
 
-                .wpgmza-inner-stack .grouping.visible~.grouping-handle {
+                .wpgmza-inner-stack .grouping~.grouping-handle {
                     background: var(--gb_base_brown);
                     border: none;
                     border-radius: 50%;
