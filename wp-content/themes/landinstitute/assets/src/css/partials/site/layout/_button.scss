@@ -9,7 +9,7 @@ body {
         display: inline-flex;
         font-size: var(--gb_font_size_14);
         @include font(plusjakarta, sbold);
-        letter-spacing: -0.36px;
+        letter-spacing: -0.51px;
         line-height: 110%;
         outline: none;
         padding: 22px 82px 23px 34px;
@@ -246,7 +246,7 @@ body {
             padding-right: 2px;
 
             @media(max-width: 640px) {
-                letter-spacing: -0.36px;
+                letter-spacing: -0.51px;
                 padding: 14px 0 14px;
             }
 
@@ -510,7 +510,7 @@ body {
             display: inline-flex;
             font-size: var(--gb_font_size_14);
             @include font(plusjakarta, sbold);
-            letter-spacing: -0.36px;
+            letter-spacing: -0.51px;
             line-height: 110%;
             outline: none;
             padding: 22px 82px 22px 34px;
@@ -700,7 +700,7 @@ body {
                 padding: 16px 0 16px;
 
                 @media(max-width: 640px) {
-                    letter-spacing: -0.36px;
+                    letter-spacing: -0.51px;
                     padding: 14px 0 14px;
                 }
 
