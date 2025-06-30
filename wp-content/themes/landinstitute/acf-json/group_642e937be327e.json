@@ -174,14 +174,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "testimonial"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "donor"
+                "value": "event"
             }
         ]
     ],
@@ -194,5 +187,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751283957
+    "modified": 1751286253
 }
