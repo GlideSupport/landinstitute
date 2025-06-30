@@ -18,11 +18,12 @@
 
         .icon {
             .icon-shape {
+                filter: brightness(0) saturate(100%) invert(37%) sepia(12%) saturate(1363%) hue-rotate(36deg) brightness(105%) contrast(85%);
 
-                &::before,
-                &::after {
-                    background-color: var(--primary_dark_green);
-                }
+                // &::before,
+                // &::after {
+                //     background-color: var(--primary_dark_green);
+                // }
             }
         }
     }
@@ -58,11 +59,12 @@
 
             .icon {
                 .icon-shape {
+                    filter: brightness(0) saturate(100%) invert(37%) sepia(12%) saturate(1363%) hue-rotate(36deg) brightness(105%) contrast(85%);
 
-                    &::before,
-                    &::after {
-                        background-color: var(--primary_dark_green);
-                    }
+                    // &::before,
+                    // &::after {
+                    //     background-color: var(--primary_dark_green);
+                    // }
                 }
             }
         }
@@ -100,45 +102,52 @@
             position: relative;
             top: 6px;
             width: 14px;
+            background-image: url(../images/faq-plus.svg);
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 14px 14px;
+            transition: 0.3s;
 
             @media(max-width: 991px) {
                 top: 0;
             }
 
-            &::before {
-                background: var(--gb_base_brown);
-                border-radius: 0px;
-                content: "";
-                height: 2px;
-                left: 0px;
-                position: absolute;
-                top: 6px;
-                transition: all 0.5s ease;
-                width: 100%;
-            }
+            // &::before {
+            //     background: var(--gb_base_brown);
+            //     border-radius: 0px;
+            //     content: "";
+            //     height: 2px;
+            //     left: 0px;
+            //     position: absolute;
+            //     top: 6px;
+            //     transition: all 0.5s ease;
+            //     width: 100%;
+            // }
 
-            &:after {
-                background: var(--gb_base_brown);
-                border-radius: 0px;
-                content: "";
-                height: 100%;
-                left: 6px;
-                position: absolute;
-                top: 0px;
-                transition: all 0.5s ease;
-                width: 2px;
-            }
+            // &:after {
+            //     background: var(--gb_base_brown);
+            //     border-radius: 0px;
+            //     content: "";
+            //     height: 100%;
+            //     left: 6px;
+            //     position: absolute;
+            //     top: 0px;
+            //     transition: all 0.5s ease;
+            //     width: 2px;
+            // }
 
             &.active {
-                &::before {
-                    transform: rotate(45deg);
-                    transition: all 0.5s ease;
-                }
+                transform: rotate(45deg);
+                transition: all 0.5s ease;
+                // &::before {
+                //     transform: rotate(45deg);
+                //     transition: all 0.5s ease;
+                // }
 
-                &::after {
-                    transform: rotate(45deg);
-                    transition: all 0.5s ease;
-                }
+                // &::after {
+                //     transform: rotate(45deg);
+                //     transition: all 0.5s ease;
+                // }
             }
         }
     }
