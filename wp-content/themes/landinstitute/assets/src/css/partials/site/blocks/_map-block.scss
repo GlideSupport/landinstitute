@@ -375,6 +375,13 @@ html {
             .wpgmza_map {
                 // height: 100% !important;
 
+                .gm-bundled-control {
+                    bottom: unset !important;
+                    right: unset !important;
+                    top: 0;
+                    left: 0;
+                }
+
                 .wpgmza-inner-stack .grouping~.grouping-handle {
                     background: var(--gb_base_brown);
                     border: none;
@@ -389,6 +396,11 @@ html {
                     right: 18px;
                     top: 30px;
                     width: 30px;
+                    opacity: 0;
+
+                    .wpgmza-inner-stack .grouping.visible~.grouping-handle {
+                        opacity: 1;
+                    }
 
                     .icon {
                         &:before {
@@ -417,7 +429,10 @@ html {
                 max-width: 480px !important;
                 position: absolute;
                 right: 0;
-                z-index: 1;
+
+                &.filter-visible {
+                    z-index: 1;
+                }
 
                 .wpgmza-list {
                     background-color: var(--gb_base_cream);

@@ -1372,29 +1372,17 @@ document.addEventListener("DOMContentLoaded", () => {
 // });
 
 function setMapHeight() {
-	if (window.innerWidth > 991) {
-		const header = document.querySelector(".header-section");
-		const footerSubNav = document.querySelector(".footer-sub-nav");
-		const map = document.querySelector(
-			".international-Initiative-map-filter",
-		);
+	const header = document.querySelector(".header-section");
+	const footerSubNav = document.querySelector(".footer-sub-nav");
+	const map = document.querySelector(".international-Initiative-map-filter");
 
-		if (header && footerSubNav && map) {
-			const headerHeight = header.offsetHeight;
-			const footerSubNavHeight = footerSubNav.offsetHeight;
-			const viewportHeight = window.innerHeight;
+	if (header && footerSubNav && map) {
+		const headerHeight = header.offsetHeight;
+		const footerSubNavHeight = footerSubNav.offsetHeight;
+		const viewportHeight = window.innerHeight;
 
-			const mapHeight =
-				viewportHeight - headerHeight - footerSubNavHeight;
-			map.style.height = mapHeight + "px";
-		}
-	} else {
-		const map = document.querySelector(
-			".international-Initiative-map-filter",
-		);
-		if (map) {
-			map.style.height = "auto";
-		}
+		const mapHeight = viewportHeight - headerHeight - footerSubNavHeight;
+		map.style.height = mapHeight + "px";
 	}
 }
 
