@@ -53,7 +53,7 @@ $li_sl_staff_selector = $bst_block_fields['li_sl_staff_selector'] ?? null;
 
 				if ($query->have_posts()) :
 					while ($query->have_posts()) : $query->the_post();
-						$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+						$image = get_the_post_thumbnail_url(get_the_ID(), 'thumb_500');
 						$title = get_the_title();
 						$position = get_field('staff_designation', get_the_ID());
 						echo '
@@ -92,7 +92,7 @@ $li_sl_staff_selector = $bst_block_fields['li_sl_staff_selector'] ?? null;
 
 			if ($all_query->have_posts()) :
 				while ($all_query->have_posts()) : $all_query->the_post();
-					$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+					$image = get_the_post_thumbnail_url(get_the_ID(), 'thumb_500');
 					$title = get_the_title();
 					$position = get_field('staff_designation', get_the_ID());
 					
