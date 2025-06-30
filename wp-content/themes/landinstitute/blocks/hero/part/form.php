@@ -18,7 +18,7 @@ if (!empty($li_hero_headline_check) || !empty($wysiwyg) || !empty($button) || !e
 					<div class="col-left <?php echo esc_attr($bg_color); ?>">
 						<div class="hero-content">
 						<?php echo !empty($li_hero_headline_check) ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
-							<?php echo (!empty($li_hero_headline_check) && !empty($wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
+							<?php echo (!empty($li_hero_headline_check) || !empty($wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 							<?php echo !empty($wysiwyg) ? '<div class="hero-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s44"></div>' : ''; ?>	
 							<?php
 							echo ($choose_variation === 'form')
