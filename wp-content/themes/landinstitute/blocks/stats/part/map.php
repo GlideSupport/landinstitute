@@ -1,6 +1,6 @@
 <?php if (!empty($li_s_kicker) || !empty($li_s_image) || !empty($li_s_repeater_one)): ?>
 	<div class="impact-map-block stats-map-block">
-		<?php echo !empty($li_s_kicker) ? '<div class="gl-s44"></div><div class="ui-20-18-bold-uc block-title mb-0">' . esc_html($li_s_kicker) . '</div>' : ''; ?>
+		<?php echo !empty($li_s_kicker) ? '<div class="gl-s44"></div><div class="ui-20-18-bold-uc block-title mb-0">' . html_entity_decode($li_s_kicker) . '</div>' : ''; ?>
 		<!-- Years slider -->
 		<div class="map-content-value">
 			<div class="swiper-slide-container">
@@ -17,7 +17,7 @@
 									</h2>
 								</div>
 								<div class="ui-16-15-bold map-content">
-									<?php echo esc_html($li_s_rep_one['li_s_label_one'] ?? ''); ?>
+									<?php echo html_entity_decode($li_s_rep_one['li_s_label_one'] ?? ''); ?>
 								</div>
 							</div>
 						<?php endforeach; ?>

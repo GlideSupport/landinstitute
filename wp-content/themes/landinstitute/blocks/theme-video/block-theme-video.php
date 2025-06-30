@@ -86,6 +86,7 @@ switch ($video_type) {
     <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
     <?php echo !empty($li_tv_headline_check) ? BaseTheme::headline($li_tv_headline, 'heading-2 block-title mb-0') : ''; ?>
     </div>
+    <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s52"></div>' : ''; ?>
     <div class="gl-s52"></div>
     <div class="full-width-video">
         <video class="videos" playsinline="playsinline" muted="muted" preload="metadata" autoplay="autoplay" loop="loop"
