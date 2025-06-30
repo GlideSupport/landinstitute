@@ -298,28 +298,6 @@
                     "allow_in_bindings": 0
                 },
                 {
-                    "key": "field_6846b1da52a77",
-                    "label": "BG Color",
-                    "name": "li_mpc_bg_color",
-                    "aria-label": "",
-                    "type": "clone",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "clone": [
-                        "group_682b323a52258"
-                    ],
-                    "display": "seamless",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0
-                },
-                {
                     "key": "field_6846b31be9b3e",
                     "label": "Title",
                     "name": "li_mpc_title",
@@ -460,5 +438,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751267352
+    "modified": 1751282109
 }
