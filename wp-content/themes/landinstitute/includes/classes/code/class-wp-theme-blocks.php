@@ -163,8 +163,11 @@ class WP_Theme_Blocks {
 		// Register a block - Text List.
 		self::register_acf_block('text-list');
 		
-		// Register a block - Text List.
+		// Register a block - Airtable Map.
 		self::register_acf_block('airtable-map');
+
+		// Register a block - Info Box.
+		self::register_acf_block('info-box');
 
 		// [register_here].
 	}

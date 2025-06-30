@@ -1,0 +1,27 @@
+{
+	"name": "acf/info-boxr",
+	"title": "Info Box",
+	"description": "A custom Info Box block.",
+	"editorScript": ["block-info-box"],
+	"script": ["block-info-box"],
+	"category": "theme-blocks",
+	"icon": "slides",
+	"keywords": ["Info Box","Info", "box"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-info-box.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "info-box-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}
