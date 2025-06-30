@@ -376,6 +376,10 @@ html {
 
                 // height: 100% !important;
 
+                >div {
+                    background-color: var(--gb_primary_butter_yellow) !important;
+                }
+
                 .gm-bundled-control {
                     bottom: unset !important;
                     left: 30px;
@@ -459,7 +463,6 @@ html {
                     right: 18px;
                     top: 30px;
                     width: 30px;
-                    transition: opacity 0.3s ease;
 
                     .icon {
                         &:before {
@@ -483,7 +486,7 @@ html {
 
                 .wpgmza-inner-stack .grouping.visible~.grouping-handle {
                     opacity: 1;
-                    transition: opacity 0.3s ease;
+                    transition: opacity 1s ease;
                 }
             }
 
