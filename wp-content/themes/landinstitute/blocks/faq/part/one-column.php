@@ -2,7 +2,8 @@
 	<div class="faq-block-column <?php echo esc_attr($border_options); ?>">
 	<div class="heading-max">
 		<?php echo !empty($li_faq_headline_check)  ? BaseTheme::headline($li_faq_headline, 'heading-2 mb-0 block-title') . '' : ''; ?>
-		<?php echo !empty($li_faq_wysiwyg) ? '<div class="gl-s30"></div> <div class="block-content body-20-18-regular">' . html_entity_decode($li_faq_wysiwyg) . '</div><div class="gl-s30"></div>' : ''; ?>
+		<?php echo (!empty($li_faq_headline_check) || !empty($li_faq_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
+		<?php echo !empty($li_faq_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_faq_wysiwyg) . '</div><div class="gl-s30"></div>' : ''; ?>
 	</div>
 	
 	<div class="faq-block">

@@ -13,7 +13,7 @@
 			<?php echo (!empty($li_lg_headline_check) && !empty($li_lg_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 			<?php echo !empty($li_lg_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_lg_wysiwyg) . '</div>' : ''; ?>
 		</div>
-		<div class="gl-s52"></div>
+		<?php echo (!empty($li_lg_headline_check) || !empty($li_lg_wysiwyg)) ? '<div class="gl-s52"></div>' : ''; ?>
 		<?php if (!empty($li_lg_repeater_logos)) { ?>
 		<div class="logo-grid-row <?php echo $class; ?>">
 		<?php foreach ($li_lg_repeater_logos as $li_lg_repeater_logo) {
