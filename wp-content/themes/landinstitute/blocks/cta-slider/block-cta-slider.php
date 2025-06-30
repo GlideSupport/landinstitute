@@ -59,11 +59,13 @@ if ($li_cs_repeater) {
 ?>
 
 <div class="cta-slider-block <?php echo ($total_cta_count == 1) ? 'variation-static ' : ''; ?>">
-	<div class="heading-max">
-		<?php echo !empty($li_cs_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_cs_kicker) . '</div><div class="gl-s12"></div>' : ''; ?>
-		<?php echo !empty($li_cs_headline_check) ? BaseTheme::headline($li_cs_headline, 'heading-2 block-title mb-0') : ''; ?>
-	</div>
-	<div class="gl-s64"></div>
+	<?php if(!empty($li_cs_headline_check) || !empty($li_cs_kicker)): ?>
+		<div class="heading-max">
+			<?php echo !empty($li_cs_kicker) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($li_cs_kicker) . '</div><div class="gl-s12"></div>' : ''; ?>
+			<?php echo !empty($li_cs_headline_check) ? BaseTheme::headline($li_cs_headline, 'heading-2 block-title mb-0') : ''; ?>
+		</div>
+	<?php endif; ?>
+	<?php echo (!empty($li_cs_kicker) && !empty($li_cs_headline_check)) ? '<div class="gl-s64"></div>' : ''; ?>
 	<?php if (($total_cta_count > 1)): ?>
 		<?php if (!empty($li_cs_repeater)): ?>
 			<div class="cta-slider-box">
