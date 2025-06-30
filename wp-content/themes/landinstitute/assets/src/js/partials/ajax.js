@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	let currentPage = 1;
 
 	function fetchDonors() {
+		const postsPerPage = donorGrid.dataset.donorCount || 9;
 		// Loader
 		const existingLoader = donorGrid.querySelector(".ajax-loader");
         if (!existingLoader) {
@@ -75,6 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				donor_type: currentDonorType,
 				donation_level: currentDonationLevel,
 				paged: currentPage,
+				posts_per_page: postsPerPage 
 			}),
 		})
 			.then((res) => res.json())

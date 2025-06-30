@@ -48,6 +48,7 @@ $li_lg_choose_variation = $bst_block_fields['li_lg_choose_variation'] ?? 'home';
 $li_lg_wysiwyg = $bst_block_fields['li_lg_wysiwyg'] ?? null;
 $li_lg_logo_grid_layout = $bst_block_fields['li_lg_logo_grid_layout'] ?? null;
 $li_lg_repeater_logos = $bst_block_fields['li_lg_repeater_logos'] ?? null;
+$li_lg_donors_pages_show_at_most = $bst_block_fields['li_lg_donors_pages_show_at_most'] ?? null;
 ?>
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">

@@ -167,10 +167,9 @@
             },
             "choices": {
                 "two-column": "Two Column",
-                "three-column": "Three Column",
-                "four-column": "Four Column"
+                "three-column": "Three Column"
             },
-            "default_value": "",
+            "default_value": "three-column",
             "return_format": "value",
             "allow_null": 0,
             "allow_in_bindings": 0,
@@ -201,6 +200,37 @@
             "message": "",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_686277fd4339a",
+            "label": "Donors pages show at most",
+            "name": "li_lg_donors_pages_show_at_most",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68384cd7e4aaf",
+                        "operator": "==",
+                        "value": "filters"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_6852c9f777d5f",
@@ -391,5 +421,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751269690
+    "modified": 1751284070
 }

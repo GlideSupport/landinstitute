@@ -89,6 +89,11 @@ function ajax_filter_logo_grid_filter() {
 	$donation_level  = $_POST['donation_level'] ?? 'all';
 	$paged           = max(1, (int) ($_POST['paged'] ?? 1));
 
+	$posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 9;
+	if ($posts_per_page <= 0) {
+		$posts_per_page = 9;
+	}
+
 	$tax_query = ['relation' => 'AND'];
 
 	if ($donor_type !== 'all') {
@@ -110,10 +115,10 @@ function ajax_filter_logo_grid_filter() {
 	$args = [
 		'post_type'      => 'donor',
 		'post_status'    => 'publish',
-		'posts_per_page' => 6,
+		'posts_per_page' => $posts_per_page,
 		'paged'          => $paged,
 		'orderby'        => 'title',
-		'order'          => 'ASC',
+		'order'          => 'DESC',
 		'tax_query'      => $tax_query,
 	];
 
@@ -171,7 +176,7 @@ function ajax_filter_logo_grid_filter() {
 	$total_pages = $donors->max_num_pages;
 	$total_found_posts = $donors->found_posts;
 
-	if ($total_found_posts > 6) {
+	if ($total_found_posts > $posts_per_page) {
 		ob_start(); ?>
 		<div class="fillter-bottom">
 		<div class="pagination-container">

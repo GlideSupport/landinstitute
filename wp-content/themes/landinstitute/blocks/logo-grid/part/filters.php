@@ -28,8 +28,9 @@
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		$args = [
 			'post_type'      => 'donor',
-			'posts_per_page' => 6,
-			'order'          => 'ASC',
+			'posts_per_page' => $li_lg_donors_pages_show_at_most,
+			'orderby'        => 'title',
+			'order'          => 'DESC',
 			'post_status'    => 'publish',
 			'paged'          => $paged,
 		];
@@ -38,7 +39,7 @@
 		$current_page = max(1, $paged);
 
 		if ($donors->have_posts()) : ?>
-			<div class="filter-logos-row <?php echo $class; ?>">
+			<div class="filter-logos-row <?php echo $class; ?>" data-donor-count="<?php echo esc_attr($li_lg_donors_pages_show_at_most); ?>">
 				<?php while ($donors->have_posts()) : $donors->the_post(); 
 					// Get featured image
 					$image_id = get_post_thumbnail_id(get_the_ID());
