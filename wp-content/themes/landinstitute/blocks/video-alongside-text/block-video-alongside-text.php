@@ -84,12 +84,14 @@ switch ($video_type) {
 ?>
 
 <div class="video-alongside-text <?php echo esc_attr($border_options); ?>">
-    <div class="heading-max">
-        <?php echo !empty($li_vat_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_vat_kicker) . '</div>' : ''; ?>
-        <?php echo (!empty($li_vat_headline_check) && !empty($li_vat_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
-        <?php echo !empty($li_vat_headline_check) ? BaseTheme::headline($li_vat_headline, 'heading-2 block-title mb-0') : ''; ?>
-    </div>
-    <div class="gl-s52"></div>
+    <?php if(!empty($li_vat_headline_check) || !empty($li_vat_kicker)): ?>
+        <div class="heading-max">
+            <?php echo !empty($li_vat_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_vat_kicker) . '</div>' : ''; ?>
+            <?php echo (!empty($li_vat_headline_check) && !empty($li_vat_kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
+            <?php echo !empty($li_vat_headline_check) ? BaseTheme::headline($li_vat_headline, 'heading-2 block-title mb-0') : ''; ?>
+        </div>
+    <?php endif; ?>
+    <?php echo (!empty($li_vat_headline_check) && !empty($li_vat_kicker)) ? '<div class="gl-s52"></div>' : ''; ?>
     <div class="video-alongside-row">
         <div class="cl-left">
             <?php echo !empty($li_vat_wysiwyg) ? '<div class="block-content">' . html_entity_decode($li_vat_wysiwyg) . '</div><div class="gl-s96"></div>' : ''; ?> 

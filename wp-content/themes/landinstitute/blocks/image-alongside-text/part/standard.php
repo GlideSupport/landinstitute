@@ -12,7 +12,7 @@
 			<?php echo !empty($li_iat_headline_check) ? BaseTheme::headline($li_iat_headline, 'heading-2 mb-0 block-title') : ''; ?>
 			<?php echo (!empty($li_iat_headline_check) && !empty($li_iat_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
 			<?php echo !empty($li_iat_wysiwyg) ? '<div class="block-content">' . html_entity_decode($li_iat_wysiwyg) . '</div>' : ''; ?>  
-			<?php echo (!empty($li_iat_wysiwyg) && !empty($li_iat_button)) ? '<div class="gl-s30"></div>' : ''; ?>
+			<?php echo (!empty($li_iat_wysiwyg) || !empty($li_iat_button)) ? '<div class="gl-s30"></div>' : ''; ?>
 			<?php echo !empty($li_iat_button) ? '<div class="block-btn">' . BaseTheme::button($li_iat_button, 'site-btn text-link') . '</div>' : ''; ?>
 		</div>
 	</div>

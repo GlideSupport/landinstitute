@@ -57,7 +57,7 @@ if (!empty($li_tc_headline_check) || !empty($li_tc_wysiwyg) || !empty($li_tc_rep
                 <?php echo (!empty($li_tc_headline_check) && !empty($li_tc_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
                 <?php echo !empty($li_tc_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_tc_wysiwyg) . '</div>' : ''; ?>
             </div>
-            <div class="gl-s52"></div>
+            <?php echo (!empty($li_tc_headline_check) && !empty($li_tc_wysiwyg)) ? '<div class="gl-s52"></div>' : ''; ?>
             <?php if (!empty($li_tc_repeater) && is_array($li_tc_repeater)) : ?>
             <div class="tabbed-block-content">
                 <div class="tabs-listing">
