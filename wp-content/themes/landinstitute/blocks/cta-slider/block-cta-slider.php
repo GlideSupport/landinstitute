@@ -85,7 +85,7 @@ if ($li_cs_repeater) {
 											<div class="slide-content">
 												<?php echo !empty($title) ? '<div class="ui-34-28-bold block-title">' . esc_html($title) . '</div>' : ''; ?>
 												<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s24"></div>' : ''; ?>
-												<?php echo !empty($wysiwyg) ? '<div class="block-content">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s24"></div>' : ''; ?>
+												<?php echo !empty($wysiwyg) ? '<div class="block-content">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>
 												<?php echo !empty($link) ? '<div class="block-btn">' . BaseTheme::button($link, 'site-btn text-link') . '</div><div class="gl-s64"></div>' : ''; ?>
 											</div>
 										</div>
