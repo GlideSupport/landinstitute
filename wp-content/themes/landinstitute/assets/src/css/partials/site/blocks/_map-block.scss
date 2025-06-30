@@ -454,12 +454,12 @@ html {
                     left: auto;
                     min-height: 30px;
                     min-width: 30px;
-                    opacity: 1;
                     opacity: 0;
                     outline: none;
                     right: 18px;
                     top: 30px;
                     width: 30px;
+                    transition: opacity 0.3s ease;
 
                     .icon {
                         &:before {
@@ -483,6 +483,7 @@ html {
 
                 .wpgmza-inner-stack .grouping.visible~.grouping-handle {
                     opacity: 1;
+                    transition: opacity 0.3s ease;
                 }
             }
 
