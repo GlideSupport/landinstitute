@@ -373,18 +373,69 @@ html {
             position: relative;
             min-height: 100vh;
 
+            .wpgmza_map {
+                height: 100vh !important;
+            }
+
             .wpgmza-standalone-component {
                 position: absolute;
                 right: 0;
-                top: 0;
+                bottom: 0;
                 z-index: 1;
                 max-width: 480px !important;
                 background-color: var(--gb_base_cream);
                 border-top: 2px solid var(--gb_base_brown);
                 border-left: 2px solid var(--gb_base_brown);
-                height: 100%;
+                height: auto;
                 overflow-y: auto;
-                padding: 36px 36px;
+                color: var(--gb_base_brown);
+                display: inline-flex;
+                font-size: var(--gb_font_size_14);
+                @include font(plusjakarta, sbold);
+                letter-spacing: -0.51px;
+                line-height: 110%;
+                outline: none;
+                padding: 22px 82px 23px 34px;
+                position: relative;
+                text-decoration: none;
+                transition: 0.35s;
+
+                &:after {
+                    align-items: center;
+                    animation: shrink-back 0.4s forwards;
+                    background-color: var(--gb_base_brown);
+                    background-image: url(../images/button-arrow.svg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 0px;
+                    border-radius: 100px;
+                    content: '';
+                    display: flex;
+                    height: 22px;
+                    justify-content: center;
+                    position: absolute;
+                    right: 26px;
+                    top: 21px;
+                    transform: scale(0.27);
+                    transition: transform 0.4s ease-in-out;
+                    width: 22px;
+
+                    @media(max-width: 991px) {
+                        right: 16px;
+                        top: 16px;
+                    }
+                }
+
+                &:hover {
+                    background-color: var(--gb_primary_lilac);
+                    border-color: var(--gb_base_brown);
+                    color: var(--gb_base_brown);
+
+                    &:after {
+                        animation: bubble-pop 0.4s forwards;
+                        background-size: auto;
+                    }
+                }
 
                 &::-webkit-scrollbar {
                     background: transparent;
