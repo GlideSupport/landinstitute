@@ -404,8 +404,8 @@ html {
                             height: 42px !important;
                             width: 46px !important;
 
-                            &:first-child {
-                                border-bottom: 2px solid var(--gb_base_brown);
+                            &[aria-label="Zoom in"] {
+                                border-bottom: 2px solid var(--gb_base_brown) !important;
 
                                 &:before {
                                     background-image: url(../images/icon-plus.svg);
@@ -422,20 +422,22 @@ html {
                                 }
                             }
 
-                            &:last-child {
+                            &[aria-label="Zoom out"] {
                                 &:before {
                                     background-image: url(../images/icon-minus.svg);
                                     background-repeat: no-repeat;
                                     background-size: 46px 42px;
                                     content: "";
-                                    display: block;
+                                    height: 42px;
                                     left: 0;
                                     position: absolute;
                                     right: 0;
                                     top: 0;
+                                    width: 46px;
                                 }
                             }
                         }
+
                     }
                 }
 
@@ -455,10 +457,6 @@ html {
                     top: 30px;
                     width: 30px;
 
-                    .wpgmza-inner-stack .grouping.visible~.grouping-handle {
-                        opacity: 1;
-                    }
-
                     .icon {
                         &:before {
                             background-image: url(../images/close-icon.svg);
@@ -477,6 +475,10 @@ html {
                             display: none;
                         }
                     }
+                }
+
+                .wpgmza-inner-stack .grouping.visible~.grouping-handle {
+                    opacity: 1;
                 }
             }
 
@@ -586,6 +588,7 @@ html {
                     >label {
                         display: none;
                         margin-bottom: 12px;
+
                         // display: flex;
                         @extend .ui-18-16-bold-uc;
                     }
