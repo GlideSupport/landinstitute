@@ -95,6 +95,12 @@
     }
 
     &.timeline-block-fancy {
+        .border-card-click {
+            .block-title {
+                max-width: 400px;
+            }
+        }
+
         .swiper-wrapper {
             justify-content: inherit;
 
