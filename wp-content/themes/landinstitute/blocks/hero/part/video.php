@@ -49,7 +49,7 @@ switch ($video_type) {
     <div class="hero-default <?php echo esc_attr($border_options); ?>">
         <div class="wrapper">
             <div class="hero-alongside-block">
-                <div class="col-left bg-lime-green">
+                <div class="col-left <?php echo esc_attr($border_options); ?>">
                     <div class="left-content">
                         <?php echo $li_hero_headline_check ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
                         <?php echo ($li_hero_headline_check && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
