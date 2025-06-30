@@ -1102,7 +1102,10 @@ section:has(.text-featured-block) {
             height: 100%;
             text-decoration: none;
             margin-bottom: -2px;
-            padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+            padding-left: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+            padding-right: clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+            padding-bottom: var(--gb_space_13);
+            padding-top: var(--gb_space_13);
 
             @media(max-width: 991px) {
                 border-right: 0;
