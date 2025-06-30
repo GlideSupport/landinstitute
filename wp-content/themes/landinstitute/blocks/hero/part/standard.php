@@ -12,7 +12,7 @@ $variation_class = ($li_hero_choose_layout == 'global-network') ? 'variation-wid
 if (!empty($li_hero_headline_check) || !empty($kicker) || !empty($wysiwyg) || !empty($button) || !empty($image) || !empty($bg_image)): ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu <?php echo esc_attr($variation_class); ?>">
 		<!-- hero start -->
-		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
 		<div class="hero-default <?php echo esc_attr($border_options); ?>">
 			<div class="wrapper">
 				<div class="hero-alongside-block">

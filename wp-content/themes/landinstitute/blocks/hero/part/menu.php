@@ -20,7 +20,7 @@ if (is_array($select_menu) && isset($select_menu['slug'])) {
 if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($content) || !empty($select_menu) || !empty($image) || !empty($bg_image)): ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu">
 		<!-- hero start -->
-		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
 		<div class="hero-default <?php echo esc_attr($border_options); ?>">
 			<div class="wrapper">
 				<div class="hero-alongside-block">

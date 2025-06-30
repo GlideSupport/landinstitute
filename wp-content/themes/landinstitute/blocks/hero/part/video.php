@@ -45,7 +45,7 @@ switch ($video_type) {
 ?>
 <section id="hero-section" class="hero-section hero-section-default hero-video">
     <!-- hero start -->
-    <?php echo $bg_image ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+    <?php echo $bg_image ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
     <div class="hero-default <?php echo esc_attr($border_options); ?>">
         <div class="wrapper">
             <div class="hero-alongside-block">
@@ -57,7 +57,7 @@ switch ($video_type) {
                     </div>
                 </div>
                 <div class="col-right">
-                    <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+                    <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
                         <div class="video-play-group">
                             <div class="video-play">
                                 <video class="videos" playsinline muted preload="metadata" autoplay loop
