@@ -368,12 +368,12 @@
 html {
     body {
         .international-Initiative-map-filter {
-            min-height: 100vh;
+            // min-height: 100vh;
             overflow: hidden;
             position: relative;
 
             .wpgmza_map {
-                height: 100vh !important;
+                // height: 100vh !important;
 
                 .wpgmza-inner-stack .grouping.visible~.grouping-handle {
                     background: var(--gb_base_brown);
@@ -395,12 +395,13 @@ html {
                             background-image: url(../images/close-icon.svg);
                             background-position: center center;
                             background-repeat: no-repeat;
-                            background-size: 10px 10px;
+                            background-size: 16px 16px;
                             content: '';
                             display: block;
-                            height: 10px;
+                            height: 16px;
                             position: absolute;
-                            width: 10px;
+                            width: 16px;
+                            filter: brightness(0) saturate(100%) invert(94%) sepia(6%) saturate(0%) hue-rotate(44deg) brightness(105%) contrast(105%);
                         }
 
                         &:after {
@@ -580,7 +581,7 @@ html {
                     .grouping {
                         background: var(--gb_base_cream);
                         border-right: 2px solid var(--gb_base_brown);
-                        border-top: 2px solid var(--gb_base_brown);
+                        // border-top: 2px solid var(--gb_base_brown);
                         padding: 36px 36px;
 
                         &::-webkit-scrollbar {

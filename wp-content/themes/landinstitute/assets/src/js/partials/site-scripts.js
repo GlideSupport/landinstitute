@@ -235,7 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			const menu = clickedDropdown.querySelector(".dropdown-menu");
 
 			if (toggle && menu) {
-				const isExpanded = toggle.getAttribute("aria-expanded") === "true";
+				const isExpanded =
+					toggle.getAttribute("aria-expanded") === "true";
 				toggle.setAttribute("aria-expanded", String(!isExpanded));
 				clickedDropdown.classList.toggle("open", !isExpanded);
 
@@ -256,12 +257,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			if (dropdown) {
 				dropdown.classList.remove("open");
 				const toggle = dropdown.querySelector(".dropdown-toggle");
-				if (toggle) toggle.setAttribute("aria-expanded", "false");
+				if (toggle) {
+					toggle.setAttribute("aria-expanded", "false");
+				}
 			}
 		});
 	});
 });
-
 
 // Sticky Social Start
 document.addEventListener("DOMContentLoaded", () => {
@@ -391,14 +393,18 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 // Header Mega menu append js End
 
 function applyCardSpacing() {
-	const rowFlex = document.querySelector('.two-column-text.text-featured-block .row-flex');
-	const cards = rowFlex?.querySelectorAll('.text-card-col');
+	const rowFlex = document.querySelector(
+		".two-column-text.text-featured-block .row-flex",
+	);
+	const cards = rowFlex?.querySelectorAll(".text-card-col");
 
-	if (!rowFlex || !cards.length) return;
+	if (!rowFlex || !cards.length) {
+		return;
+	}
 
 	// Clear all margin-related classes first
-	cards.forEach(card => {
-		card.classList.remove('no-margin-top', 'no-margin-bottom');
+	cards.forEach((card) => {
+		card.classList.remove("no-margin-top", "no-margin-bottom");
 	});
 
 	// Only apply logic above 991px (2-column layout)
@@ -410,19 +416,19 @@ function applyCardSpacing() {
 			const currentRow = Math.floor(index / columnCount);
 
 			// Add margin-top reset to every card in each row
-			card.classList.add('no-margin-top');
+			card.classList.add("no-margin-top");
 
 			// Remove margin-bottom from all but the last row
 			if (currentRow < totalRows - 1) {
-				card.classList.add('no-margin-bottom');
+				card.classList.add("no-margin-bottom");
 			}
 		});
 	}
 }
 
 // Run on page load and on window resize
-document.addEventListener('DOMContentLoaded', applyCardSpacing);
-window.addEventListener('resize', applyCardSpacing);
+document.addEventListener("DOMContentLoaded", applyCardSpacing);
+window.addEventListener("resize", applyCardSpacing);
 
 document.addEventListener("DOMContentLoaded", function () {
 	// Search button click search popup js start
@@ -444,7 +450,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	 * When hovering one item, add class to all others;
 	 * remove class on mouse leave.
 	 *
-	 * @param {string} selector - CSS selector for items
+	 * @param {string} selector   - CSS selector for items
 	 * @param {string} hoverClass - class to toggle on other items
 	 */
 	function addHoverEffect(selector, hoverClass) {
@@ -477,13 +483,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Tab Content js start
 	const tabContainers = document.querySelectorAll(".tabbed-block-content");
-	if (!tabContainers.length) return; // Exit early if no tab blocks on the page
+	if (!tabContainers.length) {
+		return;
+	} // Exit early if no tab blocks on the page
 	tabContainers.forEach((container) => {
 		const tabs = container.querySelectorAll("ul.tabs li");
 		const contents = container.querySelectorAll(".tab-content");
 
 		// Skip if either tabs or contents are missing in this container
-		if (!tabs.length || !contents.length) return;
+		if (!tabs.length || !contents.length) {
+			return;
+		}
 
 		tabs.forEach((tab) => {
 			tab.addEventListener("click", function () {
@@ -515,15 +525,21 @@ document.addEventListener("DOMContentLoaded", function () {
 function initDropdownMenus() {
 	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
 
-	if (!tabDropdowns.length) return;
+	if (!tabDropdowns.length) {
+		return;
+	}
 
 	tabDropdowns.forEach((tabDropdown) => {
-		if (!tabDropdown) return;
+		if (!tabDropdown) {
+			return;
+		}
 
 		const toggleButton = tabDropdown.querySelector(".dropdown-toggle");
 		const dropdownMenu = tabDropdown.querySelector(".dropdown-menu");
 
-		if (!toggleButton || !dropdownMenu) return;
+		if (!toggleButton || !dropdownMenu) {
+			return;
+		}
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
@@ -562,7 +578,9 @@ function initDropdownMenus() {
 				const listItems = dropdownMenu.querySelectorAll("li");
 				if (listItems.length) {
 					listItems.forEach((item, index) => {
-						if (item) item.style.animationDelay = `${index * 0.1}s`;
+						if (item) {
+							item.style.animationDelay = `${index * 0.1}s`;
+						}
 					});
 				}
 			} else {
@@ -607,13 +625,17 @@ function initDropdowns() {
 
 	tabDropdowns.forEach((tabDropdown) => {
 		const toggleButton = tabDropdown.querySelector(".dropdown-toggle");
-		if (!toggleButton) return;
+		if (!toggleButton) {
+			return;
+		}
 
 		const menuId = toggleButton.getAttribute("aria-controls");
-		
+
 		// Try to find the dropdown menu - it might be outside the tabDropdown
-		let dropdownMenu = document.querySelector(`ul#${menuId}.dropdown-menu`);
-		
+		const dropdownMenu = document.querySelector(
+			`ul#${menuId}.dropdown-menu`,
+		);
+
 		// If not found, skip this dropdown for now - it might load later
 		if (!dropdownMenu) {
 			console.warn(`Dropdown menu with ID ${menuId} not found yet`);
@@ -622,8 +644,10 @@ function initDropdowns() {
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+			const scrollTop =
+				window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft =
+				window.pageXOffset || document.documentElement.scrollLeft;
 
 			dropdownMenu.style.position = "absolute";
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
@@ -657,13 +681,14 @@ function initDropdowns() {
 			if (buttonTextNode && buttonTextNode.nodeType === Node.TEXT_NODE) {
 				// Get the original button text to extract the prefix
 				const originalText = buttonTextNode.textContent;
-				
+
 				// Find the colon to split prefix from current value
-				const colonIndex = originalText.indexOf(':');
-				
+				const colonIndex = originalText.indexOf(":");
+
 				if (colonIndex !== -1) {
 					// Extract the prefix (everything before and including the colon + space)
-					const prefix = originalText.substring(0, colonIndex + 1) + ' ';
+					const prefix =
+						originalText.substring(0, colonIndex + 1) + " ";
 					buttonTextNode.textContent = prefix + selectedText;
 				} else {
 					// Fallback: if no colon found, just replace the entire text
@@ -677,7 +702,8 @@ function initDropdowns() {
 			event.preventDefault();
 			event.stopPropagation();
 
-			const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+			const isExpanded =
+				toggleButton.getAttribute("aria-expanded") === "true";
 
 			// Close all dropdowns first
 			closeAllDropdowns();
@@ -701,33 +727,42 @@ function initDropdowns() {
 		dropdownMenu.addEventListener("click", (event) => {
 			// Check if clicked element is a link or inside a link
 			const clickedLink = event.target.closest("a");
-			if (!clickedLink) return;
+			if (!clickedLink) {
+				return;
+			}
 
 			const href = clickedLink.getAttribute("href");
 			const selectedTerm = clickedLink.getAttribute("data-term");
 			const selectedText = clickedLink.textContent.trim();
 
 			// Check if this is a filter dropdown (has data-term) or a navigation menu
-			const isFilterDropdown = selectedTerm !== null && selectedTerm !== undefined;
-			const isJavascriptVoid = href === "javascript:void(0)" || href === "#" || href === "";
-			
+			const isFilterDropdown =
+				selectedTerm !== null && selectedTerm !== undefined;
+			const isJavascriptVoid =
+				href === "javascript:void(0)" || href === "#" || href === "";
+
 			// If it's a real URL and not a filter, update button text then navigate
-			if (!isJavascriptVoid && !isFilterDropdown && href && href.length > 0) {
+			if (
+				!isJavascriptVoid &&
+				!isFilterDropdown &&
+				href &&
+				href.length > 0
+			) {
 				// Prevent immediate navigation to show the update first
 				event.preventDefault();
 				event.stopPropagation();
-				
+
 				// Update button text to show selection
 				updateButtonText(selectedText);
-				
+
 				// Close the dropdown
 				closeDropdown();
-				
+
 				// Navigate after a short delay to show the text update
 				setTimeout(() => {
 					window.location.href = href;
 				}, 300); // 300ms delay to show the text change
-				
+
 				return;
 			}
 
@@ -739,8 +774,10 @@ function initDropdowns() {
 				// Only update UI if it's a filter dropdown
 				if (isFilterDropdown) {
 					// Remove active class from all items in this dropdown
-					dropdownMenu.querySelectorAll("li").forEach(li => li.classList.remove("active"));
-					
+					dropdownMenu
+						.querySelectorAll("li")
+						.forEach((li) => li.classList.remove("active"));
+
 					// Add active class to selected item
 					const selectedLi = clickedLink.closest("li");
 					if (selectedLi) {
@@ -753,25 +790,28 @@ function initDropdowns() {
 
 				// Close the dropdown FIRST
 				closeDropdown();
-				
+
 				// Only trigger filtering if it's actually a filter dropdown
 				if (isFilterDropdown) {
 					// Then trigger your AJAX filtering
 					console.log(`Selected ${toggleButton.id}:`, selectedTerm);
-					
+
 					// Add your AJAX filtering logic here
-					if (typeof filterContent === 'function') {
+					if (typeof filterContent === "function") {
 						filterContent(toggleButton.id, selectedTerm);
 					}
-					
+
 					// Or trigger a custom event for your AJAX handler
-					const filterEvent = new CustomEvent('dropdownFilterChanged', {
-						detail: {
-							filterType: toggleButton.id,
-							selectedTerm: selectedTerm,
-							selectedText: selectedText
-						}
-					});
+					const filterEvent = new CustomEvent(
+						"dropdownFilterChanged",
+						{
+							detail: {
+								filterType: toggleButton.id,
+								selectedTerm,
+								selectedText,
+							},
+						},
+					);
 					document.dispatchEvent(filterEvent);
 				}
 			}
@@ -779,8 +819,10 @@ function initDropdowns() {
 
 		// Close dropdown when clicking outside
 		document.addEventListener("click", (event) => {
-			if (!tabDropdown.contains(event.target) && 
-				!dropdownMenu.contains(event.target)) {
+			if (
+				!tabDropdown.contains(event.target) &&
+				!dropdownMenu.contains(event.target)
+			) {
 				closeDropdown();
 			}
 		});
@@ -800,10 +842,12 @@ function reinitDropdowns() {
 }
 
 // Listen for the custom filter event (for your AJAX implementation)
-document.addEventListener('dropdownFilterChanged', (event) => {
+document.addEventListener("dropdownFilterChanged", (event) => {
 	const { filterType, selectedTerm, selectedText } = event.detail;
-	console.log(`Filter changed - Type: ${filterType}, Term: ${selectedTerm}, Text: ${selectedText}`);
-	
+	console.log(
+		`Filter changed - Type: ${filterType}, Term: ${selectedTerm}, Text: ${selectedText}`,
+	);
+
 	// Add your AJAX call here
 	// Example:
 	// performAjaxFilter(filterType, selectedTerm);
@@ -816,7 +860,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Find all sticky elements and their related components
 	const stickyElements = document.querySelectorAll(".sticky-top-touch");
 
-	if (!stickyElements.length) return;
+	if (!stickyElements.length) {
+		return;
+	}
 
 	stickyElements.forEach(function (subNav) {
 		const headerSection = document.querySelector(".header-section");
@@ -824,7 +870,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			subNav.closest(".sticky-parent")?.parentElement?.parentElement;
 		const stickyParent = subNav.closest(".sticky-parent");
 
-		if (!headerSection || !parentSection || !stickyParent) return;
+		if (!headerSection || !parentSection || !stickyParent) {
+			return;
+		}
 
 		let headerHeight = headerSection.offsetHeight;
 
@@ -904,7 +952,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					// Trigger the scroll handler for each element
 					const scrollHandler = nav.onScrollHandler;
-					if (scrollHandler) scrollHandler();
+					if (scrollHandler) {
+						scrollHandler();
+					}
 				});
 			});
 
@@ -925,7 +975,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const galleryBlock = document.querySelector(".gallery-block");
 	const customCursor = document.querySelector(".custom-cursor");
 
-	if (!galleryGrid || !galleryBlock || !customCursor) { 
+	if (!galleryGrid || !galleryBlock || !customCursor) {
 		return;
 	}
 
@@ -933,7 +983,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function calculateBounds(galleryBlock) {
-	if (!galleryBlock) return;
+	if (!galleryBlock) {
+		return;
+	}
 	const isMobile = window.innerWidth <= 767;
 
 	let maxX, maxY;
@@ -948,33 +1000,33 @@ function calculateBounds(galleryBlock) {
 
 	console.log("Bounds:", maxX, maxY);
 }
-//Footer Menu accordion js start 
-	document.querySelectorAll(".footer-nav-title").forEach((title) => {
-		title.addEventListener("click", () => {
-			if (window.innerWidth <= 991) {
-				const parent = title.closest(".footer-nav");
+//Footer Menu accordion js start
+document.querySelectorAll(".footer-nav-title").forEach((title) => {
+	title.addEventListener("click", () => {
+		if (window.innerWidth <= 991) {
+			const parent = title.closest(".footer-nav");
 
-				// Close all others
-				document.querySelectorAll(".footer-nav").forEach((nav) => {
-					if (nav !== parent) {
-						nav.classList.remove("active");
-					}
-				});
-
-				// Toggle the clicked one
-				parent.classList.toggle("active");
-			}
-		});
-	});
-
-	window.addEventListener("resize", () => {
-		if (window.innerWidth > 991) {
+			// Close all others
 			document.querySelectorAll(".footer-nav").forEach((nav) => {
-				nav.classList.remove("active");
+				if (nav !== parent) {
+					nav.classList.remove("active");
+				}
 			});
+
+			// Toggle the clicked one
+			parent.classList.toggle("active");
 		}
 	});
-//Footer Menu accordion end start 
+});
+
+window.addEventListener("resize", () => {
+	if (window.innerWidth > 991) {
+		document.querySelectorAll(".footer-nav").forEach((nav) => {
+			nav.classList.remove("active");
+		});
+	}
+});
+//Footer Menu accordion end start
 
 //Image Gallery js start
 document.addEventListener("DOMContentLoaded", () => {
@@ -1000,8 +1052,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	function calculateBounds() {
 		// Additional safety check inside the function
-		if (!galleryBlock) return;
-		
+		if (!galleryBlock) {
+			return;
+		}
+
 		const isMobile = window.innerWidth <= 767;
 
 		if (isMobile) {
@@ -1190,7 +1244,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				// Trigger reflow to enable transition
 				void activeContent.offsetWidth;
 
-				activeContent.classList.add("fade-in");  
+				activeContent.classList.add("fade-in");
 				activeContent.style.opacity = 1;
 			}
 		});
@@ -1198,7 +1252,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	//staff js end
 });
 
-// news list js 
+// news list js
 // document.addEventListener("DOMContentLoaded", () => {
 // 	const tabDropdowns = document.querySelectorAll(".tab-dropdown-filter");
 
@@ -1316,3 +1370,20 @@ document.addEventListener("DOMContentLoaded", () => {
 // 		}
 // 	});
 // });
+
+function setMapHeight() {
+	const header = document.querySelector(".header-section");
+	const map = document.querySelector(".international-Initiative-map-filter");
+
+	if (header && map) {
+		const headerHeight = header.offsetHeight;
+		const viewportHeight = window.innerHeight;
+		const mapHeight = viewportHeight - headerHeight;
+
+		map.style.height = mapHeight + "px";
+	}
+}
+
+setMapHeight();
+
+window.addEventListener("resize", setMapHeight);
