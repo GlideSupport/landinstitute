@@ -379,7 +379,7 @@ html {
                     bottom: unset !important;
                     left: 30px;
                     right: unset !important;
-                    top: 20px;
+                    top: -54px;
 
                     gmp-internal-camera-control {
                         display: none;
@@ -402,6 +402,33 @@ html {
                             background: var(--gb_base_cream);
                             width: 46px !important;
                             height: 42px !important;
+
+                            &:first-child {
+                                border-bottom: 2px solid var(--gb_base_brown);
+
+                                &:before {
+                                    content: "";
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0;
+                                    background-image: url(../images/icon-plus.svg);
+                                }
+                            }
+
+                            &:last-child {
+
+                                &:before {
+                                    content: "";
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    right: 0;
+                                    background-image: url(../images/icon-minus.svg);
+                                }
+                            }
                         }
                     }
                 }
