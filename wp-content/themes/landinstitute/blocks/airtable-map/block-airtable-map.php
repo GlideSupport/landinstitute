@@ -39,36 +39,3 @@ if (!empty($li_to_add_map_shortcode)): ?>
         <?php echo do_shortcode('[wpgmza id="' . $li_to_add_map_shortcode . '"]'); ?>
     </section>
 <?php endif; ?>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const container = document.querySelector('.wpgmza-standalone-component');
-        const filter = container.querySelector('.wpgmza-marker-listing-category-filter');
-
-        if (container && filter) {
-            // Hide filter by default
-            filter.style.display = 'none';
-
-            // Create toggle div
-            const toggleDiv = document.createElement('div');
-            toggleDiv.className = 'map-filter-toggle';
-            toggleDiv.style.cursor = 'pointer';
-            toggleDiv.style.marginBottom = '10px';
-            toggleDiv.style.display = 'inline-block';
-            toggleDiv.style.color = '#0073aa';
-            toggleDiv.textContent = 'Show Map Filter';
-
-            // Insert toggleDiv at the top of the container
-            container.insertBefore(toggleDiv, container.firstChild);
-
-            // Click handler
-            toggleDiv.addEventListener('click', function() {
-                const isHidden = filter.style.display === 'none';
-
-                filter.style.display = isHidden ? 'block' : 'none';
-                toggleDiv.textContent = isHidden ? 'Hide Map Filter' : 'Show Map Filter';
-
-                container.classList.toggle('filter-visible', isHidden);
-            });
-        }
-    });
-</script>

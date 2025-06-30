@@ -653,7 +653,7 @@ function initDropdowns() {
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
 			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
 			dropdownMenu.style.width = `${rect.width}px`;
-			dropdownMenu.style.zIndex = "1000";
+			dropdownMenu.style.zIndex = "1";
 		}
 
 		function closeDropdown() {
@@ -1371,20 +1371,51 @@ document.addEventListener("DOMContentLoaded", () => {
 // 	});
 // });
 
-function setMapHeight() {
-	const header = document.querySelector(".header-section");
-	const footerSubNav = document.querySelector(".footer-sub-nav-sticky");
-	const map = document.querySelector(".international-Initiative-map-filter");
+document.addEventListener("DOMContentLoaded", function () {
+	const container = document.querySelector(".wpgmza-standalone-component");
+	const filter = container?.querySelector(".wpgmza-marker-listing-category-filter");
+	const mapWrapper = document.querySelector(".international-Initiative-map-filter");
 
-	if (header && footerSubNav && map) {
+	if (!container || !filter || !mapWrapper) return;
+
+	// Hide filter initially
+	filter.style.display = "none";
+
+	// Create toggle button
+	const toggleBtn = document.createElement("div");
+	toggleBtn.className = "map-filter-toggle";
+	toggleBtn.textContent = "Show Map Filter";
+	toggleBtn.style.cursor = "pointer";
+
+	// Insert toggle above filter
+	container.insertBefore(toggleBtn, container.firstChild);
+
+	// Toggle logic
+	toggleBtn.addEventListener("click", () => {
+		const isHidden = filter.style.display === "none";
+		filter.style.display = isHidden ? "block" : "none";
+		toggleBtn.textContent = isHidden ? "Hide Map Filter" : "Show Map Filter";
+		container.classList.toggle("filter-visible", isHidden);
+	});
+
+	// Set map height based on viewport and header/footer
+	function setMapHeight() {
+		const adminBar = document.getElementById("wpadminbar");
+		const header = document.querySelector(".header-section");
+		const footer = document.querySelector(".footer-sub-nav-sticky");
+
+		if (!header || !footer) return;
+
+		const adminHeight = adminBar?.offsetHeight || 0;
 		const headerHeight = header.offsetHeight;
-		const footerSubNavHeight = footerSubNav.offsetHeight;
+		const footerHeight = footer.offsetHeight;
 		const viewportHeight = window.innerHeight;
 
-		const mapHeight = viewportHeight - headerHeight - footerSubNavHeight;
-		map.style.height = mapHeight + "px";
+		const mapHeight = viewportHeight - headerHeight - footerHeight - adminHeight;
+		mapWrapper.style.height = `${mapHeight}px`;
 	}
-}
 
-setMapHeight();
-window.addEventListener("resize", setMapHeight);
+	// Initial + responsive resize handling
+	setMapHeight();
+	window.addEventListener("resize", setMapHeight);
+});
