@@ -58,7 +58,6 @@ switch ($video_type) {
                 </div>
                 <div class="col-right">
                     <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
-                    <?php if ($short_video): ?>
                         <div class="video-play-group">
                             <div class="video-play">
                                 <video class="videos" playsinline muted preload="metadata" autoplay loop
@@ -72,7 +71,6 @@ switch ($video_type) {
                                 <?php endif; ?>
                             </div>
                         </div>
-                    <?php endif; ?>
                 </div>
             </div>
         </div>
