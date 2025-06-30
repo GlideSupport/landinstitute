@@ -122,6 +122,7 @@ if ($li_cs_repeater) {
 									<div class="slide-content">
 										<?php echo !empty($wysiwyg) ? '<div class="block-content">' . html_entity_decode($wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>
 									</div>
+									<?php echo !empty($link) ? '<div class="block-btn">' . BaseTheme::button($link, 'site-btn text-link') . '</div><div class="gl-s64"></div>' : ''; ?>
 								</div>
 								<div class="cl-right">
 									<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image, 'thumb_1000') . '</div>' : ''; ?>
