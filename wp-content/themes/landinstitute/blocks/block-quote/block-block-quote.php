@@ -56,7 +56,8 @@ if (!empty($li_bq_kicker) || !empty($li_bq_quote) || !empty($li_bq_name) || !emp
 			<div class="block-quote-author">
 				<div class="author-details">
 				<?php echo !empty($li_bq_name) ? '<div class="author-name ui-eyebrow-18-16-regular">' . esc_html($li_bq_name) . '</div>' : ''; ?>
-				<?php echo !empty($li_bq_title) ? '<div class="author-designation body-18-16-regular">' . esc_html($li_bq_title) . '</div><div class="gl-s80"></div>' : ''; ?>
+				<?php echo !empty($li_bq_title) ? '<div class="author-designation body-18-16-regular">' . esc_html($li_bq_title) . '</div>' : ''; ?>
+				<?php echo (!empty($li_bq_name) || !empty($li_bq_title)) ? '<div class="gl-s80"></div>' : ''; ?>
 				</div>
 			</div>
 		</blockquote>
