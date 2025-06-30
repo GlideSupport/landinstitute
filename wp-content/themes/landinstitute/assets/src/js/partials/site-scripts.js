@@ -1373,7 +1373,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function setMapHeight() {
 	const header = document.querySelector(".header-section");
-	const footerSubNav = document.querySelector(".footer-sub-nav");
+	const footerSubNav = document.querySelector(".footer-sub-nav-sticky");
 	const map = document.querySelector(".international-Initiative-map-filter");
 
 	if (header && footerSubNav && map) {
