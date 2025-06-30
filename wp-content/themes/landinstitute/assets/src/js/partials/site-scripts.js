@@ -434,11 +434,24 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Search button click search popup js start
 	const searchBtn = document.querySelector(".search-btn");
 	const searchPopup = document.querySelector(".search-drop");
+	const searchContainer = document.querySelector(".search-mega-dropdown");
 
 	if (searchBtn && searchPopup) {
 		searchBtn.addEventListener("click", function (e) {
 			e.preventDefault(); // prevent default anchor link behavior
 			searchPopup.classList.toggle("active-search");
+		});
+
+		// Close search popup if clicking outside search elements
+		document.addEventListener("click", function (e) {
+			const isInsideSearch =
+				searchPopup.contains(e.target) ||
+				searchBtn.contains(e.target) ||
+				searchContainer?.contains(e.target);
+
+			if (!isInsideSearch) {
+				searchPopup.classList.remove("active-search");
+			}
 		});
 	}
 
@@ -1373,8 +1386,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
 	const container = document.querySelector(".wpgmza-standalone-component");
-	const filter = container?.querySelector(".wpgmza-marker-listing-category-filter");
-	const mapWrapper = document.querySelector(".international-Initiative-map-filter");
+	const filter = container?.querySelector(
+		".wpgmza-marker-listing-category-filter",
+	);
+	const mapWrapper = document.querySelector(
+		".international-Initiative-map-filter",
+	);
 
 	if (!container || !filter || !mapWrapper) return;
 
@@ -1394,7 +1411,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	toggleBtn.addEventListener("click", () => {
 		const isHidden = filter.style.display === "none";
 		filter.style.display = isHidden ? "block" : "none";
-		toggleBtn.textContent = isHidden ? "Hide Map Filter" : "Show Map Filter";
+		toggleBtn.textContent = isHidden
+			? "Hide Map Filter"
+			: "Show Map Filter";
 		container.classList.toggle("filter-visible", isHidden);
 	});
 
@@ -1411,7 +1430,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		const footerHeight = footer.offsetHeight;
 		const viewportHeight = window.innerHeight;
 
-		const mapHeight = viewportHeight - headerHeight - footerHeight - adminHeight;
+		const mapHeight =
+			viewportHeight - headerHeight - footerHeight - adminHeight;
 		mapWrapper.style.height = `${mapHeight}px`;
 	}
 
