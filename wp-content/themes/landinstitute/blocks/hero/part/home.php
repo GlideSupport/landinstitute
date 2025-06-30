@@ -18,7 +18,7 @@ $bg_image = $li_hero_home['bg_image'] ?? null;
 
 if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !empty($bg_image)): ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-pattern">
-		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
+		<?php echo !empty($bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
 		<div class="hero-default <?php echo esc_attr($border_options); ?>">
 			<div class="wrapper">
 				<div class="hero-alongside-block">

@@ -21,7 +21,7 @@
 				</div>
 					<?php echo (!empty($li_tct_headline_check) && !empty($li_tct_wysiwyg)) ? '<div class="gl-s44"></div>' : ''; ?>
 					<?php echo !empty($li_tct_wysiwyg) ? '<div class="two-col-content  body-20-18-regular">' . html_entity_decode($li_tct_wysiwyg) . '</div>' : ''; ?>
-					<?php echo !empty($li_tct_bg_image) ? '<div class="cta-image-full">' . wp_get_attachment_image($li_tct_bg_image, 'thumb_2000') . '</div>' : ''; ?>
+					<?php echo !empty($li_tct_bg_image) ? '<div class="cta-image-full">' . wp_get_attachment_image($li_tct_bg_image, 'thumb_1600') . '</div>' : ''; ?>
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>

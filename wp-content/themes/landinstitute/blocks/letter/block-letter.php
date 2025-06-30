@@ -59,14 +59,13 @@ if (!empty($li_l_kicker) || !empty($li_l_wysiwyg) || !empty($li_l_signature)  ||
             <div class="cl-left">
                 <?php echo !empty($li_l_signature) ? '<div class="signature-img">' . wp_get_attachment_image($li_l_signature, 'thumb_200') . '</div><div class="gl-s20"></div>' : ''; ?>
                 <?php echo !empty($li_l_name) ? '<div class="ui-eyebrow-18-16-regular signature-title">' . esc_html($li_l_name) . '</div>' : ''; ?>
-                <?php echo !empty($li_l_title) ? '<div class="body-18-16-regular signature-content">' . esc_html($li_l_title) . '</div>' : ''; ?>
-                <?php echo !empty($li_l_image) ? '<div class="gl-s36"></div>' : ''; ?>
+                <?php echo !empty($li_l_title) ? '<div class="body-18-16-regular signature-content">' . esc_html($li_l_title) . '</div><div class="gl-s36"></div>' : ''; ?>
+                
             </div>
             <div class="cl-right">
                 <?php echo !empty($li_l_image) ? wp_get_attachment_image($li_l_image, 'thumb_400') : ''; ?>
             </div>
         </div>
-        <?php echo empty($li_l_image) ? '<div class="gl-s96"></div>' : ''; ?>
     </div>
 </div>
 <?php endif; ?>

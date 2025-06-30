@@ -9,7 +9,6 @@
   "description": "Block to Manager Available Sections",
   "supports": {
     "html": false,
-    "anchor": true,
     "align": [
       "wide",
       "full"

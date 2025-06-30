@@ -26,7 +26,6 @@ import { InnerBlocks } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
 	const {
-		anchor,
 		bgImage,
 		bgDesignType,
 		bgWidth,
@@ -57,7 +56,7 @@ export default function save({ attributes }) {
 
 	return (
 
-		<section id={anchor ? anchor : undefined} className={classes.join(' ')} style={myStyle} >
+		<section className={classes.join(' ')} style={myStyle} >
 			<div className={wrapperClasses.join(' ')}>
 				<InnerBlocks.Content />
 			</div>

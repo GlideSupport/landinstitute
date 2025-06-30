@@ -45,11 +45,11 @@ switch ($video_type) {
 ?>
 <section id="hero-section" class="hero-section hero-section-default hero-video">
     <!-- hero start -->
-    <?php echo $bg_image ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
+    <?php echo $bg_image ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
     <div class="hero-default <?php echo esc_attr($border_options); ?>">
         <div class="wrapper">
             <div class="hero-alongside-block">
-                <div class="col-left <?php echo esc_attr($bg_color); ?>">
+                <div class="col-left bg-lime-green">
                     <div class="left-content">
                         <?php echo $li_hero_headline_check ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
                         <?php echo ($li_hero_headline_check && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
@@ -57,7 +57,8 @@ switch ($video_type) {
                     </div>
                 </div>
                 <div class="col-right">
-                    <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_2000') . '</div>' : ''; ?>
+                    <?php echo $bg_image ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+                    <?php if ($short_video): ?>
                         <div class="video-play-group">
                             <div class="video-play">
                                 <video class="videos" playsinline muted preload="metadata" autoplay loop
@@ -71,13 +72,14 @@ switch ($video_type) {
                                 <?php endif; ?>
                             </div>
                         </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<?php if ($modal_video_embed): ?>
+<?php if ($modal_video_embed && $short_video): ?>
     <div id="<?php echo esc_attr($unique_id); ?>" class="lity-hide popup-block">
         <div class="popup-video popup-block-design">
             <div class="video-play">
