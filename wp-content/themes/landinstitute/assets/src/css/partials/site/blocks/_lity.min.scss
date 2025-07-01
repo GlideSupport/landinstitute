@@ -331,6 +331,12 @@
             transform: translateZ(0);
             width: 100% !important;
 
+            @media(min-width: 1024px) {
+                @media(max-height: 645px) {
+                    padding-top: 49.25%;
+                }
+            }
+
             .videos,
             iframe {
                 display: block;
