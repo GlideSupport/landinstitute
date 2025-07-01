@@ -50,7 +50,7 @@ if (!empty($li_hero_headline_check) || !empty($menu_label) || !empty($content) |
 						</div>
 					</div>
 					<div class="col-right">
-					<?php echo !empty($bg_image) ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
+					<?php echo !empty($bg_image) ? '<div class="bg-pattern pattern-top-align">' . wp_get_attachment_image($bg_image, 'thumb_900') . '</div>' : ''; ?>
 					<?php echo !empty($image) ? '<div class="block-image-center">' . wp_get_attachment_image($image, 'thumb_900') . '</div>' : ''; ?>
 					</div>
 				</div>
