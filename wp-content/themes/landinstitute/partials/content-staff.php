@@ -36,7 +36,7 @@ $staff_email = get_field('staff_email_address', $bst_var_post_id);
 						<div class="sticky-parent">
 								<div class="sticky-top-touch">
 									<div class="back-btn">
-										<a class="site-btn arrow-pointing-left btn-lilac" href="/staff-directory/" title="" role="Button"
+										<a class="site-btn arrow-pointing-left btn-lilac" href="/about-us/staff/" title="" role="Button"
 											aria-label="Button">Back to All Staff
 										</a>
 									</div>
