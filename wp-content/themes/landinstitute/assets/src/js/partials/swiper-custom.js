@@ -299,7 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		// Initialize Swiper for each instance
 		new Swiper(slider, {
 			loop: false,
-			centeredSlides: true,
 			slidesPerView: 1.28,
 			spaceBetween: 0,
 			navigation: {
@@ -309,19 +308,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			breakpoints: {
 				480: {
 					slidesPerView: 1.8,
-					centeredSlides: true,
+					spaceBetween: 0,
 				},
 				767: {
 					slidesPerView: 2.2,
-					centeredSlides: true,
+					spaceBetween: 0,
 				},
 				1028: {
 					slidesPerView: 2.43,
-					centeredSlides: false,
+					spaceBetween: 0,
 				},
 				1920: {
 					slidesPerView: 2.43,
-					centeredSlides: false,
+					spaceBetween: 0,
 				},
 			},
 			on: {
