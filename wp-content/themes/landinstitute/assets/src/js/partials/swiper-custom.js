@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Initialize Swiper for each instance
 		new Swiper(slider, {
-			loop: false,
+			loop: true,
 			slidesPerView: 1.28,
 			spaceBetween: 0,
 			navigation: {
@@ -322,7 +322,12 @@ document.addEventListener("DOMContentLoaded", function () {
 					slidesPerView: 2.43,
 					spaceBetween: 0,
 				},
-			}
+			},
+			on: {
+				init(swiper) {
+					swiper.slideTo(1, 0); // Scroll to slide index 3 on init
+				}
+			},
 		});
 	});
 	// Timeline js end
