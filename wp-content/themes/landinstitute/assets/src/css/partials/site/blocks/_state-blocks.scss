@@ -10,6 +10,7 @@
         .col-left {
             flex: clamp(300px, calc(18.75rem + ((1vw - 9.92px) * 27.933)), 400px) 0 0;
             padding-right: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
+            width: clamp(300px, calc(18.75rem + ((1vw - 9.92px) * 27.933)), 400px);
 
             @media(max-width: 991px) {
                 flex: 100% 0 0;
