@@ -12,6 +12,7 @@
 					<?php foreach ($li_ill_repeater as $li_ill_rep) {
 						$title = $li_ill_rep['title'];
 						$text = $li_ill_rep['text'];
+						$image = $li_ill_rep['image'];
 						$link = $li_ill_rep['link'];
 						$link_url = $link['url'] ?? '';
 						if (!empty($title) || !empty($text) || !empty($link)) { ?>

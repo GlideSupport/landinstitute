@@ -516,19 +516,21 @@
     }
 }
 
+.has-border-bottom {
+    .download-list {
+        &.sticky-lft-block {
+            .block-btn {
+                margin-bottom: -2px;
+            }
+        }
+    }
+}
+
 .download-list {
     &.sticky-lft-block {
         .row-flex {
             .col-left {
                 margin-bottom: 0px;
-            }
-        }
-
-        &.has-border-bottom {
-            .row-flex {
-                .col-left {
-                    margin-bottom: -2px;
-                }
             }
         }
     }

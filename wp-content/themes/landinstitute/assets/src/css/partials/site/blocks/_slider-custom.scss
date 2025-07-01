@@ -220,6 +220,13 @@
     }
 }
 
+.has-border-bottom {
+    .cta-slider-block {
+        .block-ctn-btn {
+            margin-bottom: -2px;
+        }
+    }
+}
 
 .cta-slider-block {
     position: relative;
@@ -228,7 +235,7 @@
         display: flex;
         justify-content: flex-start;
         width: 100vw;
-        margin-bottom: -2px;
+        margin-bottom: 0;
         position: absolute;
         z-index: 1;
         bottom: 0;
@@ -502,13 +509,15 @@
     }
 }
 
-.read-more-block {
-    &.has-border-bottom {
+
+.has-border-bottom {
+    .read-more-block {
         .border-variable-slider {
             margin-bottom: -2px;
         }
     }
 }
+
 
 
 .image-gallery-slider {
