@@ -550,6 +550,8 @@ html {
                         height: auto;
                         order: 3;
                         border-top: 2px solid var(--gb_base_brown);
+                        padding: 28px 24px 28px;
+                        border-bottom: 0;
                     }
 
                     &::-webkit-scrollbar {
