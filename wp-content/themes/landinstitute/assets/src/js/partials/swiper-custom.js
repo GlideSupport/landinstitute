@@ -279,7 +279,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Timeline js start
 	const timelineBlocks = document.querySelectorAll(".timeline-block");
-
 	timelineBlocks.forEach((block, index) => {
 		const slider = block.querySelector(".timeline-slider");
 		const nextBtn = block.querySelector(".swiper-button-next");
@@ -322,12 +321,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					slidesPerView: 2.43,
 					spaceBetween: 0,
 				},
-			},
-			on: {
-				init(swiper) {
-					swiper.slideTo(3, 0); // Scroll to slide index 3 on init
-				}
-			},
+			}
 		});
 	});
 	// Timeline js end
