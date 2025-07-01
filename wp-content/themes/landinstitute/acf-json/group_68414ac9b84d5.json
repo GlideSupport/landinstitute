@@ -21,7 +21,7 @@
                 "right": "Right Side",
                 "both": "Left and Right Side"
             },
-            "default_value": "",
+            "default_value": "left",
             "return_format": "value",
             "allow_null": 0,
             "allow_in_bindings": 0,
@@ -62,7 +62,7 @@
         {
             "key": "field_68414b4189a1f",
             "label": "Nav Right Button",
-            "name": "li_po_nav_button",
+            "name": "li_po_nav_right_button",
             "aria-label": "",
             "type": "link",
             "instructions": "",
@@ -175,5 +175,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751373069
+    "modified": 1751373389
 }

@@ -83,11 +83,13 @@ $li_select_footer_menu_9 = $bst_option_fields['landinstitute_select_footer_menu_
 
 //Page options
 $li_po_nav_button = $bst_fields['li_po_nav_button'] ?? null;
-$li_po_sub_nav_sticky = $bst_fields['li_po_sub_nav_sticky'] ?? null;
 
 $li_po_nav_button_position  = $bst_fields['li_po_nav_button_position'] ?? 'left';
 $li_po_nav_left_button = $bst_fields['li_po_nav_left_button'] ?? null;
-$li_po_left_btn_arrow_position  = $bst_fields['li_po_left_btn_arrow_position'] ?? 'right';
+$li_po_nav_right_button = $bst_fields['li_po_nav_right_button'] ?? null;
+$li_po_left_btn_arrow_position  = $bst_fields['li_po_left_btn_arrow_position'] ?? 'left';
+$li_po_sub_nav_sticky = $bst_fields['li_po_sub_nav_sticky'] ?? null;
+
 
 $button_position_class = '';
 $button_bg_class = '';
