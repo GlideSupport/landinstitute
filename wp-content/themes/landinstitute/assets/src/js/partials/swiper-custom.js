@@ -2,39 +2,39 @@ import Swiper from "swiper/bundle";
 
 document.addEventListener("DOMContentLoaded", function () {
 	// Initialize multiple timeline fancy sliders
-	document.querySelectorAll(".timeline-slider-fancy").forEach((el, index) => {
-		new Swiper(el, {
-			loop: false,
-			navigation: {
-				nextEl: el
-					.closest(".swiper-container-wrapper")
-					?.querySelector(".swiper-button-next"),
-				prevEl: el
-					.closest(".swiper-container-wrapper")
-					?.querySelector(".swiper-button-prev"),
-			},
-			centeredSlides: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			breakpoints: {
-				640: {
-					slidesPerView: 2,
-					spaceBetween: 0,
-					centeredSlides: false,
-				},
-				1028: {
-					slidesPerView: 2,
-					spaceBetween: 0,
-					centeredSlides: false,
-				},
-				1920: {
-					slidesPerView: 2,
-					spaceBetween: 0,
-					centeredSlides: false,
-				},
-			},
-		});
-	});
+	document.querySelectorAll('.timeline-slider-fancy').forEach((el) => {
+        new Swiper(el, {
+            loop: false,
+            initialSlide: 0,
+            observer: true,
+            observeParents: true,
+            updateOnWindowResize: true,
+            centeredSlides: false,
+            slidesPerView: 1.2,
+            spaceBetween: 0,
+            navigation: {
+                nextEl: el.closest('.swiper-container-wrapper')?.querySelector('.swiper-button-next'),
+                prevEl: el.closest('.swiper-container-wrapper')?.querySelector('.swiper-button-prev'),
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2.285,
+                    spaceBetween: 0,
+                    centeredSlides: false,
+                },
+                1028: {
+                    slidesPerView: 2.285,
+                    spaceBetween: 0,
+                    centeredSlides: false,
+                },
+                1920: {
+                    slidesPerView: 2.285,
+                    spaceBetween: 0,
+                    centeredSlides: false,
+                },
+            },
+        });
+    });
 
 	// Initialize multiple post teaser sliders
 	document.querySelectorAll(".variable-slide-preview").forEach((el) => {
