@@ -35,11 +35,11 @@
                 flex-wrap: wrap;
                 gap: 0px;
             }
-        }
 
-        &:has(.card-list .card-item.hover-img) {
-            @media(min-width: 1200px) {
-                gap: 160px;
+            &:has(.card-list .card-item.hover-img) {
+                @media(min-width: 1200px) {
+                    gap: 160px;
+                }
             }
         }
 
