@@ -42,15 +42,19 @@ $bst_var_error_search = $bst_option_fields['bst_var_error_search'] ?? false;
 					</div>
 					<div class="gl-s30"></div>
 					<div class="form-404 search-popup-content">
-						<div class="popup-search">
-							<?php
-							if (!$bst_var_error_search) {
-								get_search_form();
-							}
-							?>
-						</div>
+						<?php if (!$bst_var_error_search) { ?>
+							<div class="not-found-search">
+								<form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+									<label>
+										<span class="screen-reader-text"><?php _e('Search for:', 'textdomain'); ?></span>
+										<input type="search" class="search-field" placeholder="Search …" value="<?php echo get_search_query(); ?>" name="s" />
+									</label>
+									<button type="submit" class="site-btn sm-btn btn-lemon-yellow">Search</button>
+								</form>
+							</div>
+						<?php } ?>
 					</div>
-					<div class="gl-s52"></div>
+					<div class="gl-s30"></div>
 					<div class="back-to-home">
 						<a href="<?php echo esc_url(home_url('/')); ?>" title="Back To Home" role="Back To Home"
 							aria-label="Back To Home" class="site-btn">
