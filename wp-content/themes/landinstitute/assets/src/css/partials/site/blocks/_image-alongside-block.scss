@@ -494,8 +494,20 @@
             }
         }
     }
+}
 
-    &.has-border-bottom {
+
+
+.has-border-bottom {
+    .download-list {
+        &.sticky-lft-block {
+            .block-btn {
+                margin-bottom: -2px;
+            }
+        }
+    }
+
+    .sticky-lft-block {
         .row-flex {
             .col-left {
                 margin-bottom: -2px;
@@ -511,16 +523,6 @@
                         border-bottom: 0;
                     }
                 }
-            }
-        }
-    }
-}
-
-.has-border-bottom {
-    .download-list {
-        &.sticky-lft-block {
-            .block-btn {
-                margin-bottom: -2px;
             }
         }
     }
