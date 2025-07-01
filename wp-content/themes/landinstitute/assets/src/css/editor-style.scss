@@ -2501,3 +2501,22 @@ body {
 #imagify-pricing-modal {
     display: none;
 }
+
+
+
+.bg-color-selector {
+    .acf-button-group {
+        flex-wrap: wrap;
+
+        label {
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+
+            &.selected,
+            &:hover {
+                color: var(--gb_base_brown);
+            }
+        }
+    }
+}
