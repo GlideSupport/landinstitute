@@ -3,7 +3,7 @@
     <?php echo !empty($li_t_kicker) ? '<div class="ui-20-18-bold-uc kicker-title mb-0">' . esc_html($li_t_kicker) . '</div><div class="gl-s64"></div>' : ''; ?>
     <?php if (!empty($li_t_repeater)) : ?>
     <div class="timeline-slides-block timeline-block-fancy">
-        <div class="swiper-container timeline-slider-fancy cursor-drag-icon">
+        <div class="swiper-container timeline-slider-fancy <?php echo (count($li_t_repeater) >= 3) ? 'cursor-drag-icon' : ''; ?>">
             <div class="swiper-wrapper">
                 <?php foreach ($li_t_repeater as $item) :
 							$year = $item['li_t_year'] ?? '';
