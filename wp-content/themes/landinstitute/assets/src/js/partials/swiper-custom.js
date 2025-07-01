@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			},
 			on: {
 				init(swiper) {
-					swiper.slideTo(1, 0); // Scroll to slide index 3 on init
+					swiper.slideTo(3, 0); // Scroll to slide index 3 on init
 				}
 			},
 		});
