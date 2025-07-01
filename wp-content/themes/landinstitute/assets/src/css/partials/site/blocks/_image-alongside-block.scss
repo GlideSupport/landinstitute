@@ -502,16 +502,14 @@
     .download-list {
         &.sticky-lft-block {
             .block-btn {
-                margin-bottom: -2px;
+                margin-bottom: 0;
             }
 
             .row-flex {
-                .col-left {
-                    margin-bottom: -2px;
+                margin-bottom: -2px;
 
-                    @media(max-width: 991px) {
-                        margin-bottom: 0;
-                    }
+                @media(max-width: 991px) {
+                    margin-bottom: 0;
                 }
             }
         }
