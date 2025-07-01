@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const topBarCross = document.querySelector(".top-bar-cross");
 	let lastScrollTop = 0;
 
-	const adminBarHeight =
-		document.getElementById("wpadminbar")?.offsetHeight || 0;
+	const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
 	// hero banner min-height set
 	const herobanner = document.querySelector(".header-section");
 	const heroBlock = document.querySelector(
@@ -53,36 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			headerSection.classList.remove("shrink");
 			document.body.classList.remove("shrink");
 		}
-
-		// if (scrollTop >= headerHeight / 2) {
-		// 	headerSection.classList.add("site-header-sticky");
-		// 	headerSection.style.top = `-${headerHeight}px`;
-		// } else {
-		// 	headerSection.classList.remove(
-		// 		"site-header-sticky",
-		// 		"site-header-show",
-		// 	);
-		// 	headerSection.style.top = "";
-		// }
-
-		// if (headerSection.classList.contains("site-header-sticky")) {
-		// 	if (scrollTop < lastScrollTop) {
-		// 		// Scrolling up
-		// 		headerSection.classList.add("site-header-show");
-		// 		headerSection.style.top = `${adminBarHeight}px`;
-		// 	} else {
-		// 		// Scrolling down
-		// 		headerSection.classList.remove("site-header-show");
-		// 	}
-		// }
-
 		lastScrollTop = Math.max(0, scrollTop);
 	}
 
 	// Resize event
 	function handleResize() {
-		headerInitialSectionHeight =
-			adminBarHeight + (headerSection?.offsetHeight || 0);
+		headerInitialSectionHeight = adminBarHeight + (headerSection?.offsetHeight || 0);
 		setInitialPadding();
 	}
 
@@ -109,8 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Run only when all assets (images/fonts) are loaded
 	window.addEventListener("load", function () {
-		headerInitialSectionHeight =
-			adminBarHeight + (headerSection?.offsetHeight || 0);
+		headerInitialSectionHeight = (headerSection?.offsetHeight || 0);
 		setInitialPadding();
 		adjustHeader();
 		adjustContentMinHeight();
