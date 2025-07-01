@@ -37,6 +37,12 @@
             }
         }
 
+        &:has(.card-list .card-item.hover-img) {
+            @media(min-width: 1200px) {
+                gap: 160px;
+            }
+        }
+
         .parallax-img {
             margin-left: calc(-50vw + 50%);
             overflow: hidden;
