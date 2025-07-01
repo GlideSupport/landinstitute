@@ -192,11 +192,11 @@ select {
 textarea {
 	height: 200px;
 	overflow: auto;
-	padding: 14px 16px 14px 16px;
+	padding: 16px 0 16px 0;
 	resize: none;
 
 	@media(max-width: 640px) {
-		padding: 8px 14px 12px 14px;
+		padding: 16px 0 16px 0;
 	}
 }
 

@@ -183,7 +183,7 @@ select.ui-datepicker-year {
 
                     .gform-grid-col {
                         margin: 0;
-                        width: calc(33.33% - 18px);
+                        width: calc(33.33% - 19px);
 
                         @media(max-width: 991px) {
                             width: auto;
@@ -466,10 +466,10 @@ table.ui-datepicker_calendar {
 
             .gfield_label,
             .gform-field-label {
-                margin-bottom: 20px;
+                margin-bottom: 36px;
 
                 @media(max-width: 767px) {
-                    margin-bottom: 16px;
+                    margin-bottom: 30px;
                 }
             }
         }
@@ -517,7 +517,7 @@ table.ui-datepicker_calendar {
     .gfield_label,
     .gform-field-label {
         display: flex;
-        margin-bottom: 0;
+        margin-bottom: 20px;
 
         @extend .ui-18-16-bold;
     }
