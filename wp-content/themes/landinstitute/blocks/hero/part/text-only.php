@@ -5,12 +5,7 @@ $kicker = $li_hero_text_only['kicker'] ?? null;
 
 if (!empty($li_hero_headline_check) || !empty($kicker)) : ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
-		<!-- hero start -->
-		<div class="bg-pattern">
-			<img src="<?php echo esc_url(home_url('/')); ?>wp-content/uploads/2025/05/tli-pattern-Dandelion-Lilac-scaled.jpg"
-				width="" height="" alt="" />
-		</div>
-		<div class="hero-default">
+		<div class="hero-default" <?php echo esc_attr($border_options); ?>>
 			<div class="wrapper">
 				<div class="hero-alongside-block">
 					<div class="col-content <?php echo esc_attr($bg_color); ?>">
