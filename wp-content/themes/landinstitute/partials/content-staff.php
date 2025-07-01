@@ -15,13 +15,13 @@ $staff_title        = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $staff_bio          = get_the_content();
 $staff_designation  = get_field('staff_designation', $bst_var_post_id);
 $staff_email        = get_field('staff_email_address', $bst_var_post_id);
+$li_to_bg_image = $bst_option_fields['li_to_bg_image'] ?? null;
+
 ?>
 
 <div id="page-section" class="page-section">
 	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
-		<div class="bg-pattern">
-			<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/tli-pattern-Dandelion-Lilac-scaledbg.jpg" alt="Background Pattern" />
-		</div>
+		<?php echo !empty($li_to_bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($li_to_bg_image, 'thumb_1600') . '</div>' : ''; ?>
 	</section>
 
 	<section class="container-1280">
