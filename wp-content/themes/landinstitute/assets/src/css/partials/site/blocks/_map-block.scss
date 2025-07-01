@@ -493,7 +493,7 @@ html {
             .wpgmza-standalone-component {
                 bottom: 0;
                 height: 100%;
-                max-width: 482px !important;
+                max-width: clamp(360px, calc(22.5rem + ((1vw - 9.92px) * 34.0782)), 482px) !important;
                 position: absolute;
                 right: 0;
 
@@ -508,6 +508,10 @@ html {
                     height: 100%;
                     overflow-y: auto;
                     padding: 36px 36px 100px 36px;
+
+                    @media(max-width: 1200px) {
+                        padding: 28px 24px 84px;
+                    }
 
                     &::-webkit-scrollbar {
                         background: transparent;
@@ -661,10 +665,17 @@ html {
 
             .wpgmza_map {
                 .wpgmza-inner-stack.left {
+                    max-width: 100%;
+
                     .grouping {
                         background: var(--gb_base_cream);
                         border-right: 2px solid var(--gb_base_brown);
                         padding: 36px 36px;
+                        width: clamp(360px, calc(22.5rem + ((1vw - 9.92px) * 33.5196)), 480px);
+
+                        @media(max-width: 1200px) {
+                            padding: 28px 24px;
+                        }
 
                         // border-top: 2px solid var(--gb_base_brown);
                         &::-webkit-scrollbar {
