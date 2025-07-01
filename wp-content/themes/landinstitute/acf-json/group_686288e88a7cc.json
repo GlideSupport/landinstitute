@@ -196,7 +196,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/info-boxr"
+                "value": "acf\/info-box"
             }
         ]
     ],
@@ -209,5 +209,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751289534
+    "modified": 1751372006
 }
