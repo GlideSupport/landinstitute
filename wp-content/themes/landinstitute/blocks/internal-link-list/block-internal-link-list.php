@@ -11,7 +11,7 @@
  * @since 1.0.0
  */
 
-list($bst_block_id, $bst_block_fields) = BaseTheme::defaults($block['id']);
+list($bst_block_id, $bst_block_fields, $bst_option_fields) = BaseTheme::defaults($block['id']);
 
 
 // Set the block name for it's ID & class from it's file name.
@@ -48,6 +48,7 @@ $li_ill_choose_variation = $bst_block_fields['li_ill_choose_variation'] ?? 'two-
 $li_ill_wysiwyg = $bst_block_fields['li_ill_wysiwyg'] ?? null;
 $li_ill_repeater = $bst_block_fields['li_ill_repeater'] ?? null;
 $li_ill_image = $bst_block_fields['li_ill_image'] ?? null;
+$li_ill_img = $bst_block_fields['li_ill_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 $li_ill_show_or_hide_arrow = $bst_block_fields['li_ill_show_or_hide_arrow'] ?? 'with-arrow';
 
 ?>
