@@ -5,7 +5,7 @@ $kicker = $li_hero_text_only['kicker'] ?? null;
 
 if (!empty($li_hero_headline_check) || !empty($kicker)) : ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
-		<div class="hero-default" <?php echo esc_attr($border_options); ?>>
+		<div class="hero-default <?php echo esc_attr($border_options); ?>">
 			<div class="wrapper">
 				<div class="hero-alongside-block">
 					<div class="col-content <?php echo esc_attr($bg_color); ?>">
