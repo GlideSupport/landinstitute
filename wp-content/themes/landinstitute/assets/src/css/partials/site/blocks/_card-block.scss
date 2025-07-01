@@ -95,6 +95,16 @@
     }
 
     &.timeline-block-fancy {
+        .swiper-slide {
+            height: auto;
+            display: flex;
+
+            .fancy-border-card {
+                align-self: flex-end;
+                height: auto;
+            }
+        }
+
         .border-card-click {
             .block-title {
                 max-width: 400px;
