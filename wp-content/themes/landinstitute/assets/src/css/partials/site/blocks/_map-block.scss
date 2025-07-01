@@ -476,6 +476,13 @@ html {
                             height: 16px;
                             position: absolute;
                             width: 16px;
+
+                            @media(max-width: 767px) {
+                                filter: inherit;
+                                background-size: 28px 28px;
+                                width: 28px;
+                                height: 28px;
+                            }
                         }
 
                         &:after {
@@ -497,6 +504,10 @@ html {
                 position: absolute;
                 right: 0;
 
+                @media(max-width: 640px) {
+                    max-width: 100%;
+                }
+
                 &.filter-visible {
                     z-index: 1;
                 }
@@ -511,6 +522,10 @@ html {
 
                     @media(max-width: 1200px) {
                         padding: 28px 24px 84px;
+                    }
+
+                    @media(max-width: 767px) {
+                        border-left: 0;
                     }
 
                     &::-webkit-scrollbar {
@@ -578,6 +593,10 @@ html {
                             right: 16px;
                             top: 16px;
                         }
+
+                        @media(max-width: 640px) {
+                            border-left: 0px;
+                        }
                     }
 
                     &:hover {
@@ -590,6 +609,10 @@ html {
                             background-size: auto;
                         }
                     }
+
+                    @media(max-width: 767px) {
+                        padding: 20px 55px 21px 24px;
+                    }
                 }
 
                 &.filter-visible {
@@ -600,6 +623,10 @@ html {
                     >label {
                         display: none;
                         margin-bottom: 12px;
+
+                        @media(max-width: 767px) {
+                            margin-bottom: 10px;
+                        }
 
                         // display: flex;
                         @extend .ui-18-16-bold-uc;
@@ -615,6 +642,10 @@ html {
                             margin: 0;
                             margin-bottom: 8px;
                             padding: 0;
+
+                            @media(max-width: 767px) {
+                                margin-bottom: 10px;
+                            }
 
                             &::before {
                                 display: none;
@@ -640,6 +671,10 @@ html {
 
                             ul {
                                 margin: 0 0 30px;
+
+                                @media(max-width: 767px) {
+                                    margin: 0 0 12px;
+                                }
 
                                 li {
                                     label {
@@ -674,7 +709,11 @@ html {
                         width: clamp(360px, calc(22.5rem + ((1vw - 9.92px) * 33.5196)), 480px);
 
                         @media(max-width: 1200px) {
-                            padding: 28px 24px;
+                            padding: 55px 24px 28px;
+                        }
+
+                        @media(max-width: 767px) {
+                            border-right: 0;
                         }
 
                         // border-top: 2px solid var(--gb_base_brown);
