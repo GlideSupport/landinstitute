@@ -239,7 +239,9 @@
                 }
 
                 &.bg-primary-pink {
-                    &:before {
+
+                    &:before,
+                    &:after {
                         background-color: var(--gb_primary_pink);
                     }
                 }
