@@ -13,7 +13,7 @@
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "bg-color-selector",
                 "id": ""
             },
             "choices": {
@@ -51,5 +51,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751369093
+    "modified": 1751373216
 }

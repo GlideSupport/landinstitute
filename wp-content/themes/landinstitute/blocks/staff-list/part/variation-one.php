@@ -20,7 +20,7 @@
                     $post_id   = get_the_ID();
                     $title     = get_the_title($post_id);
                     $position  = get_field('staff_designation', $post_id);
-                    $content   = get_field('staff_bio_description', $post_id);
+                    $content   = get_the_excerpt($post_id);
                     $image     = get_post_thumbnail_id($post_id) ? wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_400') : '';
                     $permalink = get_permalink($post_id);
                 ?>
