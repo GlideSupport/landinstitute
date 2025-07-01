@@ -9,7 +9,7 @@ $li_sl_staff_selector = $bst_block_fields['li_sl_staff_selector'] ?? null;
 	<div class="tabbed-block-content">
 	<div class="tabs-listing">
 		<?php
-		$terms = get_terms([ 'taxonomy' => 'staff-category', 'hide_empty' => false, ]);
+		$terms = get_terms([ 'taxonomy' => 'staff-category', 'hide_empty' => true, 'parent' => 0, ]);
 
 		if (!empty($terms) && !is_wp_error($terms)) :
 		?>
