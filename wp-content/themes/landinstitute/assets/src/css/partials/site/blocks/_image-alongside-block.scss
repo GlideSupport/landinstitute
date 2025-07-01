@@ -661,12 +661,16 @@
             }
         }
     }
+}
 
-    &.has-border-bottom {
-        .cl-left {
-            .text-card-btn {
-                .site-btn {
-                    margin-bottom: -2px;
+.has-border-bottom {
+    .midpage-cta-map {
+        .row-flex {
+            .cl-left {
+                .text-card-btn {
+                    .site-btn {
+                        margin-bottom: -2px;
+                    }
                 }
             }
         }
