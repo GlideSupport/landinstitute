@@ -509,13 +509,15 @@
     }
 }
 
-.read-more-block {
-    &.has-border-bottom {
+
+.has-border-bottom {
+    .read-more-block {
         .border-variable-slider {
             margin-bottom: -2px;
         }
     }
 }
+
 
 
 .image-gallery-slider {
