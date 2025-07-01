@@ -41,7 +41,7 @@ $li_cr_repeater = $bst_block_fields['li_cr_repeater'] ?? null;
 										<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
 										<?php echo (!empty($title) && !empty($time)) ? '<div class="gl-s4"></div>' : ''; ?>
 										<?php echo !empty($time) ? '<div class="ui-eyebrow-18-16-regular block-subhead">' . esc_html($time) . '</div>' : ''; ?>
-										<?php echo (!empty($title) || !empty($time)) && !empty($text) ? '<div class="gl-s16"></div>' : ''; ?>
+										<?php echo (!empty($title) || !empty($time)) || !empty($text) ? '<div class="gl-s16"></div>' : ''; ?>
 										<?php echo !empty($text) ? '<div class="block-content body-20-18-regular">' . esc_html($text) . '</div>' : ''; ?>
 										<?php echo (!empty($text) && !empty($repeater_buttons)) ? '<div class="gl-s16"></div>' : ''; ?>
 										<?php if (!empty($repeater_buttons)) : ?>
