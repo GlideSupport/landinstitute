@@ -470,7 +470,8 @@ section:has(.text-featured-block) {
             img {
                 max-height: clamp(188px, calc(11.75rem + ((1vw - 7.68px) * 15.9794)), 281px);
                 max-width: 100%;
-                object-fit: contain;
+                object-fit: cover;
+                height: clamp(188px, 11.75rem + (1vw - 7.68px) * 15.9794, 281px);
             }
         }
 
