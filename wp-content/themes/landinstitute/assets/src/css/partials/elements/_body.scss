@@ -48,6 +48,10 @@ body {
 	/* Improves kerning, ligatures */
 }
 
+html:has(.admin-bar) {
+	margin-top: 0 !important;
+}
+
 p {
 	margin: 0 0 24px;
 
