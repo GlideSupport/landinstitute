@@ -155,4 +155,15 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		}
 	}
+
+	// Accessibility: Add aria-label to links that open in a new tab
+	document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+		// Check if the link already has an aria-label
+		if (!link.hasAttribute("aria-label")) {
+			// Add aria-label if it's not already present
+			link.setAttribute("aria-label", "Opens in a new tab");
+		}
+	});
+
+	
 });

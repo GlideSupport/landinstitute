@@ -1,6 +1,7 @@
 import Swiper from "swiper/bundle";
 
 document.addEventListener("DOMContentLoaded", function () {
+
 	// Initialize multiple timeline fancy sliders
 	document.querySelectorAll('.timeline-slider-fancy').forEach((el) => {
         new Swiper(el, {
@@ -327,9 +328,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Timeline js end
 
 	// Testimonial Traditional js start
-	const sliderWrappers = document.querySelectorAll(
-		".testimonial-traditional-block",
-	);
+	const sliderWrappers = document.querySelectorAll( ".testimonial-traditional-block");
 	sliderWrappers.forEach((wrapper, index) => {
 		const swiperContainer = wrapper.querySelector(".traditional-slide");
 		const swiperWrapper = swiperContainer?.querySelector(".swiper-wrapper");
@@ -445,4 +444,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 	//CTA Card Slide js end
+	
 });

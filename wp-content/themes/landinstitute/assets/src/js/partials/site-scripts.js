@@ -29,15 +29,6 @@ document.addEventListener("click", function (event) {
 });
 //end
 
-// Accessibility: Add aria-label to links that open in a new tab
-document.querySelectorAll('a[target="_blank"]').forEach((link) => {
-	// Check if the link already has an aria-label
-	if (!link.hasAttribute("aria-label")) {
-		// Add aria-label if it's not already present
-		link.setAttribute("aria-label", "Opens in a new tab");
-	}
-});
-
 // Add span tag to multi-level accordion menu for mobile menus
 const listItems = document.querySelectorAll("li.menu-item-has-children");
 if (listItems.length > 0) {
@@ -51,6 +42,7 @@ if (listItems.length > 0) {
 		}
 	});
 }
+
 // Focus and blur events for menu items with sub-menus
 document.querySelectorAll(".menu-item-has-children > a").forEach((anchor) => {
 	anchor.addEventListener("focus", () => {
