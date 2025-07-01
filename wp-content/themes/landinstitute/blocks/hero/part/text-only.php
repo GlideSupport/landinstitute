@@ -10,10 +10,10 @@ if (!empty($li_hero_headline_check) || !empty($kicker)) : ?>
 			<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-Dandelion-Lilac-scaled.jpg"
 				width="" height="" alt="" />
 		</div>
-		<div class="hero-default <?php echo esc_attr($bg_color); ?>">
+		<div class="hero-default">
 			<div class="wrapper">
 				<div class="hero-alongside-block">
-					<div class="col-content bg-lime-green">
+					<div class="col-content <?php echo esc_attr($bg_color); ?>">
 						<div class="hero-content">
 							<?php echo (!empty($kicker) || !empty($li_hero_headline_check)) ? '<div class="gl-s128"></div>' : ''; ?>
 							<?php echo !empty($kicker) ? '<div class="ui-eyebrow-20-18-regular">' . esc_html($kicker) . '</div>' : ''; ?>
