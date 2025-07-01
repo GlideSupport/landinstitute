@@ -15,8 +15,7 @@ $staff_title        = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $staff_bio          = get_the_content();
 $staff_designation  = get_field('staff_designation', $bst_var_post_id);
 $staff_email        = get_field('staff_email_address', $bst_var_post_id);
-$li_to_bg_image = $bst_option_fields['li_to_bg_image'] ?? null;
-
+$li_to_bg_image  = $bst_option_fields['li_to_bg_image'] ?? null;
 ?>
 
 <div id="page-section" class="page-section">
