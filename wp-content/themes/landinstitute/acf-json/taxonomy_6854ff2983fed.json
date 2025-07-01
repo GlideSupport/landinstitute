@@ -7,30 +7,30 @@
     "object_type": [
         "staff"
     ],
-    "advanced_configuration": 0,
+    "advanced_configuration": 1,
     "import_source": "",
     "import_date": "",
     "labels": {
         "name": "Staff Category",
         "singular_name": "Staff Category",
-        "menu_name": "Category",
-        "all_items": "All Category",
-        "edit_item": "Edit Category",
-        "view_item": "View Category",
-        "update_item": "Update Category",
-        "add_new_item": "Add New Category",
+        "menu_name": "Staff Category",
+        "all_items": "All Staff Category",
+        "edit_item": "Edit Staff Category",
+        "view_item": "View Staff Category",
+        "update_item": "Update Staff Category",
+        "add_new_item": "Add New Staff Category",
         "new_item_name": "New Category Name",
+        "parent_item": "",
+        "parent_item_colon": "",
         "search_items": "Search Category",
-        "popular_items": "Popular Category",
-        "separate_items_with_commas": "Separate category with commas",
-        "add_or_remove_items": "Add or remove category",
-        "choose_from_most_used": "Choose from the most used category",
         "most_used": "",
         "not_found": "No category found",
         "no_terms": "No category",
         "name_field_description": "",
         "slug_field_description": "",
+        "parent_field_description": "",
         "desc_field_description": "",
+        "filter_by_item": "",
         "items_list_navigation": "Category list navigation",
         "items_list": "Category list",
         "back_to_items": "← Go to category",
@@ -45,8 +45,8 @@
         "assign_terms": "edit_posts"
     },
     "public": 1,
-    "publicly_queryable": 1,
-    "hierarchical": 0,
+    "publicly_queryable": 0,
+    "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
@@ -59,10 +59,10 @@
     "show_admin_column": 0,
     "rewrite": {
         "permalink_rewrite": "taxonomy_key",
-        "with_front": "1",
+        "with_front": "0",
         "rewrite_hierarchical": "0"
     },
-    "query_var": "post_type_key",
+    "query_var": "taxonomy_key",
     "query_var_name": "",
     "default_term": {
         "default_term_enabled": "0"
@@ -71,5 +71,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1750401011
+    "modified": 1751368650
 }
