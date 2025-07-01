@@ -104,6 +104,12 @@ if ($li_po_nav_button_position == 'left' && $li_po_left_btn_arrow_position == 'l
     $button_arrow_position = 'previous-arrow';
 }
 
+if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'left') {
+    $button_arrow_position = 'previous-arrow';
+    $button_position_class =  'footer-subnav-variation';
+    $button_bg_class = 'btn-sunflower-yellow';
+}
+
 ?>
 
 </main>
@@ -195,19 +201,48 @@ if ($li_po_nav_button_position == 'left' && $li_po_left_btn_arrow_position == 'l
         </div>
         <div class="gl-s96"></div>
     </div>
-    <?php if (!empty($li_po_nav_button) && !empty($li_po_sub_nav_sticky) && is_array($li_po_sub_nav_sticky) && !empty($li_po_sub_nav_sticky['slug'])): ?>
+    <?php if (!empty($li_po_nav_right_button) || !empty($li_po_nav_left_button) || !empty($li_po_sub_nav_sticky) || is_array($li_po_sub_nav_sticky) || !empty($li_po_sub_nav_sticky['slug'])): ?>
         <div class="footer-sub-nav-sticky bg-base-cream <?php echo esc_attr($button_position_class); ?>">
             <div class="row-flex">
-                <div class="cl-left">
-                    <?php if ($li_po_nav_button):
-                        $link_url = $li_po_nav_button['url'];
-                        $link_title = $li_po_nav_button['title'];
-                        $link_target = $li_po_nav_button['target'] ? $li_po_nav_button['target'] : '_self'; ?>
-                        <a class="jump-arrow <?php echo esc_attr($button_bg_class); ?> <?php echo esc_attr($button_arrow_position); ?>" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
-                            <div class="arrow-icon"></div>
-                        </a>
+                <?php if ($li_po_nav_button_position == 'left') : ?>
+                    <?php if(!empty($li_po_nav_left_button)) : ?>
+                        <div class="cl-left">
+                            <?php if ($li_po_nav_left_button):
+                                $link_url = $li_po_nav_left_button['url'];
+                                $link_title = $li_po_nav_left_button['title'];
+                                $link_target = $li_po_nav_left_button['target'] ? $li_po_nav_left_button['target'] : '_self'; ?>
+                                <a class="jump-arrow <?php echo esc_attr($button_bg_class); ?>" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
+                                    <div class="arrow-icon"></div>
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     <?php endif; ?>
-                </div>
+                <?php else : ?>
+                    <?php if(!empty($li_po_nav_right_button)) : ?>
+                        <div class="cl-left">
+                            <?php if ($li_po_nav_right_button):
+                                $link_url = $li_po_nav_right_button['url'];
+                                $link_title = $li_po_nav_right_button['title'];
+                                $link_target = $li_po_nav_right_button['target'] ? $li_po_nav_right_button['target'] : '_self'; ?>
+                                <a class="jump-arrow <?php echo esc_attr($button_bg_class); ?>" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
+                                    <div class="arrow-icon"></div>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($li_po_nav_button_position == 'both') : ?>
+                    <?php if ($li_po_nav_left_button):
+                        $link_url = $li_po_nav_left_button['url'];
+                        $link_title = $li_po_nav_left_button['title'];
+                        $link_target = $li_po_nav_left_button['target'] ? $li_po_nav_left_button['target'] : '_self'; ?>
+                        <div class="left-site-btn">
+                            <a href="<?php echo esc_url($link_url); ?>" class="jump-arrow <?php echo $button_arrow_position; ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
+                            <div class="arrow-icon"></div>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                <?php endif; ?>
                 <div class="cl-right">
                     <?php
                     if (!empty($li_po_sub_nav_sticky) && is_array($li_po_sub_nav_sticky) && !empty($li_po_sub_nav_sticky['slug'])) {
