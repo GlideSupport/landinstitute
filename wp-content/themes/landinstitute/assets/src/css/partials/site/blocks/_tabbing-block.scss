@@ -76,15 +76,11 @@
     .number-tab-row {
         .number-tab-col {
             border: none;
-            display: flex;
-            flex-wrap: wrap;
-            column-gap: 16px;
-            padding: 16px 0 16px 30px;
-            transition: all 0.2s ease-in-out;
+            padding: 0;
+            position: relative;
 
-            @media(max-width: 991px) {
-                padding: 12px 0 12px 24px;
-                column-gap: 12px;
+            &:before {
+                display: none;
             }
 
             &:after {
@@ -100,19 +96,10 @@
                 transition: all 0.2s ease-in-out;
             }
 
-            &:before {
-                transition: all 0.2s ease-in-out;
-            }
-
             &:has(.number-list-col.active) {
                 &:after {
                     opacity: 1;
                     visibility: visible;
-                }
-
-                &:before {
-                    background-color: var(--primary_dark_green);
-                    color: var(--gb_white);
                 }
             }
 
@@ -127,33 +114,75 @@
                 flex: 1 0 0;
                 padding: 0;
                 align-self: center;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 16px;
+                padding: 16px 0 16px 30px;
+                transition: all 0.2s ease-in-out;
+                justify-content: normal;
+
+                @media(max-width: 991px) {
+                    padding: 12px 0 12px 24px;
+                    column-gap: 12px;
+                }
+
+                &:before {
+                    transition: all 0.2s ease-in-out;
+                    background-color: transparent;
+                    color: var(--gb_list_ul_marker_color);
+                    content: counters(list, ".") ".";
+                    counter-increment: list;
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+                    align-items: center;
+                    border: 1px solid var(--primary_dark_green);
+                    border-radius: 50%;
+                    content: counters(list, ".");
+                    display: flex;
+                    height: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
+                    justify-content: center;
+                    position: relative;
+                    width: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
+
+                    @extend .ui-18-16-bold;
+
+                    @media(max-width: 767px) {
+                        align-self: center;
+                    }
+                }
+
+                &.active {
+
+                    &:before {
+                        background-color: var(--primary_dark_green);
+                        color: var(--gb_white);
+                    }
+                }
+
+
+                .faq_question-text {
+                    align-self: center;
+                    flex: 1 0 0;
+                }
             }
 
-            &:before {
-                align-items: center;
-                border: 1px solid var(--primary_dark_green);
-                border-radius: 50%;
-                content: counters(list, ".");
-                display: flex;
-                height: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
-                justify-content: center;
-                position: relative;
-                width: clamp(31px, calc(1.9375rem + ((1vw - 7.68px) * 1.0309)), 37px);
+            .answercont {
+                padding: 0 0 0 30px;
 
-                @extend .ui-18-16-bold;
-
-                @media(max-width: 767px) {
-                    align-self: center;
+                @media(max-width: 991px) {
+                    padding: 0 0 0 24px;
                 }
             }
 
             .number-list-show {
-                padding-bottom: 8px;
-                padding-top: 16px;
+                padding-bottom: 24px;
+                padding-top: 0;
 
                 @media(max-width: 991px) {
-                    padding-top: 18px;
-                    padding-bottom: 6px;
+                    padding-top: 0;
+                    padding-bottom: 18px;
                 }
             }
         }
