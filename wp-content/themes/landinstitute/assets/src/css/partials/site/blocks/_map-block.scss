@@ -371,6 +371,10 @@ html {
             overflow: hidden;
             position: relative;
 
+            @media(max-width: 640px) {
+                height: 460px !important;
+            }
+
             // min-height: 100vh;
             .wpgmza_map {
 
@@ -464,6 +468,10 @@ html {
                     top: 30px;
                     width: 30px;
 
+                    @media(max-width:767px) {
+                        background: transparent;
+                    }
+
                     .icon {
                         &:before {
                             background-image: url(../images/close-icon.svg);
@@ -505,7 +513,7 @@ html {
                 right: 0;
 
                 @media(max-width: 640px) {
-                    max-width: 100%;
+                    max-width: 100% !important;
                 }
 
                 &.filter-visible {
@@ -612,6 +620,7 @@ html {
 
                     @media(max-width: 767px) {
                         padding: 20px 55px 21px 24px;
+                        border-left: 0;
                     }
                 }
 
@@ -714,6 +723,7 @@ html {
 
                         @media(max-width: 767px) {
                             border-right: 0;
+                            width: 100%;
                         }
 
                         // border-top: 2px solid var(--gb_base_brown);
