@@ -858,6 +858,14 @@ section:has(.text-featured-block) {
     }
 }
 
+.has-border-bottom {
+    .cta-columns-two-block {
+        .cta-two-column-row {
+            margin-bottom: -2px;
+        }
+    }
+}
+
 .cta-two-column-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
