@@ -346,48 +346,146 @@ const HeadermenuAppend = [
 	{ dropdownId: "#mega-dropdown-learn", menuClass: "learn" },
 ];
 
+// HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
+// 	const dropdown = document.querySelector(dropdownId);
+// 	const menuItem = document.querySelector( `.header-nav ul.menu li.${menuClass}`);
+
+// 	if (dropdown && menuItem) {
+// 		menuItem.appendChild(dropdown);
+
+// 		// Show on hover
+// 		menuItem.addEventListener("mouseenter", () => {
+// 			dropdown.style.display = "block";
+// 			dropdown.style.opacity = "1";
+// 			dropdown.style.overflow = "visible";
+// 			dropdown.style.visibility = "visible";
+// 			document.body.classList.add("megamenu-hover-active");
+// 		});
+
+// 		// Hide when leaving dropdown or menu item
+// 		const hideDropdown = () => {
+// 			dropdown.style.display = "none";
+// 			dropdown.style.opacity = "0";
+// 			dropdown.style.overflow = "hidden";
+// 			dropdown.style.visibility = "hidden";
+// 			document.body.classList.remove("megamenu-hover-active");
+// 		};
+
+// 		menuItem.addEventListener("mouseleave", hideDropdown);
+
+// 		// Also hide when mouse leaves the inner container
+// 		const inner = dropdown.querySelector(".mega-dropdown-inner");
+// 		if (inner) {
+// 			inner.addEventListener("mouseleave", hideDropdown);
+// 		}
+// 	}
+// });
+const dropdownElements = [];
+
 HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 	const dropdown = document.querySelector(dropdownId);
-	const menuItem = document.querySelector(
-		`.header-nav ul.menu li.${menuClass}`,
-	);
+	const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
+	const triggerLink = menuItem?.querySelector('a');
 
 	if (dropdown && menuItem) {
 		menuItem.appendChild(dropdown);
 
-		// Show on hover
-		menuItem.addEventListener("mouseenter", () => {
+		// Set ARIA attributes
+		if (triggerLink) {
+			triggerLink.setAttribute('aria-haspopup', 'true');
+			triggerLink.setAttribute('aria-expanded', 'false');
+		}
+
+		// Set initial dropdown styles
+		Object.assign(dropdown.style, {
+			opacity: "0",
+			visibility: "hidden",
+			pointerEvents: "none",
+			display: "none",
+			transition: "opacity 0.3s ease, visibility 0.3s ease",
+		});
+
+		// Show dropdown
+		const showDropdown = () => {
 			dropdown.style.display = "block";
 			dropdown.style.opacity = "1";
 			dropdown.style.overflow = "visible";
 			dropdown.style.visibility = "visible";
+			dropdown.style.pointerEvents = "auto";
+			triggerLink?.setAttribute("aria-expanded", "true");
 			document.body.classList.add("megamenu-hover-active");
-		});
+		};
 
-		// Hide when leaving dropdown or menu item
+		// Hide dropdown
 		const hideDropdown = () => {
 			dropdown.style.display = "none";
 			dropdown.style.opacity = "0";
 			dropdown.style.overflow = "hidden";
 			dropdown.style.visibility = "hidden";
+			dropdown.style.pointerEvents = "none";
+			triggerLink?.setAttribute("aria-expanded", "false");
 			document.body.classList.remove("megamenu-hover-active");
 		};
 
+		// Hover Events
+		menuItem.addEventListener("mouseenter", showDropdown);
 		menuItem.addEventListener("mouseleave", hideDropdown);
 
-		// Also hide when mouse leaves the inner container
+		// Optional inner container handling
 		const inner = dropdown.querySelector(".mega-dropdown-inner");
 		if (inner) {
 			inner.addEventListener("mouseleave", hideDropdown);
 		}
+
+		// Keyboard accessibility
+		menuItem.addEventListener("focusin", showDropdown);
+		menuItem.addEventListener("focusout", hideDropdown);
+
+		// Store dropdown globally
+		dropdownElements.push(dropdown);
 	}
 });
+
+	// Click outside to close all dropdowns
+	document.addEventListener("click", function (event) {
+		let clickedInsideAnyMenu = false;
+
+		HeadermenuAppend.forEach(({ menuClass }) => {
+			const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
+			if (menuItem && menuItem.contains(event.target)) {
+				clickedInsideAnyMenu = true;
+			}
+		});
+
+		if (!clickedInsideAnyMenu) {
+			dropdownElements.forEach(dropdown => {
+				dropdown.style.opacity = "0";
+				dropdown.style.visibility = "hidden";
+				dropdown.style.pointerEvents = "none";
+				dropdown.style.display = "none";
+				document.body.classList.remove("megamenu-hover-active");
+				menuWrapper?.classList.remove("mega-toggle-on");
+			});
+		}
+	});
+
+	// Close all dropdowns on scroll
+	window.addEventListener("scroll", () => {
+		dropdownElements.forEach(dropdown => {
+			dropdown.style.opacity = "0";
+			dropdown.style.visibility = "hidden";
+			dropdown.style.pointerEvents = "none";
+			dropdown.style.display = "none";
+			document.body.classList.remove("megamenu-hover-active");
+			menuWrapper?.classList.remove("mega-toggle-on");
+		});
+	});
+
+
 // Header Mega menu append js End
 
 function applyCardSpacing() {
-	const rowFlex = document.querySelector(
-		".two-column-text.text-featured-block .row-flex",
-	);
+	const rowFlex = document.querySelector( ".two-column-text.text-featured-block .row-flex");
 	const cards = rowFlex?.querySelectorAll(".text-card-col");
 
 	if (!rowFlex || !cards.length) {
