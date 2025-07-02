@@ -175,10 +175,7 @@ ol ul {
 		a {
 			color: var(--gb_base_brown);
 			@include font(plusjakarta, reg);
-			font-size: 18px;
-			font-style: normal;
-			letter-spacing: -0.36px;
-			line-height: 110%;
+			@extend .ui-18-16-regular;
 			padding-left: 0px;
 			display: inline-flex;
 
@@ -269,7 +266,7 @@ ol ul {
 	border-radius: 100px;
 	color: var(--gb_base_brown);
 	display: inline-flex;
-	padding: 6px 12px 6px;
+	padding: 5px 12px 7px;
 
 	@extend .ui-16-15-bold;
 
@@ -282,7 +279,7 @@ ol ul {
 		@extend .ui-16-15-bold;
 		transition: all .2s ease-in-out;
 		display: flex;
-		padding: 6px 12px 6px;
+		padding: 5px 12px 7px;
 		color: var(--gb_base_brown);
 	}
 
