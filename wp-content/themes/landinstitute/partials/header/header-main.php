@@ -117,7 +117,7 @@
 															<?php foreach ($landinstitute_to_popular_topics as $li_to_popular_topics) :
 																$landinstitute_topics = $li_to_popular_topics['landinstitute_topics'];
 																if (!empty($landinstitute_topics)) : ?>
-																	<li><span class="tags"><?php echo esc_html($landinstitute_topics); ?></span></li>
+																	<li><span class="tags"><?php echo BaseTheme::button($landinstitute_topics, ''); ?></span></li>
 															<?php endif;
 															endforeach; ?>
 														</ul>
