@@ -338,6 +338,13 @@ body {
 		color: var(--gb_topbar_color);
 		display: inline-block;
 		font-size: var(--gb_font_size_3);
+		@extend .ui-16-15-regular;
+	}
+
+	p {
+		a {
+			@extend .ui-16-15-regular;
+		}
 	}
 
 	span {
