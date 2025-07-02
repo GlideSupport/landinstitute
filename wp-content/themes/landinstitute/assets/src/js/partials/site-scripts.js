@@ -480,7 +480,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	addHoverEffect(".header-nav .menu > li", "hover-active");
 	addHoverEffect(".mega-two .icon-content-col", "active-hover");
-	addHoverEffect(".mega-bottom-menu ul#menu-issue > li", "hover-active");
+	addHoverEffect(".mega-bottom-menu ul#menu-sub-nav-issues > li", "hover-active");
 	addHoverEffect(".social-icons a", "active-hover");
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
 
