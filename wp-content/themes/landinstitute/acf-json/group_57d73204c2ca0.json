@@ -26,6 +26,58 @@
             "name": "bst_var_theme_default_image",
             "aria-label": "",
             "type": "image",
+            "instructions": "This image will be displayed on the Resources, News, and Events CPT list\/details page if no featured image is set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_68650621683f9",
+            "label": "Default Avatar for Staff",
+            "name": "bst_var_theme_default_avatar_for_staff",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "This image will be displayed on the Resources, News, and Events CPT list\/details page if no featured image is set.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 1,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_6863ef093977d",
+            "label": "Staff Header BG Image",
+            "name": "li_staff_header_bg_image",
+            "aria-label": "",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -36,8 +88,6 @@
             },
             "return_format": "id",
             "library": "all",
-            "thumb_size_desktop": "thumbnail",
-            "thumb_size_mobile": "thumbnail",
             "min_width": "",
             "min_height": "",
             "min_size": "",
@@ -45,6 +95,33 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_685d4fe31acdc",
+            "label": "Select Default Parallax Background Pattern",
+            "name": "li_to_select_default_background_pattern",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
             "preview_size": "medium"
         },
         {
@@ -2917,52 +2994,8 @@
             "new_lines": ""
         },
         {
-            "key": "field_685d4f941acdb",
-            "label": "Parallax Background Pattern",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
-            "key": "field_685d4fe31acdc",
-            "label": "Select Default Background Pattern",
-            "name": "li_to_select_default_background_pattern",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "allow_in_bindings": 0,
-            "preview_size": "medium"
-        },
-        {
             "key": "field_6863eef63977c",
-            "label": "Staff Detail",
+            "label": "Other Settings",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -2977,32 +3010,6 @@
             "placement": "top",
             "endpoint": 0,
             "selected": 0
-        },
-        {
-            "key": "field_6863ef093977d",
-            "label": "BG Image",
-            "name": "li_to_bg_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "allow_in_bindings": 0,
-            "preview_size": "medium"
         }
     ],
     "location": [
@@ -3023,5 +3030,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751435429
+    "modified": 1751451494
 }

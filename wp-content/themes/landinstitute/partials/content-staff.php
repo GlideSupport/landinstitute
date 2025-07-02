@@ -15,12 +15,13 @@ $staff_title        = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $staff_bio          = get_the_content();
 $staff_designation  = get_field('staff_designation', $bst_var_post_id);
 $staff_email        = get_field('staff_email_address', $bst_var_post_id);
-$li_to_bg_image  = $bst_option_fields['li_to_bg_image'] ?? null;
+$bst_var_theme_default_avatar_for_staff  = $bst_option_fields['bst_var_theme_default_avatar_for_staff'] ?? null;
+$li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? null;
 ?>
 
 <div id="page-section" class="page-section">
 	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
-		<?php echo !empty($li_to_bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($li_to_bg_image, 'thumb_1600') . '</div>' : ''; ?>
+		<?php echo !empty($li_staff_header_bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($li_staff_header_bg_image, 'thumb_1600') . '</div>' : ''; ?>
 	</section>
 
 	<section class="container-1280">
@@ -44,7 +45,7 @@ $li_to_bg_image  = $bst_option_fields['li_to_bg_image'] ?? null;
 									if (has_post_thumbnail($bst_var_post_id)) {
 										echo get_the_post_thumbnail($bst_var_post_id, 'thumb_900');
 									} else {
-										echo '<img src="' . esc_url(get_template_directory_uri()) . '/assets/build/images/admin/defaults/default-avatar.webp" alt="Default Avatar">';
+										echo wp_get_attachment_image($bst_var_theme_default_avatar_for_staff, 'thumb_500');
 									}
 									?>
 								</div>

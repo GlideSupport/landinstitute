@@ -9,7 +9,7 @@
  * @since 1.0.0
  */
 
-list($bst_block_id, $bst_block_fields) = BaseTheme::defaults($block['id']);
+list($bst_block_id, $bst_block_fields, $bst_option_fields) = BaseTheme::defaults($block['id']);
 
 $bst_block_name   = $block['name'];
 $bst_block_name   = str_replace('acf/', '', $bst_block_name);

@@ -15,13 +15,13 @@
 // Include header.
 get_header();
 list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults();
-$li_to_bg_image  = $bst_option_fields['li_to_bg_image'] ?? null;
+$li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? null;
 
 ?>
 
 <div id="page-section" class="page-section">
-	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
-		<?php echo !empty($li_to_bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($li_to_bg_image, 'thumb_1600') . '</div>' : ''; ?>
+	<section class="hero-section hero-section-default hero-text-only">
+		<?php echo !empty($li_staff_header_bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($li_staff_header_bg_image, 'thumb_1600') . '</div>' : ''; ?>
 	</section>
 	<!-- Content Start -->
 	<?php
