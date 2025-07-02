@@ -54,7 +54,7 @@ textarea,
 	box-shadow: none;
 	box-sizing: border-box;
 	color: var(--gb_base_brown);
-	height: 46px;
+	height: 45px;
 	margin: 0;
 	max-width: 100%;
 	outline: none;
@@ -65,7 +65,7 @@ textarea,
 	@extend .ui-20-18-regular;
 
 	@media(max-width: 640px) {
-		height: 40px;
+		height: 39px;
 		padding: 10px 0 10px 0;
 	}
 

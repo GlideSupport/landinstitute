@@ -517,7 +517,7 @@ table.ui-datepicker_calendar {
     .gfield_label,
     .gform-field-label {
         display: flex;
-        margin-bottom: 20px;
+        margin-bottom: 0;
 
         @extend .ui-18-16-bold;
     }

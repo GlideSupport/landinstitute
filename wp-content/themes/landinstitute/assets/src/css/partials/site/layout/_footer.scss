@@ -380,10 +380,7 @@
                     a {
                         @include font(plusjakarta, reg);
                         color: var(--gb_base_brown);
-                        font-size: 18px;
-                        font-style: normal;
-                        letter-spacing: -0.36px;
-                        line-height: 110%;
+                        @extend .ui-18-16-regular;
                         padding-left: 0px;
 
                         &:hover {
