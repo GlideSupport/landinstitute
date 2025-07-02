@@ -680,15 +680,17 @@
 					</div>
 				</div>
 			</div>
-			<section class="container-1280 bg-base-cream">
+			<section class="container-1280">
 				<div class="wrapper">
 					<div class="internal-link-list-block with-parallax-image">
 						<div class="row-flex">
 							<div class="col-left parallax-img">
-								<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern04.jpg"
-									alt="" width="" height="" />
+								<div class="parallax-fixed-bg">
+									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern04.jpg"
+										alt="Background" />
+								</div>
 							</div>
-							<div class="col-right">
+							<div class="col-right bg-base-cream">
 								<div class="gl-s156"></div>
 								<h2 class="heading-2 block-title mb-0">
 									Issues
@@ -1417,6 +1419,47 @@
 </body>
 
 <script>
+
+	function updateParallaxPosition() {
+		// ✅ Skip JS entirely on small screens
+		if (window.innerWidth < 992) return;
+
+		const target = document.querySelector(
+			".internal-link-list-block.with-parallax-image .parallax-img"
+		);
+		const bg = document.querySelector(".parallax-fixed-bg");
+
+		if (!target || !bg) return;
+
+		const rect = target.getBoundingClientRect();
+		const scrollY = window.scrollY;
+
+		const top = rect.top + scrollY;
+		const height = rect.height;
+		const left = rect.left;
+		const width = rect.width;
+
+		const viewportBottom = scrollY + window.innerHeight;
+		const targetBottom = top + height;
+
+		if (viewportBottom > top && scrollY < targetBottom) {
+			bg.style.visibility = "visible";
+			bg.style.top = "0";
+			bg.style.left = `${left}px`;
+			bg.style.width = `${width}px`;
+			bg.style.height = `${window.innerHeight}px`;
+		} else {
+			bg.style.visibility = "hidden";
+		}
+	}
+
+	// ✅ Only bind scroll/resize events above 992px
+	if (window.innerWidth >= 992) {
+		window.addEventListener("scroll", updateParallaxPosition);
+		window.addEventListener("resize", updateParallaxPosition);
+	}
+
+
 
 	document.querySelectorAll(".footer-nav-title").forEach((title) => {
 		title.addEventListener("click", () => {

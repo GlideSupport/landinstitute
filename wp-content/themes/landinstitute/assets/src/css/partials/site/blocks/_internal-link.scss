@@ -27,9 +27,10 @@
     }
 
     &.with-parallax-image {
+
         .row-flex {
             display: flex;
-            gap: clamp(80px, calc(5rem + ((1vw - 9.92px) * 17.8571)), 160px);
+            gap: 0;
 
             @media (max-width: 991px) {
                 flex-wrap: wrap;
@@ -48,12 +49,24 @@
             overflow: hidden;
             width: clamp(280px, 17.5rem + (1vw - 9.92px) * 55.8659, 480px);
             border-right: 2px solid var(--gb_base_brown);
+            position: relative;
 
             @media (max-width: 991px) {
                 border-bottom: 2px solid var(--gb_base_brown);
                 border-right: none;
                 flex: 100vw 0 0;
                 width: 100vw;
+            }
+
+            .parallax-fixed-bg {
+                @media(min-width: 992px) {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    z-index: -1;
+                    pointer-events: none;
+                    overflow: hidden;
+                }
             }
 
             img {
@@ -70,12 +83,77 @@
 
         .col-right {
             flex: 1 1 0;
+            padding-left: clamp(80px, calc(5rem + ((1vw - 9.92px) * 17.8571)), 160px);
+            position: relative;
+
+            @media (max-width: 991px) {
+                padding-left: 24px;
+                margin-left: -24px;
+            }
 
             .card-list {
                 .card-item {
                     @media(max-width: 640px) {
                         padding: 28px 0;
                     }
+                }
+            }
+
+            &:after {
+                content: '';
+                height: 100%;
+                position: absolute;
+                left: 100%;
+                top: 0;
+                width: 100vw;
+                background-color: var(--gb_base_cream);
+            }
+
+            &.bg-lime-green {
+                &:after {
+                    background-color: var(--gb_primary_lime_green);
+                }
+            }
+
+            &.bg-butter-yellow {
+                &:after {
+                    background-color: var(--gb_primary_butter_yellow);
+                }
+            }
+
+            &.bg-lilac {
+                &:after {
+                    background-color: var(--gb_primary_lilac);
+                }
+            }
+
+            &.bg-sky-blue {
+                &:after {
+                    background-color: var(--gb_primary_sky_blue);
+                }
+            }
+
+            &.bg-sunflower-yellow {
+                &:after {
+                    background-color: var(--gb_primary_sunflower_yellow);
+                }
+            }
+
+            &.bg-lemon-yellow {
+                &:after {
+                    background-color: var(--gb_primary_lemon_yellow);
+                }
+            }
+
+            &.bg-primary-pink {
+                &:after {
+                    background-color: var(--gb_primary_pink);
+                }
+            }
+
+            &.bg-dark-green {
+                &:after {
+                    background-color: var(--primary_dark_green);
                 }
             }
         }
