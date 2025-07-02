@@ -419,10 +419,6 @@
 									opacity: 0.5;
 								}
 
-								&:focus::input-placeholder {
-									opacity: 1;
-								}
-
 								&::input-placeholder {
 									color: var(--gb_base_brown);
 									opacity: 0.5;
@@ -431,10 +427,6 @@
 								&::placeholder {
 									color: var(--gb_base_brown);
 									opacity: 0.5;
-								}
-
-								&:focus::placeholder {
-									opacity: 1;
 								}
 							}
 

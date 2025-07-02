@@ -105,10 +105,6 @@
 					color: var(--gb_base_brown);
 				}
 
-				&:focus::input-placeholder {
-					opacity: 1;
-				}
-
 				&::input-placeholder {
 					opacity: 1;
 					color: var(--gb_base_brown);
