@@ -555,8 +555,8 @@
 							visibility: hidden;
 							width: 67px;
 							height: 143px;
-							top: 45px;
-							right: 10px;
+							top: 47px;
+							right: 0px;
 							z-index: 999;
 							transform: rotate(-50deg);
 							transform-origin: top;
@@ -567,6 +567,16 @@
 							transform: rotate(45deg);
 							left: 0;
 							right: auto;
+						}
+
+						&:hover {
+
+							&:after,
+							&:before {
+								transition: height 8s linear, top .5s linear, bottom .5s linear;
+								height: 0;
+								visibility: visible;
+							}
 						}
 					}
 				}
