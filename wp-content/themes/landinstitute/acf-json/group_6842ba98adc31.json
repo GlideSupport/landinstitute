@@ -131,7 +131,7 @@
         {
             "key": "field_6864eebec138b",
             "label": "Staff Selection",
-            "name": "i_sl_staff_selection",
+            "name": "li_sl_staff_selection",
             "aria-label": "",
             "type": "button_group",
             "instructions": "",
@@ -266,5 +266,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751449312
+    "modified": 1751453193
 }
