@@ -131,7 +131,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'l
                         <div class="gl-s36"></div>
                     <?php endif; ?>
                     <div class="footer-intro">
-                        <?php echo $bst_var_ftrop_title ? '<div class="heading-5 block-title mb-0">' . html_entity_decode($bst_var_ftrop_title) . '</h5><div class="gl-s12"></div>' : ''; ?>
+                        <?php echo $bst_var_ftrop_title ? '<div class="heading-5 block-title mb-0">' . html_entity_decode($bst_var_ftrop_title) . '</div><div class="gl-s12"></div>' : ''; ?>
                         <?php echo $bst_var_ftrop_text ? '<div class="intro-content body-20-18-regular">' . html_entity_decode($bst_var_ftrop_text) . '</div><div class="gl-s64"></div>' : ''; ?>
                     </div>
 
