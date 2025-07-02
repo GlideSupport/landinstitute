@@ -272,6 +272,21 @@ ol ul {
 	padding: 6px 12px 6px;
 
 	@extend .ui-16-15-bold;
+
+	&:has(a) {
+		padding: 0;
+		transition: all .2s ease-in-out;
+	}
+
+	a {
+		@extend .ui-16-15-bold;
+		transition: all .2s ease-in-out;
+		display: flex;
+		padding: 6px 12px 6px;
+		color: var(--gb_base_brown);
+	}
+
+
 }
 
 .numbered-grid-row {

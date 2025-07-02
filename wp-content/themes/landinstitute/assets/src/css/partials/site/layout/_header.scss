@@ -344,6 +344,16 @@ body {
 	p {
 		a {
 			@extend .ui-16-15-regular;
+			text-decoration: underline;
+			text-decoration-color: var(--gb_base_brown);
+			text-decoration-thickness: 1px;
+			text-underline-offset: 4px;
+
+			&:hover,
+			&:active {
+				color: var(--gb_base_brown);
+				text-decoration-color: var(--gb_base_brown);
+			}
 		}
 	}
 
