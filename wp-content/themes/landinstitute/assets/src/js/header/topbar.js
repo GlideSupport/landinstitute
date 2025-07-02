@@ -63,18 +63,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Hide top bar
 	function hideTopBar() {
-		const topBar = document.querySelector(".top-bar");
+		const topBar = document.querySelector('.top-bar');
 		if (!topBar || !headerSection) return;
 
-		topBar.classList.add("hide-top-bar");
+		topBar.classList.add('hide-top-bar');
 
 		// Update header height after top bar is hidden
-		headerInitialSectionHeight =
-			headerSection.offsetHeight - topBar.offsetHeight;
+		headerInitialSectionHeight = headerSection.offsetHeight - topBar.offsetHeight;
 
 		// Adjust spacing
-		setInitialPadding();
-		headerSection.style.top = "0";
+		if (herofullSection) {
+			herofullSection.style.paddingTop = headerInitialSectionHeight + 'px';
+		} else if (mainSection) {
+			mainSection.style.paddingTop = headerInitialSectionHeight + 'px';
+		}
+
+		if (navContainer && window.innerWidth < 1024) {
+			navContainer.style.paddingTop = headerInitialSectionHeight + 'px';
+		}
+
+		headerSection.style.top = '0';
 	}
 
 	// Bind top bar close button
