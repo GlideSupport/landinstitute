@@ -38,4 +38,4 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 </div>
 
 <?php
-get_footer('landing');
+get_footer();
