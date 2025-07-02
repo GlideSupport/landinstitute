@@ -77,6 +77,10 @@ body {
     .col-left {
         position: relative;
 
+        @media(min-width: 767px) {
+            margin-bottom: -2px;
+        }
+
         &:after {
             content: "";
             display: block;
