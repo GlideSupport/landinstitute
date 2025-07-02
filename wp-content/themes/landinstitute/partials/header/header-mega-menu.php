@@ -55,13 +55,17 @@
 							<div class="icon-content-col">
 								<!-- Add class when hover on this on other element not same "active-hover" -->
 								<a class="icon-group-card" href="<?php echo esc_url($li_select_nav_menu_2->url); ?>">
-									<div class="icon-left">
-										<?php echo wp_get_attachment_image($icon, 'thumb_100'); ?>
-									</div>
+									<?php if(!empty($icon)): ?>	
+										<div class="icon-left">
+											<?php echo wp_get_attachment_image($icon, 'thumb_100'); ?>
+										</div>
+									<?php endif;  ?>
 									<div class="icon-content-right">
 										<div class="ui-18-16-bold icon-title"><?php echo esc_html($li_select_nav_menu_2->title); ?></div>
-										<div class="gl-s2"></div>
-										<div class="ui-16-15-regular icon-content"><?php echo esc_html($description); ?></div>
+										<?php if(!empty($description)): ?>	
+											<div class="gl-s2"></div>
+											<div class="ui-16-15-regular icon-content"><?php echo esc_html($description); ?></div>
+										<?php endif;  ?>
 									</div>
 								</a>
 							</div>
