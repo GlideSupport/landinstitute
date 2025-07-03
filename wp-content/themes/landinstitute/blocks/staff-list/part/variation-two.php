@@ -123,32 +123,3 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 		</div>
 	</div>
 </div>
-
-<style>
-	.staff-list .staff-member {
-		display: none;
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
-	}
-
-	.staff-list .staff-member.fade-in {
-		opacity: 1;
-	}
-
-	.staff-list .no-staff-message {
-		display: none;
-	}
-
-	.staff-list .tab-link {
-		cursor: pointer;
-		transition: all 0.3s ease;
-	}
-
-	.staff-list .tab-link:hover {
-		opacity: 0.8;
-	}
-
-	.staff-list .tab-link.current {
-		/* Add your active tab styles here */
-	}
-</style>
