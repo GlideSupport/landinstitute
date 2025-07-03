@@ -6,7 +6,7 @@ $li_sl_staff_category_selector = $bst_block_fields['_li_sl_select_staff_categori
 $show_by_category = $li_sl_staff_selection === 'category' && !empty($li_sl_staff_category_selector);
 $show_by_selector = $li_sl_staff_selection === 'manual' && !empty($li_sl_staff_selector);
 
-$bst_var_theme_default_avatar_for_staff  = $bst_option_fields['bst_var_theme_default_avatar_for_staff'] ?? null;
+$bst_var_theme_default_avatar_for_staff = $bst_option_fields['bst_var_theme_default_avatar_for_staff'] ?? null;
 
 if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 ?>
@@ -24,6 +24,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 			<ul class="tabs">
 				<?php
 				$terms = [];
+				$all_staff_categories = [];
 
 				if ($show_by_category) {
 					$terms = $li_sl_staff_category_selector;
@@ -37,56 +38,68 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 					$terms = array_values($terms);
 				}
 
+				// Build category list for JS filtering
+				foreach ($terms as $term) {
+					$all_staff_categories[] = $term->term_id;
+				}
+
 				$tab_index = 1;
 				foreach ($terms as $term) {
 					$active = ($tab_index === 1) ? 'current' : '';
-					echo '<li class="tab-link ' . esc_attr($active) . '" data-tab="tab-' . $tab_index . '">' . esc_html($term->name) . '</li>';
+					$bg_color = get_field('li_globel_bg_color_options', 'term_' . $term->term_id) ?: 'bg-none';
+					echo '<li class="tab-link ' . esc_attr($active) . '" data-tab="tab-' . $tab_index . '" data-bg-color="' . $bg_color . '" data-category="' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</li>';
 					$tab_index++;
 				}
-				echo '<li class="tab-link" data-tab="tab-' . $tab_index . '">All</li>';
+				echo '<li class="tab-link" data-tab="tab-all" data-category="all">All</li>';
 				?>
 			</ul>
 		</div>
 
 		<div class="tab-content-group">
-			<?php
-			$tab_index = 1;
-			foreach ($terms as $term) {
-				$active = ($tab_index === 1) ? 'current fade-in' : '';
-				$bg_color = get_field('li_globel_bg_color_options', 'term_' . $term->term_id) ?: 'bg-none';
-
-				echo '<div id="tab-' . $tab_index . '" class="tab-content ' . $active . '" style="opacity:' . ($active ? '1' : '0') . ';">';
-				echo '<div class="tab-row-block staff-listing">';
-
+			<div class="tab-row-block staff-listing">
+				<?php
+				// Get all staff once
 				$args = [
 					'post_type'      => 'staff',
 					'posts_per_page' => -1,
-					'tax_query'      => [[
-						'taxonomy' => 'staff-category',
-						'field'    => 'term_id',
-						'terms'    => $term->term_id,
-					]],
 				];
 
 				if ($show_by_selector) {
 					$args['post__in'] = $li_sl_staff_selector;
 					$args['orderby']  = 'post__in';
+				} elseif ($show_by_category) {
+					$args['tax_query'] = [[
+						'taxonomy' => 'staff-category',
+						'field'    => 'term_id',
+						'terms'    => wp_list_pluck($li_sl_staff_category_selector, 'term_id'),
+					]];
 				}
 
 				$staff_query = new WP_Query($args);
 
 				if ($staff_query->have_posts()) :
 					while ($staff_query->have_posts()) : $staff_query->the_post();
-						$title     = get_the_title();
-						$position  = get_field('staff_designation');
-						$image     = get_the_post_thumbnail_url(get_the_ID(), 'thumb_500');
+						$title = get_the_title();
+						$position = get_field('staff_designation');
+						$image = get_the_post_thumbnail_url(get_the_ID(), 'thumb_500');
 						if (empty($image)) {
 							$image = wp_get_attachment_image_url($bst_var_theme_default_avatar_for_staff, 'thumb_500');
 						}
 						$permalink = get_permalink();
 
+						// Get staff categories
+						$staff_terms = wp_get_post_terms(get_the_ID(), 'staff-category');
+						$staff_category_ids = wp_list_pluck($staff_terms, 'term_id');
+						$bg_color = !empty($staff_terms) ? (get_field('li_globel_bg_color_options', 'term_' . $staff_terms[0]->term_id) ?: 'bg-none') : 'bg-none';
+
+						// Create data attributes for filtering
+						$category_classes = implode(' ', array_map(function ($id) {
+							return 'category-' . $id;
+						}, $staff_category_ids));
+						$category_data = implode(',', $staff_category_ids);
+
 						echo '
-						<a href="' . esc_url($permalink) . '" class="card-item ' . esc_attr($bg_color) . '">
+						<a href="' . esc_url($permalink) . '" class="card-item staff-member ' . esc_attr($bg_color) . ' ' . esc_attr($category_classes) . '" data-categories="' . esc_attr($category_data) . '">
 							<div class="card-body">
 								<div class="gl-s52"></div>
 								<h5 class="card-title mb-0 heading-5">' . esc_html($title) . '</h5>
@@ -103,70 +116,111 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 					endwhile;
 					wp_reset_postdata();
 				else :
-					echo '<p>No staff found for this category.</p>';
+					echo '<div class="gl-s52 no-staff-message"></div><p class="center-align alignnone">No staff found.</p><div class="gl-s52"></div>';
 				endif;
-
-				echo '</div></div>';
-				$tab_index++;
-			}
-
-			// "All" tab
-			echo '<div id="tab-' . $tab_index . '" class="tab-content" style="opacity:0;">';
-			echo '<div class="tab-row-block staff-listing">';
-
-			$all_args = [
-				'post_type'      => 'staff',
-				'posts_per_page' => -1,
-			];
-
-			if ($show_by_selector) {
-				$all_args['post__in'] = $li_sl_staff_selector;
-				$all_args['orderby']  = 'post__in';
-			} elseif ($show_by_category) {
-				$all_args['tax_query'] = [[
-					'taxonomy' => 'staff-category',
-					'field'    => 'term_id',
-					'terms'    => wp_list_pluck($li_sl_staff_category_selector, 'term_id'),
-				]];
-			}
-
-			$all_query = new WP_Query($all_args);
-
-			if ($all_query->have_posts()) :
-				while ($all_query->have_posts()) : $all_query->the_post();
-					$title    = get_the_title();
-					$position = get_field('staff_designation');
-					$image    = get_the_post_thumbnail_url(get_the_ID(), 'thumb_500');
-					if (empty($image)) {
-						$image = wp_get_attachment_image_url($bst_var_theme_default_avatar_for_staff, 'thumb_500');
-					}
-					$link     = get_permalink();
-					$terms    = wp_get_post_terms(get_the_ID(), 'staff-category');
-					$bg_color = !empty($terms) ? (get_field('li_globel_bg_color_options', 'term_' . $terms[0]->term_id) ?: 'bg-none') : 'bg-none';
-
-					echo '
-					<a href="' . esc_url($link) . '" class="card-item ' . esc_attr($bg_color) . '">
-						<div class="card-body">
-							<div class="gl-s52"></div>
-							<h5 class="card-title mb-0 heading-5">' . esc_html($title) . '</h5>
-							<div class="gl-s6"></div>
-							<div class="ui-eyebrow-16-15-regular sub-head">' . esc_html($position) . '</div>
-							<div class="gl-s20"></div>
-							<div class="card-btn"><div class="border-text-btn">Read more</div></div>
-						</div>
-						<div class="card-img">
-							<div class="gl-s30"></div>
-							<img src="' . esc_url($image) . '" alt="' . esc_attr($title) . '" />
-						</div>
-					</a>';
-				endwhile;
-				wp_reset_postdata();
-			else :
-				echo '<p>No staff found.</p>';
-			endif;
-
-			echo '</div></div>'; // Close all-tab
-			?>
+				?>
+			</div>
 		</div>
 	</div>
 </div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const tabLinks = document.querySelectorAll('.staff-list .tab-link');
+		const staffMembers = document.querySelectorAll('.staff-list .staff-member');
+		const noStaffMessage = document.querySelector('.staff-list .no-staff-message');
+
+		function filterStaff(categoryId, bgColor) {
+			let visibleCount = 0;
+
+			staffMembers.forEach(function(member) {
+				const memberCategories = member.getAttribute('data-categories').split(',');
+				const shouldShow = categoryId === 'all' || memberCategories.includes(categoryId);
+
+				if (shouldShow) {
+					member.style.display = 'flex';
+					member.classList.add('fade-in');
+					// Remove all classes that start with 'bg-'
+					member.classList.forEach(cls => {
+						if (cls.startsWith('bg-')) {
+							member.classList.remove(cls);
+						}
+					});
+					member.classList.add(bgColor);
+					console.log(bgColor);
+
+					visibleCount++;
+				} else {
+					member.style.display = 'none';
+					member.classList.remove('fade-in');
+				}
+			});
+
+			// Show/hide no staff message
+			if (noStaffMessage) {
+				if (visibleCount === 0) {
+					noStaffMessage.style.display = 'block';
+				} else {
+					noStaffMessage.style.display = 'none';
+				}
+			}
+		}
+
+		// Tab click handlers
+		tabLinks.forEach(function(link) {
+			link.addEventListener('click', function(e) {
+				e.preventDefault();
+
+				// Remove active class from all tabs
+				tabLinks.forEach(function(tab) {
+					tab.classList.remove('current');
+				});
+
+				// Add active class to clicked tab
+				this.classList.add('current');
+
+				// Get category ID and filter
+				const categoryId = this.getAttribute('data-category');
+				const bgColor = this.getAttribute('data-bg-color');
+				filterStaff(categoryId, bgColor);
+			});
+		});
+
+		// Initialize with first tab active
+		if (tabLinks.length > 0) {
+			const firstTab = tabLinks[0];
+			const initialCategory = firstTab.getAttribute('data-category');
+			const bgColor = firstTab.getAttribute('data-bg-color');
+			filterStaff(initialCategory, bgColor);
+		}
+	});
+</script>
+
+<style>
+	.staff-list .staff-member {
+		display: none;
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out;
+	}
+
+	.staff-list .staff-member.fade-in {
+		opacity: 1;
+	}
+
+	.staff-list .no-staff-message {
+		display: none;
+	}
+
+	.staff-list .tab-link {
+		cursor: pointer;
+		transition: all 0.3s ease;
+	}
+
+	.staff-list .tab-link:hover {
+		opacity: 0.8;
+	}
+
+	.staff-list .tab-link.current {
+		/* Add your active tab styles here */
+	}
+</style>
