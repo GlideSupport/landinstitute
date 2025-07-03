@@ -471,7 +471,7 @@ header {
 		.header-logo {
 			&.logo {
 
-				.site-logo {
+				a.site-logo {
 					padding-bottom: 7px;
 					padding-top: 5px;
 
@@ -483,6 +483,7 @@ header {
 					img {
 						height: 54px;
 						width: 54px;
+						padding: 0;
 
 						@media(max-width: 991px) {
 							height: clamp(54px, calc(3.375rem + ((1vw - 7.68px) * 5.8419)), 88px);
