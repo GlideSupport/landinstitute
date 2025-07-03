@@ -1,17 +1,21 @@
 // Load more events via AJAX on button click
-document.getElementById('load-more-events').addEventListener('click', function (e) {
-  e.preventDefault(); // Prevent default button behavior
+const loadMoreBtn = document.getElementById('load-more-events');
 
-  const btn = this;
-  const page = parseInt(btn.getAttribute('data-page')) + 1;
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent default button behavior
 
-  fetch(localVars.ajax_url+'?action=load_more_events&page=' + page)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('event-list-main-div').insertAdjacentHTML('beforeend', html);
-      btn.setAttribute('data-page', page);
-    });
-});
+    const btn = this;
+    const page = parseInt(btn.getAttribute('data-page')) + 1;
+
+    fetch(localVars.ajax_url + '?action=load_more_events&page=' + page)
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('event-list-main-div').insertAdjacentHTML('beforeend', html);
+        btn.setAttribute('data-page', page);
+      });
+  });
+}
 
 let backup = 0;
 
