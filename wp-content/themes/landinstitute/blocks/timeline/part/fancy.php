@@ -15,7 +15,7 @@
                     <div class="border-card fancy-border-card">
                         <div class="border-card-click">
                             <?php echo !empty($year) ? '<div class="gl-s96"></div><div class="ui-20-18-bold card-sub-head">' . esc_html($year) . '</div><div class="gl-s4"></div>' : ''; ?>
-                            <?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4><div class="gl-s20"></div>' : ''; ?>
+                            <?php echo !empty($title) ? '<div class="heading-4 mb-0 block-title">' . esc_html($title) . '</div><div class="gl-s20"></div>' : ''; ?>
                             <?php echo !empty($content) ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div><div class="gl-s44"></div>' : ''; ?>
                             <?php echo !empty($image) ? '<div class="block-image">' . wp_get_attachment_image($image, 'thumb_1000') . '</div>' : ''; ?>
                             <div class="gl-s128"></div>
