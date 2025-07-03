@@ -102,7 +102,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 						<a href="' . esc_url($permalink) . '" class="card-item staff-member ' . esc_attr($bg_color) . ' ' . esc_attr($category_classes) . '" data-categories="' . esc_attr($category_data) . '">
 							<div class="card-body">
 								<div class="gl-s52"></div>
-								<h5 class="card-title mb-0 heading-5">' . esc_html($title) . '</h5>
+								<div class="card-title mb-0 heading-5">' . esc_html($title) . '</div>
 								<div class="gl-s6"></div>
 								<div class="ui-eyebrow-16-15-regular sub-head">' . esc_html($position) . '</div>
 								<div class="gl-s20"></div>

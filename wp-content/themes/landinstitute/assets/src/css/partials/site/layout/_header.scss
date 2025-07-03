@@ -460,6 +460,30 @@ body {
 	padding: 20px 0;
 }
 
+.hello-bar-remove {
+	.shrink {
+		.header-wrapper {
+			.bottom-head {
+				.nav-overlay {
+					@media (min-width: 1201px) {
+						border-top: transparent;
+					}
+				}
+			}
+
+			.header-btns {
+				.site-btn {
+					&.sm-btn {
+						@media (min-width: 1201px) {
+							border-top: transparent;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 header {
 	background-color: var(--gb_header_bgcolor);
 	position: fixed;
@@ -472,7 +496,7 @@ header {
 			&.logo {
 
 				a.site-logo {
-					padding-bottom: 7px;
+					padding-bottom: 6px;
 					padding-top: 5px;
 
 					@media(max-width: 991px) {
