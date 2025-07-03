@@ -52,7 +52,7 @@ if (!empty($li_bq_kicker) || !empty($li_bq_quote) || !empty($li_bq_name) || !emp
 		<blockquote class="block-quote">
 		<?php echo !empty($li_bq_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_bq_kicker) . '</div>' : ''; ?>
 		<?php echo (!empty($li_bq_kicker) && !empty($li_bq_quote)) ? '<div class="gl-s12"></div>' : ''; ?>
-		<?php echo !empty($li_bq_quote) ? '<h4 class="heading-4 mb-0 quote-title">' . html_entity_decode($li_bq_quote) . '</h4><div class="gl-s44"></div>' : ''; ?>	
+		<?php echo !empty($li_bq_quote) ? '<div class="heading-4 mb-0 quote-title">' . html_entity_decode($li_bq_quote) . '</div><div class="gl-s44"></div>' : ''; ?>	
 			<div class="block-quote-author">
 				<div class="author-details">
 				<?php echo !empty($li_bq_name) ? '<div class="author-name ui-eyebrow-18-16-regular">' . esc_html($li_bq_name) . '</div>' : ''; ?>
