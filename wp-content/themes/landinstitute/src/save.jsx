@@ -26,6 +26,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 
 export default function save({ attributes }) {
 	const {
+		anchor,
 		bgImage,
 		bgDesignType,
 		bgWidth,
@@ -34,6 +35,7 @@ export default function save({ attributes }) {
 		ctnShape,
 	} = attributes;
 
+	const hasAnchor = anchor;
 	const myCustomDesignClass = bgDesignType ? bgDesignType : undefined;
 	const myCustomShape = ctnShape ? ctnShape : undefined;
 	const myCustomWidthClass = bgWidth ? bgWidth : undefined;
@@ -56,7 +58,7 @@ export default function save({ attributes }) {
 
 	return (
 
-		<section className={classes.join(' ')} style={myStyle} >
+		<section id={hasAnchor} className={classes.join(' ')} style={myStyle} >
 			<div className={wrapperClasses.join(' ')}>
 				<InnerBlocks.Content />
 			</div>
