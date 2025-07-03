@@ -426,9 +426,18 @@ function array_flatten( $arr ) {
 	return $data;
 }
 function sort_array( $arr, $key ) {
+	$item = [];
+
 	foreach ( $arr as $k => $row ) {
-		$item[ $k ] = $row[ $key ];
+		if ( $key === 'length' && is_array( $row ) && isset( $row['name'] ) ) {
+			$item[ $k ] = strlen( $row['name'] );
+		} elseif ( is_array( $row ) && isset( $row[ $key ] ) ) {
+			$item[ $k ] = $row[ $key ];
+		} else {
+			$item[ $k ] = null;
+		}
 	}
+
 	array_multisort( $item, SORT_DESC, $arr );
 	return $arr;
 }

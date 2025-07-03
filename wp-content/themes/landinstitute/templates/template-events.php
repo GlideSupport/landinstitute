@@ -34,6 +34,7 @@ $news_headline_check  = BaseTheme::headline_check($news_temp_headline_text);
 	?>
 
 
+
 <style>
  .event-image {
 	border-bottom: none;
@@ -1177,9 +1178,6 @@ span.close-event-btn {
 }
 
 </style>
-
-<!-- news list -->
-
 <section id="hero-section" class="hero-section hero-section-default hero-alongside-standard">
 	<!-- hero start -->
 	<div class="bg-pattern">
@@ -1316,9 +1314,25 @@ $eventsview = isset($_GET['eventsview']) ? $_GET['eventsview'] : 'list'; // defa
               );
 
               // Avoid undefined index warning
-              if (isset($_GET['eventsview']) && $_GET['eventsview'] === 'calendar') {
-                  $eventargs['posts_per_page'] = -1;
-              }
+               if (isset($_GET['eventsview']) && $_GET['eventsview'] === 'calendar') {
+          $eventargs['posts_per_page'] = -1;
+
+          $eventargs['meta_query'] = [
+              'relation' => 'AND',
+              [
+                  'key'     => 'li_cpt_event_start_date',
+                  'value'   => date('Ymd'),
+                  'compare' => '>=',
+                  'type'    => 'NUMERIC'
+              ],
+              [
+                  'key'     => 'li_cpt_event_end_date',
+                  'value'   => date('Ymd'),
+                  'compare' => '>=',
+                  'type'    => 'NUMERIC'
+              ]
+          ];
+      }
 
               $event_query = new WP_Query($eventargs);
 
@@ -1359,17 +1373,6 @@ $eventsview = isset($_GET['eventsview']) ? $_GET['eventsview'] : 'list'; // defa
 				<?php
                       if (isset($_GET['eventsview']) && $_GET['eventsview'] === 'calendar') {
 
-			//	$query = new WP_Query( $args );
-				// The Loop
-
-        			// $start_date = get_field('li_cpt_event_start_date');
-							// 		$end_date = get_field('li_cpt_event_end_date');
-							// 		$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-							// 		$excerpt = get_the_excerpt();
-							// 		$url = get_permalink();
-
-
-
 				$key              = 0;
 				$events_data_raw  = array();
 				$dates_raw        = array();
@@ -1395,7 +1398,10 @@ $eventsview = isset($_GET['eventsview']) ? $_GET['eventsview'] : 'list'; // defa
 
 						$key++;
 					}
-				}
+					}else{
+				echo '<p>No events found.</p>';
+
+			}
 				foreach ( $events_data_raw as $key => $raw_data ) {
 					$period     = array();
 					$time       = strtotime( $raw_data['end_date'] );
