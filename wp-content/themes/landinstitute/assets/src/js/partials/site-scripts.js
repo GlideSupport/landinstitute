@@ -348,21 +348,30 @@ const HeadermenuAppend = [
 
 HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 	const dropdown = document.querySelector(dropdownId);
-	const menuItem = document.querySelector(
-		`.header-nav ul.menu li.${menuClass}`,
-	);
+	const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
+	const triggerLink = menuItem?.querySelector('a');
 
 	if (dropdown && menuItem) {
 		menuItem.appendChild(dropdown);
 
+		// Set ARIA attributes
+		if (triggerLink) {
+			triggerLink.setAttribute("aria-haspopup", "true");
+			triggerLink.setAttribute("aria-expanded", "false");
+		}
+
 		// Show on hover
-		menuItem.addEventListener("mouseenter", () => {
+		const showDropdown = () => {
 			dropdown.style.display = "block";
 			dropdown.style.opacity = "1";
 			dropdown.style.overflow = "visible";
 			dropdown.style.visibility = "visible";
 			document.body.classList.add("megamenu-hover-active");
-		});
+
+			if (triggerLink) {
+				triggerLink.setAttribute("aria-expanded", "true");
+			}
+		};
 
 		// Hide when leaving dropdown or menu item
 		const hideDropdown = () => {
@@ -371,9 +380,16 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			dropdown.style.overflow = "hidden";
 			dropdown.style.visibility = "hidden";
 			document.body.classList.remove("megamenu-hover-active");
+
+			if (triggerLink) {
+				triggerLink.setAttribute("aria-expanded", "false");
+			}
 		};
 
+		menuItem.addEventListener("mouseover", showDropdown);
 		menuItem.addEventListener("mouseleave", hideDropdown);
+		menuItem.addEventListener("focusin", showDropdown);
+		menuItem.addEventListener("focusout", hideDropdown);
 
 		// Also hide when mouse leaves the inner container
 		const inner = dropdown.querySelector(".mega-dropdown-inner");
@@ -382,7 +398,28 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 		}
 	}
 });
+// Close mega menu on scroll
+window.addEventListener("scroll", () => {
+	HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
+		const dropdown = document.querySelector(dropdownId);
+		const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
+		const triggerLink = menuItem?.querySelector('a');
+
+		if (dropdown && menuItem) {
+			dropdown.style.display = "none";
+			dropdown.style.opacity = "0";
+			dropdown.style.overflow = "hidden";
+			dropdown.style.visibility = "hidden";
+			document.body.classList.remove("megamenu-hover-active");
+
+			if (triggerLink) {
+				triggerLink.setAttribute("aria-expanded", "false");
+			}
+		}
+	});
+});
 // Header Mega menu append js End
+
 
 function applyCardSpacing() {
 	const rowFlex = document.querySelector(
@@ -874,8 +911,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	stickyElements.forEach(function (subNav) {
 		const headerSection = document.querySelector(".header-section");
-		const parentSection =
-			subNav.closest(".sticky-parent")?.parentElement?.parentElement;
+		const wpAdminBar = document.getElementById("wpadminbar");
+		const parentSection = subNav.closest(".sticky-parent")?.parentElement?.parentElement;
 		const stickyParent = subNav.closest(".sticky-parent");
 
 		if (!headerSection || !parentSection || !stickyParent) {
@@ -883,6 +920,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		let headerHeight = headerSection.offsetHeight;
+		let wpAdminBarHeight = wpAdminBar ? wpAdminBar.offsetHeight : 0;
 
 		function updateStickyWidth() {
 			const stickyParentWidth = stickyParent.offsetWidth;
@@ -907,14 +945,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			const parentBottom = parentTop + parentHeight;
 
 			const stickyHeight = subNav.offsetHeight;
+			const totalOffset = headerHeight + (wpAdminBar ? wpAdminBar.offsetHeight : 0);
 
-			if (
-				scrollY + headerHeight >= parentTop &&
-				scrollY + headerHeight < parentBottom - stickyHeight
-			) {
+			if ( scrollY + headerHeight >= parentTop && scrollY + headerHeight < parentBottom - stickyHeight ) {
 				subNav.classList.add("scrolled");
 				subNav.style.position = "fixed";
-				subNav.style.top = headerHeight + "px";
+				subNav.style.top = totalOffset + "px";
 				updateStickyWidth();
 				subNav.style.bottom = "";
 			} else if (scrollY + headerHeight >= parentBottom - stickyHeight) {
