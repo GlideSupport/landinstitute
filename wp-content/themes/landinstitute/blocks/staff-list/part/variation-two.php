@@ -114,9 +114,9 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 							</div>
 						</a>';
 					endwhile;
+					echo '<div class="no-staff-message"><p class="center-align alignnone">No staff found.</p>';
 					wp_reset_postdata();
 				else :
-					echo '<div class="gl-s52 no-staff-message"></div><p class="center-align alignnone">No staff found.</p><div class="gl-s52"></div>';
 				endif;
 				?>
 			</div>
