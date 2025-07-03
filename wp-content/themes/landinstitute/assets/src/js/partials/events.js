@@ -1,4 +1,5 @@
 // Load more events via AJAX on button click
+
 const loadMoreBtn = document.getElementById('load-more-events');
 
 if (loadMoreBtn) {
@@ -19,45 +20,41 @@ if (loadMoreBtn) {
 
 let backup = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.event-calendar-row').forEach(function (row) {
+jQuery(document).ready(function () {
+  jQuery('.event-calendar-row').each(function () {
     // Remove previously applied row and column classes
     const columnClasses = [
       'ct-first-row', 'ct-second-row', 'ct-third-row', 'ct-forth-row', 'ct-fifth-row',
       'ct-first-col', 'ct-second-col', 'ct-third-col', 'ct-forth-col', 'ct-fifth-col',
       'ct-sixth-col', 'ct-seventh-col'
     ];
-    row.querySelectorAll('.calendar-column').forEach(function (col) {
-      columnClasses.forEach(cls => col.classList.remove(cls));
-    });
+    jQuery(this).find('.calendar-column').removeClass(columnClasses.join(' '));
 
-    const columns = row.querySelectorAll('.calendar-column');
-    const monthEl = row.querySelector('.calendar-month .heading-5');
-    const month = monthEl ? monthEl.textContent : '';
-    const day = new Date(`01 ${month}`).getDay(); // day of the week for 1st
+    const col_length = jQuery(this).find('.calendar-column').length;
+    const month = jQuery(this).find('.calendar-month .heading-5').text();
+    const day = new Date(`01 ${month}`).getDay(); // Get day of the week for 1st of the month
 
     // Prepend hidden placeholders for days before the 1st of the month
     if (day > 0) {
-      const daysRow = row.querySelector('.calendar-days-row');
       for (let i = 0; i < day; i++) {
-        const div = document.createElement('div');
-        div.className = 'calendar-column ct-hidden-items';
-        div.innerHTML = '<div class="calendar-date"> </div>';
-        if (daysRow) {
-          daysRow.insertBefore(div, daysRow.firstChild);
-        }
+        jQuery(this).find('.calendar-days-row').prepend('<div class="calendar-column ct-hidden-items"><div class="calendar-date"> </div></div>');
       }
     }
 
-    // Assign row and column classes
-    row.querySelectorAll('.calendar-column').forEach(function (col, ii) {
-      let rowClass = '';
-      if (ii < 7) rowClass = 'ct-first-row';
-      else if (ii < 14) rowClass = 'ct-second-row';
-      else if (ii < 21) rowClass = 'ct-third-row';
-      else if (ii < 28) rowClass = 'ct-forth-row';
-      else rowClass = 'ct-fifth-row';
+    // Assign row and column classes to calendar columns
+    jQuery(this).find('.calendar-column').each(function (ii) {
+      let row_class = '';
+      let col_class = '';
+      let cols = 7;
 
+      // Assign row class based on index
+      if (ii < 7) row_class = 'ct-first-row';
+      else if (ii < 14) row_class = 'ct-second-row';
+      else if (ii < 21) row_class = 'ct-third-row';
+      else if (ii < 28) row_class = 'ct-forth-row';
+      else row_class = 'ct-firth-row';
+
+      // Determine column number and class using predefined arrays
       const columnMap = {
         'ct-first-col': [1, 8, 15, 22, 29],
         'ct-second-col': [2, 9, 16, 23, 30],
@@ -68,45 +65,33 @@ document.addEventListener('DOMContentLoaded', function () {
         'ct-seventh-col': [7, 14, 21, 28, 35],
       };
 
-      let colClass = '';
-      let colNumber = 0;
+      let col_number = 0;
 
       for (const [className, indices] of Object.entries(columnMap)) {
-        if (indices.includes(ii + 1)) {
-          colClass = className;
-          colNumber = parseInt(className.match(/\d/)) || 0;
+        if (jQuery.inArray(ii + 1, indices) !== -1) {
+          col_class = className;
+          col_number = parseInt(className.match(/\d/)) || 0;
           break;
         }
       }
 
-      // Add data and class to event inside the column
-      const event = col.querySelector('.calendar-event');
-      if (event) {
-        event.setAttribute('data-position', colNumber);
-        event.setAttribute('data-cols', 7);
-       // event.classList.add(`${colClass}-item`);
-       if (colClass) event.classList.add(`${colClass}-item`);
+      // Apply row/column class and data attributes to event
+      jQuery(this).find('.calendar-event')
+        .attr('data-position', col_number)
+        .attr('data-cols', cols)
+        .addClass(`${col_class}-item`);
 
-      }
-
-      //col.classList.add(rowClass, colClass);
-      if (rowClass) col.classList.add(rowClass);
-      if (colClass) col.classList.add(colClass);
-
+      jQuery(this).addClass(row_class).addClass(col_class);
     });
   });
 });
 
-// Toggle tooltip visibility on calendar column click
-document.addEventListener('click', function (e) {
-  if (e.target.closest('.calendar-column')) {
-    const tooltip = e.target.closest('.calendar-column').querySelector('.tooltip');
-    if (tooltip) tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
-  }
+// Toggle tooltip visibility when clicking on a calendar column
+jQuery(document).on('click', '.calendar-column', function () {
+  jQuery(this).find('.tooltip').toggle();
+});
 
-  // Close tooltip on close button click
-  if (e.target.classList.contains('close-event-btn')) {
-    const tooltip = e.target.closest('.tooltip');
-    if (tooltip) tooltip.style.display = 'none';
-  }
+// Close tooltip on close button click
+jQuery(document).on('click', '.close-event-btn', function () {
+  jQuery(this).parent('.tooltip').hide();
 });
