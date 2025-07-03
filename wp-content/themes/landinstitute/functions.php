@@ -333,3 +333,177 @@ function filter_news_posts_callback()
 	wp_reset_postdata();
 	wp_die();
 }
+
+
+//event code
+
+
+
+function date_formatting( $start_date, $end_date ) {
+	$final_date = '';
+	if ( $start_date == '' ) {
+		return;
+	}
+	if ( $end_date == '' ) {
+		return;
+	}
+	$start_date = explode( ' ', date( 'F j Y', strtotime( $start_date ) ) );
+	$end_date   = explode( ' ', date( 'F j Y', strtotime( $end_date ) ) );
+
+	if ( $start_date[2] == $end_date[2] ) {
+		if ( $start_date[0] == $end_date[0] ) {
+			$final_date .= $start_date[0];
+			if ( $start_date[1] == $end_date[1] ) {
+				$final_date .= ' ' . $start_date[1];
+			} else {
+				$final_date .= ' ' . $start_date[1] . '-' . $end_date[1];
+			}
+			if ( $start_date[2] == $end_date[2] ) {
+				$final_date .= ', ' . $start_date[2];
+			}
+		} else {
+			if ( $start_date[1] == $end_date[1] ) {
+				$final_date .= ' ' . $start_date[0] . '-' . $end_date[0] . ' ' . $start_date[1];
+			} else {
+				$final_date .= ' ' . $start_date[0] . ' ' . $start_date[1] . '-' . $end_date[0] . ' ' . $end_date[1];
+			}
+			if ( $start_date[2] == $end_date[2] ) {
+				$final_date .= ', ' . $start_date[2];
+			}
+		}
+	} else {
+		$final_date .= implode( ' ', $start_date ) . ', ' . implode( ' ', $end_date );
+	}
+	return $final_date;
+}
+
+function event_current_length( $buffer, $item ) {
+	$length = 1;
+	foreach ( $buffer as $value ) {
+		if ( $value == $item ) {
+			$length++;
+		}
+	}
+	return $length;
+}
+
+function event_length( $arr, $item ) {
+	$length = 0;
+	foreach ( $arr as $key => $value ) {
+		$time       = strtotime( $value['end_date'] );
+		$final      = date( 'Y-m-d', strtotime( '+1 day', $time ) );
+		$period_raw = new DatePeriod(
+			new DateTime( $value['start_date'] ),
+			new DateInterval( 'P1D' ),
+			new DateTime( $final )
+		);
+		foreach ( $period_raw as $k => $v ) {
+			$month         = date( 'F Y', strtotime( $v->format( 'Y-m-d' ) ) );
+			$current_month = date( 'F Y' );
+			if ( strtotime( $month ) < strtotime( $current_month ) ) {
+				continue;
+			}
+			$current_date = date( 'Y-m-d' );
+			if ( strtotime( $v->format( 'Y-m-d' ) ) < strtotime( $current_date ) ) {
+				continue;
+			}
+			if ( $value['pID'] == $item ) {
+				$length++;
+			}
+		}
+	}
+	return $length;
+}
+
+
+function array_flatten( $arr ) {
+	$data = array();
+	foreach ( $arr as $value ) {
+		foreach ( $value as $v ) {
+			$data[] = $v;
+		}
+	}
+	return $data;
+}
+function sort_array( $arr, $key ) {
+	foreach ( $arr as $k => $row ) {
+		$item[ $k ] = $row[ $key ];
+	}
+	array_multisort( $item, SORT_DESC, $arr );
+	return $arr;
+}
+function date_list( $month ) {
+	$list       = array();
+	$start_date = '01-' . $month;
+	$start_time = strtotime( $start_date );
+	$end_time   = strtotime( '+1 month', $start_time );
+	for ( $i = $start_time; $i < $end_time; $i += 86400 ) {
+		$list[] = date( 'Y-m-d', $i );
+	}
+	return $list;
+}
+function month_sort( $input ) {
+	usort(
+		$input,
+		function( $a, $b ) {
+			$a = strtotime( $a );
+			$b = strtotime( $b );
+			return $a - $b;
+		}
+	);
+	return $input;
+}
+function number_to_words( $num ) {
+	$first_word  = array( 'eth', 'first', 'second', 'third', 'fouth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'elevents', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth' );
+	$second_word = array( '', '', 'twenty', 'thirthy', 'forty', 'fifty' );
+
+	if ( $num <= 20 ) {
+		return $first_word[ $num ];
+	}
+
+	$first_num  = substr( $num, -1, 1 );
+	$second_num = substr( $num, -2, 1 );
+
+	return $string = str_replace( 'y-eth', 'ieth', $second_word[ $second_num ] . '-' . $first_word[ $first_num ] );
+}
+
+add_action('wp_ajax_load_more_events', 'load_more_events_callback');
+add_action('wp_ajax_nopriv_load_more_events', 'load_more_events_callback');
+
+function load_more_events_callback() {
+    $paged = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+    $event_query = new WP_Query([
+        'post_type'      => 'event',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'paged'          => $paged,
+        'orderby'        => 'meta_value',
+        'meta_key'       => 'li_cpt_event_start_date',
+        'order'          => 'ASC'
+    ]);
+
+    if ($event_query->have_posts()) :
+        while ($event_query->have_posts()) : $event_query->the_post();
+            $start_date = get_field('li_cpt_event_start_date');
+            $end_date   = get_field('li_cpt_event_end_date');
+            $image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+            $excerpt    = get_the_excerpt();
+            $url        = get_permalink();
+
+            set_query_var('start_date', $start_date);
+            set_query_var('end_date', $end_date);
+            set_query_var('image', $image);
+            set_query_var('excerpt', $excerpt);
+            set_query_var('url', $url);
+
+            get_template_part('partials/content', 'event-list');
+        endwhile;
+    else :
+        echo '<p>No more events.</p>';
+    endif;
+
+    wp_reset_postdata();
+    wp_die(); // Important!
+}
+
