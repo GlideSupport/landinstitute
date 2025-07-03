@@ -82,7 +82,7 @@ if (!empty($li_tc_headline_check) || !empty($li_tc_wysiwyg) || !empty($li_tc_rep
                                 <div class="gl-s80"></div>
                                 <div class="tab-content-wrapp">
                                     <?php if ($title): ?>
-                                        <h4 class="heading-4 block-title mb-0"><?php echo esc_html($title); ?></h4>
+                                        <div class="heading-4 block-title mb-0"><?php echo esc_html($title); ?></div>
                                         <div class="gl-s20"></div>
                                     <?php endif; ?>
                                     <?php if ($wysiwyg): ?>

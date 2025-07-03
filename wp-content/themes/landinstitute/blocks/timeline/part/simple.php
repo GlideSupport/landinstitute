@@ -17,7 +17,7 @@
 									<a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>" class="border-card-click">
 										<div class="gl-s52"></div>
 										<?php echo $year ? '<div class="ui-20-18-bold card-sub-head">' . esc_html($year) . '</div><div class="gl-s4"></div>' : ''; ?>
-										<?php echo $title ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4><div class="gl-s20"></div>' : ''; ?>
+										<?php echo $title ? '<div class="heading-4 mb-0 block-title">' . esc_html($title) . '</div><div class="gl-s20"></div>' : ''; ?>
 										<?php echo $content ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div><div class="gl-s12"></div>' : ''; ?>
 										<div class="block-btn">
 											<div class="site-btn text-link"><?php echo html_entity_decode($link_title); ?></div>

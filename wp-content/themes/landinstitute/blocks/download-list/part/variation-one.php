@@ -16,7 +16,7 @@
 						if(!empty($fiscal_year) && !empty($downloads)): ?>
 							<div class="list-list-block">
 								<?php if (!empty($fiscal_year)) : ?>
-									<h4 class="heading-4 mb-0 block-title"><?php echo esc_html($fiscal_year); ?></h4>
+									<div class="heading-4 mb-0 block-title"><?php echo esc_html($fiscal_year); ?></div>
 									<div class="gl-s16"></div>
 								<?php endif; ?>
 								<?php if (!empty($downloads)) : ?>

@@ -76,7 +76,7 @@ endif;
                     ?>
                     <?php if (!empty($group_title) || (!empty($entries))): ?>
                         <div class="designation-block">
-                            <h4 class="heading-4 block-title mb-0"><?php echo esc_html($group_title); ?></h4>
+                            <div class="heading-4 block-title mb-0"><?php echo esc_html($group_title); ?></div>
                             <div class="gl-s16"></div>
                             <?php if (!empty($entries)): ?>
                                 <div class="designation-row <?php echo $class; ?>">
