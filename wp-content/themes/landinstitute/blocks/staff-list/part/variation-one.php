@@ -42,17 +42,18 @@
                                     <div class="ui-eyebrow-16-15-regular team-sub"><?= esc_html($position); ?></div>
                                     <div class="gl-s20"></div>
                                 <?php endif; ?>
+                                <div class="team-desc">
+                                    <?php if ($content): ?>
+                                        <div class="team-content body-20-18-regular"><?= wp_kses_post($content); ?></div>
+                                        <div class="gl-s6"></div>
+                                    <?php endif; ?>
 
-                                <?php if ($content): ?>
-                                    <div class="team-content body-20-18-regular"><?= wp_kses_post($content); ?></div>
-                                    <div class="gl-s6"></div>
-                                <?php endif; ?>
-
-                                <?php if ($permalink): ?>
-                                    <div class="team-btn">
-                                        <a href="<?= esc_url($permalink); ?>" class="border-text-btn">Read more</a>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php if ($permalink): ?>
+                                        <div class="team-btn">
+                                            <a href="<?= esc_url($permalink); ?>" class="border-text-btn">Read more</a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                             <div class="team-desc">
                                 <div class="gl-s20"></div>
