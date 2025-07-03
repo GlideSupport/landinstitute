@@ -50,7 +50,7 @@ $topic_terms = get_terms([
 <section id="hero-section" class="hero-section hero-section-default hero-alongside-standard">
 	<!-- hero start -->
 	<div class="bg-pattern">
-		<img src="<?php echo get_template_directory_uri()?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="" />
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys" title="TLI-Pattern-Repair-SkyBlue-stickys" />
 	</div>
 	<div class="hero-default has-border-bottom">
 		<div class="wrapper">
@@ -71,7 +71,7 @@ $topic_terms = get_terms([
 				</div>
 				<div class="col-right">
 					<div class="bg-pattern">
-						<img src="<?php echo get_template_directory_uri()?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="" />
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys" title="TLI-Pattern-Repair-SkyBlue-stickys" />
 					</div>
 				</div>
 			</div>
@@ -196,11 +196,11 @@ $topic_terms = get_terms([
 					</div>
 					<!-- Mobile Pagination -->
 					<div class="mobile-pagination">
-						<button id="prevBtn" class="arrow-btn"><img
-								src="<?php echo get_template_directory_uri()?>/assets/src/images/right-circle-arrow.svg" /></button>
+						<button id="prevBtn" class="arrow-btn"><img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
+						</button>
 						<button id="pageTrigger" class="page-trigger ui-18-16-bold">1/26</button>
-						<button id="nextBtn" class="arrow-btn"><img
-								src="<?php echo get_template_directory_uri()?>/assets/src/images/right-circle-arrow.svg" /></button>
+						<button id="nextBtn" class="arrow-btn"><img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
+						</button>
 					</div>
 
 					<!-- Mobile Popup -->

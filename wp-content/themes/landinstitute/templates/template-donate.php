@@ -66,7 +66,7 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                                 </div>
                                 <div class="card-item-right">
                                     <div class="dot-btn">
-                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
+                                         <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
                                     </div>
                                 </div>
                             </a>
@@ -76,7 +76,7 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                                 </div>
                                 <div class="card-item-right">
                                     <div class="dot-btn">
-                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
+                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/" title="right-circle-arrow" alt="right-circle-arrow" />
                                     </div>
                                 </div>
                             </a>
@@ -86,7 +86,7 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                                 </div>
                                 <div class="card-item-right">
                                     <div class="dot-btn">
-                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" />
+                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
                                     </div>
                                 </div>
                             </a>

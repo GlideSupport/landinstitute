@@ -27,7 +27,8 @@
 								<!-- Add "active-search" on click of "search-popup" it will open sub menu of search  -->
 								<a href="javascript:void(0)" class="search-popup">
 									<!-- when hover on menu add "active-hover" class -->
-									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" /></a>
+									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" title="search-icon" />
+									</a>
 								<div class="mega-dropdown search-mega-dropdown" id="mega-dropdown-product">
 									<div class="mega-dropdown-card">
 										<div class="col-left">
@@ -159,8 +160,10 @@
 						<div class="top-bar-cross" role="button" tabindex="0"
 							aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
 							<span>
-								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
-									width="16" height="16" alt="<?php esc_attr_e('Top bar', 'land_institute'); ?>">
+								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>" 
+								width="16" height="16" 
+								alt="<?php esc_attr_e('Top bar', 'land_institute'); ?>" 
+								title="topbar-cross-icon">
 							</span>
 						</div>
 					</div>

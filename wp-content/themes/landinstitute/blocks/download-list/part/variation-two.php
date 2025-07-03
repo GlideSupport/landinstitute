@@ -31,7 +31,7 @@
 								</div>
 								<div class="card-item-right">
 									<div class="dot-btn">
-										<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg">
+										<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow">
 									</div>
 								</div>
 							<?php echo !empty($li_dl_link_two) ? '</a>' : '</div>'; ?>

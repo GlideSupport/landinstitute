@@ -1181,7 +1181,7 @@ span.close-event-btn {
 <section id="hero-section" class="hero-section hero-section-default hero-alongside-standard">
 	<!-- hero start -->
 	<div class="bg-pattern">
-		<img src="<?php echo get_template_directory_uri()?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="" />
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys" title="TLI-Pattern-Repair-SkyBlue-stickys" />
 	</div>
 	<div class="hero-default has-border-bottom">
 		<div class="wrapper">
@@ -1202,7 +1202,7 @@ span.close-event-btn {
 				</div>
 				<div class="col-right">
 					<div class="bg-pattern">
-						<img src="<?php echo get_template_directory_uri()?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="" />
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys" title="TLI-Pattern-Repair-SkyBlue-stickys" />
 					</div>
 				</div>
 			</div>

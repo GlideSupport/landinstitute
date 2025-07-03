@@ -169,6 +169,9 @@ class WP_Theme_Blocks {
 		// Register a block - Info Box.
 		self::register_acf_block('info-box');
 
+		// Register a block - Past Event.
+		self::register_acf_block('past-event');
+
 		// [register_here].
 	}
 
