@@ -470,15 +470,16 @@ header {
 	&.shrink {
 		.header-logo {
 			&.logo {
-				padding-bottom: 7px;
-				padding-top: 5px;
-
-				@media(max-width: 991px) {
-					padding-bottom: 12px;
-					padding-top: 11px;
-				}
 
 				.site-logo {
+					padding-bottom: 7px;
+					padding-top: 5px;
+
+					@media(max-width: 991px) {
+						padding-bottom: 12px;
+						padding-top: 11px;
+					}
+
 					img {
 						height: 54px;
 						width: 54px;

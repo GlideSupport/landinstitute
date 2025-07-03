@@ -1158,34 +1158,38 @@
 <script>
 
 	document.addEventListener("DOMContentLoaded", function () {
-		const stickyBoxes = document.querySelectorAll(
-			".staff-detail-layout .col-left .sticky-top-touch"
-		);
+		const colLeftBoxes = document.querySelectorAll(".staff-detail-layout .col-left .sticky-parent");
 
-		stickyBoxes.forEach(function (box) {
-			function setDynamicHeight() {
-				// Only run for screens above 767px
+		colLeftBoxes.forEach(function (colLeft) {
+			const sticky = colLeft.querySelector(".sticky-top-touch");
+
+			function setColLeftHeight() {
 				if (window.innerWidth <= 767) {
-					box.style.height = ""; // Reset height on smaller screens
+					colLeft.style.height = "";
 					return;
 				}
 
-				// Reset first to allow proper recalculation
-				box.style.height = "auto";
+				if (!sticky) return;
 
-				// Measure and apply height
-				const boxHeight = box.scrollHeight;
-				box.style.height = boxHeight + "px";
+				// Wait for image to load before calculating height
+				const img = sticky.querySelector("img");
+
+				function applyHeight() {
+					colLeft.style.height = "auto"; // Reset first
+					const height = sticky.offsetHeight;
+					colLeft.style.height = height + "px";
+				}
+
+				if (img && !img.complete) {
+					img.addEventListener("load", applyHeight);
+				} else {
+					applyHeight();
+				}
 			}
 
-			// Initial set
-			setDynamicHeight();
-
-			// Recalculate after full load (in case of images)
-			window.addEventListener("load", setDynamicHeight);
-
-			// Update on resize
-			window.addEventListener("resize", setDynamicHeight);
+			setColLeftHeight();
+			window.addEventListener("load", setColLeftHeight);
+			window.addEventListener("resize", setColLeftHeight);
 		});
 	});
 
