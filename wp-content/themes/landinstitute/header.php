@@ -142,15 +142,15 @@ $landinstitute_to_popular_topics = $bst_option_fields['landinstitute_to_popular_
 <?php
 $cookie_name = 'helloBarClosed';
 $cookie_class = 'hello-bar-appear';
-
 $body_classes = array();
 
-if (isset($_COOKIE[$cookie_name])) {
-    // If cookie is set, remove the class
-    $cookie_class = '';
-} else {
-    // If cookie is not set, keep the default class
-    $cookie_class = 'hello-bar-appear';
+// If top bar visibility variable is empty, force removal class
+if (empty($bst_var_tbar_vsblty)) {
+    $cookie_class = 'hello-bar-remove';
+}
+// If cookie is set (bar closed by user), override to removal
+elseif (isset($_COOKIE[$cookie_name])) {
+    $cookie_class = 'hello-bar-remove';
 }
 
 if (!empty($cookie_class)) {

@@ -159,6 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				e.preventDefault();
 				helloBar.style.display = "none"; // Hide the hello bar
 				document.body.classList.remove("hello-bar-appear"); // Remove class from body
+				document.body.classList.add("hello-bar-remove"); // Remove class from body
 				setCookie("helloBarClosed", "true", cookieDays); // Use dynamic value from the data attribute
 			});
 		}
