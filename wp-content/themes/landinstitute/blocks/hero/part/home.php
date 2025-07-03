@@ -27,7 +27,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 							<?php echo !empty($li_hero_headline_check) ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
 							<?php echo (!empty($li_hero_headline_check) && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
 							<?php echo !empty($button) ? '<div class="block-btn">' . BaseTheme::button($button, 'site-btn text-link') . '</div>' : ''; ?>
-							<?php if (!empty($button) && !empty($li_hero_to_image_video_thumbnail) || !empty($li_hero_to_choose_video_type) || !empty($li_hero_to_title) || !empty($li_hero_to_text)) : ?>
+							<?php if (!empty($button) && !empty($li_hero_to_image_video_thumbnail) && !empty($li_hero_to_choose_video_type) && !empty($li_hero_to_title) || !empty($li_hero_to_text)) : ?>
 								<div class="gl-s64"></div>
 							<?php endif; ?>
 							<?php if (!empty($li_hero_to_image_video_thumbnail) || !empty($li_hero_to_choose_video_type) || !empty($li_hero_to_title) || !empty($li_hero_to_text)) : ?>
