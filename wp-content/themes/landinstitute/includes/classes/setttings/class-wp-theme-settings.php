@@ -257,11 +257,9 @@ class WP_Theme_Settings {
 		if ($size === 'full') {
 			trigger_error('You cannot use full as a size', E_USER_WARNING);
 		}
-	
 		$mime = get_post_mime_type($attachment_id);
-	
 		if ($mime === 'image/svg+xml') {
-			// Use regex to modify <img> tag attributes
+			// Use regex to find <img> tag
 			if (preg_match('/<img[^>]+>/', $html, $matches)) {
 				$img_tag = $matches[0];
 	
@@ -271,6 +269,25 @@ class WP_Theme_Settings {
 				// Add width="100%" and height="100%"
 				$img_tag = str_replace('<img', '<img width="100%" height="100%"', $img_tag);
 	
+				// Get attachment title
+				$title = get_the_title($attachment_id);
+	
+				// Remove existing title and alt
+				$img_tag = preg_replace('/\s*title="[^"]*"/', '', $img_tag);
+				$img_tag = preg_replace('/\s*alt="[^"]*"/', '', $img_tag);
+	
+				// Add title
+				$img_tag = preg_replace('/<img/', '<img title="' . esc_attr($title) . '"', $img_tag);
+	
+				// Check if alt is empty in image meta
+				$alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+				if (empty($alt)) {
+					$alt = $title;
+				}
+	
+				// Add alt attribute
+				$img_tag = preg_replace('/<img/', '<img alt="' . esc_attr($alt) . '"', $img_tag);
+	
 				// Replace modified tag in original HTML
 				$html = $img_tag;
 			}
@@ -278,6 +295,7 @@ class WP_Theme_Settings {
 	
 		return $html;
 	}
+	
 	
 	/**
 	 * Function to make size full a warning.
