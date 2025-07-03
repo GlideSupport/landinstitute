@@ -1310,3 +1310,34 @@ document.addEventListener("DOMContentLoaded", function () {
 	setMapHeight();
 	window.addEventListener("resize", setMapHeight);
 });
+
+//staff detail page js start
+document.addEventListener("DOMContentLoaded", function () {
+	const stickyBoxes = document.querySelectorAll( ".staff-detail-layout .col-left .sticky-top-touch");
+	stickyBoxes.forEach(function (box) {
+		function setDynamicHeight() {
+			// Only run for screens above 767px
+			if (window.innerWidth <= 767) {
+				box.style.height = ""; // Reset height on smaller screens
+				return;
+			}
+
+			// Reset first to allow proper recalculation
+			box.style.height = "auto";
+
+			// Measure and apply height
+			const boxHeight = box.scrollHeight;
+			box.style.height = boxHeight + "px";
+		}
+
+		// Initial set
+		setDynamicHeight();
+
+		// Recalculate after full load (in case of images)
+		window.addEventListener("load", setDynamicHeight);
+
+		// Update on resize
+		window.addEventListener("resize", setDynamicHeight);
+	});
+});
+//staff detail page js end
