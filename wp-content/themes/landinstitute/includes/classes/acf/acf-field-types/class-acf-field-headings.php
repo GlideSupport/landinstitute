@@ -99,6 +99,8 @@ class Acf_Field_Headings extends \acf_field {
     <option <?php echo (esc_attr($field['value']) === 'h4') ? 'selected' : ''; ?> value="h4">h4</option>
     <option <?php echo (esc_attr($field['value']) === 'h5') ? 'selected' : ''; ?> value="h5">h5</option>
     <option <?php echo (esc_attr($field['value']) === 'h6') ? 'selected' : ''; ?> value="h6">h6</option>
+	<option <?php echo (esc_attr($field['value']) === 'div') ? 'selected' : ''; ?> value="div">div</option>
+	<option <?php echo (esc_attr($field['value']) === 'p') ? 'selected' : ''; ?> value="p">p</option>
     <?php } ?>
 </select>
 <?php
