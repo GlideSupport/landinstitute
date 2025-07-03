@@ -69,7 +69,7 @@ $li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? n
 
 						<?php if (!empty($staff_bio)) : ?>
 							<div class="gl-s52"></div>
-							<h3 class="block-inner-heading heading-3 mb-0">Bio</h3>
+							<div class="block-inner-heading heading-3 mb-0">Bio</div>
 							<div class="gl-s16"></div>
 							<div class="block-content body-20-18-regular">
 								<?php get_template_part('partials/content'); ?>
