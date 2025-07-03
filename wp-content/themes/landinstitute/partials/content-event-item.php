@@ -19,8 +19,13 @@ $first_day=$args['first_day'];
 $color='#1b83cf';
 $post_fields                   = get_fields( $pID );
 $cota_cpt_event_title          = ( isset( $post_fields['cota_cpt_event_title'] ) && $post_fields['cota_cpt_event_title'] != '' ) ? $post_fields['cota_cpt_event_title'] : get_the_title( $pID );
-$thumbnail_url = get_the_post_thumbnail_url($pID, 'full');
+//$thumbnail_url = get_the_post_thumbnail_url($pID, 'full');
 
+  $thumbnail_url  = "https://landinstdev.wpenginepowered.com/wp-content/uploads/demo.webp";
+					   if(get_the_post_thumbnail_url($pID, 'medium')){
+						$thumbnail_url      = get_the_post_thumbnail_url($pID, 'medium');
+					   }
+                      
 
 $class='';
 if($item_class!='ct-not-in-view'){
