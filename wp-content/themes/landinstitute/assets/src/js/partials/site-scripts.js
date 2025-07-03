@@ -348,7 +348,9 @@ const HeadermenuAppend = [
 
 HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 	const dropdown = document.querySelector(dropdownId);
-	const menuItem = document.querySelector( `.header-nav ul.menu li.${menuClass}`);
+	const menuItem = document.querySelector(
+		`.header-nav ul.menu li.${menuClass}`,
+	);
 
 	if (dropdown && menuItem) {
 		menuItem.appendChild(dropdown);
@@ -478,7 +480,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	addHoverEffect(".header-nav .menu > li", "hover-active");
 	addHoverEffect(".mega-two .icon-content-col", "active-hover");
-	addHoverEffect(".mega-bottom-menu ul#menu-sub-nav-issues > li", "hover-active");
+	addHoverEffect(
+		".mega-bottom-menu ul#menu-sub-nav-issues > li",
+		"hover-active",
+	);
 	addHoverEffect(".social-icons a", "active-hover");
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
 
@@ -1309,4 +1314,79 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Initial + responsive resize handling
 	setMapHeight();
 	window.addEventListener("resize", setMapHeight);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	const tabLinks = document.querySelectorAll(".staff-list .tab-link");
+	const staffMembers = document.querySelectorAll(".staff-list .staff-member");
+	const noStaffMessage = document.querySelector(
+		".staff-list .no-staff-message",
+	);
+
+	function filterStaff(categoryId, bgColor) {
+		let visibleCount = 0;
+
+		staffMembers.forEach(function (member) {
+			const memberCategories = member
+				.getAttribute("data-categories")
+				.split(",");
+			const shouldShow =
+				categoryId === "all" || memberCategories.includes(categoryId);
+
+			if (shouldShow) {
+				member.style.display = "flex";
+				member.classList.add("fade-in");
+				// Remove all classes that start with 'bg-'
+				member.classList.forEach((cls) => {
+					if (cls.startsWith("bg-")) {
+						member.classList.remove(cls);
+					}
+				});
+				member.classList.add(bgColor);
+				console.log(bgColor);
+
+				visibleCount++;
+			} else {
+				member.style.display = "none";
+				member.classList.remove("fade-in");
+			}
+		});
+
+		// Show/hide no staff message
+		if (noStaffMessage) {
+			if (visibleCount === 0) {
+				noStaffMessage.style.display = "block";
+			} else {
+				noStaffMessage.style.display = "none";
+			}
+		}
+	}
+
+	// Tab click handlers
+	tabLinks.forEach(function (link) {
+		link.addEventListener("click", function (e) {
+			e.preventDefault();
+
+			// Remove active class from all tabs
+			tabLinks.forEach(function (tab) {
+				tab.classList.remove("current");
+			});
+
+			// Add active class to clicked tab
+			this.classList.add("current");
+
+			// Get category ID and filter
+			const categoryId = this.getAttribute("data-category");
+			const bgColor = this.getAttribute("data-bg-color");
+			filterStaff(categoryId, bgColor);
+		});
+	});
+
+	// Initialize with first tab active
+	if (tabLinks.length > 0) {
+		const firstTab = tabLinks[0];
+		const initialCategory = firstTab.getAttribute("data-category");
+		const bgColor = firstTab.getAttribute("data-bg-color");
+		filterStaff(initialCategory, bgColor);
+	}
 });
