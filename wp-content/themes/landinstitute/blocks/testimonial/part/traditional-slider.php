@@ -15,7 +15,7 @@ if ($li_t_choose_variation === 'traditional-slider' && !empty($li_t_selector_tes
         <div class="testimonial-traditional-block <?php echo esc_attr($unique_id); ?>">
             <?php echo !empty($li_t_kicker) ? '<div class="ui-20-18-bold-uc block-sub-title">' . esc_html($li_t_kicker) . '</div><div class="gl-s52"></div>' : '' ?>
             <div class="testimonial-traditional-slider">
-                <div class="traditional-slide swiper-container has-border-top">
+                <div class="traditional-slide swiper-container">
                     <div class="swiper-wrapper">
                         <?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post();
                             $testimonial_id     = get_the_ID();
