@@ -255,7 +255,7 @@ if (pastEventLinks.length > 0 && teaserList) {
 }
 
 function initPaginationListeners() {
- document.querySelectorAll(".pagination-container .page-btn").forEach((btn) => {
+ document.querySelectorAll(".pastevent .pagination-container .page-btn").forEach((btn) => {
   btn.addEventListener("click", function () {
    const page = parseInt(this.getAttribute("data-page"));
    if (!isNaN(page) && page !== currentPage) {
