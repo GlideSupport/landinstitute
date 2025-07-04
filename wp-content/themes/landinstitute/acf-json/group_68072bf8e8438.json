@@ -145,7 +145,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "all"
+                "value": "acf\/past-events"
             }
         ]
     ],
@@ -158,5 +158,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751629513
+    "modified": 1751630166
 }
