@@ -380,6 +380,7 @@ body {
         will-change: background-color, color;
         text-decoration: none;
         @extend .ui-18-16-bold;
+        gap: 24px;
 
         @media(max-width: 640px) {
             min-width: 100%;
