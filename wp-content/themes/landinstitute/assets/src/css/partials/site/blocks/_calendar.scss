@@ -48,6 +48,10 @@
                 padding: 6px 9px;
             }
 
+            @media(max-width: 319px) {
+                padding: 6px 4px;
+            }
+
             span {
                 @extend .ui-16-15-bold-uc;
 
