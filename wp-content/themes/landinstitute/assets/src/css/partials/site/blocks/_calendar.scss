@@ -76,11 +76,6 @@
                 position: relative;
                 white-space: nowrap;
                 width: auto;
-                width: 100vw;
-
-                &[data-length="1"] {
-                    width: auto;
-                }
 
                 &:last-child {
                     margin-bottom: 0;
