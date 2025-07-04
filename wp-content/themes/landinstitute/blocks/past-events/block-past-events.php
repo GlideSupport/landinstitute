@@ -49,7 +49,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 
 ?>
 
-<section class="container-1280 bg-base-cream">
+<section class="container-1280 bg-base-cream pastevent">
 	<div class="gl-s156"></div>
 	<div class="wrapper">
 		<div class="past-event-filter-title full-width-content">
