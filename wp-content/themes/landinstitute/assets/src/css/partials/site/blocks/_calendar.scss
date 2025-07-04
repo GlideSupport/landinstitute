@@ -1,0 +1,24 @@
+.event-teaser-calendar-block {
+    .category-filter {
+        padding: 0 24px;
+    }
+}
+
+.event-calendar-ctn {
+    .calendar-day-name-row {
+        margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0;
+    }
+
+    .calendar-days-row {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0;
+        background: #FBF8F0;
+        border-radius: 0 0 10px 10px;
+        overflow: hidden;
+        border-top: 2px solid #4D3016;
+    }
+}
