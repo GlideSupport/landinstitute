@@ -82,6 +82,7 @@
 
                 @media(max-width: 991px) {
                     padding: 0 4px 0 4px;
+                    margin-bottom: 5px;
                 }
             }
 
@@ -103,6 +104,11 @@
 
                 @media(max-width: 991px) {
                     margin: 0 0px 2px -2px;
+                    height: 20px;
+                }
+
+                @media(max-width: 640px) {
+                    height: 14px;
                 }
 
                 &:has(.event-marquee) {
