@@ -398,7 +398,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 														if ($events) {
 															if (count($events) > 2) {
 																?>
-																<span class="more-btn">+<?php echo count($events) - 2; ?>
+																<span class="more-btn calendar-event">+<?php echo count($events) - 2; ?>
 																	more</span>
 																<div class="more-events" style="display:none;">
 																	<?php
