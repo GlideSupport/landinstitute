@@ -77,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
 	function attachPaginationListeners() {
-		// Page number buttons
-		document.querySelectorAll(".page-btn").forEach((btn) => {
+		// Page number buttons scoped to .logo-grid-filters
+		document.querySelectorAll(".logo-grid-filters .page-btn").forEach((btn) => {
 			btn.addEventListener("click", function () {
 				const newPage = parseInt(this.textContent);
 				if (!isNaN(newPage) && newPage !== currentPage) {
@@ -87,11 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			});
 		});
-
-		// Desktop Prev/Next
-		const prevBtn = document.querySelector(".arrow-btn.prev .site-btn");
-		const nextBtn = document.querySelector(".arrow-btn.next .site-btn");
-
+	
+		// Desktop Prev/Next buttons inside .logo-grid-filters
+		const prevBtn = document.querySelector(".logo-grid-filters .arrow-btn.prev .site-btn");
+		const nextBtn = document.querySelector(".logo-grid-filters .arrow-btn.next .site-btn");
+	
 		if (prevBtn) {
 			prevBtn.addEventListener("click", () => {
 				if (currentPage > 1) {
@@ -100,18 +100,18 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			});
 		}
-
+	
 		if (nextBtn) {
 			nextBtn.addEventListener("click", () => {
 				currentPage++;
 				fetchDonors();
 			});
 		}
-
+	
 		// Mobile Prev/Next
-		const mobilePrev = document.getElementById("prevBtn");
-		const mobileNext = document.getElementById("nextBtn");
-
+		const mobilePrev = document.querySelector(".logo-grid-filters #prevBtn");
+		const mobileNext = document.querySelector(".logo-grid-filters #nextBtn");
+	
 		if (mobilePrev) {
 			mobilePrev.addEventListener("click", () => {
 				if (currentPage > 1) {
@@ -120,15 +120,15 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			});
 		}
-
+	
 		if (mobileNext) {
 			mobileNext.addEventListener("click", () => {
 				currentPage++;
 				fetchDonors();
 			});
 		}
-
-		// Mobile popup pagination
+	
+		// Mobile popup pagination inside popupGrid
 		document.querySelectorAll("#popupGrid .page-btn").forEach((btn) => {
 			btn.addEventListener("click", () => {
 				const popupPage = parseInt(btn.textContent);
@@ -139,7 +139,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		});
 	}
-
 	// Dropdown item click handler
 	document.querySelectorAll(".dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
@@ -255,30 +254,31 @@ if (pastEventLinks.length > 0 && teaserList) {
 }
 
 function initPaginationListeners() {
- document.querySelectorAll(".pastevent .pagination-container .event-page-btn").forEach((btn) => {
-  btn.addEventListener("click", function () {
-   const page = parseInt(this.getAttribute("data-page"));
-   if (!isNaN(page) && page !== currentPage) {
-	fetchPastEvents(currentTerm, page);
-   }
-  });
- });
+	document.querySelectorAll(".pastevent .pagination-container .page-btn").forEach((btn) => {
+		btn.addEventListener("click", function () {
+			const page = parseInt(this.getAttribute("data-page"));
+			if (!isNaN(page) && page !== currentPage) {
+				fetchPastEvents(currentTerm, page);
+			}
+		});
+	});
 
- const prevBtns = document.querySelectorAll("#desktopPrev, #prevBtn, #popupPrev");
- const nextBtns = document.querySelectorAll("#desktopNext, #nextBtn, #popupNext");
+	const prevBtns = document.querySelectorAll(".pastevent #desktopPrev, .pastevent #prevBtn, .pastevent #popupPrev");
+	const nextBtns = document.querySelectorAll(".pastevent #desktopNext, .pastevent #nextBtn, .pastevent #popupNext");
 
- prevBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-   if (currentPage > 1) fetchPastEvents(currentTerm, currentPage - 1);
-  });
- });
+	prevBtns.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			if (currentPage > 1) fetchPastEvents(currentTerm, currentPage - 1);
+		});
+	});
 
- nextBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-   fetchPastEvents(currentTerm, currentPage + 1);
-  });
- });
+	nextBtns.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			fetchPastEvents(currentTerm, currentPage + 1);
+		});
+	});
 }
+
 
 // Mobile popup pagination toggle
 function attachPaginationEventListeners() {
