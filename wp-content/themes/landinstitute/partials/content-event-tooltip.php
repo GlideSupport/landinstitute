@@ -77,7 +77,7 @@ if (!has_post_thumbnail()) {
 							target="_blank <?php } else {
 						echo get_the_permalink($pID);
 					} ?>"
-						class="button <?php if ($cota_cpt_event_btn_des == 'gray') {
+						class="border-text-btn <?php if ($cota_cpt_event_btn_des == 'gray') {
 							echo 'gray-btn';
 						} ?>">
 						<?php if ($cota_cpt_event_btn_des == 'normal') { ?>

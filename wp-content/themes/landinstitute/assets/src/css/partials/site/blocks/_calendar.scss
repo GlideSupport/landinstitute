@@ -168,6 +168,14 @@
                     cursor: pointer;
                 }
 
+                .tooltip-inner {
+                    margin-bottom: 24px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
                 .tooltip-items-row {
                     gap: 20px;
                     display: flex;
@@ -197,12 +205,15 @@
                             a {
                                 text-decoration: none;
                                 @extend .ui-20-18-bold;
+                                display: flex;
                             }
                         }
 
                         .tooltip-date {
                             a {
                                 @extend .ui-16-15-bold;
+                                text-decoration: none;
+                                display: flex;
                             }
                         }
 
