@@ -78,7 +78,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 	<section class="container-1280 bg-base-cream">
 		<div class="wrapper">
 			<div class="event-teaser-calendar-block has-border-bottom">
-				<div class="event-teaser-list-row event-calendar-row">
+				<div class="event-teaser-list-row event-calendar-card-row">
 					<div class="category-filter">
 						<ul class="tabs">
 							<a href="<?php echo site_url(); ?>/events/?eventsview=list"
@@ -442,13 +442,6 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 											} ?>
 
 										</div>
-										<svg class="svg">
-											<clipPath id="calendar-day-path" clipPathUnits="objectBoundingBox">
-												<path
-													d="M0.025,0 C0.011,0,0,0.017,0,0.037 V0.963 C0,0.983,0.011,1,0.025,1 H0.848 C0.862,1,0.875,0.992,0.885,0.977 L0.985,0.83 C0.995,0.816,1,0.796,1,0.776 V0.037 C1,0.017,0.989,0,0.975,0 H0.025">
-												</path>
-											</clipPath>
-										</svg>
 									</div>
 									<?php
 									$number++;

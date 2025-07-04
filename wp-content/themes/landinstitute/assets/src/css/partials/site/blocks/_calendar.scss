@@ -2,23 +2,67 @@
     .category-filter {
         padding: 0 24px;
     }
+
+    .event-calendar-card-row {
+        margin-left: calc(-50vw + 50%);
+        width: 100vw;
+
+
+        .event-calendar-row {
+            margin-bottom: 64px;
+
+            .calendar-month {
+                padding: 0 30px;
+
+                @media(max-width: 767px) {
+                    padding: 0 24px;
+                }
+            }
+        }
+    }
 }
+
 
 .event-calendar-ctn {
     .calendar-day-name-row {
-        margin-bottom: 16px;
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 0;
+        border-top: 2px solid var(--gb_base_brown);
+
+        .calendar-day-name {
+            padding: 12px 20px;
+            border-right: 2px solid var(--gb_base_brown);
+
+            span {
+                @extend .ui-16-15-bold-uc;
+            }
+        }
     }
 
     .calendar-days-row {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 0;
-        background: #FBF8F0;
-        border-radius: 0 0 10px 10px;
+        background: var(--gb_base_cream);
         overflow: hidden;
-        border-top: 2px solid #4D3016;
+        border-top: 2px solid var(--gb_base_brown);
+
+        .calendar-column {
+            border-right: 2px solid var(--gb_base_brown);
+            border-bottom: 2px solid var(--gb_base_brown);
+            min-height: 125px;
+            padding: 12px 20px 12px 20px;
+
+            .calendar-date {
+                @extend .ui-16-15-bold-uc;
+            }
+        }
+    }
+}
+
+.calendar-day-name {
+    span.mobile-show {
+        display: none;
     }
 }
