@@ -631,7 +631,7 @@ $args = [
             for ($i = 1; $i <= $total_pages; $i++) {
                 if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
                     $active_class = $i === $paged ? 'active' : '';
-                    $pagination_html .= '<button class="page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
+                    $pagination_html .= '<button class="event-page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
                     $show_dots = true;
                 } elseif ($show_dots) {
                     $pagination_html .= '<span class="dots">...</span>';
@@ -648,7 +648,7 @@ $args = [
 			$pagination_html .= '<button id="prevBtn" class="arrow-btn"' . ($paged === 1 ? ' disabled' : '') . '>
 			<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
 		</button>';		
-            $pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
+            $pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold event-page-btn">' . $paged . '/' . $total_pages . '</button>';
             $pagination_html .= '<button id="nextBtn" class="arrow-btn"' . ($paged === $total_pages ? ' disabled' : '') . '>
 			<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next"></button>';
             $pagination_html .= '</div>';
@@ -659,7 +659,7 @@ $args = [
             $pagination_html .= '<div id="popupGrid" class="popup-grid">';
             for ($i = 1; $i <= $total_pages; $i++) {
                 $active = $i === $paged ? 'active' : '';
-                $pagination_html .= '<button class="page-trigger ui-18-16-bold page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
+                $pagination_html .= '<button class="page-trigger ui-18-16-bold event-page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
             }
             $pagination_html .= '</div>';
             $pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';

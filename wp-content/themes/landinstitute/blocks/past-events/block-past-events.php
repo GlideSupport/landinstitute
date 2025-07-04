@@ -167,7 +167,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 								($i >= $current_page - $range && $i <= $current_page + $range)
 							) {
 								$active_class = $i == $current_page ? 'active' : '';
-								echo '<button class="page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
+								echo '<button class="event-page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
 								$show_dots = true;
 							} elseif ($show_dots) {
 								echo '<span class="dots">...</span>';
@@ -197,7 +197,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							<?php
 							for ($i = 1; $i <= $total_pages; $i++) {
 								$active = $i == $current_page ? 'active' : '';
-								echo '<button class="page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
+								echo '<button class="event-page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
 							}
 							?>
 						</div>
