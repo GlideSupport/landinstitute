@@ -16,23 +16,13 @@
 get_header();
 list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults();
 
-$news_temp_kicker_text = $bst_fields['news_temp_kicker_text'] ?? null;
-$news_temp_headline_text = $bst_fields['news_temp_headline_text'] ?? null;
-$news_headline_check  = BaseTheme::headline_check($news_temp_headline_text);
+$li_news_temp_kicker_text = $bst_fields['li_news_temp_kicker_text'] ?? null;
+$li_news_temp_headline_text = $bst_fields['li_news_temp_headline_text'] ?? null;
+$li_news_headline_check  = BaseTheme::headline_check($li_news_temp_headline_text);
+$li_news_temp_bg_image = $bst_fields['li_news_temp_bg_image'] ?? null;
 ?>
 
 <div id="page-section" class="page-section">
-	<?php
-		global $wp_query;
-	if ( have_posts() ) {
-		while ( have_posts() ) {
-			the_post();
-			// Include specific template for the content.
-			get_template_part( 'partials/content', 'page' );
-		}
-	} 
-	?>
-
 <?php
 $terms = get_terms([
 	'taxonomy'   => 'news-type',
@@ -49,30 +39,26 @@ $topic_terms = get_terms([
 
 <section id="hero-section" class="hero-section hero-section-default hero-alongside-standard">
 	<!-- hero start -->
-	<div class="bg-pattern">
-		<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys" title="TLI-Pattern-Repair-SkyBlue-stickys" />
-	</div>
+	<?php echo !empty($li_news_temp_bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($li_news_temp_bg_image, 'thumb_900') . '</div>' : ''; ?>
 	<div class="hero-default has-border-bottom">
 		<div class="wrapper">
 			<div class="hero-alongside-block">
 				<div class="col-left bg-lime-green">
 					<div class="hero-content">
-						<?php if($news_temp_kicker_text): ?>
+						<?php if($li_news_temp_kicker_text): ?>
 							<div class="ui-eyebrow-20-18-regular">
-								<?php echo html_entity_decode($news_temp_kicker_text); ?>
+								<?php echo html_entity_decode($li_news_temp_kicker_text); ?>
 							</div>
 							<div class="gl-s20"></div>
 						<?php endif; ?>
-							<?php if($news_headline_check): ?>
-							<?php echo BaseTheme::headline($news_temp_headline_text, 'heading-1 mb-0 block-title'); ?>
+							<?php if($li_news_headline_check): ?>
+							<?php echo BaseTheme::headline($li_news_temp_headline_text, 'heading-1 mb-0 block-title'); ?>
 							<div class="gl-s96"></div>
 						<?php endif; ?>
 					</div>
 				</div>
 				<div class="col-right">
-					<div class="bg-pattern">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg" width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys" title="TLI-Pattern-Repair-SkyBlue-stickys" />
-					</div>
+					<?php echo !empty($li_news_temp_bg_image) ? '<div class="bg-pattern">' . wp_get_attachment_image($li_news_temp_bg_image, 'thumb_1600') . '</div>' : ''; ?>
 				</div>
 			</div>
 		</div>
@@ -130,11 +116,11 @@ $topic_terms = get_terms([
 				'order'          => 'DESC',
 				'post_status'    => 'publish',
 			];
-			$donors = new WP_Query($args);
+			$news = new WP_Query($args);
 
-			if ($donors->have_posts()) : ?>
+			if ($news->have_posts()) : ?>
 			<div class="filter-content-cards-grid">
-				<?php while ($donors->have_posts()) : $donors->the_post(); 
+				<?php while ($news->have_posts()) : $news->the_post(); 
 					$title = get_the_title();
 					$date = get_the_date( 'M j, Y' );
 					$permalink = get_the_permalink();
@@ -228,5 +214,15 @@ $topic_terms = get_terms([
 		</div>
 	</div>
 </div>
+<?php
+		
+	if ( have_posts() ) {
+		while ( have_posts() ) {
+			the_post();
+			// Include specific template for the content.
+			get_template_part( 'partials/content', 'page' );
+		}
+	} 
+	?>
 <?php
 get_footer(); ?>
