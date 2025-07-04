@@ -7,7 +7,7 @@
     "object_type": [
         "news"
     ],
-    "advanced_configuration": 0,
+    "advanced_configuration": 1,
     "import_source": "",
     "import_date": "",
     "labels": {
@@ -20,17 +20,17 @@
         "update_item": "Update News Audience",
         "add_new_item": "Add New News Audience",
         "new_item_name": "New News Audience Name",
+        "parent_item": "",
+        "parent_item_colon": "",
         "search_items": "Search News Audience",
-        "popular_items": "Popular News Audience",
-        "separate_items_with_commas": "Separate news audience with commas",
-        "add_or_remove_items": "Add or remove news audience",
-        "choose_from_most_used": "Choose from the most used news audience",
         "most_used": "",
         "not_found": "No news audience found",
         "no_terms": "No news audience",
         "name_field_description": "",
         "slug_field_description": "",
+        "parent_field_description": "",
         "desc_field_description": "",
+        "filter_by_item": "",
         "items_list_navigation": "News Audience list navigation",
         "items_list": "News Audience list",
         "back_to_items": "← Go to news audience",
@@ -46,7 +46,7 @@
     },
     "public": 1,
     "publicly_queryable": 1,
-    "hierarchical": 0,
+    "hierarchical": 1,
     "show_ui": 1,
     "show_in_menu": 1,
     "show_in_nav_menus": 1,
@@ -56,11 +56,11 @@
     "rest_controller_class": "WP_REST_Terms_Controller",
     "show_tagcloud": 1,
     "show_in_quick_edit": 1,
-    "show_admin_column": 0,
+    "show_admin_column": 1,
     "rewrite": {
         "permalink_rewrite": "taxonomy_key",
         "with_front": "1",
-        "rewrite_hierarchical": "0"
+        "rewrite_hierarchical": "1"
     },
     "query_var": "post_type_key",
     "query_var_name": "",
@@ -71,5 +71,5 @@
     "meta_box": "default",
     "meta_box_cb": "",
     "meta_box_sanitize_cb": "",
-    "modified": 1750769788
+    "modified": 1751622775
 }
