@@ -99,15 +99,27 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Toggle tooltip visibility on calendar column click
+
+// Toggle tooltip visibility on calendar column click
 document.addEventListener('click', function (e) {
-  if (e.target.closest('.calendar-column')) {
-    const tooltip = e.target.closest('.calendar-column').querySelector('.tooltip');
-    if (tooltip) tooltip.style.display = tooltip.style.display === 'none' ? 'block' : 'none';
+  // First, check if the close button (or its child) was clicked
+  const closeBtn = e.target.closest('.close-event-btn');
+  if (closeBtn) {
+    const tooltip = closeBtn.closest('.tooltip');
+    if (tooltip) tooltip.style.display = 'none';
+    return; // Stop further execution
   }
 
-  // Close tooltip on close button click
-  if (e.target.classList.contains('close-event-btn')) {
-    const tooltip = e.target.closest('.tooltip');
-    if (tooltip) tooltip.style.display = 'none';
+  // Then handle showing tooltip if clicking inside calendar column
+  const calendarColumn = e.target.closest('.calendar-column');
+  if (calendarColumn) {
+    // Hide all other tooltips first
+    document.querySelectorAll('.tooltip').forEach(function (tooltip) {
+      tooltip.style.display = 'none';
+    });
+
+    // Show current one
+    const tooltip = calendarColumn.querySelector('.tooltip');
+    if (tooltip) tooltip.style.display = 'block';
   }
 });
