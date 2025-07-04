@@ -288,6 +288,10 @@
                     .tooltip-content {
                         flex: 1 0 0;
 
+                        @media(max-width: 319px) {
+                            flex: 100% 0 0;
+                        }
+
                         .tooltip-heading {
                             a {
                                 display: flex;
