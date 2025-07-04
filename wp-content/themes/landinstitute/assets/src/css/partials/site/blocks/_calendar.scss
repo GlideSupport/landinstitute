@@ -37,6 +37,7 @@
         .calendar-day-name {
             padding: 12px 20px;
             border-right: 2px solid var(--gb_base_brown);
+            display: flex;
 
             span {
                 @extend .ui-16-15-bold-uc;
@@ -95,7 +96,8 @@
                         border-right: 2px solid var(--gb_base_brown);
                     }
 
-                    marquee {
+                    marquee,
+                    .event-title-box {
                         @extend .ui-14-13-bold;
                         padding: 4px 0;
                     }
