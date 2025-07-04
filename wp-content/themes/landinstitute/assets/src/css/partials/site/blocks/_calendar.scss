@@ -57,6 +57,19 @@
             .calendar-date {
                 @extend .ui-16-15-bold-uc;
             }
+
+            .calendar-event {
+                min-height: 25px;
+                width: calc(100% + 45px);
+                box-sizing: border-box;
+                margin: 0 -6px 4px;
+                position: relative;
+                cursor: pointer;
+                white-space: nowrap;
+                overflow: hidden;
+                border-top: 2px solid var(--gb_base_brown);
+                border-bottom: 2px solid var(--gb_base_brown);
+            }
         }
     }
 }
