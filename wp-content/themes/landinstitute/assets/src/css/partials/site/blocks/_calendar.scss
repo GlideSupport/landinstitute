@@ -50,6 +50,13 @@
 
             span {
                 @extend .ui-16-15-bold-uc;
+
+                @media(max-width: 767px) {
+                    font-size: 10px;
+                    letter-spacing: -0.4px;
+                    line-height: 110%;
+                    text-transform: uppercase;
+                }
             }
         }
     }
@@ -60,18 +67,18 @@
         flex-wrap: wrap;
 
         .calendar-column {
+            background-color: var(--gb_base_cream);
             border-bottom: 2px solid var(--gb_base_brown);
             border-right: 2px solid var(--gb_base_brown);
             flex: 0 0 calc(100% / 7);
             min-height: 125px;
             padding: 12px 0 12px 0;
-            width: calc(100% / 7);
             position: relative;
-            background-color: var(--gb_base_cream);
+            width: calc(100% / 7);
 
             @media(max-width: 991px) {
-                padding: 4px 0 4px 0;
                 min-height: 66px;
+                padding: 4px 0 4px 0;
             }
 
             .calendar-date {
@@ -81,8 +88,15 @@
                 @extend .ui-16-15-bold-uc;
 
                 @media(max-width: 991px) {
-                    padding: 0 4px 0 4px;
                     margin-bottom: 5px;
+                    padding: 0 4px 0 4px;
+                }
+
+                @media(max-width: 767px) {
+                    font-size: 10px;
+                    letter-spacing: -0.4px;
+                    line-height: 110%;
+                    text-transform: uppercase;
                 }
             }
 
@@ -103,8 +117,8 @@
                 }
 
                 @media(max-width: 991px) {
-                    margin: 0 0px 2px -2px;
                     height: 20px;
+                    margin: 0 0px 2px -2px;
                 }
 
                 @media(max-width: 640px) {
@@ -142,7 +156,13 @@
                         @extend .ui-14-13-bold;
 
                         @media(max-width: 991px) {
-                            padding: 1px 4px;
+                            padding: 0 4px;
+                        }
+
+                        @media(max-width: 767px) {
+                            font-size: 10px;
+                            letter-spacing: -0.3px;
+                            line-height: 110%;
                         }
                     }
                 }
@@ -174,16 +194,16 @@
             }
 
             .tooltip {
-                position: absolute;
-                border: 1px solid var(--gb_base_brown);
                 background: var(--gb_primary_lilac);
-                width: 414px;
-                padding: 50px 20px 72px 20px;
-                z-index: 8;
-                top: -2px;
+                border: 1px solid var(--gb_base_brown);
                 height: 294px;
-                overflow-y: auto;
                 left: 100%;
+                overflow-y: auto;
+                padding: 50px 20px 72px 20px;
+                position: absolute;
+                top: -2px;
+                width: 414px;
+                z-index: 8;
 
                 &::-webkit-scrollbar {
                     background: transparent;
@@ -214,24 +234,24 @@
                 }
 
                 .tooltip-items-row {
-                    gap: 20px;
                     display: flex;
                     flex-wrap: wrap;
+                    gap: 20px;
 
                     .tooltip-image {
-                        width: 112px;
+                        flex: 112px 0 0;
                         height: 60.2px;
                         overflow: hidden;
-                        flex: 112px 0 0;
+                        width: 112px;
 
                         a {
                             display: flex;
                         }
 
                         img {
-                            width: 100%;
                             height: 100%;
                             object-fit: cover;
+                            width: 100%;
                         }
                     }
 
@@ -240,43 +260,45 @@
 
                         .tooltip-heading {
                             a {
-                                text-decoration: none;
-                                @extend .ui-20-18-bold;
                                 display: flex;
+                                text-decoration: none;
+
+                                @extend .ui-20-18-bold;
                             }
                         }
 
                         .tooltip-date {
                             a {
-                                @extend .ui-16-15-bold;
-                                text-decoration: none;
                                 display: flex;
+                                text-decoration: none;
+
+                                @extend .ui-16-15-bold;
                             }
                         }
 
                         .block-btn {
-                            margin-top: 6px;
                             display: flex;
+                            margin-top: 6px;
                         }
                     }
                 }
 
                 .close-event-btn {
+                    align-items: center;
+                    background-color: var(--gb_base_brown);
+                    border-radius: 50%;
+                    display: flex;
+                    height: 26px;
+                    justify-content: center;
                     position: absolute;
                     right: 12px;
                     top: 12px;
                     width: 26px;
-                    height: 26px;
-                    border-radius: 50%;
-                    background-color: var(--gb_base_brown);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
 
                     img {
                         filter: brightness(0) saturate(100%) invert(100%) sepia(51%) saturate(400%) hue-rotate(21deg) brightness(109%) contrast(97%);
-                        width: 14px;
                         height: 14px;
+                        width: 14px;
                     }
                 }
             }
