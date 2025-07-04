@@ -22,16 +22,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 ?>
 
 <div id="page-section" class="page-section">
-	<?php
-	global $wp_query;
-	if (have_posts()) {
-		while (have_posts()) {
-			the_post();
-			// Include specific template for the content.
-			get_template_part('partials/content', 'page');
-		}
-	}
-	?>
+
 
 
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-standard">
@@ -456,7 +447,19 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 				</div>
 			</div>
 		</div>
-</div>
+
 </section>
+
+<?php
+	global $wp_query;
+	if (have_posts()) {
+		while (have_posts()) {
+			the_post();
+			// Include specific template for the content.
+			get_template_part('partials/content', 'page');
+		}
+	}
+	?>
+</div>
 <?php
 get_footer(); ?>
