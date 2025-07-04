@@ -11,6 +11,10 @@
         .event-calendar-row {
             margin-bottom: 64px;
 
+            &:last-child {
+                margin-bottom: 0;
+            }
+
             .calendar-month {
                 padding: 0 30px;
 

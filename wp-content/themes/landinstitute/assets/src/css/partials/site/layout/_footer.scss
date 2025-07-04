@@ -484,6 +484,7 @@
 
         .left-site-btn {
             order: 1;
+            flex: 240px 0 0;
 
             @media(max-width: 1200px) {
                 display: none;
