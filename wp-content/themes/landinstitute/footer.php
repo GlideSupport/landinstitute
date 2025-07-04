@@ -110,6 +110,11 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'l
     $button_bg_class = 'btn-sunflower-yellow';
 }
 
+if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'right') {
+    $button_position_class =  'footer-subnav-variation';
+    $button_bg_class = 'btn-sunflower-yellow';
+}
+
 ?>
 
 </main>
@@ -211,7 +216,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'l
                                 $link_url = $li_po_nav_left_button['url'];
                                 $link_title = $li_po_nav_left_button['title'];
                                 $link_target = $li_po_nav_left_button['target'] ? $li_po_nav_left_button['target'] : '_self'; ?>
-                                <a class="jump-arrow <?php echo esc_attr($button_bg_class); ?>" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
+                                <a class="jump-arrow <?php echo $button_arrow_position; ?>" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
                                     <div class="arrow-icon"></div>
                                 </a>
                             <?php endif; ?>
@@ -232,16 +237,16 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'l
                     <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($li_po_nav_button_position == 'both') : ?>
-                    <?php if ($li_po_nav_left_button):
-                        $link_url = $li_po_nav_left_button['url'];
-                        $link_title = $li_po_nav_left_button['title'];
-                        $link_target = $li_po_nav_left_button['target'] ? $li_po_nav_left_button['target'] : '_self'; ?>
-                        <div class="left-site-btn">
-                            <a href="<?php echo esc_url($link_url); ?>" class="jump-arrow <?php echo $button_arrow_position; ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
-                            <div class="arrow-icon"></div>
+                    <div class="left-site-btn">
+                        <?php if ($li_po_nav_left_button):
+                            $link_url = $li_po_nav_left_button['url'];
+                            $link_title = $li_po_nav_left_button['title'];
+                            $link_target = $li_po_nav_left_button['target'] ? $li_po_nav_left_button['target'] : '_self'; ?>
+                             <a class="jump-arrow <?php echo $button_arrow_position; ?>" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?>
+                                <div class="arrow-icon"></div>
                             </a>
-                        </div>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                 <?php endif; ?>
                 <div class="cl-right">
                     <?php
