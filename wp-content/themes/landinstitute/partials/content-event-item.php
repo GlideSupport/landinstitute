@@ -48,18 +48,18 @@ if ($current_length < $length && $last_day == 'ct-last-day-in-month') {
 	class="calendar-event <?php echo $item_class; ?> <?php echo $class; ?> <?php echo $last_day; ?> <?php echo $first_day; ?> <?php echo $has_class; ?>">
 	<?php
 	if ($current_length == 1) {
-		echo '<div class="event-marquee">';
+		echo '<div class="event-title-box">';
 		if ($thumbnail_url) {
 			echo '<img src="' . esc_url($thumbnail_url) . '" alt="" >';
 		}
 		echo '<div class="event-title-box" scrollamount="2">' . esc_html($cota_cpt_event_title) . '</div>';
 		echo '</div>';
 	} else if ($cu_day_name == "Sunday" && $current_length != 1) {
-		echo '<div class="event-marquee">';
+		echo '<div class="event-title-box">';
 		if ($thumbnail_url) {
 			echo '<img src="' . esc_url($thumbnail_url) . '" alt="" >';
 		}
-		echo '<div class="event-marquee" scrollamount="2">' . esc_html($cota_cpt_event_title) . '</div>';
+		echo '<div class="event-title-box" scrollamount="2">' . esc_html($cota_cpt_event_title) . '</div>';
 		echo '</div>';
 	} else if ($first_day) {
 		echo '<div class="event-div">';
