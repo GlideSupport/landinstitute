@@ -266,6 +266,7 @@
                         height: 60.2px;
                         overflow: hidden;
                         width: 112px;
+                        border: 1px solid var(--gb_base_brown);
 
                         @media(max-width: 767px) {
                             flex: 91px 0 0;
