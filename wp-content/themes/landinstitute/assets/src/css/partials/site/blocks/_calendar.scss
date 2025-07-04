@@ -9,6 +9,7 @@
 
         .event-calendar-row {
             margin-bottom: 64px;
+            margin-right: -2px;
 
             &:last-child {
                 margin-bottom: 0;
@@ -22,6 +23,12 @@
                 }
             }
         }
+    }
+}
+
+.has-border-bottom {
+    .event-calendar-ctn {
+        margin-bottom: -2px;
     }
 }
 
@@ -44,7 +51,6 @@
     }
 
     .calendar-days-row {
-        background: var(--gb_base_cream);
         border-top: 2px solid var(--gb_base_brown);
         display: flex;
         flex-wrap: wrap;
@@ -58,6 +64,7 @@
             padding: 12px 0 12px 0;
             width: calc(100% / 7);
             position: relative;
+            background-color: var(--gb_base_cream);
 
             .calendar-date {
                 margin-bottom: 13px;
@@ -219,6 +226,7 @@
 
                         .block-btn {
                             margin-top: 6px;
+                            display: flex;
                         }
                     }
                 }
