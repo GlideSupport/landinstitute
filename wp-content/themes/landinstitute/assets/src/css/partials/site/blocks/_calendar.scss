@@ -44,6 +44,10 @@
             display: flex;
             padding: 12px 20px;
 
+            @media(max-width: 991px) {
+                padding: 6px 9px;
+            }
+
             span {
                 @extend .ui-16-15-bold-uc;
             }
@@ -65,11 +69,20 @@
             position: relative;
             background-color: var(--gb_base_cream);
 
+            @media(max-width: 991px) {
+                padding: 4px 0 4px 0;
+                min-height: 66px;
+            }
+
             .calendar-date {
                 margin-bottom: 13px;
                 padding: 0 20px;
 
                 @extend .ui-16-15-bold-uc;
+
+                @media(max-width: 991px) {
+                    padding: 0 4px 0 4px;
+                }
             }
 
             .calendar-event {
@@ -88,6 +101,10 @@
                     margin-bottom: 0;
                 }
 
+                @media(max-width: 991px) {
+                    margin: 0 0px 2px -2px;
+                }
+
                 &:has(.event-marquee) {
                     margin-left: 0;
                 }
@@ -101,6 +118,10 @@
                         height: 100%;
                         object-fit: cover;
                         width: 43px;
+
+                        @media(max-width: 991px) {
+                            display: none;
+                        }
                     }
 
                     marquee,
@@ -113,6 +134,10 @@
                         z-index: 1;
 
                         @extend .ui-14-13-bold;
+
+                        @media(max-width: 991px) {
+                            padding: 1px 4px;
+                        }
                     }
                 }
             }
