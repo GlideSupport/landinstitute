@@ -170,7 +170,7 @@ class WP_Theme_Blocks {
 		self::register_acf_block('info-box');
 
 		// Register a block - Past Event.
-		self::register_acf_block('past-event');
+		self::register_acf_block('past-events');
 
 		// [register_here].
 	}

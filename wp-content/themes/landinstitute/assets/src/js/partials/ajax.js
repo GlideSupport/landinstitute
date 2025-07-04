@@ -172,4 +172,141 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Optional: Initial pagination listeners if needed
 	attachPaginationListeners();
+
+
+	
+// Past Event Filter JS Code Start
+const pastEventLinks = document.querySelectorAll(".past-events-ctn a[data-term]");
+const teaserList = document.querySelector(".filter-content-cards-grid");
+let currentTerm = "all";
+
+
+function fetchPastEvents(term = "all", paged = 1) {
+ currentTerm = term;
+ currentPage = paged;
+
+ if (teaserList) {
+  loadingElem = document.createElement("div");
+  loadingElem.className = "loading-placeholder";
+  loadingElem.innerHTML = "<p>Loading...</p>";
+  teaserList.appendChild(loadingElem);
+ }
+
+ fetch(localVars.ajax_url, {
+  method: "POST",
+  headers: {
+   "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: new URLSearchParams({
+   action: "filter_past_events",
+   paged: paged,
+   nonce: localVars.nonce,
+  }),
+ })
+  .then((res) => res.json())
+  .then((data) => {
+   if (data.success) {
+	if (teaserList) teaserList.innerHTML = data.data.html;
+
+	// Replace pagination HTML
+	const oldPagination = document.querySelector('.pagination-append-container');
+	if (oldPagination) {
+	 oldPagination.outerHTML = data.data.pagination_html;
+	} else {
+	 teaserList.insertAdjacentHTML('afterend', data.data.pagination_html);
+	}
+
+	initPaginationListeners(); // reattach pagination buttons
+	attachPaginationEventListeners(); // reattach popup logic
+	setTimeout(() => {
+	 const newTeaserList = document.querySelector(".filter-content-cards-grid");
+	 if (newTeaserList) {
+	  const offset = 100; // Adjust based on your sticky header height
+	  const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
+	  window.scrollTo({
+	   top: top,
+	   behavior: "smooth",
+	  });
+	 }
+	}, 50); // slight delay to ensure DOM update
+   } else {
+	teaserList.innerHTML = "<p>No past events found.</p>";
+   }
+  })
+  .catch((error) => {
+   console.error("AJAX error:", error);
+   teaserList.innerHTML = "<p>Error loading events.</p>";
+  });
+}
+
+// Tab click listener
+if (pastEventLinks.length > 0 && teaserList) {
+ pastEventLinks.forEach((link) => {
+  link.addEventListener("click", function (e) {
+   e.preventDefault();
+   const term = this.getAttribute("data-term");
+
+   document.querySelectorAll(".past-events-ctn li").forEach((li) => li.classList.remove("active"));
+   this.closest("li").classList.add("active");
+
+   fetchPastEvents(term, 1);
+  });
+ });
+}
+
+function initPaginationListeners() {
+ document.querySelectorAll(".pagination-container .page-btn").forEach((btn) => {
+  btn.addEventListener("click", function () {
+   const page = parseInt(this.getAttribute("data-page"));
+   if (!isNaN(page) && page !== currentPage) {
+	fetchPastEvents(currentTerm, page);
+   }
+  });
+ });
+
+ const prevBtns = document.querySelectorAll("#desktopPrev, #prevBtn, #popupPrev");
+ const nextBtns = document.querySelectorAll("#desktopNext, #nextBtn, #popupNext");
+
+ prevBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+   if (currentPage > 1) fetchPastEvents(currentTerm, currentPage - 1);
+  });
+ });
+
+ nextBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+   fetchPastEvents(currentTerm, currentPage + 1);
+  });
+ });
+}
+
+// Mobile popup pagination toggle
+function attachPaginationEventListeners() {
+ const pageTrigger = document.getElementById('pageTrigger');
+ const paginationPopup = document.getElementById('paginationPopup');
+
+ if (pageTrigger && paginationPopup) {
+  pageTrigger.addEventListener('click', function () {
+   paginationPopup.classList.toggle('active');
+  });
+
+  document.addEventListener('click', function (e) {
+   if (
+	paginationPopup.classList.contains('active') &&
+	!paginationPopup.contains(e.target) &&
+	e.target !== pageTrigger
+   ) {
+	paginationPopup.classList.remove('active');
+   }
+  });
+ }
+}
+
+initPaginationListeners();
+attachPaginationEventListeners();
+// Past Event Filter JS Code end
+
+
+
+
 });

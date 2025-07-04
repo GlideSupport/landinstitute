@@ -1,0 +1,30 @@
+{
+    "name": "acf/past-events",
+    "title": "Past Events",
+    "description": "A custom past Events block.",
+    "editorScript": ["block-past-events"],
+    "script": [ "block-past-events" ],
+    "category": "theme-blocks",
+    "icon": "align-full-width",
+    "keywords":[
+        "past Events",
+        "cta"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-past-events.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "preview-past-events.webp"
+            }
+        }
+    },
+    "align": "full"
+}

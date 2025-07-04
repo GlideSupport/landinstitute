@@ -522,3 +522,168 @@ function load_more_events_callback() {
     wp_die(); // Important!
 }
 
+
+// Past event filter
+add_action('wp_ajax_filter_past_events', 'filter_past_events');
+add_action('wp_ajax_nopriv_filter_past_events', 'filter_past_events');
+
+function filter_past_events() {
+ check_ajax_referer('ajax_nonce', 'nonce');
+
+ $term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
+$paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+$today = date('Ymd'); // e.g., 20250704
+
+$args = [
+  'post_type'      => 'event',
+  'post_status'    => 'publish',
+  'posts_per_page' => 4,
+  'paged'          => $paged,
+  'meta_key'       => 'li_cpt_event_start_date',
+  'orderby'        => 'meta_value',
+  'order'          => 'DESC',
+  'meta_query'     => [
+    [
+      'key'     => 'li_cpt_event_start_date',
+      'value'   => $today,
+      'compare' => '<',
+      'type'    => 'NUMERIC',
+    ],
+  ],
+];
+
+
+ $query = new WP_Query($args);
+
+ if ($query->have_posts()) {
+  ob_start();
+  
+  while ($query->have_posts()) {
+   $query->the_post();
+   $post_id = get_the_ID();
+   $event_title = get_the_title($post_id);
+   $event_link = get_permalink($post_id);
+   $start_date_raw = get_field('li_cpt_event_start_date', $post_id);
+   $end_date_raw = get_field('li_cpt_event_end_date', $post_id);
+
+
+   $start_date = new DateTime($start_date_raw);
+   $end_date   = new DateTime($end_date_raw);
+
+   $start_formatted = $start_date->format('l, F j, Y'); // e.g., Friday, May 2, 2025
+   $end_formatted   = $end_date->format('l, F j, Y');   // e.g., Saturday, May 3, 2025
+   $event_content = get_field('li_cpt_event_wysiwyg', $post_id);
+
+
+   $start_date = $start_date_raw ? strtotime($start_date_raw) : false;
+   $end_date   = $end_date_raw ? strtotime($end_date_raw) : false;
+
+   if ($start_date && $end_date && $start_date !== $end_date) {
+    if (date('F', $start_date) !== date('F', $end_date)) {
+     $event_date = strtoupper(date('F j', $start_date) . ' – ' . date('F j, Y', $end_date));
+    } else {
+     $event_date = strtoupper(date('F j', $start_date) . '–' . date('j, Y', $end_date));
+    }
+   } elseif ($start_date) {
+    $event_date = strtoupper(date('l, F j, Y', $start_date));
+   } else {
+    $event_date = '';
+   }
+
+   ?>
+  	<div class="filter-content-card-item">
+						<a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
+							<div class="filter-card-content">
+							<div class="gl-s52"></div>
+							<div class="eyebrow ui-eyebrow-16-15-regular"><?= $start_formatted ?> - <?= $end_formatted ?> All Day
+							</div>
+							<div class="gl-s6"></div>
+							<div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
+							<div class="gl-s16"></div>
+							<div class="description ui-18-16-regular"><?php echo $event_content; ?></div>
+							<div class="gl-s20"></div>
+							<div class="read-more-link">
+								<div class="border-text-btn">Event Details</div>
+							</div>
+							<div class="gl-s80"></div>
+						</div>
+						</a>
+					</div>
+   <?php
+  }
+        
+  wp_reset_postdata();
+        $html        = ob_get_clean();
+        $total_pages = $query->max_num_pages;
+
+        $pagination_html = '';
+        if ($total_pages > 1) {
+            $pagination_html .= '<div class="pagination-container pagination-append-container">';
+            $pagination_html .= '<div class="pagination-container">';
+        
+            // Desktop Pagination
+            $pagination_html .= '<div class="desktop-pages">';
+            $pagination_html .= '<div id="desktopPrev" class="arrow-btn prev"' . ($paged === 1 ? ' disabled' : '') . '><div class="site-btn">Previous</div></div>';
+            $pagination_html .= '<div id="paginationList" class="pagination-list">';
+        
+            $range = 2;
+            $show_dots = false;
+            for ($i = 1; $i <= $total_pages; $i++) {
+                if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
+                    $active_class = $i === $paged ? 'active' : '';
+                    $pagination_html .= '<button class="page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
+                    $show_dots = true;
+                } elseif ($show_dots) {
+                    $pagination_html .= '<span class="dots">...</span>';
+                    $show_dots = false;
+                }
+            }
+        
+            $pagination_html .= '</div>';
+            $pagination_html .= '<div id="desktopNext" class="arrow-btn next"' . ($paged === $total_pages ? ' disabled' : '') . '><div class="site-btn">Next</div></div>';
+            $pagination_html .= '</div>';
+        
+            // Mobile Pagination
+            $pagination_html .= '<div class="mobile-pagination">';
+			$pagination_html .= '<button id="prevBtn" class="arrow-btn"' . ($paged === 1 ? ' disabled' : '') . '>
+			<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
+		</button>';		
+            $pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
+            $pagination_html .= '<button id="nextBtn" class="arrow-btn"' . ($paged === $total_pages ? ' disabled' : '') . '>
+			<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next"></button>';
+            $pagination_html .= '</div>';
+        
+            // Mobile Popup
+            $pagination_html .= '<div id="paginationPopup" class="pagination-popup">';
+            $pagination_html .= '<div class="popup-body">';
+            $pagination_html .= '<div id="popupGrid" class="popup-grid">';
+            for ($i = 1; $i <= $total_pages; $i++) {
+                $active = $i === $paged ? 'active' : '';
+                $pagination_html .= '<button class="page-trigger ui-18-16-bold page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
+            }
+            $pagination_html .= '</div>';
+            $pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';
+            $pagination_html .= '<button id="popupNext" class="arrow-btn"></button>';
+            $pagination_html .= '</div>';
+            $pagination_html .= '</div>';
+        
+            $pagination_html .= '</div>';
+            $pagination_html .= '</div>';
+        }
+        
+        // Send both HTML and pagination
+        wp_send_json_success([
+            'html'            => $html,
+            'pagination_html' => $pagination_html,
+            'total_pages'     => $total_pages,
+        ]);
+        
+  echo ob_get_clean();
+ } else {
+  echo '<p>No past events found.</p>';
+ }
+
+ wp_die();
+}
+
+ 
