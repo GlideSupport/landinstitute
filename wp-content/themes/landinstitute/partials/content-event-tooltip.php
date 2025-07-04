@@ -64,12 +64,14 @@ if (!has_post_thumbnail()) {
 						} ?>"><?php echo $cota_cpt_event_title; ?></a>
 					</div>
 					<div class="tooltip-date">
+					<div class="gl-s2"></div>
 						<a href="<?php if ($cota_cpt_event_external_links == "true") {
 							echo $cota_cpt_event_button['url']; ?>"
 								target="_blank <?php } else {
 							echo get_the_permalink($pID);
 						} ?>"><?php echo $final_date; ?></a>
 					</div>
+					<div class="block-btn">
 					<a href="<?php if ($cota_cpt_event_external_links == "true") {
 						echo $cota_cpt_event_button['url']; ?>"
 							target="_blank <?php } else {
@@ -84,6 +86,7 @@ if (!has_post_thumbnail()) {
 						<?php } ?>
 						<?php echo $cota_cpt_event_button['title']; ?>
 					</a>
+					</div>
 				</div>
 			</div>
 		</div>
