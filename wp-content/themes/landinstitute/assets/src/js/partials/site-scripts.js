@@ -646,6 +646,11 @@ function initDropdownMenus() {
 				positionDropdown();
 			}
 		});
+		window.addEventListener("scroll", () => {
+			if (toggleButton.getAttribute("aria-expanded") === "true") {
+				closeDropdown();
+			}
+		});
 	});
 }
 
@@ -838,9 +843,6 @@ function initDropdowns() {
 
 				// Only trigger filtering if it's actually a filter dropdown
 				if (isFilterDropdown) {
-					// Then trigger your AJAX filtering
-					console.log(`Selected ${toggleButton.id}:`, selectedTerm);
-
 					// Add your AJAX filtering logic here
 					if (typeof filterContent === "function") {
 						filterContent(toggleButton.id, selectedTerm);
@@ -878,6 +880,11 @@ function initDropdowns() {
 				positionDropdown();
 			}
 		});
+		window.addEventListener("scroll", () => {
+			if (toggleButton.getAttribute("aria-expanded") === "true") {
+				closeDropdown();
+			}
+		});
 	});
 }
 
@@ -889,9 +896,7 @@ function reinitDropdowns() {
 // Listen for the custom filter event (for your AJAX implementation)
 document.addEventListener("dropdownFilterChanged", (event) => {
 	const { filterType, selectedTerm, selectedText } = event.detail;
-	console.log(
-		`Filter changed - Type: ${filterType}, Term: ${selectedTerm}, Text: ${selectedText}`,
-	);
+	console.log(`Filter changed - Type: ${filterType}, Term: ${selectedTerm}, Text: ${selectedText}`);
 
 	// Add your AJAX call here
 	// Example:
@@ -1041,8 +1046,6 @@ function calculateBounds(galleryBlock) {
 		maxX = galleryBlock.clientWidth / 2;
 		maxY = galleryBlock.clientHeight / 1.5;
 	}
-
-	console.log("Bounds:", maxX, maxY);
 }
 //Footer Menu accordion js start
 document.querySelectorAll(".footer-nav-title").forEach((title) => {
@@ -1379,7 +1382,6 @@ document.addEventListener("DOMContentLoaded", function () {
 					}
 				});
 				member.classList.add(bgColor);
-				console.log(bgColor);
 
 				visibleCount++;
 			} else {
