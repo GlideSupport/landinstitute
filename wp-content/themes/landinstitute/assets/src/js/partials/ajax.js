@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	function fetchDonors() {
 		const postsPerPage = donorGrid.dataset.donorCount || 9;
 		// Loader
-		const existingLoader = donorGrid.querySelector(".ajax-loader");
-        if (!existingLoader) {
-        	const loader = document.createElement("div");
-        	loader.className = "ajax-loader";
-        	loader.innerHTML = "<p>Loading Donors...</p>";
-        	donorGrid.prepend(loader); 
-        }
+		// const existingLoader = donorGrid.querySelector(".ajax-loader");
+        // if (!existingLoader) {
+        // 	const loader = document.createElement("div");
+        // 	loader.className = "ajax-loader";
+        // 	loader.innerHTML = "<p>Loading Donors...</p>";
+        // 	donorGrid.prepend(loader); 
+        // }
 
 		fetch(localVars.ajax_url, {
 			method: "POST",
