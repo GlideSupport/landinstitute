@@ -128,11 +128,11 @@
 					<!-- Mobile Pagination -->
 					<div class="mobile-pagination">
 						<button id="prevBtn" class="arrow-btn" <?php if ($current_page == 1) echo 'disabled'; ?> aria-label="Prev">
-							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous">
+							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous" title="right-circle-arrow">
 						</button>
 						<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($current_page . '/' . $total_pages); ?></button>
 						<button id="nextBtn" class="arrow-btn" <?php if ($current_page == $total_pages) echo 'disabled'; ?> aria-label="Next">
-							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
+							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next" title="right-circle-arrow">
 						</button>
 					</div>
 
