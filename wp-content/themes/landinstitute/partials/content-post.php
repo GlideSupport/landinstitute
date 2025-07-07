@@ -13,20 +13,64 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object ) =
 // Post Tags & Categories.
 $bst_var_post_categories = get_categories( $bst_var_post_id );
 
-
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
-
+$li_ldo_author = $bst_fields['li_ldo_author'];
+$li_ldo_author_name = $bst_fields['li_ldo_author_name'];
+$li_ldo_publication = $bst_fields['li_ldo_publication'];
+$li_ldo_publication_link = $bst_fields['li_ldo_publication_link'];
+$url = $li_ldo_publication_link['url'];
+$title = $li_ldo_publication_link['title'];
 
 ?>
-<section id="hero-section" class="hero-section hero-section-default">
-	<!-- Hero Start -->
-	<div class="hero-ctn">
+
+<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-width variation-details">
+	<!-- hero start -->
+	<div class="bg-pattern">
+		<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-successionpink-large.png"
+			width="" height="" alt="" />
+	</div>
+	<div class="hero-default has-border-bottom">
 		<div class="wrapper">
-			<h1><?php echo esc_html( $bst_var_posttitle ); ?></h1>
+			<div class="hero-alongside-block">
+				<div class="col-left bg-lime-green">
+					<div class="hero-content">
+						<div class="ui-eyebrow-20-18-regular sub-title">Publications</div>
+						<div class="gl-s20"></div>
+						<h3 class="heading-3 mb-0 block-title"><?php echo $bst_var_posttitle ?>
+						</h3>
+						<div class="gl-s30"></div>
+						<div class="ui-eyebrow-16-15-regular eybrow-title"><?php echo $li_ldo_author; ?></div>
+						<div class="gl-s6"></div>
+						<div class="block-content body-18-16-regular">
+							<?php echo !empty($li_ldo_author_name) ? $li_ldo_author_name : get_the_author(); ?>
+						</div>
+						<div class="gl-s36"></div>
+						<div class="ui-eyebrow-16-15-bold eybrow-title"><?php echo $li_ldo_publication; ?></div>
+						<div class="gl-s6"></div>
+						<div class="text-link">
+							<a href="<?php echo esc_url($url); ?>" class="link-with-icon">
+								<span class="link-content">
+									<?php echo $title; ?><span class="icon">
+										<img
+											class="" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" width=""
+											height="" alt="" /></span></span>
+							</a>
+						</div>	
+						<div class="gl-s96"></div>
+					</div>
+				</div>
+				<div class="col-right">
+					<div class="bg-pattern">
+						<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-successionpink-large.png"
+							width="" height="" alt="" />
+					</div>
+					<?php echo has_post_thumbnail() ? '<div class="block-image-center">' . get_the_post_thumbnail(get_the_ID(), 'thumb_500', ['alt' => get_the_title()]) . '</div>' : ''; ?>
+				</div>
+			</div>
 		</div>
 	</div>
-	<!-- Hero End -->
 </section>
+
 <section id="page-section" class="page-section">
 	<div class="wrapper">
 		<div class="wrapper">
