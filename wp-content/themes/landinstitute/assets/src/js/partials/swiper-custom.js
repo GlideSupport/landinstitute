@@ -451,8 +451,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	//CTA Card Slide js end
 
 	//New Page sldier start
-	document.querySelectorAll('.logolist-wrapp').forEach((sliderEl) => {
-		new Swiper(sliderEl, {
+	const slider = document.querySelector('.logolist-wrapp');
+		if (!slider) return;
+		new Swiper(slider, {
 			loop: false,
 			navigation: false,
 			slidesPerView: 1.26,
@@ -470,7 +471,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			}
 		});
-	});
 	//New Page sldier end
 	
 });
