@@ -7,7 +7,9 @@
 }
 
 .popup-overflow {
-    overflow: hidden;
+    @media(max-width: 991px) {
+        overflow: hidden;
+    }
 }
 
 .event-teaser-calendar-block {
@@ -222,6 +224,7 @@
                 padding: 50px 20px 72px 20px;
                 position: absolute;
                 top: -2px;
+                transition: opacity 0.3s ease-in-out;
                 visibility: hidden;
                 width: 414px;
                 z-index: 8;
