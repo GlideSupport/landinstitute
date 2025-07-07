@@ -3299,3 +3299,9 @@ section:has(.has-border-bottom) {
         border-left: 0px;
     }
 }
+
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
