@@ -250,6 +250,12 @@
                     cursor: pointer;
                 }
 
+                @media(max-width: 1200px) {
+                    width: 394px;
+                    height: 264px;
+                    padding: 50px 20px 52px;
+                }
+
                 @media(max-width: 991px) {
                     border-bottom: 0;
                     border-left: 0;
@@ -304,6 +310,11 @@
                         height: 60.2px;
                         overflow: hidden;
                         width: 112px;
+
+                        @media(max-width: 1200px) {
+                            width: 100px;
+                            flex: 100px 0 0;
+                        }
 
                         @media(max-width: 767px) {
                             flex: 91px 0 0;
