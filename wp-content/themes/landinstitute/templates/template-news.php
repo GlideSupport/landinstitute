@@ -20,6 +20,9 @@ $li_news_temp_kicker_text = $bst_fields['li_news_temp_kicker_text'] ?? null;
 $li_news_temp_headline_text = $bst_fields['li_news_temp_headline_text'] ?? null;
 $li_news_headline_check  = BaseTheme::headline_check($li_news_temp_headline_text);
 $li_news_temp_bg_image = $bst_fields['li_news_temp_bg_image'] ?? null;
+$li_news_temp_logo_list_title = $bst_fields['li_news_temp_logo_list_title'] ?? null;
+$li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'] ?? null;
+
 ?>
 
 <div id="page-section" class="page-section">
@@ -68,120 +71,46 @@ $topic_terms = get_terms([
 	<div class="gl-s36"></div>
 	<div class="wrapper">
 		<div class="logo-list-block">
-			<div class="ui-20-18-bold-uc eybrow-title">As Seen In</div>
+			<?php echo (!empty($li_news_temp_logo_list_title)) ? '<div class="ui-20-18-bold-uc eybrow-title">' . esc_html($li_news_temp_logo_list_title) . '</div>' : ''; ?>			
 			<div class="gl-s30"></div>
 			<div class="logo-list-row">
 				<div class="swiper logolist-wrapp">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<a href="" class="logo-list-col">
-								<div class="brand-logo-img">
-									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/quartz-logo.png"
-										width="" height="" />
-								</div>
-								<div class="gl-s24"></div>
-								<div class="card-list">
-									<div class="card-item link-with-title with-arrow">
-										<div class="card-item-left">
-											<div class="card-title ui-18-16-bold">
-												Egestas Cras Tellus Ipsum in Eu Natoque Mattis Pellentesque
-											</div>
-											<div class="gl-s2"></div>
-											<div class="card-content body-18-16-regular">
-												QUARTZ
+					<?php if (!empty($li_news_temp_logo_list_repeater)): ?>
+						<div class="swiper-wrapper">
+							<?php foreach ($li_news_temp_logo_list_repeater as $li_news_temp_logo_list_rep):
+								$li_news_temp_logo = $li_news_temp_logo_list_rep['li_news_temp_logo'] ?? '';
+								$li_news_temp_title = $li_news_temp_logo_list_rep['li_news_temp_title'] ?? '';
+								$li_news_temp_text = $li_news_temp_logo_list_rep['li_news_temp_text'] ?? '';
+								$li_news_temp_link = $li_news_temp_logo_list_rep['li_news_temp_link'] ?? null;
+
+								$url = $li_news_temp_link['url'];
+
+								if (!empty($li_news_temp_logo) || !empty($li_news_temp_title) || !empty($li_news_temp_text) || !empty($li_news_temp_link)): ?>
+									<div class="swiper-slide">
+									<?php echo !empty($li_news_temp_link) ? '<a href="' . esc_url($url) . '" class="logo-list-col">' : '<div class="logo-list-col">'; ?>
+									<?php echo !empty($li_news_temp_logo) ? '<div class="brand-logo-img">' . wp_get_attachment_image($li_news_temp_logo, 'thumb_200') . '</div><div class="gl-s24"></div>' : ''; ?>
+										<div class="card-list">
+											<div class="card-item link-with-title with-arrow">
+												<?php if (!empty($li_news_temp_title) || !empty($li_news_temp_text)): ?>
+													<div class="card-item-left">
+														<?php echo (!empty($li_news_temp_title)) ? '<div class="card-title ui-18-16-bold">' . esc_html($li_news_temp_title) . '</div>' : ''; ?>
+														<?php echo (!empty($li_news_temp_title) && !empty($li_news_temp_text)) ? '<div class="gl-s2"></div>' : ''; ?>
+														<?php echo (!empty($li_news_temp_text)) ? '<div class="card-content body-18-16-regular">' . esc_html($li_news_temp_text) . '</div>' : ''; ?>
+													</div>
+												<?php endif; ?>
+												<div class="card-item-right">
+													<div class="dot-btn">
+														<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="View PDF">
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="card-item-right">
-											<div class="dot-btn">
-												<img src="../assets/src/images/right-circle-arrow.svg">
-											</div>
-										</div>
+									<?php echo !empty($li_news_temp_link) ? '</a>' : '</div>'; ?>
 									</div>
-								</div>
-							</a>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</div>
-						<div class="swiper-slide">
-							<a href="" class="logo-list-col">
-								<div class="brand-logo-img">
-									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/forbes-logo.png"
-										width="" height="" />
-								</div>
-								<div class="gl-s24"></div>
-								<div class="card-list">
-									<div class="card-item link-with-title with-arrow">
-										<div class="card-item-left">
-											<div class="card-title ui-18-16-bold">
-												Dictumst Nisl Auctor Maecenas Quisque Rhoncus
-											</div>
-											<div class="gl-s2"></div>
-											<div class="card-content body-18-16-regular">
-												Forbes
-											</div>
-										</div>
-										<div class="card-item-right">
-											<div class="dot-btn">
-												<img src="../assets/src/images/right-circle-arrow.svg">
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="swiper-slide">
-							<a href="" class="logo-list-col">
-								<div class="brand-logo-img">
-									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/nbcnews-logo.png"
-										width="" height="" />
-								</div>
-								<div class="gl-s24"></div>
-								<div class="card-list">
-									<div class="card-item link-with-title with-arrow">
-										<div class="card-item-left">
-											<div class="card-title ui-18-16-bold">
-												Ultrices in Orci Tristique Lectus Ultricies Vel Arcu Lorem
-											</div>
-											<div class="gl-s2"></div>
-											<div class="card-content body-18-16-regular">
-												NBC News
-											</div>
-										</div>
-										<div class="card-item-right">
-											<div class="dot-btn">
-												<img src="../assets/src/images/right-circle-arrow.svg">
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="swiper-slide">
-							<a href="" class="logo-list-col">
-								<div class="brand-logo-img">
-									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/newsweek-logo.png"
-										width="" height="" />
-								</div>
-								<div class="gl-s24"></div>
-								<div class="card-list">
-									<div class="card-item link-with-title with-arrow">
-										<div class="card-item-left">
-											<div class="card-title ui-18-16-bold">
-												Neque Vitae Quis Elementum Amet Fames Molestie Senectus
-											</div>
-											<div class="gl-s2"></div>
-											<div class="card-content body-18-16-regular">
-												Newsweek
-											</div>
-										</div>
-										<div class="card-item-right">
-											<div class="dot-btn">
-												<img src="../assets/src/images/right-circle-arrow.svg">
-											</div>
-										</div>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
@@ -352,3 +281,28 @@ $topic_terms = get_terms([
 	?>
 <?php
 get_footer(); ?>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	new Swiper('.logolist-wrapp', {
+		loop: false,
+		navigation: false,
+		slidesPerView: 1.26,
+		spaceBetween: 32,
+		breakpoints: {
+			1024: {
+				slidesPerView: 4,
+				spaceBetween: 44,
+			},
+			768: {
+				slidesPerView: 2.5,
+			},
+			480: {
+				slidesPerView: 2.2,
+			}
+		}
+	});
+});
+</script>
