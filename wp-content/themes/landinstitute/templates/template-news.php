@@ -281,28 +281,3 @@ $topic_terms = get_terms([
 	?>
 <?php
 get_footer(); ?>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-	new Swiper('.logolist-wrapp', {
-		loop: false,
-		navigation: false,
-		slidesPerView: 1.26,
-		spaceBetween: 32,
-		breakpoints: {
-			1024: {
-				slidesPerView: 4,
-				spaceBetween: 44,
-			},
-			768: {
-				slidesPerView: 2.5,
-			},
-			480: {
-				slidesPerView: 2.2,
-			}
-		}
-	});
-});
-</script>
