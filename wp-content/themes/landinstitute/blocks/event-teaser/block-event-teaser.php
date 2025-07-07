@@ -108,7 +108,7 @@ if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 					$start_time = get_field('li_cpt_event_start_time', $event_id);
 					$end_time = get_field('li_cpt_event_end_time', $event_id);
 					$all_day = get_field('li_cpt_event_all_day', $event_id);
-					$wysiwyg = get_field('li_cpt_event_wysiwyg', $event_id);
+					$wysiwyg = get_the_excerpt($event_id);
 
 					//Date Format
 					$start_date = $start_date ? strtotime($start_date) : false;

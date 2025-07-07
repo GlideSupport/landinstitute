@@ -12,12 +12,12 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "display_format": "d\/m\/Y",
-            "return_format": "F j, Y",
+            "display_format": "Y-m-d",
+            "return_format": "Y-m-d",
             "first_day": 1,
             "allow_in_bindings": 0
         },
@@ -31,49 +31,13 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "display_format": "d\/m\/Y",
-            "return_format": "F j, Y",
+            "display_format": "Y-m-d",
+            "return_format": "Y-m-d",
             "first_day": 1,
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_6853ebae49e88",
-            "label": "Event Start Time",
-            "name": "li_cpt_event_start_time",
-            "aria-label": "",
-            "type": "time_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "g:i a",
-            "return_format": "g:i a T",
-            "allow_in_bindings": 0
-        },
-        {
-            "key": "field_6853ec4349e89",
-            "label": "Event End Time",
-            "name": "li_cpt_event_end_time",
-            "aria-label": "",
-            "type": "time_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "display_format": "g:i a",
-            "return_format": "g:i a T",
             "allow_in_bindings": 0
         },
         {
@@ -93,31 +57,154 @@
             "message": "",
             "default_value": 0,
             "allow_in_bindings": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "ui_on_text": "Yes",
+            "ui_off_text": "No",
+            "ui": 1
         },
         {
-            "key": "field_684bea007f578",
-            "label": "WYSIWYG",
-            "name": "li_cpt_event_wysiwyg",
+            "key": "field_6853ebae49e88",
+            "label": "Event Start Time",
+            "name": "li_cpt_event_start_time",
             "aria-label": "",
-            "type": "wysiwyg",
+            "type": "time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6853ec6149e8b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "H:i:s",
+            "return_format": "H:i:s",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6853ec4349e89",
+            "label": "Event End Time",
+            "name": "li_cpt_event_end_time",
+            "aria-label": "",
+            "type": "time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6853ec6149e8b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "H:i:s",
+            "return_format": "H:i:s",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6867c44008778",
+            "label": "Timezone",
+            "name": "timezone",
+            "aria-label": "",
+            "type": "select",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "100",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "wysiwyg_height": "",
+            "choices": {
+                "Pacific\/Midway": "(UTC-11:00) Midway Island",
+                "Pacific\/Honolulu": "(UTC-10:00) Hawaii",
+                "America\/Anchorage": "(UTC-09:00) Alaska",
+                "America\/Los_Angeles": "(UTC-08:00) Pacific Time (US & Canada)",
+                "America\/Denver": "(UTC-07:00) Mountain Time (US & Canada)",
+                "America\/Chicago": "(UTC-06:00) Central Time (US & Canada)",
+                "America\/New_York": "(UTC-05:00) Eastern Time (US & Canada)",
+                "America\/Caracas": "(UTC-04:30) Caracas",
+                "America\/Halifax": "(UTC-04:00) Atlantic Time (Canada)",
+                "America\/St_Johns": "(UTC-03:30) Newfoundland",
+                "America\/Argentina\/Buenos_Aires": "(UTC-03:00) Buenos Aires",
+                "Atlantic\/South_Georgia": "(UTC-02:00) Mid-Atlantic",
+                "Atlantic\/Azores": "(UTC-01:00) Azores",
+                "Europe\/London": "(UTC+00:00) London, Lisbon, Casablanca",
+                "Europe\/Berlin": "(UTC+01:00) Berlin, Paris, Rome, Madrid",
+                "Europe\/Helsinki": "(UTC+02:00) Helsinki, Kyiv, Istanbul, Cairo",
+                "Europe\/Moscow": "(UTC+03:00) Moscow, Nairobi, Baghdad",
+                "Asia\/Tehran": "(UTC+03:30) Tehran",
+                "Asia\/Dubai": "(UTC+04:00) Dubai, Abu Dhabi, Muscat",
+                "Asia\/Kabul": "(UTC+04:30) Kabul",
+                "Asia\/Karachi": "(UTC+05:00) Karachi, Tashkent",
+                "Asia\/Kolkata": "(UTC+05:30) India Standard Time",
+                "Asia\/Kathmandu": "(UTC+05:45) Kathmandu",
+                "Asia\/Dhaka": "(UTC+06:00) Dhaka, Astana",
+                "Asia\/Yangon": "(UTC+06:30) Yangon (Rangoon)",
+                "Asia\/Bangkok": "(UTC+07:00) Bangkok, Hanoi, Jakarta",
+                "Asia\/Shanghai": "(UTC+08:00) Beijing, Perth, Singapore",
+                "Asia\/Tokyo": "(UTC+09:00) Tokyo, Seoul, Yakutsk",
+                "Australia\/Adelaide": "(UTC+09:30) Adelaide",
+                "Australia\/Sydney": "(UTC+10:00) Sydney, Guam",
+                "Asia\/Magadan": "(UTC+11:00) Magadan, Solomon Is.",
+                "Pacific\/Auckland": "(UTC+12:00) Auckland, Fiji",
+                "Pacific\/Tongatapu": "(UTC+13:00) Nuku'alofa"
+            },
+            "default_value": "America\/Chicago",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
             "allow_in_bindings": 0,
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 0,
-            "delay": 0
+            "ui": 1,
+            "ajax": 1,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_686b84050e02d",
+            "label": "Related Events",
+            "name": "_li_cpt_related_events",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "event"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "return_format": "object",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
         }
     ],
     "location": [
@@ -138,5 +225,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750331710
+    "modified": 1751876697
 }
