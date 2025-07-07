@@ -266,6 +266,7 @@
                     transition: max-height 0.4s ease, opacity 0.4s ease;
                     visibility: hidden;
                     width: 100%;
+                    overflow-y: auto;
                 }
 
                 &.show {
