@@ -451,9 +451,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	//CTA Card Slide js end
 
 	//New Page sldier start
-	const slider = document.querySelector('.logolist-wrapp');
-		if (!slider) return;
-		new Swiper(slider, {
+	const logolistslider = document.querySelector('.logolist-wrapp');
+		if (!logolistslider) return;
+		new Swiper(logolistslider, {
 			loop: false,
 			navigation: false,
 			slidesPerView: 1.26,
