@@ -449,5 +449,28 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 	//CTA Card Slide js end
+
+	//New Page sldier start
+	document.querySelectorAll('.logolist-wrapp').forEach((sliderEl) => {
+		new Swiper(sliderEl, {
+			loop: false,
+			navigation: false,
+			slidesPerView: 1.26,
+			spaceBetween: 32,
+			breakpoints: {
+				1024: {
+					slidesPerView: 4,
+					spaceBetween: 44,
+				},
+				768: {
+					slidesPerView: 2.5,
+				},
+				480: {
+					slidesPerView: 2.2,
+				}
+			}
+		});
+	});
+	//New Page sldier end
 	
 });
