@@ -734,3 +734,44 @@ function custom_events_rewrite_rule()
 	add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
 }
 add_action('init', 'custom_events_rewrite_rule');
+
+function get_timezone_code($timezone_value) {
+    $timezones = [
+        "Pacific/Midway" => "SST",
+        "Pacific/Honolulu" => "HST",
+        "America/Anchorage" => "AKST",
+        "America/Los_Angeles" => "PST",
+        "America/Denver" => "MST",
+        "America/Chicago" => "CST",
+        "America/New_York" => "EST",
+        "America/Caracas" => "VET",
+        "America/Halifax" => "AST",
+        "America/St_Johns" => "NST",
+        "America/Argentina/Buenos_Aires" => "ART",
+        "Atlantic/South_Georgia" => "GST",
+        "Atlantic/Azores" => "AZOT",
+        "Europe/London" => "GMT",
+        "Europe/Berlin" => "CET",
+        "Europe/Helsinki" => "EET",
+        "Europe/Moscow" => "MSK",
+        "Asia/Tehran" => "IRST",
+        "Asia/Dubai" => "GST",
+        "Asia/Kabul" => "AFT",
+        "Asia/Karachi" => "PKT",
+        "Asia/Kolkata" => "IST",
+        "Asia/Kathmandu" => "NPT",
+        "Asia/Dhaka" => "BST",
+        "Asia/Yangon" => "MMT",
+        "Asia/Bangkok" => "ICT",
+        "Asia/Shanghai" => "CST",
+        "Asia/Tokyo" => "JST",
+        "Australia/Adelaide" => "ACST",
+        "Australia/Sydney" => "AEST",
+        "Asia/Magadan" => "MAGT",
+        "Pacific/Auckland" => "NZST",
+        "Pacific/Tongatapu" => "TOT"
+    ];
+
+    return $timezones[$timezone_value] ?? "Unknown";
+}
+

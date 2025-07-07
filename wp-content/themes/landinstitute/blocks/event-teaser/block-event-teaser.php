@@ -109,6 +109,7 @@ if (!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 					$start_time = get_field('li_cpt_event_start_time', $event_id);
 					$end_time = get_field('li_cpt_event_end_time', $event_id);
 					$all_day = get_field('li_cpt_event_all_day', $event_id);
+					$timezone = get_field('timezone', $event_id);
 					$wysiwyg = get_the_excerpt($event_id);
 
 					//Date Format
@@ -119,8 +120,8 @@ if (!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 					$start_day_full = $start_date ? date('l, F j, Y', $start_date) : '';
 					$end_day_full   = $end_date ? date('l, F j, Y', $end_date) : '';
 					$start_day_short = $start_date ? date('M j, Y', $start_date) : '';
-					$start_time_fmt = $start_time ? date('g:i a', strtotime($start_time)) . ' CDT' : '';
-					$end_time_fmt   = $end_time ? date('g:i a', strtotime($end_time)) . ' CDT' : '';
+					$start_time_fmt = $start_time ? date('g:i a', strtotime($start_time)) . ' ' . get_timezone_code($timezone) : '';
+					$end_time_fmt   = $end_time ? date('g:i a', strtotime($end_time)) . ' ' . get_timezone_code($timezone) : '';
 
 					$event_date = '';
 
