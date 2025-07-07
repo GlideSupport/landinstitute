@@ -110,7 +110,7 @@ document.addEventListener('click', function (e) {
 
       // Wait for animation to finish before cleanup
       setTimeout(() => {
-        document.body.classList.remove('popup-overflow');
+        document.documentElement.classList.remove('popup-overflow');
       }, 400); // Match CSS transition duration
     }
     return;
@@ -128,7 +128,7 @@ document.addEventListener('click', function (e) {
     const tooltip = calendarColumn.querySelector('.tooltip');
     if (tooltip) {
       tooltip.classList.add('show');
-      document.body.classList.add('popup-overflow');
+      document.documentElement.classList.add('popup-overflow');
     }
   }
 });
