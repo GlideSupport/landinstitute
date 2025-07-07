@@ -123,29 +123,6 @@
             "esc_html": 0
         },
         {
-            "key": "field_686bb95bee711",
-            "label": "Events Per Page",
-            "name": "_li_past_events_per_page",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_68072c287da26",
             "label": "CTA",
             "name": "li_past_events_button",
@@ -181,5 +158,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751890319
+    "modified": 1751891402
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Block Name: Event Teaser
  *
@@ -10,32 +11,32 @@
  * @since 1.0.0
  */
 
-list( $bst_block_id, $bst_block_fields ) = BaseTheme::defaults( $block['id'] );
+list($bst_block_id, $bst_block_fields) = BaseTheme::defaults($block['id']);
 
 // Set the block name for it's ID & class from it's file name.
 $bst_block_name   = $block['name'];
-$bst_block_name   = str_replace( 'acf/', '', $bst_block_name );
-$bst_block_styles = BaseTheme::convert_to_css( $block );
+$bst_block_name   = str_replace('acf/', '', $bst_block_name);
+$bst_block_styles = BaseTheme::convert_to_css($block);
 // Set the preview thumbnail for this block for gutenberg editor view.
-if ( isset( $block['data']['preview'] ) ) {
-	echo '<img src="' . esc_url( get_template_directory_uri() . '/blocks/' . $bst_block_name . '/' . $block['data']['preview'] ) . '" style="width:100%; height:auto;">';
+if (isset($block['data']['preview'])) {
+	echo '<img src="' . esc_url(get_template_directory_uri() . '/blocks/' . $bst_block_name . '/' . $block['data']['preview']) . '" style="width:100%; height:auto;">';
 	return;
 }
 // create align class ("alignwide") from block setting ("wide").
 $bst_var_align_class = $block['align'] ? 'align' . $block['align'] : '';
 
 // Get the class name for the block to be used for it.
-$bst_var_class_name = ( isset( $block['className'] ) ) ? $block['className'] : null;
+$bst_var_class_name = (isset($block['className'])) ? $block['className'] : null;
 
 // Making the unique ID for the block.
 $bst_block_html_id = 'block-' . $bst_block_name . '-' . $block['id'];
-if( !empty($block['anchor']) ) {
+if (!empty($block['anchor'])) {
 	$bst_block_html_id = $block['anchor'];
 }
 // Making the unique ID for the block.
-if ( $block['name'] ) {
+if ($block['name']) {
 	$bst_block_name = $block['name'];
-	$bst_block_name = str_replace( '/', '-', $bst_block_name );
+	$bst_block_name = str_replace('/', '-', $bst_block_name);
 	$bst_var_name   = 'block-' . $bst_block_name;
 }
 
@@ -56,7 +57,7 @@ $args = array(
 	'posts_per_page' => 2,
 	'orderby'        => 'meta_value',
 	'order'          => 'ASC',
-	'meta_key'       => 'li_cpt_event_start_date', 
+	'meta_key'       => 'li_cpt_event_start_date',
 	'meta_type'      => 'DATE',
 	'meta_query'     => array(
 		array(
@@ -72,7 +73,7 @@ $args = array(
 switch ($li_et_event_select_option) {
 	case 'manual':
 		if (!empty($li_et_select_manual_event)) {
-			
+
 			$args['post__in'] = $li_et_select_manual_event;
 			$args['orderby'] = 'post__in';
 			$args['posts_per_page'] = count($li_et_select_manual_event);
@@ -87,7 +88,7 @@ switch ($li_et_event_select_option) {
 
 $events_query = new WP_Query($args);
 
-if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
+if (!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 	<div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?> ">
 		<div class="event-teaser-list-block">
 			<div class="heading-max max-800">
@@ -95,11 +96,11 @@ if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 				<?php echo (!empty($li_et_kicker) && !empty($li_et_headline_check)) ? '<div class="gl-s12"></div>' : ''; ?>
 				<?php echo !empty($li_et_headline_check) ? BaseTheme::headline($li_et_headline, 'heading-2 block-title mb-0') : ''; ?>
 			</div>
-	
+
 			<?php echo (!empty($li_et_headline_check)) ? '<div class="gl-s64"></div>' : ''; ?>
-	
+
 			<div class="event-teaser-list-row">
-				<?php while ($events_query->have_posts()) : $events_query->the_post(); 
+				<?php while ($events_query->have_posts()) : $events_query->the_post();
 					$event_id = get_the_ID();
 					$title = get_the_title();
 					$permalink = get_the_permalink();
@@ -159,41 +160,41 @@ if(!empty($li_et_headline_check) && $events_query->have_posts()): ?>
 					} else {
 						$event_date = '';
 					}
-					
+
 				?>
-				<div class="event-teaser-list-col">
-					<a href="<?php echo esc_url($permalink); ?>" class="event-teaser-list-card">
-						<div class="event-teaser-list-image">
-							<?php echo wp_get_attachment_image(get_post_thumbnail_id($event_id), 'thumb_800'); ?>
-						</div>
-						<div class="event-teaser-list-content">
-	
-							<?php echo (!empty($title) || !empty($wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
-
-							<div class="ui-eyebrow-18-16-regular block-subhead">
-								<?php echo esc_html($event_date); ?>
+					<div class="event-teaser-list-col">
+						<a href="<?php echo esc_url($permalink); ?>" class="event-teaser-list-card">
+							<div class="event-teaser-list-image">
+								<?php echo wp_get_attachment_image(get_post_thumbnail_id($event_id), 'thumb_800'); ?>
 							</div>
+							<div class="event-teaser-list-content">
 
-							<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s4"></div>' : ''; ?>
-							<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
-							<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s16"></div>' : ''; ?>
-							<?php echo !empty($wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
-							<?php echo (!empty($wysiwyg)) ? '<div class="gl-s20"></div>' : ''; ?>
-	
-							<div class="block-btns">
-								<div class="site-btn text-link" title="" role="Button" aria-label="Button">
-									Event Details
+								<?php echo (!empty($title) || !empty($wysiwyg)) ? '<div class="gl-s64"></div>' : ''; ?>
+
+								<div class="ui-eyebrow-18-16-regular block-subhead">
+									<?php echo esc_html($event_date); ?>
 								</div>
+
+								<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s4"></div>' : ''; ?>
+								<?php echo !empty($title) ? '<h4 class="heading-4 mb-0 block-title">' . esc_html($title) . '</h4>' : ''; ?>
+								<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s16"></div>' : ''; ?>
+								<?php echo !empty($wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
+								<?php echo (!empty($wysiwyg)) ? '<div class="gl-s20"></div>' : ''; ?>
+
+								<div class="block-btns">
+									<div class="site-btn text-link" title="" role="Button" aria-label="Button">
+										Event Details
+									</div>
+								</div>
+								<div class="gl-s64"></div>
 							</div>
-							<div class="gl-s64"></div>
-						</div>
-					</a>
-				</div>
-				<?php endwhile; wp_reset_postdata(); ?>
+						</a>
+					</div>
+				<?php endwhile;
+				wp_reset_postdata(); ?>
 			</div>
-	
+
 			<?php echo !empty($li_et_button) ? '<div class="section-btn full-width-button">' . BaseTheme::button($li_et_button, 'site-btn') . '</div>' : ''; ?>
 		</div>
 	</div>
 <?php endif; ?>
-	
