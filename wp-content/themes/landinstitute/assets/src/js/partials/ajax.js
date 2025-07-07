@@ -2,7 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
 	const donorGrid = document.querySelector(".filter-logos-row");
 	let currentDonorType = "all";
 	let currentDonationLevel = "all";
-	let currentPage = 1;
+	//let currentPage = 1;
+
+	function getCurrentPageFromURL() {
+		const match = window.location.pathname.match(/\/page\/(\d+)(\/)?$/);
+		return match ? parseInt(match[1]) : 1;
+	}
+	
+	let currentPage = getCurrentPageFromURL();
+
 
 	function fetchDonors() {
 		const postsPerPage = donorGrid.dataset.donorCount || 9;
@@ -129,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	
 		// Mobile popup pagination inside popupGrid
-		document.querySelectorAll("#popupGrid .page-btn").forEach((btn) => {
+		document.querySelectorAll(".logo-grid-filters #popupGrid .page-btn").forEach((btn) => {
 			btn.addEventListener("click", () => {
 				const popupPage = parseInt(btn.textContent);
 				if (!isNaN(popupPage)) {
@@ -140,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 	// Dropdown item click handler
-	document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+	document.querySelectorAll(".logo-grid-filters .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
 			link.addEventListener("click", (e) => {
 				e.preventDefault();
@@ -175,90 +183,87 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	
 // Past Event Filter JS Code Start
-const pastEventLinks = document.querySelectorAll(".past-events-ctn a[data-term]");
+// Past Event Pagination JS Start
+
 const teaserList = document.querySelector(".filter-content-cards-grid");
-let currentTerm = "all";
 
+function fetchPastEvents(paged = 1, updateURL = true) {
+	currentPage = paged;
 
-function fetchPastEvents(term = "all", paged = 1) {
- currentTerm = term;
- currentPage = paged;
-
- if (teaserList) {
-  loadingElem = document.createElement("div");
-  loadingElem.className = "loading-placeholder";
-  loadingElem.innerHTML = "<p>Loading...</p>";
-  teaserList.appendChild(loadingElem);
- }
-
- fetch(localVars.ajax_url, {
-  method: "POST",
-  headers: {
-   "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body: new URLSearchParams({
-   action: "filter_past_events",
-   paged: paged,
-   nonce: localVars.nonce,
-  }),
- })
-  .then((res) => res.json())
-  .then((data) => {
-   if (data.success) {
-	if (teaserList) teaserList.innerHTML = data.data.html;
-
-	// Replace pagination HTML
-	const oldPagination = document.querySelector('.pagination-append-container');
-	if (oldPagination) {
-	 oldPagination.outerHTML = data.data.pagination_html;
-	} else {
-	 teaserList.insertAdjacentHTML('afterend', data.data.pagination_html);
+	if (teaserList) {
+		const loadingElem = document.createElement("div");
+		loadingElem.className = "loading-placeholder";
+		loadingElem.innerHTML = "<p>Loading...</p>";
+		teaserList.appendChild(loadingElem);
 	}
 
-	initPaginationListeners(); // reattach pagination buttons
-	attachPaginationEventListeners(); // reattach popup logic
-	setTimeout(() => {
-	 const newTeaserList = document.querySelector(".filter-content-cards-grid");
-	 if (newTeaserList) {
-	  const offset = 100; // Adjust based on your sticky header height
-	  const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
-	  window.scrollTo({
-	   top: top,
-	   behavior: "smooth",
-	  });
-	 }
-	}, 50); // slight delay to ensure DOM update
-   } else {
-	teaserList.innerHTML = "<p>No past events found.</p>";
-   }
-  })
-  .catch((error) => {
-   console.error("AJAX error:", error);
-   teaserList.innerHTML = "<p>Error loading events.</p>";
-  });
-}
+	fetch(localVars.ajax_url, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded",
+		},
+		body: new URLSearchParams({
+			action: "filter_past_events",
+			paged: paged,
+			nonce: localVars.nonce,
+		}),
+	})
+		.then((res) => res.json())
+		.then((data) => {
+			if (data.success) {
+				if (teaserList) teaserList.innerHTML = data.data.html;
 
-// Tab click listener
-if (pastEventLinks.length > 0 && teaserList) {
- pastEventLinks.forEach((link) => {
-  link.addEventListener("click", function (e) {
-   e.preventDefault();
-   const term = this.getAttribute("data-term");
+				const oldPagination = document.querySelector('.pagination-append-container');
+				if (oldPagination) {
+					oldPagination.outerHTML = data.data.pagination_html;
+				} else {
+					teaserList.insertAdjacentHTML('afterend', data.data.pagination_html);
+				}
 
-   document.querySelectorAll(".past-events-ctn li").forEach((li) => li.classList.remove("active"));
-   this.closest("li").classList.add("active");
+				initPaginationListeners(); // reattach buttons
+				attachPaginationEventListeners(); // reattach popup toggle
 
-   fetchPastEvents(term, 1);
-  });
- });
+				// Update browser URL without reload
+				if (updateURL) {
+					const cleanPath = window.location.pathname.replace(/\/page\/\d+\/?$/, ''); // remove existing /page/X
+					const queryParams = window.location.search; // e.g., "?eventsview=calendar"
+				
+					const newURL =
+						paged === 1
+							? cleanPath + '/' + queryParams
+							: `${cleanPath}page/${paged}/` + queryParams;
+				
+					history.pushState({ paged: paged }, '', newURL);
+				}
+				
+				// Scroll to top of the list
+				setTimeout(() => {
+					const newTeaserList = document.querySelector(".filter-content-cards-grid");
+					if (newTeaserList) {
+						const offset = 100; // adjust for sticky headers
+						const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
+						window.scrollTo({ top: top, behavior: "smooth" });
+					}
+				}, 50);
+			} else {
+				teaserList.innerHTML = "<p>No past events found.</p>";
+			}
+		})
+		.catch((error) => {
+			console.error("AJAX error:", error);
+			teaserList.innerHTML = "<p>Error loading events.</p>";
+		});
 }
 
 function initPaginationListeners() {
 	document.querySelectorAll(".pastevent .pagination-container .page-btn").forEach((btn) => {
-		btn.addEventListener("click", function () {
+		btn.addEventListener("click", function (e) {
+			console.log("click"+currentPage);
+
+			e.preventDefault(); // ✅ prevent default link behavior
 			const page = parseInt(this.getAttribute("data-page"));
 			if (!isNaN(page) && page !== currentPage) {
-				fetchPastEvents(currentTerm, page);
+				fetchPastEvents( page);
 			}
 		});
 	});
@@ -267,46 +272,72 @@ function initPaginationListeners() {
 	const nextBtns = document.querySelectorAll(".pastevent #desktopNext, .pastevent #nextBtn, .pastevent #popupNext");
 
 	prevBtns.forEach((btn) => {
-		btn.addEventListener("click", () => {
-			if (currentPage > 1) fetchPastEvents(currentTerm, currentPage - 1);
+		btn.addEventListener("click", (e) => {
+			e.preventDefault(); // ✅ prevent default for Prev buttons
+			if (currentPage > 1) fetchPastEvents( currentPage - 1);
 		});
 	});
 
-	nextBtns.forEach((btn) => {
-		btn.addEventListener("click", () => {
-			fetchPastEvents(currentTerm, currentPage + 1);
-		});
-	});
+	
+
+	// nextBtns.forEach((btn) => {
+	// 	btn.addEventListener("click", (e) => {
+	// 		e.preventDefault(); // ✅ prevent default for Next buttons
+	// 		fetchPastEvents( currentPage + 1);
+	// 	});
+	// });
 }
 
-
-// Mobile popup pagination toggle
 function attachPaginationEventListeners() {
- const pageTrigger = document.getElementById('pageTrigger');
- const paginationPopup = document.getElementById('paginationPopup');
+	const pageTrigger = document.getElementById('pageTrigger');
+	const paginationPopup = document.getElementById('paginationPopup');
 
- if (pageTrigger && paginationPopup) {
-  pageTrigger.addEventListener('click', function () {
-   paginationPopup.classList.toggle('active');
-  });
+	if (pageTrigger && paginationPopup) {
+		pageTrigger.addEventListener('click', function () {
+			paginationPopup.classList.toggle('active');
+		});
 
-  document.addEventListener('click', function (e) {
-   if (
-	paginationPopup.classList.contains('active') &&
-	!paginationPopup.contains(e.target) &&
-	e.target !== pageTrigger
-   ) {
-	paginationPopup.classList.remove('active');
-   }
-  });
- }
+		document.addEventListener('click', function (e) {
+			if (
+				paginationPopup.classList.contains('active') &&
+				!paginationPopup.contains(e.target) &&
+				e.target !== pageTrigger
+			) {
+				paginationPopup.classList.remove('active');
+			}
+		});
+	}
 }
 
+// Detect back/forward browser navigation
+window.addEventListener('popstate', function (e) {
+	const paged = (e.state && e.state.paged) ? e.state.paged : 1;
+	fetchPastEvents(paged, false); // false = don't update URL again
+});
+
+// On initial load, if /page/2 exists in URL, trigger fetch
+document.addEventListener("DOMContentLoaded", function () {
+	const match = window.location.pathname.match(/\/page\/(\d+)/);
+	if (match) {
+		const page = parseInt(match[1]);
+		if (!isNaN(page) && page > 1) {
+			fetchPastEvents(page, false); // load via AJAX on first hit
+		}
+	}
+});
+
+// Initialize listeners on first load
 initPaginationListeners();
 attachPaginationEventListeners();
-// Past Event Filter JS Code end
+
+// Past Event Pagination JS End
 
 
 
-
+});
+document.addEventListener('click', function (e) {
+	const disabledLink = e.target.closest('.arrow-btn.disable');
+	if (disabledLink) {
+		e.preventDefault();
+	}
 });

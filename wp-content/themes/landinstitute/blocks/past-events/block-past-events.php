@@ -57,12 +57,16 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 	<?php echo !empty($past_events_headline_check) ? BaseTheme::headline($past_events_headline, 'heading-3 block-title mb-0') . '<div class="gl-s44"></div>' : ''; ?>
 	
 	<?php
+
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+
 	$today = date('Ymd');
 	$args = [
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
 		'posts_per_page' => 4,
-		'paged'          => 1,
+		'paged'          => $paged,
 		'meta_key'       => 'li_cpt_event_start_date',
 		'orderby'        => 'meta_value',
 		'order'          => 'DESC',
@@ -153,58 +157,158 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 			<div class="pagination-container pagination-append-container">
 				<!-- Desktop Pagination -->
 				<div class="desktop-pages">
-					<div id="desktopPrev" class="arrow-btn prev" <?php if ($current_page == 1) echo 'disabled'; ?>><div class="site-btn">Previous</div></div>
+				<?php
+							$has_prev = $current_page > 1;
+							$prev_page = $current_page - 1;
+							$prev_url = $has_prev
+								? ($prev_page === 1
+									? trailingslashit(home_url('/events/'))
+									: trailingslashit(home_url('/events/')) . 'page/' . $prev_page . '/')
+								: 'javascript:void(0);';
+
+							$prev_class = $has_prev ? '' : 'disabled';
+						?>
+						<a href="<?php echo esc_url($prev_url); ?>"
+						id="desktopPrev"
+						class="arrow-btn prev page-btn <?php echo esc_attr($prev_class); ?>"
+						data-page="<?php echo esc_attr($prev_page); ?>">
+							<div class="site-btn">Previous</div>
+						</a>
 					<!-- <div class="arrow-btn prev"><div class="site-btn">Previous</div></div> -->
 					<div id="paginationList" class="pagination-list">
-						<?php
-						$range = 2;
-						$show_dots = false;
+					<?php
+	$range = 2;
+	$show_dots = false;
 
-						for ($i = 1; $i <= $total_pages; $i++) {
-							if (
-								$i == 1 ||
-								$i == $total_pages ||
-								($i >= $current_page - $range && $i <= $current_page + $range)
-							) {
-								$active_class = $i == $current_page ? 'active' : '';
-								echo '<button class="page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
-								$show_dots = true;
-							} elseif ($show_dots) {
-								echo '<span class="dots">...</span>';
-								$show_dots = false;
-							}
-						}
-						?>
+	for ($i = 1; $i <= $total_pages; $i++) {
+		if (
+			$i == 1 ||
+			$i == $total_pages ||
+			($i >= $current_page - $range && $i <= $current_page + $range)
+		) {
+			$active_class = $i == $current_page ? 'active' : '';
+			$page_url = trailingslashit(get_permalink()) . 'page/' . $i . '/';
+
+			echo '<a class="page-btn ' . $active_class . '" href="' . esc_url($page_url) . '" data-page="' . $i . '">' . $i . '</a>';
+			$show_dots = true;
+		} elseif ($show_dots) {
+			echo '<span class="dots">...</span>';
+			$show_dots = false;
+		}
+	}
+	?>
 					</div>
 					<!-- <div class="arrow-btn next"><div class="site-btn">Next</div></div> -->
-					<div id="desktopNext" class="arrow-btn next" <?php if ($current_page == $total_pages) echo 'disabled'; ?>><div class="site-btn">Next</div></div>
+					<!-- <div id="desktopNext" class="arrow-btn next" <?php ///if ($current_page == $total_pages) echo 'disabled'; ?>><div class="site-btn">Next</div></div> -->
+					<?php
+						$has_next = $current_page < $total_pages;
+						$next_page = $current_page + 1;
+						$next_url = $has_next 
+							? trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/' 
+							: 'javascript:void(0);'; // or '#' if preferred
+						$next_class = $has_next ? '' : 'disabled';
+					?>
+					<a href="<?php echo esc_url($next_url); ?>" 
+					id="desktopNext" 
+					class="arrow-btn next page-btn <?php echo esc_attr($next_class); ?>" 
+					data-page="<?php echo esc_attr($next_page); ?>">
+						<div class="site-btn">Next</div>
+					</a>
 				</div>
 
 				<!-- Mobile Pagination -->
 				<div class="mobile-pagination">
-					<button id="prevBtn" class="arrow-btn" <?php if ($current_page == 1) echo 'disabled'; ?>>
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
-					<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo $current_page . '/' . $total_pages; ?></button>
-					<button id="nextBtn" class="arrow-btn" <?php if ($current_page == $total_pages) echo 'disabled'; ?>>
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
-					</button>
-				</div>
+	<?php
+	// Prev button setup
+	$prev_page = $current_page - 1;
+	$prev_disabled = $current_page <= 1;
+	$prev_url = $prev_disabled
+		? 'javascript:void(0);'
+		: ($prev_page === 1
+			? trailingslashit(get_permalink())
+			: trailingslashit(get_permalink()) . 'page/' . $prev_page . '/');
+	?>
+	<a href="<?php echo esc_url($prev_url); ?>"
+	   id="prevBtn"
+	   class="arrow-btn page-btn <?php echo $prev_disabled ? 'disable' : ''; ?>"
+	   data-page="<?php echo esc_attr($prev_page); ?>">
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous">
+	</a>
+
+	<button id="pageTrigger" class="page-trigger ui-18-16-bold">
+		<?php echo $current_page . '/' . $total_pages; ?>
+	</button>
+
+	<?php
+	// Next button setup
+	$next_page = $current_page + 1;
+	$next_disabled = $current_page >= $total_pages;
+	$next_url = $next_disabled
+		? 'javascript:void(0);'
+		: trailingslashit(get_permalink()) . 'page/' . $next_page . '/';
+	?>
+	<a href="<?php echo esc_url($next_url); ?>"
+	   id="nextBtn"
+	   class="arrow-btn page-btn <?php echo $next_disabled ? 'disable' : ''; ?>"
+	   data-page="<?php echo esc_attr($next_page); ?>">
+		<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
+	</a>
+</div>
+
 
 				<!-- Mobile Popup Pagination -->
-				<div id="paginationPopup" class="pagination-popup">
-					<div class="popup-body">
-						<div id="popupGrid" class="popup-grid">
-							<?php
-							for ($i = 1; $i <= $total_pages; $i++) {
-								$active = $i == $current_page ? 'active' : '';
-								echo '<button class="page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
-							}
-							?>
-						</div>
-						<button id="popupPrev" class="arrow-btn"></button>
-						<button id="popupNext" class="arrow-btn"></button>
-					</div>
-				</div>
+	<div id="paginationPopup" class="pagination-popup">
+	<div class="popup-body">
+
+		<!-- Grid of Page Numbers -->
+		<div id="popupGrid" class="popup-grid">
+			<?php
+			for ($i = 1; $i <= $total_pages; $i++) {
+				$active = $i == $current_page ? 'active' : '';
+				$page_url = $i === 1
+					? trailingslashit(get_permalink())
+					: trailingslashit(get_permalink()) . 'page/' . $i . '/';
+
+				echo '<a href="' . esc_url($page_url) . '" 
+							class="page-trigger ui-18-16-bold page-btn ' . $active . '" 
+							data-page="' . $i . '">' . $i . '</a>';
+			}
+			?>
+		</div>
+
+		<!-- Popup Prev Button -->
+		<?php
+		$popup_prev_page = $current_page - 1;
+		$popup_prev_disabled = $current_page <= 1;
+		$popup_prev_url = $popup_prev_disabled
+			? 'javascript:void(0);'
+			: ($popup_prev_page === 1
+				? trailingslashit(get_permalink())
+				: trailingslashit(get_permalink()) . 'page/' . $popup_prev_page . '/');
+		?>
+		<a id="popupPrev"
+		   class="arrow-btn page-btn <?php echo $popup_prev_disabled ? 'disable' : ''; ?>"
+		   href="<?php echo esc_url($popup_prev_url); ?>"
+		   data-page="<?php echo esc_attr($popup_prev_page); ?>">
+		</a>
+
+		<!-- Popup Next Button -->
+		<?php
+		$popup_next_page = $current_page + 1;
+		$popup_next_disabled = $current_page >= $total_pages;
+		$popup_next_url = $popup_next_disabled
+			? 'javascript:void(0);'
+			: trailingslashit(get_permalink()) . 'page/' . $popup_next_page . '/';
+		?>
+		<a id="popupNext"
+		   class="arrow-btn page-btn <?php echo $popup_next_disabled ? 'disable' : ''; ?>"
+		   href="<?php echo esc_url($popup_next_url); ?>"
+		   data-page="<?php echo esc_attr($popup_next_page); ?>">
+		</a>
+
+	</div>
+</div>
+
 
 			</div>
 			</div>

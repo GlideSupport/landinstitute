@@ -617,59 +617,91 @@ $args = [
         $total_pages = $query->max_num_pages;
 
         $pagination_html = '';
-        if ($total_pages > 1) {
-            $pagination_html .= '<div class="pagination-container pagination-append-container">';
-            $pagination_html .= '<div class="pagination-container">';
-        
-            // Desktop Pagination
-            $pagination_html .= '<div class="desktop-pages">';
-            $pagination_html .= '<div id="desktopPrev" class="arrow-btn prev"' . ($paged === 1 ? ' disabled' : '') . '><div class="site-btn">Previous</div></div>';
-            $pagination_html .= '<div id="paginationList" class="pagination-list">';
-        
-            $range = 2;
-            $show_dots = false;
-            for ($i = 1; $i <= $total_pages; $i++) {
-                if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
-                    $active_class = $i === $paged ? 'active' : '';
-                    $pagination_html .= '<button class="page-btn ' . $active_class . '" data-page="' . $i . '">' . $i . '</button>';
-                    $show_dots = true;
-                } elseif ($show_dots) {
-                    $pagination_html .= '<span class="dots">...</span>';
-                    $show_dots = false;
-                }
-            }
-        
-            $pagination_html .= '</div>';
-            $pagination_html .= '<div id="desktopNext" class="arrow-btn next"' . ($paged === $total_pages ? ' disabled' : '') . '><div class="site-btn">Next</div></div>';
-            $pagination_html .= '</div>';
-        
-            // Mobile Pagination
-            $pagination_html .= '<div class="mobile-pagination">';
-			$pagination_html .= '<button id="prevBtn" class="arrow-btn"' . ($paged === 1 ? ' disabled' : '') . '>
-			<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
-		</button>';		
-            $pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
-            $pagination_html .= '<button id="nextBtn" class="arrow-btn"' . ($paged === $total_pages ? ' disabled' : '') . '>
-			<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next"></button>';
-            $pagination_html .= '</div>';
-        
-            // Mobile Popup
-            $pagination_html .= '<div id="paginationPopup" class="pagination-popup">';
-            $pagination_html .= '<div class="popup-body">';
-            $pagination_html .= '<div id="popupGrid" class="popup-grid">';
-            for ($i = 1; $i <= $total_pages; $i++) {
-                $active = $i === $paged ? 'active' : '';
-                $pagination_html .= '<button class="page-trigger ui-18-16-bold page-btn ' . $active . '" data-page="' . $i . '">' . $i . '</button>';
-            }
-            $pagination_html .= '</div>';
-            $pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';
-            $pagination_html .= '<button id="popupNext" class="arrow-btn"></button>';
-            $pagination_html .= '</div>';
-            $pagination_html .= '</div>';
-        
-            $pagination_html .= '</div>';
-            $pagination_html .= '</div>';
-        }
+		if ($total_pages > 1) {
+			$pagination_html .= '<div class="pagination-container pagination-append-container">';
+			$pagination_html .= '<div class="pagination-container">';
+		
+			// Desktop Pagination
+			$pagination_html .= '<div class="desktop-pages">';
+		
+			// Previous Button (Desktop)
+			$prev_page = $paged - 1;
+			$prev_disabled = $paged <= 1;
+			$prev_url = $prev_disabled 
+				? 'javascript:void(0);' 
+				: ($prev_page === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $prev_page . '/');
+			$pagination_html .= '<a id="desktopPrev" class="arrow-btn prev page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '"><div class="site-btn">Previous</div></a>';
+		
+			// Pagination Numbers
+			$pagination_html .= '<div id="paginationList" class="pagination-list">';
+			$range = 2;
+			$show_dots = false;
+			for ($i = 1; $i <= $total_pages; $i++) {
+				if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
+					$active_class = $i === $paged ? 'active' : '';
+					$page_url = $i === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
+					$pagination_html .= '<a class="page-btn ' . $active_class . '" href="' . esc_url($page_url) . '" data-page="' . $i . '">' . $i . '</a>';
+					$show_dots = true;
+				} elseif ($show_dots) {
+					$pagination_html .= '<span class="dots">...</span>';
+					$show_dots = false;
+				}
+			}
+			$pagination_html .= '</div>'; // end pagination list
+		
+			// Next Button (Desktop)
+			$next_page = $paged + 1;
+			$next_disabled = $paged >= $total_pages;
+			$next_url = $next_disabled 
+				? 'javascript:void(0);' 
+				: trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/';
+			$pagination_html .= '<a id="desktopNext" class="arrow-btn next page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '"><div class="site-btn">Next</div></a>';
+		
+			$pagination_html .= '</div>'; // end desktop-pages
+		
+			// Mobile Pagination
+			$pagination_html .= '<div class="mobile-pagination">';
+		
+			// Prev Mobile
+			$pagination_html .= '<a id="prevBtn" class="arrow-btn page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '">
+				<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Previous">
+			</a>';
+		
+			// Page Trigger Button
+			$pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
+		
+			// Next Mobile
+			$pagination_html .= '<a id="nextBtn" class="arrow-btn page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '">
+				<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
+			</a>';
+		
+			$pagination_html .= '</div>'; // end mobile-pagination
+		
+			// Mobile Popup Pagination
+			$pagination_html .= '<div id="paginationPopup" class="pagination-popup">';
+			$pagination_html .= '<div class="popup-body">';
+			$pagination_html .= '<div id="popupGrid" class="popup-grid">';
+		
+			for ($i = 1; $i <= $total_pages; $i++) {
+				$active = $i === $paged ? 'active' : '';
+				$page_url = $i === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
+				$pagination_html .= '<a class="page-trigger ui-18-16-bold page-btn ' . $active . '" href="' . esc_url($page_url) . '" data-page="' . $i . '">' . $i . '</a>';
+			}
+		
+			$pagination_html .= '</div>'; // popupGrid
+		
+			// Optional JS-based popup nav buttons
+			$pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';
+			$pagination_html .= '<button id="popupNext" class="arrow-btn"></button>';
+		
+			$pagination_html .= '</div>'; // popup-body
+			$pagination_html .= '</div>'; // paginationPopup
+		
+			$pagination_html .= '</div>'; // pagination-container
+			$pagination_html .= '</div>'; // pagination-append-container
+		}
+		
+		
         
         // Send both HTML and pagination
         wp_send_json_success([
@@ -686,4 +718,7 @@ $args = [
  wp_die();
 }
 
- 
+function custom_events_rewrite_rule() {
+    add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
+}
+add_action('init', 'custom_events_rewrite_rule');
