@@ -539,6 +539,7 @@
 								transform: rotate(45deg);
 							}
 						}
+
 					}
 
 					.child-triangle {
@@ -546,6 +547,14 @@
 						align-self: center;
 						height: 100%;
 						display: flex;
+
+						&.open-mega {
+							>a {
+								&:after {
+									transform: rotate(45deg);
+								}
+							}
+						}
 
 						&:after,
 						&:before {
