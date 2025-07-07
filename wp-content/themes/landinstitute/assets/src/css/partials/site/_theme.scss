@@ -3290,3 +3290,12 @@ section:has(.has-border-bottom) {
         }
     }
 }
+
+
+.block-btn-full {
+    .site-btn {
+        width: 100%;
+        border-right: 0px;
+        border-left: 0px;
+    }
+}
