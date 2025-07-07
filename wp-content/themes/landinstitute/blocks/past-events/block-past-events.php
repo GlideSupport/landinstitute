@@ -65,7 +65,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	$args = [
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
-		'posts_per_page' => 4,
+		'posts_per_page' => 6,
 		'paged'          => $paged,
 		'meta_key'       => 'li_cpt_event_start_date',
 		'orderby'        => 'meta_value',
@@ -98,7 +98,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 					$start_date_raw = get_field('li_cpt_event_start_date', $post_id);
 					$end_date_raw = get_field('li_cpt_event_end_date', $post_id);
 
-					$event_content = get_field('li_cpt_event_wysiwyg', $post_id);
+					$event_content = get_the_excerpt($post_id);
 
 					$start_date = new DateTime($start_date_raw);
 					$end_date   = new DateTime($end_date_raw);
