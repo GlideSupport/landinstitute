@@ -204,7 +204,8 @@
             }
 
             &.ct-sixth-col,
-            &.ct-fifth-col {
+            &.ct-fifth-col,
+            &.ct-seventh-col {
                 .tooltip {
                     @media(min-width: 992px) {
                         left: auto;
