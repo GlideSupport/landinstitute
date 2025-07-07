@@ -162,7 +162,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 							?>
 						</div>
 						<div class="block-btn-full">
-						<a id="load-more-events" class="site-btn sm-btn" data-page="1">LoadMore</a>
+						<a id="load-more-events" class="site-btn sm-btn" data-page="1">Load More Events</a>
 						</div>
 
 					</div>
