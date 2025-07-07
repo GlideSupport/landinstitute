@@ -557,7 +557,6 @@ section:has(.text-featured-block) {
     position: relative;
 
     .desktop-pages {
-        align-items: center;
         border-top: 2px solid var(--gb_base_brown);
         display: flex;
         gap: 6px;
@@ -572,6 +571,7 @@ section:has(.text-featured-block) {
         .pagination-list {
             display: flex;
             gap: 8px;
+            align-self: center;
 
             .page-btn {
                 background: transparent;
@@ -618,6 +618,7 @@ section:has(.text-featured-block) {
                 border-bottom: 0;
                 border-top: 0;
                 width: 100%;
+                height: 100%;
             }
 
             &.next {
