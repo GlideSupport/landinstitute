@@ -424,9 +424,6 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 																get_template_part('partials/content', 'event-tooltip', $args);
 															}
 															?>
-
-															<div class="tooltip-bottom"></div>
-
 														</div>
 													<?php } ?>
 												</div>
