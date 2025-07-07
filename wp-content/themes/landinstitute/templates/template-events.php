@@ -76,7 +76,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 								class="tab-link <?php echo ($eventsview === 'list') ? 'current' : ''; ?>"
 								data-tab="tab-1">List View</a>
 							<a href="<?php echo site_url(); ?>/events/?eventsview=calendar"
-								class="tab-link <?php echo ($eventsview === 'calendar') ? '' : ''; ?>"
+								class="tab-link <?php echo ($eventsview === 'calendar') ? 'current' : ''; ?>"
 								data-tab="tab-2">Calendar View</a>
 						</ul>
 					</div>
@@ -161,8 +161,9 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 							wp_reset_postdata();
 							?>
 						</div>
-						<a id="load-more-events" class="site-btn btn-sunflower-yellow sm-btn " data-page="1">Load
-							More</a>
+						<div class="block-btn-full">
+						<a id="load-more-events" class="site-btn sm-btn" data-page="1">LoadMore</a>
+						</div>
 
 					</div>
 

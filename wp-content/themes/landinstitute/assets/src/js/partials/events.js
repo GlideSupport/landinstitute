@@ -98,28 +98,37 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-// Toggle tooltip visibility on calendar column click
 
 // Toggle tooltip visibility on calendar column click
 document.addEventListener('click', function (e) {
-  // First, check if the close button (or its child) was clicked
+  // Check if the close button (or its child) was clicked
   const closeBtn = e.target.closest('.close-event-btn');
   if (closeBtn) {
     const tooltip = closeBtn.closest('.tooltip');
-    if (tooltip) tooltip.style.display = 'none';
-    return; // Stop further execution
+    if (tooltip) {
+      tooltip.classList.remove('show');
+
+      // Wait for animation to finish before cleanup
+      setTimeout(() => {
+        document.body.classList.remove('popup-overflow');
+      }, 400); // Match CSS transition duration
+    }
+    return;
   }
 
-  // Then handle showing tooltip if clicking inside calendar column
+  // Handle tooltip open
   const calendarColumn = e.target.closest('.calendar-column');
   if (calendarColumn) {
-    // Hide all other tooltips first
-    document.querySelectorAll('.tooltip').forEach(function (tooltip) {
-      tooltip.style.display = 'none';
+    // Hide all tooltips
+    document.querySelectorAll('.tooltip.show').forEach(function (tooltip) {
+      tooltip.classList.remove('show');
     });
 
-    // Show current one
+    // Show current tooltip
     const tooltip = calendarColumn.querySelector('.tooltip');
-    if (tooltip) tooltip.style.display = 'block';
+    if (tooltip) {
+      tooltip.classList.add('show');
+      document.body.classList.add('popup-overflow');
+    }
   }
 });
