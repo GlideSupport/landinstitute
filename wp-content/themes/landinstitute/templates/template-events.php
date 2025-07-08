@@ -151,11 +151,13 @@ $latest_featured_event = new WP_Query(array(
 								<?php endif; ?>
 								<div class="gl-s4"></div>
 								<h3 class="heading-3 block-title mb-0"><?php echo esc_html($title); ?></h3>
+								<?php if($excerpt){ ?>
 								<div class="gl-s20"></div>
 								<div class="block-content body-20-18-regular">
 									<?php echo esc_html($excerpt); ?>
 								</div>
 								<div class="gl-s20"></div>
+								<?php } ?>
 								<div class="block-btn">
 									<a href="<?php echo esc_url($permalink); ?>" class="site-btn text-link" title="<?php echo esc_attr($title); ?>" role="button" aria-label="Event Details: <?php echo esc_attr($title); ?>">Event Details</a>
 								</div>

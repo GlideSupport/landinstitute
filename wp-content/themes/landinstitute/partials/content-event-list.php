@@ -35,13 +35,14 @@ if ($end_date) {
             </div>
             <div class="gl-s4"></div>
             <h4 class="heading-4 mb-0 block-title"><?php the_title(); ?></h4>
-
+        <?php if($excerpt){ ?>
             <div class="gl-s16"></div>
             <div class="block-content body-20-18-regular">
                 <?php echo wp_trim_words($excerpt, 30, '...'); ?>
             </div>
 
             <div class="gl-s20"></div>
+            <?php } ?>
             <div class="block-btns">
                 <div class="site-btn text-link" role="button" aria-label="Event Details">
                     Event Details
