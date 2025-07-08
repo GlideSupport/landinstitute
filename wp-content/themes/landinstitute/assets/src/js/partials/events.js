@@ -132,3 +132,22 @@ document.addEventListener('click', function (e) {
     }
   }
 });
+
+
+// scrol event
+document.addEventListener('DOMContentLoaded', function () {
+  // Check if the URL path contains /page/X/
+  var match = window.location.pathname.match(/\/page\/(\d+)\//);
+  var currentPage = match ? parseInt(match[1]) : 1;
+
+  // If current page > 1, scroll to the element with class .pastevent
+  if (currentPage > 1) {
+      var pastevent = document.querySelector('.pastevent');
+      if (pastevent) {
+          window.scrollTo({
+              top: pastevent.offsetTop,
+              behavior: 'smooth'
+          });
+      }
+  }
+});
