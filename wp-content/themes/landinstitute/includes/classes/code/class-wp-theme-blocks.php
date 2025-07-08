@@ -172,6 +172,9 @@ class WP_Theme_Blocks {
 		// Register a block - Past Event.
 		self::register_acf_block('past-events');
 
+		// Register a block - Lead Paragraph.
+		self::register_acf_block('lead-paragraph');
+
 		// [register_here].
 	}
 
