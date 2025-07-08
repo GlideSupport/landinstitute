@@ -370,7 +370,7 @@
         {
             "key": "field_686cb10b1950a",
             "label": "Newsletter Form Visible",
-            "name": "newsletter_form_visible",
+            "name": "li_cpt_event_newsletter_form_visible",
             "aria-label": "",
             "type": "true_false",
             "instructions": "",
@@ -492,5 +492,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751972808
+    "modified": 1751974965
 }
