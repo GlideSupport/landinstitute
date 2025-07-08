@@ -251,12 +251,50 @@ $latest_featured_event = new WP_Query(array(
 									$event_query->the_post();
 									$start_date = get_field('li_cpt_event_start_date');
 									$end_date = get_field('li_cpt_event_end_date');
-
+									$post_id =get_the_ID();
 									$image = "https://landinstdev.wpenginepowered.com/wp-content/uploads/demo.webp";
 									if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 										$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 									}
 									$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
+
+
+								$start_date_raw = get_field('li_cpt_event_start_date', $post_id);
+								$end_date_raw   = get_field('li_cpt_event_end_date', $post_id);
+				
+								$event_start_time = get_field('li_cpt_event_start_time', $post_id);
+								$event_end_time   = get_field('li_cpt_event_end_time', $post_id);
+				
+								$timezone = get_field('timezone', $post_id);
+								$timezone_code = get_timezone_code($timezone); // Assumes you have a function for this
+				
+								// Format start/end as DateTime objects
+								$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
+								$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
+								$li_cpt_event_all_day = get_field('li_cpt_event_all_day',$post_id);
+								$days= "";
+								if($li_cpt_event_all_day){ $days="All days";}
+
+								// Optional: Set timezone if needed (if $timezone is a valid TZ name)
+								if (!empty($timezone)) {
+									try {
+										$tz = new DateTimeZone($timezone);
+										$start_datetime->setTimezone($tz);
+										$end_datetime->setTimezone($tz);
+									} catch (Exception $e) {
+										// fallback silently
+									}
+								}
+				
+								// Format the full string
+								if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
+									// Same day
+									$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code.' '.$days;
+								} else {
+									// Different days
+									$event_display = $start_datetime->format('l, F j, Y g:i a') . ' '. $timezone_code.' '.$days;;
+								}
+
 
 									$excerpt     = get_the_excerpt();
 									$excerpt = wp_trim_words($excerpt, 20, '...');
@@ -269,6 +307,8 @@ $latest_featured_event = new WP_Query(array(
 									set_query_var('excerpt', $excerpt);
 									set_query_var('url', $url);
 									set_query_var('all_day', $all_day);
+									set_query_var('event_display', $event_display);
+
 
 
 									get_template_part('partials/content', 'event-list');
