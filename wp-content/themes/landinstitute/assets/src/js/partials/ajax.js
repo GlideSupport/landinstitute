@@ -227,26 +227,13 @@ function fetchPastEvents(paged = 1, updateURL = true) {
 				if (updateURL) {
 					const { pathname, search } = window.location;
 				
-					// Split path into parts and remove empty strings
-					const pathParts = pathname.split('/').filter(Boolean);
+					// Remove trailing slash and match ending /page/{n}
+					const cleanedPath = pathname.replace(/\/page\/\d+\/?$/, '');
 				
-					// Find the index of 'events' in path
-					const eventsIndex = pathParts.indexOf('events');
+					// Ensure trailing slash
+					let newPath = cleanedPath.replace(/\/$/, '') + '/';
 				
-					let newPathParts;
-				
-					if (eventsIndex !== -1) {
-						// Keep everything before and including 'events'
-						newPathParts = pathParts.slice(0, eventsIndex + 1);
-					} else {
-						// If 'events' not found, force it
-						newPathParts = ['events'];
-					}
-				
-					// Final path like: /landinstdev/events/
-					let newPath = '/' + newPathParts.join('/') + '/';
-				
-					// Add pagination if needed
+					// Add pagination segment if needed
 					if (paged > 1) {
 						newPath += `page/${paged}/`;
 					}
@@ -254,9 +241,10 @@ function fetchPastEvents(paged = 1, updateURL = true) {
 					// Combine with query string
 					const newURL = newPath + search;
 				
-					// Push new URL to browser history
+					// Push new URL into browser history
 					history.pushState({ paged: paged }, '', newURL);
 				}
+				
 				
 				
 				// Scroll to top of the list

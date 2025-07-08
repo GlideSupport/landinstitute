@@ -720,7 +720,7 @@ function filter_past_events() {
 			   $prev_url = $prev_disabled 
 				   ? 'javascript:void(0);' 
 				   : ($prev_page === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $prev_page . '/');
-			   $pagination_html .= '<a id="desktopPrev" class="arrow-btn prev page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '" rel="'.($prev_disabled ? '' : 'prev').'"><div class="site-btn">Previous</div></a>';
+			   $pagination_html .= '<a id="desktopPrev" class="arrow-btn prev page-btn ' . ($prev_disabled ? 'disabled' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '" rel="'.($prev_disabled ? '' : 'prev').'"><div class="site-btn">Previous</div></a>';
 		   
 			   // Pagination Numbers
 			   $pagination_html .= '<div id="paginationList" class="pagination-list">';
@@ -757,7 +757,7 @@ function filter_past_events() {
 			   $next_url = $next_disabled 
 				   ? 'javascript:void(0);' 
 				   : trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/';
-			   $pagination_html .= '<a id="desktopNext" class="arrow-btn next page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '" rel="'.($next_disabled ? '' : 'next').'"><div class="site-btn">Next</div></a>';
+			   $pagination_html .= '<a id="desktopNext" class="arrow-btn next page-btn ' . ($next_disabled ? 'disabled' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '" rel="'.($next_disabled ? '' : 'next').'"><div class="site-btn">Next</div></a>';
 		   
 			   $pagination_html .= '</div>'; // end desktop-pages
 		   
@@ -767,7 +767,7 @@ function filter_past_events() {
 			   // Prev Mobile
 			   $rel_attr = !$prev_disabled ? ' rel="prev"' : '';
    
-			   $pagination_html .= '<a id="prevBtn" class="arrow-btn page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '"' . $rel_attr . '>
+			   $pagination_html .= '<a id="prevBtn" class="arrow-btn page-btn ' . ($prev_disabled ? 'disabled' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '"' . $rel_attr . '>
 				   <img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Previous">
 			   </a>';
 		   
@@ -776,7 +776,7 @@ function filter_past_events() {
 		   
 			   // Next Mobile
 			   $rel_attr = !$next_disabled ? ' rel="next"' : '';
-			   $pagination_html .= '<a id="nextBtn" class="arrow-btn page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '"' . $rel_attr . '>
+			   $pagination_html .= '<a id="nextBtn" class="arrow-btn page-btn ' . ($next_disabled ? 'disabled' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '"' . $rel_attr . '>
 				   <img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
 			   </a>';
    

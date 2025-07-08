@@ -253,7 +253,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 								?>
 								<a href="<?php echo esc_url($prev_url); ?>"
 								id="prevBtn"
-								class="arrow-btn page-btn <?php echo $prev_disabled ? 'disable' : ''; ?>"
+								class="arrow-btn page-btn <?php echo $prev_disabled ? 'disabled' : ''; ?>"
 								data-page="<?php echo esc_attr($prev_page); ?>"
 								<?php echo $prev_rel ? 'rel="' . esc_attr($prev_rel) . '"' : ''; ?>>
 									<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous">
@@ -274,7 +274,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 								?>
 								<a href="<?php echo esc_url($next_url); ?>"
 								id="nextBtn"
-								class="arrow-btn page-btn <?php echo $next_disabled ? 'disable' : ''; ?>"
+								class="arrow-btn page-btn <?php echo $next_disabled ? 'disabled' : ''; ?>"
 								data-page="<?php echo esc_attr($next_page); ?>"
 								<?php echo $next_rel ? 'rel="' . esc_attr($next_rel) . '"' : ''; ?>>
 									<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
@@ -311,7 +311,7 @@ data-page="' . $i . '">' . $i . '</a>';
 											: trailingslashit(get_permalink()) . 'page/' . $popup_prev_page . '/');
 									?>
 									<a id="popupPrev"
-									class="arrow-btn page-btn <?php echo $popup_prev_disabled ? 'disable' : ''; ?>"
+									class="arrow-btn page-btn <?php echo $popup_prev_disabled ? 'disabled' : ''; ?>"
 									href="<?php echo esc_url($popup_prev_url); ?>"
 									data-page="<?php echo esc_attr($popup_prev_page); ?>">
 									</a>
@@ -325,7 +325,7 @@ data-page="' . $i . '">' . $i . '</a>';
 										: trailingslashit(get_permalink()) . 'page/' . $popup_next_page . '/';
 									?>
 									<a id="popupNext"
-									class="arrow-btn page-btn <?php echo $popup_next_disabled ? 'disable' : ''; ?>"
+									class="arrow-btn page-btn <?php echo $popup_next_disabled ? 'disabled' : ''; ?>"
 									href="<?php echo esc_url($popup_next_url); ?>"
 									data-page="<?php echo esc_attr($popup_next_page); ?>">
 									</a>
