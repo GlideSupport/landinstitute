@@ -38,7 +38,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -56,7 +56,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -75,7 +75,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -94,7 +94,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -165,9 +165,17 @@
             "type": "select",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6853ec6149e8b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -325,6 +333,32 @@
             "allow_null": 0,
             "allow_in_bindings": 0,
             "layout": "horizontal"
+        },
+        {
+            "key": "field_686d1c43f7f99",
+            "label": "Recent Events",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686ce6b3a78e3",
+                        "operator": "==",
+                        "value": "recent"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "If 'Select Recent' is chosen, it will display upcoming events.",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
             "key": "field_686b84050e02d",
@@ -492,5 +526,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751978368
+    "modified": 1751981186
 }
