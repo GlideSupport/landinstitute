@@ -532,15 +532,16 @@ function load_more_events_callback()
 			}
 
 			// $image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-			$excerpt    = get_the_excerpt();
+			$excerpt    = get_the_content();
 			$url        = get_permalink();
+			$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
 
 			set_query_var('start_date', $start_date);
 			set_query_var('end_date', $end_date);
 			set_query_var('image', $image);
 			set_query_var('excerpt', $excerpt);
 			set_query_var('url', $url);
-
+			set_query_var('all_day', $all_day);
 			get_template_part('partials/content', 'event-list');
 		endwhile;
 	else :

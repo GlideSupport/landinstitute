@@ -148,11 +148,13 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 									if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 										$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 									}
+									$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
 
 
 
 
-									$excerpt = get_the_excerpt();
+
+									$excerpt = get_the_content();
 									$url = get_permalink();
 
 									// Pass variables to template part
@@ -161,6 +163,8 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 									set_query_var('image', $image);
 									set_query_var('excerpt', $excerpt);
 									set_query_var('url', $url);
+									set_query_var('all_day', $all_day);
+
 
 									get_template_part('partials/content', 'event-list');
 								endwhile;
