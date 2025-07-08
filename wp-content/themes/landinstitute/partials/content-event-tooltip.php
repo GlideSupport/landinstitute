@@ -34,7 +34,7 @@ $cota_cpt_event_end_date = $post_fields['li_cpt_event_end_date'];
 $final_date = date_formatting($cota_cpt_event_start_date, $cota_cpt_event_end_date);
 $src = wp_get_attachment_image_url(get_post_thumbnail_id($pID), 'thumb_300');
 if (!has_post_thumbnail()) {
-	$src = esc_url(get_template_directory_uri()) . '/assets/img/admin/defaults/default-image.webp';
+	$src = BASETHEME_DEFAULT_IMAGE;
 } else {
 	$src = $src;
 }
@@ -51,7 +51,7 @@ if (!has_post_thumbnail()) {
 						target="_blank <?php } else {
 					echo get_the_permalink($pID);
 				} ?>">
-					<img height="200" width="200" src="<?php echo $src; ?>" alt="image">
+					<img src="<?php echo $src; ?>" alt="image">
 				</a>
 			</div>
 			<div class="tooltip-item tooltip-content">
