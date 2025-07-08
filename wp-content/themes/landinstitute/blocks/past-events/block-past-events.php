@@ -101,38 +101,44 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 
 							$excerpt     = get_the_excerpt($post_id);
 							$event_content = wp_trim_words($excerpt, 25, '...');
-
-							$start_date = new DateTime($start_date_raw);
-							$end_date   = new DateTime($end_date_raw);
-
-							$start_formatted = $start_date->format('l, F j, Y'); // e.g., Friday, May 2, 2025
-							$end_formatted   = $end_date->format('l, F j, Y');   // e.g., Saturday, May 3, 2025
-
-
-
-							$event_location = get_field('event_location', $post_id);
-							$event_categories = get_the_terms($post_id, 'event-category');
-							// Date formatting
-							$start_date = $start_date_raw ? strtotime($start_date_raw) : false;
-							$end_date = $end_date_raw ? strtotime($end_date_raw) : false;
-
-							if ($start_date && $end_date && $start_date !== $end_date) {
-								if (date('F', $start_date) !== date('F', $end_date)) {
-									$event_date = strtoupper(date('F j', $start_date) . ' – ' . date('F j, Y', $end_date));
-								} else {
-									$event_date = strtoupper(date('F j', $start_date) . '–' . date('j, Y', $end_date));
+							$start_date_raw = get_field('li_cpt_event_start_date', $post_id);
+							$end_date_raw   = get_field('li_cpt_event_end_date', $post_id);
+			
+							$event_start_time = get_field('li_cpt_event_start_time', $post_id);
+							$event_end_time   = get_field('li_cpt_event_end_time', $post_id);
+			
+							$timezone = get_field('timezone', $post_id);
+							$timezone_code = get_timezone_code($timezone); // Assumes you have a function for this
+			
+							// Format start/end as DateTime objects
+							$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
+							$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
+			
+							// Optional: Set timezone if needed (if $timezone is a valid TZ name)
+							if (!empty($timezone)) {
+								try {
+									$tz = new DateTimeZone($timezone);
+									$start_datetime->setTimezone($tz);
+									$end_datetime->setTimezone($tz);
+								} catch (Exception $e) {
+									// fallback silently
 								}
-							} elseif ($start_date) {
-								$event_date = strtoupper(date('l, F j, Y', $start_date));
+							}
+			
+							// Format the full string
+							if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
+								// Same day
+								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('g:i a') . ' ' . $timezone_code;
 							} else {
-								$event_date = '';
+								// Different days
+								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code;
 							}
 							?>
 							<div class="filter-content-card-item">
 								<a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
 									<div class="filter-card-content">
 										<div class="gl-s52"></div>
-										<div class="eyebrow ui-eyebrow-16-15-regular"><?= $start_formatted ?> - <?= $end_formatted ?> All Day
+										<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_display; ?> All Day
 										</div>
 										<div class="gl-s6"></div>
 										<div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
