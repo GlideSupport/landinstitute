@@ -649,7 +649,7 @@ function filter_past_events() {
 						   <a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
 							   <div class="filter-card-content">
 							   <div class="gl-s52"></div>
-							   <div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_display; ?> All Day
+							   <div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_display; ?>
 							   </div>
 							   <div class="gl-s6"></div>
 							   <div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
