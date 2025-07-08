@@ -532,7 +532,8 @@ function load_more_events_callback()
 			}
 
 			// $image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-			$excerpt    = get_the_content();
+			$excerpt    = get_the_excerpt();
+			$excerpt = wp_trim_words($excerpt, 25, '...');
 			$url        = get_permalink();
 			$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
 
@@ -567,7 +568,7 @@ function filter_past_events() {
    $args = [
 	 'post_type'      => 'event',
 	 'post_status'    => 'publish',
-	 'posts_per_page' => 10,
+	 'posts_per_page' => 6,
 	 'paged'          => $paged,
 	 'meta_key'       => 'li_cpt_event_start_date',
 	 'orderby'        => 'meta_value',
@@ -602,7 +603,8 @@ function filter_past_events() {
    
 	  $start_formatted = $start_date->format('l, F j, Y'); // e.g., Friday, May 2, 2025
 	  $end_formatted   = $end_date->format('l, F j, Y');   // e.g., Saturday, May 3, 2025
-	  $event_content = get_the_excerpt( $post_id);
+	  $excerpt = get_the_excerpt( $post_id);
+	  $event_content = wp_trim_words($excerpt, 25, '...');
    
    
 	  $start_date = $start_date_raw ? strtotime($start_date_raw) : false;
@@ -823,4 +825,3 @@ function get_timezone_code($timezone_value) {
 
     return $timezones[$timezone_value] ?? "Unknown";
 }
-

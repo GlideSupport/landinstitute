@@ -82,7 +82,8 @@ if (!empty($headline_check) && $events_query->have_posts()) : ?>
 					$event_id  = get_the_ID();
 					$title     = get_the_title();
 					$permalink = get_permalink();
-					$excerpt   = get_the_excerpt();
+					$excerpt     = get_the_excerpt($event_id);
+					$excerpt = wp_trim_words($excerpt, 20, '...');
 					$thumb     = wp_get_attachment_image(get_post_thumbnail_id($event_id), 'thumb_800');
 
 					// Fields

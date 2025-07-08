@@ -65,7 +65,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 			$args = [
 				'post_type'      => 'event',
 				'post_status'    => 'publish',
-				'posts_per_page' => 10,
+				'posts_per_page' => 6,
 				'paged'          => $paged,
 				'meta_key'       => 'li_cpt_event_start_date',
 				'orderby'        => 'meta_value',
@@ -99,7 +99,8 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							$end_date_raw = get_field('li_cpt_event_end_date', $post_id);
 							$timezone = get_field('timezone', $post_id);
 
-							$event_content = get_the_excerpt($post_id);
+							$excerpt     = get_the_excerpt($post_id);
+							$event_content = wp_trim_words($excerpt, 25, '...');
 
 							$start_date = new DateTime($start_date_raw);
 							$end_date   = new DateTime($end_date_raw);

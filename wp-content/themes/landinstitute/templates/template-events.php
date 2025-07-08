@@ -85,6 +85,7 @@ $latest_featured_event = new WP_Query(array(
 			$title       = get_the_title();
 			$permalink   = get_permalink();
 			$excerpt     = get_the_excerpt();
+			$excerpt = wp_trim_words($excerpt, 20, '...');
 			$thumbnail   = get_the_post_thumbnail_url($event_id, 'full');
 
 			// Custom fields
@@ -256,7 +257,8 @@ $latest_featured_event = new WP_Query(array(
 									}
 									$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
 
-									$excerpt = get_the_content();
+									$excerpt     = get_the_excerpt();
+									$excerpt = wp_trim_words($excerpt, 20, '...');
 									$url = get_permalink();
 
 									// Pass variables to template part
