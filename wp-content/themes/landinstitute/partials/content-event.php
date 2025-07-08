@@ -20,15 +20,22 @@ $start_time = $bst_fields['li_cpt_event_start_time'];
 $end_time = $bst_fields['li_cpt_event_end_time'];
 $all_day = $bst_fields['li_cpt_event_all_day'];
 $link = $bst_fields['li_cpt_link'];
-$bg_pattern = $bst_fields['li_cpt_bg_pattern'];
+$bg_pattern = $bst_fields['li_cpt_bg_pattern'] ??  $bst_option_fields['li_event_detail_page_bg_pattern'];
 $li_cpt_more_event = $bst_fields['li_cpt_more_event'];
 $li_cpt_more_event_check = BaseTheme::headline_check($li_cpt_more_event);
-$li_cpt_related_events = $bst_fields['li_cpt_related_events'] ?? null;
-$newsletter_form_visible = $bst_fields['newsletter_form_visible'];
-$headline = $bst_fields['li_cpt_headline'];
-$headline_check = BaseTheme::headline_check($headline);
-$kicker = $bst_fields['li_cpt_kicker'];
-$form_selector = $bst_fields['li_cpt_form_selector'];
+$li_cpt_event_recentselected_event = $bst_fields['li_cpt_event_recentselected_event'] ?? 'recent';
+$li_cpt_select_events = $bst_fields['li_cpt_select_events'] ?? null;
+
+$bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
+$bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
+$bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
+
+$newsletter_form_visible = array_key_exists('li_cpt_event_newsletter_form_visible', $bst_fields)
+    ? (bool) $bst_fields['li_cpt_event_newsletter_form_visible']
+    : true;
+$li_cpt_title = $bst_fields['li_cpt_title'] ?? $bst_var_title;
+$kicker = $bst_fields['li_cpt_kicker'] ?? $bst_var_kicker;
+$form_selector = $bst_fields['li_cpt_form_selector'] ?? $bst_var_form_selector;
 
 //Date Format
 $start_date = $start_date ? strtotime($start_date) : false;
@@ -79,7 +86,7 @@ if ($start_date && $end_date) {
 } else {
 	$event_date = '';
 }
-					
+			
 ?>
 
 <section id="hero-section"
@@ -124,12 +131,42 @@ if ($start_date && $end_date) {
 				<div class="swiper-container read-slide-preview cursor-drag-icon">
 					<div class="swiper-wrapper">
 						<?php
-						if (!empty($li_cpt_related_events)) :
-							$args = [
+							// Query posts based on selection
+							$today = date('Ymd');
+
+							$args = array(
 								'post_type'      => 'event',
-								'post__in'       => $li_cpt_related_events,
-								'orderby'        => 'post__in'
-							];
+								'post_status'    => 'publish',
+								'orderby'        => 'meta_value',
+								'order'          => 'ASC',
+								'meta_key'       => 'li_cpt_event_start_date', 
+								'meta_type'      => 'DATE',
+								'meta_query'     => array(
+									array(
+										'key'     => 'li_cpt_event_start_date',
+										'value'   => $today,
+										'compare' => '>=',
+										'type'    => 'DATE',
+									),
+								),
+							);
+
+							// Modify args based on selection
+							switch ($li_cpt_event_recentselected_event) {
+								case 'selected':
+									if (!empty($li_cpt_select_events)) {
+										
+										$args['post__in'] = $li_cpt_select_events;
+										$args['orderby'] = 'post__in';
+										unset($args['meta_query'], $args['meta_key'], $args['meta_type']); // Remove upcoming filter for manual
+									}
+									break;
+
+								case 'recent':
+									// already handled above
+									break;
+							}
+
 							$events_query = new WP_Query($args);
 
 							while ($events_query->have_posts()) : $events_query->the_post();
@@ -206,7 +243,6 @@ if ($start_date && $end_date) {
 								</div>
 							</div>
 						<?php endwhile; wp_reset_postdata(); ?>
-						<?php endif; ?>
 					</div> <!-- swiper-wrapper -->
 				</div> <!-- swiper-container -->
 			</div> <!-- border-variable-slider -->
@@ -215,7 +251,7 @@ if ($start_date && $end_date) {
 </section>
 
 
-<?php if ($newsletter_form_visible == 1): ?>
+<?php if ($newsletter_form_visible): ?>
 	<section class="container-720 bg-butter-yellow">
 		<div class="gl-s156"></div>
 		<div class="wrapper">
@@ -223,8 +259,8 @@ if ($start_date && $end_date) {
 				<div class="block-row">
 					<?php echo !empty($kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($kicker) . '</div>' : ''; ?>	
 					<?php echo (!empty($kicker) && !empty($headline_check)) ? '<div class="gl-s12"></div>' : ''; ?>
-					<?php echo !empty($headline_check) ? BaseTheme::headline($headline, 'heading-2 mb-0 block-title') : ''; ?>
-					<?php echo (!empty($headline_check) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
+					<?php echo !empty($li_cpt_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_cpt_title) . '</h2>' : ''; ?>	
+					<?php echo (!empty($li_cpt_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
 					<div class="newsletter-form">
 						<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
 					</div>
