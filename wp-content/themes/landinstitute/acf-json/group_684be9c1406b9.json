@@ -382,10 +382,10 @@
                 "id": ""
             },
             "message": "",
-            "default_value": 0,
-            "allow_in_bindings": 0,
-            "ui_on_text": "Visible",
-            "ui_off_text": "Not Visible",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
             "ui": 1
         },
         {
@@ -492,5 +492,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751974965
+    "modified": 1751978368
 }
