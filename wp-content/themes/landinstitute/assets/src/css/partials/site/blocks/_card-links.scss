@@ -582,6 +582,8 @@ section:has(.text-featured-block) {
                 margin: 0;
                 padding: 6px 0;
                 width: 31px;
+                text-decoration: none;
+                text-align: center;
 
                 @extend .ui-18-16-bold;
 
