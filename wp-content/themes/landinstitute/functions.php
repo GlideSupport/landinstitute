@@ -525,7 +525,41 @@ function load_more_events_callback()
 		while ($event_query->have_posts()) : $event_query->the_post();
 			$start_date = get_field('li_cpt_event_start_date');
 			$end_date   = get_field('li_cpt_event_end_date');
-
+			$start_date_raw = get_field('li_cpt_event_start_date');
+			$end_date_raw   = get_field('li_cpt_event_end_date');
+	
+			$event_start_time = get_field('li_cpt_event_start_time');
+			$event_end_time   = get_field('li_cpt_event_end_time');
+	
+			$timezone = get_field('timezone');
+			$timezone_code = get_timezone_code($timezone); // Assumes you have a function for this
+	
+			// Format start/end as DateTime objects
+			$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
+			$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
+			$days="";
+			if($li_cpt_event_all_day){ $days="All days";}
+	
+	
+			// Optional: Set timezone if needed (if $timezone is a valid TZ name)
+			if (!empty($timezone)) {
+				try {
+					$tz = new DateTimeZone($timezone);
+					$start_datetime->setTimezone($tz);
+					$end_datetime->setTimezone($tz);
+				} catch (Exception $e) {
+					// fallback silently
+				}
+			}
+	
+			// Format the full string
+			if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
+				// Same day
+				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' '.$days;
+			} else {
+				// Different days
+				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;;
+			};
 			$image  = "https://landinstdev.wpenginepowered.com/wp-content/uploads/demo.webp";
 			if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 				$image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
@@ -543,6 +577,8 @@ function load_more_events_callback()
 			set_query_var('excerpt', $excerpt);
 			set_query_var('url', $url);
 			set_query_var('all_day', $all_day);
+			set_query_var('disaply_event', $event_display);
+
 			get_template_part('partials/content', 'event-list');
 		endwhile;
 	else :
