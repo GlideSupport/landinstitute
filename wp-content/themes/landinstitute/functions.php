@@ -492,15 +492,34 @@ function load_more_events_callback()
 {
 	$paged = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
-	$event_query = new WP_Query([
+	// $event_query = new WP_Query([
+	// 	'post_type'      => 'event',
+	// 	'post_status'    => 'publish',
+	// 	'posts_per_page' => 1,
+	// 	'paged'          => $paged,
+	// 	'orderby'        => 'meta_value',
+	// 	'meta_key'       => 'li_cpt_event_start_date',
+	// 	'order'          => 'ASC'
+	// ]);
+
+	$eventargs = array(
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
-		'posts_per_page' => 1,
+		'posts_per_page' => 10,
 		'paged'          => $paged,
 		'orderby'        => 'meta_value',
 		'meta_key'       => 'li_cpt_event_start_date',
-		'order'          => 'ASC'
-	]);
+		'order'          => 'ASC',
+		'meta_query'     => array(
+			array(
+				'key'     => 'li_cpt_event_start_date',
+				'value'   => date('Ymd'), // current date in Ymd format (e.g., 20250708)
+				'type'    => 'NUMERIC',   // important if the field is stored as number or string
+				'compare' => '>='         // only future or today
+			)
+		)
+	);
+	$event_query = new WP_Query($eventargs);
 
 	if ($event_query->have_posts()) :
 		while ($event_query->have_posts()) : $event_query->the_post();
