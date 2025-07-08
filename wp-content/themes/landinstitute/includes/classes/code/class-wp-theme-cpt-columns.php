@@ -142,13 +142,13 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 			return;
 		}
 
-		// Order event posts by start date by default
-		if ($query->get('post_type') === 'event' && !$query->get('orderby')) {
-			$query->set('meta_key', 'li_cpt_event_start_date');
-			$query->set('orderby', 'meta_value');
-			$query->set('order', 'DESC'); // Upcoming first
-			$query->set('meta_type', 'DATE');
-		}
+		// // Order event posts by start date by default
+		// if ($query->get('post_type') === 'event' && !$query->get('orderby')) {
+		// 	$query->set('meta_key', 'li_cpt_event_start_date');
+		// 	$query->set('orderby', 'meta_value');
+		// 	$query->set('order', 'DESC'); // Upcoming first
+		// 	$query->set('meta_type', 'DATE');
+		// }
 
 		// Handle manual sorting by start date
 		if ($query->get('orderby') === 'li_cpt_event_start_date') {
