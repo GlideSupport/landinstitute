@@ -505,7 +505,7 @@ function load_more_events_callback()
 	$eventargs = array(
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
-		'posts_per_page' => 1,
+		'posts_per_page' => 3,
 		'paged'          => $paged,
 		'orderby'        => 'meta_value',
 		'meta_key'       => 'li_cpt_event_start_date',

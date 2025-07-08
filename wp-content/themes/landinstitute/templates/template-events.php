@@ -25,7 +25,7 @@ $today = date('Ymd');
 $latest_featured_event = new WP_Query(array(
 	'post_type'      => 'event',
 	'post_status'    => 'publish',
-	'posts_per_page' => 1,
+	'posts_per_page' => 3,
 	'orderby'        => 'meta_value_num',
 	'order'          => 'DESC',
 	'meta_key'       => 'li_cpt_event_start_date',
@@ -89,7 +89,7 @@ $latest_featured_event = new WP_Query(array(
 			$thumbnail   = get_the_post_thumbnail_url($event_id, 'full');
 
 			// Custom fields
-			$start_date  = get_field('li_cpt_event_start_date', $event_id);
+				$start_date  = get_field('li_cpt_event_start_date', $event_id);
 				$end_date    = get_field('li_cpt_event_end_date', $event_id);
 				$start_time  = get_field('li_cpt_event_start_time', $event_id);
 				$end_time    = get_field('li_cpt_event_end_time', $event_id);
