@@ -30,7 +30,7 @@ if ($end_date) {
         </div>
         <div class="event-teaser-list-content">
             <div class="gl-s64"></div>
-            <div class="`ui-eyebrow-18-16-regular block-subhead`">
+            <div class="ui-eyebrow-18-16-regular block-subhead">
                 <?php echo $event_display; ?>
             </div>
             <div class="gl-s4"></div>
