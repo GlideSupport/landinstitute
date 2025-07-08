@@ -32,7 +32,7 @@ if ($end_date) {
             <div class="gl-s64"></div>
             <div class="ui-eyebrow-18-16-regular block-subhead">
                 <?php echo esc_html($formatedsdate); ?>
-                <?php if ($formateenddate): ?> - <?php echo esc_html($formateenddate); ?><?php endif;      
+                <?php if ($formateenddate): ?> <?php echo esc_html($formateenddate); ?><?php endif;      
                 if ($all_day) {
                     echo ' All Day';
                 }
