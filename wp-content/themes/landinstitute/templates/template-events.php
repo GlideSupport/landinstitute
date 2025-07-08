@@ -97,7 +97,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 							$eventargs = array(
 								'post_type'      => 'event',
 								'post_status'    => 'publish',
-								'posts_per_page' => 10,
+								'posts_per_page' => 5,
 								'orderby'        => 'meta_value',
 								'meta_key'       => 'li_cpt_event_start_date',
 								'order'          => 'ASC',
@@ -150,10 +150,6 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 									}
 									$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
 
-
-
-
-
 									$excerpt = get_the_content();
 									$url = get_permalink();
 
@@ -174,9 +170,11 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 							wp_reset_postdata();
 							?>
 						</div>
-						<div class="block-btn-full">
-						<a id="load-more-events" class="site-btn sm-btn" data-page="1">Load More Events</a>
+					<?php if ($event_query->found_posts > 5) : ?>
+						<div class="block-btn-full"> 
+							<a id="load-more-events" class="site-btn sm-btn" data-page="1">Load More Events</a>
 						</div>
+					<?php endif; ?>
 
 					</div>
 

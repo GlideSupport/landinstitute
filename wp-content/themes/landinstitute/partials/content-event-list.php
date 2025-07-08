@@ -33,9 +33,9 @@ if ($end_date) {
             <div class="ui-eyebrow-18-16-regular block-subhead">
                 <?php echo esc_html($formatedsdate); ?>
                 <?php if ($formateenddate): ?> - <?php echo esc_html($formateenddate); ?><?php endif;      
-if ($all_day) {
-    echo ' All Day';
-}
+                if ($all_day) {
+                    echo ' All Day';
+                }
 ?>
             </div>
             <div class="gl-s4"></div>
@@ -45,7 +45,7 @@ if ($all_day) {
             <div class="block-content body-20-18-regular">
                 <?php echo wp_trim_words($excerpt, 30, '...'); ?>
             </div>
-            
+
             <div class="gl-s20"></div>
             <div class="block-btns">
                 <div class="site-btn text-link" role="button" aria-label="Event Details">
