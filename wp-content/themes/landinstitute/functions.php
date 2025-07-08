@@ -648,7 +648,7 @@ function filter_past_events() {
 	  $event_start_time = get_field('li_cpt_event_start_time', $post_id);
 	  $event_end_time   = get_field('li_cpt_event_end_time', $post_id);
 	  $li_cpt_event_all_day = get_field('li_cpt_event_all_day',$post_id);
-
+	  $days="";
 	  if($li_cpt_event_all_day){ $days="All days";}
 
 
@@ -674,10 +674,10 @@ function filter_past_events() {
 	  // Format the full string
 	  if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
 		  // Same day
-		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$li_cpt_event_all_day;
+		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;
 	  } else {
 		  // Different days
-		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$li_cpt_event_all_day;
+		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;
 	  }
    
 	  ?>

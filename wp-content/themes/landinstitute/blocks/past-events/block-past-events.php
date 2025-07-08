@@ -114,7 +114,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
 							$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
 							$li_cpt_event_all_day = get_field('li_cpt_event_all_day',$post_id);
-
+							$days= "";
 							if($li_cpt_event_all_day){ $days="All days";}
 
 							// Optional: Set timezone if needed (if $timezone is a valid TZ name)
