@@ -113,7 +113,10 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							// Format start/end as DateTime objects
 							$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
 							$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
-			
+							$li_cpt_event_all_day = get_field('li_cpt_event_all_day',$post_id);
+
+							if($li_cpt_event_all_day){ $days="All days";}
+
 							// Optional: Set timezone if needed (if $timezone is a valid TZ name)
 							if (!empty($timezone)) {
 								try {
@@ -128,10 +131,10 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							// Format the full string
 							if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
 								// Same day
-								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('g:i a') . ' ' . $timezone_code;
+								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('g:i a') . ' ' . $timezone_code.' '.$li_cpt_event_all_day;
 							} else {
 								// Different days
-								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code;
+								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code.' '.$li_cpt_event_all_day;
 							}
 							?>
 							<div class="filter-content-card-item">

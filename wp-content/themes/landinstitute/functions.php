@@ -611,6 +611,11 @@ function filter_past_events() {
 
 	  $event_start_time = get_field('li_cpt_event_start_time', $post_id);
 	  $event_end_time   = get_field('li_cpt_event_end_time', $post_id);
+	  $li_cpt_event_all_day = get_field('li_cpt_event_all_day',$post_id);
+
+	  if($li_cpt_event_all_day){ $days="All days";}
+
+
 
 	  $timezone = get_field('timezone', $post_id);
 	  $timezone_code = get_timezone_code($timezone); // Assumes you have a function for this
