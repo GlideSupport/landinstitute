@@ -638,10 +638,10 @@ function filter_past_events() {
 	  // Format the full string
 	  if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
 		  // Same day
-		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('g:i a') . ' ' . $timezone_code;
+		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$li_cpt_event_all_day;
 	  } else {
 		  // Different days
-		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code;
+		  $event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$li_cpt_event_all_day;
 	  }
    
 	  ?>
