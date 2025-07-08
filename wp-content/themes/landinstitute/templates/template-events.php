@@ -95,13 +95,22 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 							<?php
 
 							$eventargs = array(
-								'post_type' => 'event',
-								'post_status' => 'publish',
+								'post_type'      => 'event',
+								'post_status'    => 'publish',
 								'posts_per_page' => 10,
-								'orderby' => 'meta_value',
-								'meta_key' => 'li_cpt_event_start_date',
-								'order' => 'ASC'
+								'orderby'        => 'meta_value',
+								'meta_key'       => 'li_cpt_event_start_date',
+								'order'          => 'ASC',
+								'meta_query'     => array(
+									array(
+										'key'     => 'li_cpt_event_start_date',
+										'value'   => date('Ymd'), // current date in Ymd format (e.g., 20250708)
+										'type'    => 'NUMERIC',   // important if the field is stored as number or string
+										'compare' => '>='         // only future or today
+									)
+								)
 							);
+
 
 							// Avoid undefined index warning
 							if (isset($_GET['eventsview']) && $_GET['eventsview'] === 'calendar') {
