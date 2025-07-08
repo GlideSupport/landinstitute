@@ -99,7 +99,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							$end_date_raw = get_field('li_cpt_event_end_date', $post_id);
 							$timezone = get_field('timezone', $post_id);
 
-							$event_content = get_the_excerpt($post_id);
+							$event_content = get_the_content($post_id);
 
 							$start_date = new DateTime($start_date_raw);
 							$end_date   = new DateTime($end_date_raw);

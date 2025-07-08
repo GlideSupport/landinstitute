@@ -602,7 +602,7 @@ function filter_past_events() {
    
 	  $start_formatted = $start_date->format('l, F j, Y'); // e.g., Friday, May 2, 2025
 	  $end_formatted   = $end_date->format('l, F j, Y');   // e.g., Saturday, May 3, 2025
-	  $event_content = get_field('li_cpt_event_wysiwyg', $post_id);
+	  $event_content = get_the_content($post_id);
    
    
 	  $start_date = $start_date_raw ? strtotime($start_date_raw) : false;
