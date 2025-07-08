@@ -7,6 +7,20 @@
  * @package Circuit of the Americas
  * @since 1.0.0
  */
+
+ $formatedsdate = ""; 
+ $formateenddate = "";
+
+ if ($start_date) {
+    $start_obj = new DateTime($start_date);
+    $formatedsdate =  date_i18n('l, F j, Y', $start_obj->getTimestamp());
+}
+
+if ($end_date) {
+    $end_obj = new DateTime($end_date);
+    $formateenddate = ' – ' . date_i18n('l, F j, Y', $end_obj->getTimestamp());
+}
+
 ?>
 
 <div class="event-teaser-list-col">
@@ -17,8 +31,8 @@
         <div class="event-teaser-list-content">
             <div class="gl-s64"></div>
             <div class="ui-eyebrow-18-16-regular block-subhead">
-                <?php echo esc_html($start_date); ?>
-                <?php if ($end_date): ?> - <?php echo esc_html($end_date); ?><?php endif; ?>
+                <?php echo esc_html($formatedsdate); ?>
+                <?php if ($formateenddate): ?> - <?php echo esc_html($formateenddate); ?><?php endif; ?>
                 All Day
             </div>
             <div class="gl-s4"></div>
