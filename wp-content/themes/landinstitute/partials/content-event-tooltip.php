@@ -22,7 +22,7 @@ $cota_cpt_event_title = get_the_title($pID);
 
 $permalink = array(
 	'url' => get_the_permalink($pID),
-	'title' => 'Detail',
+	'title' => 'Event Details',
 	'target' => ''
 );
 $cota_cpt_event_btn_des = (isset($post_fields['cota_cpt_event_btn_des'])) ? $post_fields['cota_cpt_event_btn_des'] : 'normal';
