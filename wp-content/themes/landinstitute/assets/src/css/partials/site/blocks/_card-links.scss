@@ -652,6 +652,8 @@ section:has(.text-featured-block) {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         margin-bottom: 0;
+        position: relative;
+        z-index: 9;
 
         @media (min-width: 992px) {
             display: none;
@@ -706,6 +708,11 @@ section:has(.text-featured-block) {
         z-index: 8;
         width: 100%;
 
+        @media(max-width: 991px) {
+            margin-bottom: -2px;
+            border-top: 2px solid var(--gb_base_brown);
+        }
+
         &.active {
             display: block;
         }
@@ -718,10 +725,6 @@ section:has(.text-featured-block) {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             margin-bottom: 0;
-
-            @media(max-width: 991px) {
-                border-top: 2px solid var(--gb_base_brown);
-            }
         }
 
         .page-btn {
@@ -762,14 +765,6 @@ section:has(.text-featured-block) {
             &:nth-child(3n) {
                 @media(max-width: 991px) {
                     border-right: 0;
-                }
-            }
-
-            &:nth-last-child(3),
-            &:last-child,
-            &:nth-last-child(2) {
-                @media(max-width: 991px) {
-                    border-bottom: 0;
                 }
             }
         }
