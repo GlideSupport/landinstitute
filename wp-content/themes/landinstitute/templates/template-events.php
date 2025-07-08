@@ -17,15 +17,42 @@ get_header();
 list($bst_var_post_id, $bst_fields, $bst_option_fields) = BaseTheme::defaults();
 
 $ls_event_kicker = $bst_fields['ls_event_kicker'] ?? null;
-$ls_event_page_title = $bst_fields['ls_event_page_title'] ?? null;
+$ls_event_page_title = $bst_fields['ls_event_page_title'] ?? get_the_title();
 $ls_event_bg_pattern = $bst_fields['ls_event_bg_pattern'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
+
+$today = date('Ymd');
+
+$latest_featured_event = new WP_Query(array(
+	'post_type'      => 'event',
+	'post_status'    => 'publish',
+	'posts_per_page' => 1,
+	'orderby'        => 'meta_value_num',
+	'order'          => 'DESC',
+	'meta_key'       => 'li_cpt_event_start_date',
+	'meta_query'     => array(
+		array(
+			'key'     => 'li_cpt_event_start_date',
+			'value'   => $today,
+			'compare' => '>=',
+			'type'    => 'NUMERIC',
+		),
+	),
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'event-tags', // make sure this matches your actual taxonomy slug
+			'field'    => 'slug',
+			'terms'    => 'featured-on-homepage',
+		),
+	),
+));
+
 ?>
 
 <div id="page-section" class="page-section">
 
 	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
 		<!-- hero start -->
-		 <?php echo !empty($ls_event_bg_pattern) ? ' <div class="bg-pattern">' . wp_get_attachment_image($ls_event_bg_pattern, 'thumb_2000') . '</div>' : ''; ?>
+		<?php echo !empty($ls_event_bg_pattern) ? ' <div class="bg-pattern">' . wp_get_attachment_image($ls_event_bg_pattern, 'thumb_2000') . '</div>' : ''; ?>
 		<div class="hero-default has-border-bottom">
 			<div class="wrapper">
 				<div class="hero-alongside-block">
@@ -50,10 +77,101 @@ $ls_event_bg_pattern = $bst_fields['ls_event_bg_pattern'] ?? $bst_option_fields[
 	</section>
 
 	<?php
-	$eventsview = isset($_GET['eventsview']) ? $_GET['eventsview'] : 'list'; // default to 'list'
+	// Featured Upcoming Event
+	if ($latest_featured_event->have_posts()) :
+		while ($latest_featured_event->have_posts()) : $latest_featured_event->the_post();
+
+			$event_id    = get_the_ID();
+			$title       = get_the_title();
+			$permalink   = get_permalink();
+			$excerpt     = get_the_excerpt();
+			$thumbnail   = get_the_post_thumbnail_url($event_id, 'full');
+
+			// Custom fields
+			$start_date  = get_field('li_cpt_event_start_date', $event_id);
+			$end_date    = get_field('li_cpt_event_end_date', $event_id);
+			$start_time  = get_field('li_cpt_event_start_time', $event_id);
+			$end_time    = get_field('li_cpt_event_end_time', $event_id);
+			$all_day     = get_field('li_cpt_event_all_day', $event_id);
+			$timezone    = get_field('timezone', $event_id);
+
+			// Parse dates
+			$start_ts    = $start_date ? strtotime($start_date) : false;
+			$end_ts      = $end_date ? strtotime($end_date) : false;
+
+			// Format values
+			$start_day   = $start_ts ? date('l, F j, Y', $start_ts) : '';
+			$end_day     = $end_ts ? date('l, F j, Y', $end_ts) : '';
+			$start_short = $start_ts ? date('M j, Y', $start_ts) : '';
+			$start_fmt   = $start_time ? date('g:i a', strtotime($start_time)) . ' ' . get_timezone_code($timezone) : '';
+			$end_fmt     = $end_time ? date('g:i a', strtotime($end_time)) . ' ' . get_timezone_code($timezone) : '';
+
+			// Build event date string
+			$event_date = '';
+			if ($start_ts && $end_ts && date('Ymd', $start_ts) !== date('Ymd', $end_ts)) {
+				// Multi-day event
+				if ($all_day) {
+					$event_date = "$start_day - $end_day All Day";
+				} elseif ($start_time && $end_time) {
+					$event_date = "$start_day $start_fmt - $end_day $end_fmt";
+				} else {
+					$event_date = $start_short;
+				}
+			} elseif ($start_ts) {
+				// Single-day event
+				if ($all_day) {
+					$event_date = "$start_day All Day";
+				} elseif ($start_time && $end_time) {
+					$event_date = "$start_day $start_fmt - $end_fmt";
+				} else {
+					$event_date = $start_short;
+				}
+			} ?>
+			<section class="container-1280 bg-lilac">
+				<div class="wrapper">
+					<div class="image-alongside-text-touch has-border-bottom">
+						<div class="row-flex">
+							<div class="cl-left">
+								<div class="alongside-image">
+									<?php if ($thumbnail): ?>
+										<img src="<?php echo esc_url($thumbnail); ?>" alt="<?php echo esc_attr($title); ?>">
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="cl-right">
+								<div class="gl-s44"></div>
+								<div class="ui-16-15-bold-uc eybrow-title">Featured Event</div>
+								<div class="gl-s80"></div>
+								<?php if ($event_date): ?>
+									<div class="ui-eyebrow-18-16-regular block-subhead">
+										<?php echo esc_html($event_date); ?>
+									</div>
+								<?php endif; ?>
+								<div class="gl-s4"></div>
+								<h3 class="heading-3 block-title mb-0"><?php echo esc_html($title); ?></h3>
+								<div class="gl-s20"></div>
+								<div class="block-content body-20-18-regular">
+									<?php echo esc_html($excerpt); ?>
+								</div>
+								<div class="gl-s20"></div>
+								<div class="block-btn">
+									<a href="<?php echo esc_url($permalink); ?>" class="site-btn text-link" title="<?php echo esc_attr($title); ?>" role="button" aria-label="Event Details: <?php echo esc_attr($title); ?>">Event Details</a>
+								</div>
+								<div class="gl-s80"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+	<?php
+		endwhile;
+		wp_reset_postdata();
+	endif;
 	?>
 
-
+	<?php
+	$eventsview = isset($_GET['eventsview']) ? $_GET['eventsview'] : 'list'; // default to 'list'
+	?>
 	<section class="container-1280 bg-base-cream">
 		<div class="wrapper">
 			<div class="event-teaser-calendar-block has-border-bottom">
