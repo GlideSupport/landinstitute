@@ -142,18 +142,21 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 			return;
 		}
 
-		// // Order event posts by start date by default
-		// if ($query->get('post_type') === 'event' && !$query->get('orderby')) {
-		// 	$query->set('meta_key', 'li_cpt_event_start_date');
-		// 	$query->set('orderby', 'meta_value');
-		// 	$query->set('order', 'DESC'); // Upcoming first
-		// 	$query->set('meta_type', 'DATE');
-		// }
+		global $pagenow;
 
-		// Handle manual sorting by start date
-		if ($query->get('orderby') === 'li_cpt_event_start_date') {
-			$query->set('meta_key', 'li_cpt_event_start_date');
-			$query->set('orderby', 'meta_value');
+		// Ensure this only applies to the Event CPT list view
+		if ($pagenow === 'edit.php' && $query->get('post_type') === 'event') {
+			// Prevent default menu_order, title sort for hierarchical post types
+			if (!$query->get('orderby') || $query->get('orderby') === 'menu_order title') {
+				$query->set('orderby', 'date'); // 'date' = post_date
+				$query->set('order', 'DESC');   // Most recent first
+			}
+
+			// Make sure ordering still works when the user clicks column headers
+			if ($query->get('orderby') === 'li_cpt_event_start_date') {
+				$query->set('meta_key', 'li_cpt_event_start_date');
+				$query->set('orderby', 'meta_value');
+			}
 		}
 	}
 
