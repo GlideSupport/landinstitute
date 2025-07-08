@@ -567,7 +567,7 @@ function filter_past_events()
 	$args = [
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
-		'posts_per_page' => 6,
+		'posts_per_page' => 10,
 		'paged'          => $paged,
 		'meta_key'       => 'li_cpt_event_start_date',
 		'orderby'        => 'meta_value',
