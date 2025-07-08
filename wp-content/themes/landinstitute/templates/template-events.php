@@ -252,8 +252,7 @@ $latest_featured_event = new WP_Query(array(
 									$start_date = get_field('li_cpt_event_start_date');
 									$end_date = get_field('li_cpt_event_end_date');
 									$post_id =get_the_ID();
-									echo BASETHEME_DEFAULT_IMAGE.'img';
-									$image = BASETHEME_DEFAULT_IMAGE;
+									$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');;
 									if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 										$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 									}

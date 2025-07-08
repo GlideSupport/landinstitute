@@ -34,7 +34,7 @@ $cota_cpt_event_end_date = $post_fields['li_cpt_event_end_date'];
 $final_date = date_formatting($cota_cpt_event_start_date, $cota_cpt_event_end_date);
 $src = wp_get_attachment_image_url(get_post_thumbnail_id($pID), 'thumb_300');
 if (!$src) {
-	$src = BASETHEME_DEFAULT_IMAGE;
+    $src = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');
 } else {
 	$src = $src;
 }

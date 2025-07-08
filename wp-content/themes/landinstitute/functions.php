@@ -560,7 +560,7 @@ function load_more_events_callback()
 				// Different days
 				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;
 			};
-			$image = BASETHEME_DEFAULT_IMAGE;
+			$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');;
 
 			if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 				$image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
