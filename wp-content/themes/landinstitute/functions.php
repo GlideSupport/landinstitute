@@ -557,203 +557,232 @@ function load_more_events_callback()
 add_action('wp_ajax_filter_past_events', 'filter_past_events');
 add_action('wp_ajax_nopriv_filter_past_events', 'filter_past_events');
 
-function filter_past_events()
-{
+function filter_past_events() {
 	check_ajax_referer('ajax_nonce', 'nonce');
-
+   
 	$term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
-	$paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-	$today = date('Ymd'); // e.g., 20250704
-
-	$args = [
-		'post_type'      => 'event',
-		'post_status'    => 'publish',
-		'posts_per_page' => 10,
-		'paged'          => $paged,
-		'meta_key'       => 'li_cpt_event_start_date',
-		'orderby'        => 'meta_value',
-		'order'          => 'DESC',
-		'meta_query'     => [
-			[
-				'key'     => 'li_cpt_event_start_date',
-				'value'   => $today,
-				'compare' => '<',
-				'type'    => 'NUMERIC',
-			],
-		],
-	];
-
-
+   $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+   $today = date('Ymd'); // e.g., 20250704
+   
+   $args = [
+	 'post_type'      => 'event',
+	 'post_status'    => 'publish',
+	 'posts_per_page' => 10,
+	 'paged'          => $paged,
+	 'meta_key'       => 'li_cpt_event_start_date',
+	 'orderby'        => 'meta_value',
+	 'order'          => 'DESC',
+	 'meta_query'     => [
+	   [
+		 'key'     => 'li_cpt_event_start_date',
+		 'value'   => $today,
+		 'compare' => '<',
+		 'type'    => 'NUMERIC',
+	   ],
+	 ],
+   ];
+   
+   
 	$query = new WP_Query($args);
-
+   
 	if ($query->have_posts()) {
-		ob_start();
-
-		while ($query->have_posts()) {
-			$query->the_post();
-			$post_id = get_the_ID();
-			$event_title = get_the_title($post_id);
-			$event_link = get_permalink($post_id);
-			$start_date_raw = get_field('li_cpt_event_start_date', $post_id);
-			$end_date_raw = get_field('li_cpt_event_end_date', $post_id);
-
-
-			$start_date = new DateTime($start_date_raw);
-			$end_date   = new DateTime($end_date_raw);
-
-			$start_formatted = $start_date->format('l, F j, Y'); // e.g., Friday, May 2, 2025
-			$end_formatted   = $end_date->format('l, F j, Y');   // e.g., Saturday, May 3, 2025
-			$event_content = get_the_excerpt($post_id);
-
-
-			$start_date = $start_date_raw ? strtotime($start_date_raw) : false;
-			$end_date   = $end_date_raw ? strtotime($end_date_raw) : false;
-
-			if ($start_date && $end_date && $start_date !== $end_date) {
-				if (date('F', $start_date) !== date('F', $end_date)) {
-					$event_date = strtoupper(date('F j', $start_date) . ' – ' . date('F j, Y', $end_date));
-				} else {
-					$event_date = strtoupper(date('F j', $start_date) . '–' . date('j, Y', $end_date));
-				}
-			} elseif ($start_date) {
-				$event_date = strtoupper(date('l, F j, Y', $start_date));
-			} else {
-				$event_date = '';
-			}
-
-		?>
-			<div class="filter-content-card-item">
-				<a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
-					<div class="filter-card-content">
-						<div class="gl-s52"></div>
-						<div class="eyebrow ui-eyebrow-16-15-regular"><?= $start_formatted ?> - <?= $end_formatted ?> All Day
-						</div>
-						<div class="gl-s6"></div>
-						<div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
-						<div class="gl-s16"></div>
-						<div class="description ui-18-16-regular"><?php echo $event_content; ?></div>
-						<div class="gl-s20"></div>
-						<div class="read-more-link">
-							<div class="border-text-btn">Event Details</div>
-						</div>
-						<div class="gl-s80"></div>
-					</div>
-				</a>
-			</div>
-<?php
-		}
-
-		wp_reset_postdata();
-		$html        = ob_get_clean();
-		$total_pages = $query->max_num_pages;
-
-		$pagination_html = '';
-		if ($total_pages > 1) {
-			$pagination_html .= '<div class="pagination-container pagination-append-container">';
-			$pagination_html .= '<div class="pagination-container">';
-
-			// Desktop Pagination
-			$pagination_html .= '<div class="desktop-pages">';
-
-			// Previous Button (Desktop)
-			$prev_page = $paged - 1;
-			$prev_disabled = $paged <= 1;
-			$prev_url = $prev_disabled
-				? 'javascript:void(0);'
-				: ($prev_page === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $prev_page . '/');
-			$pagination_html .= '<a id="desktopPrev" class="arrow-btn prev page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '"><div class="site-btn">Previous</div></a>';
-
-			// Pagination Numbers
-			$pagination_html .= '<div id="paginationList" class="pagination-list">';
-			$range = 2;
-			$show_dots = false;
-			for ($i = 1; $i <= $total_pages; $i++) {
-				if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
-					$active_class = $i === $paged ? 'active' : '';
-					$page_url = $i === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
-					$pagination_html .= '<a class="page-btn ' . $active_class . '" href="' . esc_url($page_url) . '" data-page="' . $i . '">' . $i . '</a>';
-					$show_dots = true;
-				} elseif ($show_dots) {
-					$pagination_html .= '<span class="dots">...</span>';
-					$show_dots = false;
-				}
-			}
-			$pagination_html .= '</div>'; // end pagination list
-
-			// Next Button (Desktop)
-			$next_page = $paged + 1;
-			$next_disabled = $paged >= $total_pages;
-			$next_url = $next_disabled
-				? 'javascript:void(0);'
-				: trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/';
-			$pagination_html .= '<a id="desktopNext" class="arrow-btn next page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '"><div class="site-btn">Next</div></a>';
-
-			$pagination_html .= '</div>'; // end desktop-pages
-
-			// Mobile Pagination
-			$pagination_html .= '<div class="mobile-pagination">';
-
-			// Prev Mobile
-			$pagination_html .= '<a id="prevBtn" class="arrow-btn page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '">
-				<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Previous">
-			</a>';
-
-			// Page Trigger Button
-			$pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
-
-			// Next Mobile
-			$pagination_html .= '<a id="nextBtn" class="arrow-btn page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '">
-				<img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
-			</a>';
-
-			$pagination_html .= '</div>'; // end mobile-pagination
-
-			// Mobile Popup Pagination
-			$pagination_html .= '<div id="paginationPopup" class="pagination-popup">';
-			$pagination_html .= '<div class="popup-body">';
-			$pagination_html .= '<div id="popupGrid" class="popup-grid">';
-
-			for ($i = 1; $i <= $total_pages; $i++) {
-				$active = $i === $paged ? 'active' : '';
-				$page_url = $i === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
-				$pagination_html .= '<a class="page-trigger ui-18-16-bold page-btn ' . $active . '" href="' . esc_url($page_url) . '" data-page="' . $i . '">' . $i . '</a>';
-			}
-
-			$pagination_html .= '</div>'; // popupGrid
-
-			// Optional JS-based popup nav buttons
-			$pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';
-			$pagination_html .= '<button id="popupNext" class="arrow-btn"></button>';
-
-			$pagination_html .= '</div>'; // popup-body
-			$pagination_html .= '</div>'; // paginationPopup
-
-			$pagination_html .= '</div>'; // pagination-container
-			$pagination_html .= '</div>'; // pagination-append-container
-		}
-
-
-
-		// Send both HTML and pagination
-		wp_send_json_success([
-			'html'            => $html,
-			'pagination_html' => $pagination_html,
-			'total_pages'     => $total_pages,
-		]);
-
-		echo ob_get_clean();
+	 ob_start();
+	 
+	 while ($query->have_posts()) {
+	  $query->the_post();
+	  $post_id = get_the_ID();
+	  $event_title = get_the_title($post_id);
+	  $event_link = get_permalink($post_id);
+	  $start_date_raw = get_field('li_cpt_event_start_date', $post_id);
+	  $end_date_raw = get_field('li_cpt_event_end_date', $post_id);
+   
+   
+	  $start_date = new DateTime($start_date_raw);
+	  $end_date   = new DateTime($end_date_raw);
+   
+	  $start_formatted = $start_date->format('l, F j, Y'); // e.g., Friday, May 2, 2025
+	  $end_formatted   = $end_date->format('l, F j, Y');   // e.g., Saturday, May 3, 2025
+	  $event_content = get_field('li_cpt_event_wysiwyg', $post_id);
+   
+   
+	  $start_date = $start_date_raw ? strtotime($start_date_raw) : false;
+	  $end_date   = $end_date_raw ? strtotime($end_date_raw) : false;
+   
+	  if ($start_date && $end_date && $start_date !== $end_date) {
+	   if (date('F', $start_date) !== date('F', $end_date)) {
+		$event_date = strtoupper(date('F j', $start_date) . ' – ' . date('F j, Y', $end_date));
+	   } else {
+		$event_date = strtoupper(date('F j', $start_date) . '–' . date('j, Y', $end_date));
+	   }
+	  } elseif ($start_date) {
+	   $event_date = strtoupper(date('l, F j, Y', $start_date));
+	  } else {
+	   $event_date = '';
+	  }
+   
+	  ?>
+		 <div class="filter-content-card-item">
+						   <a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
+							   <div class="filter-card-content">
+							   <div class="gl-s52"></div>
+							   <div class="eyebrow ui-eyebrow-16-15-regular"><?= $start_formatted ?> - <?= $end_formatted ?> All Day
+							   </div>
+							   <div class="gl-s6"></div>
+							   <div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
+							   <div class="gl-s16"></div>
+							   <div class="description ui-18-16-regular"><?php echo $event_content; ?></div>
+							   <div class="gl-s20"></div>
+							   <div class="read-more-link">
+								   <div class="border-text-btn">Event Details</div>
+							   </div>
+							   <div class="gl-s80"></div>
+						   </div>
+						   </a>
+					   </div>
+	  <?php
+	 }
+		   
+	 wp_reset_postdata();
+		   $html        = ob_get_clean();
+		   $total_pages = $query->max_num_pages;
+   
+		   $pagination_html = '';
+		   if ($total_pages > 1) {
+			   $pagination_html .= '<div class="pagination-container pagination-append-container">';
+			   $pagination_html .= '<div class="pagination-container">';
+		   
+			   // Desktop Pagination
+			   $pagination_html .= '<div class="desktop-pages">';
+		   
+			   // Previous Button (Desktop)
+			   $prev_page = $paged - 1;
+			   $prev_disabled = $paged <= 1;
+			   $prev_url = $prev_disabled 
+				   ? 'javascript:void(0);' 
+				   : ($prev_page === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $prev_page . '/');
+			   $pagination_html .= '<a id="desktopPrev" class="arrow-btn prev page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '" rel="'.($prev_disabled ? '' : 'prev').'"><div class="site-btn">Previous</div></a>';
+		   
+			   // Pagination Numbers
+			   $pagination_html .= '<div id="paginationList" class="pagination-list">';
+			   $range = 2;
+			   $show_dots = false;
+			   for ($i = 1; $i <= $total_pages; $i++) {
+				   if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
+					   $active_class = $i === $paged ? 'active' : '';
+					   $page_url = $i === 1 
+						   ? trailingslashit(home_url('/events/')) 
+						   : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
+			   
+					   // Determine rel attribute
+					   $rel = '';
+					   if ($i === $paged + 1) {
+						   $rel = 'next';
+					   } elseif ($i === $paged - 1) {
+						   $rel = 'prev';
+					   }
+			   
+					   $pagination_html .= '<a class="page-btn ' . $active_class . '" href="' . esc_url($page_url) . '" data-page="' . $i . '"' . ($rel ? ' rel="' . $rel . '"' : '') . '>' . $i . '</a>';
+					   $show_dots = true;
+				   } elseif ($show_dots) {
+					   $pagination_html .= '<span class="dots">...</span>';
+					   $show_dots = false;
+				   }
+			   }
+			   
+			   $pagination_html .= '</div>'; // end pagination list
+		   
+			   // Next Button (Desktop)
+			   $next_page = $paged + 1;
+			   $next_disabled = $paged >= $total_pages;
+			   $next_url = $next_disabled 
+				   ? 'javascript:void(0);' 
+				   : trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/';
+			   $pagination_html .= '<a id="desktopNext" class="arrow-btn next page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '" rel="'.($next_disabled ? '' : 'next').'"><div class="site-btn">Next</div></a>';
+		   
+			   $pagination_html .= '</div>'; // end desktop-pages
+		   
+			   // Mobile Pagination
+			   $pagination_html .= '<div class="mobile-pagination">';
+		   
+			   // Prev Mobile
+			   $rel_attr = !$prev_disabled ? ' rel="prev"' : '';
+   
+			   $pagination_html .= '<a id="prevBtn" class="arrow-btn page-btn ' . ($prev_disabled ? 'disable' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '"' . $rel_attr . '>
+				   <img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Previous">
+			   </a>';
+		   
+			   // Page Trigger Button
+			   $pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
+		   
+			   // Next Mobile
+			   $rel_attr = !$next_disabled ? ' rel="next"' : '';
+			   $pagination_html .= '<a id="nextBtn" class="arrow-btn page-btn ' . ($next_disabled ? 'disable' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '"' . $rel_attr . '>
+				   <img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
+			   </a>';
+   
+		   
+			   $pagination_html .= '</div>'; // end mobile-pagination
+		   
+			   // Mobile Popup Pagination
+			   $pagination_html .= '<div id="paginationPopup" class="pagination-popup">';
+			   $pagination_html .= '<div class="popup-body">';
+			   $pagination_html .= '<div id="popupGrid" class="popup-grid">';
+		   
+			   for ($i = 1; $i <= $total_pages; $i++) {
+				   $active = $i === $paged ? 'active' : '';
+				   $page_url = $i === 1 
+					   ? trailingslashit(home_url('/events/')) 
+					   : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
+			   
+				   // Determine rel attribute
+				   $rel = '';
+				   if ($i === $paged - 1) {
+					   $rel = 'prev';
+				   } elseif ($i === $paged + 1) {
+					   $rel = 'next';
+				   }
+			   
+				   // Append rel only if needed
+				   $rel_attr = $rel ? ' rel="' . esc_attr($rel) . '"' : '';
+			   
+				   $pagination_html .= '<a class="page-trigger ui-18-16-bold page-btn ' . esc_attr($active) . '" href="' . esc_url($page_url) . '" data-page="' . esc_attr($i) . '"' . $rel_attr . '>' . esc_html($i) . '</a>';
+			   }
+			   
+		   
+			   $pagination_html .= '</div>'; // popupGrid
+		   
+			   // Optional JS-based popup nav buttons
+			   $pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';
+			   $pagination_html .= '<button id="popupNext" class="arrow-btn"></button>';
+		   
+			   $pagination_html .= '</div>'; // popup-body
+			   $pagination_html .= '</div>'; // paginationPopup
+		   
+			   $pagination_html .= '</div>'; // pagination-container
+			   $pagination_html .= '</div>'; // pagination-append-container
+		   }
+		   
+		   
+		   
+		   // Send both HTML and pagination
+		   wp_send_json_success([
+			   'html'            => $html,
+			   'pagination_html' => $pagination_html,
+			   'total_pages'     => $total_pages,
+		   ]);
+		   
+	 echo ob_get_clean();
 	} else {
-		echo '<p>No past events found.</p>';
+	 echo '<p>No past events found.</p>';
 	}
-
+   
 	wp_die();
-}
-
-function custom_events_rewrite_rule()
-{
-	add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
-}
-add_action('init', 'custom_events_rewrite_rule');
+   }
+   
+   function custom_events_rewrite_rule() {
+	   add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
+   }
+   add_action('init', 'custom_events_rewrite_rule');
 
 function get_timezone_code($timezone_value) {
     $timezones = [

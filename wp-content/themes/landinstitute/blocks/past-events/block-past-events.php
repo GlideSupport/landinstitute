@@ -189,9 +189,16 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 											($i >= $current_page - $range && $i <= $current_page + $range)
 										) {
 											$active_class = $i == $current_page ? 'active' : '';
-											$page_url = trailingslashit(get_permalink()) . 'page/' . $i . '/';
+											$page_url = $i === 1
+												? trailingslashit(home_url('/events/'))
+												: trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
 
-											echo '<a class="page-btn ' . $active_class . '" href="' . esc_url($page_url) . '" data-page="' . $i . '">' . $i . '</a>';
+											// Add rel if prev or next
+											$rel = '';
+											if ($i === $current_page - 1) $rel = 'prev';
+											elseif ($i === $current_page + 1) $rel = 'next';
+
+											echo '<a class="page-btn ' . esc_attr($active_class) . '" href="' . esc_url($page_url) . '" data-page="' . esc_attr($i) . '"' . ($rel ? ' rel="' . esc_attr($rel) . '"' : '') . '>' . esc_html($i) . '</a>';
 											$show_dots = true;
 										} elseif ($show_dots) {
 											echo '<span class="dots">...</span>';
@@ -200,26 +207,28 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 									}
 									?>
 								</div>
-								<!-- <div class="arrow-btn next"><div class="site-btn">Next</div></div> -->
-								<!-- <div id="desktopNext" class="arrow-btn next" <?php ///if ($current_page == $total_pages) echo 'disabled'; 
-																					?>><div class="site-btn">Next</div></div> -->
+						
 								<?php
 								$has_next = $current_page < $total_pages;
 								$next_page = $current_page + 1;
 								$next_url = $has_next
 									? trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/'
-									: 'javascript:void(0);'; // or '#' if preferred
+									: 'javascript:void(0);';
+
 								$next_class = $has_next ? '' : 'disabled';
+								$next_rel = $has_next ? 'next' : ''; // ✅ fixed this line
 								?>
+
 								<a href="<?php echo esc_url($next_url); ?>"
 									id="desktopNext"
 									class="arrow-btn next page-btn <?php echo esc_attr($next_class); ?>"
-									data-page="<?php echo esc_attr($next_page); ?>">
+									data-page="<?php echo esc_attr($next_page); ?>"
+									<?php echo $next_rel ? 'rel="' . esc_attr($next_rel) . '"' : ''; ?>>
 									<div class="site-btn">Next</div>
 								</a>
 							</div>
 
-							<!-- Mobile Pagination -->
+								<!-- Mobile Pagination -->
 							<div class="mobile-pagination">
 								<?php
 								// Prev button setup
@@ -230,16 +239,18 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 									: ($prev_page === 1
 										? trailingslashit(get_permalink())
 										: trailingslashit(get_permalink()) . 'page/' . $prev_page . '/');
+								$prev_rel = !$prev_disabled ? 'prev' : '';
 								?>
 								<a href="<?php echo esc_url($prev_url); ?>"
-									id="prevBtn"
-									class="arrow-btn page-btn <?php echo $prev_disabled ? 'disable' : ''; ?>"
-									data-page="<?php echo esc_attr($prev_page); ?>">
+								id="prevBtn"
+								class="arrow-btn page-btn <?php echo $prev_disabled ? 'disable' : ''; ?>"
+								data-page="<?php echo esc_attr($prev_page); ?>"
+								<?php echo $prev_rel ? 'rel="' . esc_attr($prev_rel) . '"' : ''; ?>>
 									<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous">
 								</a>
 
 								<button id="pageTrigger" class="page-trigger ui-18-16-bold">
-									<?php echo $current_page . '/' . $total_pages; ?>
+									<?php echo esc_html($current_page . '/' . $total_pages); ?>
 								</button>
 
 								<?php
@@ -249,15 +260,16 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 								$next_url = $next_disabled
 									? 'javascript:void(0);'
 									: trailingslashit(get_permalink()) . 'page/' . $next_page . '/';
+								$next_rel = !$next_disabled ? 'next' : '';
 								?>
 								<a href="<?php echo esc_url($next_url); ?>"
-									id="nextBtn"
-									class="arrow-btn page-btn <?php echo $next_disabled ? 'disable' : ''; ?>"
-									data-page="<?php echo esc_attr($next_page); ?>">
+								id="nextBtn"
+								class="arrow-btn page-btn <?php echo $next_disabled ? 'disable' : ''; ?>"
+								data-page="<?php echo esc_attr($next_page); ?>"
+								<?php echo $next_rel ? 'rel="' . esc_attr($next_rel) . '"' : ''; ?>>
 									<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
 								</a>
 							</div>
-
 
 							<!-- Mobile Popup Pagination -->
 							<div id="paginationPopup" class="pagination-popup">
@@ -272,9 +284,8 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 												? trailingslashit(get_permalink())
 												: trailingslashit(get_permalink()) . 'page/' . $i . '/';
 
-											echo '<a href="' . esc_url($page_url) . '" 
-							class="page-trigger ui-18-16-bold page-btn ' . $active . '" 
-							data-page="' . $i . '">' . $i . '</a>';
+											echo '<a href="' . esc_url($page_url) . '" class="page-trigger ui-18-16-bold page-btn ' . $active . '" 
+data-page="' . $i . '">' . $i . '</a>';
 										}
 										?>
 									</div>
@@ -290,9 +301,9 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 											: trailingslashit(get_permalink()) . 'page/' . $popup_prev_page . '/');
 									?>
 									<a id="popupPrev"
-										class="arrow-btn page-btn <?php echo $popup_prev_disabled ? 'disable' : ''; ?>"
-										href="<?php echo esc_url($popup_prev_url); ?>"
-										data-page="<?php echo esc_attr($popup_prev_page); ?>">
+									class="arrow-btn page-btn <?php echo $popup_prev_disabled ? 'disable' : ''; ?>"
+									href="<?php echo esc_url($popup_prev_url); ?>"
+									data-page="<?php echo esc_attr($popup_prev_page); ?>">
 									</a>
 
 									<!-- Popup Next Button -->
@@ -304,11 +315,10 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 										: trailingslashit(get_permalink()) . 'page/' . $popup_next_page . '/';
 									?>
 									<a id="popupNext"
-										class="arrow-btn page-btn <?php echo $popup_next_disabled ? 'disable' : ''; ?>"
-										href="<?php echo esc_url($popup_next_url); ?>"
-										data-page="<?php echo esc_attr($popup_next_page); ?>">
+									class="arrow-btn page-btn <?php echo $popup_next_disabled ? 'disable' : ''; ?>"
+									href="<?php echo esc_url($popup_next_url); ?>"
+									data-page="<?php echo esc_attr($popup_next_page); ?>">
 									</a>
-
 								</div>
 							</div>
 
