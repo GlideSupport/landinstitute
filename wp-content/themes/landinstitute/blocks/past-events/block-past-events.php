@@ -131,10 +131,10 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							// Format the full string
 							if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
 								// Same day
-								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' . $timezone_code.' '.$days;
+								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code.' '.$days;
 							} else {
 								// Different days
-								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' . $timezone_code.' '.$days;;
+								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' '. $timezone_code.' '.$days;;
 							}
 							?>
 							<div class="filter-content-card-item">
