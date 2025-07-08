@@ -90,44 +90,55 @@ $latest_featured_event = new WP_Query(array(
 
 			// Custom fields
 			$start_date  = get_field('li_cpt_event_start_date', $event_id);
-			$end_date    = get_field('li_cpt_event_end_date', $event_id);
-			$start_time  = get_field('li_cpt_event_start_time', $event_id);
-			$end_time    = get_field('li_cpt_event_end_time', $event_id);
-			$all_day     = get_field('li_cpt_event_all_day', $event_id);
-			$timezone    = get_field('timezone', $event_id);
+				$end_date    = get_field('li_cpt_event_end_date', $event_id);
+				$start_time  = get_field('li_cpt_event_start_time', $event_id);
+				$end_time    = get_field('li_cpt_event_end_time', $event_id);
+				$all_day     = get_field('li_cpt_event_all_day', $event_id);
+				$timezone    = get_field('timezone', $event_id);
+				$timezone_code = get_timezone_code($timezone); // Your helper function
 
-			// Parse dates
-			$start_ts    = $start_date ? strtotime($start_date) : false;
-			$end_ts      = $end_date ? strtotime($end_date) : false;
+				// Validate presence of dates
+				if ($start_date) {
+					try {
+						$tz = $timezone ? new DateTimeZone($timezone) : null;
 
-			// Format values
-			$start_day   = $start_ts ? date('l, F j, Y', $start_ts) : '';
-			$end_day     = $end_ts ? date('l, F j, Y', $end_ts) : '';
-			$start_short = $start_ts ? date('M j, Y', $start_ts) : '';
-			$start_fmt   = $start_time ? date('g:i a', strtotime($start_time)) . ' ' . get_timezone_code($timezone) : '';
-			$end_fmt     = $end_time ? date('g:i a', strtotime($end_time)) . ' ' . get_timezone_code($timezone) : '';
+						// Build DateTime objects
+						$start_datetime = new DateTime($start_date . ($start_time ? ' ' . $start_time : ''));
+						$end_datetime   = $end_date ? new DateTime($end_date . ($end_time ? ' ' . $end_time : '')) : null;
 
-			// Build event date string
-			$event_date = '';
-			if ($start_ts && $end_ts && date('Ymd', $start_ts) !== date('Ymd', $end_ts)) {
-				// Multi-day event
-				if ($all_day) {
-					$event_date = "$start_day - $end_day All Day";
-				} elseif ($start_time && $end_time) {
-					$event_date = "$start_day $start_fmt - $end_day $end_fmt";
+						if ($tz) {
+							$start_datetime->setTimezone($tz);
+							if ($end_datetime) {
+								$end_datetime->setTimezone($tz);
+							}
+						}
+
+						// Build event date string
+						if ($end_datetime && $start_datetime->format('Ymd') !== $end_datetime->format('Ymd')) {
+							// Multi-day
+							if ($all_day) {
+								$event_date = $start_datetime->format('l, F j, Y') . ' - ' . $end_datetime->format('l, F j, Y') . ' All Day';
+							} elseif ($start_time && $end_time) {
+								$event_date = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code;
+							} else {
+								$event_date = $start_datetime->format('M j, Y');
+							}
+						} else {
+							// Single-day
+							if ($all_day) {
+								$event_date = $start_datetime->format('l, F j, Y') . ' All Day';
+							} elseif ($start_time && $end_time) {
+								$event_date = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' – ' . $end_datetime->format('g:i a') . ' ' . $timezone_code;
+							} else {
+								$event_date = $start_datetime->format('M j, Y');
+							}
+						}
+					} catch (Exception $e) {
+						$event_date = ''; // fallback if parsing fails
+					}
 				} else {
-					$event_date = $start_short;
-				}
-			} elseif ($start_ts) {
-				// Single-day event
-				if ($all_day) {
-					$event_date = "$start_day All Day";
-				} elseif ($start_time && $end_time) {
-					$event_date = "$start_day $start_fmt - $end_fmt";
-				} else {
-					$event_date = $start_short;
-				}
-			} ?>
+					$event_date = '';
+				}?>
 			<section class="container-1280 bg-lilac">
 				<div class="wrapper">
 					<div class="image-alongside-text-touch has-border-bottom">
