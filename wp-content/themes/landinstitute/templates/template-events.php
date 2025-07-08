@@ -16,44 +16,32 @@
 get_header();
 list($bst_var_post_id, $bst_fields, $bst_option_fields) = BaseTheme::defaults();
 
-$news_temp_kicker_text = $bst_fields['news_temp_kicker_text'] ?? null;
-$news_temp_headline_text = $bst_fields['news_temp_headline_text'] ?? null;
-$news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
+$ls_event_kicker = $bst_fields['ls_event_kicker'] ?? null;
+$ls_event_page_title = $bst_fields['ls_event_page_title'] ?? null;
+$ls_event_bg_pattern = $bst_fields['ls_event_bg_pattern'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 ?>
 
 <div id="page-section" class="page-section">
 
-
-
-	<section id="hero-section" class="hero-section hero-section-default hero-alongside-standard">
+	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
 		<!-- hero start -->
-		<div class="bg-pattern">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg"
-				width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys"
-				title="TLI-Pattern-Repair-SkyBlue-stickys" />
-		</div>
+		 <?php echo !empty($ls_event_bg_pattern) ? ' <div class="bg-pattern">' . wp_get_attachment_image($ls_event_bg_pattern, 'thumb_2000') . '</div>' : ''; ?>
 		<div class="hero-default has-border-bottom">
 			<div class="wrapper">
 				<div class="hero-alongside-block">
-					<div class="col-left bg-lime-green">
+					<div class="col-content bg-lime-green">
+						<div class="gl-s128"></div>
 						<div class="hero-content">
-							<?php if ($news_temp_kicker_text): ?>
+							<?php if ($ls_event_kicker): ?>
 								<div class="ui-eyebrow-20-18-regular">
-									<?php echo html_entity_decode($news_temp_kicker_text); ?>
+									<?php echo html_entity_decode($ls_event_kicker); ?>
 								</div>
 								<div class="gl-s20"></div>
 							<?php endif; ?>
-							<?php if ($news_headline_check): ?>
-								<?php echo BaseTheme::headline($news_temp_headline_text, 'heading-1 mb-0 block-title'); ?>
+							<?php if ($ls_event_page_title): ?>
+								<h1 class="heading-1 mb-0 block-title"><?php echo html_entity_decode($ls_event_page_title); ?></h1>
 								<div class="gl-s96"></div>
 							<?php endif; ?>
-						</div>
-					</div>
-					<div class="col-right">
-						<div class="bg-pattern">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/TLI-Pattern-Repair-SkyBlue-stickys.jpg"
-								width="" height="" alt="TLI-Pattern-Repair-SkyBlue-stickys"
-								title="TLI-Pattern-Repair-SkyBlue-stickys" />
 						</div>
 					</div>
 				</div>
@@ -170,11 +158,11 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 							wp_reset_postdata();
 							?>
 						</div>
-					<?php if ($event_query->found_posts > 5) : ?>
-						<div class="block-btn-full"> 
-							<a id="load-more-events" class="site-btn sm-btn" data-page="1">Load More Events</a>
-						</div>
-					<?php endif; ?>
+						<?php if ($event_query->found_posts > 5) : ?>
+							<div class="block-btn-full">
+								<a id="load-more-events" class="site-btn sm-btn" data-page="1">Load More Events</a>
+							</div>
+						<?php endif; ?>
 
 					</div>
 
@@ -212,7 +200,6 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 									}
 								} else {
 									echo '<p>No events found.</p>';
-
 								}
 								foreach ($events_data_raw as $key => $raw_data) {
 									$period = array();
@@ -270,12 +257,12 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 								foreach ($months as $month) {
 									$events[$month] = $events_unordered[$month];
 								}
-								?>
+							?>
 								<?php
 								$number = 1;
 								$old = array();
 								foreach ($events as $month => $days) {
-									?>
+								?>
 									<div class="event-calendar-row ct-<?php echo number_to_words($number); ?>-month">
 										<div class="calendar-month">
 											<h3 class="heading-5"><?php echo $month; ?></h3>
@@ -367,12 +354,12 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 												if ($i == 1) {
 													$first_day = 'ct-first-day-in-month';
 												}
-												?>
+											?>
 												<div class="calendar-column <?php echo $row_class; ?> <?php echo $col_class; ?>  <?php
-														 if ($events) {
-															 echo 'col-has-event';
-														 }
-														 ?>
+																																	if ($events) {
+																																		echo 'col-has-event';
+																																	}
+																																	?>
 							">
 													<div class="calendar-date"><?php echo $day; ?></div>
 													<?php
@@ -396,11 +383,11 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 															);
 															get_template_part('partials/content', 'event-item', $args);
 														}
-														?>
+													?>
 														<?php
 														if ($events) {
 															if (count($events) > 2) {
-																?>
+														?>
 																<span class="more-btn">+<?php echo count($events) - 2; ?>
 																	more</span>
 																<div class="more-events" style="display:none;">
@@ -420,7 +407,7 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 																	}
 																	?>
 																</div>
-																<?php
+														<?php
 															}
 														}
 														?>
@@ -438,12 +425,12 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 														</div>
 													<?php } ?>
 												</div>
-												<?php $i++;
+											<?php $i++;
 											} ?>
 
 										</div>
 									</div>
-									<?php
+							<?php
 									$number++;
 									$old = array();
 								}
@@ -457,9 +444,9 @@ $news_headline_check = BaseTheme::headline_check($news_temp_headline_text);
 			</div>
 		</div>
 
-</section>
+	</section>
 
-<?php
+	<?php
 	global $wp_query;
 	if (have_posts()) {
 		while (have_posts()) {

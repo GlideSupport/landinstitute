@@ -29,6 +29,24 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_686bdd064a945",
+            "label": "Featured Event",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "To feature an event on the events page, tag it as “Featured on Homepage” in the right sidebar.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_684be9c27f577",
             "label": "Event Start Date",
             "name": "li_cpt_event_start_date",
@@ -489,5 +507,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751958050
+    "modified": 1751959733
 }
