@@ -225,16 +225,39 @@ function fetchPastEvents(paged = 1, updateURL = true) {
 
 				// Update browser URL without reload
 				if (updateURL) {
-					const cleanPath = window.location.pathname.replace(/\/page\/\d+\/?$/, ''); // remove existing /page/X
-					const queryParams = window.location.search; // e.g., "?eventsview=calendar"
+					const { pathname, search } = window.location;
 				
-					const newURL =
-						paged === 1
-							? cleanPath + '/' + queryParams
-							: `${cleanPath}page/${paged}/` + queryParams;
+					// Split path into parts and remove empty strings
+					const pathParts = pathname.split('/').filter(Boolean);
 				
+					// Find the index of 'events' in path
+					const eventsIndex = pathParts.indexOf('events');
+				
+					let newPathParts;
+				
+					if (eventsIndex !== -1) {
+						// Keep everything before and including 'events'
+						newPathParts = pathParts.slice(0, eventsIndex + 1);
+					} else {
+						// If 'events' not found, force it
+						newPathParts = ['events'];
+					}
+				
+					// Final path like: /landinstdev/events/
+					let newPath = '/' + newPathParts.join('/') + '/';
+				
+					// Add pagination if needed
+					if (paged > 1) {
+						newPath += `page/${paged}/`;
+					}
+				
+					// Combine with query string
+					const newURL = newPath + search;
+				
+					// Push new URL to browser history
 					history.pushState({ paged: paged }, '', newURL);
 				}
+				
 				
 				// Scroll to top of the list
 				setTimeout(() => {
@@ -271,12 +294,12 @@ function initPaginationListeners() {
 	const prevBtns = document.querySelectorAll(".pastevent #desktopPrev, .pastevent #prevBtn, .pastevent #popupPrev");
 	const nextBtns = document.querySelectorAll(".pastevent #desktopNext, .pastevent #nextBtn, .pastevent #popupNext");
 
-	prevBtns.forEach((btn) => {
-		btn.addEventListener("click", (e) => {
-			e.preventDefault(); // ✅ prevent default for Prev buttons
-			if (currentPage > 1) fetchPastEvents( currentPage - 1);
-		});
-	});
+	// prevBtns.forEach((btn) => {
+	// 	btn.addEventListener("click", (e) => {
+	// 		e.preventDefault(); // ✅ prevent default for Prev buttons
+	// 		if (currentPage > 1) fetchPastEvents( currentPage - 1);
+	// 	});
+	// });
 
 	
 
