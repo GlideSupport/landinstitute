@@ -205,7 +205,7 @@ $latest_featured_event = new WP_Query(array(
 							$eventargs = array(
 								'post_type'      => 'event',
 								'post_status'    => 'publish',
-								'posts_per_page' => 1,
+								'posts_per_page' => 10,
 								'orderby'        => 'meta_value',
 								'meta_key'       => 'li_cpt_event_start_date',
 								'order'          => 'ASC',
@@ -319,7 +319,7 @@ $latest_featured_event = new WP_Query(array(
 							wp_reset_postdata();
 							?>
 						</div>
-						<?php if ($event_query->found_posts > 5) : ?>
+						<?php if ($event_query->found_posts > 10) : ?>
 							<div class="block-btn-full">
 								<a id="load-more-events" class="site-btn sm-btn" data-page="1">Load More Events</a>
 							</div>
