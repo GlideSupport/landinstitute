@@ -28,8 +28,16 @@ class WP_Theme_Custom extends \Boilerplate
 	 **/
 	public function __construct()
 	{
-
+		add_filter('wpseo_robots', [$this, 'dpf_override_yoast_robots']);
 	}
+
+	public function dpf_override_yoast_robots($robots) {
+		if (is_paged()) {
+			return 'noindex,follow';
+		}
+		return $robots;
+	}
+
 	/**
 	 * Helper function that builds block title from ACF Block title object
 	 *
