@@ -558,7 +558,7 @@ function load_more_events_callback()
 				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' '.$days;
 			} else {
 				// Different days
-				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;;
+				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;
 			};
 			$image  = "https://landinstdev.wpenginepowered.com/wp-content/uploads/demo.webp";
 			if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
@@ -577,7 +577,7 @@ function load_more_events_callback()
 			set_query_var('excerpt', $excerpt);
 			set_query_var('url', $url);
 			set_query_var('all_day', $all_day);
-			set_query_var('disaply_event', $event_display);
+			set_query_var('event_display', $event_display);
 
 			get_template_part('partials/content', 'event-list');
 		endwhile;
