@@ -2781,7 +2781,7 @@
         },
         {
             "key": "field_682b2a592602e",
-            "label": "Hero Announcement Options",
+            "label": "Hero Home Announcement Options",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -3010,6 +3010,85 @@
             "placement": "top",
             "endpoint": 0,
             "selected": 0
+        },
+        {
+            "key": "field_686cf11aa8415",
+            "label": "Default Newsletter Form",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_686cf614e965b",
+            "label": "Title",
+            "name": "bst_var_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_686cf627e965c",
+            "label": "Kicker",
+            "name": "bst_var_kicker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_686cf12da8416",
+            "label": "Form Selector",
+            "name": "bst_var_form_selector",
+            "aria-label": "",
+            "type": "forms",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "allow_null": 1,
+            "multiple": 0,
+            "allow_in_bindings": 0
         }
     ],
     "location": [
@@ -3030,5 +3109,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751451494
+    "modified": 1751971767
 }
