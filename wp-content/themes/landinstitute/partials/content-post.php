@@ -11,7 +11,7 @@
 list( $bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object ) = BaseTheme::defaults();
 
 // Post Tags & Categories.
-$bst_var_post_categories = get_categories( $bst_var_post_id );
+$bst_var_post_categories = get_the_category( $bst_var_post_id );
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_ldo_author = $bst_fields['li_ldo_author'];
@@ -20,7 +20,21 @@ $li_ldo_publication = $bst_fields['li_ldo_publication'];
 $li_ldo_publication_link = $bst_fields['li_ldo_publication_link'];
 $url = $li_ldo_publication_link['url'];
 $title = $li_ldo_publication_link['title'];
+$li_ido_read_more = $bst_fields['li_ido_read_more'];
+$li_ido_read_more_check = BaseTheme::headline_check($li_ido_read_more);
+$li_ido_relatedselected_post = $bst_fields['li_ido_relatedselected_post'] ?? 'recent';
+$li_ido_select_posts = $bst_fields['li_ido_select_posts'] ?? null;
 
+$bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
+$bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
+$bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
+
+$newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $bst_fields)
+    ? (bool) $bst_fields['li_ldo_newsletter_form_visible']
+    : true;
+$li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
+$li_ldo_kicker = $bst_fields['li_ldo_kicker'] ?? $bst_var_kicker;
+$form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
 ?>
 
 <section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-width variation-details">
@@ -34,7 +48,7 @@ $title = $li_ldo_publication_link['title'];
 			<div class="hero-alongside-block">
 				<div class="col-left bg-lime-green">
 					<div class="hero-content">
-						<div class="ui-eyebrow-20-18-regular sub-title">Publications</div>
+						<?php echo !empty($bst_var_post_categories) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . esc_html($bst_var_post_categories[0]->name) . '</div>' : ''; ?>
 						<div class="gl-s20"></div>
 						<h3 class="heading-3 mb-0 block-title"><?php echo $bst_var_posttitle ?>
 						</h3>
@@ -71,120 +85,104 @@ $title = $li_ldo_publication_link['title'];
 	</div>
 </section>
 
-<section id="page-section" class="page-section">
+<?php the_content(); ?>
+
+<section class="container-1280 bg-base-cream">
+	<div class="gl-s128"></div>
 	<div class="wrapper">
-		<div class="wrapper">
-			<div class="gl-s60"></div>
-			<div class="post-box-img post-image">
-				<a href="<?php the_permalink(); ?>">
-					<?php
-					if ( ! has_post_thumbnail( $bst_var_post_id ) ) {
-						echo '<img class="" src="' . esc_url( get_template_directory_uri() ) . '/assets/build/images/admin/defaults/default-image.webp" >';
-					} else {
-						echo get_the_post_thumbnail( $bst_var_post_id, 'thumb_900',
-						);
-					}
-					?>
-				</a>
-			</div>
-			<div class="post-meta d-flex align-items-center justify-content-between">
-				<!-- /.post-tags -->
-				<?php if ( $bst_var_post_categories ) { ?>
-					<div class="post-cat">
-						<?php foreach ( $bst_var_post_categories as $bst_var_category ) { ?>
-							<a href="<?php echo esc_url( get_category_link( $bst_var_category ) ); ?>"><?php echo esc_html( $bst_var_category->name ); ?></a>
-						<?php } ?>
+		<div class="read-more-block has-border-bottom">
+			<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : ''; ?>
+			<div class="gl-s52"></div>
+			<div class="border-variable-slider">
+				<!-- Swiper -->
+				<div class="swiper-container read-slide-preview cursor-drag-icon">
+					<div class="swiper-wrapper">
+						<?php
+						$args = [
+							'post_type'   => 'post',
+							'post_status' => 'publish',
+						];
+
+						switch ($li_ido_relatedselected_post) {
+							case 'selected':
+								if (!empty($li_ido_select_posts)) {
+									$args['post__in']  = $li_ido_select_posts;
+									$args['orderby']   = 'post__in';
+								}
+								break;
+
+							case 'related':
+								$categories = get_the_category($bst_var_post_id);
+								if (!empty($categories)) {
+									$category_ids = wp_list_pluck($categories, 'term_id');
+									$args['category__in'] = $category_ids;
+									$args['post__not_in'] = [$bst_var_post_id];
+								} else {
+									$args['post__in'] = [0]; // fallback: show nothing
+								}
+								break;
+						}
+
+						$posts_query = new WP_Query($args);
+
+						while ($posts_query->have_posts()) : $posts_query->the_post();
+							$post_id    = get_the_ID();
+							$title      = get_the_title();
+							$permalink  = get_permalink();
+							$excerpt    = get_the_excerpt($post_id);
+							$categories = get_the_category($post_id);
+							$cat_name   = !empty($categories) ? esc_html($categories[0]->name) : '';
+							?>
+							<div class="swiper-slide">
+								<div class="image-card-caption">
+									<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
+										<div class="image">
+											<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800'); ?>
+										</div>
+										<div class="caption-card-content">
+											<div class="gl-s52"></div>
+											<?php echo !empty($cat_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $cat_name . '</div>' : ''; ?>
+											<?php echo (!empty($cat_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
+											<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
+											<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
+											<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
+											<?php echo !empty($excerpt) ? '<div class="gl-s20"></div>' : ''; ?>
+											<div class="read-more-link">
+												<div class="border-text-btn">Read more</div>
+											</div>
+											<div class="gl-s80"></div>
+										</div>
+									</a>
+								</div>
+							</div>
+						<?php endwhile; wp_reset_postdata(); ?>
 					</div>
-					<!-- /.post-cat -->
-				<?php } ?>
-				<div class="post-shares">
-					<a href="http://www.facebook.com/sharer.php?u=<?php the_permalink(); ?>&amp;t=<?php the_title(); ?>"
-						rel="noopener" rel="noreferrer"
-						onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
-							src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/facebook-icon.svg" alt="Facebook"
-							class="post-fb-share"></a>
-					<a href="http://www.linkedin.com/shareArticle?mini=true&amp;title=<?php the_title(); ?>&amp;url=<?php the_permalink(); ?>"
-						rel="noopener" rel="noreferrer"
-						onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
-							src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/linkedin-icon.svg" alt="Linked In"
-							class="post-li-share"></a>
-							<a href="http://twitter.com/intent/tweet?text=Currently reading <?php the_title(); ?>&amp;url=<?php the_permalink(); ?>"
-						rel="noopener" rel="noreferrer"
-						onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img
-							src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/build/images/twitter-icon.svg" alt="Twitter"
-							class="post-tw-share"></a>
 				</div>
-				<!-- /.post-shares -->
 			</div>
-
-
-			<article id="post-<?php the_ID(); ?>" <?php post_class( 'post-ctn' ); ?>>
-					<?php get_template_part( 'partials/content' ); ?>
-					<div class="post-details">
-						<div class="post-pagination"> <?php the_posts_pagination(); ?> </div>
-						<div class="post-comments">
-						<?php
-								// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) {
-							comments_template();
-						}
-						?>
-						</div>
-					</div>
-				</div>
-
-				<?php
-				wp_reset_postdata();
-
-				$bst_var_rp_selection_criteria = isset( $bst_fields['bst_var_rp_selection_criteria'] ) ? $bst_fields['bst_var_rp_selection_criteria'] : null;
-				if ( 'random' === $bst_var_rp_selection_criteria ) {
-
-					$bst_args = array(
-						'posts_per_page' => 3,
-						'post__not_in'   => array( $post->ID ),
-						'orderby'        => 'rand',
-					);
-
-					$bst_query = new WP_Query( $bst_args );
-
-					// The Loop.
-					if ( $bst_query->have_posts() ) {
-						while ( $bst_query->have_posts() ) {
-							$bst_query->the_post();
-							// Include specific template for the content.
-							get_template_part( 'partials/content', 'archive-post' );
-						}
-						?>
-						<?php
-					}
-				} else {
-					global $post;
-					$bst_var_selected_posts = array();
-					$bst_var_selected_posts = isset( $bst_fields['bst_var_rp_selected_posts'] ) ? $bst_fields['bst_var_rp_selected_posts'] : null;
-					if ( $bst_var_selected_posts ) {
-
-						?>
-					<div class="related-posts ">
-					<h3><?php esc_html__( 'Related Posts', 'land_institute' ); ?></h3>
-						<?php
-						foreach ( $bst_var_selected_posts as $bst_var_post ) {
-							setup_postdata( $post );
-
-							$bst_post_fields = get_fields( get_the_ID() );
-							$bst_var_src     = wp_get_attachment_image_url( get_post_thumbnail_id( $bst_var_post_id ), 'thumb_600', false );
-							if ( ! $bst_var_src ) {
-								$bst_var_src = get_template_directory_uri() . '/assets/build/images/admin/defaults/default-image.webp';
-							}
-								get_template_part( 'partials/content', 'archive-post' );
-						}
-						?>
-					</div>
-						<?php
-					}
-					wp_reset_postdata();
-				}
-				?>
-			</article>
 		</div>
 	</div>
 </section>
+
+
+<?php if ($newsletter_form_visible): ?>
+	<section class="container-720 bg-butter-yellow">
+		<div class="gl-s156"></div>
+		<div class="wrapper">
+			<div class="newsletter-block">
+				<div class="block-row">
+					<?php echo !empty($li_ldo_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_ldo_kicker) . '</div>' : ''; ?>	
+					<?php echo (!empty($li_ldo_kicker) && !empty($li_ldo_title)) ? '<div class="gl-s12"></div>' : ''; ?>
+					<?php echo !empty($li_ldo_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_ldo_title) . '</h2>' : ''; ?>	
+					<?php echo (!empty($li_ldo_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
+					<div class="newsletter-form">
+						<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
+					</div>
+					<div class="gl-s80"></div>
+				</div>
+			</div>
+		</div>
+		<div class="gl-s128"></div>
+	</section>
+<?php endif; ?>
+
+<?php get_footer(); ?>
