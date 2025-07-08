@@ -560,7 +560,8 @@ function load_more_events_callback()
 				// Different days
 				$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' ' .$days;
 			};
-			$image  = "https://landinstdev.wpenginepowered.com/wp-content/uploads/demo.webp";
+			$image = BASETHEME_DEFAULT_IMAGE;
+
 			if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 				$image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 			}

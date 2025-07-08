@@ -252,7 +252,7 @@ $latest_featured_event = new WP_Query(array(
 									$start_date = get_field('li_cpt_event_start_date');
 									$end_date = get_field('li_cpt_event_end_date');
 									$post_id =get_the_ID();
-									$image = "https://landinstdev.wpenginepowered.com/wp-content/uploads/demo.webp";
+									$image = BASETHEME_DEFAULT_IMAGE;
 									if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 										$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 									}
