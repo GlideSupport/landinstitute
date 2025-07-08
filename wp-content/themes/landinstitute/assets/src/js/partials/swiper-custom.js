@@ -279,8 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Map slider with counter end
 
 	// Timeline js start
-	const timelineBlocks = document.querySelectorAll(".timeline-block");
-	timelineBlocks.forEach((block, index) => {
+	const timelineBlocks = document.querySelectorAll(".timeline-block"); timelineBlocks.forEach((block, index) => {
 		const slider = block.querySelector(".timeline-slider");
 		const nextBtn = block.querySelector(".swiper-button-next");
 		const prevBtn = block.querySelector(".swiper-button-prev");
@@ -373,10 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Testimonial Traditional js end
 
 	// Testimonial Single View Slider start
-	const testimonial_single_view_Sliders = document.querySelectorAll(
-		".testimonial-single-view-slider",
-	);
-
+	const testimonial_single_view_Sliders = document.querySelectorAll( ".testimonial-single-view-slider");
 	testimonial_single_view_Sliders.forEach((sliderWrapper, index) => {
 		const slider = sliderWrapper.querySelector(".single-view-slide");
 		if (!slider) return; // Skip if the slider container is missing
@@ -414,10 +410,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 	// Testimonial Single View Slider end
 
-	//CTA Card Slide js start
+	// CTA Card Slide js start
 	const ctaSliders = document.querySelectorAll(".cta-card-slide");
-	if (!ctaSliders.length) return;
+
 	ctaSliders.forEach((slider, index) => {
+		if (!slider) return;
+
+		// Optional: Add unique class for debugging or styling
 		slider.classList.add(`cta-card-slide-${index}`);
 
 		new Swiper(slider, {
@@ -425,34 +424,36 @@ document.addEventListener("DOMContentLoaded", function () {
 			slidesPerView: 1,
 			spaceBetween: 0,
 			breakpoints: {
-				1920: {
-					slidesPerView: 4,
-					spaceBetween: 0,
-				},
-				1028: {
-					slidesPerView: 4,
-					spaceBetween: 0,
-				},
-				641: {
-					slidesPerView: 3,
+				375: {
+					slidesPerView: 1.5,
 					spaceBetween: 0,
 				},
 				580: {
 					slidesPerView: 2.5,
 					spaceBetween: 0,
 				},
-				375: {
-					slidesPerView: 1.5,
+				641: {
+					slidesPerView: 3,
+					spaceBetween: 0,
+				},
+				1028: {
+					slidesPerView: 4,
+					spaceBetween: 0,
+				},
+				1920: {
+					slidesPerView: 4,
 					spaceBetween: 0,
 				},
 			},
 		});
 	});
-	//CTA Card Slide js end
+	// CTA Card Slide js end
 
-	//New Page sldier start
+
+	// New Page slider start
 	const logolistslider = document.querySelector('.logolist-wrapp');
-		if (!logolistslider) return;
+
+	if (logolistslider) {
 		new Swiper(logolistslider, {
 			loop: false,
 			navigation: false,
@@ -471,6 +472,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			}
 		});
-	//New Page sldier end
+	}
+	// New Page slider end
+
 	
 });
