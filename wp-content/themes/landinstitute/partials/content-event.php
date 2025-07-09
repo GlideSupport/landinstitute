@@ -26,6 +26,11 @@ $li_cpt_more_event_check = BaseTheme::headline_check($li_cpt_more_event);
 $li_cpt_event_recentselected_event = $bst_fields['li_cpt_event_recentselected_event'] ?? 'recent';
 $li_cpt_select_events = $bst_fields['li_cpt_select_events'] ?? null;
 
+$bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
+$featured_image_id = get_post_thumbnail_id();
+$featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
+$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', false, ['alt' => esc_attr(get_the_title())]);
+
 $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
@@ -110,8 +115,7 @@ if ($start_date && $end_date) {
 						<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-Repair-Sky-Blue-scaled.jpg"
 							width="" height="" alt="" />
 					</div>	
-					<?php echo has_post_thumbnail() ? '<div class="block-image-center">' . get_the_post_thumbnail(get_the_ID(), 'thumb_500', ['alt' => get_the_title()]) . '</div>' : ''; ?>
-				</div>
+				<?php echo !empty($featured_image_html) ? '<div class="block-image-center">' . $featured_image_html . '</div>' : ''; ?>				</div>
 			</div>
 		</div>
 	</div>
