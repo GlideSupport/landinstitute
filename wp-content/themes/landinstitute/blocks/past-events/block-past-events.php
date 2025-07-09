@@ -60,6 +60,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
+			$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
 
 			$today = date('Ymd');
 			$args = [
@@ -67,16 +68,16 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 				'post_status'    => 'publish',
 				'posts_per_page' => 6,
 				'paged'          => $paged,
-				'meta_key'       => 'li_cpt_event_start_date',
+				'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 				'orderby'        => 'meta_value',
 				'order'          => 'DESC',
 				'meta_query'     => [
 					[
-						'key'     => 'li_cpt_event_start_date',
-						'value'   => $today,
+						'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
+						'value'   => $current_timestamp,
 						'compare' => '<',
-						'type'    => 'NUMERIC'
-					]
+						'type'    => 'NUMERIC',
+						]
 				]
 			];
 

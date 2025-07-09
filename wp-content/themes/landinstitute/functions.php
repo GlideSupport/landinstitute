@@ -568,19 +568,20 @@ function filter_past_events() {
 	$term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
    $today = date('Ymd'); // e.g., 20250704
-   
+   $current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+
    $args = [
 	 'post_type'      => 'event',
 	 'post_status'    => 'publish',
 	 'posts_per_page' => 6,
 	 'paged'          => $paged,
-	 'meta_key'       => 'li_cpt_event_start_date',
+	 'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 	 'orderby'        => 'meta_value',
 	 'order'          => 'DESC',
 	 'meta_query'     => [
 	   [
-		 'key'     => 'li_cpt_event_start_date',
-		 'value'   => $today,
+		 'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
+		 'value'   => $current_timestamp,
 		 'compare' => '<',
 		 'type'    => 'NUMERIC',
 	   ],
