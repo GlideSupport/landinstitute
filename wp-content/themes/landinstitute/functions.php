@@ -908,3 +908,62 @@ function save_event_timestamp_with_timezone($post_id, $post, $update) {
 
     add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
 }
+
+
+add_action('wp_ajax_filter_news', 'handle_ajax_news_filter');
+add_action('wp_ajax_nopriv_filter_news', 'handle_ajax_news_filter');
+
+function handle_ajax_news_filter() {
+ //   check_ajax_referer('news_ajax_nonce', 'nonce');
+
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+    $tax_query = [];
+
+    if (!empty($_POST['news_type']) && $_POST['news_type'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'news-type',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['news_type']),
+        ];
+    }
+
+    if (!empty($_POST['news-topic']) && $_POST['news-topic'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'news-topic',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['news-topic']),
+        ];
+    }
+
+    $args = [
+        'post_type'      => 'news',
+        'posts_per_page' => 9,
+        'post_status'    => 'publish',
+        'paged'          => $paged,
+    ];
+
+    if (!empty($tax_query)) {
+        $args['tax_query'] = $tax_query;
+    }
+
+	// echo '<pre>';
+	// print_r($args);
+	// echo '</pre>';
+
+
+    $news = new WP_Query($args);
+
+    ob_start();
+    include get_template_directory() . '/partials/content-news-list.php';
+    $news_html = ob_get_clean();
+
+    ob_start();
+    include get_template_directory() . '/partials/content-news-pagination.php';
+    $pagination_html = ob_get_clean();
+
+    wp_send_json_success([
+        'news_html'       => $news_html,
+        'pagination_html' => $pagination_html
+    ]);
+}

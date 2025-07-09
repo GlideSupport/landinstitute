@@ -345,6 +345,135 @@ attachPaginationEventListeners();
 
 
 
+//new code 
+document.querySelectorAll(".news-list-filter-title .dropdown-menu").forEach((menu) => {
+	menu.querySelectorAll("a[data-term]").forEach((link) => {
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			const taxonomy = menu.id; // donor-type or donation-level
+			const term = link.getAttribute("data-term");
+
+			// Remove 'active' class from siblings
+			menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
+			link.closest("li").classList.add("active");
+
+			// Set selected term
+			if (taxonomy === "news-type") {
+				currentnewsType = term;
+				document.querySelector("button#types-view").innerHTML =
+					"News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
+			} else if (taxonomy === "topic-view") {
+				currentnewslevel = term;
+				document.querySelector("button#topic-view").innerHTML =
+					"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
+			}
+
+			// Reset to page 1
+			currentPage = 1;
+			fetchnews();
+		});
+	});
+});
+
+
+	const news_append_list = document.querySelector(".newsmain .filter-content-cards-grid");
+	function fetchnews(paged = 1, updateURL = true) {
+		currentPage = paged;
+
+		if (news_append_list) {
+			const loadingElem = document.createElement("div");
+			loadingElem.className = "loading-placeholder";
+			loadingElem.innerHTML = "<p>Loading...</p>";
+			news_append_list.appendChild(loadingElem);
+		}
+
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "filter_news",
+				paged: paged,
+				news_type: currentnewsType,
+				nonce: localVars.nonce,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					// ✅ Corrected this line
+					if (news_append_list) news_append_list.innerHTML = data.data.news_html;
+
+					const oldPagination = document.querySelector('.news-pagination-append-container');
+					if (oldPagination) {
+						oldPagination.outerHTML = data.data.pagination_html;
+					} else {
+						news_append_list.insertAdjacentHTML('afterend', data.data.pagination_html);
+					}
+
+					initnewsPaginationListeners();
+					attachPaginationEventListeners?.(); // Safe optional chaining
+
+					if (updateURL) {
+						const { pathname, search } = window.location;
+						const cleanedPath = pathname.replace(/\/page\/\d+\/?$/, '');
+						let newPath = cleanedPath.replace(/\/$/, '') + '/';
+						if (paged > 1) {
+							newPath += `page/${paged}/`;
+						}
+						const newURL = newPath + search;
+						history.pushState({ paged: paged }, '', newURL);
+					}
+
+
+					setTimeout(() => {
+						const newTeaserList = document.querySelector(".filter-content-cards-grid");
+						if (newTeaserList) {
+							const offset = 100;
+							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
+							window.scrollTo({ top: top, behavior: "smooth" });
+						}
+					}, 50);
+				} else {
+					news_append_list.innerHTML = "<p>No news posts found.</p>";
+				}
+			})
+			.catch((error) => {
+				console.error("AJAX error:", error);
+				news_append_list.innerHTML = "<p>Error loading news.</p>";
+			});
+	}
+
+	function initnewsPaginationListeners() {
+		document.querySelectorAll(".newsmain .pagination-container .page-btn").forEach((btn) => {
+			btn.addEventListener("click", function (e) {
+				e.preventDefault();
+				const page = parseInt(this.getAttribute("data-page"));
+				if (!isNaN(page) && page !== currentPage) {
+					fetchnews(page);
+				}
+			});
+		});
+
+		document.querySelectorAll(".newsmain .pagination-container .site-btn").forEach((btn) => {
+			btn.addEventListener("click", function (e) {
+				e.preventDefault();
+				const page = parseInt(this.getAttribute("data-page"));
+				if (!isNaN(page)) {
+					fetchnews(page);
+				}
+			});
+		});
+	}
+
+initnewsPaginationListeners();
+
+
+
+
+
+
 });
 document.addEventListener('click', function (e) {
 	const disabledLink = e.target.closest('.arrow-btn.disable');

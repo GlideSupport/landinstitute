@@ -117,7 +117,7 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 		</div>
 		<div class="gl-s64"></div>
 	</section>
-	<section class="container-1280 bg-base-cream">
+	<section class="container-1280 bg-base-cream newsmain">
 		<div class="wrapper">
 			<div class="news-list-filter-title full-width-content has-border-bottom">
 				<div class="filter-block">
@@ -174,97 +174,10 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 
 					if ($news->have_posts()) : ?>
 						<div class="filter-content-cards-grid">
-							<?php while ($news->have_posts()) : $news->the_post();
-								$title = get_the_title();
-								$date = get_the_date('M j, Y');
-								$permalink = get_the_permalink();
-								$short_Desc = get_the_excerpt();
-								$short_content = wp_trim_words($short_Desc, 15, '...');
-								$topics = get_the_terms(get_the_ID(), 'news-topic');
-								$topics_name = !empty($topics) && !is_wp_error($topics) ? $topics[0]->name : '';
-							?>
-								<div class="filter-content-card-item">
-									<a href="<?php echo esc_html($permalink); ?>" class="filter-content-card-link">
-										<div class="filter-card-content">
-											<div class="gl-s52"></div>
-											<div class="top-sub-list d-flex flex-wrap">
-												<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($date); ?></div>
-												<?php if ($topics_name): ?>
-													<div class="ui-eyebrow-16-15-regular">•</div>
-												<?php endif; ?>
-												<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($topics_name); ?></div>
-											</div>
-											<div class="gl-s8"></div>
-											<div class="card-title heading-7"><?php echo esc_html($title); ?>
-											</div>
-											<?php if ($short_content): ?>
-												<div class="gl-s16"></div>
-												<div class="description ui-18-16-regular"><?php echo html_entity_decode($short_content); ?>
-												</div>
-											<?php endif; ?>
-
-											<div class="gl-s20"></div>
-											<div class="read-more-link">
-												<div class="border-text-btn">Read more</div>
-											</div>
-											<div class="gl-s80"></div>
-										</div>
-									</a>
-								</div>
-							<?php endwhile; ?>
-
+							<?php include get_template_directory() . '/partials/content-news-list.php'; ?>
 						</div>
-
-					<?php endif; ?>
-
-					<div class="fillter-bottom">
-						<div class="pagination-container">
-							<div class="desktop-pages">
-								<div class="arrow-btn prev">
-									<div class="site-btn">Previous</div>
-								</div>
-								<div class="pagination-list">
-									<button class="page-btn active">1</button>
-									<button class="page-btn">2</button>
-									<button class="page-btn">3</button>
-									<span class="dots">...</span>
-									<button class="page-btn">12</button>
-								</div>
-								<div class="arrow-btn next">
-									<div class="site-btn">Next</div>
-								</div>
-							</div>
-							<!-- Mobile Pagination -->
-							<div class="mobile-pagination">
-								<button id="prevBtn" class="arrow-btn"><img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
-								</button>
-								<button id="pageTrigger" class="page-trigger ui-18-16-bold">1/26</button>
-								<button id="nextBtn" class="arrow-btn"><img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
-								</button>
-							</div>
-
-							<!-- Mobile Popup -->
-							<div id="paginationPopup" class="pagination-popup">
-								<div class="popup-body">
-									<div id="popupGrid" class="popup-grid"><button
-											class="page-btn active">1</button><button
-											class="page-btn">2</button><button
-											class="page-btn">3</button><button
-											class="page-btn">4</button><button
-											class="page-btn">5</button><button
-											class="page-btn">6</button><button
-											class="page-btn">7</button><button
-											class="page-btn">8</button><button
-											class="page-btn">9</button><button
-											class="page-btn">10</button><button
-											class="page-btn">11</button><button class="page-btn">12</button>
-									</div>
-									<button id="popupPrev" class="arrow-btn"></button>
-									<button id="popupNext" class="arrow-btn"></button>
-								</div>
-							</div>
-						</div>
-					</div>
+						<?php include get_template_directory() . '/partials/content-news-pagination.php'; ?>
+					<?php endif; ?>		
 				</div>
 			</div>
 		</div>

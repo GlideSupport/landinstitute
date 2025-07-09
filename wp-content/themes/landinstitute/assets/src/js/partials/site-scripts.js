@@ -579,8 +579,13 @@ function initDropdownMenus() {
 			return;
 		}
 
-		const toggleButton = tabDropdown.querySelector(".dropdown-toggle");
-		const dropdownMenu = tabDropdown.querySelector(".dropdown-menu");
+		let toggleButton;
+
+		if (tabDropdown.closest('.newsmain')) {
+			toggleButton = tabDropdown.querySelector('.dropdown-toggle');
+		} else {
+			toggleButton = tabDropdown.querySelector('.dropdown-toggle');
+		}				const dropdownMenu = tabDropdown.querySelector(".dropdown-menu");
 
 		if (!toggleButton || !dropdownMenu) {
 			return;
@@ -600,10 +605,10 @@ function initDropdownMenus() {
 		}
 
 		function closeDropdown() {
-			toggleButton.setAttribute("aria-expanded", "false");
-			dropdownMenu.style.display = "none";
-			tabDropdown.classList.remove("open");
-			dropdownMenu.classList.remove("open");
+			// toggleButton.setAttribute("aria-expanded", "false");
+			// dropdownMenu.style.display = "none";
+			// tabDropdown.classList.remove("open");
+			// dropdownMenu.classList.remove("open");
 		}
 
 		// Toggle dropdown on button click
@@ -707,10 +712,10 @@ function initDropdowns() {
 		}
 
 		function closeDropdown() {
-			toggleButton.setAttribute("aria-expanded", "false");
-			dropdownMenu.style.display = "none";
-			tabDropdown.classList.remove("open");
-			dropdownMenu.classList.remove("open");
+			// toggleButton.setAttribute("aria-expanded", "false");
+			// dropdownMenu.style.display = "none";
+			// tabDropdown.classList.remove("open");
+			// dropdownMenu.classList.remove("open");
 		}
 
 		function closeAllDropdowns() {
@@ -748,30 +753,30 @@ function initDropdowns() {
 		}
 
 		// Toggle dropdown on button click
-		toggleButton.addEventListener("click", (event) => {
-			event.preventDefault();
-			event.stopPropagation();
+		// toggleButton.addEventListener("click", (event) => {
+		// 	event.preventDefault();
+		// 	event.stopPropagation();
 
-			const isExpanded =
-				toggleButton.getAttribute("aria-expanded") === "true";
+		// 	const isExpanded =
+		// 		toggleButton.getAttribute("aria-expanded") === "true";
 
-			// Close all dropdowns first
-			closeAllDropdowns();
+		// 	// Close all dropdowns first
+		// 	closeAllDropdowns();
 
-			// If this dropdown wasn't expanded, open it
-			if (!isExpanded) {
-				toggleButton.setAttribute("aria-expanded", "true");
-				dropdownMenu.style.display = "block";
-				dropdownMenu.classList.add("open");
-				tabDropdown.classList.add("open");
-				positionDropdown();
+		// 	// If this dropdown wasn't expanded, open it
+		// 	if (!isExpanded) {
+		// 		toggleButton.setAttribute("aria-expanded", "true");
+		// 		dropdownMenu.style.display = "block";
+		// 		dropdownMenu.classList.add("open");
+		// 		tabDropdown.classList.add("open");
+		// 		positionDropdown();
 
-				// Add staggered animation delay
-				dropdownMenu.querySelectorAll("li").forEach((li, index) => {
-					li.style.animationDelay = `${index * 0.1}s`;
-				});
-			}
-		});
+		// 		// Add staggered animation delay
+		// 		dropdownMenu.querySelectorAll("li").forEach((li, index) => {
+		// 			li.style.animationDelay = `${index * 0.1}s`;
+		// 		});
+		// 	}
+		// });
 
 		// Handle dropdown item selection - This is the key fix!
 		dropdownMenu.addEventListener("click", (event) => {
