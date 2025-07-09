@@ -187,7 +187,9 @@ if ($start_date && $end_date) {
 								$end_time = get_field('li_cpt_event_end_time', $event_id);
 								$all_day = get_field('li_cpt_event_all_day', $event_id);
 								$wysiwyg = get_the_excerpt($event_id);
-
+								$event_image_id = get_post_thumbnail_id($event_id);
+								$event_image_id = $event_image_id ? $event_image_id : $bst_var_theme_default_image;
+								
 								// Date formatting
 								$start_date = $start_date ? strtotime($start_date) : false;
 								$end_date   = $end_date ? strtotime($end_date) : false;
@@ -232,7 +234,7 @@ if ($start_date && $end_date) {
 								<div class="image-card-caption">
 									<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
 										<div class="image">
-											<?php echo wp_get_attachment_image(get_post_thumbnail_id($event_id), 'thumb_800'); ?>
+											<?php echo wp_get_attachment_image($event_image_id, 'thumb_800'); ?>
 										</div>
 										<div class="caption-card-content">
 											<div class="gl-s52"></div>
