@@ -8,15 +8,15 @@
  * @since 1.0.0
  */
 
-function glide_posts_add_rewrite_rules( $wp_rewrite ) {
-	$new_rules         = array(
-		'resources/page/([0-9]{1,})/?$' => 'index.php?post_type=post&paged=' . $wp_rewrite->preg_index( 1 ),
-		'resources/(.+?)/?$'            => 'index.php?post_type=post&name=' . $wp_rewrite->preg_index( 1 ),
-	);
-	$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
-	return $wp_rewrite->rules;
-}
-add_action( 'generate_rewrite_rules', 'glide_posts_add_rewrite_rules' );
+// function glide_posts_add_rewrite_rules( $wp_rewrite ) {
+// 	$new_rules         = array(
+// 		'resources/page/([0-9]{1,})/?$' => 'index.php?post_type=post&paged=' . $wp_rewrite->preg_index( 1 ),
+// 		'resources/(.+?)/?$'            => 'index.php?post_type=post&name=' . $wp_rewrite->preg_index( 1 ),
+// 	);
+// 	$wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
+// 	return $wp_rewrite->rules;
+// }
+// add_action( 'generate_rewrite_rules', 'glide_posts_add_rewrite_rules' );
 
 function isValidString( $s ) {
 	$pattern = '/\?p=\d+/';
