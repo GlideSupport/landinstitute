@@ -466,6 +466,49 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 	}
 
 
+
+	
+	//new code
+	var learntype =""; 
+	var learntopic =""; 
+	var learncrops =""; 
+
+
+
+	document.querySelectorAll(".learn-list-filter .dropdown-menu").forEach((menu) => {
+		menu.querySelectorAll("a[data-term]").forEach((link) => {
+			link.addEventListener("click", (e) => {
+				e.preventDefault();
+				const taxonomy = menu.id; // donor-type or donation-level
+				const term = link.getAttribute("data-term");
+
+				// Remove 'active' class from siblings
+				menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
+				link.closest("li").classList.add("active");
+
+				// Set selected term
+				if (taxonomy === "learn-type") {
+					learntype = term;
+					document.querySelector("button#types-view").innerHTML =
+						"News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
+				} else if (taxonomy === "learn-topic") {
+					learntopic = term;
+					document.querySelector("button#topic-view").innerHTML =
+						"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
+				}else if (taxonomy === "learn-crops") {
+					learncrops = term;
+					document.querySelector("button#topic-view").innerHTML =
+						"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
+				}
+
+				// Reset to page 1
+				currentPage = 1;
+				fetchnews();
+			});
+		});
+	});
+
+
 	const learn_append_list = document.querySelector(".mainlearn .filter-cards-grid");
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
@@ -479,12 +522,16 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 		if (updateURL) {
 			const url = new URL(window.location);
-			if(currentnewsType){
-				url.searchParams.set("type", currentnewsType || "");
+			if(learntype){
+				url.searchParams.set("learn-type", learntype || "");
 
 			}
-			if(currentnewstopic){
-				url.searchParams.set("topic", currentnewstopic || "");
+			if(learntopic){
+				url.searchParams.set("learn-topic", learntopic || "");
+
+			}
+			if(learncrops){
+				url.searchParams.set("learn-crop", learncrops || "");
 
 			}
 		//	url.searchParams.set("page", paged);
@@ -500,8 +547,9 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			body: new URLSearchParams({
 				action: "filter_learn",
 				paged: paged,
-				news_type: currentnewsType,
-				news_topic:currentnewstopic,
+				post_type: learntype,
+				learn_topic:learntopic,
+				learn_crops:learncrops,
 				nonce: localVars.nonce,
 			}),
 		})
@@ -511,7 +559,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 					// ✅ Corrected this line
 					if (learn_append_list) learn_append_list.innerHTML = data.data.news_html;
 
-					const oldPagination = document.querySelector('.news-pagination-append-container');
+					const oldPagination = document.querySelector('.learn-pagination-append-container');
 					if (oldPagination) {
 						oldPagination.outerHTML = data.data.pagination_html;
 					} else {

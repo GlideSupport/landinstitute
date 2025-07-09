@@ -976,12 +976,12 @@ function handle_ajax_news_filter() {
 
 
 
-
 add_action('wp_ajax_filter_learn', 'handle_ajax_news_learn');
 add_action('wp_ajax_nopriv_filter_learn', 'handle_ajax_news_learn');
 
 function handle_ajax_news_learn() {
- //   check_ajax_referer('news_ajax_nonce', 'nonce');
+    // Optional: enable this if you're using nonce security
+    // check_ajax_referer('news_ajax_nonce', 'nonce');
 
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
@@ -1003,7 +1003,7 @@ function handle_ajax_news_learn() {
         ];
     }
 
-	if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
+    if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
         $tax_query[] = [
             'taxonomy' => 'learn-crop',
             'field'    => 'slug',
@@ -1011,11 +1011,9 @@ function handle_ajax_news_learn() {
         ];
     }
 
-
-
     $args = [
         'post_type'      => 'post',
-        'posts_per_page' => 6,
+        'posts_per_page' => 1,
         'post_status'    => 'publish',
         'paged'          => $paged,
     ];
@@ -1024,20 +1022,21 @@ function handle_ajax_news_learn() {
         $args['tax_query'] = $tax_query;
     }
 
-	// echo '<pre>';
-	// print_r($args);
-	// echo '</pre>';
-
-
-    $news = new WP_Query($args);
+    $query = new WP_Query($args);
+    set_query_var('learn_query', $query);
+    set_query_var('paged_var', $paged);
 
     ob_start();
-    include get_template_directory() . '/partials/content-news-list.php';
+    //echo '<div class="filter-cards-grid">';
+    get_template_part('partials/content', 'learn-list');
+    //echo '</div>';
     $news_html = ob_get_clean();
 
     ob_start();
-    include get_template_directory() . '/partials/content-news-pagination.php';
+    get_template_part('partials/content', 'learn-pagination');
     $pagination_html = ob_get_clean();
+
+    wp_reset_postdata();
 
     wp_send_json_success([
         'news_html'       => $news_html,
