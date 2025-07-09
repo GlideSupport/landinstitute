@@ -26,6 +26,11 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 	 */
 	public function __construct()
 	{
+
+		add_action('init', [$this, 'custom_unregister_post_taxonomies']);
+		add_filter('register_post_type_args', [$this, 'rename_post_to_learn'], 10, 2);
+		add_action('admin_menu', [$this, 'change_admin_menu_labels']);
+
 		// Staff CPT columns
 		add_filter('manage_staff_posts_columns', [$this, 'add_staff_category_column']);
 		add_action('manage_staff_posts_custom_column', [$this, 'show_staff_category_column_content'], 10, 2);
@@ -36,6 +41,56 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 		add_action('manage_event_posts_custom_column', [$this, 'custom_event_column_content'], 10, 2);
 		add_filter('manage_edit-event_sortable_columns', [$this, 'make_event_columns_sortable']);
 		add_action('pre_get_posts', [$this, 'order_events_by_start_date_in_admin']);
+	}
+
+	// Remove category and tag taxonomies from posts
+	function custom_unregister_post_taxonomies()
+	{
+		unregister_taxonomy_for_object_type('category', 'post');
+		unregister_taxonomy_for_object_type('post_tag', 'post');
+	}
+
+	// Rename "Posts" to "Learn" in admin menu and labels
+	function rename_post_to_learn($args, $post_type)
+	{
+		if ($post_type === 'post') {
+			$args['labels'] = array(
+				'name'               => 'Learns',
+				'singular_name'      => 'Learn',
+				'add_new'            => 'Add New',
+				'add_new_item'       => 'Add New Learn',
+				'edit_item'          => 'Edit Learn',
+				'new_item'           => 'New Learn',
+				'view_item'          => 'View Learn',
+				'search_items'       => 'Search Learn',
+				'not_found'          => 'No Learn items found',
+				'not_found_in_trash' => 'No Learn items found in Trash',
+				'all_items'          => 'All Learns',
+				'menu_name'          => 'Learns',
+				'name_admin_bar'     => 'Learn',
+			);
+			$args['menu_name'] = 'Learns';
+		}
+		return $args;
+	}
+
+	// Change the admin menu label from "Posts" to "Learn"
+	function change_admin_menu_labels()
+	{
+		global $menu, $submenu;
+
+		foreach ($menu as $key => $value) {
+			if ($menu[$key][0] === 'Posts') {
+				$menu[$key][0] = 'Learns';
+			}
+		}
+
+		if (isset($submenu['edit.php'])) {
+			$submenu['edit.php'][5][0] = 'All Learns';
+			$submenu['edit.php'][10][0] = 'Add New Learn';
+			// $submenu['edit.php'][15][0] = ''; // Remove Categories
+			// $submenu['edit.php'][16][0] = ''; // Remove Tags
+		}
 	}
 
 	/**
