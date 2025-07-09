@@ -311,12 +311,10 @@ class WP_Theme_Custom extends \Boilerplate
 	 *
 	 * @return void
 	 */
-	public static function pagination($pages = '', $range = 4)
-	{
+	public static function pagination($pages = '', $range = 2) {
 		$showitems = ($range * 2) + 1;
-
 		$paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-
+	
 		if ('' === $pages) {
 			global $wp_query;
 			$pages = $wp_query->max_num_pages;
@@ -324,31 +322,71 @@ class WP_Theme_Custom extends \Boilerplate
 				$pages = 1;
 			}
 		}
-
-		if (1 !== $pages) {
-			echo '<div class="pagination"><span>Page ' . esc_html($paged) . ' of ' . esc_html($pages) . '</span>';
-			if ($paged > 2 && $paged > $range + 1 && $showitems < $pages) {
-				echo "<a href='" . esc_url(get_pagenum_link(1)) . "'>&laquo; First</a>";
-			}
-			if ($paged > 1 && $showitems < $pages) {
-				echo "<a href='" . esc_url(get_pagenum_link($paged - 1)) . "'>&lsaquo; Previous</a>";
-			}
-
-			for ($i = 1; $i <= $pages; $i++) {
-				if (1 !== $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems)) {
-					echo ($paged === $i) ? '<span class="current">' . esc_html($i) . '</span>' : "<a href='" . esc_url(get_pagenum_link($i)) . "' class=\"inactive\">" . esc_html($i) . '</a>';
-				}
-			}
-
-			if ($paged < $pages && $showitems < $pages) {
-				echo '<a href="' . esc_url(get_pagenum_link($paged + 1)) . '">Next &rsaquo;</a>';
-			}
-			if ($paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages) {
-				echo "<a href='" . esc_url(get_pagenum_link($pages)) . "'>Last &raquo;</a>";
-			}
-			echo "<div class='clear'></div></div>\n";
+	
+		if ($pages <= 1) return;
+	
+		echo '<nav class="pagination-container" role="navigation" aria-label="Pagination Navigation">';
+	
+		// Desktop Pagination
+		echo '<div class="desktop-pages">';
+	
+		// Prev Arrow
+		if ($paged > 1) {
+			echo '<div class="arrow-btn prev"><a class="site-btn" href="' . esc_url(get_pagenum_link($paged - 1)) . '" rel="prev">Previous</a></div>';
+		} else {
+			echo '<div class="arrow-btn prev disabled"><span class="site-btn">Previous</span></div>';
 		}
+	
+		// Page Buttons
+		echo '<div class="pagination-list" role="list">';
+		$ellipsis = false;
+		for ($i = 1; $i <= $pages; $i++) {
+			if ($i == 1 || $i == $pages || ($i >= $paged - $range && $i <= $paged + $range)) {
+				$active = ($paged == $i) ? 'active' : '';
+				$current_attr = ($paged == $i) ? ' aria-current="page"' : '';
+				echo '<a class="page-btn ' . $active . '" href="' . esc_url(get_pagenum_link($i)) . '"' . $current_attr . '>' . esc_html($i) . '</a>';
+				$ellipsis = true;
+			} elseif ($ellipsis) {
+				echo '<span class="dots" aria-hidden="true">…</span>';
+				$ellipsis = false;
+			}
+		}
+		echo '</div>';
+	
+		// Next Arrow
+		if ($paged < $pages) {
+			echo '<div class="arrow-btn next"><a class="site-btn" href="' . esc_url(get_pagenum_link($paged + 1)) . '" rel="next">Next</a></div>';
+		} else {
+			echo '<div class="arrow-btn next disabled"><span class="site-btn">Next</span></div>';
+		}
+	
+		echo '</div>'; // end .desktop-pages
+	
+		// Mobile Pagination
+		echo '<div class="mobile-pagination">';
+		$prev_disabled = $paged == 1 ? 'disabled' : '';
+		$next_disabled = $paged == $pages ? 'disabled' : '';
+		echo '<a id="prevBtn" class="arrow-btn ' . $prev_disabled . '" href="' . esc_url(get_pagenum_link(max(1, $paged - 1))) . '" rel="prev"><img src="/assets/src/images/right-circle-arrow.svg" alt="Previous Page" /></a>';
+		echo '<button id="pageTrigger" class="page-trigger ui-18-16-bold" aria-label="Page ' . $paged . ' of ' . $pages . '">' . $paged . '/' . $pages . '</button>';
+		echo '<a id="nextBtn" class="arrow-btn ' . $next_disabled . '" href="' . esc_url(get_pagenum_link(min($pages, $paged + 1))) . '" rel="next"><img src="/assets/src/images/right-circle-arrow.svg" alt="Next Page" /></a>';
+		echo '</div>';
+	
+		// Mobile Popup
+		echo '<div id="paginationPopup" class="pagination-popup"><div class="popup-body">';
+		echo '<div id="popupGrid" class="popup-grid">';
+		for ($i = 1; $i <= $pages; $i++) {
+			$active = ($paged == $i) ? 'active' : '';
+			$current_attr = ($paged == $i) ? ' aria-current="page"' : '';
+			echo '<a class="page-btn ' . $active . '" href="' . esc_url(get_pagenum_link($i)) . '"' . $current_attr . '>' . esc_html($i) . '</a>';
+		}
+		echo '</div>';
+		echo '<a id="popupPrev" class="arrow-btn" href="' . esc_url(get_pagenum_link(max(1, $paged - 1))) . '" rel="prev" aria-label="Previous Page"></a>';
+		echo '<a id="popupNext" class="arrow-btn" href="' . esc_url(get_pagenum_link(min($pages, $paged + 1))) . '" rel="next" aria-label="Next Page"></a>';
+		echo '</div></div>';
+	
+		echo '</nav>'; // end .pagination-container
 	}
+	
 
 	/**
 	 * Return sanitized string with HTML entities decoded.
