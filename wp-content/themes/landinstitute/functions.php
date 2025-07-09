@@ -908,4 +908,3 @@ function save_event_timestamp_with_timezone($post_id, $post, $update) {
 
     add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
 }
-

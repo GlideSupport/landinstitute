@@ -47,8 +47,19 @@ class WP_Theme_Settings {
 		//custom function for mega menu
 		add_filter('nav_menu_css_class', [ '\BaseTheme\Settings\WP_Theme_Settings', 'li_add_custom_nav_menu_classes' ], 10, 4);
 
+		add_action( 'init', array( $this, 'li_unregister_default_taxonomies' ) );
+		add_action( 'admin_menu', array( $this, 'remove_category_tag_meta_boxes' ) );
 	}
 
+	public function li_unregister_default_taxonomies() {
+		unregister_taxonomy_for_object_type('category', 'post');
+		unregister_taxonomy_for_object_type('post_tag', 'post');
+	}
+	
+	public function remove_category_tag_meta_boxes() {
+		remove_meta_box('categorydiv', 'post', 'side');
+		remove_meta_box('tagsdiv-post_tag', 'post', 'side');
+	}
 	/**
 	 * Adds custom classes to menu items for mega menus and parent items.
 	 *
