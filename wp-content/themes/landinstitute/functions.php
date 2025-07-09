@@ -852,3 +852,81 @@ function get_formatted_event_datetime($post_id) {
 
     return $event_display;
 }
+
+
+
+
+add_action('init', 'update_existing_event_timestamps');
+function update_existing_event_timestamps() {
+    // Run only for admins or CLI to avoid performance issues
+    if (!is_admin()) return;
+
+    $args = array(
+        'post_type'      => 'event',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'fields'         => 'ids', // we only need IDs
+    );
+
+    $event_posts = get_posts($args);
+
+    foreach ($event_posts as $post_id) {
+        $timezone        = get_field('timezone', $post_id) ?: 'UTC';
+        $start_date_raw  = get_field('li_cpt_event_start_date', $post_id); // Ymd or Y-m-d
+        $end_date_raw    = get_field('li_cpt_event_end_date', $post_id);
+        $start_time_raw  = get_field('li_cpt_event_start_time', $post_id);
+        $end_time_raw    = get_field('li_cpt_event_end_time', $post_id);
+
+        $date_to_use = $start_date_raw ?: $end_date_raw;
+        $time_to_use = $start_time_raw ?: '00:00';
+
+        if (!$date_to_use) continue;
+
+        // Normalize date if in Ymd format
+        if (preg_match('/^\d{8}$/', $date_to_use)) {
+            $date_obj = DateTime::createFromFormat('Ymd', $date_to_use);
+            if (!$date_obj) continue;
+            $date_str = $date_obj->format('Y-m-d');
+        } else {
+            $date_str = $date_to_use;
+        }
+
+        $clean_time = preg_replace('/\s+/', '', $time_to_use);
+        $datetime_string = $date_str . ' ' . $clean_time;
+
+        try {
+            $dt = new DateTime($datetime_string, new DateTimeZone($timezone));
+        } catch (Exception $e) {
+            $dt = new DateTime($datetime_string, new DateTimeZone('UTC'));
+        }
+
+        $timestamp = $dt->getTimestamp();
+
+		$datetime_data = array(
+            'timestamp'     => $dt->getTimestamp(),
+            'iso8601'       => $dt->format(DateTime::ATOM), // e.g., 2025-07-09T12:30:00+05:30
+            'date'          => $dt->format('Y-m-d'),
+            'time'          => $dt->format('H:i:s'),
+            'timezone'      => $dt->getTimezone()->getName(),
+            'formatted'     => $dt->format('l, F j, Y g:i A T'), // e.g., Monday, July 8, 2025 12:00 PM CDT
+        );
+
+
+        update_field('li_cpt_event_timestepm_with_selected_timezone', $timestamp, $post_id);
+		update_post_meta($post_id, 'li_cpt_event_timestepm_with_selected_timezone_all', $datetime_data);
+
+    }
+
+    // Optional: Run only once per page load
+    remove_action('init', 'update_existing_event_timestamps');
+
+    // Optional: Display message in admin for confirmation
+    if (is_admin() && !wp_doing_ajax()) {
+        add_action('admin_notices', function () {
+            echo '<div class="notice notice-success is-dismissible"><p>Event timestamps updated successfully.</p></div>';
+        });
+    }
+}
+
+
+
