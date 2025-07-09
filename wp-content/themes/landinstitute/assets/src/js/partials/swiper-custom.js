@@ -475,5 +475,84 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 	// New Page slider end
 
+	//Event detail page js code start
+	const swiperEl = document.querySelector('.read-slide-preview');
+	if (swiperEl) {
+		const swiper = new Swiper(swiperEl, {
+			slidesPerView: 1,
+			spaceBetween: 0,
+			breakpoints: {
+				480: {
+					slidesPerView: 2,
+					spaceBetween: 0
+				},
+				1028: {
+					slidesPerView: 3,
+					spaceBetween: 0
+				},
+				1920: {
+					slidesPerView: 3,
+					spaceBetween: 0
+				}
+			}
+		});
+	}
+
+	// Custom cursor logic if .cursor-drag-icon exists
+	const swiperContainer = document.querySelector(".cursor-drag-icon");
+
+	if (swiperContainer) {
+		const customCursor = document.createElement("div");
+		customCursor.classList.add("custom-cursor");
+		document.body.appendChild(customCursor);
+
+		swiperContainer.addEventListener("pointerenter", () => {
+			customCursor.classList.add("visible");
+		});
+
+		swiperContainer.addEventListener("pointerleave", () => {
+			customCursor.classList.remove("visible");
+		});
+
+		swiperContainer.addEventListener("pointermove", (e) => {
+			customCursor.style.left = `${e.clientX}px`;
+			customCursor.style.top = `${e.clientY}px`;
+		});
+	}
+	//Event detail page js code end
+
+	//Image gallery slider code start
+		document.querySelectorAll('.image-gallery-slider').forEach((sliderEl, index) => {
+			new Swiper(sliderEl, {
+				loop: true,
+				navigation: {
+					nextEl: sliderEl.parentElement.querySelector('.swiper-button-next'),
+					prevEl: sliderEl.parentElement.querySelector('.swiper-button-prev'),
+				},
+				centeredSlides: false,
+				slidesPerView: 1.5,
+				spaceBetween: 16,
+				breakpoints: {
+					375: {
+						slidesPerView: 1.27,
+						spaceBetween: 16,
+					},
+					641: {
+						slidesPerView: 2.5,
+						spaceBetween: 16,
+					},
+					1440: {
+						slidesPerView: 2.97,
+						spaceBetween: 20,
+					},
+					1920: {
+						slidesPerView: 3.7,
+						spaceBetween: 20,
+					}
+				},
+			});
+		});
+	//Image gallery slider code end
+	
 	
 });

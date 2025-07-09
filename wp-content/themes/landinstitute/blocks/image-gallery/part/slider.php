@@ -20,37 +20,3 @@
 		</div>
 	</div>
 <?php endif; ?>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		new Swiper('.image-gallery-slider', {
-			loop: true,
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-			centeredSlides: false,
-			slidesPerView: 1.5,
-			spaceBetween: 16,
-			breakpoints: {
-				1920: {
-					slidesPerView: 3.7,
-					spaceBetween: 20,
-				},
-				1440: {
-					slidesPerView: 2.97,
-					spaceBetween: 20,
-				},
-				641: {
-					slidesPerView: 2.5,
-					spaceBetween: 16,
-				},
-				375: {
-					slidesPerView: 1.27,
-					spaceBetween: 16,
-				}
-			},
-		});
-	});
-</script>
