@@ -973,3 +973,75 @@ function handle_ajax_news_filter() {
         'pagination_html' => $pagination_html
     ]);
 }
+
+
+
+
+add_action('wp_ajax_filter_learn', 'handle_ajax_news_learn');
+add_action('wp_ajax_nopriv_filter_learn', 'handle_ajax_news_learn');
+
+function handle_ajax_news_learn() {
+ //   check_ajax_referer('news_ajax_nonce', 'nonce');
+
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+    $tax_query = [];
+
+    if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'learn-type',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['post_type']),
+        ];
+    }
+
+    if (!empty($_POST['learn_topic']) && $_POST['learn_topic'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'learn-topic',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['learn_topic']),
+        ];
+    }
+
+	if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'learn-crop',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['learn_crops']),
+        ];
+    }
+
+
+
+    $args = [
+        'post_type'      => 'post',
+        'posts_per_page' => 6,
+        'post_status'    => 'publish',
+        'paged'          => $paged,
+    ];
+
+    if (!empty($tax_query)) {
+        $args['tax_query'] = $tax_query;
+    }
+
+	// echo '<pre>';
+	// print_r($args);
+	// echo '</pre>';
+
+
+    $news = new WP_Query($args);
+
+    ob_start();
+    include get_template_directory() . '/partials/content-news-list.php';
+    $news_html = ob_get_clean();
+
+    ob_start();
+    include get_template_directory() . '/partials/content-news-pagination.php';
+    $pagination_html = ob_get_clean();
+
+    wp_send_json_success([
+        'news_html'       => $news_html,
+        'pagination_html' => $pagination_html
+    ]);
+}
+
