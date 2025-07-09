@@ -1,7 +1,12 @@
 <?php
 $total_pages   = $news->max_num_pages;
 
-$current_page = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+$current_page = get_query_var('paged');
+if(!$current_page){
+    $current_page = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+
+}
 
 
 //$current_page  = max(1, get_query_var('paged') ? get_query_var('paged') : 1);

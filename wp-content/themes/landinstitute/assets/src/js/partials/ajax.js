@@ -347,6 +347,9 @@ attachPaginationEventListeners();
 
 //new code
 var currentnewsType =""; 
+var currentnewstopic =""; 
+
+
 document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-term]").forEach((link) => {
 		link.addEventListener("click", (e) => {
@@ -363,8 +366,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 				currentnewsType = term;
 				document.querySelector("button#types-view").innerHTML =
 					"News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
-			} else if (taxonomy === "topic-view") {
-				currentnewslevel = term;
+			} else if (taxonomy === "news-topic") {
+				currentnewstopic = term;
 				document.querySelector("button#topic-view").innerHTML =
 					"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
 			}
@@ -388,6 +391,21 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			news_append_list.appendChild(loadingElem);
 		}
 
+		if (updateURL) {
+			const url = new URL(window.location);
+			if(currentnewsType){
+				url.searchParams.set("type", currentnewsType || "");
+
+			}
+			if(currentnewstopic){
+				url.searchParams.set("topic", currentnewstopic || "");
+
+			}
+		//	url.searchParams.set("page", paged);
+			window.history.pushState({}, "", url);
+		}
+
+
 		fetch(localVars.ajax_url, {
 			method: "POST",
 			headers: {
@@ -397,6 +415,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 				action: "filter_news",
 				paged: paged,
 				news_type: currentnewsType,
+				news_topic:currentnewstopic,
 				nonce: localVars.nonce,
 			}),
 		})

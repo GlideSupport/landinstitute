@@ -285,6 +285,10 @@ function filter_news_posts_callback()
 		$args['tax_query'] = $tax_query;
 	}
 
+	echo '<pre>';
+	print_r($args);
+	echo '</pre>';
+
 	$query = new WP_Query($args);
 
 	if ($query->have_posts()) :
@@ -928,11 +932,11 @@ function handle_ajax_news_filter() {
         ];
     }
 
-    if (!empty($_POST['news-topic']) && $_POST['news-topic'] !== 'all') {
+    if (!empty($_POST['news_topic']) && $_POST['news_topic'] !== 'all') {
         $tax_query[] = [
             'taxonomy' => 'news-topic',
             'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['news-topic']),
+            'terms'    => sanitize_text_field($_POST['news_topic']),
         ];
     }
 

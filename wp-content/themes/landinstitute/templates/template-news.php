@@ -138,7 +138,27 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						</div>
 					</div>
 					<?php
-								$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+
+					$tax_query = [];
+
+					if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
+						$tax_query[] = [
+							'taxonomy' => 'news-type',
+							'field'    => 'slug',
+							'terms'    => sanitize_text_field($_GET['type']),
+						];
+					}
+				
+					if (!empty($_GET['topic']) && $_GET['topic'] !== 'all') {
+						$tax_query[] = [
+							'taxonomy' => 'news-topic',
+							'field'    => 'slug',
+							'terms'    => sanitize_text_field($_GET['topic']),
+						];
+					}
+
 
 					$args = [
 						'post_type'      => 'news',
@@ -147,6 +167,9 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						'paged'          => $paged,
 						'post_status'    => 'publish',
 					];
+					if (!empty($tax_query)) {
+						$args['tax_query'] = $tax_query;
+					}
 					$news = new WP_Query($args);
 
 					if ($news->have_posts()) : ?>
