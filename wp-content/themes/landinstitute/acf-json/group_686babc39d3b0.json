@@ -3,30 +3,27 @@
     "title": "Learn Detail Options",
     "fields": [
         {
-            "key": "field_686babc52348c",
-            "label": "Author",
-            "name": "li_ldo_author",
+            "key": "field_686e22ef5dc2f",
+            "label": "Post Settings",
+            "name": "",
             "aria-label": "",
-            "type": "text",
+            "type": "tab",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
-            "key": "field_686bac082348d",
-            "label": "Author Name",
-            "name": "li_ldo_author_name",
+            "key": "field_686babc52348c",
+            "label": "Authors",
+            "name": "li_ldo_authors",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -66,11 +63,11 @@
             "append": ""
         },
         {
-            "key": "field_686bac502348f",
-            "label": "Publication Link",
-            "name": "li_ldo_publication_link",
+            "key": "field_686e20a35b933",
+            "label": "Background Pattern",
+            "name": "_li_ldo_background_pattern",
             "aria-label": "",
-            "type": "link",
+            "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -80,11 +77,118 @@
                 "id": ""
             },
             "return_format": "array",
-            "allow_in_bindings": 0
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_686e224a5dc2b",
+            "label": "Cover Image",
+            "name": "li_ldo_cover_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_686e22565dc2c",
+            "label": "PDF URL",
+            "name": "li_ldo_pdf",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_686e22715dc2d",
+            "label": "YouTube URL",
+            "name": "li_ldo_youtube_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_686e227a5dc2e",
+            "label": "SoundCloud URL",
+            "name": "li_ldo_soundcloud_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_686e230bb6f8e",
+            "label": "Related Posts Section Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_686d1eaa2ceea",
-            "label": "Read More",
+            "label": "Related Posts Heading",
             "name": "li_ido_read_more",
             "aria-label": "",
             "type": "block_title",
@@ -242,6 +346,24 @@
             "bidirectional_target": []
         },
         {
+            "key": "field_686e2344b6f8f",
+            "label": "Newsletter Subscription Section Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_686d1f9d2ceee",
             "label": "Newsletter Form Visible",
             "name": "li_ldo_newsletter_form_visible",
@@ -322,7 +444,7 @@
         },
         {
             "key": "field_686d20212cef1",
-            "label": "Form Selector",
+            "label": "Newsletter Subscription Form Selector",
             "name": "li_ldo_form_selector",
             "aria-label": "",
             "type": "forms",
@@ -366,5 +488,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751982147
+    "modified": 1752048661
 }
