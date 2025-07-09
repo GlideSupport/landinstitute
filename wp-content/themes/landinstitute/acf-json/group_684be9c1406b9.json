@@ -243,6 +243,27 @@
             "allow_in_bindings": 0
         },
         {
+            "key": "field_686e46d0a46e0",
+            "label": "BG Pattern Visible",
+            "name": "li_cpt_event_bg_pattern_visible",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
+        },
+        {
             "key": "field_686e402ae5eb5",
             "label": "Select Background Pattern (If no pattern is selected, the default background image from the theme settings will be used)",
             "name": "li_cpt_event_bg_pattern",
@@ -250,7 +271,15 @@
             "type": "image",
             "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1440px by 480px (Regular Display) - Maximum 2880px by 960px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686e46d0a46e0",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -552,5 +581,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752055953
+    "modified": 1752057625
 }
