@@ -17,12 +17,18 @@
 						<div class="nav-container">
 							<div class="header-nav">
 								<?php include get_template_directory() . '/partials/header/header-mega-menu.php'; ?>
-								<?php if (!empty($bst_var_tohdr_btn)): ?>
-									<div class="header-btns desktop-hide">
+								<div class="popup-search desktop-hide">
+									<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+										<button class="search-icon" type="submit"><img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon"></button>
+										<input type="text" name="s" placeholder="Search" autofocus="">
+									</form>
+								</div>
+								<div class="header-btns desktop-hide">
+									<?php if (!empty($bst_var_tohdr_btn)): ?>
 										<?php echo BaseTheme::button($bst_var_tohdr_btn, 'site-btn btn-sunflower-yellow sm-btn arrow-heart-symbol'); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+									<?php endif; ?>
+								</div>
+							</div>	
 							<div class="search-drop">
 								<!-- Add "active-search" on click of "search-popup" it will open sub menu of search  -->
 								<a href="javascript:void(0)" class="search-popup">
