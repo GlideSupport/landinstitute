@@ -540,7 +540,6 @@ html {
                     height: 100%;
                     overflow-y: auto;
                     padding: 36px 36px 100px 36px;
-                    border-top: 2px solid var(--gb_base_brown);
 
                     @media(max-width: 1200px) {
                         padding: 28px 24px 84px;
@@ -736,13 +735,14 @@ html {
             .wpgmza_map {
                 .wpgmza-inner-stack.left {
                     max-width: 100%;
+                    top: 0;
+                    transform: inherit;
 
                     .grouping {
                         background: var(--gb_base_cream);
                         border-right: 2px solid var(--gb_base_brown);
                         padding: 36px 36px;
                         width: clamp(360px, calc(22.5rem + ((1vw - 9.92px) * 33.5196)), 480px);
-                        border-top: 2px solid var(--gb_base_brown);
 
                         @media(max-width: 1200px) {
                             padding: 55px 24px 28px;
