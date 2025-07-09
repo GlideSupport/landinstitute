@@ -568,7 +568,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Tab Content js end
 });
 function initDropdownMenus() {
-	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
+	const tabDropdowns = document.querySelectorAll(".menu-dropdown");
 
 	if (!tabDropdowns.length) {
 		return;
@@ -579,13 +579,8 @@ function initDropdownMenus() {
 			return;
 		}
 
-		let toggleButton;
-
-		if (tabDropdown.closest('.newsmain')) {
-			toggleButton = tabDropdown.querySelector('.dropdown-toggle');
-		} else {
-			toggleButton = tabDropdown.querySelector('.dropdown-toggle');
-		}				const dropdownMenu = tabDropdown.querySelector(".dropdown-menu");
+		const toggleButton = tabDropdown.querySelector(".menu-dropdown .dropdown-toggle");
+		const dropdownMenu = tabDropdown.querySelector(".menu-dropdown .dropdown-menu");
 
 		if (!toggleButton || !dropdownMenu) {
 			return;
@@ -605,10 +600,10 @@ function initDropdownMenus() {
 		}
 
 		function closeDropdown() {
-			// toggleButton.setAttribute("aria-expanded", "false");
-			// dropdownMenu.style.display = "none";
-			// tabDropdown.classList.remove("open");
-			// dropdownMenu.classList.remove("open");
+			toggleButton.setAttribute("aria-expanded", "false");
+			dropdownMenu.style.display = "none";
+			tabDropdown.classList.remove("open");
+			dropdownMenu.classList.remove("open");
 		}
 
 		// Toggle dropdown on button click
@@ -699,10 +694,8 @@ function initDropdowns() {
 
 		function positionDropdown() {
 			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop =
-				window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft =
-				window.pageXOffset || document.documentElement.scrollLeft;
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
 			dropdownMenu.style.position = "absolute";
 			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
@@ -712,10 +705,10 @@ function initDropdowns() {
 		}
 
 		function closeDropdown() {
-			// toggleButton.setAttribute("aria-expanded", "false");
-			// dropdownMenu.style.display = "none";
-			// tabDropdown.classList.remove("open");
-			// dropdownMenu.classList.remove("open");
+			toggleButton.setAttribute("aria-expanded", "false");
+			dropdownMenu.style.display = "none";
+			tabDropdown.classList.remove("open");
+			dropdownMenu.classList.remove("open");
 		}
 
 		function closeAllDropdowns() {
@@ -753,30 +746,30 @@ function initDropdowns() {
 		}
 
 		// Toggle dropdown on button click
-		// toggleButton.addEventListener("click", (event) => {
-		// 	event.preventDefault();
-		// 	event.stopPropagation();
+		toggleButton.addEventListener("click", (event) => {
+			event.preventDefault();
+			event.stopPropagation();
 
-		// 	const isExpanded =
-		// 		toggleButton.getAttribute("aria-expanded") === "true";
+			const isExpanded =
+				toggleButton.getAttribute("aria-expanded") === "true";
 
-		// 	// Close all dropdowns first
-		// 	closeAllDropdowns();
+			// Close all dropdowns first
+			closeAllDropdowns();
 
-		// 	// If this dropdown wasn't expanded, open it
-		// 	if (!isExpanded) {
-		// 		toggleButton.setAttribute("aria-expanded", "true");
-		// 		dropdownMenu.style.display = "block";
-		// 		dropdownMenu.classList.add("open");
-		// 		tabDropdown.classList.add("open");
-		// 		positionDropdown();
+			// If this dropdown wasn't expanded, open it
+			if (!isExpanded) {
+				toggleButton.setAttribute("aria-expanded", "true");
+				dropdownMenu.style.display = "block";
+				dropdownMenu.classList.add("open");
+				tabDropdown.classList.add("open");
+				positionDropdown();
 
-		// 		// Add staggered animation delay
-		// 		dropdownMenu.querySelectorAll("li").forEach((li, index) => {
-		// 			li.style.animationDelay = `${index * 0.1}s`;
-		// 		});
-		// 	}
-		// });
+				// Add staggered animation delay
+				dropdownMenu.querySelectorAll("li").forEach((li, index) => {
+					li.style.animationDelay = `${index * 0.1}s`;
+				});
+			}
+		});
 
 		// Handle dropdown item selection - This is the key fix!
 		dropdownMenu.addEventListener("click", (event) => {
@@ -892,22 +885,6 @@ function initDropdowns() {
 		});
 	});
 }
-
-// Re-initialize dropdowns if new ones are added dynamically
-function reinitDropdowns() {
-	initDropdowns();
-}
-
-// Listen for the custom filter event (for your AJAX implementation)
-document.addEventListener("dropdownFilterChanged", (event) => {
-	const { filterType, selectedTerm, selectedText } = event.detail;
-	console.log(`Filter changed - Type: ${filterType}, Term: ${selectedTerm}, Text: ${selectedText}`);
-
-	// Add your AJAX call here
-	// Example:
-	// performAjaxFilter(filterType, selectedTerm);
-});
-
 //dropdown menu js end
 
 //Scrolling Text block js start

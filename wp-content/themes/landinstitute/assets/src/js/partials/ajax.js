@@ -346,8 +346,8 @@ attachPaginationEventListeners();
 
 
 //new code
-const currentnewsType =""; 
-document.querySelectorAll(".news-list-filter-title .dropdown-menu").forEach((menu) => {
+var currentnewsType =""; 
+document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-term]").forEach((link) => {
 		link.addEventListener("click", (e) => {
 			e.preventDefault();

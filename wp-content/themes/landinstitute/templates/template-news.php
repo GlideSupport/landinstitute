@@ -119,7 +119,7 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 	</section>
 	<section class="container-1280 bg-base-cream newsmain">
 		<div class="wrapper">
-			<div class="news-list-filter-title full-width-content has-border-bottom">
+			<div class="full-width-content has-border-bottom">
 				<div class="filter-block">
 					<div class="filter">
 						<div class="filter-title ui-18-16-bold">Filter:</div>
@@ -129,37 +129,11 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 								<button class="dropdown-toggle" id="types-view" aria-expanded="false"
 									aria-haspopup="true" aria-controls="news-type">Post type: All types<div class="arrow-icon"></div>
 								</button>
-
-								<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
-									<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a></li>
-									<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-										<?php foreach ($terms as $term) : ?>
-											<li>
-												<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
-													<?php echo esc_html($term->name); ?>
-												</a>
-											</li>
-										<?php endforeach; ?>
-									<?php endif; ?>
-								</ul>
 							</div>
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="topic-view" aria-expanded="false"
 									aria-haspopup="true" aria-controls="news-topic">Topic: All topics<div class="arrow-icon"></div>
 								</button>
-
-								<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
-									<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a></li>
-									<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
-										<?php foreach ($topic_terms as $topic_term) : ?>
-											<li>
-												<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
-													<?php echo esc_html($topic_term->name); ?>
-												</a>
-											</li>
-										<?php endforeach; ?>
-									<?php endif; ?>
-								</ul>
 							</div>
 						</div>
 					</div>
@@ -185,6 +159,32 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 			</div>
 		</div>
 	</section>
+<div class="news-list-filter">
+	<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
+		<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a></li>
+		<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+			<?php foreach ($terms as $term) : ?>
+				<li>
+					<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
+						<?php echo esc_html($term->name); ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</ul>
+	<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
+		<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a></li>
+		<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
+			<?php foreach ($topic_terms as $topic_term) : ?>
+				<li>
+					<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
+						<?php echo esc_html($topic_term->name); ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</ul>
+</div>
 	<?php
 
 	if (have_posts()) {
