@@ -182,31 +182,32 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 			</div>
 		</div>
 	</section>
-<div class="news-list-filter">
-	<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
-		<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a></li>
-		<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-			<?php foreach ($terms as $term) : ?>
-				<li>
-					<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
-						<?php echo esc_html($term->name); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</ul>
-	<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
-		<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a></li>
-		<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
-			<?php foreach ($topic_terms as $topic_term) : ?>
-				<li>
-					<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
-						<?php echo esc_html($topic_term->name); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</ul>
+	<div class="news-list-filter">
+		<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
+			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a></li>
+			<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+				<?php foreach ($terms as $term) : ?>
+					<li>
+						<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
+							<?php echo esc_html($term->name); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</ul>
+		<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
+			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a></li>
+			<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
+				<?php foreach ($topic_terms as $topic_term) : ?>
+					<li>
+						<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
+							<?php echo esc_html($topic_term->name); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</ul>
+	</div>
 </div>
 	<?php
 
