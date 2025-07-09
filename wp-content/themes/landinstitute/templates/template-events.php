@@ -192,8 +192,8 @@ $latest_featured_event = new WP_Query(array(
 								$eventargs['meta_query'] = [
 									'relation' => 'AND',
 									[
-										'key' => 'li_cpt_event_start_date',
-										'value' => date('Ymd'),
+										'key' => 'li_cpt_event_timestepm_with_selected_timezone',
+										'value'   => $current_timestamp,
 										'compare' => '>=',
 										'type' => 'NUMERIC'
 									],
