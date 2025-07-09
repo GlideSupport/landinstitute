@@ -824,15 +824,15 @@ function get_formatted_event_datetime($post_id) {
     $end_datetime   = new DateTime("$end_date_raw $event_end_time");
 
     // Set timezone if available
-    if (!empty($timezone)) {
-        try {
-            $tz = new DateTimeZone($timezone);
-            $start_datetime->setTimezone($tz);
-            $end_datetime->setTimezone($tz);
-        } catch (Exception $e) {
-            // Fallback: no action
-        }
-    }
+    // if (!empty($timezone)) {
+    //     try {
+    //         $tz = new DateTimeZone($timezone);
+    //         $start_datetime->setTimezone($tz);
+    //         $end_datetime->setTimezone($tz);
+    //     } catch (Exception $e) {
+    //         // Fallback: no action
+    //     }
+    // }
 
     // Build display output
     if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
