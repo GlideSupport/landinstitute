@@ -506,7 +506,7 @@ function load_more_events_callback()
 	$eventargs = array(
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
-		'posts_per_page' => 1,
+		'posts_per_page' => 10,
 		'orderby'        => 'meta_value_num', // Ensure numeric comparison
 		'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 		'order'          => 'ASC',
