@@ -31,11 +31,6 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 		add_filter('register_post_type_args', [$this, 'rename_post_to_learn'], 10, 2);
 		add_action('admin_menu', [$this, 'change_admin_menu_labels']);
 
-		// Staff CPT columns
-		add_filter('manage_staff_posts_columns', [$this, 'add_staff_category_column']);
-		add_action('manage_staff_posts_custom_column', [$this, 'show_staff_category_column_content'], 10, 2);
-		add_filter('manage_edit-staff_sortable_columns', [$this, 'make_staff_category_column_sortable']);
-
 		// Event CPT columns
 		add_filter('manage_event_posts_columns', [$this, 'custom_event_columns']);
 		add_action('manage_event_posts_custom_column', [$this, 'custom_event_column_content'], 10, 2);
@@ -88,48 +83,7 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 		if (isset($submenu['edit.php'])) {
 			$submenu['edit.php'][5][0] = 'All Learns';
 			$submenu['edit.php'][10][0] = 'Add New Learn';
-			// $submenu['edit.php'][15][0] = ''; // Remove Categories
-			// $submenu['edit.php'][16][0] = ''; // Remove Tags
 		}
-	}
-
-	/**
-	 * Add Staff Category column to Staff CPT admin list
-	 *
-	 * @param array $columns Existing columns
-	 * @return array Modified columns
-	 */
-	public function add_staff_category_column($columns)
-	{
-		unset($columns['date']);
-		$columns['staff_category'] = __('Staff Category', 'land_institute');
-		$columns['date'] = __('Date', 'land_institute');
-		return $columns;
-	}
-
-	/**
-	 * Display content for Staff Category column
-	 *
-	 * @param string $column Column name
-	 * @param int $post_id Post ID
-	 */
-	public function show_staff_category_column_content($column, $post_id)
-	{
-		if ($column === 'staff_category') {
-			$this->display_term_links($post_id, 'staff-category');
-		}
-	}
-
-	/**
-	 * Make Staff Category column sortable
-	 *
-	 * @param array $columns Sortable columns
-	 * @return array Modified sortable columns
-	 */
-	public function make_staff_category_column_sortable($columns)
-	{
-		$columns['staff_category'] = 'staff_category';
-		return $columns;
 	}
 
 	/**
@@ -146,8 +100,6 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 			$new_columns[$key] = $value;
 			if ($key === 'title') {
 				$new_columns['event_datetime'] = __('Date and Time', 'land_institute');
-				$new_columns['event_cat'] = __('Event Categories', 'land_institute');
-				$new_columns['event_tags'] = __('Event Tags', 'land_institute');
 			}
 		}
 		return $new_columns;
@@ -164,12 +116,6 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 		switch ($column) {
 			case 'event_datetime':
 				$this->display_event_datetime($post_id);
-				break;
-			case 'event_cat':
-				$this->display_term_links($post_id, 'event-categories');
-				break;
-			case 'event_tags':
-				$this->display_term_links($post_id, 'event-tags');
 				break;
 		}
 	}
