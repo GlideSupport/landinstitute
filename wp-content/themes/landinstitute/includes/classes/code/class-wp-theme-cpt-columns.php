@@ -50,7 +50,7 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 	{
 		if ($post_type === 'post') {
 			$args['labels'] = array(
-				'name'               => 'Learns',
+				'name'               => 'Learn',
 				'singular_name'      => 'Learn',
 				'add_new'            => 'Add New',
 				'add_new_item'       => 'Add New Learn',
@@ -60,11 +60,11 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 				'search_items'       => 'Search Learn',
 				'not_found'          => 'No Learn items found',
 				'not_found_in_trash' => 'No Learn items found in Trash',
-				'all_items'          => 'All Learns',
-				'menu_name'          => 'Learns',
+				'all_items'          => 'All Learn',
+				'menu_name'          => 'Learn',
 				'name_admin_bar'     => 'Learn',
 			);
-			$args['menu_name'] = 'Learns';
+			$args['menu_name'] = 'Learn';
 		}
 		return $args;
 	}
@@ -76,12 +76,12 @@ class WP_Theme_CPT_Columns extends \Boilerplate
 
 		foreach ($menu as $key => $value) {
 			if ($menu[$key][0] === 'Posts') {
-				$menu[$key][0] = 'Learns';
+				$menu[$key][0] = 'Learn';
 			}
 		}
 
 		if (isset($submenu['edit.php'])) {
-			$submenu['edit.php'][5][0] = 'All Learns';
+			$submenu['edit.php'][5][0] = 'All Learn';
 			$submenu['edit.php'][10][0] = 'Add New Learn';
 		}
 	}
