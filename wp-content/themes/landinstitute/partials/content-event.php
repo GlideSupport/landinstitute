@@ -89,8 +89,7 @@ if ($start_date && $end_date) {
 			
 ?>
 
-<section id="hero-section"
-	class="hero-section hero-section-default hero-alongside-menu variation-width variation-details">
+<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-width variation-details">
 	<!-- hero start -->
 	<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
 	<div class="hero-default has-border-bottom">
@@ -118,8 +117,13 @@ if ($start_date && $end_date) {
 	</div>
 </section>			
 
-<?php the_content(); ?>
-
+<section class="container-720 bg-base-cream">
+	<div class="wrapper">
+		<div class="gl-s96"></div>
+			<?php the_content(); ?>
+	</div>
+</div>
+</section>	
 <section class="container-1280 bg-base-cream">
 	<div class="gl-s128"></div>
 	<div class="wrapper">
