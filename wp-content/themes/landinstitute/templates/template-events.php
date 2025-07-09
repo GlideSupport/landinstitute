@@ -165,19 +165,21 @@ $latest_featured_event = new WP_Query(array(
 						<div id="event-list-main-div" class="event-list-main-div">
 							<?php
 
+							$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+
 							$eventargs = array(
 								'post_type'      => 'event',
 								'post_status'    => 'publish',
-								'posts_per_page' => 10,
-								'orderby'        => 'meta_value',
-								'meta_key'       => 'li_cpt_event_start_date',
+								'posts_per_page' => 1,
+								'orderby'        => 'meta_value_num', // Ensure numeric comparison
+								'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 								'order'          => 'ASC',
 								'meta_query'     => array(
 									array(
-										'key'     => 'li_cpt_event_start_date',
-										'value'   => date('Ymd'), // current date in Ymd format (e.g., 20250708)
-										'type'    => 'NUMERIC',   // important if the field is stored as number or string
-										'compare' => '>='         // only future or today
+										'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
+										'value'   => $current_timestamp,
+										'type'    => 'NUMERIC',
+										'compare' => '>='
 									)
 								)
 							);
