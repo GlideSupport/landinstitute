@@ -3174,28 +3174,6 @@
             "append": ""
         },
         {
-            "key": "field_686e3ac27d49f",
-            "label": "WYSIWYG",
-            "name": "bst_var_dl_wysiwyg",
-            "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "wysiwyg_height": "",
-            "allow_in_bindings": 0,
-            "tabs": "all",
-            "toolbar": "full",
-            "media_upload": 0,
-            "delay": 0
-        },
-        {
             "key": "field_686e3ada7d4a0",
             "label": "Repeater",
             "name": "bst_var_dl_repeater",
@@ -3406,5 +3384,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752055035
+    "modified": 1752055276
 }
