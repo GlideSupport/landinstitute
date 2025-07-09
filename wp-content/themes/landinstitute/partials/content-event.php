@@ -112,7 +112,10 @@ if ($start_date && $end_date) {
 					</div>
 				</div>
 				<div class="col-right">
-				<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
+					<div class="bg-pattern">
+						<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-Repair-Sky-Blue-scaled.jpg"
+							width="" height="" alt="" />
+					</div>	
 				<?php echo !empty($featured_image_html) ? '<div class="block-image-center">' . $featured_image_html . '</div>' : ''; ?>				</div>
 			</div>
 		</div>

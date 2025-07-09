@@ -13,15 +13,11 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object ) =
 // Post Tags & Categories.
 $bst_var_post_categories = get_the_category( $bst_var_post_id );
 
-$bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
-$featured_image_id = get_post_thumbnail_id();
-$featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
-$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', false, ['alt' => esc_attr(get_the_title())]);
-
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
-$li_ldo_authors = $bst_fields['li_ldo_authors'];
-$li_ldo_publication = $bst_fields['li_ldo_publication'];
-$bg_pattern = $bst_fields['li_ldo_background_pattern'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
+$li_ldo_author_name = $bst_fields['li_ldo_author_name'];
+$li_ldo_publication_link = $bst_fields['li_ldo_publication_link'];
+$url = $li_ldo_publication_link['url'];
+$title = $li_ldo_publication_link['title'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
 $li_ido_read_more_check = BaseTheme::headline_check($li_ido_read_more);
 $li_ido_relatedselected_post = $bst_fields['li_ido_relatedselected_post'] ?? 'recent';
@@ -31,9 +27,6 @@ $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
-$li_po_bg_image_visible = array_key_exists('li_po_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_po_bg_image_visible'] : true;
-$li_po_bg_image = $bst_fields['li_po_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
-
 $newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_ldo_newsletter_form_visible'] : true;
 $li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
 $li_ldo_kicker = $bst_fields['li_ldo_kicker'] ?? $bst_var_kicker;
@@ -42,7 +35,10 @@ $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
 
 <section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-width variation-details">
 	<!-- hero start -->
-	<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
+	<div class="bg-pattern">
+		<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-successionpink-large.png"
+			width="" height="" alt="" />
+	</div>
 	<div class="hero-default has-border-bottom">
 		<div class="wrapper">
 			<div class="hero-alongside-block">
@@ -53,10 +49,11 @@ $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
 						<h3 class="heading-3 mb-0 block-title"><?php echo $bst_var_posttitle ?>
 						</h3>
 						<div class="gl-s30"></div>
-						<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>
+						<div class="ui-eyebrow-16-15-regular eybrow-title">Author</div>
+						<div class="ui-eyebrow-16-15-regular eybrow-title"><?php echo $li_ldo_author; ?></div>
 						<div class="gl-s6"></div>
 						<div class="block-content body-18-16-regular">
-							<?php echo !empty($li_ldo_authors) ? $li_ldo_authors : ''; ?>
+							<?php echo !empty($li_ldo_author_name) ? $li_ldo_author_name : get_the_author(); ?>
 						</div>
 						<div class="gl-s36"></div>
 						<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>
@@ -64,7 +61,7 @@ $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
 						<div class="text-link">
 							<a href="<?php echo esc_url($url); ?>" class="link-with-icon">
 								<span class="link-content">
-									<?php echo esc_html($li_ldo_publication); ?><span class="icon">
+									<?php echo $title; ?><span class="icon">
 										<img
 											class="" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" width=""
 											height="" alt="" /></span></span>
@@ -74,37 +71,24 @@ $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
 					</div>
 				</div>
 				<div class="col-right">
-					<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
-					<?php echo !empty($featured_image_html) ? '<div class="block-image-center">' . $featured_image_html . '</div>' : ''; ?>				</div>
+					<div class="bg-pattern">
+						<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/tli-pattern-successionpink-large.png"
+							width="" height="" alt="" />
+					</div>
+					<?php echo has_post_thumbnail() ? '<div class="block-image-center">' . get_the_post_thumbnail(get_the_ID(), 'thumb_500', ['alt' => get_the_title()]) . '</div>' : ''; ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="container-720 bg-base-cream">
-	<div class="wrapper">
-		<div class="gl-s96"></div>
-			<?php the_content(); ?>
-	</div>
-</div>
-</section>	
-
-<?php if ($li_po_bg_image_visible): ?>
-	<section class="container-1280 ">
-		<div class="wrapper">
-			<div class="bg-pattern-fixed has-border-bottom">
-				<?php echo !empty($li_po_bg_image) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($li_po_bg_image, 'thumb_2000') . '</div>' : ''; ?>
-			</div>
-		</div>
-	</section>
-<?php endif; ?>
+<?php the_content(); ?>
 
 <section class="container-1280 bg-base-cream">
 	<div class="gl-s128"></div>
 	<div class="wrapper">
-		<div class="read-more-block">
-			<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
+		<div class="read-more-block has-border-bottom">
+			<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : ''; ?>
 			<div class="gl-s52"></div>
 			<div class="border-variable-slider">
 				<!-- Swiper -->

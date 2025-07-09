@@ -3,27 +3,6 @@
     "title": "Post Options",
     "fields": [
         {
-            "key": "field_686e633f5a2f3",
-            "label": "BG Image Visible",
-            "name": "li_po_bg_image_visible",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "allow_in_bindings": 1,
-            "ui_on_text": "Show",
-            "ui_off_text": "Hide",
-            "ui": 1
-        },
-        {
             "key": "field_682c319fe73f8",
             "label": "BG Image",
             "name": "li_po_bg_image",
@@ -31,15 +10,7 @@
             "type": "image",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_686e633f5a2f3",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -76,5 +47,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752064899
+    "modified": 1747726883
 }
