@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 	// Dropdown item click handler
-	document.querySelectorAll(".logo-grid-filters .dropdown-menu").forEach((menu) => {
+	document.querySelectorAll(".logo-filter-main .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
 			link.addEventListener("click", (e) => {
 				e.preventDefault();

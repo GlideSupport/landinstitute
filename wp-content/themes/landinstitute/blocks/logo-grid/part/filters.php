@@ -161,33 +161,35 @@ $terms = get_terms([
 	'hide_empty' => true,
 ]);
 ?>
-<ul id="donor-type" class="dropdown-menu" role="menu" aria-labelledby="donor-type">
-	<li class="active"><a href="javascript:void(0)" data-term="all">All</a></li>
-	<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-		<?php foreach ($terms as $term) : ?>
-			<li>
-				<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>">
-					<?php echo esc_html($term->name); ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	<?php endif; ?>
-</ul>
-<?php
-$terms = get_terms([
-	'taxonomy'   => 'donation-level',
-	'hide_empty' => true,
-]);
-?>
-<ul id="donation-level" class="dropdown-menu" role="menu" aria-labelledby="donation-level">
-	<li class="active"><a href="javascript:void(0)" data-term="all">All</a></li>
-	<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-		<?php foreach ($terms as $term) : ?>
-			<li>
-				<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>">
-					<?php echo esc_html($term->name); ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	<?php endif; ?>
-</ul>
+<div class="logo-filter-main">
+	<ul id="donor-type" class="dropdown-menu" role="menu" aria-labelledby="donor-type">
+		<li class="active"><a href="javascript:void(0)" data-term="all">All</a></li>
+		<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+			<?php foreach ($terms as $term) : ?>
+				<li>
+					<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>">
+						<?php echo esc_html($term->name); ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</ul>
+	<?php
+	$terms = get_terms([
+		'taxonomy'   => 'donation-level',
+		'hide_empty' => true,
+	]);
+	?>
+	<ul id="donation-level" class="dropdown-menu" role="menu" aria-labelledby="donation-level">
+		<li class="active"><a href="javascript:void(0)" data-term="all">All</a></li>
+		<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+			<?php foreach ($terms as $term) : ?>
+				<li>
+					<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>">
+						<?php echo esc_html($term->name); ?>
+					</a>
+				</li>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</ul>
+</div>
