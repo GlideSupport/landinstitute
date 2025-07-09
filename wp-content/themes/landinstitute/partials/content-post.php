@@ -14,9 +14,7 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object ) =
 $bst_var_post_categories = get_the_category( $bst_var_post_id );
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
-$li_ldo_author = $bst_fields['li_ldo_author'];
 $li_ldo_author_name = $bst_fields['li_ldo_author_name'];
-$li_ldo_publication = $bst_fields['li_ldo_publication'];
 $li_ldo_publication_link = $bst_fields['li_ldo_publication_link'];
 $url = $li_ldo_publication_link['url'];
 $title = $li_ldo_publication_link['title'];
@@ -29,9 +27,7 @@ $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
-$newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $bst_fields)
-    ? (bool) $bst_fields['li_ldo_newsletter_form_visible']
-    : true;
+$newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_ldo_newsletter_form_visible'] : true;
 $li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
 $li_ldo_kicker = $bst_fields['li_ldo_kicker'] ?? $bst_var_kicker;
 $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
@@ -53,13 +49,14 @@ $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
 						<h3 class="heading-3 mb-0 block-title"><?php echo $bst_var_posttitle ?>
 						</h3>
 						<div class="gl-s30"></div>
+						<div class="ui-eyebrow-16-15-regular eybrow-title">Author</div>
 						<div class="ui-eyebrow-16-15-regular eybrow-title"><?php echo $li_ldo_author; ?></div>
 						<div class="gl-s6"></div>
 						<div class="block-content body-18-16-regular">
 							<?php echo !empty($li_ldo_author_name) ? $li_ldo_author_name : get_the_author(); ?>
 						</div>
 						<div class="gl-s36"></div>
-						<div class="ui-eyebrow-16-15-bold eybrow-title"><?php echo $li_ldo_publication; ?></div>
+						<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>
 						<div class="gl-s6"></div>
 						<div class="text-link">
 							<a href="<?php echo esc_url($url); ?>" class="link-with-icon">

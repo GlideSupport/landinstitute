@@ -3161,6 +3161,32 @@
             "selected": 0
         },
         {
+            "key": "field_686e5940254c0",
+            "label": "BG pattern",
+            "name": "bst_var_learn_bg_pattern",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
             "key": "field_686e39d37d49d",
             "label": "Download List Options",
             "name": "",
@@ -3410,5 +3436,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752056384
+    "modified": 1752062336
 }

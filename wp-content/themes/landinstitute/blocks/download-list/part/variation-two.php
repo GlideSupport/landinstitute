@@ -20,20 +20,20 @@
 						
 						if(!empty($li_dl_title_two) || !empty($li_dl_wysiwyg_two) || !empty($li_dl_link_two)): ?>
 							<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="card-item link-with-title with-arrow">' : '<div class="card-item link-with-title with-arrow">'; ?>
-								<div class="card-item-left">
-									<div class="card-title ui-24-21-bold">
-										<?php echo esc_html($li_dl_title_two); ?>
+								<?php if(!empty($li_dl_title_two) || !empty($li_dl_wysiwyg_two)): ?>
+									<div class="card-item-left">
+										<?php echo !empty($li_dl_title_two) ? '<div class="card-title ui-24-21-bold">' . esc_html($li_dl_title_two) . '</div>' : ''; ?>   								
+										<?php echo (!empty($li_dl_title_two) && !empty($li_dl_wysiwyg_two)) ? '<div class="gl-s4"></div>' : ''; ?>
+										<?php echo !empty($li_dl_wysiwyg_two) ? '<div class="card-content body-18-16-regular">' . html_entity_decode($li_dl_wysiwyg_two) . '</div>' : ''; ?>   
 									</div>
-									<div class="gl-s4"></div>
-									<div class="card-content body-18-16-regular">
-										<?php echo html_entity_decode($li_dl_wysiwyg_two); ?>
+								<?php endif; ?>
+								<?php if(!empty($link_url)) :?>
+									<div class="card-item-right">
+										<div class="dot-btn">
+											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow">
+										</div>
 									</div>
-								</div>
-								<div class="card-item-right">
-									<div class="dot-btn">
-										<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow">
-									</div>
-								</div>
+								<?php endif; ?>
 							<?php echo !empty($li_dl_link_two) ? '</a>' : '</div>'; ?>
 						<?php  endif; endforeach; ?>
 					</div>

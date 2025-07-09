@@ -47,7 +47,8 @@ $li_tf_choose_variation = $bst_block_fields['li_tf_choose_variation'] ?? null;
 $li_tf_kicker = $bst_block_fields['li_tf_kicker'] ?? null;
 $li_tf_form_title = $bst_block_fields['li_tf_form_title'] ?? null;
 $li_tf_wysiwyg = $bst_block_fields['li_tf_wysiwyg'] ?? null;
-$li_tf_form_selector = $bst_block_fields['li_tf_form_selector'] ?? null;   ?>
+$li_tf_form_selector = $bst_block_fields['li_tf_form_selector'] ?? null;  
+?>
 
 
 <div id="<?php echo esc_html($bst_block_html_id); ?>" class="<?php echo esc_html($bst_var_align_class . ' ' . $bst_var_class_name . ' ' . $bst_var_name); ?> block-<?php echo esc_html($bst_block_name); ?>" style="<?php echo esc_html($bst_block_styles); ?>">
