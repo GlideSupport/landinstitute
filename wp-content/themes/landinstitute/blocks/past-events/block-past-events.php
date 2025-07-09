@@ -95,53 +95,13 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							$event_title = get_the_title($post_id);
 							$event_link = get_permalink($post_id);
 
-							$start_date_raw = get_field('li_cpt_event_start_date', $post_id);
-							$end_date_raw = get_field('li_cpt_event_end_date', $post_id);
-							$timezone = get_field('timezone', $post_id);
-
-							$excerpt     = get_the_excerpt($post_id);
-							$event_content = wp_trim_words($excerpt, 25, '...');
-							$start_date_raw = get_field('li_cpt_event_start_date', $post_id);
-							$end_date_raw   = get_field('li_cpt_event_end_date', $post_id);
-			
-							$event_start_time = get_field('li_cpt_event_start_time', $post_id);
-							$event_end_time   = get_field('li_cpt_event_end_time', $post_id);
-			
-							$timezone = get_field('timezone', $post_id);
-							$timezone_code = get_timezone_code($timezone); // Assumes you have a function for this
-			
-							// Format start/end as DateTime objects
-							$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
-							$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
-							$li_cpt_event_all_day = get_field('li_cpt_event_all_day',$post_id);
-							$days= "";
-							if($li_cpt_event_all_day){ $days="All days";}
-
-							// Optional: Set timezone if needed (if $timezone is a valid TZ name)
-							if (!empty($timezone)) {
-								try {
-									$tz = new DateTimeZone($timezone);
-									$start_datetime->setTimezone($tz);
-									$end_datetime->setTimezone($tz);
-								} catch (Exception $e) {
-									// fallback silently
-								}
-							}
-			
-							// Format the full string
-							if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
-								// Same day
-								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code.' '.$days;
-							} else {
-								// Different days
-								$event_display = $start_datetime->format('l, F j, Y g:i a') . ' '. $timezone_code.' '.$days;;
-							}
+							$event_date = get_formatted_event_datetime($post_id)
 							?>
 							<div class="filter-content-card-item">
 								<a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
 									<div class="filter-card-content">
 										<div class="gl-s52"></div>
-										<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_display; ?>
+										<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_date; ?>
 										</div>
 										<div class="gl-s6"></div>
 										<div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>

@@ -87,48 +87,9 @@ $latest_featured_event = new WP_Query(array(
 			$excerpt     = get_the_excerpt();
 			$excerpt = wp_trim_words($excerpt, 20, '...');
 			$thumbnail   = get_the_post_thumbnail_url($event_id, 'full');
+			$event_date = get_formatted_event_datetime($post_id);
 
-			// Custom fields
-			$start_date  = get_field('li_cpt_event_start_date', $event_id);
-			$end_date    = get_field('li_cpt_event_end_date', $event_id);
-			$start_time  = get_field('li_cpt_event_start_time', $event_id);
-			$end_time    = get_field('li_cpt_event_end_time', $event_id);
-			$all_day     = get_field('li_cpt_event_all_day', $event_id);
-			$timezone    = get_field('timezone', $event_id);
-			
-
-			// Parse dates
-			$start_ts    = $start_date ? strtotime($start_date) : false;
-			$end_ts      = $end_date ? strtotime($end_date) : false;
-
-			// Format values
-			$start_day   = $start_ts ? date('l, F j, Y', $start_ts) : '';
-			$end_day     = $end_ts ? date('l, F j, Y', $end_ts) : '';
-			$start_short = $start_ts ? date('M j, Y', $start_ts) : '';
-			$start_fmt   = $start_time ? date('g:i a', strtotime($start_time)) . ' ' . get_timezone_code($timezone) : '';
-			$end_fmt     = $end_time ? date('g:i a', strtotime($end_time)) . ' ' . get_timezone_code($timezone) : '';
-
-			// Build event date string
-			$event_date = '';
-			if ($start_ts && $end_ts && date('Ymd', $start_ts) !== date('Ymd', $end_ts)) {
-				// Multi-day event
-				if ($all_day) {
-					$event_date = "$start_day - $end_day All Day";
-				} elseif ($start_time && $end_time) {
-					$event_date = "$start_day $start_fmt - $end_day $end_fmt";
-				} else {
-					$event_date = $start_short;
-				}
-			} elseif ($start_ts) {
-				// Single-day event
-				if ($all_day) {
-					$event_date = "$start_day All Day";
-				} elseif ($start_time && $end_time) {
-					$event_date = "$start_day $start_fmt - $end_fmt";
-				} else {
-					$event_date = $start_short;
-				}
-			} ?>
+			 ?>
 			<section class="container-1280 bg-lilac">
 				<div class="wrapper">
 					<div class="image-alongside-text-touch has-border-bottom">
@@ -258,45 +219,7 @@ $latest_featured_event = new WP_Query(array(
 									if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 										$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 									}
-									$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
-									$start_date_raw      = get_field('li_cpt_event_start_date', $post_id);
-									$end_date_raw        = get_field('li_cpt_event_end_date', $post_id);
-									$event_start_time    = get_field('li_cpt_event_start_time', $post_id);
-									$event_end_time      = get_field('li_cpt_event_end_time', $post_id);
-									$timezone            = get_field('timezone', $post_id);
-									$timezone_code       = get_timezone_code($timezone); // Assumes you have a function for this
-									$li_cpt_event_all_day = get_field('li_cpt_event_all_day', $post_id);
-									
-									// Create DateTime objects
-									$start_datetime = new DateTime($start_date_raw . ' ' . $event_start_time);
-									$end_datetime   = new DateTime($end_date_raw . ' ' . $event_end_time);
-									
-									// Set timezone if valid
-									if (!empty($timezone)) {
-										try {
-											$tz = new DateTimeZone($timezone);
-											$start_datetime->setTimezone($tz);
-											$end_datetime->setTimezone($tz);
-										} catch (Exception $e) {
-											// fallback silently
-										}
-									}
-									
-									// Build output
-									if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
-										// Same day event
-										$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' - ' . 
-														 $end_datetime->format('g:i a') . ' ' . $timezone_code;
-									} else {
-										// Multi-day event (optional: change format if needed)
-										$event_display = $start_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code . ' - ' . 
-														 $end_datetime->format('l, F j, Y g:i a') . ' ' . $timezone_code;
-									}
-									
-									// Add "All days" if it's an all-day event
-									if ($li_cpt_event_all_day) {
-										$event_display .= ' - All day';
-									}
+									$event_display = get_formatted_event_datetime($post_id);
 
 
 									$excerpt     = get_the_excerpt();
@@ -309,7 +232,6 @@ $latest_featured_event = new WP_Query(array(
 									set_query_var('image', $image);
 									set_query_var('excerpt', $excerpt);
 									set_query_var('url', $url);
-									set_query_var('all_day', $all_day);
 									set_query_var('event_display', $event_display);
 
 
