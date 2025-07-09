@@ -292,6 +292,24 @@
 				display: flex;
 				flex-wrap: wrap;
 
+				.group-content {
+					ul {
+						&.dot-hover {
+							li {
+								&.current-menu-item {
+									a {
+										padding-left: 12px;
+
+										&:before {
+											opacity: 1;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
 				.col-left {
 					background-color: var(--gb_primary_lime_green);
 					border-right: 2px solid var(--gb_base_brown);
@@ -602,7 +620,8 @@
 				&.current-menu-item>a,
 				&.current-menu-parent>a,
 				&.current-menu-item .child-triangle>a,
-				&.current-menu-parent .child-triangle>a {
+				&.current-menu-parent .child-triangle>a,
+				&.current-page-ancestor .child-triangle>a {
 					background-color: var(--gb_primary_lilac);
 
 					&:hover {
