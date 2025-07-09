@@ -125,6 +125,32 @@
             "preview_size": "medium"
         },
         {
+            "key": "field_686e42247c840",
+            "label": "Learn Detail Page BG Pattern",
+            "name": "li_learn_detail_page_bg_pattern",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
             "key": "field_685d4fe31acdc",
             "label": "Select Default Parallax Background Pattern",
             "name": "li_to_select_default_background_pattern",
@@ -3384,5 +3410,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752055276
+    "modified": 1752056384
 }

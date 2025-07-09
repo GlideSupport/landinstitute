@@ -143,7 +143,7 @@ if ($start_date && $end_date) {
 	<div class="gl-s128"></div>
 	<div class="wrapper">
 		<div class="read-more-block">
-			<?php echo !empty($li_cpt_more_event_check) ? BaseTheme::headline($li_cpt_more_event, 'heading-2 block-title mb-0') : ''; ?>
+			<?php echo !empty($li_cpt_more_event_check) ? BaseTheme::headline($li_cpt_more_event, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">See more events</h2>'; ?>
 			<div class="gl-s52"></div>
 			<div class="border-variable-slider">
 				<!-- Swiper -->
