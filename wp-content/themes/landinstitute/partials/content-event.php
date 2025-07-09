@@ -35,6 +35,8 @@ $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
+$li_cpt_event_bg_pattern = $bst_fields['li_cpt_event_bg_pattern'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
+
 $newsletter_form_visible = array_key_exists('li_cpt_event_newsletter_form_visible', $bst_fields)
     ? (bool) $bst_fields['li_cpt_event_newsletter_form_visible']
     : true;
@@ -128,6 +130,15 @@ if ($start_date && $end_date) {
 	</div>
 </div>
 </section>	
+
+<section class="container-1280 ">
+	<div class="wrapper">
+		<div class="bg-pattern-fixed has-border-bottom">
+			<?php echo !empty($li_cpt_event_bg_pattern) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($li_cpt_event_bg_pattern, 'thumb_2000') . '</div>' : ''; ?>
+		</div>
+	</div>
+</section>
+
 <section class="container-1280 bg-base-cream">
 	<div class="gl-s128"></div>
 	<div class="wrapper">
