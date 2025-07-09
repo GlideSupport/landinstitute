@@ -938,7 +938,7 @@ function handle_ajax_news_filter() {
 
     $args = [
         'post_type'      => 'news',
-        'posts_per_page' => 9,
+        'posts_per_page' => 6,
         'post_status'    => 'publish',
         'paged'          => $paged,
     ];

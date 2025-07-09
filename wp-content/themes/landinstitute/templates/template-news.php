@@ -164,10 +164,13 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						</div>
 					</div>
 					<?php
+								$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
 					$args = [
 						'post_type'      => 'news',
-						'posts_per_page' => 9,
+						'posts_per_page' => 6,
 						'order'          => 'DESC',
+						'paged'          => $paged,
 						'post_status'    => 'publish',
 					];
 					$news = new WP_Query($args);
