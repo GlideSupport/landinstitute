@@ -73,13 +73,12 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 					</div>
 
 					<!-- PHP Dynamic Loop Start -->
-					<div class="filter-cards-grid">
 						<?php
 						// Set up query
 						$paged = get_query_var('paged') ? get_query_var('paged') : 1;
 						$args = array(
 							'post_type' => 'post',
-							'posts_per_page' => 12,
+							'posts_per_page' => 2,
 							'paged' => $paged,
 						);
 
@@ -107,88 +106,18 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 						}
 
 						$query = new WP_Query($args);
+						set_query_var('learn_query', $query);
+set_query_var('paged_var', $paged);
 
-						if ($query->have_posts()) :
-							while ($query->have_posts()) : $query->the_post();
-								$format = get_post_format() ?: 'Publication';
+
 						?>
-								<div class="filter-card-item">
-									<a href="<?php the_permalink(); ?>" class="filter-card-link">
-										<div class="image">
-											<?php if (has_post_thumbnail()) : ?>
-												<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_500'); ?>
-											<?php else : ?>
-												<img src="<?php echo esc_url(BASETHEME_DEFAULT_IMAGE); ?>" alt="Default thumbnail" width="500" height="300" />
-											<?php endif; ?>
-										</div>
-										<div class="filter-card-content">
-											<div class="gl-s52"></div>
-											<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html(ucfirst($format)); ?></div>
-											<div class="gl-s6"></div>
-											<div class="card-title heading-7"><?php echo get_the_title(); ?></div>
-											<div class="gl-s12"></div>
-											<div class="description ui-18-16-regular">
-												<?php echo wp_trim_words(get_the_excerpt(), 30); ?>
-											</div>
-											<div class="gl-s20"></div>
-											<div class="read-more-link">
-												<div class="border-text-btn">Read more</div>
-											</div>
-											<div class="gl-s80"></div>
-										</div>
-									</a>
-								</div>
-						<?php endwhile;
-						else : ?>
-							<p>No resources found.</p>
-						<?php endif;
-						wp_reset_postdata(); ?>
-					</div>
+						<div class="filter-cards-grid">
+							<?php get_template_part('partials/content', 'learn-list'); ?>
+						</div>
 
 					<!-- Pagination -->
-					<div class="fillter-bottom">
-						<div class="pagination-container">
-							<div class="desktop-pages">
-								<div class="arrow-btn prev">
-									<?php previous_posts_link('<div class="site-btn">Previous</div>', $query->max_num_pages); ?>
-								</div>
-								<div class="pagination-list">
-									<?php
-									echo paginate_links(array(
-										'total' => $query->max_num_pages,
-										'current' => $paged,
-										'type' => 'list',
-										'before_page_number' => '<button class="page-btn">',
-										'after_page_number' => '</button>',
-									));
-									?>
-								</div>
-								<div class="arrow-btn next">
-									<?php next_posts_link('<div class="site-btn">Next</div>', $query->max_num_pages); ?>
-								</div>
-							</div>
+					<?php get_template_part('partials/content', 'learn-pagination'); ?>
 
-							<!-- Mobile Pagination -->
-							<div class="mobile-pagination">
-								<button id="prevBtn" class="arrow-btn"><?php previous_posts_link('<img src="../assets/src/images/right-circle-arrow.svg" />', $query->max_num_pages); ?></button>
-								<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo $paged . '/' . $query->max_num_pages; ?></button>
-								<button id="nextBtn" class="arrow-btn"><?php next_posts_link('<img src="../assets/src/images/right-circle-arrow.svg" />', $query->max_num_pages); ?></button>
-							</div>
-
-							<!-- Mobile Popup -->
-							<div id="paginationPopup" class="pagination-popup">
-								<div class="popup-body">
-									<div id="popupGrid" class="popup-grid">
-										<?php for ($i = 1; $i <= $query->max_num_pages; $i++) : ?>
-											<a href="<?php echo get_pagenum_link($i); ?>" class="page-btn <?php echo ($paged == $i) ? 'active' : ''; ?>"><?php echo $i; ?></a>
-										<?php endfor; ?>
-									</div>
-									<button id="popupPrev" class="arrow-btn"></button>
-									<button id="popupNext" class="arrow-btn"></button>
-								</div>
-							</div>
-						</div>
-					</div>
 					<!-- End -->
 				</div>
 		</div>
