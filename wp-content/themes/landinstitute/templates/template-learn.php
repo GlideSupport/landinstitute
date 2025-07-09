@@ -57,7 +57,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 			</div>
 		</div>
 	</section>
-	<section class="container-1280 bg-base-cream">
+	<section class="container-1280 bg-base-cream mainlearn">
 		<div class="gl-s128"></div>
 		<div class="wrapper">
 			<div class="resoruce-filter-title full-width-content has-border-bottom">
