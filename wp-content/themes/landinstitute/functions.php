@@ -768,6 +768,10 @@ function filter_past_events() {
    
    function custom_events_rewrite_rule() {
 	   add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
+	   add_rewrite_rule('^news/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
+
+	   
+
    }
    add_action('init', 'custom_events_rewrite_rule');
 
