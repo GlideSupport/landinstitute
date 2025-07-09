@@ -852,3 +852,59 @@ function get_formatted_event_datetime($post_id) {
 
     return $event_display;
 }
+
+
+
+
+add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
+function save_event_timestamp_with_timezone($post_id, $post, $update) {
+    if (get_post_type($post_id) !== 'event') return;
+
+    remove_action('save_post', 'save_event_timestamp_with_timezone', 20);
+
+    $timezone         = get_field('timezone', $post_id) ?: 'UTC';
+    $start_date_raw   = get_field('li_cpt_event_start_date', $post_id); // Ymd or Y-m-d
+    $end_date_raw     = get_field('li_cpt_event_end_date', $post_id);
+    $start_time_raw   = get_field('li_cpt_event_start_time', $post_id); // H:i or H:i:s
+    $end_time_raw     = get_field('li_cpt_event_end_time', $post_id);
+
+    $date_to_use = $start_date_raw ?: $end_date_raw;
+    $time_to_use = $start_time_raw ?: '00:00';
+
+    if (!$date_to_use) return;
+
+    try {
+        // Normalize date format (convert from Ymd → Y-m-d if needed)
+        if (preg_match('/^\d{8}$/', $date_to_use)) {
+            // Convert 20250731 to 2025-07-31
+            $date_obj = DateTime::createFromFormat('Ymd', $date_to_use);
+            if (!$date_obj) throw new Exception('Invalid Ymd format');
+            $date_str = $date_obj->format('Y-m-d');
+        } else {
+            $date_str = $date_to_use;
+        }
+
+        $clean_time = preg_replace('/\s+/', '', $time_to_use);
+        $datetime_str = $date_str . ' ' . $clean_time;
+
+        $dt = new DateTime($datetime_str, new DateTimeZone($timezone));
+        $timestamp = $dt->getTimestamp();
+
+        update_field('li_cpt_event_timestepm_with_selected_timezone', $timestamp, $post_id);
+
+        // ✅ Debug Output
+        // echo "<pre>";
+        // echo "DateTime: " . $dt->format('Y-m-d H:i:s T') . "\n";
+        // echo "Timestamp: " . $timestamp . "\n";
+        // echo "</pre>";
+
+    } catch (Exception $e) {
+        // echo "<pre>";
+        // echo "Error: " . $e->getMessage() . "\n";
+        // echo "Inputs: date = $date_to_use, time = $time_to_use, timezone = $timezone\n";
+        // echo "</pre>";
+    }
+
+    add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
+}
+
