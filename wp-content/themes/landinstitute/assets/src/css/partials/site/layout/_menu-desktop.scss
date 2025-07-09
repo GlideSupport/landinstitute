@@ -95,6 +95,24 @@
 					display: flex;
 					flex-wrap: wrap;
 
+					.group-content {
+						ul {
+							&.dot-hover {
+								li {
+									&.current-menu-item {
+										a {
+											padding-left: 12px;
+
+											&:before {
+												opacity: 1;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
 					.col-left {
 						background-color: var(--gb_primary_lime_green);
 						border-right: 2px solid var(--gb_base_brown);
@@ -291,24 +309,6 @@
 			.mega-dropdown-card {
 				display: flex;
 				flex-wrap: wrap;
-
-				.group-content {
-					ul {
-						&.dot-hover {
-							li {
-								&.current-menu-item {
-									a {
-										padding-left: 12px;
-
-										&:before {
-											opacity: 1;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
 
 				.col-left {
 					background-color: var(--gb_primary_lime_green);
