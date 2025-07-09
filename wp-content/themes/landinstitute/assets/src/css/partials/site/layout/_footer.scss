@@ -455,10 +455,10 @@
             ul {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 24px;
+                gap: 0;
                 height: 100%;
                 margin: 0;
-                padding: 0 40px;
+                padding: 0 40px 0 28px;
 
                 @media(max-width: 1200px) {
                     padding: 0 18px;
@@ -477,6 +477,14 @@
                         font-style: normal;
                         letter-spacing: -0.396px;
                         line-height: 92%;
+                        border-radius: 100px;
+                        padding: 6px 12px;
+                    }
+
+                    &.active {
+                        a {
+                            background: var(--gb_primary_lilac);
+                        }
                     }
                 }
             }
