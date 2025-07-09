@@ -95,17 +95,15 @@
 					display: flex;
 					flex-wrap: wrap;
 
-					.group-content {
-						ul {
-							&.dot-hover {
-								li {
-									&.current-menu-item {
-										a {
-											padding-left: 12px;
+					ul {
+						&.dot-hover {
+							li {
+								&.current-menu-item {
+									a {
+										padding-left: 12px;
 
-											&:before {
-												opacity: 1;
-											}
+										&:before {
+											opacity: 1;
 										}
 									}
 								}
