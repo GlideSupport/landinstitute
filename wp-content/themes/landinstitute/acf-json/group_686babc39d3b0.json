@@ -76,7 +76,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "id",
+            "return_format": "url",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -115,22 +115,28 @@
             "preview_size": "medium"
         },
         {
-            "key": "field_686e22565dc2c",
-            "label": "PDF URL",
-            "name": "li_ldo_pdf",
+            "key": "field_686e3f7d6ef1c",
+            "label": "Select Video\/Audio Type",
+            "name": "select_type",
             "aria-label": "",
-            "type": "url",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
+            "choices": {
+                "audio": "Audio",
+                "video": "Video"
+            },
             "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "layout": "horizontal"
         },
         {
             "key": "field_686e22715dc2d",
@@ -140,9 +146,17 @@
             "type": "url",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686e3f7d6ef1c",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -158,15 +172,86 @@
             "type": "url",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686e3f7d6ef1c",
+                        "operator": "==",
+                        "value": "audio"
+                    }
+                ]
+            ],
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
             "allow_in_bindings": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_686e4002f8a13",
+            "label": "Featured",
+            "name": "featured",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_686e22565dc2c",
+            "label": "PDF URL",
+            "name": "li_ldo_pdf",
+            "aria-label": "",
+            "type": "file",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_686e3f4c24270",
+            "label": "Land Report Issue Number",
+            "name": "land_report_issue_number",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_686e230bb6f8e",
@@ -488,5 +573,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752064040
+    "modified": 1752072104
 }
