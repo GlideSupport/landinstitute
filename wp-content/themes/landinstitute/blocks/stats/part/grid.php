@@ -14,8 +14,7 @@
 					if (!empty($li_s_prefix_two) || !empty($li_s_number_two) || !empty($li_s_postfix_two) || !empty($li_s_label_two) || !empty($li_s_description_two)): ?>
 						<div class="state-grid-col">
 								<div class="ui-72-52-bold head-bold mb-0 counter-number" data-target="<?php echo esc_attr($li_s_number_two); ?>">
-									<?php echo esc_html($li_s_prefix_two); ?>
-									<span class="count">0</span><?php echo esc_html($li_s_postfix_two); ?>
+									<?php echo esc_html($li_s_prefix_two); ?><span class="count">0</span> <?php echo esc_html($li_s_postfix_two); ?>
 								</div>
 							<?php if ($li_s_label_two): ?>
 								<div class="ui-24-21-bold block-sub-head">
