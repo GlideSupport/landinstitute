@@ -118,6 +118,63 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 		<div class="gl-s64"></div>
 	</section>
 	<section class="container-1280 bg-base-cream newsmain">
+		<?php 	
+		
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			 $current_type_slug  = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : 'all';
+			$current_topic_slug = isset($_GET['topic']) ? sanitize_text_field($_GET['topic']) : 'all';
+
+			// Set default display values
+			$current_type_name  = 'All types';
+			$current_topic_name = 'All topics';
+
+			// Try to get the term objects if slugs are not "all"
+			if ($current_type_slug !== 'all') {
+				$type_term = get_term_by('slug', $current_type_slug, 'news-type'); // 'type' is your taxonomy name
+				if ($type_term && !is_wp_error($type_term)) {
+					$current_type_name = $type_term->name;
+				}
+			}
+
+			if ($current_topic_slug !== 'all') {
+				$topic_term = get_term_by('slug', $current_topic_slug, 'news-topic'); // 'topic' is your taxonomy name
+				if ($topic_term && !is_wp_error($topic_term)) {
+					$current_topic_name = $topic_term->name;
+				}
+			}
+
+
+			$tax_query = [];
+
+			if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-type',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['type']),
+				];
+			}
+
+			if (!empty($_GET['topic']) && $_GET['topic'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-topic',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['topic']),
+				];
+			}
+
+
+			$args = [
+				'post_type'      => 'news',
+				'posts_per_page' => 6,
+				'order'          => 'DESC',
+				'paged'          => $paged,
+				'post_status'    => 'publish',
+			];
+			if (!empty($tax_query)) {
+				$args['tax_query'] = $tax_query;
+			}
+			$news = new WP_Query($args);
+?>
 		<div class="wrapper">
 			<div class="full-width-content has-border-bottom">
 				<div class="filter-block">
@@ -126,88 +183,65 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 						<div class="filter-dropdown-row">
 							<div class="tab-dropdown tab-dropdown-filter">
-								<button class="dropdown-toggle" id="types-view" aria-expanded="false"
-									aria-haspopup="true" aria-controls="news-type">Post type: All types<div class="arrow-icon"></div>
+								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-type">
+									Post type: <?= esc_html($current_type_name) ?>
+									<div class="arrow-icon"></div>
 								</button>
 							</div>
+
 							<div class="tab-dropdown tab-dropdown-filter">
-								<button class="dropdown-toggle" id="topic-view" aria-expanded="false"
-									aria-haspopup="true" aria-controls="news-topic">Topic: All topics<div class="arrow-icon"></div>
+								<button class="dropdown-toggle" id="topic-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-topic">
+									Topic: <?= esc_html($current_topic_name) ?>
+									<div class="arrow-icon"></div>
 								</button>
 							</div>
+
 						</div>
 					</div>
-					<?php
-					$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-
-					$tax_query = [];
-
-					if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
-						$tax_query[] = [
-							'taxonomy' => 'news-type',
-							'field'    => 'slug',
-							'terms'    => sanitize_text_field($_GET['type']),
-						];
-					}
-				
-					if (!empty($_GET['topic']) && $_GET['topic'] !== 'all') {
-						$tax_query[] = [
-							'taxonomy' => 'news-topic',
-							'field'    => 'slug',
-							'terms'    => sanitize_text_field($_GET['topic']),
-						];
-					}
-
-
-					$args = [
-						'post_type'      => 'news',
-						'posts_per_page' => 6,
-						'order'          => 'DESC',
-						'paged'          => $paged,
-						'post_status'    => 'publish',
-					];
-					if (!empty($tax_query)) {
-						$args['tax_query'] = $tax_query;
-					}
-					$news = new WP_Query($args);
-
-					if ($news->have_posts()) : ?>
+					<?php if ($news->have_posts()) : ?>
 						<div class="filter-content-cards-grid">
 							<?php include get_template_directory() . '/partials/content-news-list.php'; ?>
 						</div>
 						<?php include get_template_directory() . '/partials/content-news-pagination.php'; ?>
-					<?php endif; ?>		
+					<?php else : ?>
+						<div class="no-news-found">
+							<p>No news found.</p>
+						</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
 	</section>
-	<div class="news-list-filter">
-		<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
-			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a></li>
-			<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-				<?php foreach ($terms as $term) : ?>
-					<li>
-						<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
-							<?php echo esc_html($term->name); ?>
-						</a>
-					</li>
-				<?php endforeach; ?>
-			<?php endif; ?>
-		</ul>
-		<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
-			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a></li>
-			<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
-				<?php foreach ($topic_terms as $topic_term) : ?>
-					<li>
-						<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
-							<?php echo esc_html($topic_term->name); ?>
-						</a>
-					</li>
-				<?php endforeach; ?>
-			<?php endif; ?>
-		</ul>
-	</div>
+<div class="news-list-filter">
+<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
+	<li class="<?php echo $current_type === 'all' ? 'active' : ''; ?>">
+		<a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a>
+	</li>
+	<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
+		<?php foreach ($terms as $term) : ?>
+			<li class="<?php echo $current_type === $term->slug ? 'active' : ''; ?>">
+				<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
+					<?php echo esc_html($term->name); ?>
+				</a>
+			</li>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</ul>
+
+<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
+	<li class="<?php echo $current_topic === 'all' ? 'active' : ''; ?>">
+		<a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a>
+	</li>
+	<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
+		<?php foreach ($topic_terms as $topic_term) : ?>
+			<li class="<?php echo $current_topic === $topic_term->slug ? 'active' : ''; ?>">
+				<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
+					<?php echo esc_html($topic_term->name); ?>
+				</a>
+			</li>
+		<?php endforeach; ?>
+	<?php endif; ?>
+</ul>
 </div>
 	<?php
 
