@@ -8,22 +8,20 @@
 						$year = $item['li_t_year'] ?? '';
 						$title = $item['li_t_title'] ?? '';
 						$content = $item['li_t_wysiwyg'] ?? '';
-						$link = $item['li_t_link']['url'] ?? '#';
-						$link_title = $item['li_t_link']['title'] ?? '#';
+						$link = $item['li_t_link']['url'] ?? '';
+						$link_title = $item['li_t_link']['title'] ?? '';
 						$link_target = $item['li_t_link']['target'] ?? '_self'; 
 						if(!empty($year) || !empty($title) || !empty($content) || !empty($link)): ?>
 							<div class="swiper-slide">
 								<div class="border-card">
-									<a href="<?php echo esc_url($link); ?>" target="<?php echo esc_attr($link_target); ?>" class="border-card-click">
-										<div class="gl-s52"></div>
+									<?php echo !empty($link) ? '<a href="' . esc_url($link) . '" target="' . esc_attr($link_target) . '" class="border-card-click">' : '<div class="border-card-click">'; ?>
+									<div class="gl-s52"></div>
 										<?php echo $year ? '<div class="ui-20-18-bold card-sub-head">' . esc_html($year) . '</div><div class="gl-s4"></div>' : ''; ?>
 										<?php echo $title ? '<div class="heading-4 mb-0 block-title">' . esc_html($title) . '</div><div class="gl-s20"></div>' : ''; ?>
-										<?php echo $content ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div><div class="gl-s12"></div>' : ''; ?>
-										<div class="block-btn">
-											<div class="site-btn text-link"><?php echo html_entity_decode($link_title); ?></div>
-										</div>
-										<div class="gl-s64"></div>
-									</a>
+										<?php echo $content ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div>' : ''; ?>
+										<?php echo (!empty($content) && !empty($link)) ? '<div class="gl-s12"></div>' : ''; ?>
+										<?php echo !empty($link) ? '<div class="block-btn"><div class="site-btn text-link">' . html_entity_decode($link_title) . '</div></div><div class="gl-s64"></div>' : ''; ?>
+									<?php echo !empty($link) ? '</a>' : '</div>'; ?>
 								</div>
 							</div>
 					<?php endif; endforeach; ?>
