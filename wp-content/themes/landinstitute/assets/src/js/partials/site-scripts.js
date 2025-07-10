@@ -524,12 +524,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	//footer nav active class js
 	const currentHash = window.location.hash;
 	if (!currentHash) return;
+
 	document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
 		const link = li.querySelector('a');
-		if (link && link.getAttribute('href') === currentHash) {
-			li.classList.add('active');
-		} else {
-			li.classList.remove('active');
+		if (link) {
+			const href = link.getAttribute('href');
+			if (href && href.endsWith(currentHash)) {
+				li.classList.add('active');
+			} else {
+				li.classList.remove('active');
+			}
 		}
 	});
 	//footer nav active class end
