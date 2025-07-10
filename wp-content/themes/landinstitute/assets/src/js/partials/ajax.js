@@ -481,7 +481,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 
 
-	document.querySelectorAll(".learn-list-filter .dropdown-menu").forEach((menu) => {
+	document.querySelectorAll(".mainlearn .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
 			link.addEventListener("click", (e) => {
 				e.preventDefault();
