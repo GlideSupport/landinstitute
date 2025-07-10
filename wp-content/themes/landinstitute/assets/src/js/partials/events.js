@@ -25,12 +25,12 @@ if (loadMoreBtn) {
             btn.innerHTML = originalText;
             btn.disabled = false;
           } else {
-            //btn.innerHTML = 'No more events';
+            btn.innerHTML = 'No more events';
             btn.classList.add('disabled');
             btn.disabled = true;
           }
         } else {
-          //btn.innerHTML = 'No more events';
+          btn.innerHTML = 'No more events';
           btn.classList.add('disabled');
           btn.disabled = true;
         }
