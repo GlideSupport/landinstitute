@@ -536,7 +536,7 @@ function load_more_events_callback()
 		'post_status'    => 'publish',
 		'posts_per_page' => 10,
 		'orderby'        => 'meta_value_num', // Ensure numeric comparison
-		'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
+		'meta_key'       => 'li_cpt_event_start_date',
 		'order'          => 'ASC',
 		'meta_query'     => array(
 			array(
