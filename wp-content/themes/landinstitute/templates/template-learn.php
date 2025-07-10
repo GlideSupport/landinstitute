@@ -64,23 +64,57 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 				<h2 class="heading-2 mb-0 block-title">Resources</h2>
 				<div class="gl-s52"></div>
 				<div class="filter-block">
+					<?php 
+						$current_learntype = isset($_GET['learn-type']) ? sanitize_text_field($_GET['learn-type']) : 'all';
+						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';
+						$current_learn_crop_slug = isset($_GET['learn-crop']) ? sanitize_text_field($_GET['learn-crop']) : 'all';						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';
+
+						// Set default display values
+						$current_learntype  = 'All types';
+						$current_learn_topic_slug = 'All topics';
+						$current_topic_name = 'All topics';
+
+						// Try to get the term objects if slugs are not "all"
+						if ($current_learntype !== 'all') {
+							$type_term = get_term_by('slug', $current_learntype, 'learn-type'); // 'type' is your taxonomy name
+							if ($type_term && !is_wp_error($type_term)) {
+								$current_type_name = $type_term->name;
+							}
+						}
+
+						if ($current_learn_topic_slug !== 'all') {
+							$topic_term = get_term_by('slug', $current_learn_topic_slug, 'learn-topic'); // 'topic' is your taxonomy name
+							if ($topic_term && !is_wp_error($topic_term)) {
+								$current_topic_name = $topic_term->name;
+							}
+						}
+
+						if ($current_learn_crop_slug !== 'all') {
+							$topic_term = get_term_by('slug', $current_learn_crop_slug, 'learn-crop'); // 'topic' is your taxonomy name
+							if ($topic_term && !is_wp_error($topic_term)) {
+								$current_crop_name = $topic_term->name;
+							}
+						}
+
+
+					?>
 						<div class="filter">
 							<div class="filter-title ui-18-16-bold">Filter:</div>
 							<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 							<div class="filter-dropdown-row">
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="type-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="learn-type">Post type: All types<div class="arrow-icon"></div>
+										aria-haspopup="true" aria-controls="learn-type">Post type: <?php echo $current_type_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="topic-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="learn-topic">Topic: All topics<div class="arrow-icon"></div>
+										aria-haspopup="true" aria-controls="learn-topic">Topic: <?php echo $current_topic_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="category-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="learn-crops">Crop: All crops<div class="arrow-icon"></div>
+										aria-haspopup="true" aria-controls="learn-crops">Crop: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 							</div>
