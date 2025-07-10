@@ -541,7 +541,7 @@ function load_more_events_callback()
 		'paged'          => $paged,
 		'meta_query'     => array(
 			array(
-				'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
+				'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
 				'value'   => $current_timestamp,
 				'type'    => 'NUMERIC',
 				'compare' => '>='
@@ -609,7 +609,7 @@ function filter_past_events() {
 	 'order'          => 'DESC',
 	 'meta_query'     => [
 	   [
-		 'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
+		 'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
 		 'value'   => $current_timestamp,
 		 'compare' => '<',
 		 'type'    => 'NUMERIC',
@@ -886,59 +886,72 @@ function get_formatted_event_datetime($post_id) {
 }
 
 
-
-
 add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
 function save_event_timestamp_with_timezone($post_id, $post, $update) {
     if (get_post_type($post_id) !== 'event') return;
 
     remove_action('save_post', 'save_event_timestamp_with_timezone', 20);
 
-    $timezone         = get_field('timezone', $post_id) ?: 'UTC';
-    $start_date_raw   = get_field('li_cpt_event_start_date', $post_id); // Ymd or Y-m-d
-    $end_date_raw     = get_field('li_cpt_event_end_date', $post_id);
-    $start_time_raw   = get_field('li_cpt_event_start_time', $post_id); // H:i or H:i:s
-    $end_time_raw     = get_field('li_cpt_event_end_time', $post_id);
+    $timezone       = get_field('timezone', $post_id) ?: 'UTC';
 
-    $date_to_use = $start_date_raw ?: $end_date_raw;
-    $time_to_use = $start_time_raw ?: '00:00';
+    // Start
+    $start_date_raw = get_field('li_cpt_event_start_date', $post_id);
+    $start_time_raw = get_field('li_cpt_event_start_time', $post_id);
 
-    if (!$date_to_use) return;
+    // End
+    $end_date_raw = get_field('li_cpt_event_end_date', $post_id);
+    $end_time_raw = get_field('li_cpt_event_end_time', $post_id);
+
+    $start_timestamp = null;
+    $end_timestamp   = null;
+    $compare_timestamp = null;
 
     try {
-        // Normalize date format (convert from Ymd → Y-m-d if needed)
-        if (preg_match('/^\d{8}$/', $date_to_use)) {
-            // Convert 20250731 to 2025-07-31
-            $date_obj = DateTime::createFromFormat('Ymd', $date_to_use);
-            if (!$date_obj) throw new Exception('Invalid Ymd format');
-            $date_str = $date_obj->format('Y-m-d');
-        } else {
-            $date_str = $date_to_use;
+        // --- Start timestamp ---
+        if ($start_date_raw) {
+            $start_date = (preg_match('/^\d{8}$/', $start_date_raw))
+                ? DateTime::createFromFormat('Ymd', $start_date_raw)->format('Y-m-d')
+                : $start_date_raw;
+
+            $start_time = preg_replace('/\s+/', '', $start_time_raw ?: '00:00');
+            $start_dt = new DateTime("$start_date $start_time", new DateTimeZone($timezone));
+            $start_timestamp = $start_dt->getTimestamp();
+
+            update_field('li_cpt_event_timestepm_with_selected_timezone', $start_timestamp, $post_id);
         }
 
-        $clean_time = preg_replace('/\s+/', '', $time_to_use);
-        $datetime_str = $date_str . ' ' . $clean_time;
+        // --- End timestamp ---
+        if ($end_date_raw) {
+            $end_date = (preg_match('/^\d{8}$/', $end_date_raw))
+                ? DateTime::createFromFormat('Ymd', $end_date_raw)->format('Y-m-d')
+                : $end_date_raw;
 
-        $dt = new DateTime($datetime_str, new DateTimeZone($timezone));
-        $timestamp = $dt->getTimestamp();
+            $end_time = preg_replace('/\s+/', '', $end_time_raw ?: '00:00');
+            $end_dt = new DateTime("$end_date $end_time", new DateTimeZone($timezone));
+            $end_timestamp = $end_dt->getTimestamp();
 
-        update_field('li_cpt_event_timestepm_with_selected_timezone', $timestamp, $post_id);
+            update_field('li_cpt_event_end_timestepm_with_selected_timezone', $end_timestamp, $post_id);
+        }
 
-        // ✅ Debug Output
-        // echo "<pre>";
-        // echo "DateTime: " . $dt->format('Y-m-d H:i:s T') . "\n";
-        // echo "Timestamp: " . $timestamp . "\n";
-        // echo "</pre>";
+        // --- Compare timestamp ---
+        if ($end_timestamp !== null) {
+            $compare_timestamp = $end_timestamp;
+        } elseif ($start_timestamp !== null) {
+            $compare_timestamp = $start_timestamp;
+        }
+
+        if ($compare_timestamp !== null) {
+            update_field('li_cpt_event_timestepm_with_selected_timezone_compare', $compare_timestamp, $post_id);
+        }
 
     } catch (Exception $e) {
-        // echo "<pre>";
-        // echo "Error: " . $e->getMessage() . "\n";
-        // echo "Inputs: date = $date_to_use, time = $time_to_use, timezone = $timezone\n";
-        // echo "</pre>";
+        // error_log("Timestamp save error for post $post_id: " . $e->getMessage());
     }
 
     add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
 }
+
+
 
 
 add_action('wp_ajax_filter_news', 'handle_ajax_news_filter');
@@ -1069,3 +1082,99 @@ function handle_ajax_news_learn() {
     ]);
 }
 
+
+//script 
+add_action('init', 'run_event_timestamp_update_once');
+function run_event_timestamp_update_once() {
+    if (!is_admin() || !current_user_can('manage_options')) return;
+
+    if (get_option('event_timestamp_update_done')) return;
+
+    $args = [
+        'post_type'      => 'event',
+        'post_status'    => 'any',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+    ];
+
+    $posts = get_posts($args);
+
+    foreach ($posts as $post_id) {
+        $timezone        = get_field('timezone', $post_id) ?: 'UTC';
+        $all_day         = get_field('li_cpt_event_all_day', $post_id);
+
+        $start_date_raw  = get_field('li_cpt_event_start_date', $post_id);
+        $start_time_raw  = get_field('li_cpt_event_start_time', $post_id);
+
+        $end_date_raw    = get_field('li_cpt_event_end_date', $post_id);
+        $end_time_raw    = get_field('li_cpt_event_end_time', $post_id);
+
+        $start_timestamp = null;
+        $end_timestamp   = null;
+        $compare_timestamp = null;
+
+        try {
+            // --- Start Timestamp ---
+            if ($start_date_raw) {
+                $start_date = preg_match('/^\d{8}$/', $start_date_raw)
+                    ? DateTime::createFromFormat('Ymd', $start_date_raw)->format('Y-m-d')
+                    : $start_date_raw;
+
+                $start_time = preg_replace('/\s+/', '', $start_time_raw ?: '00:00');
+                $start_dt = new DateTime("$start_date $start_time", new DateTimeZone($timezone));
+                $start_timestamp = $start_dt->getTimestamp();
+
+                update_field('li_cpt_event_timestepm_with_selected_timezone', $start_timestamp, $post_id);
+            }
+
+            // --- End Timestamp ---
+            if ($end_date_raw) {
+                $end_date = preg_match('/^\d{8}$/', $end_date_raw)
+                    ? DateTime::createFromFormat('Ymd', $end_date_raw)->format('Y-m-d')
+                    : $end_date_raw;
+
+                $end_time = preg_replace('/\s+/', '', $end_time_raw ?: '00:00');
+                $end_dt = new DateTime("$end_date $end_time", new DateTimeZone($timezone));
+                $end_timestamp = $end_dt->getTimestamp();
+
+                update_field('li_cpt_event_end_timestepm_with_selected_timezone', $end_timestamp, $post_id);
+            }
+
+            // --- Compare Timestamp ---
+            if ($all_day) {
+                $compare_date_raw = $end_date_raw ?: $start_date_raw;
+
+                if ($compare_date_raw) {
+                    $compare_date = preg_match('/^\d{8}$/', $compare_date_raw)
+                        ? DateTime::createFromFormat('Ymd', $compare_date_raw)->format('Y-m-d')
+                        : $compare_date_raw;
+
+                    $compare_dt = new DateTime("$compare_date 00:00", new DateTimeZone($timezone));
+                    $compare_timestamp = $compare_dt->getTimestamp();
+                }
+            } else {
+                $compare_timestamp = $end_timestamp ?? $start_timestamp;
+            }
+
+            if ($compare_timestamp !== null) {
+                update_field('li_cpt_event_timestepm_with_selected_timezone_compare', $compare_timestamp, $post_id);
+            }
+
+        } catch (Exception $e) {
+            // error_log("Error for post $post_id: " . $e->getMessage());
+        }
+    }
+
+    update_option('event_timestamp_update_done', true);
+    set_transient('event_timestamp_update_success_notice', true, 30);
+}
+
+add_action('admin_notices', 'show_event_timestamp_update_notice');
+function show_event_timestamp_update_notice() {
+    if (!current_user_can('manage_options')) return;
+
+    if (get_transient('event_timestamp_update_success_notice')) {
+        echo '<div class="notice notice-success is-dismissible"><p><strong>Event timestamps updated successfully (with all-day fallback logic).</strong></p></div>';
+        delete_transient('event_timestamp_update_success_notice');
+    }
+}

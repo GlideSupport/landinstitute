@@ -73,7 +73,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 				'order'          => 'DESC',
 				'meta_query'     => [
 					[
-						'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
+						'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
 						'value'   => $current_timestamp,
 						'compare' => '<',
 						'type'    => 'NUMERIC',
