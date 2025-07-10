@@ -197,12 +197,14 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							$excerpt    = get_the_excerpt($post_id);
 							$terms = get_the_terms($post_id, 'learn-type');
 							$term_name = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
+							$thumbnail_id = get_post_thumbnail_id($post_id);
+							$thumbnail_id = $thumbnail_id ? $thumbnail_id : $bst_var_theme_default_image;
 							?>
 							<div class="swiper-slide">
 								<div class="image-card-caption">
 									<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
 										<div class="image">
-											<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800'); ?>
+											<?php echo wp_get_attachment_image($thumbnail_id, 'thumb_800');	?>						
 										</div>
 										<div class="caption-card-content">
 											<div class="gl-s52"></div>
