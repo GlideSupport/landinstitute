@@ -1084,7 +1084,7 @@ function handle_ajax_news_learn() {
 
 
 //script 
-add_action('init', 'run_event_timestamp_update_once');
+//add_action('init', 'run_event_timestamp_update_once');
 function run_event_timestamp_update_once() {
     if (!is_admin() || !current_user_can('manage_options')) return;
 
