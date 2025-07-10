@@ -517,12 +517,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	addHoverEffect(".header-nav .menu > li", "hover-active");
 	addHoverEffect(".mega-two .icon-content-col", "active-hover");
-	addHoverEffect(
-		".mega-bottom-menu ul#menu-sub-nav-issues > li",
-		"hover-active",
-	);
+	addHoverEffect( ".mega-bottom-menu ul#menu-sub-nav-issues > li","hover-active");
 	addHoverEffect(".social-icons a", "active-hover");
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
+
+	//footer nav active class js
+	const currentHash = window.location.hash;
+	if (!currentHash) return;
+	document.querySelectorAll('#menu-areas-of-focus li').forEach((li) => {
+		const link = li.querySelector('a');
+		if (link && link.getAttribute('href') === currentHash) {
+			li.classList.add('active');
+		} else {
+			li.classList.remove('active');
+		}
+	});
+	//footer nav active class end
+
 
 	//hover add class in menu js end
 
