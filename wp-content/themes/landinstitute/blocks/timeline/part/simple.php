@@ -20,7 +20,8 @@
 										<?php echo $title ? '<div class="heading-4 mb-0 block-title">' . esc_html($title) . '</div><div class="gl-s20"></div>' : ''; ?>
 										<?php echo $content ? '<div class="body-18-16-regular block-content">' . html_entity_decode($content) . '</div>' : ''; ?>
 										<?php echo (!empty($content) && !empty($link)) ? '<div class="gl-s12"></div>' : ''; ?>
-										<?php echo !empty($link) ? '<div class="block-btn"><div class="site-btn text-link">' . html_entity_decode($link_title) . '</div></div><div class="gl-s64"></div>' : ''; ?>
+										<?php echo !empty($link) ? '<div class="block-btn"><div class="site-btn text-link">' . html_entity_decode($link_title) . '</div></div>' : ''; ?>
+										<div class="gl-s64"></div>
 									<?php echo !empty($link) ? '</a>' : '</div>'; ?>
 								</div>
 							</div>
