@@ -268,7 +268,7 @@ $latest_featured_event = new WP_Query(array(
 
 					</div>
 
-					<div id="event-calendar-view" class="event-teaser-list-col" style="<?php echo $calenderstyle; ?>">
+					<div id="event-calendar-view" class="event-teaser-list-col"  style="<?php echo $calenderstyle; ?>">
 
 						<!-- Calender View Start -->
 						<div class="events-ctn event-calendar-ctn calendar-ctn">

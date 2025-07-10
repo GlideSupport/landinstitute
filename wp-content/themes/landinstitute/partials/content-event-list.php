@@ -23,7 +23,7 @@ if ($end_date) {
 
 ?>
 
-<div class="event-teaser-list-col">
+<div class="event-teaser-list-col" id="><?php echo get_the_ID(); ?>">
     <a href="<?php echo esc_url($url); ?>" class="event-teaser-list-card">
         <div class="event-teaser-list-image">
             <img src="<?php echo esc_url($image); ?>" alt="">
