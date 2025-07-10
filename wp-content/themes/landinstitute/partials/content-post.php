@@ -114,6 +114,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	<div class="wrapper">
 		<div class="gl-s96"></div>
 			<?php the_content(); ?>
+		<div class="gl-s64"></div>
 	</div>
 </div>
 </section>	
