@@ -516,6 +516,9 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 
 	const learn_append_list = document.querySelector(".mainlearn .filter-cards-grid");
+	const learn_pagination = document.querySelector(".mainlearn .fillter-bottom");
+
+
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
 
@@ -569,8 +572,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 					if (oldPagination) {
 						oldPagination.outerHTML = data.data.pagination_html;
 					} else {
-						learn_append_list.insertAdjacentHTML(
-							'afterend',
+						learn_pagination.insertAdjacentHTML(
+							'beforeend',
 							`${data.data.pagination_html}`
 						  );
 						}
