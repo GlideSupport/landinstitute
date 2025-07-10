@@ -563,8 +563,11 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 					if (oldPagination) {
 						oldPagination.outerHTML = data.data.pagination_html;
 					} else {
-						learn_append_list.insertAdjacentHTML('afterend', data.data.pagination_html);
-					}
+						learn_append_list.insertAdjacentHTML(
+							'afterend',
+							`<div class="filter-botoom">${data.data.pagination_html}</div>`
+						  );
+						}
 
 					initLearnPaginationListeners();
 					attachPaginationEventListeners?.(); // Safe optional chaining

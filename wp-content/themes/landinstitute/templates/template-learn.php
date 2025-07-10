@@ -125,13 +125,13 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 
 
 							?>
-							<div class="filter-cards-grid">
-								<?php get_template_part('partials/content', 'learn-list'); ?>
-							</div>
+						<div class="filter-cards-grid">
+							<?php get_template_part('partials/content', 'learn-list'); ?>
+						</div>
 
 						<!-- Pagination -->
 						<div class="fillter-bottom">
-						<?php get_template_part('partials/content', 'learn-pagination'); ?>
+							<?php get_template_part('partials/content', 'learn-pagination'); ?>
 						</div>
 						<!-- End -->
 					</div>
