@@ -87,6 +87,13 @@ $latest_featured_event = new WP_Query(array(
 			$excerpt     = get_the_excerpt();
 			$excerpt = wp_trim_words($excerpt, 20, '...');
 			$thumbnail   = get_the_post_thumbnail_url($event_id, 'full');
+			if(!$thumbnail){
+				$thumbnail = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');;
+
+			}
+
+
+			
 			$event_date = get_formatted_event_datetime($post_id);
 
 			 ?>
