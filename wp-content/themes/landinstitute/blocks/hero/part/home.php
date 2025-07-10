@@ -40,7 +40,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 												<div class="announcement-image">
 												<?php if (!empty($li_hero_to_image_video_thumbnail)) : ?>
 													<div class="video-mask"></div>
-														<?php echo wp_get_attachment_image($li_hero_to_image_video_thumbnail, "thumb_200"); ?>
+													<img src="<?php echo esc_url($li_hero_to_image_video_thumbnail); ?>" width="129" height="85" alt="video-thumb" />
 												<?php else : ?>
 														<?php
 														$thumbnail = esc_url(BASETHEME_DEFAULT_IMAGE);
