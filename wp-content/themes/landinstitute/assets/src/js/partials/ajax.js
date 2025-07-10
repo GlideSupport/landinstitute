@@ -514,11 +514,9 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 		});
 	});
 
-
+	//learn code start
 	const learn_append_list = document.querySelector(".mainlearn .filter-cards-grid");
 	const learn_pagination = document.querySelector(".mainlearn .fillter-bottom");
-
-
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
 
