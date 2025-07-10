@@ -86,15 +86,17 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
 							<div class="text-link">
-								<a href="<?php echo esc_url($url); ?>" class="link-with-icon">
+								<div class="link-with-icon">
 									<span class="link-content">
 										<?php echo esc_html($li_ldo_publication); ?>
-										<span class="icon">
-											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
-										</span>
+										<?php if (!empty($li_ldo_publication)) : ?>
+											<span class="icon">
+												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+											</span>
+										<?php endif; ?>
 									</span>
-								</a>
-							</div>	
+								</div>
+							</div>
 							<div class="gl-s96"></div>
 						</div>
 					</div>
