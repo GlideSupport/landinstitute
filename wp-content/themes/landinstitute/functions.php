@@ -1013,7 +1013,7 @@ function handle_ajax_news_learn() {
 
     $args = [
         'post_type'      => 'post',
-        'posts_per_page' => 1,
+        'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
     ];
