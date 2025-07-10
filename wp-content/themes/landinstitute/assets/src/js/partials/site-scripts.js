@@ -517,12 +517,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	addHoverEffect(".header-nav .menu > li", "hover-active");
 	addHoverEffect(".mega-two .icon-content-col", "active-hover");
-	addHoverEffect(
-		".mega-bottom-menu ul#menu-sub-nav-issues > li",
-		"hover-active",
-	);
+	addHoverEffect( ".mega-bottom-menu ul#menu-sub-nav-issues > li", "hover-active");
 	addHoverEffect(".social-icons a", "active-hover");
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
+
+	// Always add hover class to current-menu-item in all relevant menus
+	document.querySelectorAll('.header-nav .menu > li.current-menu-item').forEach((item) => {
+		item.classList.add('hover-active');
+	});
+
+	document.querySelectorAll('.mega-two .icon-content-col.current-menu-item').forEach((item) => {
+		item.classList.add('active-hover');
+	});
+
+	document.querySelectorAll('.mega-bottom-menu ul#menu-sub-nav-issues > li.current-menu-item').forEach((item) => {
+		item.classList.add('hover-active');
+	});
+
+	document.querySelectorAll('.social-icons a.current-menu-item').forEach((item) => {
+		item.classList.add('active-hover');
+	});
+
+	document.querySelectorAll('.legal-nav nav .menu > li.current-menu-item').forEach((item) => {
+		item.classList.add('active-hover');
+	});
+
 
 	//hover add class in menu js end
 
