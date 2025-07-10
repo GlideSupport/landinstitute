@@ -503,7 +503,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 				// Reset to page 1
 				currentPage = 1;
-				fetchnews();
+				fetchlearn();
 			});
 		});
 	});
