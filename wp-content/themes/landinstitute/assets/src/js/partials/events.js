@@ -8,15 +8,29 @@ if (loadMoreBtn) {
 
     const btn = this;
     const page = parseInt(btn.getAttribute('data-page')) + 1;
+    const eventList = document.getElementById('event-list-main-div');
+
+    // Show loading state
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Loading...';
+    btn.disabled = true;
+    eventList.classList.add('loading');
 
     fetch(localVars.ajax_url + '?action=load_more_events&page=' + page)
       .then(res => res.text())
       .then(html => {
-        document.getElementById('event-list-main-div').insertAdjacentHTML('beforeend', html);
+        eventList.insertAdjacentHTML('beforeend', html);
         btn.setAttribute('data-page', page);
+      })
+      .finally(() => {
+        // Restore button and remove loading state
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        eventList.classList.remove('loading');
       });
   });
 }
+
 
 let backup = 0;
 
