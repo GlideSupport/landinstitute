@@ -26,7 +26,8 @@ $li_td_text = $bst_fields['li_td_text'];
 $li_td_sub_text = $bst_fields['li_td_sub_text'];
 $li_td_content = $bst_fields['li_td_content'];
 $li_td_form_embed = $bst_fields['li_td_form_embed'];
-
+$li_td_title = $bst_fields['li_td_title'];
+$li_td_repeater = $bst_fields['li_td_repeater'];
 $logo_url = wp_get_attachment_url($bst_var_header_logo);
 ?>
 
@@ -57,40 +58,30 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                     </div>
                     <div class="gl-s80"></div>
                     <div class="card-arrow-links">
-                        <div class="ui-18-16-bold-uc block-subhead">Other Ways to Give</div>
+                        <div class="ui-18-16-bold-uc block-subhead"><?php echo esc_html($li_td_title); ?></div>
                         <div class="gl-s8"></div>
-                        <div class="card-pdf-list">
-                            <a href="#" class="card-item">
-                                <div class="card-item-left">
-                                    <div class="card-title ui-20-18-bold">Legacy Giving</div>
-                                </div>
-                                <div class="card-item-right">
-                                    <div class="dot-btn">
-                                         <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="card-item">
-                                <div class="card-item-left">
-                                    <div class="card-title ui-20-18-bold">Donor Advised Fund</div>
-                                </div>
-                                <div class="card-item-right">
-                                    <div class="dot-btn">
-                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/" title="right-circle-arrow" alt="right-circle-arrow" />
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="card-item">
-                                <div class="card-item-left">
-                                    <div class="card-title ui-20-18-bold">More Ways to Give</div>
-                                </div>
-                                <div class="card-item-right">
-                                    <div class="dot-btn">
-                                        <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+
+                        <?php if (!empty($li_td_repeater)) : ?>
+                            <div class="card-pdf-list"> <!-- Move this outside the loop -->
+                                <?php foreach ($li_td_repeater as $li_td_rep) :
+                                    $link = $li_td_rep['link'] ?? null;
+                                    if (!empty($link) && !empty($link['url']) && !empty($link['title'])) :
+                                        $url = $link['url'];
+                                        $title = $link['title'];
+                                        $link_target = $link['target'] ?? '_self'; ?>
+                                    <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($link_target); ?>" class="card-item">
+                                        <div class="card-item-left">
+                                            <div class="card-title ui-20-18-bold"><?php echo esc_html($title); ?></div>
+                                        </div>
+                                        <div class="card-item-right">
+                                            <div class="dot-btn">
+                                                <img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
+                                            </div>
+                                        </div>
+                                    </a>
+                                <?php endif; endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="gl-s80"></div>
