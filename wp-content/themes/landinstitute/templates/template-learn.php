@@ -66,13 +66,13 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 				<div class="filter-block">
 					<?php 
 						$current_learntype = isset($_GET['learn-type']) ? sanitize_text_field($_GET['learn-type']) : 'all';
-						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';
-						$current_learn_crop_slug = isset($_GET['learn-crop']) ? sanitize_text_field($_GET['learn-crop']) : 'all';						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';
+						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';
+						$current_learn_crop_slug = isset($_GET['learn-crop']) ? sanitize_text_field($_GET['learn-crop']) : 'all';		
 
 						// Set default display values
-						$current_learntype  = 'All types';
-						$current_learn_topic_slug = 'All topics';
+						$current_type_name  = 'All types';
 						$current_topic_name = 'All topics';
+						$current_crop_name = 'All Crops';
 
 						// Try to get the term objects if slugs are not "all"
 						if ($current_learntype !== 'all') {
