@@ -14,8 +14,8 @@ if ($query->have_posts()) :
 					<?php if (has_post_thumbnail()) : ?>
 						<?php echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_500'); ?>
 					<?php else : ?>
-						<img src="<?php echo wp_get_attachment_image(BASETHEME_DEFAULT_IMAGE); ?>" alt="Default thumbnail" width="500" height="300" />
-					<?php endif; ?>
+						<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="500" height="300" />
+						<?php endif; ?>
 				</div>
 				<div class="filter-card-content">
 					<div class="gl-s52"></div>
