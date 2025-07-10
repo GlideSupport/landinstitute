@@ -381,6 +381,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 
 	const news_append_list = document.querySelector(".newsmain .filter-content-cards-grid");
+	const new_pagination = document.querySelector(".newsmain .fillter-bottom");
+
 	function fetchnews(paged = 1, updateURL = true) {
 		currentPage = paged;
 
@@ -423,13 +425,17 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			.then((data) => {
 				if (data.success) {
 					// ✅ Corrected this line
-					if (news_append_list) news_append_list.innerHTML = data.data.news_html;
+					if (new_pagination) news_append_list.innerHTML = data.data.news_html;
 
 					const oldPagination = document.querySelector('.news-pagination-append-container');
 					if (oldPagination) {
 						oldPagination.outerHTML = data.data.pagination_html;
 					} else {
-						news_append_list.insertAdjacentHTML('afterend', data.data.pagination_html);
+
+						//const oldPagination = document.querySelector('.news-pagination-append-container');
+						console.log(123);
+
+						new_pagination.insertAdjacentHTML('beforeend', data.data.pagination_html);
 					}
 
 					initnewsPaginationListeners();
@@ -565,7 +571,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 					} else {
 						learn_append_list.insertAdjacentHTML(
 							'afterend',
-							`<div class="filter-botoom">${data.data.pagination_html}</div>`
+							`${data.data.pagination_html}`
 						  );
 						}
 
