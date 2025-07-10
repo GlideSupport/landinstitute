@@ -123,6 +123,7 @@ if ($start_date && $end_date) {
 	<div class="wrapper">
 		<div class="gl-s96"></div>
 			<?php the_content(); ?>
+		<div class="gl-s64"></div>
 	</div>
 </div>
 </section>	
