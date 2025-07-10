@@ -496,15 +496,15 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 				if (taxonomy === "learn-type") {
 					learntype = term;
 					document.querySelector("button#types-view").innerHTML =
-						"News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
+						"Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
 				} else if (taxonomy === "learn-topic") {
 					learntopic = term;
 					document.querySelector("button#topic-view").innerHTML =
-						"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
+						"Topic: " + (term === "all" ? "Topic" : term.replace(/-/g, " "));
 				}else if (taxonomy === "learn-crops") {
 					learncrops = term;
 					document.querySelector("button#topic-view").innerHTML =
-						"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
+						"Crop: " + (term === "all" ? "Crop" : term.replace(/-/g, " "));
 				}
 
 				// Reset to page 1
