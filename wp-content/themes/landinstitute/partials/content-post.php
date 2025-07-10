@@ -11,8 +11,8 @@
 list( $bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object ) = BaseTheme::defaults();
 
 // Post Tags & Categories.
-$bst_var_post_categories = get_the_category( $bst_var_post_id );
-
+$learn_type_terms = get_the_terms($bst_var_post_id, 'learn-type');
+$learn_type_name = !empty($learn_type_terms) && !is_wp_error($learn_type_terms) ? esc_html($learn_type_terms[0]->name) : '';
 $bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
 $featured_image_id = get_post_thumbnail_id();
 $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
@@ -53,27 +53,21 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 					<div class="col-content bg-lime-green">
 						<div class="hero-content">
 							<div class="gl-s128"></div>
-							<div class="ui-eyebrow-20-18-regular subhead">
-								<?php echo !empty($bst_var_post_categories) ? esc_html($bst_var_post_categories[0]->name) : 'Publications'; ?>
-							</div>
+							<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
 							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
-							<div class="gl-s44"></div>
+							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
 						</div>
 						<div class="col-content-row d-flex">
 							<div class="column-content">
-								<div class="ui-eyebrow-16-15-bold subhead">Author</div>
-								<div class="gl-s6"></div>
-								<div class="body-18-16-regular block-content">
-									<?php echo !empty($li_ldo_authors) ? $li_ldo_authors : ''; ?>
-								</div>
+								<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
+								<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
+								<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
 							</div>
 							<div class="column-content">
-								<div class="ui-eyebrow-16-15-bold subhead">Publication</div>
-								<div class="gl-s6"></div>
-								<div class="body-18-16-regular block-content">
-									<?php echo !empty($li_ldo_publication) ? esc_html($li_ldo_publication) : ''; ?>
-								</div>
+								<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
+								<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
+								<?php echo !empty($li_ldo_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_ldo_publication) . '</div>' : ''; ?>
 							</div>
 						</div>
 						<div class="gl-s96"></div>
@@ -81,18 +75,16 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 				<?php else : ?>
 					<div class="col-left bg-lime-green">
 						<div class="hero-content">
-							<?php echo !empty($bst_var_post_categories) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . esc_html($bst_var_post_categories[0]->name) . '</div>' : ''; ?>
+						<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
 							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
-							<div class="gl-s30"></div>
-							<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>
-							<div class="gl-s6"></div>
-							<div class="block-content body-18-16-regular">
-								<?php echo !empty($li_ldo_authors) ? $li_ldo_authors : ''; ?>
-							</div>
+							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s30"></div>' : ''; ?>
+							<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
+							<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
+							<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
 							<div class="gl-s36"></div>
-							<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>
-							<div class="gl-s6"></div>
+							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
+							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
 							<div class="text-link">
 								<a href="<?php echo esc_url($url); ?>" class="link-with-icon">
 									<span class="link-content">
@@ -161,10 +153,16 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 								break;
 
 							case 'related':
-								$categories = get_the_category($bst_var_post_id);
-								if (!empty($categories)) {
-									$category_ids = wp_list_pluck($categories, 'term_id');
-									$args['category__in'] = $category_ids;
+								$terms = get_the_terms($bst_var_post_id, 'learn-type');
+								if (!empty($terms) && !is_wp_error($terms)) {
+									$term_ids = wp_list_pluck($terms, 'term_id');
+									$args['tax_query'] = [
+										[
+											'taxonomy' => 'learn-type',
+											'field'    => 'term_id',
+											'terms'    => $term_ids,
+										],
+									];
 									$args['post__not_in'] = [$bst_var_post_id];
 								} else {
 									$args['post__in'] = [0]; // fallback: show nothing
@@ -179,8 +177,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							$title      = get_the_title();
 							$permalink  = get_permalink();
 							$excerpt    = get_the_excerpt($post_id);
-							$categories = get_the_category($post_id);
-							$cat_name   = !empty($categories) ? esc_html($categories[0]->name) : '';
+							$terms = get_the_terms($post_id, 'learn-type');
+							$term_name = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
 							?>
 							<div class="swiper-slide">
 								<div class="image-card-caption">
@@ -190,8 +188,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 										</div>
 										<div class="caption-card-content">
 											<div class="gl-s52"></div>
-											<?php echo !empty($cat_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $cat_name . '</div>' : ''; ?>
-											<?php echo (!empty($cat_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
+											<?php echo !empty($term_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $term_name . '</div>' : ''; ?>
+											<?php echo (!empty($term_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
 											<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
 											<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
 											<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
