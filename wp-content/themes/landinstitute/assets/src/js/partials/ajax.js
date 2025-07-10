@@ -327,15 +327,15 @@ window.addEventListener('popstate', function (e) {
 });
 
 // On initial load, if /page/2 exists in URL, trigger fetch
-document.addEventListener("DOMContentLoaded", function () {
-	const match = window.location.pathname.match(/\/page\/(\d+)/);
-	if (match) {
-		const page = parseInt(match[1]);
-		if (!isNaN(page) && page > 1) {
-			fetchPastEvents(page, false); // load via AJAX on first hit
-		}
-	}
-});
+// document.addEventListener("DOMContentLoaded", function () {
+// 	const match = window.location.pathname.match(/\/page\/(\d+)/);
+// 	if (match) {
+// 		const page = parseInt(match[1]);
+// 		if (!isNaN(page) && page > 1) {
+// 			fetchPastEvents(page, false); // load via AJAX on first hit
+// 		}
+// 	}
+// });
 
 // Initialize listeners on first load
 initPaginationListeners();
