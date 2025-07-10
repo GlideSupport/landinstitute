@@ -865,6 +865,7 @@
 
 section:has(.two-column-image) {
     position: relative;
+    overflow: hidden;
 }
 
 .two-column-image {

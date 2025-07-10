@@ -38,45 +38,81 @@ $newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $b
 $li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
 $li_ldo_kicker = $bst_fields['li_ldo_kicker'] ?? $bst_var_kicker;
 $form_selector = $bst_fields['li_ldo_form_selector'] ?? $bst_var_form_selector;
+
+$class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-default hero-alongside-menu variation-width variation-details' : 'hero-section hero-section-default hero-text-only';
+
 ?>
 
-<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-width variation-details">
+<section id="hero-section" class="<?php echo $class; ?>">
 	<!-- hero start -->
-	<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
+	<?php echo ($class !== 'hero-section hero-section-default hero-text-only' && !empty($bg_pattern)) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
 	<div class="hero-default has-border-bottom">
 		<div class="wrapper">
 			<div class="hero-alongside-block">
-				<div class="col-left bg-lime-green">
-					<div class="hero-content">
-						<?php echo !empty($bst_var_post_categories) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . esc_html($bst_var_post_categories[0]->name) . '</div>' : ''; ?>
-						<div class="gl-s20"></div>
-						<h3 class="heading-3 mb-0 block-title"><?php echo $bst_var_posttitle ?>
-						</h3>
-						<div class="gl-s30"></div>
-						<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>
-						<div class="gl-s6"></div>
-						<div class="block-content body-18-16-regular">
-							<?php echo !empty($li_ldo_authors) ? $li_ldo_authors : ''; ?>
+			<?php if ($class === 'hero-section hero-section-default hero-text-only') : ?>
+					<div class="col-content bg-lime-green">
+						<div class="hero-content">
+							<div class="gl-s128"></div>
+							<div class="ui-eyebrow-20-18-regular subhead">
+								<?php echo !empty($bst_var_post_categories) ? esc_html($bst_var_post_categories[0]->name) : 'Publications'; ?>
+							</div>
+							<div class="gl-s20"></div>
+							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
+							<div class="gl-s44"></div>
 						</div>
-						<div class="gl-s36"></div>
-						<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>
-						<div class="gl-s6"></div>
-						<div class="text-link">
-							<a href="<?php echo esc_url($url); ?>" class="link-with-icon">
-								<span class="link-content">
-									<?php echo esc_html($li_ldo_publication); ?><span class="icon">
-										<img
-											class="" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" width=""
-											height="" alt="" /></span></span>
-							</a>
-						</div>	
+						<div class="col-content-row d-flex">
+							<div class="column-content">
+								<div class="ui-eyebrow-16-15-bold subhead">Author</div>
+								<div class="gl-s6"></div>
+								<div class="body-18-16-regular block-content">
+									<?php echo !empty($li_ldo_authors) ? $li_ldo_authors : ''; ?>
+								</div>
+							</div>
+							<div class="column-content">
+								<div class="ui-eyebrow-16-15-bold subhead">Publication</div>
+								<div class="gl-s6"></div>
+								<div class="body-18-16-regular block-content">
+									<?php echo !empty($li_ldo_publication) ? esc_html($li_ldo_publication) : ''; ?>
+								</div>
+							</div>
+						</div>
 						<div class="gl-s96"></div>
 					</div>
-				</div>
-				<div class="col-right">
-					<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
-					<?php echo !empty($featured_image_html) ? '<div class="block-image-center">' . $featured_image_html . '</div>' : ''; ?>				</div>
-				</div>
+				<?php else : ?>
+					<div class="col-left bg-lime-green">
+						<div class="hero-content">
+							<?php echo !empty($bst_var_post_categories) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . esc_html($bst_var_post_categories[0]->name) . '</div>' : ''; ?>
+							<div class="gl-s20"></div>
+							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
+							<div class="gl-s30"></div>
+							<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>
+							<div class="gl-s6"></div>
+							<div class="block-content body-18-16-regular">
+								<?php echo !empty($li_ldo_authors) ? $li_ldo_authors : ''; ?>
+							</div>
+							<div class="gl-s36"></div>
+							<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>
+							<div class="gl-s6"></div>
+							<div class="text-link">
+								<a href="<?php echo esc_url($url); ?>" class="link-with-icon">
+									<span class="link-content">
+										<?php echo esc_html($li_ldo_publication); ?>
+										<span class="icon">
+											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+										</span>
+									</span>
+								</a>
+							</div>	
+							<div class="gl-s96"></div>
+						</div>
+					</div>
+				<?php endif; ?>
+				<?php if ($class !== 'hero-section hero-section-default hero-text-only') : ?>
+					<div class="col-right">
+						<?php echo !empty($bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
+						<?php echo !empty($featured_image_html) ? '<div class="block-image-center">' . $featured_image_html . '</div>' : ''; ?>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
