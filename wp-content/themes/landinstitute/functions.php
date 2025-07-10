@@ -383,6 +383,30 @@ function date_formatting($start_date, $end_date)
 	return $final_date;
 }
 
+
+function date_formatting_new($start_date, $end_date) {
+    $start_ts = strtotime($start_date);
+    $end_ts   = strtotime($end_date);
+
+    // Check if same year
+    $start_year = date('Y', $start_ts);
+    $end_year   = date('Y', $end_ts);
+
+    if ($start_year === $end_year) {
+        // Same year: omit year from start date
+        $start_fmt = date('M j', $start_ts);
+    } else {
+        // Different years: include year in start date
+        $start_fmt = date('M j, Y', $start_ts);
+    }
+
+    // End date always includes year
+    $end_fmt = date('M j, Y', $end_ts);
+
+    return $start_fmt . ' - ' . $end_fmt;
+}
+
+
 function event_current_length($buffer, $item)
 {
 	$length = 1;
