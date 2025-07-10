@@ -35,12 +35,24 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 							<?php if (!empty($li_hero_to_image_video_thumbnail) || !empty($li_hero_to_choose_video_type) || !empty($li_hero_to_title) || !empty($li_hero_to_text)) :?>
 								<?php if($show_hide_announcement == '1'): ?>
 									<div class="announcement-toggle">
-										<?php if (!empty($li_hero_to_image_video_thumbnail) && !empty($li_hero_to_choose_video_type)) : ?>
+										<?php if (!empty($li_hero_to_choose_video_type)) : ?>
 										<div class="announcement-left">
 												<div class="announcement-image">
+												<?php if (!empty($li_hero_to_image_video_thumbnail)) : ?>
 													<div class="video-mask"></div>
-													<img src="<?php echo esc_url($li_hero_to_image_video_thumbnail); ?>" width="129"
-														height="85" alt="video-thumb" />
+														<?php echo wp_get_attachment_image($li_hero_to_image_video_thumbnail, "thumb_200"); ?>
+												<?php else : ?>
+														<?php
+														$thumbnail = esc_url(BASETHEME_DEFAULT_IMAGE);
+														if ($li_hero_to_choose_video_type === 'youtube') {
+															$thumbnail = "https://img.youtube.com/vi/" . esc_attr($youtube_id) . "/sddefault.jpg";
+														}
+														if ($li_hero_to_choose_video_type === 'vimeo') {
+															$thumbnail = BaseTheme::getVimeoThumbnail($vimeo_id);
+														}
+														?>
+														<img src="<?php echo esc_url($thumbnail); ?>" width="129" height="85" alt="video-thumb" />
+												<?php endif; ?>
 													<div class="video-play">
 														<!-- TO DO -->
 														<?php
