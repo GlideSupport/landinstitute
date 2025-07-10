@@ -189,21 +189,21 @@ $latest_featured_event = new WP_Query(array(
 							if (isset($_GET['eventsview']) && $_GET['eventsview'] === 'calendar') {
 								$eventargs['posts_per_page'] = -1;
 
-								$eventargs['meta_query'] = [
-									'relation' => 'AND',
-									[
-										'key' => 'li_cpt_event_timestepm_with_selected_timezone',
-										'value'   => $current_timestamp,
-										'compare' => '>=',
-										'type' => 'NUMERIC'
-									],
-									[
-										'key' => 'li_cpt_event_end_date',
-										'value' => date('Ymd'),
-										'compare' => '>=',
-										'type' => 'NUMERIC'
-									]
-								];
+								// $eventargs['meta_query'] = [
+								// 	'relation' => 'AND',
+								// 	[
+								// 		'key' => 'li_cpt_event_timestepm_with_selected_timezone',
+								// 		'value'   => $current_timestamp,
+								// 		'compare' => '>=',
+								// 		'type' => 'NUMERIC'
+								// 	],
+								// 	[
+								// 		'key' => 'li_cpt_event_end_date',
+								// 		'value' => date('Ymd'),
+								// 		'compare' => '>=',
+								// 		'type' => 'NUMERIC'
+								// 	]
+								// ];
 							}
 
 							$event_query = new WP_Query($eventargs);
