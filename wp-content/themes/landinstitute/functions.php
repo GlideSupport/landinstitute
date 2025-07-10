@@ -519,26 +519,18 @@ add_action('wp_ajax_nopriv_load_more_events', 'load_more_events_callback');
 function load_more_events_callback()
 {
 	$paged = isset($_GET['page']) ? intval($_GET['page']) : 1;
+	$posts_per_page = 10;
 
-	// $event_query = new WP_Query([
-	// 	'post_type'      => 'event',
-	// 	'post_status'    => 'publish',
-	// 	'posts_per_page' => 1,
-	// 	'paged'          => $paged,
-	// 	'orderby'        => 'meta_value',
-	// 	'meta_key'       => 'li_cpt_event_start_date',
-	// 	'order'          => 'ASC'
-	// ]);
-	$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+	$current_timestamp = current_time('timestamp');
 
 	$eventargs = array(
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
-		'posts_per_page' => 10,
-		'orderby'        => 'meta_value_num', // Ensure numeric comparison
+		'posts_per_page' => $posts_per_page,
+		'paged'          => $paged,
+		'orderby'        => 'meta_value_num',
 		'meta_key'       => 'li_cpt_event_start_date',
 		'order'          => 'ASC',
-		'paged'          => $paged,
 		'meta_query'     => array(
 			array(
 				'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
@@ -548,26 +540,25 @@ function load_more_events_callback()
 			)
 		)
 	);
+
 	$event_query = new WP_Query($eventargs);
+
+	ob_start();
 
 	if ($event_query->have_posts()) :
 		while ($event_query->have_posts()) : $event_query->the_post();
-		$start_date = get_field('li_cpt_event_start_date');
-		$end_date   = get_field('li_cpt_event_end_date');
-		$all_day = get_field('li_cpt_event_all_day'); // checkbox or true/false
-		$event_display = get_formatted_event_datetime($post_id);
+			$post_id = get_the_ID();
+			$start_date = get_field('li_cpt_event_start_date');
+			$end_date   = get_field('li_cpt_event_end_date');
+			$event_display = get_formatted_event_datetime($post_id);
 
-
-			$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');;
-
-			if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
-				$image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+			$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');
+			if (get_the_post_thumbnail_url($post_id, 'medium')) {
+				$image = get_the_post_thumbnail_url($post_id, 'medium');
 			}
 
-			// $image      = get_the_post_thumbnail_url(get_the_ID(), 'medium');
-			$excerpt    = get_the_excerpt();
-			$excerpt = wp_trim_words($excerpt, 25, '...');
-			$url        = get_permalink();
+			$excerpt = wp_trim_words(get_the_excerpt(), 25, '...');
+			$url = get_permalink();
 
 			set_query_var('start_date', $start_date);
 			set_query_var('end_date', $end_date);
@@ -579,12 +570,24 @@ function load_more_events_callback()
 			get_template_part('partials/content', 'event-list');
 		endwhile;
 	else :
-		echo '<p>No more events.</p>';
+		echo '<div class="no-more-events">No more events.</div>';
 	endif;
 
+	$html = ob_get_clean();
+
+	// Determine if there are more pages
+	$has_more = ($paged < $event_query->max_num_pages);
+
 	wp_reset_postdata();
-	wp_die(); // Important!
+
+	wp_send_json([
+		'success'    => true,
+		'html'       => $html,
+		'has_more'   => $has_more,
+		'next_page'  => $paged + 1
+	]);
 }
+
 
 
 // Past event filter

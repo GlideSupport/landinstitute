@@ -1,31 +1,45 @@
 // Load more events via AJAX on button click
-
 const loadMoreBtn = document.getElementById('load-more-events');
 
 if (loadMoreBtn) {
   loadMoreBtn.addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent default button behavior
+    e.preventDefault();
 
     const btn = this;
-    const page = parseInt(btn.getAttribute('data-page')) + 1;
+    let page = parseInt(btn.getAttribute('data-page'));
     const eventList = document.getElementById('event-list-main-div');
 
-    // Show loading state
     const originalText = btn.innerHTML;
     btn.innerHTML = 'Loading...';
     btn.disabled = true;
     eventList.classList.add('loading');
 
     fetch(localVars.ajax_url + '?action=load_more_events&page=' + page)
-      .then(res => res.text())
-      .then(html => {
-        eventList.insertAdjacentHTML('beforeend', html);
-        btn.setAttribute('data-page', page);
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.html) {
+          eventList.insertAdjacentHTML('beforeend', data.html);
+
+          if (data.has_more) {
+            btn.setAttribute('data-page', data.next_page);
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+          } else {
+            //btn.innerHTML = 'No more events';
+            btn.classList.add('disabled');
+            btn.disabled = true;
+          }
+        } else {
+          //btn.innerHTML = 'No more events';
+          btn.classList.add('disabled');
+          btn.disabled = true;
+        }
+      })
+      .catch(() => {
+        btn.innerHTML = 'Try again';
+        btn.disabled = false;
       })
       .finally(() => {
-        // Restore button and remove loading state
-        btn.innerHTML = originalText;
-        btn.disabled = false;
         eventList.classList.remove('loading');
       });
   });

@@ -206,15 +206,15 @@ $latest_featured_event = new WP_Query(array(
 							}else{
 
 								$eventargs['meta_key'] = "li_cpt_event_start_date";
-								$eventargs['meta_query'] = [
-									'relation' => 'AND',
-									[
-										'key' => 'li_cpt_event_timestepm_with_selected_timezone_compare',
-										'value'   => $current_timestamp,
-										'compare' => '>=',
-										'type' => 'NUMERIC'
-									]
-								];
+								// $eventargs['meta_query'] = [
+								// 	'relation' => 'AND',
+								// 	[
+								// 		'key' => 'li_cpt_event_timestepm_with_selected_timezone_compare',
+								// 		'value'   => $current_timestamp,
+								// 		'compare' => '>=',
+								// 		'type' => 'NUMERIC'
+								// 	]
+								// ];
 							}
 
 							$event_query = new WP_Query($eventargs);
@@ -258,9 +258,7 @@ $latest_featured_event = new WP_Query(array(
 							?>
 						</div>
 						<?php if ($event_query->found_posts > 10) : 
-							$total_pages = ceil( $event_query->found_posts / $event_query->query_vars['posts_per_page'] );
-
-?>
+						$total_pages = ceil( $event_query->found_posts / $event_query->query_vars['posts_per_page'] );?>
 							<div class="block-btn-full">
 								<a id="load-more-events" class="site-btn sm-btn" data-total-page="<?php echo $total_pages; ?>" data-page="1">Load More Events</a>
 							</div>
