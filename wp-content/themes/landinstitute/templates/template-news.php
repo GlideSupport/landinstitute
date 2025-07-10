@@ -202,7 +202,9 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="filter-content-cards-grid">
 							<?php include get_template_directory() . '/partials/content-news-list.php'; ?>
 						</div>
+						<div class="fillter-bottom">
 						<?php include get_template_directory() . '/partials/content-news-pagination.php'; ?>
+					</div>
 					<?php else : ?>
 						<div class="no-news-found">
 							<p>No news found.</p>

@@ -130,8 +130,9 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							</div>
 
 						<!-- Pagination -->
+						<div class="fillter-bottom">
 						<?php get_template_part('partials/content', 'learn-pagination'); ?>
-
+						</div>
 						<!-- End -->
 					</div>
 			</div>

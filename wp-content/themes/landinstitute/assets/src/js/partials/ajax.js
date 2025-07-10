@@ -566,8 +566,9 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 						learn_append_list.insertAdjacentHTML('afterend', data.data.pagination_html);
 					}
 
-					initnewsPaginationListeners();
+					initLearnPaginationListeners();
 					attachPaginationEventListeners?.(); // Safe optional chaining
+					
 
 					if (updateURL) {
 						const { pathname, search } = window.location;
@@ -649,11 +650,6 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 initnewsPaginationListeners();
 initLearnPaginationListeners();
-
-
-
-
-
 
 });
 document.addEventListener('click', function (e) {

@@ -15,7 +15,6 @@ $total_pages   = $query->max_num_pages;
 $base_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 if ($total_pages > 1): ?>
-<div class="fillter-bottom">
     <div class="pagination-container learn-pagination-append-container">
 
         <!-- Desktop Pagination -->
@@ -88,5 +87,4 @@ if ($total_pages > 1): ?>
             </div>
         </div>
     </div>
-</div>
 <?php endif; ?>
