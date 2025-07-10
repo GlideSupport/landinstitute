@@ -99,20 +99,35 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							// Taxonomy filters
 							$tax_query = array('relation' => 'AND');
 
-							$tax_map = array(
-								'learn-type'   => 'learn-type',
-								'learn-topic'  => 'learn-topic',
-								'learn-crop'   => 'learn-crop',
-							);
+							// $tax_map = array(
+							// 	'learn-type'   => 'learn-type',
+							// 	'learn-topic'  => 'learn-topic',
+							// 	'learn-crop'   => 'learn-crop',
+							// );
 
-							foreach ($tax_map as $key => $taxonomy) {
-								if (!empty($_GET[$key])) {
-									$tax_query[] = array(
-										'taxonomy' => $taxonomy,
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET[$key]),
-									);
-								}
+
+							if (!empty($_GET['learn-type']) && $_GET['learn-type'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-type',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn-type']),
+								];
+							}
+						
+							if (!empty($_GET['learn-topic']) && $_GET['learn-topic'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-topic',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn-topic']),
+								];
+							}
+						
+							if (!empty($_GET['learn-crop']) && $_GET['learn-crop'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-crop',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn_crops']),
+								];
 							}
 
 							if (count($tax_query) > 1) {
