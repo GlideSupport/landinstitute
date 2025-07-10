@@ -592,8 +592,6 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 						const newURL = newPath + search;
 						history.pushState({ paged: paged }, '', newURL);
 					}
-
-
 					setTimeout(() => {
 						const newTeaserList = document.querySelector(".filter-content-cards-grid");
 						if (newTeaserList) {
@@ -611,6 +609,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 				learn_append_list.innerHTML = "<p>Error loading news.</p>";
 			});
 	}
+
+
 
 
 
@@ -658,7 +658,6 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			});
 		});
 	}
-
 
 initnewsPaginationListeners();
 initLearnPaginationListeners();
