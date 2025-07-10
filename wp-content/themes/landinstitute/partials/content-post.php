@@ -68,7 +68,20 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="column-content">
 								<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
 								<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_ldo_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_ldo_publication) . '</div>' : ''; ?>
+								<?php if (!empty($li_ldo_pdf)) : ?>
+									<a href="<?php echo esc_url($li_ldo_pdf); ?>" class="link-with-icon" target="_blank" rel="noopener">
+										<span class="link-content">
+											<?php echo esc_html($li_ldo_publication); ?>
+											<span class="icon">
+												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+											</span>
+										</span>
+									</a>
+								<?php elseif (!empty($li_ldo_publication)) : ?>
+									<div class="body-18-16-regular block-content">
+										<?php echo esc_html($li_ldo_publication); ?>
+									</div>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="gl-s96"></div>
@@ -96,10 +109,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 									</span>
 								</a>
 							<?php elseif (!empty($li_ldo_publication)) : ?>
-								<div class="text-link no-link">
-									<span class="link-content">
-										<?php echo esc_html($li_ldo_publication); ?>
-									</span>
+								<div class="body-18-16-regular block-content">
+									<?php echo esc_html($li_ldo_publication); ?>
 								</div>
 							<?php endif; ?>
 							<div class="gl-s96"></div>
