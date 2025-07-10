@@ -118,7 +118,6 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 			<?php the_content(); ?>
 		<div class="gl-s64"></div>
 	</div>
-</div>
 </section>	
 
 <?php if ($li_po_bg_image_visible): ?>

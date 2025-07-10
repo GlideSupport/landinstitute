@@ -38,7 +38,6 @@ if ($li_t_choose_variation === 'traditional-slider' && !empty($li_t_selector_tes
                                         </div>
                                         <div class="col-right">
                                             <div class="testimonial-author-image">
-                                                <div class="optional-title ui-14-13-bold">Placeholder Image</div>
                                                 <?php echo wp_get_attachment_image($author_image_id, 'thumb_500'); ?>
                                             </div>
                                         </div>
