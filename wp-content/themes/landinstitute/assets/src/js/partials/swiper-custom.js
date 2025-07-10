@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Initialize Swiper for each instance
 		new Swiper(slider, {
-			loop: true,
+			loop: false,
 			slidesPerView: 1.28,
 			spaceBetween: 0,
 			navigation: {

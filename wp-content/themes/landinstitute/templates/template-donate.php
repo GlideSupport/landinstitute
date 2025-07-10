@@ -11,7 +11,7 @@
  * @package Base Theme Package
  * @since 1.0.0
  */
-wp_head();
+get_header();
 ?>
 
 <?php
