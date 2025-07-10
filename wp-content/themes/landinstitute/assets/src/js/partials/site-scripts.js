@@ -524,7 +524,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	//footer nav active class js
 	const currentHash = window.location.hash;
 	if (!currentHash) return;
-	document.querySelectorAll('#menu-areas-of-focus li').forEach((li) => {
+	document.querySelectorAll('.menu-areas-of-focus li').forEach((li) => {
 		const link = li.querySelector('a');
 		if (link && link.getAttribute('href') === currentHash) {
 			li.classList.add('active');

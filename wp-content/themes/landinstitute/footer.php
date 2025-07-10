@@ -249,6 +249,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                     </div>
                 <?php endif; ?>
                 <div class="cl-right">
+                    <div class="jump-nav-us">
                     <?php
                     if (!empty($li_po_sub_nav_sticky) && is_array($li_po_sub_nav_sticky) && !empty($li_po_sub_nav_sticky['slug'])) {
                         wp_nav_menu(
@@ -262,6 +263,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                         );
                     }
                     ?>
+                    </div>
                 </div>
             </div>
         </div>
