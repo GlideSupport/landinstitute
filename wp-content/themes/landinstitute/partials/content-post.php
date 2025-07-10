@@ -21,10 +21,11 @@ $featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_ldo_authors = $bst_fields['li_ldo_authors'];
 $li_ldo_publication = $bst_fields['li_ldo_publication'];
+$li_ldo_pdf = $bst_fields['li_ldo_pdf'];
 $bg_pattern = $bst_fields['li_ldo_background_pattern'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
 $li_ido_read_more_check = BaseTheme::headline_check($li_ido_read_more);
-$li_ido_relatedselected_post = $bst_fields['li_ido_relatedselected_post'] ?? 'recent';
+$li_ido_relatedselected_post = $bst_fields['li_ido_relatedselected_post'] ?? 'related';
 $li_ido_select_posts = $bst_fields['li_ido_select_posts'] ?? null;
 
 $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
@@ -85,18 +86,22 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="gl-s36"></div>
 							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-							<div class="text-link">
-								<div class="link-with-icon">
+							<?php if (!empty($li_ldo_pdf)) : ?>
+								<a href="<?php echo esc_url($li_ldo_pdf); ?>" class="link-with-icon" target="_blank" rel="noopener">
 									<span class="link-content">
 										<?php echo esc_html($li_ldo_publication); ?>
-										<?php if (!empty($li_ldo_publication)) : ?>
-											<span class="icon">
-												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
-											</span>
-										<?php endif; ?>
+										<span class="icon">
+											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+										</span>
+									</span>
+								</a>
+							<?php elseif (!empty($li_ldo_publication)) : ?>
+								<div class="text-link no-link">
+									<span class="link-content">
+										<?php echo esc_html($li_ldo_publication); ?>
 									</span>
 								</div>
-							</div>
+							<?php endif; ?>
 							<div class="gl-s96"></div>
 						</div>
 					</div>
