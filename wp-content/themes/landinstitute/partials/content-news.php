@@ -19,24 +19,24 @@ $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_de
 $featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', false, ['alt' => esc_attr(get_the_title())]);
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
-$li_ldo_authors = $bst_fields['li_nwd_authors'];
-$li_ldo_publication = $bst_fields['li_nwd_publication'];
+$li_nwd_authors = $bst_fields['li_nwd_authors'];
+$li_nwd_publication = $bst_fields['li_nwd_publication'];
 $bg_pattern = $bst_fields['li_nwd_background_pattern'] ??  $bst_option_fields['li_news_list_detail_page_bg_pattern'];
 $li_nwd_read_more = $bst_fields['li_nwd_read_more'];
 $li_nwd_read_more_check = BaseTheme::headline_check($li_nwd_read_more);
-$li_ido_relatedselected_post = $bst_fields['li_nwd_relatedselected_post'] ?? 'related';
-$li_ido_select_posts = $bst_fields['li_nwd_select_news'] ?? null;
+$li_nwd_relatedselected_post = $bst_fields['li_nwd_relatedselected_post'] ?? 'related';
+$li_nwd_select_news = $bst_fields['li_nwd_select_news'] ?? null;
 
 $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
-$li_po_bg_image_visible = array_key_exists('li_no_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_po_bg_image_visible'] : true;
-$li_po_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
+$li_no_bg_image_visible = array_key_exists('li_no_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_no_bg_image_visible'] : true;
+$li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
 $newsletter_form_visible = array_key_exists('li_nwd_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_nwd_newsletter_form_visible'] : true;
-$li_ldo_title = $bst_fields['li_nwd_title'] ?? $bst_var_title;
-$li_ldo_kicker = $bst_fields['li_nwd_kicker'] ?? $bst_var_kicker;
+$li_nwd_title = $bst_fields['li_nwd_title'] ?? $bst_var_title;
+$li_nwd_kicker = $bst_fields['li_nwd_kicker'] ?? $bst_var_kicker;
 $form_selector = $bst_fields['li_nwd_form_selector'] ?? $bst_var_form_selector;
 
 $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-default hero-alongside-menu variation-width variation-details' : 'hero-section hero-section-default hero-text-only';
@@ -56,18 +56,18 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
 							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
-							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
+							<?php echo (!empty($li_nwd_authors) || !empty($li_nwd_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
 						</div>
 						<div class="col-content-row d-flex">
 							<div class="column-content">
-								<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
-								<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
+								<?php echo !empty($li_nwd_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
+								<?php echo !empty($li_nwd_authors) ? '<div class="gl-s6"></div>' : ''; ?>
+								<?php echo !empty($li_nwd_authors) ? '<div class="block-content body-18-16-regular">' . $li_nwd_authors . '</div>' : ''; ?>
 							</div>
 							<div class="column-content">
-								<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
-								<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_ldo_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_ldo_publication) . '</div>' : ''; ?>
+								<?php echo !empty($li_nwd_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
+								<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
+								<?php echo !empty($li_nwd_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_nwd_publication) . '</div>' : ''; ?>
 							</div>
 						</div>
 						<div class="gl-s96"></div>
@@ -78,14 +78,14 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 						<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
 							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
-							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s30"></div>' : ''; ?>
-							<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
-							<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
-							<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
+							<?php echo (!empty($li_nwd_authors) || !empty($li_nwd_publication)) ? '<div class="gl-s30"></div>' : ''; ?>
+							<?php echo !empty($li_nwd_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
+							<?php echo !empty($li_nwd_authors) ? '<div class="gl-s6"></div>' : ''; ?>
+							<?php echo !empty($li_nwd_authors) ? '<div class="block-content body-18-16-regular">' . $li_nwd_authors . '</div>' : ''; ?>
 							<div class="gl-s36"></div>
-							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
-							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_ldo_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_ldo_publication) . '</div>' : ''; ?>
+							<?php echo !empty($li_nwd_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
+							<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
+								<?php echo !empty($li_nwd_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_nwd_publication) . '</div>' : ''; ?>
 							<div class="gl-s96"></div>
 						</div>
 					</div>
@@ -109,11 +109,11 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	</div>
 </section>	
 
-<?php if ($li_po_bg_image_visible): ?>
+<?php if ($li_no_bg_image_visible): ?>
 	<section class="container-1280 ">
 		<div class="wrapper">
 			<div class="bg-pattern-fixed has-border-bottom">
-				<?php echo !empty($li_po_bg_image) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($li_po_bg_image, 'thumb_2000') . '</div>' : ''; ?>
+				<?php echo !empty($li_no_bg_image) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($li_no_bg_image, 'thumb_2000') . '</div>' : ''; ?>
 			</div>
 		</div>
 	</section>
@@ -135,10 +135,10 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							'post_status' => 'publish',
 						];
 
-						switch ($li_ido_relatedselected_post) {
+						switch ($li_nwd_relatedselected_post) {
 							case 'selected':
-								if (!empty($li_ido_select_posts)) {
-									$args['post__in']  = $li_ido_select_posts;
+								if (!empty($li_nwd_select_news)) {
+									$args['post__in']  = $li_nwd_select_news;
 									$args['orderby']   = 'post__in';
 								}
 								break;
@@ -210,10 +210,10 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 		<div class="wrapper">
 			<div class="newsletter-block">
 				<div class="block-row">
-					<?php echo !empty($li_ldo_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_ldo_kicker) . '</div>' : ''; ?>	
-					<?php echo (!empty($li_ldo_kicker) && !empty($li_ldo_title)) ? '<div class="gl-s12"></div>' : ''; ?>
-					<?php echo !empty($li_ldo_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_ldo_title) . '</h2>' : ''; ?>	
-					<?php echo (!empty($li_ldo_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
+					<?php echo !empty($li_nwd_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_nwd_kicker) . '</div>' : ''; ?>	
+					<?php echo (!empty($li_nwd_kicker) && !empty($li_nwd_title)) ? '<div class="gl-s12"></div>' : ''; ?>
+					<?php echo !empty($li_nwd_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_nwd_title) . '</h2>' : ''; ?>	
+					<?php echo (!empty($li_nwd_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
 					<div class="newsletter-form">
 						<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
 					</div>
