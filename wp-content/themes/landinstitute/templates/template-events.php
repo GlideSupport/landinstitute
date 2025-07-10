@@ -174,15 +174,7 @@ $latest_featured_event = new WP_Query(array(
 								'orderby'        => 'meta_value_num', // Ensure numeric comparison
 								'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 								'order'          => 'ASC',
-								'meta_query'     => array(
-									array(
-										'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
-										'value'   => $current_timestamp,
-										'type'    => 'NUMERIC',
-										'compare' => '>='
-									)
-								)
-							);
+								);
 
 
 							// Avoid undefined index warning
@@ -204,6 +196,16 @@ $latest_featured_event = new WP_Query(array(
 								// 		'type' => 'NUMERIC'
 								// 	]
 								// ];
+							}else{
+								$eventargs['meta_query'] = [
+									'relation' => 'AND',
+									[
+										'key' => 'li_cpt_event_timestepm_with_selected_timezone',
+										'value'   => $current_timestamp,
+										'compare' => '>=',
+										'type' => 'NUMERIC'
+									]
+								];
 							}
 
 							$event_query = new WP_Query($eventargs);
