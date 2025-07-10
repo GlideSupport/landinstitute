@@ -538,6 +538,7 @@ function load_more_events_callback()
 		'orderby'        => 'meta_value_num', // Ensure numeric comparison
 		'meta_key'       => 'li_cpt_event_start_date',
 		'order'          => 'ASC',
+		'paged'          => $paged,
 		'meta_query'     => array(
 			array(
 				'key'     => 'li_cpt_event_timestepm_with_selected_timezone',
