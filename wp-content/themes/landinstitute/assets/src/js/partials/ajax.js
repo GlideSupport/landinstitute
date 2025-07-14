@@ -478,33 +478,29 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 	var learntype =""; 
 	var learntopic =""; 
 	var learncrops =""; 
-
-
-
-	document.querySelectorAll(".mainlearn .dropdown-menu").forEach((menu) => {
+	document.querySelectorAll(".learn-list-filter .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
 			link.addEventListener("click", (e) => {
 				e.preventDefault();
 				const taxonomy = menu.id; // donor-type or donation-level
 				const term = link.getAttribute("data-term");
 
+				//console.log(term+"seleceted term");
+				
 				// Remove 'active' class from siblings
 				menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
 				link.closest("li").classList.add("active");
-
+				///console.log(taxonomy+"taxo");
 				// Set selected term
 				if (taxonomy === "learn-type") {
 					learntype = term;
-					document.querySelector("button#types-view").innerHTML =
-						"Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
+					document.querySelector("button#type-view").innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
 				} else if (taxonomy === "learn-topic") {
 					learntopic = term;
-					document.querySelector("button#topic-view").innerHTML =
-						"Topic: " + (term === "all" ? "Topic" : term.replace(/-/g, " "));
+					document.querySelector("button#topic-view").innerHTML = "Topic: " + (term === "all" ? "Topic" : term.replace(/-/g, " "));
 				}else if (taxonomy === "learn-crops") {
 					learncrops = term;
-					document.querySelector("button#topic-view").innerHTML =
-						"Crop: " + (term === "all" ? "Crop" : term.replace(/-/g, " "));
+					document.querySelector("button#category-view").innerHTML = "Crop: " + (term === "all" ? "Crop" : term.replace(/-/g, " "));
 				}
 
 				// Reset to page 1
@@ -519,6 +515,14 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 	const learn_pagination = document.querySelector(".mainlearn .fillter-bottom");
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
+
+		console.log(learntype+"learntaxo");
+		console.log(learntopic+"learntaxo");
+
+		console.log(learncrops+"learntaxo");
+
+
+
 
 		if (learn_append_list) {
 			const loadingElem = document.createElement("div");
