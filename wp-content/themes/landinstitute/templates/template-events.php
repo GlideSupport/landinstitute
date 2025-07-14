@@ -26,9 +26,14 @@ $latest_featured_event = new WP_Query(array(
 	'post_type'      => 'event',
 	'post_status'    => 'publish',
 	'posts_per_page' => 1,
-	'orderby'        => 'meta_value_num',
-	'order'          => 'DESC',
-	'meta_key'       => 'li_cpt_event_start_date',
+	//'order'          => 'DESC',
+	//'meta_key'       => 'li_cpt_event_start_date',
+
+	'orderby'        => 'meta_value_num', // Ensure numeric comparison
+	'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
+	'order'          => 'ASC',
+
+
 	'meta_query'     => array(
 		array(
 			'key'     => 'li_cpt_event_start_date',
