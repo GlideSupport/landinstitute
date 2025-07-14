@@ -139,77 +139,81 @@ if ($start_date && $end_date) {
 	</section>
 <?php endif; ?>
 
-<section class="container-1280 bg-base-cream">
-	<div class="gl-s128"></div>
-	<div class="wrapper">
-		<div class="read-more-block">
-			<?php echo !empty($li_cpt_more_event_check) ? BaseTheme::headline($li_cpt_more_event, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">See more events</h2>'; ?>
-			<div class="gl-s52"></div>
-			<div class="border-variable-slider">
-				<!-- Swiper -->
-				<div class="swiper-container read-slide-preview cursor-drag-icon">
-					<div class="swiper-wrapper">
-						<?php
-							// Query posts based on selection
-							$today = date('Ymd');
+<?php
+	$today = date('Ymd');
 
-							$args = array(
-								'post_type'      => 'event',
-								'post_status'    => 'publish',
-								'orderby'        => 'meta_value',
-								'order'          => 'ASC',
-								'meta_key'       => 'li_cpt_event_start_date', 
-								'meta_type'      => 'DATE',
-								'meta_query'     => array(
-									array(
-										'key'     => 'li_cpt_event_start_date',
-										'value'   => $today,
-										'compare' => '>=',
-										'type'    => 'DATE',
-									),
-								),
-							);
+	$args = array(
+		'post_type'      => 'event',
+		'post_status'    => 'publish',
+		'orderby'        => 'meta_value',
+		'order'          => 'ASC',
+		'meta_key'       => 'li_cpt_event_start_date',
+		'meta_type'      => 'DATE',
+		'meta_query'     => array(
+			array(
+				'key'     => 'li_cpt_event_start_date',
+				'value'   => $today,
+				'compare' => '>=',
+				'type'    => 'DATE',
+			),
+		),
+	);
 
-							// Modify args based on selection
-							switch ($li_cpt_event_recentselected_event) {
-								case 'selected':
-									if (!empty($li_cpt_select_events)) {
-										
-										$args['post__in'] = $li_cpt_select_events;
-										$args['orderby'] = 'post__in';
-										unset($args['meta_query'], $args['meta_key'], $args['meta_type']); // Remove upcoming filter for manual
-									}
-									break;
+	// Modify args based on selection
+	switch ($li_cpt_event_recentselected_event) {
+		case 'selected':
+			if (!empty($li_cpt_select_events)) {
+				$args['post__in'] = $li_cpt_select_events;
+				$args['orderby'] = 'post__in';
+				unset($args['meta_query'], $args['meta_key'], $args['meta_type']); // Remove upcoming filter for manual
+			}
+			break;
 
-								case 'recent':
-									// already handled above
-									break;
-							}
+		case 'recent':
+			// already handled above
+			break;
+	}
 
-							$events_query = new WP_Query($args);
+	$events_query = new WP_Query($args);
 
-							while ($events_query->have_posts()) : $events_query->the_post();
-								$event_id = get_the_ID();
-								$title = get_the_title();
-								$permalink = get_permalink();
-								$start_date = get_field('li_cpt_event_start_date', $event_id);
-								$end_date = get_field('li_cpt_event_end_date', $event_id);
-								$start_time = get_field('li_cpt_event_start_time', $event_id);
-								$end_time = get_field('li_cpt_event_end_time', $event_id);
-								$all_day = get_field('li_cpt_event_all_day', $event_id);
-								$wysiwyg = get_the_excerpt($event_id);
+	if ($events_query->have_posts()) :
+	?>
+	<section class="container-1280 bg-base-cream">
+		<div class="gl-s128"></div>
+		<div class="wrapper">
+			<div class="read-more-block">
+				<?php echo !empty($li_cpt_more_event_check)
+					? BaseTheme::headline($li_cpt_more_event, 'heading-2 block-title mb-0')
+					: '<h2 class="heading-2 block-title mb-0">See more events</h2>'; ?>
+				<div class="gl-s52"></div>
+				<div class="border-variable-slider">
+					<!-- Swiper -->
+					<div class="swiper-container read-slide-preview cursor-drag-icon">
+						<div class="swiper-wrapper">
+							<?php
+							while ($events_query->have_posts()) :
+								$events_query->the_post();
+								$event_id     = get_the_ID();
+								$title        = get_the_title();
+								$permalink    = get_permalink();
+								$start_date   = get_field('li_cpt_event_start_date', $event_id);
+								$end_date     = get_field('li_cpt_event_end_date', $event_id);
+								$start_time   = get_field('li_cpt_event_start_time', $event_id);
+								$end_time     = get_field('li_cpt_event_end_time', $event_id);
+								$all_day      = get_field('li_cpt_event_all_day', $event_id);
+								$wysiwyg      = get_the_excerpt($event_id);
 								$event_image_id = get_post_thumbnail_id($event_id);
-								$event_image_id = $event_image_id ? $event_image_id : $bst_var_theme_default_image;
-								
+								$event_image_id = $event_image_id ?: $bst_var_theme_default_image;
+
 								// Date formatting
 								$start_date = $start_date ? strtotime($start_date) : false;
 								$end_date   = $end_date ? strtotime($end_date) : false;
 
-								$start_day_full = $start_date ? date('l, F j, Y', $start_date) : '';
-								$end_day_full   = $end_date ? date('l, F j, Y', $end_date) : '';
+								$start_day_full  = $start_date ? date('l, F j, Y', $start_date) : '';
+								$end_day_full    = $end_date ? date('l, F j, Y', $end_date) : '';
 								$start_day_short = $start_date ? date('M j, Y', $start_date) : '';
-								$start_time_fmt = $start_time ? date('g:i a', strtotime($start_time)) . ' CDT' : '';
-								$end_time_fmt   = $end_time ? date('g:i a', strtotime($end_time)) . ' CDT' : '';
+								$start_time_fmt  = $start_time ? date('g:i a', strtotime($start_time)) . ' CDT' : '';
+								$end_time_fmt    = $end_time ? date('g:i a', strtotime($end_time)) . ' CDT' : '';
 
 								$event_date = '';
 
@@ -240,37 +244,37 @@ if ($start_date && $end_date) {
 										$event_date = "$start_day_short";
 									}
 								}
-						?>
-							<div class="swiper-slide">
-								<div class="image-card-caption">
-									<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
-										<div class="image">
-											<?php echo wp_get_attachment_image($event_image_id, 'thumb_800'); ?>
-										</div>
-										<div class="caption-card-content">
-											<div class="gl-s52"></div>
-											<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($event_date); ?></div>
-											<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
-											<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
-											<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s12"></div>' : ''; ?>
-											<?php echo !empty($wysiwyg) ? '<div class="description ui-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
-											<?php echo (!empty($wysiwyg)) ? '<div class="gl-s20"></div>' : ''; ?>
-											<div class="read-more-link">
-												<div class="border-text-btn">Read more</div>
+							?>
+								<div class="swiper-slide">
+									<div class="image-card-caption">
+										<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
+											<div class="image">
+												<?php echo wp_get_attachment_image($event_image_id, 'thumb_800'); ?>
 											</div>
-											<div class="gl-s80"></div>
-										</div>
-									</a>
+											<div class="caption-card-content">
+												<div class="gl-s52"></div>
+												<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($event_date); ?></div>
+												<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
+												<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
+												<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s12"></div>' : ''; ?>
+												<?php echo !empty($wysiwyg) ? '<div class="description ui-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
+												<?php echo (!empty($wysiwyg)) ? '<div class="gl-s20"></div>' : ''; ?>
+												<div class="read-more-link">
+													<div class="border-text-btn">Read more</div>
+												</div>
+												<div class="gl-s80"></div>
+											</div>
+										</a>
+									</div>
 								</div>
-							</div>
-						<?php endwhile; wp_reset_postdata(); ?>
-					</div> <!-- swiper-wrapper -->
-				</div> <!-- swiper-container -->
-			</div> <!-- border-variable-slider -->
-		</div> <!-- read-more-block -->
-	</div> <!-- wrapper -->
-</section>
-
+							<?php endwhile; wp_reset_postdata(); ?>
+						</div> <!-- swiper-wrapper -->
+					</div> <!-- swiper-container -->
+				</div> <!-- border-variable-slider -->
+			</div> <!-- read-more-block -->
+		</div> <!-- wrapper -->
+	</section>
+<?php endif; ?>
 
 <?php if ($newsletter_form_visible): ?>
 	<section class="container-720 bg-butter-yellow">
