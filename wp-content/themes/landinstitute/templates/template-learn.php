@@ -160,7 +160,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								$tax_query[] = [
 									'taxonomy' => 'learn-crop',
 									'field'    => 'slug',
-									'terms'    => sanitize_text_field($_GET['learn_crops']),
+									'terms'    => sanitize_text_field($_GET['learn-crop']),
 								];
 							}
 
