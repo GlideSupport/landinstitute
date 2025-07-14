@@ -106,7 +106,7 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 											<?php if (has_post_thumbnail()) : ?>
 												<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800'); ?>
 											<?php else : ?>
-												<img src="<?php echo esc_url(BASETHEME_DEFAULT_IMAGE); ?>" alt="Default thumbnail" width="800" height="800" />
+												<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="800" height="800" />
 											<?php endif; ?>
 											<?php if ($has_pattern && $bg_pattern_image) : ?>
 											</div><?php endif; ?>
