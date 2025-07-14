@@ -21,7 +21,7 @@ if (!empty($li_hero_headline_check) || !empty($kicker) || !empty($wysiwyg) || !e
 							<?php echo !empty($kicker) ? '<div class="ui-eyebrow-18-16-regular">' . esc_html($kicker) . '</div>' : ''; ?>
 							<?php echo (!empty($li_hero_headline_check) && !empty($kicker)) ? '<div class="gl-s12"></div>' : ''; ?>
 							<?php echo !empty($li_hero_headline_check) ? BaseTheme::headline($li_hero_headline, 'heading-1 mb-0 block-title') : ''; ?>
-							<?php echo (!empty($li_hero_headline_check) && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
+							<?php echo (!empty($li_hero_headline_check) || !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
 							<?php echo !empty($wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
 							<?php echo (!empty($wysiwyg) && !empty($button)) ? '<div class="gl-s30"></div>' : ''; ?>
 							<?php echo !empty($button) ? '<div class="tab-dropdown">' . BaseTheme::button($button, 'site-btn text-link') . '</div>' : ''; ?>
