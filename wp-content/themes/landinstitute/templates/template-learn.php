@@ -91,8 +91,8 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 
 						if ($current_learn_crop_slug !== 'all') {
 							$topic_term = get_term_by('slug', $current_learn_crop_slug, 'learn-crop'); // 'topic' is your taxonomy name
-							if ($topic_term && !is_wp_error($topic_term)) {
-								$current_crop_name = $topic_term->name;
+							if ($crop_terms && !is_wp_error($crop_terms)) {
+								$current_crop_name = $crop_terms->name;
 							}
 						}
 
