@@ -2,3 +2,9 @@
     max-width: 740px;
     margin: 0 auto;
 }
+
+.single-audio-video-embed {
+    iframe {
+        width: 100%;
+    }
+}
