@@ -171,13 +171,14 @@ $latest_featured_event = new WP_Query(array(
 					<div id="event-list-view" style="<?php echo $customstyle; ?>">
 						<div id="event-list-main-div" class="event-list-main-div">
 							<?php
-
+							$paged = get_query_var('paged') ? get_query_var('paged') : 1;
 							$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
 
 							$eventargs = array(
 								'post_type'      => 'event',
 								'post_status'    => 'publish',
 								'posts_per_page' => 10,
+								'paged'          => $paged,
 								'orderby'        => 'meta_value_num', // Ensure numeric comparison
 								'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 								'order'          => 'ASC',
@@ -260,7 +261,7 @@ $latest_featured_event = new WP_Query(array(
 						<?php if ($event_query->found_posts > 10) : 
 						$total_pages = ceil( $event_query->found_posts / $event_query->query_vars['posts_per_page'] );?>
 							<div class="block-btn-full">
-								<a id="load-more-events" class="site-btn sm-btn" data-total-page="<?php echo $total_pages; ?>" data-page="2">Load More Events</a>
+								<a id="load-more-events" class="site-btn sm-btn" data-total-page="<?php echo $total_pages; ?>" data-page="<?php echo $paged+1; ?>">Load More Events</a>
 							</div>
 						<?php endif; ?>
 
