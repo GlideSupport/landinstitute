@@ -121,90 +121,94 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	</section>
 <?php endif; ?>
 
-<section class="container-1280 bg-base-cream">
-	<div class="gl-s128"></div>
-	<div class="wrapper">
-		<div class="read-more-block">
-			<?php echo !empty($li_nwd_read_more_check) ? BaseTheme::headline($li_nwd_read_more, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
-			<div class="gl-s52"></div>
-			<div class="border-variable-slider">
-				<!-- Swiper -->
-				<div class="swiper-container read-slide-preview cursor-drag-icon">
-					<div class="swiper-wrapper">
-						<?php
-						$args = [
-							'post_type'   => 'news',
-							'post_status' => 'publish',
-						];
+<?php
+	$args = [
+		'post_type'   => 'news',
+		'post_status' => 'publish',
+	];
 
-						switch ($li_nwd_relatedselected_post) {
-							case 'selected':
-								if (!empty($li_nwd_select_news)) {
-									$args['post__in']  = $li_nwd_select_news;
-									$args['orderby']   = 'post__in';
-								}
-								break;
+	switch ($li_nwd_relatedselected_post) {
+		case 'selected':
+			if (!empty($li_nwd_select_news)) {
+				$args['post__in']  = $li_nwd_select_news;
+				$args['orderby']   = 'post__in';
+			}
+			break;
 
-							case 'related':
-								$terms = get_the_terms($bst_var_post_id, 'news-type');
-								if (!empty($terms) && !is_wp_error($terms)) {
-									$term_ids = wp_list_pluck($terms, 'term_id');
-									$args['tax_query'] = [
-										[
-											'taxonomy' => 'news-type',
-											'field'    => 'term_id',
-											'terms'    => $term_ids,
-										],
-									];
-									$args['post__not_in'] = [$bst_var_post_id];
-								} else {
-									$args['post__in'] = [0]; // fallback: show nothing
-								}
-								break;
-						}
+		case 'related':
+			$terms = get_the_terms($bst_var_post_id, 'news-type');
+			if (!empty($terms) && !is_wp_error($terms)) {
+				$term_ids = wp_list_pluck($terms, 'term_id');
+				$args['tax_query'] = [
+					[
+						'taxonomy' => 'news-type',
+						'field'    => 'term_id',
+						'terms'    => $term_ids,
+					],
+				];
+				$args['post__not_in'] = [$bst_var_post_id];
+			} else {
+				$args['post__in'] = [0]; // fallback: show nothing
+			}
+			break;
+	}
 
-						$news_query = new WP_Query($args);
+	$news_query = new WP_Query($args);
 
-						while ($news_query->have_posts()) : $news_query->the_post();
-							$post_id    = get_the_ID();
-							$title      = get_the_title();
-							$permalink  = get_permalink();
-							$excerpt    = get_the_excerpt($post_id);
-							$terms = get_the_terms($post_id, 'learn-type');
-							$term_name = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
-							$thumbnail_id = get_post_thumbnail_id($post_id);
-							$thumbnail_id = $thumbnail_id ? $thumbnail_id : $bst_var_theme_default_image;
+	if ($news_query->have_posts()) :
+	?>
+	<section class="container-1280 bg-base-cream">
+		<div class="gl-s128"></div>
+		<div class="wrapper">
+			<div class="read-more-block">
+				<?php echo !empty($li_nwd_read_more_check)
+					? BaseTheme::headline($li_nwd_read_more, 'heading-2 block-title mb-0')
+					: '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
+				<div class="gl-s52"></div>
+				<div class="border-variable-slider">
+					<!-- Swiper -->
+					<div class="swiper-container read-slide-preview cursor-drag-icon">
+						<div class="swiper-wrapper">
+							<?php
+							while ($news_query->have_posts()) : $news_query->the_post();
+								$post_id    = get_the_ID();
+								$title      = get_the_title();
+								$permalink  = get_permalink();
+								$excerpt    = get_the_excerpt($post_id);
+								$terms      = get_the_terms($post_id, 'learn-type');
+								$term_name  = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
+								$thumbnail_id = get_post_thumbnail_id($post_id) ?: $bst_var_theme_default_image;
 							?>
-							<div class="swiper-slide">
-								<div class="image-card-caption">
-									<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
-										<div class="image">
-											<?php echo wp_get_attachment_image($thumbnail_id, 'thumb_800');	?>						
-										</div>
-										<div class="caption-card-content">
-											<div class="gl-s52"></div>
-											<?php echo !empty($term_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $term_name . '</div>' : ''; ?>
-											<?php echo (!empty($term_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
-											<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
-											<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
-											<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
-											<?php echo !empty($excerpt) ? '<div class="gl-s20"></div>' : ''; ?>
-											<div class="read-more-link">
-												<div class="border-text-btn">Read more</div>
+								<div class="swiper-slide">
+									<div class="image-card-caption">
+										<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
+											<div class="image">
+												<?php echo wp_get_attachment_image($thumbnail_id, 'thumb_800'); ?>						
 											</div>
-											<div class="gl-s80"></div>
-										</div>
-									</a>
+											<div class="caption-card-content">
+												<div class="gl-s52"></div>
+												<?php echo !empty($term_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $term_name . '</div>' : ''; ?>
+												<?php echo (!empty($term_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
+												<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
+												<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
+												<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
+												<?php echo !empty($excerpt) ? '<div class="gl-s20"></div>' : ''; ?>
+												<div class="read-more-link">
+													<div class="border-text-btn">Read more</div>
+												</div>
+												<div class="gl-s80"></div>
+											</div>
+										</a>
+									</div>
 								</div>
-							</div>
-						<?php endwhile; wp_reset_postdata(); ?>
+							<?php endwhile; wp_reset_postdata(); ?>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
-
+	</section>
+<?php endif; ?>
 
 <?php if ($newsletter_form_visible): ?>
 	<section class="container-720 bg-butter-yellow">
