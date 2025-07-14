@@ -92,6 +92,10 @@ if ($start_date && $end_date) {
 } else {
 	$event_date = '';
 }
+
+
+
+$event_date = get_formatted_event_datetime($bst_var_post_id);
 			
 ?>
 
