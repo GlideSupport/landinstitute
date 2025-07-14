@@ -21,7 +21,16 @@ $featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_ldo_authors = $bst_fields['li_ldo_authors'];
 $li_ldo_publication = $bst_fields['li_ldo_publication'];
-$li_ldo_pdf = $bst_fields['li_ldo_pdf'];
+
+$select_type = $bst_fields['select_type'] ?? 'audio';
+$li_ldo_youtube_url = $bst_fields['li_ldo_youtube_url'];
+$li_ldo_soundcloud_url = $bst_fields['li_ldo_soundcloud_url'];
+
+$li_ido_pdf_uploadpdf_url = $bst_fields['li_ido_pdf_uploadpdf_url'] ?? 'upload';
+$li_ldo_pdf = $bst_fields['li_ldo_upload'];
+$li_ldo_url = $bst_fields['li_ldo_url'];
+$link = ($li_ido_pdf_uploadpdf_url === 'upload' && !empty($li_ldo_pdf)) ? $li_ldo_pdf : (($li_ido_pdf_uploadpdf_url === 'url' && !empty($li_ldo_url)) ? $li_ldo_url : '');
+
 $bg_pattern = $bst_fields['li_ldo_background_pattern'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
 $li_ido_read_more_check = BaseTheme::headline_check($li_ido_read_more);
@@ -68,8 +77,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="column-content">
 								<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
 								<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php if (!empty($li_ldo_pdf)) : ?>
-									<a href="<?php echo esc_url($li_ldo_pdf); ?>" class="link-with-icon" target="_blank" rel="noopener">
+								<?php if (!empty($link)) : ?>
+									<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
 										<span class="link-content">
 											<?php echo esc_html($li_ldo_publication); ?>
 											<span class="icon">
@@ -99,8 +108,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="gl-s36"></div>
 							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-							<?php if (!empty($li_ldo_pdf)) : ?>
-								<a href="<?php echo esc_url($li_ldo_pdf); ?>" class="link-with-icon" target="_blank" rel="noopener">
+							<?php if (!empty($link)) : ?>
+								<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
 									<span class="link-content">
 										<?php echo esc_html($li_ldo_publication); ?>
 										<span class="icon">
@@ -128,12 +137,14 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	</div>
 </section>
 
-<section class="container-720 bg-base-cream">
-	<div class="wrapper">
-		<div class="gl-s96"></div>
-			<?php the_content(); ?>
-		<div class="gl-s64"></div>
-	</div>
+<section id="page-section" class="page-section">
+	<section class="container-720 bg-base-cream">
+		<div class="wrapper">
+			<div class="gl-s96"></div>
+				<?php the_content(); ?>
+			<div class="gl-s64"></div>
+		</div>
+	</section>
 </section>	
 
 <?php if ($li_po_bg_image_visible): ?>
