@@ -118,14 +118,15 @@ if ($start_date && $end_date) {
 		</div>
 	</div>
 </section>			
-
-<section class="container-720 bg-base-cream">
-	<div class="wrapper">
-		<div class="gl-s96"></div>
-			<?php the_content(); ?>
-		<div class="gl-s64"></div>
-	</div>
-</div>
+	
+<section id="page-section" class="page-section">
+	<section class="container-720 bg-base-cream">
+		<div class="wrapper">
+			<div class="gl-s96"></div>
+				<?php the_content(); ?>
+			<div class="gl-s64"></div>
+		</div>
+	</section>
 </section>	
 
 <?php if ($li_cpt_event_bg_pattern_visible): ?>
