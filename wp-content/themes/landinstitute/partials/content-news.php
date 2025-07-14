@@ -22,7 +22,7 @@ $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_nwd_authors = $bst_fields['li_nwd_authors'] ?? '';
 $li_nwd_publication = $bst_fields['li_nwd_publication'] ?? '';
 $bg_pattern = $bst_fields['li_nwd_background_pattern'] ??  $bst_option_fields['li_news_list_detail_page_bg_pattern'];
-$li_nwd_read_more = $bst_fields['li_nwd_read_more'];
+$li_nwd_read_more = $bst_fields['li_nwd_read_more'] ?? '';
 $li_nwd_read_more_check = BaseTheme::headline_check($li_nwd_read_more);
 $li_nwd_relatedselected_post = $bst_fields['li_nwd_relatedselected_post'] ?? 'related';
 $li_nwd_select_news = $bst_fields['li_nwd_select_news'] ?? null;
@@ -31,7 +31,7 @@ $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
-$li_no_bg_image_visible = array_key_exists('li_no_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_no_bg_image_visible'] : true;
+$li_no_bg_image_visible = is_array($bst_fields) && array_key_exists('li_no_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_no_bg_image_visible'] : true;
 $li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
 $newsletter_form_visible = array_key_exists('li_nwd_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_nwd_newsletter_form_visible'] : true;
