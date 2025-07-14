@@ -101,13 +101,15 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	</div>
 </section>
 
-<section class="container-720 bg-base-cream">
-	<div class="wrapper">
-		<div class="gl-s96"></div>
-			<?php the_content(); ?>
-		<div class="gl-s64"></div>
-	</div>
-</section>	
+<section id="page-section" class="page-section">
+	<section class="container-720 bg-base-cream">
+		<div class="wrapper">
+			<div class="gl-s96"></div>
+				<?php the_content(); ?>
+			<div class="gl-s64"></div>
+		</div>
+	</section>
+</section>
 
 <?php if ($li_no_bg_image_visible): ?>
 	<section class="container-1280">

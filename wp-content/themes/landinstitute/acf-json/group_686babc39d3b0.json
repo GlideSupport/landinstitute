@@ -212,14 +212,46 @@
             "ui": 1
         },
         {
+            "key": "field_6874cdf250473",
+            "label": "PDF Upload\/PDF URL",
+            "name": "li_ido_pdf_uploadpdf_url",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "upload": "Upload PDF",
+                "url": "PDF URL"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_686e22565dc2c",
-            "label": "PDF URL",
-            "name": "li_ldo_pdf",
+            "label": "PDF Upload",
+            "name": "li_ldo_upload",
             "aria-label": "",
             "type": "file",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6874cdf250473",
+                        "operator": "==",
+                        "value": "upload"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -231,6 +263,32 @@
             "max_size": "",
             "mime_types": "",
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6874cd09c6711",
+            "label": "PDF URL",
+            "name": "li_ldo_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6874cdf250473",
+                        "operator": "==",
+                        "value": "url"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
         },
         {
             "key": "field_686e3f4c24270",
@@ -573,5 +631,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752138543
+    "modified": 1752491515
 }

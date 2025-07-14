@@ -27,9 +27,9 @@ $li_ldo_youtube_url = $bst_fields['li_ldo_youtube_url'];
 $li_ldo_soundcloud_url = $bst_fields['li_ldo_soundcloud_url'];
 
 $li_ido_pdf_uploadpdf_url = $bst_fields['li_ido_pdf_uploadpdf_url'] ?? 'upload';
-$li_ldo_pdf = $bst_fields['li_ldo_upload'];
+$li_ldo_upload = $bst_fields['li_ldo_upload'];
 $li_ldo_url = $bst_fields['li_ldo_url'];
-$link = ($li_ido_pdf_uploadpdf_url === 'upload' && !empty($li_ldo_pdf)) ? $li_ldo_pdf : (($li_ido_pdf_uploadpdf_url === 'url' && !empty($li_ldo_url)) ? $li_ldo_url : '');
+$link = ($li_ido_pdf_uploadpdf_url === 'upload' && !empty($li_ldo_upload)) ? $li_ldo_upload : (($li_ido_pdf_uploadpdf_url === 'url' && !empty($li_ldo_url)) ? $li_ldo_url : '');
 
 $bg_pattern = $bst_fields['li_ldo_background_pattern'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
@@ -140,12 +140,24 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 <section id="page-section" class="page-section">
 	<section class="container-720 bg-base-cream">
 		<div class="wrapper">
-			<div class="gl-s96"></div>
-				<?php the_content(); ?>
+			<?php
+			$type = $bst_fields['select_type'] ?? '';
+			$youtube_url = $bst_fields['li_ldo_youtube_url'] ?? '';
+			$soundcloud_url = $bst_fields['li_ldo_soundcloud_url'] ?? '';
+			if ($type === 'video' && !empty($youtube_url)) {
+				echo '<div class="gl-s64"></div>';
+				echo '<iframe src="' . esc_url($youtube_url) . '" width="100%" height="360" frameborder="0" allowfullscreen loading="lazy"></iframe>';
+			} elseif ($type === 'audio' && !empty($soundcloud_url)) {
+				echo '<div class="gl-s64"></div>';
+				echo '<iframe src="' . esc_url($soundcloud_url) . '" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
+			}
+			?>
+			<div class="gl-s64"></div>
+			<?php the_content(); ?>
 			<div class="gl-s64"></div>
 		</div>
 	</section>
-</section>	
+</section>
 
 <?php if ($li_po_bg_image_visible): ?>
 	<section class="container-1280 ">
@@ -157,90 +169,91 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	</section>
 <?php endif; ?>
 
-<section class="container-1280 bg-base-cream">
-	<div class="gl-s128"></div>
-	<div class="wrapper">
-		<div class="read-more-block">
-			<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
-			<div class="gl-s52"></div>
-			<div class="border-variable-slider">
-				<!-- Swiper -->
-				<div class="swiper-container read-slide-preview cursor-drag-icon">
-					<div class="swiper-wrapper">
-						<?php
-						$args = [
-							'post_type'   => 'post',
-							'post_status' => 'publish',
-						];
+<?php
+	$args = [
+		'post_type'   => 'post',
+		'post_status' => 'publish',
+	];
 
-						switch ($li_ido_relatedselected_post) {
-							case 'selected':
-								if (!empty($li_ido_select_posts)) {
-									$args['post__in']  = $li_ido_select_posts;
-									$args['orderby']   = 'post__in';
-								}
-								break;
+	switch ($li_ido_relatedselected_post) {
+		case 'selected':
+			if (!empty($li_ido_select_posts)) {
+				$args['post__in']  = $li_ido_select_posts;
+				$args['orderby']   = 'post__in';
+			}
+			break;
 
-							case 'related':
-								$terms = get_the_terms($bst_var_post_id, 'learn-type');
-								if (!empty($terms) && !is_wp_error($terms)) {
-									$term_ids = wp_list_pluck($terms, 'term_id');
-									$args['tax_query'] = [
-										[
-											'taxonomy' => 'learn-type',
-											'field'    => 'term_id',
-											'terms'    => $term_ids,
-										],
-									];
-									$args['post__not_in'] = [$bst_var_post_id];
-								} else {
-									$args['post__in'] = [0]; // fallback: show nothing
-								}
-								break;
-						}
+		case 'related':
+			$terms = get_the_terms($bst_var_post_id, 'learn-type');
+			if (!empty($terms) && !is_wp_error($terms)) {
+				$term_ids = wp_list_pluck($terms, 'term_id');
+				$args['tax_query'] = [
+					[
+						'taxonomy' => 'learn-type',
+						'field'    => 'term_id',
+						'terms'    => $term_ids,
+					],
+				];
+				$args['post__not_in'] = [$bst_var_post_id];
+			} else {
+				$args['post__in'] = [0]; // fallback: show nothing
+			}
+			break;
+	}
 
-						$posts_query = new WP_Query($args);
+	$posts_query = new WP_Query($args);
 
-						while ($posts_query->have_posts()) : $posts_query->the_post();
-							$post_id    = get_the_ID();
-							$title      = get_the_title();
-							$permalink  = get_permalink();
-							$excerpt    = get_the_excerpt($post_id);
-							$terms = get_the_terms($post_id, 'learn-type');
-							$term_name = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
-							$thumbnail_id = get_post_thumbnail_id($post_id);
-							$thumbnail_id = $thumbnail_id ? $thumbnail_id : $bst_var_theme_default_image;
-							?>
-							<div class="swiper-slide">
-								<div class="image-card-caption">
-									<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
-										<div class="image">
-											<?php echo wp_get_attachment_image($thumbnail_id, 'thumb_800');	?>						
+	if ($posts_query->have_posts()) : ?>
+		<section class="container-1280 bg-base-cream">
+			<div class="gl-s128"></div>
+			<div class="wrapper">
+				<div class="read-more-block">
+					<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
+					<div class="gl-s52"></div>
+					<div class="border-variable-slider">
+						<div class="swiper-container read-slide-preview cursor-drag-icon">
+							<div class="swiper-wrapper">
+								<?php
+								while ($posts_query->have_posts()) : $posts_query->the_post();
+									$post_id    = get_the_ID();
+									$title      = get_the_title();
+									$permalink  = get_permalink();
+									$excerpt    = get_the_excerpt($post_id);
+									$terms      = get_the_terms($post_id, 'learn-type');
+									$term_name  = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
+									$thumbnail_id = get_post_thumbnail_id($post_id) ?: $bst_var_theme_default_image;
+									?>
+									<div class="swiper-slide">
+										<div class="image-card-caption">
+											<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
+												<div class="image">
+													<?php echo wp_get_attachment_image($thumbnail_id, 'thumb_800'); ?>
+												</div>
+												<div class="caption-card-content">
+													<div class="gl-s52"></div>
+													<?php echo !empty($term_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $term_name . '</div>' : ''; ?>
+													<?php echo (!empty($term_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
+													<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
+													<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
+													<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
+													<?php echo !empty($excerpt) ? '<div class="gl-s20"></div>' : ''; ?>
+													<div class="read-more-link">
+														<div class="border-text-btn">Read more</div>
+													</div>
+													<div class="gl-s80"></div>
+												</div>
+											</a>
 										</div>
-										<div class="caption-card-content">
-											<div class="gl-s52"></div>
-											<?php echo !empty($term_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $term_name . '</div>' : ''; ?>
-											<?php echo (!empty($term_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
-											<?php echo !empty($title) ? '<div class="card-title heading-7">' . esc_html($title) . '</div>' : ''; ?>
-											<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
-											<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
-											<?php echo !empty($excerpt) ? '<div class="gl-s20"></div>' : ''; ?>
-											<div class="read-more-link">
-												<div class="border-text-btn">Read more</div>
-											</div>
-											<div class="gl-s80"></div>
-										</div>
-									</a>
-								</div>
+									</div>
+								<?php endwhile; ?>
+								<?php wp_reset_postdata(); ?>
 							</div>
-						<?php endwhile; wp_reset_postdata(); ?>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
-
+		</section>
+<?php endif; ?>
 
 <?php if ($newsletter_form_visible): ?>
 	<section class="container-720 bg-butter-yellow">
