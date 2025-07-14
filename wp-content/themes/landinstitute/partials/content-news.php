@@ -19,8 +19,8 @@ $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_de
 $featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', false, ['alt' => esc_attr(get_the_title())]);
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
-$li_nwd_authors = $bst_fields['li_nwd_authors'];
-$li_nwd_publication = $bst_fields['li_nwd_publication'];
+$li_nwd_authors = $bst_fields['li_nwd_authors'] ?? '';
+$li_nwd_publication = $bst_fields['li_nwd_publication'] ?? '';
 $bg_pattern = $bst_fields['li_nwd_background_pattern'] ??  $bst_option_fields['li_news_list_detail_page_bg_pattern'];
 $li_nwd_read_more = $bst_fields['li_nwd_read_more'];
 $li_nwd_read_more_check = BaseTheme::headline_check($li_nwd_read_more);
