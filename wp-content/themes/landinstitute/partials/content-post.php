@@ -28,7 +28,7 @@ $li_ldo_youtube_url = $bst_fields['li_ldo_youtube_url'];
 $li_ldo_soundcloud_url = $bst_fields['li_ldo_soundcloud_url'];
 
 $li_ido_pdf_uploadpdf_url = $bst_fields['li_ido_pdf_uploadpdf_url'] ?? 'upload';
-$li_ldo_upload = $bst_fields['li_ldo_upload'];
+$li_ldo_upload = $bst_fields['li_ldo_pdf'];
 $li_ldo_url = $bst_fields['li_ldo_url'];
 $link = ($li_ido_pdf_uploadpdf_url === 'upload' && !empty($li_ldo_upload)) ? $li_ldo_upload : (($li_ido_pdf_uploadpdf_url === 'url' && !empty($li_ldo_url)) ? $li_ldo_url : '');
 
