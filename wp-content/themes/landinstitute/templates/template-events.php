@@ -21,35 +21,32 @@ $ls_event_page_title = $bst_fields['ls_event_page_title'] ?? get_the_title();
 $ls_event_bg_pattern = $bst_fields['ls_event_bg_pattern'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
 $today = date('Ymd');
+$today_timestamp = time(); // Current timestamp based on server time
 
 $latest_featured_event = new WP_Query(array(
 	'post_type'      => 'event',
 	'post_status'    => 'publish',
 	'posts_per_page' => 1,
-	//'order'          => 'DESC',
-	//'meta_key'       => 'li_cpt_event_start_date',
-
-	'orderby'        => 'meta_value_num', // Ensure numeric comparison
-	'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
+	'orderby'        => 'meta_value_num',
+	'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone_compare',
 	'order'          => 'ASC',
-
-
 	'meta_query'     => array(
 		array(
-			'key'     => 'li_cpt_event_start_date',
-			'value'   => $today,
+			'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
+			'value'   => $today_timestamp,
 			'compare' => '>=',
 			'type'    => 'NUMERIC',
 		),
 	),
 	'tax_query' => array(
 		array(
-			'taxonomy' => 'event-tags', // make sure this matches your actual taxonomy slug
+			'taxonomy' => 'event-tags',
 			'field'    => 'slug',
 			'terms'    => 'featured-on-homepage',
 		),
 	),
 ));
+
 
 ?>
 
