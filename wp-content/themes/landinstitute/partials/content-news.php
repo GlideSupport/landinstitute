@@ -11,8 +11,8 @@
 list( $bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object ) = BaseTheme::defaults();
 
 // Post Tags & Categories.
-$learn_type_terms = get_the_terms($bst_var_post_id, 'news-type');
-$learn_type_name = !empty($learn_type_terms) && !is_wp_error($learn_type_terms) ? esc_html($learn_type_terms[0]->name) : '';
+$news_type_terms = get_the_terms($bst_var_post_id, 'news-type');
+$news_type_name = !empty($news_type_terms) && !is_wp_error($news_type_terms) ? esc_html($news_type_terms[0]->name) : '';
 $bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
 $featured_image_id = get_post_thumbnail_id();
 $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
@@ -53,7 +53,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 					<div class="col-content bg-lime-green">
 						<div class="hero-content">
 							<div class="gl-s128"></div>
-							<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
+							<?php echo !empty($news_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $news_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
 							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
 							<?php echo (!empty($li_nwd_authors) || !empty($li_nwd_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
@@ -75,7 +75,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 				<?php else : ?>
 					<div class="col-left bg-lime-green">
 						<div class="hero-content">
-						<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
+						<?php echo !empty($news_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $news_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
 							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
 							<?php echo (!empty($li_nwd_authors) || !empty($li_nwd_publication)) ? '<div class="gl-s30"></div>' : ''; ?>
@@ -161,9 +161,9 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 								break;
 						}
 
-						$posts_query = new WP_Query($args);
+						$news_query = new WP_Query($args);
 
-						while ($posts_query->have_posts()) : $posts_query->the_post();
+						while ($news_query->have_posts()) : $news_query->the_post();
 							$post_id    = get_the_ID();
 							$title      = get_the_title();
 							$permalink  = get_permalink();
