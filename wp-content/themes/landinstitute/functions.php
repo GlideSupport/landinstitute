@@ -529,7 +529,7 @@ function load_more_events_callback()
 		'posts_per_page' => $posts_per_page,
 		'paged'          => $paged,
 		'orderby'        => 'meta_value_num',
-		'meta_key'       => 'li_cpt_event_start_date',
+		'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
 		'order'          => 'ASC',
 		'meta_query'     => array(
 			array(
