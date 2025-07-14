@@ -260,7 +260,7 @@ $latest_featured_event = new WP_Query(array(
 						<?php if ($event_query->found_posts > 10) : 
 						$total_pages = ceil( $event_query->found_posts / $event_query->query_vars['posts_per_page'] );?>
 							<div class="block-btn-full">
-								<a id="load-more-events" class="site-btn sm-btn" data-total-page="<?php echo $total_pages; ?>" data-page="1">Load More Events</a>
+								<a id="load-more-events" class="site-btn sm-btn" data-total-page="<?php echo $total_pages; ?>" data-page="2">Load More Events</a>
 							</div>
 						<?php endif; ?>
 
