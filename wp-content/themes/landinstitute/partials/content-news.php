@@ -31,9 +31,7 @@ $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
-$li_no_bg_image_visible = is_array($bst_fields) && array_key_exists('li_no_bg_image_visible', $bst_fields)
-    ? (bool) $bst_fields['li_no_bg_image_visible']
-    : true;
+$li_no_bg_image_visible = array_key_exists('li_no_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_no_bg_image_visible'] : true;
 $li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
 $newsletter_form_visible = array_key_exists('li_nwd_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_nwd_newsletter_form_visible'] : true;
@@ -112,10 +110,10 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 </section>	
 
 <?php if ($li_no_bg_image_visible): ?>
-	<section class="container-1280 ">
+	<section class="container-1280">
 		<div class="wrapper">
 			<div class="bg-pattern-fixed has-border-bottom">
-				<?php echo !empty($li_no_bg_image) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($li_no_bg_image, 'thumb_2000') . '</div>' : ''; ?>
+				<?php echo !empty($li_no_bg_image) ? '<div class="bg-pattern-fixed">' . wp_get_attachment_image($li_no_bg_image, 'thumb_2000', false, ['class' => 'desktop-img']) . '</div>' : ''; ?>
 			</div>
 		</div>
 	</section>
