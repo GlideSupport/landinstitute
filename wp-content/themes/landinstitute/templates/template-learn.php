@@ -90,7 +90,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 						}
 
 						if ($current_learn_crop_slug !== 'all') {
-							$topic_term = get_term_by('slug', $current_learn_crop_slug, 'learn-crop'); // 'topic' is your taxonomy name
+							$crop_terms = get_term_by('slug', $current_learn_crop_slug, 'learn-crop'); // 'topic' is your taxonomy name
 							if ($crop_terms && !is_wp_error($crop_terms)) {
 								$current_crop_name = $crop_terms->name;
 							}
@@ -217,7 +217,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 			<?php if (!empty($crop_terms) && !is_wp_error($crop_terms)) : ?>
 				<?php foreach ($crop_terms as $crop_term) : ?>
 					<li>
-						<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-crops">
+						<a href="javascript:void(0)" data-term="<?php echo esc_attr($crop_term->slug); ?>" data-taxonomy="learn-crop">
 							<?php echo esc_html($crop_term->name); ?>
 						</a>
 					</li>
