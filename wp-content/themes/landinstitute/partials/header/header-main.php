@@ -65,7 +65,7 @@
 																	<?php if (has_post_thumbnail()) : ?>
 																		<?php echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_400'); ?>
 																	<?php else : ?>
-																		<img src="<?php echo esc_url(BASETHEME_DEFAULT_IMAGE); ?>" alt="Default thumbnail" width="367" height="232" />
+																		<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="367" height="232" />
 																	<?php endif; ?>
 																	<div class="tag-label">
 																		<span class="tags">Popular Resource</span> <!-- You can customize or make this dynamic -->
