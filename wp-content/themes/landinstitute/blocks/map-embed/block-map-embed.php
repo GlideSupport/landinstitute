@@ -47,7 +47,10 @@ $li_me_text = $bst_block_fields['li_me_text'] ?? null;
 $li_me_wysiwyg = $bst_block_fields['li_me_wysiwyg'] ?? null;
 $li_me_hours_title = $bst_block_fields['li_me_hours_title'] ?? null;
 $li_me_hours_wysiwyg = $bst_block_fields['li_me_hours_wysiwyg'] ?? null;
+$li_me_select_form_type = $bst_block_fields['li_me_select_form_type'] ?? null;
+$li_me_form_selector = $bst_block_fields['li_me_form_selector'] ?? null;
 $li_me_iframe = $bst_block_fields['li_me_iframe'] ?? null;
+$li_me_iframe_v_two = $bst_block_fields['li_me_iframe_v_two'] ?? null
 ?>
 
 
