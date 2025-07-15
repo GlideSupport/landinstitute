@@ -1095,7 +1095,7 @@ function search_filter_Callback() {
 	$order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
 
     $args = [
-       	'post_type'      => ['post', 'page', 'learn'],
+       	'post_type'      => ['post', 'page', 'learn','news','event','donor','staff','testimonial'],
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
