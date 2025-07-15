@@ -7,9 +7,15 @@
  */
 
 get_header();
+
+$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+
+set_query_var( 'search_query', $wp_query );
+set_query_var( 'paged_var', $paged );
+
 ?>
 
-<div id="page-section" class="page-section">
+<div id="page-section" class="page-section search-main" >
 	<!-- Hero Start -->
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-search">
 		<div class="bg-pattern">
@@ -41,17 +47,28 @@ get_header();
 				</div>
 
 				<div class="search-clicks">
-					<div class="search-everything">
-						<a href="#" class="jump-arrow btn-butter-yellow"><?php esc_html_e( 'Search everything', 'land_institute' ); ?>
+					<div class="search-everything tab-dropdown tab-dropdown-filter">
+						<a href="#" id="search-type" aria-expanded="false" aria-haspopup="true" aria-controls="search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php esc_html_e( 'Search everything', 'land_institute' ); ?>
 							<div class="arrow-icon"></div>
 						</a>
 					</div>
+						<div class="search-list-filter" >
+							<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
+								<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-term="all" data-taxonomy="search-type">All types</a></li>
+								<li style="animation-delay: 0.1s;">
+									<a href="javascript:void(0)" data-term="case-study" data-taxonomy="search-type">Page</a>
+								</li>
+								<li style="animation-delay: 0.2s;">
+									<a href="javascript:void(0)" data-term="publications" data-taxonomy="search-type">Publications</a>
+								</li>
+							</ul>
+						</div>
 					<div class="search-row">
 						<div class="not-found-search">
-							<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+							<form role="search" id="searchForm" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 								<label>
 									<span class="screen-reader-text"><?php esc_html_e( 'Search for:', 'land_institute' ); ?></span>
-									<input type="search" class="search-field" placeholder="<?php esc_attr_e( 'Search …', 'land_institute' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" />
+									<input type="search" id="search-field" class="search-field" placeholder="<?php esc_attr_e( 'Search …', 'land_institute' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" />
 								</label>
 								<button type="submit" class="site-btn sm-btn btn-lemon-yellow">
 									<?php esc_html_e( 'Search', 'land_institute' ); ?>
@@ -65,166 +82,6 @@ get_header();
 		</div>
 	</section>
 
-	<div class="search-list-filter">
-		<ul id="search-type" class="dropdown-menu open" role="menu" aria-labelledby="types-view" style="display: block; position: absolute; top: 992.703px; left: 137.5px; width: 593.328px; z-index: 1;">
-			<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-term="all" data-taxonomy="search-type">All types</a></li>
-												<li style="animation-delay: 0.1s;">
-						<a href="javascript:void(0)" data-term="case-study" data-taxonomy="search-type">
-							Case Study						</a>
-					</li>
-									<li style="animation-delay: 0.2s;">
-						<a href="javascript:void(0)" data-term="publications" data-taxonomy="search-type">
-							Publications						</a>
-					</li>
-									</ul>
-		<ul id="search-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view" style="display: none;">
-			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-topic">All Topics</a></li>
-												<li>
-						<a href="javascript:void(0)" data-term="2014-prairie-festival" data-taxonomy="learn-topic">
-							2014 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="2015-prairie-festival" data-taxonomy="learn-topic">
-							2015 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="2016-prairie-festival" data-taxonomy="learn-topic">
-							2016 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="2017-prairie-festival" data-taxonomy="learn-topic">
-							2017 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="2018-prairie-festival" data-taxonomy="learn-topic">
-							2018 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="2019-prairie-festival" data-taxonomy="learn-topic">
-							2019 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="2022-prairie-festival" data-taxonomy="learn-topic">
-							2022 Prairie Festival						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="audio" data-taxonomy="learn-topic">
-							Audio						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="barley" data-taxonomy="learn-topic">
-							Barley						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="civic-science" data-taxonomy="learn-topic">
-							Civic Science						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="crop-protection" data-taxonomy="learn-topic">
-							Crop Protection						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="ecology" data-taxonomy="learn-topic">
-							Ecology						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="ecosphere-studies" data-taxonomy="learn-topic">
-							Ecosphere Studies						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="food-production" data-taxonomy="learn-topic">
-							Food Production						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="food-science" data-taxonomy="learn-topic">
-							Food Science						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="genetic-analysis" data-taxonomy="learn-topic">
-							Genetic Analysis						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="intermediate-wheatgrass" data-taxonomy="learn-topic">
-							Intermediate Wheatgrass						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="kernza" data-taxonomy="learn-topic">
-							Kernza						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="kernza-conference" data-taxonomy="learn-topic">
-							Kernza Conference						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="legumes" data-taxonomy="learn-topic">
-							Legumes						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="lunch-and-learn" data-taxonomy="learn-topic">
-							Lunch and Learn						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="partner-videos-of-our-work" data-taxonomy="learn-topic">
-							Partner Videos of Our Work						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="perennial-crops" data-taxonomy="learn-topic">
-							Perennial Crops						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="perennial-cultures" data-taxonomy="learn-topic">
-							Perennial Cultures						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="perennial-practice" data-taxonomy="learn-topic">
-							Perennial Practice						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="perennial-rice" data-taxonomy="learn-topic">
-							Perennial Rice						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="podcast" data-taxonomy="learn-topic">
-							Podcast						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="season-of-thanks" data-taxonomy="learn-topic">
-							Season of Thanks						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="silphium" data-taxonomy="learn-topic">
-							Silphium						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="sorghum" data-taxonomy="learn-topic">
-							Sorghum						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="staff-presentations" data-taxonomy="learn-topic">
-							Staff Presentations						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="technician-and-resident-takeovers" data-taxonomy="learn-topic">
-							Technician and Resident Takeovers						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="video" data-taxonomy="learn-topic">
-							Video						</a>
-					</li>
-									<li>
-						<a href="javascript:void(0)" data-term="wheat" data-taxonomy="learn-topic">
-							Wheat						</a>
-					</li>
-									</ul>
-		<ul id="learn-crops" class="dropdown-menu" role="menu" aria-labelledby="topic-view" style="display: none;">
-			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crops">All Crops</a></li>
-												<li>
-						<a href="javascript:void(0)" data-term="learn-crop" data-taxonomy="learn-crop">
-							learn Crop						</a>
-					</li>
-									</ul>
-	</div>
-
 	<!-- Hero End -->
 
 	<section class="container-960 bg-base-cream">
@@ -232,9 +89,9 @@ get_header();
 			<div class="event-teaser-list-block search-events has-border-bottom">
 				<div class="event-teaser-list-row">
 					<div class="category-filter">
-						<ul class="tabs">
-							<li class="tab-link current" data-tab="tab-1">Newest First</li>
-							<li class="tab-link" data-tab="tab-2">Alphabetical</li>
+						<ul class="tabs" id="search-orderby-tabs">
+							<li class="tab-link current" data-orderby="date" data-tab="tab-1">Newest First</li>
+							<li class="tab-link" data-orderby="title" data-tab="tab-2">Alphabetical</li>
 						</ul>
 					</div>
 
@@ -243,7 +100,7 @@ get_header();
 					</div>
 
 					<div class="fillter-bottom">
-						<div class="append-search-result">
+						<div class="append-search-result-pagination">
 							<?php get_template_part( 'partials/content', 'search-pagination' ); ?>
 						</div>
 					</div>

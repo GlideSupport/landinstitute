@@ -1,5 +1,10 @@
-<?php if ( have_posts() ) : ?>
-	<?php while ( have_posts() ) : the_post(); ?>
+<?php
+// Use custom query if available
+$custom_query = isset($search_query) ? $search_query : $wp_query;
+
+if ( $custom_query->have_posts() ) :
+	while ( $custom_query->have_posts() ) : $custom_query->the_post();
+		?>
 		<div class="event-teaser-list-col">
 			<a href="<?php the_permalink(); ?>" class="event-teaser-list-card">
 				<div class="event-teaser-list-content">
@@ -33,8 +38,10 @@
 				</div>
 			</a>
 		</div>
-	<?php endwhile; ?>
-<?php else : ?>
+		<?php
+	endwhile;
+else :
+	?>
 	<div class="no-results">
 		<h2><?php esc_html_e( 'No results found', 'land_institute' ); ?></h2>
 		<p><?php esc_html_e( 'Try a different keyword or check your spelling.', 'land_institute' ); ?></p>

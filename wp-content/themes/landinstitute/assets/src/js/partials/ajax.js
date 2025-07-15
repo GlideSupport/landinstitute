@@ -321,10 +321,10 @@ function attachPaginationEventListeners() {
 }
 
 // Detect back/forward browser navigation
-window.addEventListener('popstate', function (e) {
-	const paged = (e.state && e.state.paged) ? e.state.paged : 1;
-	fetchPastEvents(paged, false); // false = don't update URL again
-});
+// window.addEventListener('popstate', function (e) {
+// 	const paged = (e.state && e.state.paged) ? e.state.paged : 1;
+// 	fetchPastEvents(paged, false); // false = don't update URL again
+// });
 
 // On initial load, if /page/2 exists in URL, trigger fetch
 // document.addEventListener("DOMContentLoaded", function () {
@@ -337,6 +337,7 @@ window.addEventListener('popstate', function (e) {
 // 	}
 // });
 
+
 // Initialize listeners on first load
 initPaginationListeners();
 attachPaginationEventListeners();
@@ -348,8 +349,6 @@ attachPaginationEventListeners();
 //new code
 var currentnewsType =""; 
 var currentnewstopic =""; 
-
-
 document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-term]").forEach((link) => {
 		link.addEventListener("click", (e) => {
@@ -663,6 +662,171 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 initnewsPaginationListeners();
 initLearnPaginationListeners();
+
+
+// search ajax code start
+
+	const search_append_list = document.querySelector(".append-search-result"); // ✅ updated selector
+	const search_pagination = document.querySelector(".append-search-result-pagination");
+	const searchForm = document.getElementById('searchForm');
+	const searchType = document.getElementById('search-type');
+
+
+	let currentOrderBy = 'date';
+
+	function getCurrentOrderBy() {
+		return currentOrderBy;
+	}
+
+
+
+	function getSearchType() {
+		return searchType ? searchType.value.trim() : '';
+	}
+ 
+		const searchInput = document.getElementById('search-field');
+
+		function getSearchVal() {
+			return searchInput ? searchInput.value.trim() : '';
+		}
+
+		// Set input from URL on page load
+		if (searchInput) {
+			const urlParams = new URLSearchParams(window.location.search);
+			const searchValFromURL = urlParams.get("s") || "";
+			searchInput.value = searchValFromURL;
+		}
+
+	function featch_search_list(paged = 1, updateURL = true) {
+		currentPage = paged;
+
+		if (search_append_list) {
+			search_append_list.innerHTML = '<div class="loading-placeholder"><p>Loading...</p></div>';
+		}
+
+		// Update query param in address bar
+		if (updateURL) {
+			const url = new URL(window.location);
+			url.searchParams.set("s", getSearchVal());
+			url.searchParams.set("orderby", getCurrentOrderBy());
+			window.history.pushState({}, "", url);
+		}
+
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "search_filter",
+				s: getSearchVal(),
+				paged: paged,
+				orderby: getCurrentOrderBy(),
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					// ✅ Insert search result HTML
+					if (search_append_list) {
+						search_append_list.innerHTML = data.data.news_html;
+					}
+
+					// ✅ Update or insert pagination
+					const oldPagination = document.querySelector(".append-search-result-pagination");
+					if (oldPagination) {
+						oldPagination.outerHTML = data.data.pagination_html;
+					} else if (search_pagination) {
+						search_pagination.insertAdjacentHTML("beforeend", data.data.pagination_html);
+					}
+
+					initsearch_pagination();
+
+					// ✅ Push pretty permalink
+					if (updateURL) {
+						const { pathname, search } = window.location;
+						const cleanedPath = pathname.replace(/\/page\/\d+\/?$/, '');
+						let newPath = cleanedPath.replace(/\/$/, '') + '/';
+						if (paged > 1) {
+							newPath += `page/${paged}/`;
+						}
+						const newURL = newPath + search;
+						history.pushState({ paged: paged }, '', newURL);
+					}
+
+					// ✅ Smooth scroll to results
+					setTimeout(() => {
+						const newTeaserList = document.querySelector(".filter-content-cards-grid");
+						if (newTeaserList) {
+							const offset = 100;
+							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
+							window.scrollTo({ top: top, behavior: "smooth" });
+						}
+					}, 50);
+				} else {
+					search_append_list.innerHTML = "<p>No results found.</p>";
+				}
+			})
+			.catch((error) => {
+				console.error("AJAX error:", error);
+				search_append_list.innerHTML = "<p>Error loading results.</p>";
+			});
+	}
+
+	document.querySelectorAll('#search-orderby-tabs .tab-link').forEach(tab => {
+		tab.addEventListener('click', function (e) {
+			e.preventDefault();
+
+			// Remove current from all
+			document.querySelectorAll('#search-orderby-tabs .tab-link').forEach(t => t.classList.remove('current'));
+			// Add current to this one
+			this.classList.add('current');
+
+			// Set the order
+			currentOrderBy = this.dataset.orderby;
+			console.log(currentOrderBy);
+			// Run search again
+			featch_search_list(1);
+		});
+	});
+
+
+
+	function initsearch_pagination() {
+		document.querySelectorAll(".search-main .pagination-container .page-btn").forEach((btn) => {
+			btn.addEventListener("click", function (e) {
+				e.preventDefault();
+				const page = parseInt(this.getAttribute("data-page"));
+				if (!isNaN(page) && page !== currentPage) {
+					featch_search_list(page);
+				}
+			});
+		});
+
+		document.querySelectorAll(".search-main .pagination-container .site-btn").forEach((btn) => {
+			btn.addEventListener("click", function (e) {
+				e.preventDefault();
+				const page = parseInt(this.getAttribute("data-page"));
+				if (!isNaN(page)) {
+					featch_search_list(page);
+				}
+			});
+		});
+	}
+
+	if (searchForm) {
+	searchForm.addEventListener('submit', function (e) {
+		e.preventDefault(); // prevent page reload
+		featch_search_list(1, true); // call with page 1 on new search
+	});
+}
+
+
+
+
+initsearch_pagination();
+
+
 
 });
 document.addEventListener('click', function (e) {

@@ -1085,6 +1085,53 @@ function handle_ajax_news_learn() {
     ]);
 }
 
+// serach code started
+add_action('wp_ajax_search_filter', 'search_filter_Callback');
+add_action('wp_ajax_nopriv_search_filter', 'search_filter_Callback');
+
+function search_filter_Callback() {
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+    $search_query = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
+	$order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
+
+    $args = [
+       	'post_type'      => ['post', 'page', 'learn'],
+        'posts_per_page' => 12,
+        'post_status'    => 'publish',
+        'paged'          => $paged,
+        's'              => $search_query,
+		'orderby'        => $order_by,
+		'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
+
+    ];
+
+	//print_r( $args);
+
+    $query = new WP_Query($args);
+
+    // Pass query object and current page to templates
+    set_query_var('search_query', $query);
+    set_query_var('paged_var', $paged);
+
+    // Capture search results HTML
+    ob_start();
+    get_template_part('partials/content', 'search-list');
+    $results_html = ob_get_clean();
+
+    // Capture pagination HTML
+    ob_start();
+    get_template_part('partials/content', 'search-pagination');
+    $pagination_html = ob_get_clean();
+
+    wp_reset_postdata();
+
+    wp_send_json_success([
+        'news_html'       => $results_html,
+        'pagination_html' => $pagination_html,
+    ]);
+}
+
+
 
 //script 
 //add_action('init', 'run_event_timestamp_update_once');
@@ -1181,3 +1228,5 @@ function show_event_timestamp_update_notice() {
         delete_transient('event_timestamp_update_success_notice');
     }
 }
+
+
