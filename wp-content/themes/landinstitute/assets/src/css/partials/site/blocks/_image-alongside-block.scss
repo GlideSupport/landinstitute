@@ -371,12 +371,12 @@
 .get-in-touch-block {
     display: grid;
     gap: clamp(50px, calc(3.125rem + ((1vw - 9.92px) * 30.7263)), 160px);
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     position: relative;
 
     @media(max-width: 991px) {
         gap: 0;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 
     &:before {
@@ -758,11 +758,11 @@
     .row-grid {
         display: grid;
         gap: 160px;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
 
         @media(max-width: 991px) {
             gap: 0;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
         }
     }
 

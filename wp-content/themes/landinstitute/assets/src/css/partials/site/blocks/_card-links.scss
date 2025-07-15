@@ -132,11 +132,11 @@ section:has(.text-featured-block) {
         .row-flex {
             display: grid;
             gap: 0;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             height: 100%;
 
             @media(max-width: 991px) {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(1, minmax(0, 1fr));
             }
 
 
@@ -909,10 +909,10 @@ section:has(.text-featured-block) {
 
 .cta-two-column-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     @media(max-width: 991px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 
     .cta-two-column-col {
@@ -1137,10 +1137,10 @@ section:has(.text-featured-block) {
 
 .cta-grid-traditional-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     @media(max-width: 991px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 
     .cta-grid-traditional-col {

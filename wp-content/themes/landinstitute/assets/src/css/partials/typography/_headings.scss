@@ -21,6 +21,7 @@ h6,
 	line-height: var(--line_height_110per);
 	margin: 0 0 clamp(28px, calc(1.75rem + ((1vw - 7.68px) * 1.3746)), 36px);
 	text-transform: initial;
+	hyphens: auto;
 
 	@media(max-width: 319px) {
 		word-wrap: break-word;
