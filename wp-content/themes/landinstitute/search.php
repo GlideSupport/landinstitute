@@ -81,10 +81,7 @@ set_query_var( 'paged_var', $paged );
 					<a href="javascript:void(0)" data-post="news" data-taxonomy="search-type">News</a>
 				</li>
 				<li style="animation-delay: 0.2s;">
-					<a href="javascript:void(0)" data-post="learn" data-taxonomy="search-type">Learn</a>
-				</li>
-				<li style="animation-delay: 0.2s;">
-					<a href="javascript:void(0)" data-post="post" data-taxonomy="search-type">Post</a>
+					<a href="javascript:void(0)" data-post="post" data-taxonomy="search-type">Learn</a>
 				</li>
 				<li style="animation-delay: 0.2s;">
 					<a href="javascript:void(0)" data-post="event" data-taxonomy="search-type">Event</a>

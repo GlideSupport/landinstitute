@@ -1094,8 +1094,14 @@ function search_filter_Callback() {
     $search_query = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
 	$order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
 
+
+    $search_type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
+
+	
+
+
     $args = [
-       	'post_type'      => ['post', 'page', 'learn','news','event','donor','staff','testimonial'],
+       	'post_type'      => ['post', 'page','news','event','donor','staff','testimonial'],
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
@@ -1104,6 +1110,10 @@ function search_filter_Callback() {
 		'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
 
     ];
+
+	if(!empty($search_type) && $search_type != "all"){
+		 $args['post_type'] = $search_type;
+	}
 
 	//print_r( $args);
 
