@@ -47,7 +47,7 @@ set_query_var( 'paged_var', $paged );
 				</div>
 
 				<div class="search-clicks">
-					<div class="search-everything tab-dropdown tab-dropdown-filter">
+					<div class="search-everything tab-dropdown-filter">
 						<a href="#" id="search-type" aria-expanded="false" aria-haspopup="true" aria-controls="search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php esc_html_e( 'Search everything', 'land_institute' ); ?>
 							<div class="arrow-icon"></div>
 						</a>
@@ -72,16 +72,25 @@ set_query_var( 'paged_var', $paged );
 		</div>
 	</section>
 <div class="search-list-filter" >
-							<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
-								<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-term="all" data-taxonomy="search-type">All types</a></li>
-								<li style="animation-delay: 0.1s;">
-									<a href="javascript:void(0)" data-term="case-study" data-taxonomy="search-type">Page</a>
-								</li>
-								<li style="animation-delay: 0.2s;">
-									<a href="javascript:void(0)" data-term="publications" data-taxonomy="search-type">Publications</a>
-								</li>
-							</ul>
-						</div>
+			<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
+				<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-term="all" data-taxonomy="search-type">All types</a></li>
+				<li style="animation-delay: 0.1s;">
+					<a href="javascript:void(0)" data-post="page" data-taxonomy="search-type">Page</a>
+				</li>
+				<li style="animation-delay: 0.2s;">
+					<a href="javascript:void(0)" data-post="news" data-taxonomy="search-type">News</a>
+				</li>
+				<li style="animation-delay: 0.2s;">
+					<a href="javascript:void(0)" data-post="learn" data-taxonomy="search-type">Learn</a>
+				</li>
+				<li style="animation-delay: 0.2s;">
+					<a href="javascript:void(0)" data-post="post" data-taxonomy="search-type">Post</a>
+				</li>
+				<li style="animation-delay: 0.2s;">
+					<a href="javascript:void(0)" data-post="event" data-taxonomy="search-type">Event</a>
+				</li>
+			</ul>
+	</div>
 	<!-- Hero End -->
 
 	<section class="container-960 bg-base-cream">
