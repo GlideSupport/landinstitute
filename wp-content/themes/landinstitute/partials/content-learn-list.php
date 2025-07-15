@@ -36,6 +36,8 @@ if ($query->have_posts()) :
 		</div>
 	<?php endwhile;
 else : ?>
+<div class="not-found-block">
 	<div class="not-found">No resources found.</div>
+</div>
 <?php endif;
 wp_reset_postdata();
