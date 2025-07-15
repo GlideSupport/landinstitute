@@ -3307,7 +3307,7 @@ section:has(.has-border-bottom) {
 }
 
 body {
-    &.no-product-found {
+    .no-product-found {
         grid-template-columns: repeat(1, 1fr);
     }
 }
