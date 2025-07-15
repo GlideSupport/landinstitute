@@ -52,17 +52,7 @@ set_query_var( 'paged_var', $paged );
 							<div class="arrow-icon"></div>
 						</a>
 					</div>
-						<div class="search-list-filter" >
-							<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
-								<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-term="all" data-taxonomy="search-type">All types</a></li>
-								<li style="animation-delay: 0.1s;">
-									<a href="javascript:void(0)" data-term="case-study" data-taxonomy="search-type">Page</a>
-								</li>
-								<li style="animation-delay: 0.2s;">
-									<a href="javascript:void(0)" data-term="publications" data-taxonomy="search-type">Publications</a>
-								</li>
-							</ul>
-						</div>
+						
 					<div class="search-row">
 						<div class="not-found-search">
 							<form role="search" id="searchForm" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
@@ -81,7 +71,17 @@ set_query_var( 'paged_var', $paged );
 			</div>
 		</div>
 	</section>
-
+<div class="search-list-filter" >
+							<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
+								<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-term="all" data-taxonomy="search-type">All types</a></li>
+								<li style="animation-delay: 0.1s;">
+									<a href="javascript:void(0)" data-term="case-study" data-taxonomy="search-type">Page</a>
+								</li>
+								<li style="animation-delay: 0.2s;">
+									<a href="javascript:void(0)" data-term="publications" data-taxonomy="search-type">Publications</a>
+								</li>
+							</ul>
+						</div>
 	<!-- Hero End -->
 
 	<section class="container-960 bg-base-cream">
