@@ -3306,13 +3306,24 @@ section:has(.has-border-bottom) {
     pointer-events: none;
 }
 
-.not-found {
+body {
+    &.no-product-found {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.not-found-block {
+    width: 100%;
     text-align: center;
-    display: flex;
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: var(--gb_primary_sunflower_yellow);
-    padding: 7px 20px;
-    @extend .ui-18-16-bold-uc;
-    border: 2px solid var(--gb_base_brown);
+    display: block;
+
+    .not-found {
+        text-align: center;
+        display: inline-flex;
+        margin: 20px auto;
+        background-color: var(--gb_primary_sunflower_yellow);
+        padding: 7px 30px;
+        @extend .ui-18-16-bold-uc;
+        border: 2px solid var(--gb_base_brown);
+    }
 }
