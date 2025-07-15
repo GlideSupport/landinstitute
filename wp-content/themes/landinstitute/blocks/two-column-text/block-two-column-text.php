@@ -47,6 +47,7 @@ $li_tct_headline_check = BaseTheme::headline_check($li_tct_headline);
 $li_tct_choose_variation = $bst_block_fields['li_tct_choose_variation'] ?? 'featured';
 $li_tct_repeater = $bst_block_fields['li_tct_repeater'] ?? null;
 $li_tct_select_design = $bst_block_fields['li_tct_select_design'] ?? 'content';
+$li_tct_text_color = $bst_block_fields['li_tct_text_color'] ?? '#FFFFFF';
 $li_tct_kicker = $bst_block_fields['li_tct_kicker'] ?? null;
 $li_tct_wysiwyg = $bst_block_fields['li_tct_wysiwyg'] ?? null;
 $li_tct_bg_image = $bst_block_fields['li_tct_bg_image'] ?? null;

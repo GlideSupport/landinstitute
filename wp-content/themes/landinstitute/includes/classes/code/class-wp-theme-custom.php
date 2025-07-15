@@ -73,7 +73,7 @@ class WP_Theme_Custom extends \Boilerplate
 	 * @return string
 	 */
 
-	public static function headline($object, $classes = '')
+	public static function headline($object, $classes = '', $color = '')
 	{
 		if (!empty($object)):
 
@@ -90,9 +90,11 @@ class WP_Theme_Custom extends \Boilerplate
 			}
 
 			if ($title_text) {
+				$style = !empty($color) ? ' style="color:' . esc_attr($color) . ';"' : '';
+
 				$html = '<';
 				$html .= esc_html($title_tag);
-				$html .= ' class="' . $classes . '"';
+				$html .= ' class="' . $classes . '"' . $style;
 				$html .= '>';
 				$html .= html_entity_decode($title_text);
 				$html .= '</';
