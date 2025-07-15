@@ -3305,3 +3305,14 @@ section:has(.has-border-bottom) {
     opacity: 0.5;
     pointer-events: none;
 }
+
+.not-found {
+    text-align: center;
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--gb_primary_sunflower_yellow);
+    padding: 7px 20px;
+    @extend .ui-18-16-bold-uc;
+    border: 2px solid var(--gb_base_brown);
+}
