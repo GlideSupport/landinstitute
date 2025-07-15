@@ -55,7 +55,7 @@ $li_awi_image       = $bst_block_fields['li_awi_image'] ?? null;
 	<div class="gl-s64"></div>
 	<div class="tab-click-row">
 		<div class="cl-left">
-			<div class="faq-block number-tab-block">
+			<div class="faq-block number-tab-block accordion-with-image">
 				<ol class="faq_main_container number-tab-row">
 					<?php foreach ($li_awi_repeater as $li_awi_rep): 
 						$short_text = $li_awi_rep['short_text'] ?? '';

@@ -39,10 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Select all FAQ question elements
     const questions = document.querySelectorAll('.faq_question');
-    // if (questions.length > 0) {
-    //     questions[0].classList.add('active');
-    //     toggleAccordion(questions[0]);
-    // }
+    const accordion = document.querySelectorAll('.accordion-with-image');
+    if (accordion.length > 0) {
+        questions[0].classList.add('active');
+        toggleAccordion(questions[0]);
+    }
 
     // Add a click event listener to each question
     questions.forEach((question) => {

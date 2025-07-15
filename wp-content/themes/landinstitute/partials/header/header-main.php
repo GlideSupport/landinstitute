@@ -90,7 +90,7 @@
 										<div class="col-right">
 											<div class="popup-search">
 												<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-													<input type="text" name="s" placeholder="What are you serching for?" autofocus>
+													<input type="text" name="s" placeholder="What are you searching for?" autofocus>
 													<button class="site-btn btn-lemon-yellow sm-btn" type="submit">Search</button>
 												</form>
 											</div>
@@ -163,8 +163,7 @@
 							?>
 						</div>
 
-						<div class="top-bar-cross" role="button" tabindex="0"
-							aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
+						<div class="top-bar-cross" role="button" tabindex="0" aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
 							<span>
 								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>" 
 								width="16" height="16" 
