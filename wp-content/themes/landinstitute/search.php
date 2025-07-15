@@ -28,7 +28,7 @@ set_query_var( 'paged_var', $paged );
 						<div class="hero-content">
 							<div class="ui-eyebrow-18-16-regular sub-head"><?php esc_html_e( 'Search Results', 'land_institute' ); ?></div>
 							<div class="gl-s12"></div>
-							<h1 class="heading-1 mb-0 block-title">
+							<h1 id="search-heading" class="heading-1 mb-0 block-title">
 								<?php
 								printf(
 									esc_html__( 'Results for "%s"', 'land_institute' ),

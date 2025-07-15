@@ -738,7 +738,15 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 			url.searchParams.set("orderby", getCurrentOrderBy());
 			url.searchParams.set("search-type", searcheve);
 			window.history.pushState({}, "", url);
+
+			
 		}
+
+		const searchHeading = document.getElementById("search-heading");
+		if (searchHeading) {
+			searchHeading.textContent = `Results for "${getSearchVal()}"`;
+		}
+
 
 		fetch(localVars.ajax_url, {
 			method: "POST",
