@@ -1,5 +1,5 @@
 
-<?php if (!empty($li_me_headline_check) || !empty($li_me_wysiwyg) || !empty($li_me_hours_title) || !empty($li_me_hours_wysiwyg) || !empty($li_me_select_form_type) || !empty($li_me_form_selector) || !empty($li_me_iframe_v_two)): ?>
+<?php if (!empty($li_me_headline_check) || !empty($li_me_wysiwyg) || !empty($li_me_hours_title) || !empty($li_me_hours_wysiwyg) || !empty($li_me_iframe)): ?>
 	<div class="map-embed-block contact-info-block">
 		<div class="row-flex">
 			<div class="cl-left">
@@ -13,18 +13,9 @@
 				<?php echo !empty($li_me_hours_wysiwyg) ? '<div class="body-20-18-regular address-title">' . html_entity_decode($li_me_hours_wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>   
 				
 			</div>
-			<?php if (!empty($li_me_select_form_type) || !empty($li_me_form_selector) || !empty($li_me_iframe_v_two) ): ?>
-				<div class="cl-right">
-					<?php if (($li_me_select_form_type == 'gravity-form')): ?>
-						<div class="gl-s80"></div>
-					<div class="footer-newsletter">
-						<?php echo !empty($li_me_form_selector) ? do_shortcode('[gravityform id="' . $li_me_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
-					</div>
-					<?php else :?>
-						<?php echo !empty($li_me_iframe_v_two) ? '<div class="map-img">' . html_entity_decode($li_me_iframe_v_two) . '</div>' : ''; ?>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
+			<div class="cl-right">
+				<?php echo !empty($li_me_iframe) ? '<div class="map-img">' . html_entity_decode($li_me_iframe) . '</div>' : ''; ?>
+			</div>
 		</div>
 	</div>
 <?php endif; ?>
