@@ -16,7 +16,8 @@
 			<?php if (!empty($li_me_select_form_type) || !empty($li_me_form_selector) || !empty($li_me_iframe_v_two) ): ?>
 				<div class="cl-right">
 					<?php if (($li_me_select_form_type == 'gravity-form')): ?>
-					<div class="g-form">
+						<div class="gl-s80"></div>
+					<div class="footer-newsletter">
 						<?php echo !empty($li_me_form_selector) ? do_shortcode('[gravityform id="' . $li_me_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
 					</div>
 					<?php else :?>
