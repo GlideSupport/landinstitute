@@ -1105,7 +1105,6 @@ function search_filter_Callback() {
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
-        's'              => $search_query,
 		'orderby'        => $order_by,
 		'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
 
@@ -1114,6 +1113,11 @@ function search_filter_Callback() {
 	if(!empty($search_type) && $search_type != "all"){
 		 $args['post_type'] = $search_type;
 	}
+	if(!empty($search_query)){
+		 $args['s'] = $search_query;
+	}
+
+
 
 	//print_r( $args);
 
