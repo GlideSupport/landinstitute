@@ -225,6 +225,30 @@
             "append": ""
         },
         {
+            "key": "field_68761c13dfed5",
+            "label": "Select form Type",
+            "name": "li_tf_select_form_type",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "gravity-form": "Gravity form",
+                "form-embed": "Form Embed"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_673de7470f655",
             "label": "Form selector",
             "name": "li_tf_form_selector",
@@ -232,7 +256,15 @@
             "type": "forms",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68761c13dfed5",
+                        "operator": "==",
+                        "value": "gravity-form"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -242,6 +274,35 @@
             "allow_null": 1,
             "multiple": 0,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68761c9edfed6",
+            "label": "Form Embed",
+            "name": "li_tf_form_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68761c13dfed5",
+                        "operator": "==",
+                        "value": "form-embed"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -262,5 +323,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751267400
+    "modified": 1752571082
 }

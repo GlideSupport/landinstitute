@@ -47,6 +47,8 @@ $li_tf_choose_variation = $bst_block_fields['li_tf_choose_variation'] ?? null;
 $li_tf_kicker = $bst_block_fields['li_tf_kicker'] ?? null;
 $li_tf_form_title = $bst_block_fields['li_tf_form_title'] ?? null;
 $li_tf_wysiwyg = $bst_block_fields['li_tf_wysiwyg'] ?? null;
+$li_tf_select_form_type = $bst_block_fields['li_tf_select_form_type'] ?? 'gravity-form';
+$li_tf_form_embed = $bst_block_fields['li_tf_form_embed'] ?? null;
 $li_tf_form_selector = $bst_block_fields['li_tf_form_selector'] ?? null;  
 ?>
 
