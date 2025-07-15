@@ -47,7 +47,7 @@ set_query_var( 'paged_var', $paged );
 				</div>
 
 				<div class="search-clicks">
-					<div class="search-everything tab-dropdown-filter">
+					<div class="search-everything tab-dropdown tab-dropdown-filter">
 						<a href="#" id="search-type" aria-expanded="false" aria-haspopup="true" aria-controls="search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php esc_html_e( 'Search everything', 'land_institute' ); ?>
 							<div class="arrow-icon"></div>
 						</a>
