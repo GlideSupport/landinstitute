@@ -17,7 +17,7 @@ $learn_type_name = !empty($learn_type_terms) && !is_wp_error($learn_type_terms) 
 $bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
 $featured_image_id = get_post_thumbnail_id();
 $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
-$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_800', false, ['alt' => esc_attr(get_the_title())]);
+$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', false, ['alt' => esc_attr(get_the_title())]);
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_ldo_authors = $bst_fields['li_ldo_authors'];
@@ -78,7 +78,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="column-content">
 								<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
 								<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php if (!empty($link)) : ?>
+								<?php if (!empty($link) && !empty($li_ldo_publication)) : ?>
 									<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
 										<span class="link-content">
 											<?php echo esc_html($li_ldo_publication); ?>
@@ -109,7 +109,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="gl-s36"></div>
 							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-							<?php if (!empty($link)) : ?>
+							<?php if (!empty($link) && !empty($li_ldo_publication)) : ?>
 								<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
 									<span class="link-content">
 										<?php echo esc_html($li_ldo_publication); ?>
