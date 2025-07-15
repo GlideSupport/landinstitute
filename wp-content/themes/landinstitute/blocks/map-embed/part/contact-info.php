@@ -13,7 +13,7 @@
 				<?php echo !empty($li_me_hours_wysiwyg) ? '<div class="body-20-18-regular address-title">' . html_entity_decode($li_me_hours_wysiwyg) . '</div><div class="gl-s64"></div>' : ''; ?>   
 				
 			</div>
-			<?php if (!empty($li_tf_form_embed) || !empty($li_tf_form_selector) || !empty($li_tf_form_title) ): ?>
+			<?php if (!empty($li_me_select_form_type) || !empty($li_me_form_selector) || !empty($li_me_iframe_v_two) ): ?>
 				<div class="cl-right">
 					<?php if (($li_me_select_form_type == 'gravity-form')): ?>
 					<div class="g-form">
