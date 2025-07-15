@@ -666,6 +666,33 @@ initLearnPaginationListeners();
 
 // search ajax code start
 
+
+var searcheve =""; 
+document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) => {
+	menu.querySelectorAll("a[data-post]").forEach((link) => {
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			const taxonomy = menu.id; // donor-type or donation-level
+			const term = link.getAttribute("data-post");
+
+			// Remove 'active' class from siblings
+			menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
+			link.closest("li").classList.add("active");
+
+			// Set selected term
+			if (taxonomy === "search-type") {
+				searcheve = term;
+				document.querySelector("button#search-type").innerHTML =
+					"Search: " + (term === "everything" ? "everything" : term.replace(/-/g, " "));
+			} 
+
+			// Reset to page 1
+			currentPage = 1;
+			featch_search_list();
+		});
+	});
+});
+
 	const search_append_list = document.querySelector(".append-search-result"); // ✅ updated selector
 	const search_pagination = document.querySelector(".append-search-result-pagination");
 	const searchForm = document.getElementById('searchForm');
@@ -709,6 +736,7 @@ initLearnPaginationListeners();
 			const url = new URL(window.location);
 			url.searchParams.set("s", getSearchVal());
 			url.searchParams.set("orderby", getCurrentOrderBy());
+			url.searchParams.set("search-type", searcheve);
 			window.history.pushState({}, "", url);
 		}
 
@@ -719,6 +747,7 @@ initLearnPaginationListeners();
 			},
 			body: new URLSearchParams({
 				action: "search_filter",
+				type:searcheve,
 				s: getSearchVal(),
 				paged: paged,
 				orderby: getCurrentOrderBy(),
