@@ -901,11 +901,11 @@ function initDropdowns() {
 				positionDropdown();
 			}
 		});
-		window.addEventListener("scroll", () => {
-			if (toggleButton.getAttribute("aria-expanded") === "true") {
-				closeDropdown();
-			}
-		});
+		// window.addEventListener("scroll", () => {
+		// 	if (toggleButton.getAttribute("aria-expanded") === "true") {
+		// 		closeDropdown();
+		// 	}
+		// });
 	});
 }
 //dropdown menu js end
