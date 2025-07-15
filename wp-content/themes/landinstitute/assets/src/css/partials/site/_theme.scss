@@ -467,7 +467,7 @@ section:has(.has-border-bottom) {
 
         &::-webkit-scrollbar-thumb {
             -webkit-border-radius: 4px;
-            background: var(--gb_color_primary);
+            background: var(--gb_base_brown);
             border-radius: 4px !important;
             cursor: pointer;
         }
