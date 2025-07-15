@@ -1,0 +1,101 @@
+<?php
+global $wp_query;
+$total_pages  = $wp_query->max_num_pages;
+$current_page = max( 1, get_query_var( 'paged' ) );
+?>
+
+<?php if ( $total_pages > 1 ) : ?>
+<div class="pagination-container">
+    <!-- Desktop Pagination -->
+    <div class="desktop-pages">
+        <div class="arrow-btn prev">
+            <?php if ( $current_page > 1 ) : ?>
+                <a class="site-btn" href="<?php echo esc_url( get_pagenum_link( $current_page - 1 ) ); ?>">
+                    <?php esc_html_e( 'Previous', 'land_institute' ); ?>
+                </a>
+            <?php else : ?>
+                <div class="site-btn disabled"><?php esc_html_e( 'Previous', 'land_institute' ); ?></div>
+            <?php endif; ?>
+        </div>
+
+        <div class="pagination-list">
+            <?php
+            $range = 2;
+            $show_dots = true;
+
+            for ( $i = 1; $i <= $total_pages; $i++ ) {
+                if (
+                    $i == 1 ||
+                    $i == $total_pages ||
+                    ( $i >= $current_page - $range && $i <= $current_page + $range )
+                ) {
+                    if ( $i == $current_page ) {
+                        echo '<button class="page-btn active">' . esc_html( $i ) . '</button>';
+                    } else {
+                        echo '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" class="page-btn">' . esc_html( $i ) . '</a>';
+                    }
+                    $show_dots = true;
+                } elseif ( $show_dots ) {
+                    echo '<span class="dots">...</span>';
+                    $show_dots = false;
+                }
+            }
+            ?>
+        </div>
+
+        <div class="arrow-btn next">
+            <?php if ( $current_page < $total_pages ) : ?>
+                <a class="site-btn" href="<?php echo esc_url( get_pagenum_link( $current_page + 1 ) ); ?>">
+                    <?php esc_html_e( 'Next', 'land_institute' ); ?>
+                </a>
+            <?php else : ?>
+                <div class="site-btn disabled"><?php esc_html_e( 'Next', 'land_institute' ); ?></div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Mobile Pagination -->
+    <div class="mobile-pagination">
+        <?php if ( $current_page > 1 ) : ?>
+            <a id="prevBtn" class="arrow-btn" href="<?php echo esc_url( get_pagenum_link( $current_page - 1 ) ); ?>">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg' ); ?>" alt="Previous" />
+            </a>
+        <?php else : ?>
+            <div class="arrow-btn disabled">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg' ); ?>" alt="Previous" />
+            </div>
+        <?php endif; ?>
+
+        <button id="pageTrigger" class="page-trigger ui-18-16-bold">
+            <?php echo esc_html( "$current_page / $total_pages" ); ?>
+        </button>
+
+        <?php if ( $current_page < $total_pages ) : ?>
+            <a id="nextBtn" class="arrow-btn" href="<?php echo esc_url( get_pagenum_link( $current_page + 1 ) ); ?>">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg' ); ?>" alt="Next" />
+            </a>
+        <?php else : ?>
+            <div class="arrow-btn disabled">
+                <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg' ); ?>" alt="Next" />
+            </div>
+        <?php endif; ?>
+    </div>
+
+    <!-- Mobile Popup -->
+    <div id="paginationPopup" class="pagination-popup">
+        <div class="popup-body">
+            <div id="popupGrid" class="popup-grid">
+                <?php for ( $i = 1; $i <= $total_pages; $i++ ) : ?>
+                    <?php if ( $i == $current_page ) : ?>
+                        <button class="page-btn active"><?php echo esc_html( $i ); ?></button>
+                    <?php else : ?>
+                        <a href="<?php echo esc_url( get_pagenum_link( $i ) ); ?>" class="page-btn"><?php echo esc_html( $i ); ?></a>
+                    <?php endif; ?>
+                <?php endfor; ?>
+            </div>
+            <button id="popupPrev" class="arrow-btn"></button>
+            <button id="popupNext" class="arrow-btn"></button>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
