@@ -877,6 +877,10 @@ section:has(.two-column-image) {
     .two-col-content {
         position: relative;
         z-index: 2;
+
+        p {
+            color: inherit;
+        }
     }
 
     .cta-image-full {
