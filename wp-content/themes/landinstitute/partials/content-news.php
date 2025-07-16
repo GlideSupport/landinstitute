@@ -31,7 +31,7 @@ $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
-$li_no_bg_image_visible = array_key_exists('li_no_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_no_bg_image_visible'] : true;
+$li_no_bg_image_visible = $bst_fields['li_no_bg_image_visible'] ?? 'Show';
 $li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
 $newsletter_form_visible = array_key_exists('li_nwd_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_nwd_newsletter_form_visible'] : true;
