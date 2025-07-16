@@ -81,10 +81,6 @@ textarea,
 	color: var(--gb_base_brown);
 }
 
-input:focus::input-placeholder {
-	opacity: 1;
-}
-
 ::input-placeholder {
 	opacity: 0.5;
 	color: var(--gb_base_brown);
