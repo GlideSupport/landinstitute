@@ -42,7 +42,7 @@ else :
 if($requestdbyajax){
 ?>
 <div class="not-found-block">
-	<div class="not-found">No resources found.</div>
+	<div class="not-found">No News found.</div>
 </div>
 <?php } endif;
 wp_reset_postdata();
