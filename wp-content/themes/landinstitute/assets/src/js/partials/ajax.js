@@ -360,6 +360,9 @@ function formatLabel(label, fallback) {
 //new code
 var currentnewsType =""; 
 var currentnewstopic =""; 
+
+
+
 document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-term]").forEach((link) => {
 		link.addEventListener("click", (e) => {
@@ -388,6 +391,26 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 		});
 	});
 });
+
+
+window.addEventListener("DOMContentLoaded", () => {
+	currentnewsType = getQueryParam("type") || "";
+	currentnewstopic = getQueryParam("topic") || "";
+
+	// Set UI state based on URL
+	if (currentnewsType) {
+		document.querySelector("button#type-view").innerHTML = "News type: " + formatLabel(currentnewsType, "News type");
+		document.querySelector(`#news-type a[data-term="${currentnewsType}"]`)?.closest("li")?.classList.add("active");
+	}
+	if (currentnewstopic) {
+		document.querySelector("button#topic-view").innerHTML = "Topic: " + formatLabel(currentnewstopic, "Topic");
+		document.querySelector(`#news-topic a[data-term="${currentnewstopic}"]`)?.closest("li")?.classList.add("active");
+	}
+
+	// Initial fetch
+	//fetchnews();
+});
+
 
 
 	const news_append_list = document.querySelector(".newsmain .filter-content-cards-grid");
