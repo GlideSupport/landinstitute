@@ -28,10 +28,6 @@ $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_ldo_authors = $bst_fields['li_ldo_authors'];
 $li_ldo_publication = $bst_fields['li_ldo_publication'];
 
-$select_type = $bst_fields['select_type'] ?? 'audio';
-$li_ldo_youtube_url = $bst_fields['li_ldo_youtube_url'];
-$li_ldo_soundcloud_url = $bst_fields['li_ldo_soundcloud_url'];
-
 $li_ldo_url = $bst_fields['li_ldo_url'];
 $link = $li_ldo_url ?? '';
 
