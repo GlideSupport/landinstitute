@@ -104,7 +104,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							<div class="filter-dropdown-row">
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="type-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="learn-type">Post type: <?php echo $current_type_name; ?><div class="arrow-icon"></div>
+										aria-haspopup="true" aria-controls="learn-type">Type: <?php echo $current_type_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 								<div class="tab-dropdown tab-dropdown-filter">
