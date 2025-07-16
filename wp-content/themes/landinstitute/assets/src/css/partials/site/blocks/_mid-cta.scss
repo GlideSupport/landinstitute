@@ -869,6 +869,8 @@ section:has(.two-column-image) {
 }
 
 .two-column-image {
+    padding: 0 0 36px;
+
     .heading-max {
         position: relative;
         z-index: 1;
@@ -878,12 +880,12 @@ section:has(.two-column-image) {
         position: relative;
         z-index: 2;
 
-        @media(min-width: 991px) {
-            min-height: 1075px;
+        @media(min-width: 641px) {
+            min-height: 700px;
         }
 
-        @media(min-width: 641px) {
-            min-height: 800px;
+        @media(min-width: 991px) {
+            min-height: 901px;
         }
 
 
@@ -894,21 +896,18 @@ section:has(.two-column-image) {
 
     .cta-image-full {
         display: flex;
-        margin-left: calc(-50vw + 50%);
+        //margin-left: calc(-50vw + 50%);
         margin-top: -42vw;
         overflow: hidden;
         width: 100vw;
-
-        @media(min-width: 641px) {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            margin: 0;
-        }
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        margin: 0;
 
         @media(max-width: 640px) {
-            margin-top: -38vw;
+            //margin-top: -38vw;
         }
 
         img {
