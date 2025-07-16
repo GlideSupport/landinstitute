@@ -474,9 +474,45 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 	
 	//new code
-	var learntype =""; 
-	var learntopic =""; 
-	var learncrops =""; 
+var learntype = "";
+var learntopic = "";
+var learncrops = "";
+//var currentPage = 1;
+
+// Helper function to get query param
+function getQueryParam(param) {
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(param);
+}
+
+// Helper to format label
+function formatLabel(label, fallback) {
+	return label === "all" ? fallback : label.replace(/-/g, " ");
+}
+
+// Load values from URL
+window.addEventListener("DOMContentLoaded", () => {
+	// Get values from URL if present
+	learntype = getQueryParam("learn-type") || "";
+	learntopic = getQueryParam("learn-topic") || "";
+	learncrops = getQueryParam("learn-crops") || "";
+	//console
+	// Set initial button labels and active states
+	if (learntype) {
+		document.querySelector("button#type-view").innerHTML = "Post type: " + formatLabel(learntype, "Post type");
+		document.querySelector(`#learn-type a[data-term="${learntype}"]`)?.closest("li")?.classList.add("active");
+	}
+	if (learntopic) {
+		document.querySelector("button#topic-view").innerHTML = "Topic: " + formatLabel(learntopic, "Topic");
+		document.querySelector(`#learn-topic a[data-term="${learntopic}"]`)?.closest("li")?.classList.add("active");
+	}
+	if (learncrops) {
+		document.querySelector("button#category-view").innerHTML = "Crop: " + formatLabel(learncrops, "Crop");
+		document.querySelector(`#learn-crops a[data-term="${learncrops}"]`)?.closest("li")?.classList.add("active");
+	}
+
+	//fetchlearn(); // Initial fetch with values from URL
+});
 	document.querySelectorAll(".learn-list-filter .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
 			link.addEventListener("click", (e) => {
@@ -515,10 +551,10 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
 
-		console.log(learntype+"learntaxo");
-		console.log(learntopic+"learntaxo");
+		console.log(learntype+"learntype");
+		console.log(learntopic+"learntopic");
 
-		console.log(learncrops+"learntaxo");
+		console.log(learncrops+"learncrop");
 
 
 
@@ -538,11 +574,9 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			}
 			if(learntopic){
 				url.searchParams.set("learn-topic", learntopic || "");
-
 			}
 			if(learncrops){
 				url.searchParams.set("learn-crop", learncrops || "");
-
 			}
 		//	url.searchParams.set("page", paged);
 			window.history.pushState({}, "", url);
