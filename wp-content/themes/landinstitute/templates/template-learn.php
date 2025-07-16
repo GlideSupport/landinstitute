@@ -33,7 +33,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 		'hide_empty' => true,
 	]);
 	
-	$crop_terms = get_terms([
+	$crop_terms_main = get_terms([
 		'taxonomy'   => 'learn-crop',
 		'hide_empty' => true,
 	]);
@@ -215,8 +215,8 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 		</ul>
 		<ul id="learn-crops" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
 			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crops">All Crops</a></li>
-			<?php if (!empty($crop_terms) && !is_wp_error($crop_terms)) : ?>
-				<?php foreach ($crop_terms as $crop_term) : ?>
+			<?php if (!empty($crop_terms_main) && !is_wp_error($crop_terms_main)) : ?>
+				<?php foreach ($crop_terms_main as $crop_term) : ?>
 					<li>
 						<a href="javascript:void(0)" data-term="<?php echo esc_attr($crop_term->slug); ?>" data-taxonomy="learn-crop">
 							<?php echo esc_html($crop_term->name); ?>
