@@ -532,10 +532,10 @@ window.addEventListener("DOMContentLoaded", () => {
 					document.querySelector("button#type-view").innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
 				} else if (taxonomy === "learn-topic") {
 					learntopic = term;
-					document.querySelector("button#topic-view").innerHTML = "Topic: " + (term === "all" ? "Topic" : term.replace(/-/g, " "));
+					document.querySelector("button#topic-view").innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
 				}else if (taxonomy === "learn-crops") {
 					learncrops = term;
-					document.querySelector("button#category-view").innerHTML = "Crop: " + (term === "all" ? "Crop" : term.replace(/-/g, " "));
+					document.querySelector("button#category-view").innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
 				}
 
 				// Reset to page 1
