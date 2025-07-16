@@ -68,6 +68,8 @@
                     }
 
                     .block-title {
+                        overflow-wrap: anywhere;
+
                         @media(max-width: 640px) {
                             @include heading-4;
                         }
@@ -224,7 +226,6 @@
 
                         .block-title {
                             font-size: var(--gb_font_size_2);
-                            overflow-wrap: anywhere;
                         }
 
                         .map-content {
