@@ -6,7 +6,14 @@ $paged = get_query_var('paged_var');
 
 if ($query->have_posts()) :
 	while ($query->have_posts()) : $query->the_post();
-		$format = get_post_format() ?: 'Publication';
+
+	$terms = get_the_terms( get_the_ID(), 'learn_type' );
+	$learn_type = ''; // default fallback value
+	if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+		$learn_type = $terms[0]->name; // Or use ->slug if you need slug
+	}
+
+		//$format = get_post_format() ?: 'Publication';
 		?>
 		<div class="filter-card-item">
 			<a href="<?php the_permalink(); ?>" class="filter-card-link">
@@ -19,7 +26,7 @@ if ($query->have_posts()) :
 				</div>
 				<div class="filter-card-content">
 					<div class="gl-s52"></div>
-					<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html(ucfirst($format)); ?></div>
+					<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html(ucfirst($learn_type)); ?></div>
 					<div class="gl-s6"></div>
 					<div class="card-title heading-7"><?php the_title(); ?></div>
 					<div class="gl-s12"></div>
