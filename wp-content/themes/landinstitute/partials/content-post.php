@@ -11,13 +11,18 @@
 
 list($bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object) = BaseTheme::defaults();
 
+$li_ldo_upload = $bst_fields['li_ldo_pdf'] ?? '';
+if($li_ldo_upload) {
+	wp_redirect($li_ldo_upload);
+}
+
 // Post Tags & Categories.
 $learn_type_terms = get_the_terms($bst_var_post_id, 'learn-type');
 $learn_type_name = !empty($learn_type_terms) && !is_wp_error($learn_type_terms) ? esc_html($learn_type_terms[0]->name) : '';
 $bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
 $featured_image_id = get_post_thumbnail_id();
 $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
-$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_500', false, ['alt' => esc_attr(get_the_title())]);
+$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_800', false, ['alt' => esc_attr(get_the_title())]);
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_ldo_authors = $bst_fields['li_ldo_authors'];
@@ -27,10 +32,8 @@ $select_type = $bst_fields['select_type'] ?? 'audio';
 $li_ldo_youtube_url = $bst_fields['li_ldo_youtube_url'];
 $li_ldo_soundcloud_url = $bst_fields['li_ldo_soundcloud_url'];
 
-$li_ido_pdf_uploadpdf_url = $bst_fields['li_ido_pdf_uploadpdf_url'] ?? 'upload';
-$li_ldo_upload = $bst_fields['li_ldo_pdf'];
 $li_ldo_url = $bst_fields['li_ldo_url'];
-$link = ($li_ido_pdf_uploadpdf_url === 'upload' && !empty($li_ldo_upload)) ? $li_ldo_upload : (($li_ido_pdf_uploadpdf_url === 'url' && !empty($li_ldo_url)) ? $li_ldo_url : '');
+$link = $li_ldo_url ?? '';
 
 $bg_pattern = $bst_fields['li_ldo_background_pattern'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
