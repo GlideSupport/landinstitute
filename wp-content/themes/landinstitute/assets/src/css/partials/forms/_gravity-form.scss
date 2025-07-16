@@ -288,9 +288,6 @@ table.ui-datepicker_calendar {
         background-color: transparent;
         border-color: var(--gb_various_error_red);
 
-        &::placeholder {
-            opacity: 1;
-        }
 
         &:focus {
             background-color: transparent;
