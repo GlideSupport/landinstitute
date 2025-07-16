@@ -7,7 +7,7 @@ $paged = get_query_var('paged_var');
 if ($query->have_posts()) :
 	while ($query->have_posts()) : $query->the_post();
 
-	$terms = get_the_terms( get_the_ID(), 'learn_type' );
+	$terms = get_the_terms( get_the_ID(), 'learn-type' );
 	$learn_type = ''; // default fallback value
 	if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
 		$learn_type = $terms[0]->name; // Or use ->slug if you need slug
