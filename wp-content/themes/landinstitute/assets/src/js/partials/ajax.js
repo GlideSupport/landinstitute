@@ -811,7 +811,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 		currentPage = paged;
 
 		if (search_append_list) {
-			search_append_list.innerHTML = '<div class="loading-placeholder"><p>Loading...</p></div>';
+	search_append_list.insertAdjacentHTML('beforeend', '<div class="loading-placeholder"><p>Loading...</p></div>');
 		}
 
 		// Update query param in address bar
