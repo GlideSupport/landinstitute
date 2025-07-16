@@ -344,6 +344,17 @@ attachPaginationEventListeners();
 
 // Past Event Pagination JS End
 
+// Helper function to get query param
+function getQueryParam(param) {
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(param);
+}
+
+// Helper to format label
+function formatLabel(label, fallback) {
+	return label === "all" ? fallback : label.replace(/-/g, " ");
+}
+
 
 
 //new code
@@ -381,6 +392,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 	const news_append_list = document.querySelector(".newsmain .filter-content-cards-grid");
 	const new_pagination = document.querySelector(".newsmain .fillter-bottom");
+	const newsnotfound = document.querySelector(".newsmain .not-found-append");
 
 	function fetchnews(paged = 1, updateURL = true) {
 		currentPage = paged;
@@ -424,7 +436,19 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			.then((data) => {
 				if (data.success) {
 					// ✅ Corrected this line
-					if (new_pagination) news_append_list.innerHTML = data.data.news_html;
+					//if (news_append_list) news_append_list.innerHTML = data.data.news_html;
+
+				if(data.data.datafound == "yes"){
+						if (news_append_list) {
+							news_append_list.innerHTML = data.data.news_html;
+						};
+						newsnotfound.innerHTML = '';
+
+					}else{
+						news_append_list.innerHTML = '';
+						newsnotfound.innerHTML = data.data.news_html
+					}
+
 
 					const oldPagination = document.querySelector('.news-pagination-append-container');
 					if (oldPagination) {
@@ -478,17 +502,6 @@ var learntype = "";
 var learntopic = "";
 var learncrops = "";
 //var currentPage = 1;
-
-// Helper function to get query param
-function getQueryParam(param) {
-	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get(param);
-}
-
-// Helper to format label
-function formatLabel(label, fallback) {
-	return label === "all" ? fallback : label.replace(/-/g, " ");
-}
 
 // Load values from URL
 window.addEventListener("DOMContentLoaded", () => {
