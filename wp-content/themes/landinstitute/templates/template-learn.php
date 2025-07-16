@@ -174,7 +174,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 
 
 							?>
-						<?php $class = $query->have_posts() ? '' : 'no-product-found'; ?>
+						<?php $class = $query->have_posts() ? '' : ''; ?>
 						<div class="filter-cards-grid <?php echo $class; ?>">
 							<?php get_template_part('partials/content', 'learn-list'); ?>
 						</div>
