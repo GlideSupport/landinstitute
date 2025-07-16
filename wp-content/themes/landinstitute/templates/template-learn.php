@@ -171,7 +171,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							$query = new WP_Query($args);
 							set_query_var('learn_query', $query);
 							set_query_var('paged_var', $paged);
-							$datafound = $query->have_posts() ? 'yes' : 'no';
+							$datafoundn = $query->have_posts() ? 'yes' : 'no';
 
 
 							?>
@@ -180,7 +180,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							<?php get_template_part('partials/content', 'learn-list'); ?>
 						</div>
 						<div class="not-found-append">
-							<?php if($datafound == "no"){ ?>
+							<?php if($datafoundn == "no"){ ?>
 							<div class="not-found-block">
 								<div class="not-found">No resources found.</div>
 							</div>
