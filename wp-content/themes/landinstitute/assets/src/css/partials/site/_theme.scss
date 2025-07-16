@@ -555,10 +555,31 @@ section:has(.has-border-bottom) {
 
 .bg-sky-blue {
     background: var(--gb_primary_sky_blue);
+
+    .numbered-grid-row {
+        ol {
+            li {
+                &:before {
+                    background: var(--gb_base_brown);
+                }
+            }
+        }
+    }
 }
 
 .bg-sunflower-yellow {
     background: var(--gb_primary_sunflower_yellow);
+
+    .numbered-grid-row {
+        ol {
+            li {
+                &:before {
+                    background: var(--gb_base_cream);
+                    color: var(--gb_base_brown);
+                }
+            }
+        }
+    }
 
     .drag-arrows {
         background-color: var(--primary_dark_green);
@@ -576,6 +597,17 @@ section:has(.has-border-bottom) {
 
 .bg-lime-green {
     background-color: var(--gb_primary_lime_green);
+
+    .numbered-grid-row {
+        ol {
+            li {
+                &:before {
+                    background: var(--gb_base_cream);
+                    color: var(--gb_base_brown);
+                }
+            }
+        }
+    }
 
     .card-list {
         .card-item {
@@ -598,6 +630,17 @@ section:has(.has-border-bottom) {
 
 .bg-primary-pink {
     background-color: var(--gb_primary_pink);
+
+    .numbered-grid-row {
+        ol {
+            li {
+                &:before {
+                    background: var(--gb_base_cream);
+                    color: var(--gb_base_brown);
+                }
+            }
+        }
+    }
 }
 
 .bg-dark-green {
