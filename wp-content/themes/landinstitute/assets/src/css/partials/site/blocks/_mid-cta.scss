@@ -878,6 +878,15 @@ section:has(.two-column-image) {
         position: relative;
         z-index: 2;
 
+        @media(min-width: 991px) {
+            min-height: 1075px;
+        }
+
+        @media(min-width: 641px) {
+            min-height: 800px;
+        }
+
+
         p {
             color: inherit;
         }
@@ -889,6 +898,14 @@ section:has(.two-column-image) {
         margin-top: -42vw;
         overflow: hidden;
         width: 100vw;
+
+        @media(min-width: 641px) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            margin: 0;
+        }
 
         @media(max-width: 640px) {
             margin-top: -38vw;
