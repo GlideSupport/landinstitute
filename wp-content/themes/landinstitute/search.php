@@ -86,6 +86,9 @@ set_query_var( 'paged_var', $paged );
 				<li style="animation-delay: 0.2s;">
 					<a href="javascript:void(0)" data-post="event" data-taxonomy="search-type">Event</a>
 				</li>
+				<li style="animation-delay: 0.2s;">
+					<a href="javascript:void(0)" data-post="staff" data-taxonomy="search-type">Staff</a>
+				</li>
 			</ul>
 	</div>
 	<!-- Hero End -->
