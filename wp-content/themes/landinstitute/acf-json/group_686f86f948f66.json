@@ -30,7 +30,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -51,7 +51,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -61,6 +61,24 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_6874dce902866",
+            "label": "Publication PDF URL",
+            "name": "li_nwd_pdf_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
         },
         {
             "key": "field_686f86f965cf8",
@@ -90,7 +108,7 @@
         },
         {
             "key": "field_6874dc58f6eae",
-            "label": "Video URL",
+            "label": "YouTube or Vimeo Video Link",
             "name": "li_nwd_video_url",
             "aria-label": "",
             "type": "url",
@@ -98,34 +116,13 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
             "allow_in_bindings": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_6874dce902866",
-            "label": "PDF Upload",
-            "name": "li_nwd_pdf_upload",
-            "aria-label": "",
-            "type": "file",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": "",
-            "allow_in_bindings": 0
         },
         {
             "key": "field_686f86f983827",
@@ -447,5 +444,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752489261
+    "modified": 1752667142
 }

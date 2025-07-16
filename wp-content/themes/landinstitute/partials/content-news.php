@@ -22,6 +22,10 @@ $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_nwd_authors = $bst_fields['li_nwd_authors'] ?? '';
 $li_nwd_publication = $bst_fields['li_nwd_publication'] ?? '';
 $bg_pattern = $bst_fields['li_nwd_background_pattern'] ??  $bst_option_fields['li_news_list_detail_page_bg_pattern'];
+
+$li_ldo_url = $bst_fields['li_nwd_pdf_url'];
+$link = $li_ldo_url ?? '';
+
 $li_nwd_read_more = $bst_fields['li_nwd_read_more'] ?? '';
 $li_nwd_read_more_check = BaseTheme::headline_check($li_nwd_read_more);
 $li_nwd_relatedselected_post = $bst_fields['li_nwd_relatedselected_post'] ?? 'related';
@@ -67,7 +71,20 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="column-content">
 								<?php echo !empty($li_nwd_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
 								<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_nwd_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_nwd_publication) . '</div>' : ''; ?>
+								<?php if (!empty($link) && !empty($li_nwd_publication)) : ?>
+									<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
+										<span class="link-content">
+											<?php echo esc_html($li_nwd_publication); ?>
+											<span class="icon">
+												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+											</span>
+										</span>
+									</a>
+								<?php elseif (!empty($li_nwd_publication)) : ?>
+									<div class="body-18-16-regular block-content">
+										<?php echo esc_html($li_nwd_publication); ?>
+									</div>
+								<?php endif; ?>
 							</div>
 						</div>
 						<div class="gl-s96"></div>
@@ -85,7 +102,20 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="gl-s36"></div>
 							<?php echo !empty($li_nwd_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_nwd_publication) ? '<div class="body-18-16-regular block-content">' . esc_html($li_nwd_publication) . '</div>' : ''; ?>
+							<?php if (!empty($link) && !empty($li_nwd_publication)) : ?>
+								<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
+									<span class="link-content">
+										<?php echo esc_html($li_nwd_publication); ?>
+										<span class="icon">
+											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+										</span>
+									</span>
+								</a>
+							<?php elseif (!empty($li_nwd_publication)) : ?>
+								<div class="body-18-16-regular block-content">
+									<?php echo esc_html($li_nwd_publication); ?>
+								</div>
+							<?php endif; ?>
 							<div class="gl-s96"></div>
 						</div>
 					</div>
@@ -104,6 +134,22 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 <section id="page-section" class="page-section">
 	<section class="container-720 bg-base-cream">
 		<div class="wrapper">
+
+			<?php
+			$li_nwd_video_url     = $bst_fields['li_nwd_video_url'] ?? '';
+
+			if (!empty($li_nwd_video_url)) {
+				echo '<div class="single-audio-video-embed">';
+				echo '<div class="gl-s64"></div>';
+				echo '<div itemscope itemtype="http://schema.org/VideoObject">';
+				echo wp_oembed_get(esc_url($li_nwd_video_url));
+				echo '<meta itemprop="uploadDate" content="' . esc_attr(get_the_date('Y-m-d', $bst_var_post_id)) . '" />';
+				echo '<meta itemprop="embedURL" content="' . esc_url($li_nwd_video_url) . '" />';
+				echo '</div>'; // Closing VideoObject div
+				echo '</div>'; // Closing single-hero
+			}
+			?>
+					
 			<div class="gl-s96"></div>
 				<?php the_content(); ?>
 			<div class="gl-s64"></div>
