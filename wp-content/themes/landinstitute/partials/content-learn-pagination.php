@@ -58,7 +58,7 @@ if ($total_pages > 1): ?>
 
         <!-- Mobile Pagination -->
         <div class="mobile-pagination">
-            <a id="prevBtn" class="arrow-btn <?php echo $current_page === 1 ? 'disabled' : ''; ?>"
+            <a id="prevBtn" class="arrow-btn  site-btn <?php echo $current_page === 1 ? 'disabled' : ''; ?>"
                href="<?php echo $current_page > 1 ? trailingslashit($base_url) . 'page/' . ($current_page - 1) : '#'; ?>"
                rel="prev" data-page="<?php echo max(1, $current_page - 1); ?>">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous" />
@@ -66,7 +66,7 @@ if ($total_pages > 1): ?>
 
             <span id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo $current_page . '/' . $total_pages; ?></span>
 
-            <a id="nextBtn" class="arrow-btn <?php echo $current_page === $total_pages ? 'disabled' : ''; ?>"
+            <a id="nextBtn" class="arrow-btn site-btn <?php echo $current_page === $total_pages ? 'disabled' : ''; ?>"
                href="<?php echo $current_page < $total_pages ? trailingslashit($base_url) . 'page/' . ($current_page + 1) : '#'; ?>"
                rel="next" data-page="<?php echo min($total_pages, $current_page + 1); ?>">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/src/images/right-circle-arrow.svg" alt="Next" />
@@ -79,7 +79,7 @@ if ($total_pages > 1): ?>
                 <div id="popupGrid" class="popup-grid">
                     <?php for ($i = 1; $i <= $total_pages; $i++) :
                         $page_url = ($i === 1) ? trailingslashit($base_url) : trailingslashit($base_url) . 'page/' . $i; ?>
-                        <a class="page-btn <?php echo $i === $current_page ? 'active' : ''; ?>" href="<?php echo esc_url($page_url); ?>" data-page="<?php echo $i; ?>"><?php echo $i; ?></a>
+                        <a class="page-btn  <?php echo $i === $current_page ? 'active' : ''; ?>" href="<?php echo esc_url($page_url); ?>" data-page="<?php echo $i; ?>"><?php echo $i; ?></a>
                     <?php endfor; ?>
                 </div>
                 <button id="popupPrev" class="arrow-btn" data-page="<?php echo max(1, $current_page - 1); ?>"></button>
