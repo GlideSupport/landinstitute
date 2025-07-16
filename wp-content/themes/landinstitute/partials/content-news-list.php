@@ -1,6 +1,8 @@
 <?php
-if (!isset($news)) return;
 
+$requestdbyajax = "";
+
+if ($news->have_posts()) :
 while ($news->have_posts()) : $news->the_post();
     $title         = get_the_title();
     $date          = get_the_date('M j, Y');
@@ -36,4 +38,11 @@ while ($news->have_posts()) : $news->the_post();
         </a>
     </div>
 <?php endwhile;
+else : 
+if($requestdbyajax){
+?>
+<div class="not-found-block">
+	<div class="not-found">No resources found.</div>
+</div>
+<?php } endif;
 wp_reset_postdata();

@@ -998,8 +998,10 @@ function handle_ajax_news_filter() {
 	// print_r($args);
 	// echo '</pre>';
 
+	set_query_var('requestdbyajax', 'yes');
 
     $news = new WP_Query($args);
+	$datafound = $news->have_posts() ? 'yes' : 'no';
 
     ob_start();
     include get_template_directory() . '/partials/content-news-list.php';
@@ -1011,7 +1013,9 @@ function handle_ajax_news_filter() {
 
     wp_send_json_success([
         'news_html'       => $news_html,
-        'pagination_html' => $pagination_html
+        'pagination_html' => $pagination_html,
+		'datafound'       => $datafound,
+
     ]);
 }
 

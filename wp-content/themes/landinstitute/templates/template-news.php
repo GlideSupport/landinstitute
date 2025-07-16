@@ -174,6 +174,8 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 				$args['tax_query'] = $tax_query;
 			}
 			$news = new WP_Query($args);
+			$datafoundn = $news->have_posts() ? 'yes' : 'no';
+
 ?>
 		<div class="wrapper">
 			<div class="full-width-content has-border-bottom">
@@ -198,18 +200,20 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 
 						</div>
 					</div>
-					<?php if ($news->have_posts()) : ?>
 						<div class="filter-content-cards-grid">
 							<?php include get_template_directory() . '/partials/content-news-list.php'; ?>
 						</div>
 						<div class="fillter-bottom">
 						<?php include get_template_directory() . '/partials/content-news-pagination.php'; ?>
 					</div>
-					<?php else : ?>
-						<div class="no-news-found">
-							<p>No news found.</p>
+						<div class="not-found-append">
+							<?php if($datafoundn == "no"){ ?>
+							<div class="not-found-block">
+								<div class="not-found">No resources found.</div>
+							</div>
+							<?php } ?>
 						</div>
-					<?php endif; ?>
+				
 				</div>
 			</div>
 		</div>
