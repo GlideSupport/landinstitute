@@ -1078,10 +1078,13 @@ function handle_ajax_news_learn() {
     $pagination_html = ob_get_clean();
 
     wp_reset_postdata();
+	$datafound = $query->have_posts() ? 'yes' : 'no';
 
     wp_send_json_success([
         'news_html'       => $news_html,
-        'pagination_html' => $pagination_html
+        'pagination_html' => $pagination_html,
+		'datafound'       => $datafound,
+
     ]);
 }
 

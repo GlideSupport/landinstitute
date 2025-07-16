@@ -548,6 +548,10 @@ window.addEventListener("DOMContentLoaded", () => {
 	//learn code start
 	const learn_append_list = document.querySelector(".mainlearn .filter-cards-grid");
 	const learn_pagination = document.querySelector(".mainlearn .fillter-bottom");
+	const notfound = document.querySelector(".mainlearn .not-found-append");
+
+	
+
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
 
@@ -601,7 +605,14 @@ window.addEventListener("DOMContentLoaded", () => {
 			.then((data) => {
 				if (data.success) {
 					// ✅ Corrected this line
-					if (learn_append_list) learn_append_list.innerHTML = data.data.news_html;
+					if(data.data.datafound == "yes"){
+						if (learn_append_list) {
+							learn_append_list.innerHTML = data.data.news_html
+						};
+					}else{
+						notfound.innerHTML = data.data.news_html
+
+					}
 
 					const oldPagination = document.querySelector('.learn-pagination-append-container');
 					if (oldPagination) {
