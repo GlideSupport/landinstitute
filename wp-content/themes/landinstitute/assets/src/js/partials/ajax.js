@@ -495,7 +495,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	// Get values from URL if present
 	learntype = getQueryParam("learn-type") || "";
 	learntopic = getQueryParam("learn-topic") || "";
-	learncrops = getQueryParam("learn-crops") || "";
+	learncrops = getQueryParam("learn-crop") || "";
 	//console
 	// Set initial button labels and active states
 	if (learntype) {
