@@ -1066,6 +1066,8 @@ function handle_ajax_news_learn() {
     $query = new WP_Query($args);
     set_query_var('learn_query', $query);
     set_query_var('paged_var', $paged);
+	set_query_var('requestdbyajax', 'yes');
+
 
     ob_start();
     //echo '<div class="filter-cards-grid">';

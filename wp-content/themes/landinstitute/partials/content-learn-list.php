@@ -2,6 +2,11 @@
 
 $query = get_query_var('learn_query');
 $paged = get_query_var('paged_var');
+$requestdbyajax = get_query_var('requestdbyajax');
+
+
+
+
 
 
 if ($query->have_posts()) :
@@ -42,9 +47,11 @@ if ($query->have_posts()) :
 			</a>
 		</div>
 	<?php endwhile;
-else : ?>
-<!-- <div class="not-found-block">
+else : 
+if($requestdbyajax){
+?>
+<div class="not-found-block">
 	<div class="not-found">No resources found.</div>
-</div> -->
-<?php endif;
+</div>
+<?php } endif;
 wp_reset_postdata();
