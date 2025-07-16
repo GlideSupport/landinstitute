@@ -609,6 +609,8 @@ window.addEventListener("DOMContentLoaded", () => {
 						if (learn_append_list) {
 							learn_append_list.innerHTML = data.data.news_html;
 						};
+						notfound.innerHTML = '';
+
 					}else{
 						learn_append_list.innerHTML = '';
 						notfound.innerHTML = data.data.news_html
