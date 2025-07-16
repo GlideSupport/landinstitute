@@ -607,11 +607,11 @@ window.addEventListener("DOMContentLoaded", () => {
 					// ✅ Corrected this line
 					if(data.data.datafound == "yes"){
 						if (learn_append_list) {
-							learn_append_list.innerHTML = data.data.news_html
+							learn_append_list.innerHTML = data.data.news_html;
 						};
 					}else{
+						learn_append_list.innerHTML = '';
 						notfound.innerHTML = data.data.news_html
-
 					}
 
 					const oldPagination = document.querySelector('.learn-pagination-append-container');
