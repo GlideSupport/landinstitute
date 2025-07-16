@@ -12,7 +12,7 @@
 				<?php echo !empty($li_mpc_link) ? '<div class="text-card-btn">' . BaseTheme::button($li_mpc_link, 'site-btn') . '</div>' : ''; ?>
 			</div>
 			<div class="cl-right">
-				<?php echo !empty($li_mpc_image) ? '<div class="map-img">' . wp_get_attachment_image($li_mpc_image, 'thumb_1000') . '</div>' : ''; ?>
+				<?php echo !empty($li_mpc_image) ? '<div class="map-img">' . wp_get_attachment_image($li_mpc_image, 'thumb_800') . '</div>' : ''; ?>
 			</div>
 		</div>
 	</div>
