@@ -64,8 +64,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 																allowfullscreen></iframe>
 															<?php
 														} elseif ($li_hero_to_choose_video_type === 'vimeo' && !empty($vimeo_id)) { ?>
-															<iframe class="videos vimeo" width="100%" height="100%" loading="lazy"
-																src="https://player.vimeo.com/video/<?php echo esc_attr($vimeo_id); ?>?&background=1&title=0&byline=0&portrait=0&sidedock=0&controls=0"></iframe>
+															<iframe class="videos vimeo" width="100%" height="100%" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen src="https://player.vimeo.com/video/<?php echo esc_attr($vimeo_id); ?>?background=1&title=0&byline=0&portrait=0&sidedock=0&controls=0"></iframe>
 															<?php
 														} elseif ($li_hero_to_choose_video_type === 'upload' && !empty($video_file)) { ?>
 															<video class="videos" playsinline="playsinline" muted="muted" preload="none"
