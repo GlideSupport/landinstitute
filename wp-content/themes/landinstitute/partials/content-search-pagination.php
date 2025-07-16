@@ -18,7 +18,7 @@ if ( isset( $paged_var ) && $paged_var > 0 ) {
     <div class="desktop-pages">
         <div class="arrow-btn prev">
             <?php if ( $current_page > 1 ) : ?>
-                <a class="site-btn" data-page="<?php echo esc_attr( $current_page - 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page - 1 ) ); ?>">
+                <a rel="prev" class="site-btn" data-page="<?php echo esc_attr( $current_page - 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page - 1 ) ); ?>">
                     <?php esc_html_e( 'Previous', 'land_institute' ); ?>
                 </a>
             <?php else : ?>
@@ -30,26 +30,36 @@ if ( isset( $paged_var ) && $paged_var > 0 ) {
             <?php
             $range     = 2;
             $show_dots = true;
+for ( $i = 1; $i <= $total_pages; $i++ ) {
+    if ( $i == 1 || $i == $total_pages || ( $i >= $current_page - $range && $i <= $current_page + $range ) ) {
+        
+        // Set rel attribute conditionally
+        $rel = '';
+        if ( $i == $current_page - 1 ) {
+            $rel = 'prev';
+        } elseif ( $i == $current_page + 1 ) {
+            $rel = 'next';
+        }
 
-            for ( $i = 1; $i <= $total_pages; $i++ ) {
-                if ( $i == 1 || $i == $total_pages || ( $i >= $current_page - $range && $i <= $current_page + $range ) ) {
-                    if ( $i == $current_page ) {
-                        echo '<button class="page-btn active">' . esc_html( $i ) . '</button>';
-                    } else {
-                        echo '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" data-page="' . esc_attr( $i ) . '" class="page-btn">' . esc_html( $i ) . '</a>';
-                    }
-                    $show_dots = true;
-                } elseif ( $show_dots ) {
-                    echo '<span class="dots">…</span>';
-                    $show_dots = false;
-                }
-            }
+        if ( $i == $current_page ) {
+            echo '<button class="page-btn active">' . esc_html( $i ) . '</button>';
+        } else {
+            echo '<a href="' . esc_url( get_pagenum_link( $i ) ) . '" data-page="' . esc_attr( $i ) . '" class="page-btn"' . ( $rel ? ' rel="' . esc_attr( $rel ) . '"' : '' ) . '>' . esc_html( $i ) . '</a>';
+        }
+
+        $show_dots = true;
+    } elseif ( $show_dots ) {
+        echo '<span class="dots">…</span>';
+        $show_dots = false;
+    }
+}
+
             ?>
         </div>
 
         <div class="arrow-btn next">
             <?php if ( $current_page < $total_pages ) : ?>
-                <a class="site-btn" data-page="<?php echo esc_attr( $current_page + 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page + 1 ) ); ?>">
+                <a rel="next" class="site-btn" data-page="<?php echo esc_attr( $current_page + 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page + 1 ) ); ?>">
                     <?php esc_html_e( 'Next', 'land_institute' ); ?>
                 </a>
             <?php else : ?>
@@ -61,7 +71,7 @@ if ( isset( $paged_var ) && $paged_var > 0 ) {
     <!-- Mobile Pagination -->
     <div class="mobile-pagination">
         <?php if ( $current_page > 1 ) : ?>
-            <a id="prevBtn" class="arrow-btn" data-page="<?php echo esc_attr( $current_page - 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page - 1 ) ); ?>">
+            <a id="prevBtn" rel="prev" class="arrow-btn" data-page="<?php echo esc_attr( $current_page - 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page - 1 ) ); ?>">
                 <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg' ); ?>" alt="Previous" />
             </a>
         <?php else : ?>
@@ -75,7 +85,7 @@ if ( isset( $paged_var ) && $paged_var > 0 ) {
         </button>
 
         <?php if ( $current_page < $total_pages ) : ?>
-            <a id="nextBtn" class="arrow-btn" data-page="<?php echo esc_attr( $current_page + 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page + 1 ) ); ?>">
+            <a rel="next" id="nextBtn" class="arrow-btn" data-page="<?php echo esc_attr( $current_page + 1 ); ?>" href="<?php echo esc_url( get_pagenum_link( $current_page + 1 ) ); ?>">
                 <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg' ); ?>" alt="Next" />
             </a>
         <?php else : ?>
