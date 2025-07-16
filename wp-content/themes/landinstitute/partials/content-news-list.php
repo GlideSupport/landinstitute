@@ -1,6 +1,6 @@
 <?php
 
-$requestdbyajax = "";
+$requestdbyajax = get_query_var('requestdbyajax');
 
 if ($news->have_posts()) :
 while ($news->have_posts()) : $news->the_post();
