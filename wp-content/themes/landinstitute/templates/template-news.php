@@ -209,7 +209,7 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="not-found-append">
 							<?php if($datafoundn == "no"){ ?>
 							<div class="not-found-block">
-								<div class="not-found">No resources found.</div>
+								<div class="not-found">No news found.</div>
 							</div>
 							<?php } ?>
 						</div>
