@@ -10,6 +10,12 @@
     transform: translate(-50%, -50%);
 }
 
+.custom-cursor.mobile-hidden {
+    @media(max-width: 991px) {
+        display: none;
+    }
+}
+
 .gallery-block {
     cursor: pointer;
     display: flex;
@@ -48,6 +54,22 @@
         text-align: center;
         top: 50%;
         transform: translate(0, -50%);
+    }
+
+    .cursor-static {
+        position: absolute;
+        right: 0;
+        left: 0;
+        text-align: center;
+        top: 50%;
+        transform: translate(0, -50%);
+        display: none;
+        max-width: 88px;
+        margin: 87px auto 0;
+
+        @media(max-width: 991px) {
+            display: block;
+        }
     }
 
     .gallery-grid {
