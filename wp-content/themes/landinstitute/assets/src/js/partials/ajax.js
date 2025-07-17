@@ -1,27 +1,49 @@
 document.addEventListener("DOMContentLoaded", function () {
+	//Logo Filter code start
 	const donorGrid = document.querySelector(".filter-logos-row");
-	let currentDonorType = "all";
-	let currentDonationLevel = "all";
-	//let currentPage = 1;
+	let currentDonorType = getURLParam("donor_type") || "all";
+	let currentDonationLevel = getURLParam("donation_level") || "all";
+	let currentPage = getURLParam("page") ? parseInt(getURLParam("page")) : 1;
 
-	function getCurrentPageFromURL() {
-		const match = window.location.pathname.match(/\/page\/(\d+)(\/)?$/);
-		return match ? parseInt(match[1]) : 1;
+	function getURLParam(param) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param);
 	}
-	
-	let currentPage = getCurrentPageFromURL();
 
+	function updateURLParams() {
+		const url = new URL(window.location);
+		const params = url.searchParams;
+
+		if (currentDonorType && currentDonorType !== "all") {
+			params.set("donor_type", currentDonorType);
+		} else {
+			params.delete("donor_type");
+		}
+
+		if (currentDonationLevel && currentDonationLevel !== "all") {
+			params.set("donation_level", currentDonationLevel);
+		} else {
+			params.delete("donation_level");
+		}
+
+		if (currentPage && currentPage > 1) {
+			params.set("page", currentPage);
+		} else {
+			params.delete("page");
+		}
+
+		history.replaceState({}, "", `${url.pathname}?${params.toString()}`);
+	}
 
 	function fetchDonors() {
 		const postsPerPage = donorGrid.dataset.donorCount || 9;
-		// Loader
 		const existingLoader = donorGrid.querySelector(".ajax-loader");
-        if (!existingLoader) {
-        	const loader = document.createElement("div");
-        	loader.className = "ajax-loader";
-        	loader.innerHTML = "<p>Loading Donors...</p>";
-        	donorGrid.prepend(loader); 
-        }
+		if (!existingLoader) {
+			const loader = document.createElement("div");
+			loader.className = "ajax-loader";
+			loader.innerHTML = "<p>Loading Donors...</p>";
+			donorGrid.prepend(loader);
+		}
 
 		fetch(localVars.ajax_url, {
 			method: "POST",
@@ -34,15 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				donor_type: currentDonorType,
 				donation_level: currentDonationLevel,
 				paged: currentPage,
-				posts_per_page: postsPerPage 
+				posts_per_page: postsPerPage
 			}),
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.success && data.data.html) {
 					donorGrid.innerHTML = data.data.html;
-
-					// Inject new pagination
 					updatePagination(data.data.pagination_html);
 				} else {
 					donorGrid.innerHTML = "<p>No donors found for this filter.</p>";
@@ -52,19 +72,21 @@ document.addEventListener("DOMContentLoaded", function () {
 				console.error("AJAX Error:", err);
 				donorGrid.innerHTML = "<p>Error loading donors.</p>";
 			});
+
+		updateURLParams();
 	}
 
 	function updatePagination(paginationHtml) {
 		const paginationWrapper = document.querySelector(".fillter-bottom .pagination-container");
-	
+
 		if (paginationHtml.trim() === "") {
 			if (paginationWrapper) paginationWrapper.remove();
 			return;
 		}
-	
+
 		const tempDiv = document.createElement("div");
 		tempDiv.innerHTML = paginationHtml;
-	
+
 		const newPaginationContainer = tempDiv.querySelector(".pagination-container");
 		if (newPaginationContainer) {
 			if (paginationWrapper) {
@@ -78,28 +100,24 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			}
 		}
-	
-		attachPaginationListeners(); // Re-bind
+
+		attachPaginationListeners();
 	}
-	
-    
 
 	function attachPaginationListeners() {
-		// Page number buttons scoped to .logo-grid-filters
 		document.querySelectorAll(".logo-grid-filters .page-btn").forEach((btn) => {
 			btn.addEventListener("click", function () {
-				const newPage = parseInt(this.textContent);
+				const newPage = parseInt(this.dataset.page);
 				if (!isNaN(newPage) && newPage !== currentPage) {
 					currentPage = newPage;
 					fetchDonors();
 				}
 			});
 		});
-	
-		// Desktop Prev/Next buttons inside .logo-grid-filters
+
 		const prevBtn = document.querySelector(".logo-grid-filters .arrow-btn.prev .site-btn");
 		const nextBtn = document.querySelector(".logo-grid-filters .arrow-btn.next .site-btn");
-	
+
 		if (prevBtn) {
 			prevBtn.addEventListener("click", () => {
 				if (currentPage > 1) {
@@ -108,18 +126,17 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			});
 		}
-	
+
 		if (nextBtn) {
 			nextBtn.addEventListener("click", () => {
 				currentPage++;
 				fetchDonors();
 			});
 		}
-	
-		// Mobile Prev/Next
+
 		const mobilePrev = document.querySelector(".logo-grid-filters #prevBtn");
 		const mobileNext = document.querySelector(".logo-grid-filters #nextBtn");
-	
+
 		if (mobilePrev) {
 			mobilePrev.addEventListener("click", () => {
 				if (currentPage > 1) {
@@ -128,18 +145,17 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			});
 		}
-	
+
 		if (mobileNext) {
 			mobileNext.addEventListener("click", () => {
 				currentPage++;
 				fetchDonors();
 			});
 		}
-	
-		// Mobile popup pagination inside popupGrid
+
 		document.querySelectorAll(".logo-grid-filters #popupGrid .page-btn").forEach((btn) => {
 			btn.addEventListener("click", () => {
-				const popupPage = parseInt(btn.textContent);
+				const popupPage = parseInt(btn.dataset.page);
 				if (!isNaN(popupPage)) {
 					currentPage = popupPage;
 					fetchDonors();
@@ -147,19 +163,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		});
 	}
-	// Dropdown item click handler
+
 	document.querySelectorAll(".logo-filter-main .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
 			link.addEventListener("click", (e) => {
 				e.preventDefault();
-				const taxonomy = menu.id; // donor-type or donation-level
+				const taxonomy = menu.id;
 				const term = link.getAttribute("data-term");
 
-				// Remove 'active' class from siblings
 				menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
 				link.closest("li").classList.add("active");
 
-				// Set selected term
 				if (taxonomy === "donor-type") {
 					currentDonorType = term;
 					document.querySelector("button#donor-type").innerHTML =
@@ -170,15 +184,16 @@ document.addEventListener("DOMContentLoaded", function () {
 						"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
 				}
 
-				// Reset to page 1
 				currentPage = 1;
 				fetchDonors();
 			});
 		});
 	});
 
-	// Optional: Initial pagination listeners if needed
 	attachPaginationListeners();
+
+//logo filter code end
+
 
 
 	
@@ -344,25 +359,11 @@ attachPaginationEventListeners();
 
 // Past Event Pagination JS End
 
-// Helper function to get query param
-function getQueryParam(param) {
-	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get(param);
-}
-
-// Helper to format label
-function formatLabel(label, fallback) {
-	return label === "all" ? fallback : label.replace(/-/g, " ");
-}
-
 
 
 //new code
 var currentnewsType =""; 
 var currentnewstopic =""; 
-
-
-
 document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-term]").forEach((link) => {
 		link.addEventListener("click", (e) => {
@@ -393,29 +394,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 });
 
 
-window.addEventListener("DOMContentLoaded", () => {
-	currentnewsType = getQueryParam("type") || "";
-	currentnewstopic = getQueryParam("topic") || "";
-
-	// Set UI state based on URL
-	if (currentnewsType) {
-		document.querySelector("button#type-view").innerHTML = "News type: " + formatLabel(currentnewsType, "News type");
-		document.querySelector(`#news-type a[data-term="${currentnewsType}"]`)?.closest("li")?.classList.add("active");
-	}
-	if (currentnewstopic) {
-		document.querySelector("button#topic-view").innerHTML = "Topic: " + formatLabel(currentnewstopic, "Topic");
-		document.querySelector(`#news-topic a[data-term="${currentnewstopic}"]`)?.closest("li")?.classList.add("active");
-	}
-
-	// Initial fetch
-	//fetchnews();
-});
-
-
-
 	const news_append_list = document.querySelector(".newsmain .filter-content-cards-grid");
 	const new_pagination = document.querySelector(".newsmain .fillter-bottom");
-	const newsnotfound = document.querySelector(".newsmain .not-found-append");
 
 	function fetchnews(paged = 1, updateURL = true) {
 		currentPage = paged;
@@ -459,19 +439,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			.then((data) => {
 				if (data.success) {
 					// ✅ Corrected this line
-					//if (news_append_list) news_append_list.innerHTML = data.data.news_html;
-
-				if(data.data.datafound == "yes"){
-						if (news_append_list) {
-							news_append_list.innerHTML = data.data.news_html;
-						};
-						newsnotfound.innerHTML = '';
-
-					}else{
-						news_append_list.innerHTML = '';
-						newsnotfound.innerHTML = data.data.news_html
-					}
-
+					if (new_pagination) news_append_list.innerHTML = data.data.news_html;
 
 					const oldPagination = document.querySelector('.news-pagination-append-container');
 					if (oldPagination) {
@@ -526,6 +494,17 @@ var learntopic = "";
 var learncrops = "";
 //var currentPage = 1;
 
+// Helper function to get query param
+function getQueryParam(param) {
+	const urlParams = new URLSearchParams(window.location.search);
+	return urlParams.get(param);
+}
+
+// Helper to format label
+function formatLabel(label, fallback) {
+	return label === "all" ? fallback : label.replace(/-/g, " ");
+}
+
 // Load values from URL
 window.addEventListener("DOMContentLoaded", () => {
 	// Get values from URL if present
@@ -565,7 +544,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				// Set selected term
 				if (taxonomy === "learn-type") {
 					learntype = term;
-					document.querySelector("button#type-view").innerHTML = "Type: " + (term === "all" ? "All type" : term.replace(/-/g, " "));
+					document.querySelector("button#type-view").innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
 				} else if (taxonomy === "learn-topic") {
 					learntopic = term;
 					document.querySelector("button#topic-view").innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
@@ -811,7 +790,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 		currentPage = paged;
 
 		if (search_append_list) {
-	search_append_list.insertAdjacentHTML('beforeend', '<div class="loading-placeholder"><p>Loading...</p></div>');
+			search_append_list.innerHTML = '<div class="loading-placeholder"><p>Loading...</p></div>';
 		}
 
 		// Update query param in address bar
