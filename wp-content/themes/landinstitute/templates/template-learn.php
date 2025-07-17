@@ -102,21 +102,37 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							<div class="filter-title ui-18-16-bold">Filter:</div>
 							<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 							<div class="filter-dropdown-row">
+								<?php if($bst_fields['li_learn_filters']['enable_learn_type']){ ?>
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="type-view" aria-expanded="false"
 										aria-haspopup="true" aria-controls="learn-type">Type: <?php echo $current_type_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
+								<?php } ?>
+								<?php if($bst_fields['li_learn_filters']['enable_learn_topic']){ ?>
+
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="topic-view" aria-expanded="false"
 										aria-haspopup="true" aria-controls="learn-topic">Topic: <?php echo $current_topic_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
+								<?php } ?>
+								<?php if($bst_fields['li_learn_filters']['enable_learn_crop']){ ?>
+
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="category-view" aria-expanded="false"
 										aria-haspopup="true" aria-controls="learn-crops">Crop: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
+
+								<?php } ?>
+								<?php if($bst_fields['li_learn_filters']['enable_learn_audience']){ ?>
+									<div class="tab-dropdown tab-dropdown-filter">
+									<button class="dropdown-toggle" id="category-view" aria-expanded="false"
+										aria-haspopup="true" aria-controls="learn-crops">Crop: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
+									</button>
+								</div>
+								<?php } ?>
 							</div>
 						</div>
 
