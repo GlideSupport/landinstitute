@@ -371,7 +371,7 @@
 
     .cl-right {
         flex: 1 0 0;
-        //align-self: flex-end;
+        align-self: flex-end;
         margin-right: calc(-50vw + 50%);
         width: 50vw;
 
@@ -385,15 +385,15 @@
             width: 100vw;
             margin-right: -24px;
             margin-left: -24px;
-            align-self: flex-end;
         }
 
         .cta-image {
+
             display: flex;
             border-left: 2px solid var(--gb_base_brown);
             border-top: 2px solid var(--gb_base_brown);
             overflow: hidden;
-            height: 100%;
+            height: clamp(301px, calc(18.8125rem + ((1vw - 7.68px) * 50.6873)), 596px);
 
             @media(min-width: 1921px) {
                 margin-right: 0;
