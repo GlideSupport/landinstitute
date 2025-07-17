@@ -460,7 +460,7 @@
             ul {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 24px;
+                gap: 0;
                 height: 100%;
                 margin: 0;
                 padding: 0 40px 0 28px;
@@ -483,32 +483,12 @@
                         letter-spacing: -0.396px;
                         line-height: 92%;
                         border-radius: 100px;
-                        position: relative;
-                        padding-left: 0;
-
-                        &:before {
-                            background-color: var(--gb_base_brown);
-                            border-radius: 50%;
-                            content: "";
-                            display: block;
-                            height: 5px;
-                            left: 0;
-                            opacity: 0;
-                            position: absolute;
-                            top: 7px;
-                            transform: opacity 1s;
-                            transition: .3s;
-                            width: 5px;
-                        }
+                        padding: 6px 12px;
                     }
 
                     &.active {
                         a {
-                            padding-left: 12px;
-
-                            &:before {
-                                opacity: 1;
-                            }
+                            background: var(--gb_primary_lilac);
                         }
                     }
                 }
