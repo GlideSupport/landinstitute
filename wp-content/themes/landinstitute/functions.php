@@ -1251,5 +1251,61 @@ function show_event_timestamp_update_notice() {
         delete_transient('event_timestamp_update_success_notice');
     }
 }
+function exclude_dynamic_learn_tax_terms_from_frontend($query) {
+    if (!is_admin()) {
+     
+
+    // Define your taxonomies and corresponding ACF option fields
+    $taxonomy_acf_map = array(
+        'learn-crop'     => 'li_learn_crop_category',
+        'learn-type'     => 'li_learn_type_category',
+        'learn-topic'    => 'li_learn_topics_category',
+        'learn-audience' => 'li_learn_audience_category',
+		'news-crop'     => 'li_news_crop_category',
+        'news-type'     => 'li_news_type_category',
+        'news-topic'    => 'li_news_topics_category',
+        'news-audience' => 'li_news_audience_category',
+		'event-crop'     => 'li_events_crop_category',
+        'event-tags'     => 'li_events_topics_category',
+        'event-categories'    => 'li_event_category',
+        'event-audience' => 'li_event_audience_category',
+		
+    );
 
 
+    $tax_query = [];
+
+    foreach ($taxonomy_acf_map as $taxonomy => $acf_field) {
+        $term_ids = get_field($acf_field, 'option');
+
+        if (!empty($term_ids) && is_array($term_ids)) {
+            $terms = get_terms(array(
+                'taxonomy'   => $taxonomy,
+                'include'    => $term_ids,
+                'hide_empty' => false,
+            ));
+
+            if (!empty($terms) && !is_wp_error($terms)) {
+                $term_slugs = wp_list_pluck($terms, 'slug');
+
+                $tax_query[] = array(
+                    'taxonomy' => $taxonomy,
+                    'field'    => 'slug',
+                    'terms'    => $term_slugs,
+                    'operator' => 'NOT IN',
+                );
+            }
+        }
+    }
+
+    if (!empty($tax_query)) {
+        $existing_tax_query = $query->get('tax_query');
+        if (!empty($existing_tax_query)) {
+            $query->set('tax_query', array_merge($existing_tax_query, $tax_query));
+        } else {
+            $query->set('tax_query', $tax_query);
+        }
+    }
+}
+}
+add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
