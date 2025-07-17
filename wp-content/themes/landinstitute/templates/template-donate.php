@@ -33,7 +33,7 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
 
 <section class="container-1280 bg-lime-green">
     <div class="wrapper">
-        <div class="sticky-part-row">
+        <div class="sticky-part-row donate-form-block">
             <div class="col-left bg-base-cream">
                 <div class="gl-s36"></div>
                 <div class="single-logo">
@@ -97,8 +97,7 @@ $logo_url = wp_get_attachment_url($bst_var_header_logo);
                                     </div>
                                 <?php endif; ?>
                                 <div class="lbs-block">
-                                    <div class="gl-s30"></div>
-                                    <div class="gl-s128"></div>
+                                    <div class="gl-s52"></div>
                                     <?php if (!empty($li_td_kicker)) : ?>
                                         <div class="ui-18-16-bold-uc blocksubhead"><?php echo esc_html($li_td_kicker); ?></div>
                                         <div class="gl-s20"></div>

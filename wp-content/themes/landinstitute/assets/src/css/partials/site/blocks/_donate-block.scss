@@ -8,20 +8,49 @@
         padding-right: clamp(40px, calc(2.5rem + ((1vw - 9.92px) * 33.5196)), 160px);
         position: relative;
 
+        @media(max-width: 991px) {
+            flex: 1 0 0;
+            margin-left: -24px;
+            margin-right: -24px;
+            width: 100%;
+            padding: 0 24px;
+        }
+
         .single-logo {
             padding-left: clamp(30px, calc(1.875rem + ((1vw - 12.8px) * 8.75)), 44px);
 
+            @media(max-width: 991px) {
+                padding: 0;
+            }
+
             .site-logo {
                 display: flex;
+
+                img {
+                    @media(max-width: 991px) {
+                        width: 72px;
+                        height: 72px;
+                    }
+                }
             }
         }
 
         .donate-content {
             padding-left: clamp(30px, calc(1.875rem + ((1vw - 12.8px) * 81.25)), 160px);
+
+            @media(max-width: 991px) {
+                padding: 0;
+            }
         }
 
         .donate-form {
             width: 100%;
+
+            #raise-donors {
+                .layout-row>* {
+                    padding: 0;
+                }
+            }
         }
     }
 
@@ -30,6 +59,10 @@
         margin-right: calc(-50vw + 50%);
         width: 50vw;
 
+        @media(max-width: 991px) {
+            display: none;
+        }
+
         .sticky-block {
             min-height: 100vh;
             position: sticky;
@@ -37,7 +70,10 @@
         }
 
         .donate-group {
-            border-left: 2px solid var(--gb_base_brown);
+            // border-left: 2px solid var(--gb_base_brown);
+            min-height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .donate-image {
@@ -57,7 +93,15 @@
 
         .lbs-block {
             padding: 0 clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 5.5866)), 44px);
+            margin-top: auto;
         }
+    }
+}
+
+.donate-form-block {
+    .top-sticky-top-touch {
+        height: 100%;
+        border-left: 2px solid var(--gb_base_brown);
     }
 }
 
