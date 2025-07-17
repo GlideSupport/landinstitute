@@ -354,6 +354,18 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 	if (dropdown && menuItem) {
 		menuItem.appendChild(dropdown);
 
+		const currentUrl = window.location.href;
+		const links = dropdown.querySelectorAll("a");
+
+		links.forEach(link => {
+			if (link.href === currentUrl) {
+				const iconCol = link.closest(".icon-content-col");
+				if (iconCol) {
+					iconCol.classList.add("active");
+				}
+			}
+		});
+
 		// Set ARIA attributes
 		if (triggerLink) {
 			triggerLink.setAttribute("aria-haspopup", "true");
