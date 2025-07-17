@@ -274,6 +274,32 @@
 								a {
 									@include ui-18-16-regular;
 									display: flex;
+									position: relative;
+
+									&:before {
+										background-color: var(--gb_base_brown);
+										border-radius: 50%;
+										content: "";
+										display: block;
+										height: 5px;
+										left: 0;
+										opacity: 0;
+										position: absolute;
+										top: 7px;
+										transform: opacity 1s;
+										transition: .3s;
+										width: 5px;
+									}
+								}
+
+								&.current-menu-item {
+									a {
+										padding-left: 12px;
+
+										&:before {
+											opacity: 1;
+										}
+									}
 								}
 							}
 						}
