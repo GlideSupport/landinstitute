@@ -1252,26 +1252,26 @@ function show_event_timestamp_update_notice() {
     }
 }
 function exclude_dynamic_learn_tax_terms_from_frontend($query) {
-    if (!is_admin()) {
-     
+    // Only skip for admin dashboard
+    if (is_admin()) {
+        return;
+    }
 
-    // Define your taxonomies and corresponding ACF option fields
+    // ACF option field mapping by taxonomy
     $taxonomy_acf_map = array(
-        'learn-crop'     => 'li_learn_crop_category',
-        'learn-type'     => 'li_learn_type_category',
-        'learn-topic'    => 'li_learn_topics_category',
-        'learn-audience' => 'li_learn_audience_category',
-		'news-crop'     => 'li_news_crop_category',
-        'news-type'     => 'li_news_type_category',
-        'news-topic'    => 'li_news_topics_category',
-        'news-audience' => 'li_news_audience_category',
-		'event-crop'     => 'li_events_crop_category',
-        'event-tags'     => 'li_events_topics_category',
-        'event-categories'    => 'li_event_category',
-        'event-audience' => 'li_event_audience_category',
-		
+        'learn-crop'        => 'li_learn_crop_category',
+        'learn-type'        => 'li_learn_type_category',
+        'learn-topic'       => 'li_learn_topics_category',
+        'learn-audience'    => 'li_learn_audience_category',
+        'news-crop'         => 'li_news_crop_category',
+        'news-type'         => 'li_news_type_category',
+        'news-topic'        => 'li_news_topics_category',
+        'news-audience'     => 'li_news_audience_category',
+        'event-crop'        => 'li_events_crop_category',
+        'event-tags'        => 'li_events_topics_category',
+        'event-categories'  => 'li_event_category',
+        'event-audience'    => 'li_event_audience_category',
     );
-
 
     $tax_query = [];
 
@@ -1279,21 +1279,21 @@ function exclude_dynamic_learn_tax_terms_from_frontend($query) {
         $term_ids = get_field($acf_field, 'option');
 
         if (!empty($term_ids) && is_array($term_ids)) {
-            $terms = get_terms(array(
+            $terms = get_terms([
                 'taxonomy'   => $taxonomy,
                 'include'    => $term_ids,
                 'hide_empty' => false,
-            ));
+            ]);
 
             if (!empty($terms) && !is_wp_error($terms)) {
                 $term_slugs = wp_list_pluck($terms, 'slug');
 
-                $tax_query[] = array(
+                $tax_query[] = [
                     'taxonomy' => $taxonomy,
                     'field'    => 'slug',
                     'terms'    => $term_slugs,
                     'operator' => 'NOT IN',
-                );
+                ];
             }
         }
     }
@@ -1306,6 +1306,5 @@ function exclude_dynamic_learn_tax_terms_from_frontend($query) {
             $query->set('tax_query', $tax_query);
         }
     }
-}
 }
 add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
