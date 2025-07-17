@@ -49,12 +49,16 @@
 .hero-section {
 
     &.hero-alongside-pattern {
+        overflow: hidden;
+        position: relative;
+
         @media(min-width: 992px) {
             min-height: 100vh;
         }
 
-        overflow: hidden;
-        position: relative;
+        @media(max-width: 992px) {
+            min-height: inherit !important;
+        }
 
         .hero-default {
             position: relative;
