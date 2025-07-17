@@ -431,7 +431,13 @@
 					flex: 336px 0 0;
 					width: 336px;
 
-					.search-everything {}
+					.search-everything {
+						height: 68px;
+
+						.site-btn {
+							height: 100%;
+						}
+					}
 				}
 
 				.col-right {
@@ -538,7 +544,7 @@
 				transition: all 0.2s ease-in-out;
 
 				@media (min-width: 1271px) and (max-width: 1439px) {
-					margin: 0 clamp(16px, calc(1rem + ((1vw - 12.8px) * 8.805)), 30px) 0 0;
+					//margin: 0 clamp(16px, calc(1rem + ((1vw - 12.8px) * 8.805)), 30px) 0 0;
 				}
 
 				&.hover-active {
