@@ -101,6 +101,7 @@
 								&.current-menu-item {
 									a {
 										padding-left: 12px;
+										margin-right: -12px;
 
 										&:before {
 											opacity: 1;
