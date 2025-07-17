@@ -247,6 +247,7 @@ ol ul {
 
 					.icon-title {
 						position: relative;
+						transition: all 0.2s ease-in-out;
 
 						&:before {
 							background-color: var(--gb_base_brown);
