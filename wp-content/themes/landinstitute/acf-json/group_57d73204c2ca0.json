@@ -3445,7 +3445,7 @@
         },
         {
             "key": "field_6878f0bbd0561",
-            "label": "Exclude category from site",
+            "label": "Exclude Category From Site",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -3707,7 +3707,7 @@
         },
         {
             "key": "field_6878f9d5f6e8a",
-            "label": "Events category",
+            "label": "Events Category",
             "name": "",
             "aria-label": "",
             "type": "accordion",
@@ -3846,5 +3846,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752759164
+    "modified": 1752759494
 }
