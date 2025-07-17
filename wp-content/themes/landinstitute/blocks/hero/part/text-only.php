@@ -2,9 +2,11 @@
 // Block Fields
 $li_hero_text_only = $bst_block_fields['li_hero_text_only'] ?? null;
 $kicker = $li_hero_text_only['kicker'] ?? null;
+$bg_image  = $li_hero_text_only['bg_pattern'] ?? null;
 
 if (!empty($li_hero_headline_check) || !empty($kicker)) : ?>
 	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
+		<?php echo !empty($bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($bg_image, 'thumb_1600') . '</div>' : ''; ?>
 		<div class="hero-default <?php echo esc_attr($border_options); ?>">
 			<div class="wrapper">
 				<div class="hero-alongside-block">

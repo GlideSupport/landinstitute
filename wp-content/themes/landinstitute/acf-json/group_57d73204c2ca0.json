@@ -74,7 +74,7 @@
         },
         {
             "key": "field_6863ef093977d",
-            "label": "Staff Header BG Image",
+            "label": "Staff Detail Page BG Pattern",
             "name": "li_staff_header_bg_image",
             "aria-label": "",
             "type": "image",
@@ -3462,5 +3462,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752139317
+    "modified": 1752745707
 }
