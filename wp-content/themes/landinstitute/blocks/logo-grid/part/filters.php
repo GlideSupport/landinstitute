@@ -88,70 +88,96 @@
 		<?php endif; ?>
 		<div class="fillter-bottom">
 			<?php if ($total_pages > 1): ?>
-				<div class="pagination-container" data-current-page="<?php echo esc_attr($current_page); ?>" data-total-pages="<?php echo esc_attr($total_pages); ?>">
 
-					<!-- Desktop Pagination -->
-					<div class="desktop-pages">
-						<div class="arrow-btn prev">
-							<div class="site-btn" id="desktopPrev" <?php if ($current_page == 1) echo 'style="opacity: 0.5; pointer-events: none;"'; ?> aria-label="Previous">Previous</div>
-						</div>
+	<?php
+		// SEO rel="prev/next"
+		if ($current_page > 1) {
+			$prev_link = ($current_page - 1 == 1) ? get_pagenum_link(1) : get_pagenum_link($current_page - 1);
+			echo '<link rel="prev" href="' . esc_url($prev_link) . '">';
+		}
+		if ($current_page < $total_pages) {
+			$next_link = get_pagenum_link($current_page + 1);
+			echo '<link rel="next" href="' . esc_url($next_link) . '">';
+		}
+	?>
 
-						<div class="pagination-list" id="paginationList">
-							<?php
-							$range = 2;
-							$show_dots = false;
+	<div class="pagination-container" data-current-page="<?php echo esc_attr($current_page); ?>" data-total-pages="<?php echo esc_attr($total_pages); ?>">
 
-							for ($i = 1; $i <= $total_pages; $i++) {
-								if (
-									$i == 1 ||
-									$i == $total_pages ||
-									($i >= $current_page - $range && $i <= $current_page + $range)
-								) {
-									if ($show_dots) {
-										echo '<span class="dots">...</span>';
-										$show_dots = false;
-									}
-									$active_class = $i == $current_page ? 'active' : '';
-									echo '<button class="page-btn ' . $active_class . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</button>';
-								} else {
-									$show_dots = true;
-								}
-							}
-							?>
-						</div>
+		<!-- Desktop Pagination -->
+		<div class="desktop-pages">
+			<div class="arrow-btn prev">
+				<?php if ($current_page > 1): ?>
+					<a class="site-btn" id="desktopPrev" href="<?php echo esc_url($prev_link); ?>" rel="prev">Previous</a>
+				<?php else: ?>
+					<span class="site-btn disabled">Previous</span>
+				<?php endif; ?>
+			</div>
 
-						<div class="arrow-btn next">
-							<div class="site-btn" id="desktopNext" <?php if ($current_page == $total_pages) echo 'style="opacity: 0.5; pointer-events: none;"'; ?> aria-label="Next">Next</div>
-						</div>
-					</div>
+			<div class="pagination-list" id="paginationList">
+				<?php
+				$range = 2;
+				$ellipsis = false;
+				for ($i = 1; $i <= $total_pages; $i++) {
+					if (
+						$i == 1 || $i == $total_pages ||
+						($i >= $current_page - $range && $i <= $current_page + $range)
+					) {
+						if ($ellipsis) {
+							echo '<span class="dots">...</span>';
+							$ellipsis = false;
+						}
+						$is_active = $i == $current_page;
+						$btn_class = $is_active ? 'page-btn active' : 'page-btn';
+						$link = ($i == 1) ? get_pagenum_link(1) : get_pagenum_link($i);
+						$current_attr = $is_active ? ' aria-current="page"' : '';
+						echo '<a href="' . esc_url($link) . '" class="' . $btn_class . '" data-page="' . esc_attr($i) . '"' . $current_attr . '>' . esc_html($i) . '</a>';
+					} else {
+						$ellipsis = true;
+					}
+				}
+				?>
+			</div>
 
-					<!-- Mobile Pagination -->
-					<div class="mobile-pagination">
-						<button id="prevBtn" class="arrow-btn" <?php if ($current_page == 1) echo 'disabled'; ?> aria-label="Prev">
-							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous" title="right-circle-arrow">
-						</button>
-						<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($current_page . '/' . $total_pages); ?></button>
-						<button id="nextBtn" class="arrow-btn" <?php if ($current_page == $total_pages) echo 'disabled'; ?> aria-label="Next">
-							<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next" title="right-circle-arrow">
-						</button>
-					</div>
+			<div class="arrow-btn next">
+				<?php if ($current_page < $total_pages): ?>
+					<a class="site-btn" id="desktopNext" href="<?php echo esc_url($next_link); ?>" rel="next">Next</a>
+				<?php else: ?>
+					<span class="site-btn disabled">Next</span>
+				<?php endif; ?>
+			</div>
+		</div>
 
-					<!-- Mobile Popup -->
-					<div id="paginationPopup" class="pagination-popup">
-						<div class="popup-body">
-							<div id="popupGrid" class="popup-grid">
-								<?php for ($i = 1; $i <= $total_pages; $i++): ?>
-									<?php $active = $i == $current_page ? 'active' : ''; ?>
-									<button class="page-btn <?php echo esc_attr($active); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></button>
-								<?php endfor; ?>
-							</div>
-							<button id="popupPrev" class="arrow-btn" <?php if ($current_page == 1) echo 'disabled'; ?>></button>
-							<button id="popupNext" class="arrow-btn" <?php if ($current_page == $total_pages) echo 'disabled'; ?>></button>
-						</div>
-					</div>
+		<!-- Mobile Pagination -->
+		<div class="mobile-pagination">
+			<a id="prevBtn" class="arrow-btn" href="<?php echo esc_url($prev_link); ?>" <?php if ($current_page == 1) echo 'style="opacity:.5; pointer-events:none;"'; ?> aria-label="Previous" rel="prev">
+				<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Previous">
+			</a>
+			<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($current_page . '/' . $total_pages); ?></button>
+			<a id="nextBtn" class="arrow-btn" href="<?php echo esc_url($next_link); ?>" <?php if ($current_page == $total_pages) echo 'style="opacity:.5; pointer-events:none;"'; ?> aria-label="Next" rel="next">
+				<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
+			</a>
+		</div>
 
+		<!-- Mobile Popup -->
+		<div id="paginationPopup" class="pagination-popup">
+			<div class="popup-body">
+				<div id="popupGrid" class="popup-grid">
+					<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+						<?php $active = $i == $current_page ? 'active' : ''; ?>
+						<a class="page-btn <?php echo esc_attr($active); ?>" href="<?php echo esc_url(get_pagenum_link($i)); ?>" <?php if ($i == $current_page) echo 'aria-current="page"'; ?>>
+							<?php echo esc_html($i); ?>
+						</a>
+					<?php endfor; ?>
 				</div>
-			<?php endif; ?>
+				<a id="popupPrev" class="arrow-btn" href="<?php echo esc_url($prev_link); ?>" <?php if ($current_page == 1) echo 'style="opacity:.5; pointer-events:none;"'; ?> aria-label="Previous" rel="prev"></a>
+				<a id="popupNext" class="arrow-btn" href="<?php echo esc_url($next_link); ?>" <?php if ($current_page == $total_pages) echo 'style="opacity:.5; pointer-events:none;"'; ?> aria-label="Next" rel="next"></a>
+			</div>
+		</div>
+
+	</div>
+
+<?php endif; ?>
+
 		</div>
 	</div>
 </div>

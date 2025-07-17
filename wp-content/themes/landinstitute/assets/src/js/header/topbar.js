@@ -44,8 +44,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		const scrollTop = window.scrollY || document.documentElement.scrollTop;
 		const headerHeight = headerSection.offsetHeight;
-
-		if (scrollTop > 0) {
+		const header_nav = document.querySelector(".bottom-head");
+		const header_nav_height = header_nav.offsetHeight;
+		
+		if (scrollTop > header_nav_height) {
 			headerSection.classList.add("shrink");
 			document.body.classList.add("shrink");
 		} else {
