@@ -49,7 +49,10 @@
 .hero-section {
 
     &.hero-alongside-pattern {
-        min-height: 100vh;
+        @media(min-width: 992px) {
+            min-height: 100vh;
+        }
+
         overflow: hidden;
         position: relative;
 
@@ -70,7 +73,10 @@
         .hero-alongside-block {
             display: grid;
             grid-template-columns: repeat(12, minmax(0, 1fr));
-            min-height: 100vh;
+
+            @media(min-width: 992px) {
+                min-height: 100vh;
+            }
 
             .col-left {
                 border-right: 2px solid var(--gb_base_brown);
