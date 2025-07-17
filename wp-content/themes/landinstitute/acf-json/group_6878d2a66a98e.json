@@ -21,7 +21,7 @@
             "sub_fields": [
                 {
                     "key": "field_6878d4d4c5f7c",
-                    "label": "Enable learn crop filter",
+                    "label": "Enable Learn Crop Filter",
                     "name": "enable_learn_crop",
                     "aria-label": "",
                     "type": "true_false",
@@ -33,7 +33,6 @@
                         "class": "",
                         "id": ""
                     },
-                    "relevanssi_exclude": 0,
                     "message": "",
                     "default_value": 1,
                     "allow_in_bindings": 0,
@@ -43,7 +42,7 @@
                 },
                 {
                     "key": "field_6878d65cec4dc",
-                    "label": "Enable learn audience filter",
+                    "label": "Enable Learn Audience Filter",
                     "name": "enable_learn_audience",
                     "aria-label": "",
                     "type": "true_false",
@@ -55,7 +54,6 @@
                         "class": "",
                         "id": ""
                     },
-                    "relevanssi_exclude": 0,
                     "message": "",
                     "default_value": 1,
                     "allow_in_bindings": 0,
@@ -65,7 +63,7 @@
                 },
                 {
                     "key": "field_6878db3a2f79f",
-                    "label": "Enable learn topic filter",
+                    "label": "Enable Learn Topic Filter",
                     "name": "enable_learn_topic",
                     "aria-label": "",
                     "type": "true_false",
@@ -77,7 +75,6 @@
                         "class": "",
                         "id": ""
                     },
-                    "relevanssi_exclude": 0,
                     "message": "",
                     "default_value": 1,
                     "allow_in_bindings": 0,
@@ -87,7 +84,7 @@
                 },
                 {
                     "key": "field_6878db3c2f7a0",
-                    "label": "Enable learn type filter",
+                    "label": "Enable Learn Type Filter",
                     "name": "enable_learn_type",
                     "aria-label": "",
                     "type": "true_false",
@@ -99,7 +96,6 @@
                         "class": "",
                         "id": ""
                     },
-                    "relevanssi_exclude": 0,
                     "message": "",
                     "default_value": 1,
                     "allow_in_bindings": 0,
@@ -128,5 +124,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752760616
+    "modified": 1752761361
 }
