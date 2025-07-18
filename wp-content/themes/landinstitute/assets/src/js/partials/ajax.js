@@ -847,9 +847,14 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 	function featch_search_list(paged = 1, updateURL = true) {
 		currentPage = paged;
 
+
 		if (search_append_list) {
-			search_append_list.innerHTML = '<div class="loading-placeholder"><p>Loading...</p></div>';
+			const loadingElem = document.createElement("div");
+			loadingElem.className = "loading-placeholder";
+			loadingElem.innerHTML = "<p>Loading...</p>";
+			search_append_list.appendChild(loadingElem);
 		}
+
 
 		// Update query param in address bar
 		if (updateURL) {
@@ -913,7 +918,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 
 					// ✅ Smooth scroll to results
 					setTimeout(() => {
-						const newTeaserList = document.querySelector(".filter-content-cards-grid");
+						const newTeaserList = document.querySelector(".append-search-result");
 						if (newTeaserList) {
 							const offset = 100;
 							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
