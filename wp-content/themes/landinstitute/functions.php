@@ -1049,6 +1049,18 @@ function handle_ajax_news_learn() {
         ];
     }
 
+
+	  // Add exclusions using the helper
+    $exclude_taxonomies = ['learn-crop', 'learn-type', 'learn-topic'];
+
+    foreach ($exclude_taxonomies as $taxonomy) {
+        $exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
+        if (!empty($exclude_query)) {
+            $tax_query[] = $exclude_query;
+        }
+    }
+
+
     $args = [
         'post_type'      => 'post',
         'posts_per_page' => 12,

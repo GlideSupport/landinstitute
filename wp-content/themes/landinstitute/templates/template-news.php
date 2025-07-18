@@ -222,7 +222,7 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="filter-dropdown-row">
 						<?php if($bst_fields['li_news_filters']['enable_news_audience']){ ?>
 							<div class="tab-dropdown tab-dropdown-filter">
-								<button class="dropdown-toggle" id="news-audience" aria-expanded="false" aria-haspopup="true" aria-controls="news-audience">
+								<button class="dropdown-toggle s" id="news-audience" aria-expanded="false" aria-haspopup="true" aria-controls="news-audience">
 									Audience: <?= esc_html($current_audience_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
