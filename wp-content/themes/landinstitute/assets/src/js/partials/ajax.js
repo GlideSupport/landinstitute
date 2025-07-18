@@ -859,9 +859,15 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 		// Update query param in address bar
 		if (updateURL) {
 			const url = new URL(window.location);
+			if(getSearchVal()){
 			url.searchParams.set("s", getSearchVal());
+			}
+			if(getCurrentOrderBy()){
 			url.searchParams.set("orderby", getCurrentOrderBy());
-			url.searchParams.set("search-type", searcheve);
+			}
+			if(searcheve){
+				url.searchParams.set("search-type", searcheve);
+			}
 			window.history.pushState({}, "", url);
 
 			
