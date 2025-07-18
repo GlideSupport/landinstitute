@@ -177,7 +177,46 @@ document.addEventListener("DOMContentLoaded", function () {
 		// Make sure arrow position adjusts on window resize
 		window.addEventListener("resize", updateArrowPosition);
 	});
+	function setMaxOuterHeightToImages() {
+		const blockContents = document.querySelectorAll('.cta-slider-box .block-content');
+		const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
+
+		// Exit early if no block-content or cta-image elements found
+		if (!blockContents.length || !ctaImages.length) {
+			console.warn('No .block-content or .cta-image elements found.');
+			return;
+		}
+
+		let maxOuterHeight = 0;
+
+		// First pass: calculate max outer height
+		blockContents.forEach(blockContent => {
+			if (!blockContent) return;
+
+			const style = window.getComputedStyle(blockContent);
+			const height = blockContent.offsetHeight || 0;
+			const marginTop = parseFloat(style.marginTop) || 0;
+			const marginBottom = parseFloat(style.marginBottom) || 0;
+			const outerHeight = height + marginTop + marginBottom;
+
+			if (outerHeight > maxOuterHeight) {
+				maxOuterHeight = outerHeight;
+			}
+		});
+
+		// Second pass: apply max outer height to each .cta-image
+		ctaImages.forEach(ctaImage => {
+			if (!ctaImage) return;
+			ctaImage.style.height = maxOuterHeight + 'px';
+		});
+	}
+
+	// Call the function after content is loaded
+	window.addEventListener('load', setMaxOuterHeightToImages);
+	window.addEventListener('resize', setMaxOuterHeightToImages);
+
 	// CTA Slider JS end
+	
 
 	// Map slider with counter start
 	document.querySelectorAll(".impact-map-block").forEach((blockWrapper) => {
