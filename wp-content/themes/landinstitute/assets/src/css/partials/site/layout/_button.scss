@@ -28,7 +28,7 @@ body {
 
         &:after {
             align-items: center;
-            animation: shrink-back 0.4s forwards;
+            //animation: shrink-back 0.4s forwards;
             background-color: var(--gb_base_brown);
             background-image: url(../images/button-arrow.svg);
             background-position: center;
@@ -49,6 +49,18 @@ body {
             @media(max-width: 991px) {
                 right: 16px;
                 top: 16px;
+            }
+        }
+
+        &.animate-in {
+            &::after {
+                animation: bubble-pop 0.4s forwards;
+            }
+        }
+
+        &.animate-out {
+            &::after {
+                animation: shrink-back 0.3s forwards;
             }
         }
 
@@ -252,7 +264,7 @@ body {
 
             &:after {
                 align-items: center;
-                animation: shrink-back 0.4s forwards;
+                //animation: shrink-back 0.4s forwards;
                 background-color: var(--gb_base_brown);
                 background-image: url(../images/button-arrow-white.svg);
                 background-position: center;
