@@ -185,6 +185,18 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 						<div class="filter-dropdown-row">
 							<div class="tab-dropdown tab-dropdown-filter">
+								<button class="dropdown-toggle" id="news-audience" aria-expanded="false" aria-haspopup="true" aria-controls="news-audience">
+									Audience: <?= esc_html($current_type_name) ?>
+									<div class="arrow-icon"></div>
+								</button>
+							</div>
+							<div class="tab-dropdown tab-dropdown-filter">
+								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-crop">
+									Crop type: <?= esc_html($current_type_name) ?>
+									<div class="arrow-icon"></div>
+								</button>
+							</div>
+							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-type">
 									Post type: <?= esc_html($current_type_name) ?>
 									<div class="arrow-icon"></div>
@@ -219,27 +231,34 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 		</div>
 	</section>
 <div class="news-list-filter">
-	<?php
-// --- Filter news-type terms ---
+<?php
+// Filter: news-type
 $taxonomy_type = 'news-type';
 $excluded_type_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_type);
-
 if (!empty($terms) && !is_wp_error($terms)) {
-    $terms = array_filter($terms, function ($term) use ($excluded_type_slugs) {
-        return !in_array($term->slug, $excluded_type_slugs);
-    });
+    $terms = array_filter($terms, fn($term) => !in_array($term->slug, $excluded_type_slugs));
 }
 
-// --- Filter news-topic terms ---
+// Filter: news-topic
 $taxonomy_topic = 'news-topic';
 $excluded_topic_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_topic);
-
 if (!empty($topic_terms) && !is_wp_error($topic_terms)) {
-    $topic_terms = array_filter($topic_terms, function ($term) use ($excluded_topic_slugs) {
-        return !in_array($term->slug, $excluded_topic_slugs);
-    });
+    $topic_terms = array_filter($topic_terms, fn($term) => !in_array($term->slug, $excluded_topic_slugs));
 }
+
+// Filter: news-audience
+$taxonomy_audience = 'news-audience';
+$audience_terms = get_terms(['taxonomy' => $taxonomy_audience, 'hide_empty' => false]);
+$excluded_audience_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_audience);
+$audience_terms = array_filter($audience_terms, fn($term) => !in_array($term->slug, $excluded_audience_slugs));
+
+// Filter: news-crop
+$taxonomy_crop = 'news-crop';
+$crop_terms = get_terms(['taxonomy' => $taxonomy_crop, 'hide_empty' => false]);
+$excluded_crop_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_crop);
+$crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $excluded_crop_slugs));
 ?>
+
 
 <!-- News Type Dropdown -->
 <ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
@@ -274,6 +293,40 @@ if (!empty($topic_terms) && !is_wp_error($topic_terms)) {
         <?php endforeach; ?>
     <?php endif; ?>
 </ul>
+
+
+
+<!-- News Audience Dropdown -->
+<ul id="news-audience" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
+    <li class="<?= $current_audience === 'all' ? 'active' : '' ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_audience) ?>">All Audiences</a>
+    </li>
+    <?php foreach ($audience_terms as $term): ?>
+        <li class="<?= $current_audience === $term->slug ? 'active' : '' ?>">
+            <a href="javascript:void(0)" data-term="<?= esc_attr($term->slug) ?>" data-taxonomy="<?= esc_attr($taxonomy_audience) ?>">
+                <?= esc_html($term->name) ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+<!-- News Crop Dropdown -->
+<ul id="news-crop" class="dropdown-menu" role="menu" aria-labelledby="crop-view">
+    <li class="<?= $current_crop === 'all' ? 'active' : '' ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">All Crops</a>
+    </li>
+    <?php foreach ($crop_terms as $term): ?>
+        <li class="<?= $current_crop === $term->slug ? 'active' : '' ?>">
+            <a href="javascript:void(0)" data-term="<?= esc_attr($term->slug) ?>" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">
+                <?= esc_html($term->name) ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+
 
 </div>
 	<?php
