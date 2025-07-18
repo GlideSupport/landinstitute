@@ -67,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				} else {
 					donorGrid.innerHTML = "<p>No donors found for this filter.</p>";
 				}
+     	attachPaginationListeners();
+
 			})
 			.catch((err) => {
 				console.error("AJAX Error:", err);
