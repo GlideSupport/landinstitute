@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 	});
-	   attachPaginationListeners();
+//	   attachPaginationListeners();
 
 }
 
