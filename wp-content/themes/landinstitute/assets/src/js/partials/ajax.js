@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	const donorGrid = document.querySelector(".filter-logos-row");
 	let currentDonorType = getURLParam("donor_type") || "all";
 	let currentDonationLevel = getURLParam("donation_level") || "all";
-	let currentPage = getURLParam("page") ? parseInt(getURLParam("page")) : 1;
+	let currentPage = 1;
 
+	const pathMatch = window.location.pathname.match(/\/page\/(\d+)\//);
+	if (pathMatch && pathMatch[1]) {
+		currentPage = parseInt(pathMatch[1], 10);
+	}
 	function getURLParam(param) {
 		const urlParams = new URLSearchParams(window.location.search);
 		return urlParams.get(param);
