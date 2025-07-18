@@ -107,64 +107,71 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function attachPaginationListeners() {
-		document.querySelectorAll(".logo-grid-filters .page-btn").forEach((btn) => {
-			btn.addEventListener("click", function () {
-				const newPage = parseInt(this.dataset.page);
-				if (!isNaN(newPage) && newPage !== currentPage) {
-					currentPage = newPage;
-					fetchDonors();
-				}
-			});
+	document.querySelectorAll(".logo-grid-filters .page-btn").forEach((btn) => {
+		btn.addEventListener("click", function (e) {
+			e.preventDefault();
+			const newPage = parseInt(this.dataset.page);
+			if (!isNaN(newPage) && newPage !== currentPage) {
+				currentPage = newPage;
+				fetchDonors();
+			}
 		});
+	});
 
-		const prevBtn = document.querySelector(".logo-grid-filters .arrow-btn.prev .site-btn");
-		const nextBtn = document.querySelector(".logo-grid-filters .arrow-btn.next .site-btn");
+	const prevBtn = document.querySelector(".logo-grid-filters .arrow-btn.prev .site-btn");
+	const nextBtn = document.querySelector(".logo-grid-filters .arrow-btn.next .site-btn");
 
-		if (prevBtn) {
-			prevBtn.addEventListener("click", () => {
-				if (currentPage > 1) {
-					currentPage--;
-					fetchDonors();
-				}
-			});
-		}
-
-		if (nextBtn) {
-			nextBtn.addEventListener("click", () => {
-				currentPage++;
+	if (prevBtn) {
+		prevBtn.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (currentPage > 1) {
+				currentPage--;
 				fetchDonors();
-			});
-		}
-
-		const mobilePrev = document.querySelector(".logo-grid-filters #prevBtn");
-		const mobileNext = document.querySelector(".logo-grid-filters #nextBtn");
-
-		if (mobilePrev) {
-			mobilePrev.addEventListener("click", () => {
-				if (currentPage > 1) {
-					currentPage--;
-					fetchDonors();
-				}
-			});
-		}
-
-		if (mobileNext) {
-			mobileNext.addEventListener("click", () => {
-				currentPage++;
-				fetchDonors();
-			});
-		}
-
-		document.querySelectorAll(".logo-grid-filters #popupGrid .page-btn").forEach((btn) => {
-			btn.addEventListener("click", () => {
-				const popupPage = parseInt(btn.dataset.page);
-				if (!isNaN(popupPage)) {
-					currentPage = popupPage;
-					fetchDonors();
-				}
-			});
+			}
 		});
 	}
+
+	if (nextBtn) {
+		nextBtn.addEventListener("click", (e) => {
+			e.preventDefault();
+			currentPage++;
+			fetchDonors();
+		});
+	}
+
+	const mobilePrev = document.querySelector(".logo-grid-filters #prevBtn");
+	const mobileNext = document.querySelector(".logo-grid-filters #nextBtn");
+
+	if (mobilePrev) {
+		mobilePrev.addEventListener("click", (e) => {
+			e.preventDefault();
+			if (currentPage > 1) {
+				currentPage--;
+				fetchDonors();
+			}
+		});
+	}
+
+	if (mobileNext) {
+		mobileNext.addEventListener("click", (e) => {
+			e.preventDefault();
+			currentPage++;
+			fetchDonors();
+		});
+	}
+
+	document.querySelectorAll(".logo-grid-filters #popupGrid .page-btn").forEach((btn) => {
+		btn.addEventListener("click", (e) => {
+			e.preventDefault();
+			const popupPage = parseInt(btn.dataset.page);
+			if (!isNaN(popupPage)) {
+				currentPage = popupPage;
+				fetchDonors();
+			}
+		});
+	});
+}
+
 
 	document.querySelectorAll(".logo-filter-main .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
