@@ -48,54 +48,8 @@ $start_date = $start_date ? strtotime($start_date) : false;
 $end_date   = $end_date ? strtotime($end_date) : false;
 
 // Format
-$start_day_full = $start_date ? date('l, F j, Y', $start_date) : '';
-$end_day_full   = $end_date ? date('l, F j, Y', $end_date) : '';
-$start_day_short = $start_date ? date('M j, Y', $start_date) : '';
-$start_time_fmt = $start_time ? date('g:i a', strtotime($start_time)) . ' CDT' : '';
-$end_time_fmt   = $end_time ? date('g:i a', strtotime($end_time)) . ' CDT' : '';
 
-$event_date = '';
-
-if ($start_date && $end_date) {
-	// Multi-day
-	if (date('Ymd', $start_date) !== date('Ymd', $end_date)) {
-		if ($all_day) {
-			// Example: Friday, May 2, 2025 - Saturday, May 3, 2025 All Day
-			$event_date = "$start_day_full - $end_day_full All Day";
-		} elseif ($start_time && $end_time) {
-			// Example: Friday, May 2, 2025 12:00 pm CDT - Saturday, May 3, 2025 1:00 pm CDT
-			$event_date = "$start_day_full $start_time_fmt - $end_day_full $end_time_fmt";
-		} else {
-			$event_date = "$start_day_short";
-		}
-	} else {
-		// Single-day
-		if ($all_day) {
-			// Example: Friday, May 2, 2025 All Day
-			$event_date = "$start_day_full All Day";
-		} elseif ($start_time && $end_time) {
-			// Example: Friday, May 2, 2025 12:00 pm CDT - 1:00 pm CDT
-			$event_date = "$start_day_full $start_time_fmt - $end_time_fmt";
-		} else {
-			$event_date = "$start_day_short";
-		}
-	}
-} elseif ($start_date) {
-	// Only start date
-	if ($all_day) {
-		$event_date = "$start_day_full All Day";
-	} elseif ($start_time && $end_time) {
-		$event_date = "$start_day_full $start_time_fmt - $end_time_fmt";
-	} else {
-		$event_date = "$start_day_short";
-	}
-} else {
-	$event_date = '';
-}
-
-
-
-//$event_date = get_formatted_event_datetime($bst_var_post_id);
+$event_date = get_formatted_event_datetime($bst_var_post_id);
 			
 ?>
 
