@@ -314,96 +314,6 @@ if ($total_found_posts > $posts_per_page) {
 
 
 //news list filter
-add_action('wp_ajax_filter_news_posts', 'filter_news_posts_callback');
-add_action('wp_ajax_nopriv_filter_news_posts', 'filter_news_posts_callback');
-
-function filter_news_posts_callback()
-{
-	$type  = sanitize_text_field($_POST['news_type'] ?? 'all');
-	$topic = sanitize_text_field($_POST['news_topic'] ?? 'all');
-
-	$args = [
-		'post_type' => 'news',
-		'post_status' => 'publish',
-		'posts_per_page' => 9,
-		'order'          => 'DESC',
-		'orderby'        => 'date',
-		'tax_query' => [],
-	];
-
-	if ($type !== 'all') {
-		$args['tax_query'][] = [
-			'taxonomy' => 'news-type',
-			'field'    => 'slug',
-			'terms'    => $type,
-		];
-	}
-
-	if ($topic !== 'all') {
-		$args['tax_query'][] = [
-			'taxonomy' => 'news-topic',
-			'field'    => 'slug',
-			'terms'    => $topic,
-		];
-	}
-
-	if (!empty($tax_query)) {
-		$args['tax_query'] = $tax_query;
-	}
-
-	echo '<pre>';
-	print_r($args);
-	echo '</pre>';
-
-	$query = new WP_Query($args);
-
-	if ($query->have_posts()) :
-		while ($query->have_posts()) : $query->the_post();
-			$title = get_the_title();
-			$date = get_the_date('M j, Y');
-			$permalink = get_the_permalink();
-			$short_Desc = get_the_excerpt();
-			$short_content = wp_trim_words($short_Desc, 15, '...');
-			$topics = get_the_terms(get_the_ID(), 'news-topic');
-			$topics_name = !empty($topics) && !is_wp_error($topics) ? $topics[0]->name : '';
-
-		?>
-			<div class="filter-content-card-item">
-				<a href="<?php echo esc_html($permalink); ?>" class="filter-content-card-link">
-					<div class="filter-card-content">
-						<div class="gl-s52"></div>
-						<div class="top-sub-list d-flex flex-wrap">
-							<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($date); ?></div>
-							<?php if ($topics_name): ?>
-								<div class="ui-eyebrow-16-15-regular">•</div>
-							<?php endif; ?>
-							<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($topics_name); ?></div>
-						</div>
-						<div class="gl-s8"></div>
-						<div class="card-title heading-7"><?php echo esc_html($title); ?>
-						</div>
-						<?php if ($short_content): ?>
-							<div class="gl-s16"></div>
-							<div class="description ui-18-16-regular"><?php echo html_entity_decode($short_content); ?>
-							</div>
-						<?php endif; ?>
-
-						<div class="gl-s20"></div>
-						<div class="read-more-link">
-							<div class="border-text-btn">Read more</div>
-						</div>
-						<div class="gl-s80"></div>
-					</div>
-				</a>
-			</div>
-		<?php endwhile;
-	else :
-		echo '<p>No posts found.</p>';
-	endif;
-
-	wp_reset_postdata();
-	wp_die();
-}
 
 
 //event code
@@ -1025,10 +935,7 @@ function save_event_timestamp_with_timezone($post_id, $post, $update) {
 
 add_action('wp_ajax_filter_news', 'handle_ajax_news_filter');
 add_action('wp_ajax_nopriv_filter_news', 'handle_ajax_news_filter');
-
 function handle_ajax_news_filter() {
- //   check_ajax_referer('news_ajax_nonce', 'nonce');
-
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 
     $tax_query = [];
@@ -1049,6 +956,16 @@ function handle_ajax_news_filter() {
         ];
     }
 
+    // Add exclusions using the helper
+    $exclude_taxonomies = ['news-crop', 'news-type', 'news-topic', 'news-audience'];
+
+    foreach ($exclude_taxonomies as $taxonomy) {
+        $exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
+        if (!empty($exclude_query)) {
+            $tax_query[] = $exclude_query;
+        }
+    }
+
     $args = [
         'post_type'      => 'news',
         'posts_per_page' => 6,
@@ -1060,14 +977,10 @@ function handle_ajax_news_filter() {
         $args['tax_query'] = $tax_query;
     }
 
-	// echo '<pre>';
-	// print_r($args);
-	// echo '</pre>';
-
-	set_query_var('requestdbyajax', 'yes');
+    set_query_var('requestdbyajax', 'yes');
 
     $news = new WP_Query($args);
-	$datafound = $news->have_posts() ? 'yes' : 'no';
+    $datafound = $news->have_posts() ? 'yes' : 'no';
 
     ob_start();
     include get_template_directory() . '/partials/content-news-list.php';
@@ -1080,10 +993,10 @@ function handle_ajax_news_filter() {
     wp_send_json_success([
         'news_html'       => $news_html,
         'pagination_html' => $pagination_html,
-		'datafound'       => $datafound,
-
+        'datafound'       => $datafound,
     ]);
 }
+
 
 
 
@@ -1374,3 +1287,60 @@ function exclude_dynamic_learn_tax_terms_from_frontend($query) {
     }
 }
 add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
+
+
+function get_excluded_term_slugs_by_taxonomy($taxonomy) {
+    // Map of taxonomy => ACF field
+    $taxonomy_acf_map = array(
+        'learn-crop'        => 'li_learn_crop_category',
+        'learn-type'        => 'li_learn_type_category',
+        'learn-topic'       => 'li_learn_topics_category',
+        'learn-audience'    => 'li_learn_audience_category',
+        'news-crop'         => 'li_news_crop_category',
+        'news-type'         => 'li_news_type_category',
+        'news-topic'        => 'li_news_topics_category',
+        'news-audience'     => 'li_news_audience_category',
+        'event-crop'        => 'li_events_crop_category',
+        'event-tags'        => 'li_events_topics_category',
+        'event-categories'  => 'li_event_category',
+        'event-audience'    => 'li_event_audience_category',
+    );
+
+    if (!isset($taxonomy_acf_map[$taxonomy])) {
+        return []; // Invalid taxonomy
+    }
+
+    $acf_field = $taxonomy_acf_map[$taxonomy];
+    $term_ids = get_field($acf_field, 'option');
+
+    if (empty($term_ids) || !is_array($term_ids)) {
+        return [];
+    }
+
+    $terms = get_terms([
+        'taxonomy'   => $taxonomy,
+        'include'    => $term_ids,
+        'hide_empty' => false,
+    ]);
+
+    if (is_wp_error($terms) || empty($terms)) {
+        return [];
+    }
+
+    return wp_list_pluck($terms, 'slug');
+}
+
+function get_exclude_tax_query_for_taxonomy($taxonomy) {
+    $slugs = get_excluded_term_slugs_by_taxonomy($taxonomy);
+
+    if (empty($slugs)) {
+        return [];
+    }
+
+    return [
+        'taxonomy' => $taxonomy,
+        'field'    => 'slug',
+        'terms'    => $slugs,
+        'operator' => 'NOT IN',
+    ];
+}
