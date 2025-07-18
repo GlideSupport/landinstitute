@@ -211,6 +211,9 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 			$news = new WP_Query($args);
 			$datafoundn = $news->have_posts() ? 'yes' : 'no';
 
+			echo '<pre>';
+			print_r($bst_fields);
+				echo '</pre>';
 ?>
 		<div class="wrapper">
 			<div class="full-width-content has-border-bottom">
