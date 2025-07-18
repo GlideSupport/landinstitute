@@ -219,24 +219,32 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="filter-title ui-18-16-bold">Filter:</div>
 						<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 						<div class="filter-dropdown-row">
+						<?php if($bst_fields['li_news_filters']['enable_news_audience']){ ?>
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="news-audience" aria-expanded="false" aria-haspopup="true" aria-controls="news-audience">
 									Audience: <?= esc_html($current_audience_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
+						<?php } ?>
+						<?php if($bst_fields['li_news_filters']['enable_news_crop']){ ?>
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-crop">
 									Crop type: <?= esc_html($current_crop_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
+						<?php } ?>
+						<?php if($bst_fields['li_news_filters']['enable_news_type']){ ?>
+
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="news-type" aria-expanded="false" aria-haspopup="true" aria-controls="news-type">
 									 Type: <?= esc_html($current_type_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
+						<?php } ?>
+						<?php if($bst_fields['li_news_filters']['enable_news_topic']){ ?>
 
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="topic-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-topic">
@@ -244,6 +252,7 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
+						<?php } ?>
 
 						</div>
 					</div>
@@ -294,6 +303,7 @@ $excluded_crop_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_crop);
 $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $excluded_crop_slugs));
 ?>
 
+<?php if($bst_fields['li_news_filters']['enable_news_type']){ ?>
 
 <!-- News Type Dropdown -->
 <ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="news-type">
@@ -311,6 +321,10 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
         <?php endforeach; ?>
     <?php endif; ?>
 </ul>
+		
+<?php } ?>
+
+<?php if($bst_fields['li_news_filters']['enable_news_topic']){ ?>
 
 <!-- News Topic Dropdown -->
 <ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
@@ -329,7 +343,9 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
     <?php endif; ?>
 </ul>
 
+<?php } ?>
 
+<?php if($bst_fields['li_news_filters']['enable_news_audience']){ ?>
 
 <!-- News Audience Dropdown -->
 <ul id="news-audience" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
@@ -344,6 +360,8 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
         </li>
     <?php endforeach; ?>
 </ul>
+<?php } ?>
+<?php if($bst_fields['li_news_filters']['enable_news_crop']){ ?>
 
 
 <!-- News Crop Dropdown -->
@@ -360,6 +378,7 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
     <?php endforeach; ?>
 </ul>
 
+<?php } ?>
 
 
 
