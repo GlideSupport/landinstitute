@@ -219,35 +219,62 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 		</div>
 	</section>
 <div class="news-list-filter">
+	<?php
+// --- Filter news-type terms ---
+$taxonomy_type = 'news-type';
+$excluded_type_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_type);
+
+if (!empty($terms) && !is_wp_error($terms)) {
+    $terms = array_filter($terms, function ($term) use ($excluded_type_slugs) {
+        return !in_array($term->slug, $excluded_type_slugs);
+    });
+}
+
+// --- Filter news-topic terms ---
+$taxonomy_topic = 'news-topic';
+$excluded_topic_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_topic);
+
+if (!empty($topic_terms) && !is_wp_error($topic_terms)) {
+    $topic_terms = array_filter($topic_terms, function ($term) use ($excluded_topic_slugs) {
+        return !in_array($term->slug, $excluded_topic_slugs);
+    });
+}
+?>
+
+<!-- News Type Dropdown -->
 <ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
-	<li class="<?php echo $current_type === 'all' ? 'active' : ''; ?>">
-		<a href="javascript:void(0)" data-term="all" data-taxonomy="news-type">All types</a>
-	</li>
-	<?php if (!empty($terms) && !is_wp_error($terms)) : ?>
-		<?php foreach ($terms as $term) : ?>
-			<li class="<?php echo $current_type === $term->slug ? 'active' : ''; ?>">
-				<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="news-type">
-					<?php echo esc_html($term->name); ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	<?php endif; ?>
+    <li class="<?php echo $current_type === 'all' ? 'active' : ''; ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">All types</a>
+    </li>
+
+    <?php if (!empty($terms)) : ?>
+        <?php foreach ($terms as $term) : ?>
+            <li class="<?php echo $current_type === $term->slug ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">
+                    <?php echo esc_html($term->name); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </ul>
 
+<!-- News Topic Dropdown -->
 <ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
-	<li class="<?php echo $current_topic === 'all' ? 'active' : ''; ?>">
-		<a href="javascript:void(0)" data-term="all" data-taxonomy="news-topic">All Topics</a>
-	</li>
-	<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
-		<?php foreach ($topic_terms as $topic_term) : ?>
-			<li class="<?php echo $current_topic === $topic_term->slug ? 'active' : ''; ?>">
-				<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="news-topic">
-					<?php echo esc_html($topic_term->name); ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	<?php endif; ?>
+    <li class="<?php echo $current_topic === 'all' ? 'active' : ''; ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_topic); ?>">All Topics</a>
+    </li>
+
+    <?php if (!empty($topic_terms)) : ?>
+        <?php foreach ($topic_terms as $topic_term) : ?>
+            <li class="<?php echo $current_topic === $topic_term->slug ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="<?php echo esc_attr($taxonomy_topic); ?>">
+                    <?php echo esc_html($topic_term->name); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </ul>
+
 </div>
 	<?php
 
