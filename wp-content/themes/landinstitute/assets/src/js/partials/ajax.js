@@ -458,7 +458,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			if(currentnewsaudience){
 				url.searchParams.set("audience", currentnewsaudience || "");
 			}
-			if(currentnewstopic){
+			if(currentnewscrop){
 				url.searchParams.set("crop", currentnewscrop || "");
 			}
 		//	url.searchParams.set("page", paged);
