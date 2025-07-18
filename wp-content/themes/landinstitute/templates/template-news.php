@@ -197,8 +197,8 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 								</button>
 							</div>
 							<div class="tab-dropdown tab-dropdown-filter">
-								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-type">
-									Post type: <?= esc_html($current_type_name) ?>
+								<button class="dropdown-toggle" id="news-type" aria-expanded="false" aria-haspopup="true" aria-controls="news-type">
+									 Type: <?= esc_html($current_type_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
@@ -261,7 +261,7 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
 
 
 <!-- News Type Dropdown -->
-<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
+<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="news-type">
     <li class="<?php echo $current_type === 'all' ? 'active' : ''; ?>">
         <a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">All types</a>
     </li>
