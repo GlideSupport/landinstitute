@@ -89,10 +89,15 @@ form .v_fw .v_fr .Select.is-focused:not(.is-open)>.Select-control {
 	border-bottom: 1px solid var(--gb_base_brown);
 }
 
-form .v_fw .v_ig .v_lw label,
+form .v_fw .v_ig .v_lw label {
+	display: flex;
+	margin-bottom: 0;
+	@extend .ui-18-16-bold;
+	align-self: center;
+}
+
 form .v_fw .v_ig .Select-placeholder,
 form .v_fw .v_ig .v_lw .Select--single>.Select-control .Select-value {
-	display: flex;
 	margin-bottom: 0;
 	@extend .ui-18-16-bold;
 	align-self: center;
@@ -108,6 +113,10 @@ form .v_fw .v_ig .Select-clear-zone {
 
 body form[id*="vcrm"] .v_fw .v_fr+.v_fr {
 	margin-top: 30px;
+}
+
+body form[id*=vcrm] .v_fw .v_fr+.v_fr:last-child {
+	margin-top: 0;
 }
 
 body form .v_fw .v_fc.v_fc__1 .v_ig.v_ig__tx .v_iw {
