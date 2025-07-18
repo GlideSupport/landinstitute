@@ -11,29 +11,39 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	function updateURLParams() {
-		const url = new URL(window.location);
-		const params = url.searchParams;
+	const url = new URL(window.location);
+	const params = url.searchParams;
+	let newPath = url.pathname;
 
-		if (currentDonorType && currentDonorType !== "all") {
-			params.set("donor_type", currentDonorType);
-		} else {
-			params.delete("donor_type");
-		}
+	// Clean existing /page/number/ from the pathname if present
+	newPath = newPath.replace(/\/page\/\d+\/?$/, "").replace(/\/$/, "");
 
-		if (currentDonationLevel && currentDonationLevel !== "all") {
-			params.set("donation_level", currentDonationLevel);
-		} else {
-			params.delete("donation_level");
-		}
-
-		if (currentPage && currentPage > 1) {
-			params.set("page", currentPage);
-		} else {
-			params.delete("page");
-		}
-
-		history.replaceState({}, "", `${url.pathname}?${params.toString()}`);
+	// Append /page/X/ if currentPage > 1
+	if (currentPage && currentPage > 1) {
+		newPath += `/page/${currentPage}/`;
+	} else {
+		newPath += "/";
 	}
+
+	// Update donor_type
+	if (currentDonorType && currentDonorType !== "all") {
+		params.set("donor_type", currentDonorType);
+	} else {
+		params.delete("donor_type");
+	}
+
+	// Update donation_level
+	if (currentDonationLevel && currentDonationLevel !== "all") {
+		params.set("donation_level", currentDonationLevel);
+	} else {
+		params.delete("donation_level");
+	}
+
+	// Push the new URL
+	const newUrl = `${newPath}?${params.toString()}`;
+	history.replaceState({}, "", newUrl.endsWith("?") ? newUrl.slice(0, -1) : newUrl);
+}
+
 
 	function fetchDonors() {
 		const postsPerPage = donorGrid.dataset.donorCount || 9;
