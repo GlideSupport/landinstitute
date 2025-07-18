@@ -221,13 +221,13 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<div class="filter-dropdown-row">
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="news-audience" aria-expanded="false" aria-haspopup="true" aria-controls="news-audience">
-									Audience: <?= esc_html($current_type_name) ?>
+									Audience: <?= esc_html($current_audience_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
 							<div class="tab-dropdown tab-dropdown-filter">
 								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-crop">
-									Crop type: <?= esc_html($current_type_name) ?>
+									Crop type: <?= esc_html($current_crop_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
 							</div>
