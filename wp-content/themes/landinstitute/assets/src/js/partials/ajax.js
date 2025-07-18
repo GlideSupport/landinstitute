@@ -389,6 +389,9 @@ attachPaginationEventListeners();
 //new code
 var currentnewsType =""; 
 var currentnewstopic =""; 
+var currentnewsaudience =""; 
+var currentnewscrop =""; 
+
 document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-term]").forEach((link) => {
 		link.addEventListener("click", (e) => {
@@ -408,7 +411,15 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			} else if (taxonomy === "news-topic") {
 				currentnewstopic = term;
 				document.querySelector("button#topic-view").innerHTML =
-					"Donation level: " + (term === "all" ? "All levels" : term.replace(/-/g, " "));
+					"Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
+			}else if (taxonomy === "news-audience") {
+				currentnewsaudience = term;
+				document.querySelector("button#topic-view").innerHTML =
+					"Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " "));
+			}else if (taxonomy === "news-crop") {
+				currentnewscrop = term;
+				document.querySelector("button#topic-view").innerHTML =
+					"Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
 			}
 
 			// Reset to page 1
@@ -457,6 +468,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 				paged: paged,
 				news_type: currentnewsType,
 				news_topic:currentnewstopic,
+				news_audience: currentnewsaudience,
+				news_crop:currentnewscrop,
 				nonce: localVars.nonce,
 			}),
 		})
