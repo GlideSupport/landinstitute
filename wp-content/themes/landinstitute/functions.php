@@ -173,7 +173,7 @@ function ajax_filter_logo_grid_filter()
 	endif;
 	$html = ob_get_clean();
 	// --- Pagination ---
-	$pagination_html = '';
+$pagination_html = '';
 $total_pages = $donors->max_num_pages;
 $total_found_posts = $donors->found_posts;
 
@@ -200,8 +200,11 @@ if ($total_found_posts > $posts_per_page) {
 				<div class="arrow-btn prev">
 					<a class="site-btn" href="<?php
 						if ($paged > 1) {
-							$query_args['page'] = $paged - 1;
-							echo esc_url(trailingslashit($current_url) . 'page/' . ($paged - 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+							$prev_url = trailingslashit($current_url) . 'page/' . ($paged - 1) . '/';
+							if (!empty($query_args)) {
+								$prev_url .= '?' . http_build_query($query_args);
+							}
+							echo esc_url($prev_url);
 						} else {
 							echo '#';
 						}
@@ -219,8 +222,10 @@ if ($total_found_posts > $posts_per_page) {
 								echo '<span class="dots">...</span>';
 								$show_dots = false;
 							}
-							$query_args['page'] = $i;
-							$page_url = trailingslashit($current_url) . 'page/' . $i . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : '');
+							$page_url = trailingslashit($current_url) . 'page/' . $i . '/';
+							if (!empty($query_args)) {
+								$page_url .= '?' . http_build_query($query_args);
+							}
 							echo '<a class="page-btn' . ($i == $paged ? ' active' : '') . '" href="' . esc_url($page_url) . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</a>';
 						} else {
 							$show_dots = true;
@@ -232,8 +237,11 @@ if ($total_found_posts > $posts_per_page) {
 				<div class="arrow-btn next">
 					<a class="site-btn" href="<?php
 						if ($paged < $total_pages) {
-							$query_args['page'] = $paged + 1;
-							echo esc_url(trailingslashit($current_url) . 'page/' . ($paged + 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+							$next_url = trailingslashit($current_url) . 'page/' . ($paged + 1) . '/';
+							if (!empty($query_args)) {
+								$next_url .= '?' . http_build_query($query_args);
+							}
+							echo esc_url($next_url);
 						} else {
 							echo '#';
 						}
@@ -244,8 +252,11 @@ if ($total_found_posts > $posts_per_page) {
 			<div class="mobile-pagination">
 				<a id="prevBtn" class="arrow-btn" href="<?php
 					if ($paged > 1) {
-						$query_args['page'] = $paged - 1;
-						echo esc_url(trailingslashit($current_url) . 'page/' . ($paged - 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+						$mobile_prev = trailingslashit($current_url) . 'page/' . ($paged - 1) . '/';
+						if (!empty($query_args)) {
+							$mobile_prev .= '?' . http_build_query($query_args);
+						}
+						echo esc_url($mobile_prev);
 					} else {
 						echo '#';
 					}
@@ -257,8 +268,11 @@ if ($total_found_posts > $posts_per_page) {
 
 				<a id="nextBtn" class="arrow-btn" href="<?php
 					if ($paged < $total_pages) {
-						$query_args['page'] = $paged + 1;
-						echo esc_url(trailingslashit($current_url) . 'page/' . ($paged + 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+						$mobile_next = trailingslashit($current_url) . 'page/' . ($paged + 1) . '/';
+						if (!empty($query_args)) {
+							$mobile_next .= '?' . http_build_query($query_args);
+						}
+						echo esc_url($mobile_next);
 					} else {
 						echo '#';
 					}
@@ -271,13 +285,14 @@ if ($total_found_posts > $posts_per_page) {
 				<div class="popup-body">
 					<div id="popupGrid" class="popup-grid">
 						<?php for ($i = 1; $i <= $total_pages; $i++) :
-							$query_args['page'] = $i;
-							$page_url = trailingslashit($current_url) . 'page/' . $i . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : '');
+							$page_url = trailingslashit($current_url) . 'page/' . $i . '/';
+							if (!empty($query_args)) {
+								$page_url .= '?' . http_build_query($query_args);
+							}
 						?>
 							<a class="page-btn<?php echo ($i == $paged ? ' active' : ''); ?>" href="<?php echo esc_url($page_url); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></a>
 						<?php endfor; ?>
 					</div>
-					<!-- Optional custom popup prev/next if needed -->
 				</div>
 			</div>
 		</div>
