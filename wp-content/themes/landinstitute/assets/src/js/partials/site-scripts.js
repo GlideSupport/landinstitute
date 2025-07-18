@@ -43,6 +43,24 @@ if (listItems.length > 0) {
 	});
 }
 
+// Add hover effect to buttons start
+const btns = document.querySelectorAll('.site-btn');
+
+if (btns.length > 0) {
+	btns.forEach(btn => {
+		btn.addEventListener('mouseenter', () => {
+			btn.classList.remove('animate-out');
+			btn.classList.add('animate-in');
+		});
+
+		btn.addEventListener('mouseleave', () => {
+			btn.classList.remove('animate-in');
+			btn.classList.add('animate-out');
+		});
+	});
+} 
+// Add hover effect to buttons end
+
 // Focus and blur events for menu items with sub-menus
 document.querySelectorAll(".menu-item-has-children > a").forEach((anchor) => {
 	anchor.addEventListener("focus", () => {
