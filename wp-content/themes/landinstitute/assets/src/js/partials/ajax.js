@@ -432,6 +432,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 	const news_append_list = document.querySelector(".newsmain .filter-content-cards-grid");
 	const new_pagination = document.querySelector(".newsmain .fillter-bottom");
+	const newnotfound = document.querySelector(".newsmain .not-found-append");
+
 
 	function fetchnews(paged = 1, updateURL = true) {
 		currentPage = paged;
@@ -442,6 +444,8 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			loadingElem.innerHTML = "<p>Loading...</p>";
 			news_append_list.appendChild(loadingElem);
 		}
+
+		
 
 		if (updateURL) {
 			const url = new URL(window.location);
@@ -482,6 +486,18 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 				if (data.success) {
 					// ✅ Corrected this line
 					if (new_pagination) news_append_list.innerHTML = data.data.news_html;
+
+
+					if(data.data.datafound == "yes"){
+					if (news_append_list) {
+						news_append_list.innerHTML = data.data.news_html;
+					};
+					newnotfound.innerHTML = '';
+						}else{
+						news_append_list.innerHTML = '';
+						newnotfound.innerHTML = data.data.news_html
+					}
+
 
 					const oldPagination = document.querySelector('.news-pagination-append-container');
 					if (oldPagination) {

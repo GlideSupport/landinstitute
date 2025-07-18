@@ -274,6 +274,9 @@ document.addEventListener("DOMContentLoaded", function () {
 					: false,
 			effect: "fade",
 			fadeEffect: { crossFade: true },
+			touchRatio: 1,
+            simulateTouch: true,
+            allowTouchMove: true,
 			on: {
 				slideChangeTransitionEnd: function () {
 					const activeSlide = this.slides[this.activeIndex];
