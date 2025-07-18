@@ -45,7 +45,11 @@ input[list],
 input[type="string"],
 select,
 textarea,
-.gform-text-input-reset {
+.gform-text-input-reset,
+form .v_fw .v_fr .v_ig input,
+form .v_fw .v_fr .v_ig select,
+form .v_fw .v_fr .v_ig textarea,
+form .v_fw .v_fr .Select-control {
 	@include font(plusjakarta, reg);
 	@include transition(all, 0.2s, ease-in-out);
 	background: transparent;
@@ -73,6 +77,106 @@ textarea,
 		background-color: transparent;
 		box-shadow: none;
 	}
+}
+
+form .v_fw .v_fr .Select-control {
+	padding: 0;
+}
+
+form .v_fw .v_fr .Select.is-focused:not(.is-open)>.Select-control {
+	background: transparent;
+	box-shadow: none;
+	border-bottom: 1px solid var(--gb_base_brown);
+}
+
+form .v_fw .v_ig .v_lw label {
+	display: flex;
+	margin-bottom: 0;
+	@extend .ui-18-16-bold;
+}
+
+form .v_fw .v_fw .v_fr+.v_fr {
+	margin-top: 30px;
+}
+
+form .v_fw .v_ig .v_iw {
+	margin-top: 44px;
+	overflow: hidden;
+	position: relative;
+	text-align: left;
+	display: inline-flex;
+
+	@media(max-width: 640px) {
+		margin-top: 32px;
+	}
+
+	&:after {
+		align-items: center;
+		animation: shrink-back 0.4s forwards;
+		background-color: var(--gb_primary_lilac);
+		background-image: url(../images/button-brown-arrow.svg);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 0px;
+		border-radius: 100px;
+		content: '';
+		display: flex;
+		height: 22px;
+		justify-content: center;
+		position: absolute;
+		right: 16px;
+		top: 15px;
+		transform: scale(0.27);
+		transition: transform 0.4s ease-in-out;
+		width: 22px;
+
+		@media(max-width: 640px) {
+			top: 9px;
+		}
+	}
+
+	&:hover {
+		background-color: var(--gb_base_brown);
+		border-color: var(--gb_base_brown);
+		color: var(--gb_white);
+
+		&:after {
+			animation: bubble-pop 0.4s forwards;
+			background-size: 9px;
+		}
+	}
+}
+
+form .v_fw .v_ig button {
+	background-color: var(--gb_base_brown);
+	border: 2px solid var(--gb_base_brown);
+	@include font(plusjakarta, sbold);
+	border-radius: 0px;
+	color: var(--gb_white);
+	display: inline-flex;
+	font-size: var(--gb_font_size_14);
+	font-weight: 600;
+	height: auto;
+	letter-spacing: -0.51px;
+	line-height: 110%;
+	outline: none;
+	padding: 14px 50px 15px 22px;
+	position: relative;
+	text-decoration: none;
+	transition: 0.35s;
+	margin: 0;
+
+	@media(max-width: 640px) {
+		padding: 10px 47px 10px 20px;
+	}
+}
+
+form .v_fw .v_fr .v_ig input:focus,
+form .v_fw .v_fr .v_ig select:focus,
+form .v_fw .v_fr .v_ig textarea:focus,
+form .v_fw .v_fr .Select-control:focus {
+	border-color: var(--gb_base_brown);
+	box-shadow: none;
 }
 
 // Placeholder Style
