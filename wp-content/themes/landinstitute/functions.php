@@ -174,67 +174,118 @@ function ajax_filter_logo_grid_filter()
 	$html = ob_get_clean();
 	// --- Pagination ---
 	$pagination_html = '';
-	$total_pages = $donors->max_num_pages;
-	$total_found_posts = $donors->found_posts;
+$total_pages = $donors->max_num_pages;
+$total_found_posts = $donors->found_posts;
 
-	if ($total_found_posts > $posts_per_page) {
-		ob_start(); ?>
-		<div class="fillter-bottom">
-			<div class="pagination-container">
-				<div class="desktop-pages">
-					<div class="arrow-btn prev">
-						<div class="site-btn" <?php if ($paged <= 1) echo ' style="opacity: 0.5; pointer-events: none;"'; ?>>Previous</div>
-					</div>
-					<div class="pagination-list">
-						<?php
-						$range = 2;
-						$show_dots = false;
+if ($total_found_posts > $posts_per_page) {
+	ob_start();
 
-						for ($i = 1; $i <= $total_pages; $i++) {
-							if ($i == 1 || $i == $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
-								if ($show_dots) {
-									echo '<span class="dots">...</span>';
-									$show_dots = false;
-								}
-								echo '<button class="page-btn' . ($i == $paged ? ' active' : '') . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</button>';
-							} else {
-								$show_dots = true;
-							}
+	// Capture current query vars
+	$current_url = get_permalink();
+	$donor_type = isset($_GET['donor_type']) ? sanitize_text_field($_GET['donor_type']) : '';
+	$donation_level = isset($_GET['donation_level']) ? sanitize_text_field($_GET['donation_level']) : '';
+
+	// Build query array for reuse
+	$query_args = [];
+	if ($donor_type) {
+		$query_args['donor_type'] = $donor_type;
+	}
+	if ($donation_level) {
+		$query_args['donation_level'] = $donation_level;
+	}
+	?>
+	<div class="fillter-bottom">
+		<div class="pagination-container">
+			<div class="desktop-pages">
+				<div class="arrow-btn prev">
+					<a class="site-btn" href="<?php
+						if ($paged > 1) {
+							$query_args['page'] = $paged - 1;
+							echo esc_url(trailingslashit($current_url) . 'page/' . ($paged - 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+						} else {
+							echo '#';
 						}
+					?>" <?php if ($paged <= 1) echo 'style="opacity: 0.5; pointer-events: none;"'; ?>>Previous</a>
+				</div>
+
+				<div class="pagination-list">
+					<?php
+					$range = 2;
+					$show_dots = false;
+
+					for ($i = 1; $i <= $total_pages; $i++) {
+						if ($i == 1 || $i == $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
+							if ($show_dots) {
+								echo '<span class="dots">...</span>';
+								$show_dots = false;
+							}
+							$query_args['page'] = $i;
+							$page_url = trailingslashit($current_url) . 'page/' . $i . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : '');
+							echo '<a class="page-btn' . ($i == $paged ? ' active' : '') . '" href="' . esc_url($page_url) . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</a>';
+						} else {
+							$show_dots = true;
+						}
+					}
+					?>
+				</div>
+
+				<div class="arrow-btn next">
+					<a class="site-btn" href="<?php
+						if ($paged < $total_pages) {
+							$query_args['page'] = $paged + 1;
+							echo esc_url(trailingslashit($current_url) . 'page/' . ($paged + 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+						} else {
+							echo '#';
+						}
+					?>" <?php if ($paged >= $total_pages) echo 'style="opacity: 0.5; pointer-events: none;"'; ?>>Next</a>
+				</div>
+			</div>
+
+			<div class="mobile-pagination">
+				<a id="prevBtn" class="arrow-btn" href="<?php
+					if ($paged > 1) {
+						$query_args['page'] = $paged - 1;
+						echo esc_url(trailingslashit($current_url) . 'page/' . ($paged - 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+					} else {
+						echo '#';
+					}
+				?>" <?php if ($paged <= 1) echo 'disabled'; ?>>
+					<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Prev">
+				</a>
+
+				<span id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($paged . '/' . $total_pages); ?></span>
+
+				<a id="nextBtn" class="arrow-btn" href="<?php
+					if ($paged < $total_pages) {
+						$query_args['page'] = $paged + 1;
+						echo esc_url(trailingslashit($current_url) . 'page/' . ($paged + 1) . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : ''));
+					} else {
+						echo '#';
+					}
+				?>" <?php if ($paged >= $total_pages) echo 'disabled'; ?>>
+					<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
+				</a>
+			</div>
+
+			<div id="paginationPopup" class="pagination-popup">
+				<div class="popup-body">
+					<div id="popupGrid" class="popup-grid">
+						<?php for ($i = 1; $i <= $total_pages; $i++) :
+							$query_args['page'] = $i;
+							$page_url = trailingslashit($current_url) . 'page/' . $i . '/' . (!empty($query_args) ? '?' . http_build_query($query_args) : '');
 						?>
+							<a class="page-btn<?php echo ($i == $paged ? ' active' : ''); ?>" href="<?php echo esc_url($page_url); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></a>
+						<?php endfor; ?>
 					</div>
-					<div class="arrow-btn next">
-						<div class="site-btn" <?php if ($paged >= $total_pages) echo ' style="opacity: 0.5; pointer-events: none;"'; ?>>Next</div>
-					</div>
-				</div>
-
-				<div class="mobile-pagination">
-					<button id="prevBtn" class="arrow-btn" <?php if ($paged <= 1) echo ' disabled'; ?>>
-						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Prev">
-					</button>
-					<button id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($paged . '/' . $total_pages); ?></button>
-					<button id="nextBtn" class="arrow-btn" <?php if ($paged >= $total_pages) echo ' disabled'; ?>>
-						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
-					</button>
-				</div>
-
-				<div id="paginationPopup" class="pagination-popup">
-					<div class="popup-body">
-						<div id="popupGrid" class="popup-grid">
-							<?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-								<button class="page-btn<?php echo ($i == $paged ? ' active' : ''); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></button>
-							<?php endfor; ?>
-						</div>
-						<button id="popupPrev" class="arrow-btn"></button>
-						<button id="popupNext" class="arrow-btn"></button>
-					</div>
+					<!-- Optional custom popup prev/next if needed -->
 				</div>
 			</div>
 		</div>
+	</div>
+	<?php
+	$pagination_html = ob_get_clean();
+}
 
-		<?php
-		$pagination_html = ob_get_clean();
-	}
 
 	wp_send_json_success([
 		'html'            => $html,
