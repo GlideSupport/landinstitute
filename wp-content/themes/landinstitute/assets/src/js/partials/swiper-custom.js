@@ -177,43 +177,43 @@ document.addEventListener("DOMContentLoaded", function () {
 		// Make sure arrow position adjusts on window resize
 		window.addEventListener("resize", updateArrowPosition);
 	});
-	function setMaxOuterHeightToImages() {
-		const blockContents = document.querySelectorAll('.cta-slider-box .block-content');
-		const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
+	if (window.innerWidth >= 992) {
 
-		// Exit early if no block-content or cta-image elements found
-		if (!blockContents.length || !ctaImages.length) {
-			console.warn('No .block-content or .cta-image elements found.');
-			return;
+		function setMaxOuterHeightToImages() {
+			const blockContents = document.querySelectorAll('.cta-slider-box .cl-left');
+			const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
+
+			if (!blockContents.length || !ctaImages.length) {
+				console.warn('No .cl-left or .cta-image elements found.');
+				return;
+			}
+
+			let maxOuterHeight = 0;
+
+			// First pass: get the max height
+			blockContents.forEach(blockContent => {
+				const style = window.getComputedStyle(blockContent);
+				const height = blockContent.offsetHeight || 0;
+				const marginTop = parseFloat(style.marginTop) || 0;
+				const marginBottom = parseFloat(style.marginBottom) || 0;
+				const outerHeight = height + marginTop + marginBottom;
+
+				if (outerHeight > maxOuterHeight) {
+					maxOuterHeight = outerHeight;
+				}
+			});
+
+			// Second pass: apply height to .cta-image
+			ctaImages.forEach(ctaImage => {
+				ctaImage.style.height = maxOuterHeight + 'px';
+			});
 		}
 
-		let maxOuterHeight = 0;
-
-		// First pass: calculate max outer height
-		blockContents.forEach(blockContent => {
-			if (!blockContent) return;
-
-			const style = window.getComputedStyle(blockContent);
-			const height = blockContent.offsetHeight || 0;
-			const marginTop = parseFloat(style.marginTop) || 0;
-			const marginBottom = parseFloat(style.marginBottom) || 0;
-			const outerHeight = height + marginTop + marginBottom;
-
-			if (outerHeight > maxOuterHeight) {
-				maxOuterHeight = outerHeight;
-			}
-		});
-
-		// Second pass: apply max outer height to each .cta-image
-		ctaImages.forEach(ctaImage => {
-			if (!ctaImage) return;
-			ctaImage.style.height = maxOuterHeight + 'px';
-		});
+		// Trigger on load and resize
+		window.addEventListener('load', setMaxOuterHeightToImages);
+		window.addEventListener('resize', setMaxOuterHeightToImages);
 	}
 
-	// Call the function after content is loaded
-	window.addEventListener('load', setMaxOuterHeightToImages);
-	window.addEventListener('resize', setMaxOuterHeightToImages);
 
 	// CTA Slider JS end
 	
