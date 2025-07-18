@@ -99,7 +99,7 @@ form .v_fw .v_fw .v_fr+.v_fr {
 	margin-top: 30px;
 }
 
-form .v_fw .v_ig .v_iw {
+form .v_fw .v_ig.v_ig__tx .v_iw {
 	margin-top: 44px;
 	overflow: hidden;
 	position: relative;
@@ -147,7 +147,7 @@ form .v_fw .v_ig .v_iw {
 	}
 }
 
-form .v_fw .v_ig button {
+form .v_fw .v_ig.v_ig__tx button {
 	background-color: var(--gb_base_brown);
 	border: 2px solid var(--gb_base_brown);
 	@include font(plusjakarta, sbold);
