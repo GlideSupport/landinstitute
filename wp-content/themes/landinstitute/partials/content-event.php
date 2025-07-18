@@ -95,7 +95,7 @@ if ($start_date && $end_date) {
 
 
 
-$event_date = get_formatted_event_datetime($bst_var_post_id);
+//$event_date = get_formatted_event_datetime($bst_var_post_id);
 			
 ?>
 
