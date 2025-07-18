@@ -955,6 +955,20 @@ function handle_ajax_news_filter() {
             'terms'    => sanitize_text_field($_POST['news_topic']),
         ];
     }
+	 if (!empty($_POST['news_crop']) && $_POST['news_crop'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'news-crop',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['news_crop']),
+        ];
+    }
+	 if (!empty($_POST['news_audience']) && $_POST['news_audience'] !== 'all') {
+        $tax_query[] = [
+            'taxonomy' => 'news-audience',
+            'field'    => 'slug',
+            'terms'    => sanitize_text_field($_POST['news_audience']),
+        ];
+    }
 
     // Add exclusions using the helper
     $exclude_taxonomies = ['news-crop', 'news-type', 'news-topic', 'news-audience'];

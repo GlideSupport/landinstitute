@@ -161,6 +161,20 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 					'terms'    => sanitize_text_field($_GET['topic']),
 				];
 			}
+				if (!empty($_GET['audience']) && $_GET['audience'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-audience',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['audience']),
+				];
+			}
+				if (!empty($_GET['crop']) && $_GET['crop'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-crop',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['crop']),
+				];
+			}
 
 
 			$args = [

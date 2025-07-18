@@ -447,11 +447,15 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			const url = new URL(window.location);
 			if(currentnewsType){
 				url.searchParams.set("type", currentnewsType || "");
-
 			}
 			if(currentnewstopic){
 				url.searchParams.set("topic", currentnewstopic || "");
-
+			}
+			if(currentnewsaudience){
+				url.searchParams.set("audience", currentnewsaudience || "");
+			}
+			if(currentnewstopic){
+				url.searchParams.set("crop", currentnewscrop || "");
 			}
 		//	url.searchParams.set("page", paged);
 			window.history.pushState({}, "", url);
