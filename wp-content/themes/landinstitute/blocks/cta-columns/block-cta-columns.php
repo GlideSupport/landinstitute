@@ -43,7 +43,7 @@ $li_cc_repeater        = $bst_block_fields['li_cc_repeater'] ?? null;
 								<?php echo (!empty($title) || !empty($text) || !empty($button)) ? '<div class="gl-s64"></div>' : ''; ?>
 								<?php echo !empty($title) ? '<h3 class="heading-3 block-title mb-0">' . esc_html($title) . '</h3>' : ''; ?>
 								<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s20"></div>' : ''; ?>
-								<?php echo !empty($text) ? '<div class="block-content body-20-18-regular">' . esc_html($text) . '</div>' : ''; ?>
+								<?php echo !empty($text) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($text) . '</div>' : ''; ?>
 								<?php echo (!empty($text) && !empty($button)) ? '<div class="gl-s16"></div>' : ''; ?>
 								<?php echo !empty($button) ? '<div class="block-btn"><div class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</div></div>' : ''; ?>
 								<?php echo (!empty($title) || !empty($text) || !empty($button)) ? '<div class="gl-s80"></div>' : ''; ?>
