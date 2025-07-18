@@ -42,8 +42,7 @@ if ( $custom_query->have_posts() ) :
 	endwhile;
 else :
 	?>
-	<div class="no-results">
-		<h2><?php esc_html_e( 'No results found', 'land_institute' ); ?></h2>
-		<p><?php esc_html_e( 'Try a different keyword or check your spelling.', 'land_institute' ); ?></p>
+	<div class="not-found-block">
+		<div class="not-found">No Search results found.</div>
 	</div>
 <?php endif; ?>
