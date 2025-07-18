@@ -124,9 +124,17 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 			 $current_type_slug  = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : 'all';
 			$current_topic_slug = isset($_GET['topic']) ? sanitize_text_field($_GET['topic']) : 'all';
 
+			$current_audience_slug  = isset($_GET['audience']) ? sanitize_text_field($_GET['audience']) : 'all';
+			$current_crop_slug = isset($_GET['crop']) ? sanitize_text_field($_GET['crop']) : 'all';
+
+
 			// Set default display values
 			$current_type_name  = 'All types';
 			$current_topic_name = 'All topics';
+
+			$current_audience_name  = 'All Audiences';
+			$current_crop_name = 'All Crops';
+
 
 			// Try to get the term objects if slugs are not "all"
 			if ($current_type_slug !== 'all') {
@@ -140,6 +148,19 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 				$topic_term = get_term_by('slug', $current_topic_slug, 'news-topic'); // 'topic' is your taxonomy name
 				if ($topic_term && !is_wp_error($topic_term)) {
 					$current_topic_name = $topic_term->name;
+				}
+			}
+			if ($current_audience_slug !== 'all') {
+				$type_term = get_term_by('slug', $current_type_slug, 'news-audience'); // 'type' is your taxonomy name
+				if ($type_term && !is_wp_error($type_term)) {
+					$current_audience_name = $type_term->name;
+				}
+			}
+
+			if ($current_crop_slug !== 'all') {
+				$topic_term = get_term_by('slug', $current_topic_slug, 'news-crop'); // 'topic' is your taxonomy name
+				if ($topic_term && !is_wp_error($topic_term)) {
+					$current_crop_name = $topic_term->name;
 				}
 			}
 
