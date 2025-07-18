@@ -90,7 +90,7 @@ form .v_fw .v_fr .Select.is-focused:not(.is-open)>.Select-control {
 }
 
 form .v_fw .v_ig .v_lw label,
-form .v_fw .v_ig .v_lw .Select-placeholder,
+form .v_fw .v_ig .Select-placeholder,
 form .v_fw .v_ig .v_lw .Select--single>.Select-control .Select-value {
 	display: flex;
 	margin-bottom: 0;
@@ -106,7 +106,7 @@ form .v_fw .v_ig .Select-clear-zone {
 	color: var(--gb_base_brown);
 }
 
-body form .v_fw .v_fr+.v_fr {
+body form[id*="vcrm"] .v_fw .v_fr+.v_fr {
 	margin-top: 30px;
 }
 
@@ -122,7 +122,7 @@ body form .v_fw .v_fc.v_fc__1 .v_ig.v_ig__tx .v_iw {
 	}
 }
 
-body form .v_fw .v_ig.v_ig__tx button {
+body form[id*=vcrm] .v_fw .v_ig.v_ig__tx button {
 	background-color: var(--gb_base_brown);
 	border: 2px solid var(--gb_base_brown);
 	@include font(plusjakarta, sbold);
@@ -160,7 +160,7 @@ body form .v_fw .v_ig.v_ig__tx button {
 		justify-content: center;
 		position: absolute;
 		right: 16px;
-		top: 15px;
+		top: 13px;
 		transform: scale(0.27);
 		transition: transform 0.4s ease-in-out;
 		width: 22px;
@@ -170,10 +170,12 @@ body form .v_fw .v_ig.v_ig__tx button {
 		}
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		background-color: var(--gb_base_brown);
 		border-color: var(--gb_base_brown);
 		color: var(--gb_white);
+		border-radius: 0;
 
 		&:after {
 			animation: bubble-pop 0.4s forwards;
