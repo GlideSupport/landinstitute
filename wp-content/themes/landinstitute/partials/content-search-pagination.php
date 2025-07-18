@@ -12,8 +12,9 @@ if ( isset( $paged_var ) && $paged_var > 0 ) {
 }
 ?>
 
-<?php if ( $total_pages > 1 ) : ?>
 <div class="pagination-container append-search-result-pagination">
+    <?php if ( $total_pages > 1 ) : ?>
+
     <!-- Desktop Pagination -->
     <div class="desktop-pages">
         <div class="arrow-btn prev">
@@ -111,5 +112,6 @@ for ( $i = 1; $i <= $total_pages; $i++ ) {
             <button id="popupNext" class="arrow-btn"></button>
         </div>
     </div>
+    <?php endif; ?>
+
 </div>
-<?php endif; ?>
