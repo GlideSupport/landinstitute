@@ -160,51 +160,62 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							<?php
 							// Set up query
 							$paged = get_query_var('paged') ? get_query_var('paged') : 1;
-							$args = array(
-								'post_type' => 'post',
+							$args = [
+								'post_type'      => 'post',
 								'posts_per_page' => 12,
-								'paged' => $paged,
-							);
+								'paged'          => $paged,
+							];
 
-							// Taxonomy filters
-							$tax_query = array('relation' => 'AND');
+							// Start building tax_query
+							$tax_query = ['relation' => 'AND'];
 
-							// $tax_map = array(
-							// 	'learn-type'   => 'learn-type',
-							// 	'learn-topic'  => 'learn-topic',
-							// 	'learn-crop'   => 'learn-crop',
-							// );
-
-
-							if (!empty($_GET['learn-type']) && $_GET['learn-type'] !== 'all') {
-								$tax_query[] = [
-									'taxonomy' => 'learn-type',
-									'field'    => 'slug',
-									'terms'    => sanitize_text_field($_GET['learn-type']),
-								];
-							}
-						
-							if (!empty($_GET['learn-topic']) && $_GET['learn-topic'] !== 'all') {
-								$tax_query[] = [
-									'taxonomy' => 'learn-topic',
-									'field'    => 'slug',
-									'terms'    => sanitize_text_field($_GET['learn-topic']),
-								];
-							}
-						
-							if (!empty($_GET['learn-crop']) && $_GET['learn-crop'] !== 'all') {
-								$tax_query[] = [
-									'taxonomy' => 'learn-crop',
-									'field'    => 'slug',
-									'terms'    => sanitize_text_field($_GET['learn-crop']),
-								];
+							// Learn Type
+							if (!empty($bst_fields['li_learn_filters']['enable_learn_type'])) {
+								if (!empty($_GET['learn-type']) && $_GET['learn-type'] !== 'all') {
+									$tax_query[] = [
+										'taxonomy' => 'learn-type',
+										'field'    => 'slug',
+										'terms'    => sanitize_text_field($_GET['learn-type']),
+									];
+								}
+							} else {
+								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
 							}
 
+							// Learn Topic
+							if (!empty($bst_fields['li_learn_filters']['enable_learn_topic'])) {
+								if (!empty($_GET['learn-topic']) && $_GET['learn-topic'] !== 'all') {
+									$tax_query[] = [
+										'taxonomy' => 'learn-topic',
+										'field'    => 'slug',
+										'terms'    => sanitize_text_field($_GET['learn-topic']),
+									];
+								}
+							} else {
+								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
+							}
+
+							// Learn Crop
+							if (!empty($bst_fields['li_learn_filters']['enable_learn_crop'])) {
+								if (!empty($_GET['learn-crop']) && $_GET['learn-crop'] !== 'all') {
+									$tax_query[] = [
+										'taxonomy' => 'learn-crop',
+										'field'    => 'slug',
+										'terms'    => sanitize_text_field($_GET['learn-crop']),
+									];
+								}
+							} else {
+								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
+							}
+
+							// Apply tax_query if needed
 							if (count($tax_query) > 1) {
 								$args['tax_query'] = $tax_query;
 							}
 
 							$query = new WP_Query($args);
+
+							// Store query and state for later use
 							set_query_var('learn_query', $query);
 							set_query_var('paged_var', $paged);
 							$datafoundn = $query->have_posts() ? 'yes' : 'no';

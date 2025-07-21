@@ -1370,3 +1370,34 @@ function get_exclude_tax_query_for_taxonomy($taxonomy) {
         'operator' => 'NOT IN',
     ];
 }
+
+
+/**
+ * Generate a tax_query clause to exclude all posts associated with a given taxonomy.
+ *
+ * @param string $taxonomy_slug Taxonomy to exclude posts from.
+ * @return array Tax query clause for WP_Query.
+ */
+function get_taxonomy_exclusion_query($taxonomy_slug) {
+    if (!taxonomy_exists($taxonomy_slug)) {
+        return []; // Invalid taxonomy
+    }
+
+    $terms = get_terms([
+        'taxonomy'   => $taxonomy_slug,
+        'hide_empty' => false,
+        'fields'     => 'slugs',
+    ]);
+
+    if (empty($terms) || is_wp_error($terms)) {
+        return []; // No terms to exclude
+    }
+
+    return [[
+        'taxonomy' => $taxonomy_slug,
+        'field'    => 'slug',
+        'terms'    => $terms,
+        'operator' => 'NOT IN',
+    ]];
+}
+
