@@ -290,8 +290,8 @@ $audience_terms_main = array_filter($audience_terms_main, fn($term) => !in_array
 			<?php endif; ?>
 		</ul>
 
-		<ul id="learn-crop" class="dropdown-menu" role="menu" aria-labelledby="category-view">
-			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crops">All Crops</a></li>
+		<ul id="learn-crop" class="dropdown-menu" role="menu" aria-labelledby="learn-crops">
+			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crop">All Crops</a></li>
 			<?php if (!empty($crop_terms_main)) : ?>
 				<?php foreach ($crop_terms_main as $crop_term) : ?>
 					<li>
