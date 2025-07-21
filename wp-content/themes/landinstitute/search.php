@@ -71,26 +71,46 @@ set_query_var( 'paged_var', $paged );
 			</div>
 		</div>
 	</section>
-<div class="search-list-filter" >
-			<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
-				<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">everything</a></li>
-				<li style="animation-delay: 0.1s;">
-					<a href="javascript:void(0)" data-post="page" data-taxonomy="search-type">Page</a>
-				</li>
-				<li style="animation-delay: 0.2s;">
-					<a href="javascript:void(0)" data-post="news" data-taxonomy="search-type">News</a>
-				</li>
-				<li style="animation-delay: 0.2s;">
-					<a href="javascript:void(0)" data-post="post" data-taxonomy="search-type">Learn</a>
-				</li>
-				<li style="animation-delay: 0.2s;">
-					<a href="javascript:void(0)" data-post="event" data-taxonomy="search-type">Event</a>
-				</li>
-				<li style="animation-delay: 0.2s;">
-					<a href="javascript:void(0)" data-post="staff" data-taxonomy="search-type">Staff</a>
-				</li>
-			</ul>
-	</div>
+<?php
+$allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+$excluded_post_types = get_field('li_search_exclude_post_type', 'option');
+if (!is_array($excluded_post_types)) {
+    $excluded_post_types = [];
+}
+
+// Remove excluded post types from the allowed list
+$final_post_types = array_diff($allowed_post_types, $excluded_post_types);
+
+// Helper to get post type label
+function get_post_type_label($post_type_slug) {
+    $post_type_obj = get_post_type_object($post_type_slug);
+    return $post_type_obj ? $post_type_obj->labels->singular_name : ucfirst($post_type_slug);
+}
+?>
+
+<div class="search-list-filter">
+    <ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type">
+        <li class="active" style="animation-delay: 0s;">
+            <a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
+        </li>
+
+        <?php
+        $delay = 0.1;
+        foreach ($final_post_types as $post_type):
+            $label = get_post_type_label($post_type);
+        ?>
+            <li style="animation-delay: <?= esc_attr($delay) ?>s;">
+                <a href="javascript:void(0)" data-post="<?= esc_attr($post_type) ?>" data-taxonomy="search-type">
+                    <?= esc_html($label) ?>
+                </a>
+            </li>
+        <?php
+            $delay += 0.1;
+        endforeach;
+        ?>
+    </ul>
+</div>
+
 	<!-- Hero End -->
 
 	<section class="container-960 bg-base-cream">

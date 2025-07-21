@@ -1098,55 +1098,61 @@ function handle_ajax_news_learn() {
 
     ]);
 }
-
-// serach code started
 add_action('wp_ajax_search_filter', 'search_filter_Callback');
 add_action('wp_ajax_nopriv_search_filter', 'search_filter_Callback');
 
 function search_filter_Callback() {
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
     $search_query = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
-	$order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
-
-
+    $order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
     $search_type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
 
-	
+    // Full list of allowed post types
+    $allowed_post_types = ['post', 'event', 'page', 'news', 'staff'];
 
+    // Get excluded post types from ACF Options
+    $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
+    if (!is_array($excluded_post_types)) {
+        $excluded_post_types = [];
+    }
+
+    // Remove excluded from allowed
+    $filtered_post_types = array_diff($allowed_post_types, $excluded_post_types);
+
+    // If user selected a specific post type, validate it
+    if (!empty($search_type) && $search_type !== 'all') {
+        if (in_array($search_type, $filtered_post_types)) {
+            $post_types = [$search_type];
+        } else {
+            // fallback to filtered list if user input is invalid
+            $post_types = $filtered_post_types;
+        }
+    } else {
+        $post_types = $filtered_post_types;
+    }
 
     $args = [
-       	'post_type'      => ['post','event','page','news','staff'],
+        'post_type'      => $post_types,
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
-		'orderby'        => $order_by,
-		'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
-
+        'orderby'        => $order_by,
+        'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
     ];
 
-	if(!empty($search_type) && $search_type != "all"){
-		 $args['post_type'] = $search_type;
-	}
-	if(!empty($search_query)){
-		 $args['s'] = $search_query;
-	}
-
-
-
-	//print_r( $args);
+    if (!empty($search_query)) {
+        $args['s'] = $search_query;
+    }
 
     $query = new WP_Query($args);
 
-    // Pass query object and current page to templates
     set_query_var('search_query', $query);
     set_query_var('paged_var', $paged);
 
-    // Capture search results HTML
     ob_start();
     get_template_part('partials/content', 'search-list');
     $results_html = ob_get_clean();
 
-    // Capture pagination HTML
     ob_start();
     get_template_part('partials/content', 'search-pagination');
     $pagination_html = ob_get_clean();
@@ -1158,6 +1164,7 @@ function search_filter_Callback() {
         'pagination_html' => $pagination_html,
     ]);
 }
+
 
 
 
@@ -1404,21 +1411,29 @@ function get_taxonomy_exclusion_query($taxonomy_slug) {
 function limit_search_to_specific_post_types($query) {
     if ($query->is_main_query() && $query->is_search() && !is_admin()) {
 
+        // Allowed post types
+        $allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+
+        // ACF field to exclude post types (array expected)
+        $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
+        if (!is_array($excluded_post_types)) {
+            $excluded_post_types = [];
+        }
+
+        // Final allowed list after exclusion
+        $final_post_types = array_diff($allowed_post_types, $excluded_post_types);
+
         // Sanitize user input
         $posttype = isset($_GET['search-type']) ? sanitize_text_field($_GET['search-type']) : '';
 
         if ($posttype) {
-            // Allow only specific values for security (optional but recommended)
-            $allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
-            if (in_array($posttype, $allowed_post_types)) {
+            if (in_array($posttype, $final_post_types)) {
                 $query->set('post_type', [$posttype]);
             } else {
-                // Fallback if invalid type is passed
-                $query->set('post_type', ['staff', 'event', 'post', 'news', 'page']);
+                $query->set('post_type', $final_post_types); // fallback
             }
         } else {
-            // Default to all allowed post types
-            $query->set('post_type', ['staff', 'event', 'post', 'news', 'page']);
+            $query->set('post_type', $final_post_types); // default
         }
     }
 }
