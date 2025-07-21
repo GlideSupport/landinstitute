@@ -825,6 +825,25 @@ initLearnPaginationListeners();
 // search ajax code start
 
 
+document.addEventListener("DOMContentLoaded", function () {
+	const urlParams = new URLSearchParams(window.location.search);
+	const selectedType = urlParams.get("search-type") || "all";
+
+	document.querySelectorAll("#search-type li").forEach((li) => {
+		const aTag = li.querySelector("a[data-post]");
+		if (aTag) {
+			const postType = aTag.getAttribute("data-post");
+			if (postType === selectedType) {
+				li.classList.add("active");
+				const label = postType === "all" ? "everything" : aTag.textContent.trim();
+				document.querySelector("button#search-type").innerHTML = "Search: " + label;
+			} else {
+				li.classList.remove("active");
+			}
+		}
+	});
+});
+
 var searcheve =""; 
 document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) => {
 	menu.querySelectorAll("a[data-post]").forEach((link) => {
@@ -840,9 +859,10 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 			// Set selected term
 			if (taxonomy === "search-type") {
 				searcheve = term;
-				document.querySelector("button#search-type").innerHTML =
-    "Search: " + link.textContent.trim();
-			} 
+
+				const label = term === "all" ? "everything" : link.textContent.trim();
+				document.querySelector("button#search-type").innerHTML = "Search: " + label;
+			}
 
 			// Reset to page 1
 			currentPage = 1;

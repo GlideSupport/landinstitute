@@ -73,7 +73,7 @@ set_query_var( 'paged_var', $paged );
 	</section>
 <div class="search-list-filter" >
 			<ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type" >
-				<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">All types</a></li>
+				<li class="active" style="animation-delay: 0s;"><a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">everything</a></li>
 				<li style="animation-delay: 0.1s;">
 					<a href="javascript:void(0)" data-post="page" data-taxonomy="search-type">Page</a>
 				</li>
