@@ -119,6 +119,18 @@ body form[id*=vcrm] .v_fw .v_fr+.v_fr:last-child {
 	margin-top: 0;
 }
 
+body form[id*=vcrm] .v_fw .v_fr .v_fc {
+	@media(max-width: 767px) {
+		margin: 0 0 30px;
+	}
+
+	&:last-child {
+		@media(max-width: 767px) {
+			margin-bottom: 0;
+		}
+	}
+}
+
 body form .v_fw .v_fc.v_fc__1 .v_ig.v_ig__tx .v_iw {
 	margin-top: 44px;
 	overflow: hidden;
