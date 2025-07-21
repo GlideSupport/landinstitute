@@ -1044,7 +1044,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
+     //   $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
     }
 
     // Learn Topic
@@ -1059,7 +1059,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
+       // $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
     }
 
     // Learn Crop
@@ -1074,7 +1074,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
+       // $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
     }
 
     // Learn Audience
@@ -1089,7 +1089,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
+       // $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
     }
 
     // Hardcoded exclusions
