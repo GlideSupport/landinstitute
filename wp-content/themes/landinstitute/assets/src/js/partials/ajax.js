@@ -632,7 +632,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				learntype = term;
 				const typeBtn = document.querySelector("button#type-view");
 				if (typeBtn) {
-					typeBtn.innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+					typeBtn.innerHTML = "Type: " + (term === "all" ? "Type" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
 			} else if (taxonomy === "learn-topic") {
 				learntopic = term;
