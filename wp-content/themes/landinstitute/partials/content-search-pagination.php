@@ -100,22 +100,38 @@ $base_url     = trailingslashit( $base_url );
     </div>
 
     <!-- Mobile Popup -->
-    <div id="paginationPopup" class="pagination-popup">
-        <div class="popup-body">
-            <div id="popupGrid" class="popup-grid">
-                <?php for ( $i = 1; $i <= $total_pages; $i++ ) : 
-                    $url = ( $i === 1 ) ? $base_url : $base_url . 'page/' . $i . '/';
-                    ?>
-                    <?php if ( $i == $current_page ) : ?>
-                        <button class="page-btn active"><?php echo esc_html( $i ); ?></button>
-                    <?php else : ?>
-                        <a href="<?php echo esc_url( $url ); ?>" data-page="<?php echo esc_attr( $i ); ?>" class="page-btn"><?php echo esc_html( $i ); ?></a>
-                    <?php endif; ?>
-                <?php endfor; ?>
-            </div>
-            <button id="popupPrev" class="arrow-btn"></button>
-            <button id="popupNext" class="arrow-btn"></button>
+<div id="paginationPopup" class="pagination-popup">
+    <div class="popup-body">
+        <div id="popupGrid" class="popup-grid">
+            <?php for ( $i = 1; $i <= $total_pages; $i++ ) :
+                $url = ( $i === 1 ) ? $base_url : trailingslashit($base_url . 'page/' . $i);
+
+                // Determine rel value
+                $rel = '';
+                if ( $i === $current_page - 1 ) {
+                    $rel = 'prev';
+                } elseif ( $i === $current_page + 1 ) {
+                    $rel = 'next';
+                }
+            ?>
+                <?php if ( $i == $current_page ) : ?>
+                    <button class="page-btn active"><?php echo esc_html( $i ); ?></button>
+                <?php else : ?>
+                    <a href="<?php echo esc_url( $url ); ?>"
+                       data-page="<?php echo esc_attr( $i ); ?>"
+                       class="page-btn"
+                       <?php if ( $rel ) echo 'rel="' . esc_attr( $rel ) . '"'; ?>>
+                        <?php echo esc_html( $i ); ?>
+                    </a>
+                <?php endif; ?>
+            <?php endfor; ?>
         </div>
+
+        <button id="popupPrev" class="arrow-btn"></button>
+        <button id="popupNext" class="arrow-btn"></button>
     </div>
+</div>
+
+
     <?php endif; ?>
 </div>
