@@ -241,10 +241,20 @@
         bottom: 0;
         left: calc(-50vw + 50% + 1px);
 
+        @media(min-width: 1441px) {
+            left: calc(-50vw + 50% + 0px);
+            width: calc(100vw + clamp(2px, calc(0.125rem + ((1vw - 14.41px) * 8.3682)), 22px));
+        }
+
+        @media(min-width: 1680px) {
+            left: calc(-50vw + 50% + 0px);
+            width: calc(100vw + clamp(2px, calc(1.375rem + ((1vw - 16.8px) * -8.3333)), 22px));
+        }
+
         @media(min-width: 1921px) {
-            margin-left: 0;
-            width: 100%;
             left: 0;
+            width: calc(50% + 40px);
+            margin-left: 0;
         }
 
         @media(max-width: 1350px) {
@@ -261,6 +271,10 @@
         .site-btn {
             width: 50%;
             border-right: 0px;
+
+            @media(min-width: 1921px) {
+                width: 100%;
+            }
 
             @media(max-width: 1920px) {
                 border-left: 0px;
@@ -301,6 +315,12 @@
     }
 
     &.variation-static {
+        .block-ctn-btn {
+            @media(min-width: 1441px) {
+                width: calc(100vw + clamp(0px, calc(0rem + ((1vw - 14.41px) * 9.6234)), 23px));
+            }
+        }
+
         .cta-slider-lft-block {
             .cl-left {
                 @media(max-width: 991px) {
@@ -342,6 +362,14 @@
         padding-top: 0;
         padding-bottom: 65px;
 
+        @media(min-width: 1441px) {
+            flex: 1 0 0;
+        }
+
+        @media(min-width: 1921px) {
+            flex: 1 0 0;
+        }
+
         @media(max-width: 1350px) {
             flex: 1 0 0;
             margin-left: calc(-50vw + 50%);
@@ -378,6 +406,11 @@
         @media(min-width: 1921px) {
             margin-right: 0;
             width: 100%;
+        }
+
+        @media(min-width: 1441px) {
+            position: relative;
+            z-index: 2;
         }
 
         @media(max-width: 991px) {

@@ -90,6 +90,10 @@
                 padding: clamp(64px, calc(4rem + ((1vw - 7.68px) * 17.354)), 165px) clamp(0px, calc(0rem + ((1vw - 9.92px) * 22.3464)), 80px) clamp(38px, calc(2.375rem + ((1vw - 7.68px) * 4.4674)), 64px) 0;
                 position: relative;
 
+                @media(min-width: 1441px) {
+                    padding-right: 105px;
+                }
+
                 @media(max-width: 991px) {
                     border-right: 0px;
                     grid-column: span 12;
@@ -498,9 +502,19 @@
                     flex: clamp(375px, calc(23.4375rem + ((1vw - 7.68px) * 51.3393)), 720px) 0 0;
                     padding-right: 80px;
 
+                    @media(min-width: 1441px) {
+                        flex: 1 0 0;
+                    }
+
                     @media(max-width: 991px) {
                         flex: 100% 0 0;
                         padding-right: 24px;
+                    }
+
+                    .hero-content {
+                        @media(min-width: 1441px) {
+                            max-width: 100%;
+                        }
                     }
                 }
 
@@ -698,6 +712,10 @@
                 padding: clamp(64px, calc(4rem + ((1vw - 7.68px) * 17.354)), 165px) clamp(0px, calc(0rem + ((1vw - 9.92px) * 22.3464)), 80px) clamp(56px, calc(3.5rem + ((1vw - 7.68px) * 6.8729)), 96px) 0;
                 position: relative;
                 z-index: 1;
+
+                @media(min-width: 1441px) {
+                    padding-right: 105px;
+                }
 
                 @media(max-width: 991px) {
                     border-right: 0px;

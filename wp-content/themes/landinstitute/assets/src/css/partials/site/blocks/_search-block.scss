@@ -32,6 +32,10 @@
                         max-width: 964px;
                         padding: 0;
 
+                        @media(min-width: 1580px) {
+                            max-width: 1440px;
+                        }
+
                         @media(max-width: 992px) {
                             padding: 0 24px;
                             max-width: 100%;

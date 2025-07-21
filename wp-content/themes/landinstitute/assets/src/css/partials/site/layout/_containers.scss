@@ -13,9 +13,9 @@
 
 .wrapper {
 	margin: 0 auto;
-	max-width: 1340px;
-	padding-left: 30px;
-	padding-right: 30px;
+	max-width: 100%;
+	padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+	padding-right: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
 	width: 100%;
 
 	@media(max-width: 1220px) {
@@ -27,9 +27,9 @@
 .container-1280 {
 	.wrapper {
 		margin: 0 auto;
-		max-width: 1340px;
-		padding-left: 30px;
-		padding-right: 30px;
+		max-width: 100%;
+		padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+		padding-right: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
 		width: 100%;
 
 		@media(max-width: 1220px) {
@@ -42,9 +42,9 @@
 .container-1120 {
 	.wrapper {
 		margin: 0 auto;
-		max-width: 1180px;
-		padding-left: 30px;
-		padding-right: 30px;
+		max-width: 100%;
+		padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+		padding-right: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
 		width: 100%;
 
 		@media(max-width: 1220px) {
@@ -62,6 +62,10 @@
 		padding-right: 30px;
 		width: 100%;
 
+		@media(min-width: 1580px) {
+			max-width: 1440px;
+		}
+
 		@media(max-width: 1220px) {
 			padding-left: 24px;
 			padding-right: 24px;
@@ -77,6 +81,10 @@
 		padding-right: 30px;
 		width: 100%;
 
+		@media(min-width: 1580px) {
+			max-width: 1440px;
+		}
+
 		@media(max-width: 1220px) {
 			padding-left: 24px;
 			padding-right: 24px;
@@ -91,6 +99,10 @@
 		padding-left: 30px;
 		padding-right: 30px;
 		width: 100%;
+
+		@media(min-width: 1580px) {
+			max-width: 1440px;
+		}
 
 		@media(max-width: 1220px) {
 			padding-left: 24px;

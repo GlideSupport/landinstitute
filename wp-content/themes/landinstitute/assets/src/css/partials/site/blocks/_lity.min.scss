@@ -88,6 +88,10 @@
     white-space: normal;
     z-index: 9992;
     width: 100%;
+    margin: 0 auto;
+    max-width: 1024px;
+    padding-left: 0;
+    padding-right: 0;
 
     outline: none !important
 }
@@ -127,6 +131,7 @@
     top: 0;
     width: auto;
     z-index: -1;
+    display: none;
 }
 
 .lity-close {

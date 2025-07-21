@@ -282,6 +282,10 @@
     .cl-left {
         flex: clamp(410px, calc(25.625rem + ((1vw - 9.91px) * 42.0613)), 561px) 0 0;
 
+        @media(min-width: 1441px) {
+            flex: clamp(520px, calc(32.5rem + ((1vw - 14.41px) * 37.5783)), 700px) 0 0;
+        }
+
         @media(max-width: 991px) {
             flex: 100% 0 0;
         }
@@ -481,6 +485,10 @@
                 margin-left: clamp(-160px, calc(-2.5rem + ((1vw - 9.92px) * -33.5196)), -40px);
                 margin-right: calc((100vw - 1280px) / -2);
 
+                @media(min-width: 1441px) {
+                    margin-right: clamp(-108px, -80px - 28 * (100vw - 1440px) / 240, -20px);
+                }
+
                 @media(max-width: 1340px) {
                     margin-right: -30px;
                 }
@@ -632,6 +640,10 @@
                 margin-top: auto;
                 width: 50vw;
 
+                @media(min-width: 1441px) {
+                    margin-left: clamp(-108px, calc(-80px - 28 * ((100vw - 1440px) / 240)), -20px);
+                }
+
                 @media(max-width: 991px) {
                     flex: 1 0 0;
                     margin-left: -24px;
@@ -778,6 +790,10 @@
         flex-direction: column;
         flex-wrap: wrap;
         max-width: 560px;
+
+        @media(min-width: 1441px) {
+            max-width: 100%;
+        }
 
         @media(max-width: 991px) {
             align-items: inherit;

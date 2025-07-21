@@ -17,6 +17,10 @@
         padding-left: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
         position: relative;
 
+        @media(min-width: 1441px) {
+            padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+        }
+
         @media (max-width: 991px) {
             border-bottom: 2px solid var(--gb_base_brown);
             border-right: none;

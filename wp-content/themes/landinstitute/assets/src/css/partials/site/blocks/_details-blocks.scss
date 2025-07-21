@@ -1,6 +1,10 @@
 .details-block {
     max-width: 740px;
     margin: 0 auto;
+
+    @media(min-width: 1441px) {
+        max-width: 100%;
+    }
 }
 
 .single-audio-video-embed {

@@ -299,6 +299,11 @@
         gap: clamp(80px, calc(5rem + ((1vw - 7.68px) * 13.7457)), 160px);
         grid-template-columns: clamp(375px, calc(23.4375rem + ((1vw - 9.92px) * 29.3296)), 480px) 1fr;
 
+        @media(min-width: 1441px) {
+            grid-template-columns: clamp(560px, 35rem + (1vw - 16.8px) * 33.3333, 640px) 1fr;
+            gap: clamp(186px, 11.625rem + (1vw - 16.8px) * 12.5, 216px);
+        }
+
 
         @media(max-width: 991px) {
             grid-template-columns: 1fr;

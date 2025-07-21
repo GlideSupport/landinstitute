@@ -78,5 +78,9 @@
 .staff-list-block {
     .staff-list-row {
         max-width: 880px;
+
+        @media(min-width: 1580px) {
+            max-width: 100%;
+        }
     }
 }
