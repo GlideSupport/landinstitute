@@ -629,14 +629,24 @@ window.addEventListener("DOMContentLoaded", () => {
 				// Set selected term
 				if (taxonomy === "learn-type") {
 					learntype = term;
-					document.querySelector("button#type-view").innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
+					const typeBtn = document.querySelector("button#type-view");
+					if (typeBtn) {
+						typeBtn.innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
+					}
 				} else if (taxonomy === "learn-topic") {
 					learntopic = term;
-					document.querySelector("button#topic-view").innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
-				}else if (taxonomy === "learn-crops") {
+					const topicBtn = document.querySelector("button#topic-view");
+					if (topicBtn) {
+						topicBtn.innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
+					}
+				} else if (taxonomy === "learn-crops") {
 					learncrops = term;
-					document.querySelector("button#category-view").innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
+					const cropBtn = document.querySelector("button#category-view");
+					if (cropBtn) {
+						cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
+					}
 				}
+
 
 				// Reset to page 1
 				currentPage = 1;
@@ -655,13 +665,6 @@ window.addEventListener("DOMContentLoaded", () => {
 	function fetchlearn(paged = 1, updateURL = true) {
 		currentPage = paged;
 
-		console.log(learntype+"learntype");
-		console.log(learntopic+"learntopic");
-
-		console.log(learncrops+"learncrop");
-
-
-
 
 		if (learn_append_list) {
 			const loadingElem = document.createElement("div");
@@ -672,16 +675,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
 		if (updateURL) {
 			const url = new URL(window.location);
-			if(learntype){
-				url.searchParams.set("learn-type", learntype || "");
+		if (learntype === "all") {
+				url.searchParams.delete("learn-type");
+			} else if (learntype) {
+				url.searchParams.set("learn-type", learntype);
+			}
 
+			if (learntopic === "all") {
+				url.searchParams.delete("learn-topic");
+			} else if (learntopic) {
+				url.searchParams.set("learn-topic", learntopic);
 			}
-			if(learntopic){
-				url.searchParams.set("learn-topic", learntopic || "");
+
+			if (learncrops === "all") {
+				url.searchParams.delete("learn-crop");
+			} else if (learncrops) {
+				url.searchParams.set("learn-crop", learncrops);
 			}
-			if(learncrops){
-				url.searchParams.set("learn-crop", learncrops || "");
-			}
+
 		//	url.searchParams.set("page", paged);
 			window.history.pushState({}, "", url);
 		}
