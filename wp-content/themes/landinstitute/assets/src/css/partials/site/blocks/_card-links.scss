@@ -653,7 +653,7 @@ section:has(.text-featured-block) {
         grid-template-columns: repeat(3, 1fr);
         margin-bottom: 0;
         position: relative;
-        z-index: 9;
+        z-index: 2;
 
         @media (min-width: 992px) {
             display: none;
@@ -691,6 +691,7 @@ section:has(.text-featured-block) {
 
             @media(max-width: 991px) {
                 border-right: 2px solid var(--gb_base_brown);
+                text-align: center;
             }
         }
     }
