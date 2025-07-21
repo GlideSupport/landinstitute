@@ -38,6 +38,12 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 		'taxonomy'   => 'learn-crop',
 		'hide_empty' => true,
 	]);
+
+	$audience_terms_main = get_terms([
+		'taxonomy'   => 'learn-audience',
+		'hide_empty' => true,
+	]);
+
 	?>
 
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu">
@@ -69,11 +75,15 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 						$current_learntype = isset($_GET['learn-type']) ? sanitize_text_field($_GET['learn-type']) : 'all';
 						$current_learn_topic_slug = isset($_GET['learn-topic']) ? sanitize_text_field($_GET['learn-topic']) : 'all';
 						$current_learn_crop_slug = isset($_GET['learn-crop']) ? sanitize_text_field($_GET['learn-crop']) : 'all';		
+						$current_learn_audience_slug = isset($_GET['learn-audience']) ? sanitize_text_field($_GET['learn-audience']) : 'all';		
+
 
 						// Set default display values
 						$current_type_name  = 'All types';
 						$current_topic_name = 'All topics';
 						$current_crop_name = 'All Crops';
+						$current_audience_name = 'All Audience';
+
 
 						// Try to get the term objects if slugs are not "all"
 						if ($current_learntype !== 'all') {
@@ -96,6 +106,15 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								$current_crop_name = $crop_terms->name;
 							}
 						}
+						
+
+						if ($current_learn_audience_slug !== 'all') {
+							$learn_audience_terms = get_term_by('slug', $current_learn_audience_slug, 'learn-crop'); // 'topic' is your taxonomy name
+							if ($learn_audience_terms && !is_wp_error($learn_audience_terms)) {
+								$current_audience_name = $learn_audience_terms->name;
+							}
+						}
+
 
 
 					?>
@@ -129,8 +148,8 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								<?php } ?>
 								<?php if($bst_fields['li_learn_filters']['enable_learn_audience']){ ?>
 									<div class="tab-dropdown tab-dropdown-filter">
-									<button class="dropdown-toggle" id="category-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="learn-crops">Crop: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
+									<button class="dropdown-toggle" id="audience-view" aria-expanded="false"
+										aria-haspopup="true" aria-controls="audience-view">Audience: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 								<?php } ?>
@@ -235,6 +254,13 @@ $excluded_learn_crop_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_learn
 $crop_terms_main = array_filter($crop_terms_main, fn($term) => !in_array($term->slug, $excluded_learn_crop_slugs));
 
 
+// Learn Audience
+$taxonomy_learn_audience = 'learn-audience';
+$audience_terms_main = get_terms(['taxonomy' => $taxonomy_learn_audience, 'hide_empty' => true]);
+$excluded_learn_audience_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_learn_audience);
+$audience_terms_main = array_filter($audience_terms_main, fn($term) => !in_array($term->slug, $excluded_learn_audience_slugs));
+
+
 
 	?>
 	<div class="learn-list-filter">
@@ -276,6 +302,21 @@ $crop_terms_main = array_filter($crop_terms_main, fn($term) => !in_array($term->
 				<?php endforeach; ?>
 			<?php endif; ?>
 		</ul>
+
+		<ul id="learn-audience" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
+			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-audience">All Audiences</a></li>
+			<?php if (!empty($audience_terms_main)) : ?>
+				<?php foreach ($audience_terms_main as $audience_term) : ?>
+					<li>
+						<a href="javascript:void(0)" data-term="<?php echo esc_attr($audience_term->slug); ?>" data-taxonomy="learn-audience">
+							<?php echo esc_html($audience_term->name); ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</ul>
+
+
 
 	</div>
 </div>
