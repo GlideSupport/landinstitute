@@ -459,16 +459,34 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 		if (updateURL) {
 			const url = new URL(window.location);
 			if(currentnewsType){
-				url.searchParams.set("type", currentnewsType || "");
+				if (currentnewsType === "all") {
+					url.searchParams.delete("type");
+				} else {
+					url.searchParams.set("type", currentnewsType || "");
+				}
 			}
 			if(currentnewstopic){
-				url.searchParams.set("topic", currentnewstopic || "");
+
+				if (currentnewstopic === "all") {
+					url.searchParams.delete("topic");
+				} else {
+					url.searchParams.set("topic", currentnewstopic || "");
+				}
+
 			}
 			if(currentnewsaudience){
+				if (currentnewsaudience === "all") {
+					url.searchParams.delete("audience");
+				} else {
 				url.searchParams.set("audience", currentnewsaudience || "");
+				}
 			}
 			if(currentnewscrop){
+				if (currentnewscrop === "all") {
+					url.searchParams.delete("crop");
+				} else {
 				url.searchParams.set("crop", currentnewscrop || "");
+				}
 			}
 		//	url.searchParams.set("page", paged);
 			window.history.pushState({}, "", url);
