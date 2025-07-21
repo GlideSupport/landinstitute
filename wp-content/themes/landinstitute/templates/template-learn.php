@@ -321,7 +321,7 @@ $audience_terms_main = array_filter($audience_terms_main, fn($term) => !in_array
 			<?php endif; ?>
 		</ul>
 
-		<ul id="learn-audience" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
+		<ul id="audience-view" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
 			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-audience">All Audiences</a></li>
 			<?php if (!empty($audience_terms_main)) : ?>
 				<?php foreach ($audience_terms_main as $audience_term) : ?>
