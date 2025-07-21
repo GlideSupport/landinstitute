@@ -841,7 +841,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 			if (taxonomy === "search-type") {
 				searcheve = term;
 				document.querySelector("button#search-type").innerHTML =
-					"Search: " + (term === "everything" ? "everything" : term.replace(/-/g, " "));
+    "Search: " + link.textContent.trim();
 			} 
 
 			// Reset to page 1
