@@ -1402,10 +1402,24 @@ function get_taxonomy_exclusion_query($taxonomy_slug) {
 }
 
 function limit_search_to_specific_post_types($query) {
-    // Check if it's the main query and a search query on the frontend
     if ($query->is_main_query() && $query->is_search() && !is_admin()) {
-        // Restrict to only specific post types, e.g., 'post' and 'jobs'
-        $query->set('post_type', ['staff', 'event','post','news','page']);
+
+        // Sanitize user input
+        $posttype = isset($_GET['search-type']) ? sanitize_text_field($_GET['search-type']) : '';
+
+        if ($posttype) {
+            // Allow only specific values for security (optional but recommended)
+            $allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+            if (in_array($posttype, $allowed_post_types)) {
+                $query->set('post_type', [$posttype]);
+            } else {
+                // Fallback if invalid type is passed
+                $query->set('post_type', ['staff', 'event', 'post', 'news', 'page']);
+            }
+        } else {
+            // Default to all allowed post types
+            $query->set('post_type', ['staff', 'event', 'post', 'news', 'page']);
+        }
     }
 }
 add_action('pre_get_posts', 'limit_search_to_specific_post_types');
