@@ -119,7 +119,9 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 
 					?>
 						<div class="filter">
+
 							<div class="filter-title ui-18-16-bold">Filter:</div>
+							<div class="md-mobile-filter-main">
 							<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 							<div class="filter-dropdown-row">
 								<?php if($bst_fields['li_learn_filters']['enable_learn_type']){ ?>
@@ -154,6 +156,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								</div>
 								<?php } ?>
 							</div>
+								</div>
 						</div>
 
 						<!-- PHP Dynamic Loop Start -->
