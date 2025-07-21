@@ -141,7 +141,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 
 								<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="category-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="category-view">Crop: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
+										aria-haspopup="true" aria-controls="learn-crops">Crop: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 
@@ -290,7 +290,7 @@ $audience_terms_main = array_filter($audience_terms_main, fn($term) => !in_array
 			<?php endif; ?>
 		</ul>
 
-		<ul id="category-view" class="dropdown-menu" role="menu" aria-labelledby="category-view">
+		<ul id="learn-crops" class="dropdown-menu" role="menu" aria-labelledby="category-view">
 			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crop">All Crops</a></li>
 			<?php if (!empty($crop_terms_main)) : ?>
 				<?php foreach ($crop_terms_main as $crop_term) : ?>
