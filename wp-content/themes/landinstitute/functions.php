@@ -1027,10 +1027,10 @@ function handle_ajax_news_learn() {
 
     $filter_setting = get_field('li_learn_filters', 131);
 
-    $enable_type     = $enable_learn_filter['enable_learn_type'];
-    $enable_crop     = $enable_learn_filter['enable_learn_crop'];
-    $enable_audience = $enable_learn_filter['enable_learn_audience'];
-    $enable_topic    = $enable_learn_filter['enable_learn_topic'];
+    $enable_type     = $filter_setting['enable_learn_type'];
+    $enable_crop     = $filter_setting['enable_learn_crop'];
+    $enable_audience = $filter_setting['enable_learn_audience'];
+    $enable_topic    = $filter_setting['enable_learn_topic'];
 
     // Learn Type
     if (!empty($enable_type)) {
@@ -1044,7 +1044,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-     //   $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
+        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
     }
 
     // Learn Topic
@@ -1059,7 +1059,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-       // $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
+    $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
     }
 
     // Learn Crop
@@ -1074,7 +1074,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-       // $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
+       $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
     }
 
     // Learn Audience
@@ -1089,7 +1089,7 @@ function handle_ajax_news_learn() {
             ];
         }
     } else {
-       // $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
+       $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
     }
 
     // Hardcoded exclusions
@@ -1117,7 +1117,7 @@ function handle_ajax_news_learn() {
         $args['tax_query'] = $tax_query;
     }
 
-	print_r($args);
+	//print_r($args);
 
     $query = new WP_Query($args);
 
