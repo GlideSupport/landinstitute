@@ -1093,15 +1093,17 @@ function handle_ajax_news_learn() {
     }
 
     // Hardcoded exclusions
-    $exclude_taxonomies = ['learn-crop', 'learn-topic'];
+   // $exclude_taxonomies = ['learn-crop', 'learn-topic'];
 
-    foreach ($exclude_taxonomies as $taxonomy) {
-        $exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
+   if(!empty($exclude_taxonomies)){
+		foreach ($exclude_taxonomies as $taxonomy) {
+			$exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
 
-        if (!empty($exclude_query)) {
-            $tax_query[] = $exclude_query;
-        }
-    }
+			if (!empty($exclude_query)) {
+				$tax_query[] = $exclude_query;
+			}
+		}
+	}
 
     // Query args
     $args = [
