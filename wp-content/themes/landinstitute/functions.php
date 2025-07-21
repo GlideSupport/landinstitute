@@ -1115,7 +1115,7 @@ function search_filter_Callback() {
 
 
     $args = [
-       	'post_type'      => ['post', 'page','news','event','donor','staff','testimonial'],
+       	'post_type'      => ['post','event','page','news','staff'],
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
@@ -1401,3 +1401,11 @@ function get_taxonomy_exclusion_query($taxonomy_slug) {
     ]];
 }
 
+function limit_search_to_specific_post_types($query) {
+    // Check if it's the main query and a search query on the frontend
+    if ($query->is_main_query() && $query->is_search() && !is_admin()) {
+        // Restrict to only specific post types, e.g., 'post' and 'jobs'
+        $query->set('post_type', ['staff', 'event','post','news','page']);
+    }
+}
+add_action('pre_get_posts', 'limit_search_to_specific_post_types');
