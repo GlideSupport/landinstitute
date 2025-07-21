@@ -825,24 +825,7 @@ initLearnPaginationListeners();
 // search ajax code start
 
 
-document.addEventListener("DOMContentLoaded", function () {
-	const urlParams = new URLSearchParams(window.location.search);
-	const selectedType = urlParams.get("search-type") || "all";
 
-	document.querySelectorAll("#search-type li").forEach((li) => {
-		const aTag = li.querySelector("a[data-post]");
-		if (aTag) {
-			const postType = aTag.getAttribute("data-post");
-			if (postType === selectedType) {
-				li.classList.add("active");
-				const label = postType === "all" ? "everything" : aTag.textContent.trim();
-				document.querySelector("button#search-type").innerHTML = "Search: " + label;
-			} else {
-				li.classList.remove("active");
-			}
-		}
-	});
-});
 
 var searcheve =""; 
 document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) => {
@@ -870,6 +853,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 		});
 	});
 });
+
 
 	const search_append_list = document.querySelector(".append-search-result"); // ✅ updated selector
 	const search_pagination = document.querySelector(".append-search-result-pagination");
@@ -1060,4 +1044,23 @@ document.addEventListener('click', function (e) {
 	if (disabledLink) {
 		e.preventDefault();
 	}
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+	const urlParams = new URLSearchParams(window.location.search);
+	const selectedType = urlParams.get("search-type") || "all";
+
+	document.querySelectorAll("#search-type li").forEach((li) => {
+		const aTag = li.querySelector("a[data-post]");
+		if (aTag) {
+			const postType = aTag.getAttribute("data-post");
+			if (postType === selectedType) {
+				li.classList.add("active");
+				const label = postType === "all" ? "everything" : aTag.textContent.trim();
+				document.querySelector("button#search-type").innerHTML = "Search: " + label;
+			} else {
+				li.classList.remove("active");
+			}
+		}
+	});
 });
