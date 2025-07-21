@@ -868,7 +868,7 @@ section:has(.text-featured-block) {
             display: none;
         }
 
-        .active {
+        &.active {
             &:after {
                 transform: rotate(45deg);
             }
