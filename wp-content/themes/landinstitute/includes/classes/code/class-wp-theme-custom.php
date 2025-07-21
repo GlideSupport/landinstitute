@@ -39,6 +39,27 @@ class WP_Theme_Custom extends \Boilerplate
 	}
 
 	/**
+	 * Get Video Thumb by ID
+	 */
+
+	public static function getVimeoThumbnail($videoId) {
+		$apiUrl = "https://vimeo.com/api/v2/video/$videoId.json";
+
+		// Fetch the data
+		$response = file_get_contents($apiUrl);
+
+		if ($response !== false) {
+			// Decode the JSON response
+			$videoData = json_decode($response, true);
+
+			if (!empty($videoData)) {
+				// Return the thumbnail URL
+				return $videoData[0]['thumbnail_large']; // Choose 'thumbnail_small', 'medium', or 'large'
+			}
+		}
+		return null;
+	}
+	/**
 	 * Helper function that builds block title from ACF Block title object
 	 *
 	 * @param object $object is a acf block title object.
