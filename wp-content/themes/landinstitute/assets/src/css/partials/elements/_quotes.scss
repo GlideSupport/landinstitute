@@ -197,6 +197,10 @@ cite {
 			max-width: 684px;
 			font-size: clamp(20px, calc(1.25rem + ((1vw - 7.68px) * 0.3436)), 22px);
 
+			@media(min-width: 1441px) {
+				max-width: 100%;
+			}
+
 			p {
 				@extend .heading-4;
 				margin-bottom: 0;
