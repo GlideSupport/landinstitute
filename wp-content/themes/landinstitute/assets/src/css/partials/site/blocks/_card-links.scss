@@ -804,6 +804,7 @@ section:has(.text-featured-block) {
                     visibility: visible;
                     width: 100%;
                     background: var(--gb_base_cream);
+                    display: block;
                 }
 
                 .tab-dropdown {
