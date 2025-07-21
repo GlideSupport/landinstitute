@@ -23,6 +23,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 ?>
 <div id="page-section" class="page-section">
 <?php
+
 	$learn_terms = get_terms([
 		'taxonomy'   => 'learn-type',
 		'hide_empty' => true,
@@ -212,10 +213,34 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 			</div>
 		</div>
 	</section>
+
+	<?php
+	
+	// Learn Type
+$taxonomy_learn_type = 'learn-type';
+$learn_terms = get_terms(['taxonomy' => $taxonomy_learn_type, 'hide_empty' => true]);
+$excluded_learn_type_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_learn_type);
+$learn_terms = array_filter($learn_terms, fn($term) => !in_array($term->slug, $excluded_learn_type_slugs));
+
+// Learn Topic
+$taxonomy_learn_topic = 'learn-topic';
+$topic_terms = get_terms(['taxonomy' => $taxonomy_learn_topic, 'hide_empty' => true]);
+$excluded_learn_topic_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_learn_topic);
+$topic_terms = array_filter($topic_terms, fn($term) => !in_array($term->slug, $excluded_learn_topic_slugs));
+
+// Learn Crop
+$taxonomy_learn_crop = 'learn-crop';
+$crop_terms_main = get_terms(['taxonomy' => $taxonomy_learn_crop, 'hide_empty' => true]);
+$excluded_learn_crop_slugs = get_excluded_term_slugs_by_taxonomy($taxonomy_learn_crop);
+$crop_terms_main = array_filter($crop_terms_main, fn($term) => !in_array($term->slug, $excluded_learn_crop_slugs));
+
+
+
+	?>
 	<div class="learn-list-filter">
 		<ul id="learn-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
 			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-type">All types</a></li>
-			<?php if (!empty($learn_terms) && !is_wp_error($learn_terms)) : ?>
+			<?php if (!empty($learn_terms)) : ?>
 				<?php foreach ($learn_terms as $term) : ?>
 					<li>
 						<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="learn-type">
@@ -225,9 +250,10 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 				<?php endforeach; ?>
 			<?php endif; ?>
 		</ul>
+
 		<ul id="learn-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
 			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-topic">All Topics</a></li>
-			<?php if (!empty($topic_terms) && !is_wp_error($topic_terms)) : ?>
+			<?php if (!empty($topic_terms)) : ?>
 				<?php foreach ($topic_terms as $topic_term) : ?>
 					<li>
 						<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="learn-topic">
@@ -237,9 +263,10 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 				<?php endforeach; ?>
 			<?php endif; ?>
 		</ul>
-		<ul id="learn-crops" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
-			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crops">All Crops</a></li>
-			<?php if (!empty($crop_terms_main) && !is_wp_error($crop_terms_main)) : ?>
+
+		<ul id="learn-crop" class="dropdown-menu" role="menu" aria-labelledby="category-view">
+			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-crop">All Crops</a></li>
+			<?php if (!empty($crop_terms_main)) : ?>
 				<?php foreach ($crop_terms_main as $crop_term) : ?>
 					<li>
 						<a href="javascript:void(0)" data-term="<?php echo esc_attr($crop_term->slug); ?>" data-taxonomy="learn-crop">
@@ -249,6 +276,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 				<?php endforeach; ?>
 			<?php endif; ?>
 		</ul>
+
 	</div>
 </div>
 <?php
