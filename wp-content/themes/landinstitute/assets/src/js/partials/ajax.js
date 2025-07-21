@@ -599,7 +599,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	//console
 	// Set initial button labels and active states
 	if (learntype) {
-		document.querySelector("button#type-view").innerHTML = "Post type: " + formatLabel(learntype, "Post type");
+		document.querySelector("button#type-view").innerHTML = "Type: " + formatLabel(learntype, "Type");
 		document.querySelector(`#learn-type a[data-term="${learntype}"]`)?.closest("li")?.classList.add("active");
 	}
 	if (learntopic) {
