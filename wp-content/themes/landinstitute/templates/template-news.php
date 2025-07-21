@@ -230,7 +230,7 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						<?php } ?>
 						<?php if($bst_fields['li_news_filters']['enable_news_crop']){ ?>
 							<div class="tab-dropdown tab-dropdown-filter">
-								<button class="dropdown-toggle" id="types-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-crop">
+								<button class="dropdown-toggle" id="cops-view" aria-expanded="false" aria-haspopup="true" aria-controls="news-crop">
 									Crop type: <?= esc_html($current_crop_name) ?>
 									<div class="arrow-icon"></div>
 								</button>
@@ -366,7 +366,7 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
 
 
 <!-- News Crop Dropdown -->
-<ul id="news-crop" class="dropdown-menu" role="menu" aria-labelledby="crop-view">
+<ul id="news-crop" class="dropdown-menu" role="menu" aria-labelledby="cops-view">
     <li class="<?= $current_crop === 'all' ? 'active' : '' ?>">
         <a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">All Crops</a>
     </li>
