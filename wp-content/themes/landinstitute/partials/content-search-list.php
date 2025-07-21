@@ -6,7 +6,7 @@ if ( $custom_query->have_posts() ) :
 	while ( $custom_query->have_posts() ) : $custom_query->the_post();
 		?>
 		<div class="event-teaser-list-col">
-			<a href="<?php the_permalink(); ?>" class="event-teaser-list-card">
+			<a href="<?php the_permalink(); ?>" class="event-teaser-list-card" target="_blank">
 				<div class="event-teaser-list-content">
 					<div class="gl-s44"></div>
 					
