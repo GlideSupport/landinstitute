@@ -405,30 +405,31 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 			// Set selected term
 			if (taxonomy === "news-type") {
-					currentnewsType = term;
-					const typeBtn = document.querySelector("button#news-type");
-					if (typeBtn) {
-						typeBtn.innerHTML = "News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
-					}
-				} else if (taxonomy === "news-topic") {
-					currentnewstopic = term;
-					const topicBtn = document.querySelector("button#topic-view");
-					if (topicBtn) {
-						topicBtn.innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
-					}
-				} else if (taxonomy === "news-audience") {
-					currentnewsaudience = term;
-					const audienceBtn = document.querySelector("button#news-audience");
-					if (audienceBtn) {
-						audienceBtn.innerHTML = "Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " "));
-					}
-				} else if (taxonomy === "news-crop") {
-					currentnewscrop = term;
-					const cropBtn = document.querySelector("button#types-view");
-					if (cropBtn) {
-						cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
-					}
+				currentnewsType = term;
+				const typeBtn = document.querySelector("button#news-type");
+				if (typeBtn) {
+					typeBtn.innerHTML = "News type: " + (term === "all" ? "All types" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
+			} else if (taxonomy === "news-topic") {
+				currentnewstopic = term;
+				const topicBtn = document.querySelector("button#topic-view");
+				if (topicBtn) {
+					topicBtn.innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				}
+			} else if (taxonomy === "news-audience") {
+				currentnewsaudience = term;
+				const audienceBtn = document.querySelector("button#news-audience");
+				if (audienceBtn) {
+					audienceBtn.innerHTML = "Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				}
+			} else if (taxonomy === "news-crop") {
+				currentnewscrop = term;
+				const cropBtn = document.querySelector("button#types-view");
+				if (cropBtn) {
+					cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				}
+			}
+
 
 
 			// Reset to page 1
@@ -627,25 +628,26 @@ window.addEventListener("DOMContentLoaded", () => {
 				link.closest("li").classList.add("active");
 				///console.log(taxonomy+"taxo");
 				// Set selected term
-				if (taxonomy === "learn-type") {
-					learntype = term;
-					const typeBtn = document.querySelector("button#type-view");
-					if (typeBtn) {
-						typeBtn.innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " "));
-					}
-				} else if (taxonomy === "learn-topic") {
-					learntopic = term;
-					const topicBtn = document.querySelector("button#topic-view");
-					if (topicBtn) {
-						topicBtn.innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
-					}
-				} else if (taxonomy === "learn-crops") {
-					learncrops = term;
-					const cropBtn = document.querySelector("button#category-view");
-					if (cropBtn) {
-						cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
-					}
+			if (taxonomy === "learn-type") {
+				learntype = term;
+				const typeBtn = document.querySelector("button#type-view");
+				if (typeBtn) {
+					typeBtn.innerHTML = "Post type: " + (term === "all" ? "Post type" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
+			} else if (taxonomy === "learn-topic") {
+				learntopic = term;
+				const topicBtn = document.querySelector("button#topic-view");
+				if (topicBtn) {
+					topicBtn.innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				}
+			} else if (taxonomy === "learn-crops") {
+				learncrops = term;
+				const cropBtn = document.querySelector("button#category-view");
+				if (cropBtn) {
+					cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				}
+			}
+
 
 
 				// Reset to page 1
