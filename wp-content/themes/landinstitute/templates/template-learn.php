@@ -213,9 +213,9 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								$args['tax_query'] = $tax_query;
 							}
 
-							echo '<pre>';
-							print_r($args);
-							echo '</pre>';
+							// echo '<pre>';
+							// print_r($args);
+							// echo '</pre>';
 
 							$query = new WP_Query($args);
 
