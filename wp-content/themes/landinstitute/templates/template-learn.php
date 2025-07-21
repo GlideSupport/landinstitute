@@ -278,7 +278,7 @@ $audience_terms_main = array_filter($audience_terms_main, fn($term) => !in_array
 
 
 	?>
-	<div class="learn-list-filter">
+	<div class="learn-list-filter md-mobile-filter">
 		<ul id="learn-type" class="dropdown-menu" role="menu" aria-labelledby="types-view">
 			<li class="active"><a href="javascript:void(0)" data-term="all" data-taxonomy="learn-type">All types</a></li>
 			<?php if (!empty($learn_terms)) : ?>
