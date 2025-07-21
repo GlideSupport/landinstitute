@@ -940,6 +940,7 @@ function handle_ajax_news_filter() {
 
     $tax_query = [];
 
+	
     if (!empty($_POST['news_type']) && $_POST['news_type'] !== 'all') {
         $tax_query[] = [
             'taxonomy' => 'news-type',
@@ -1013,7 +1014,6 @@ function handle_ajax_news_filter() {
 
 
 
-
 add_action('wp_ajax_filter_learn', 'handle_ajax_news_learn');
 add_action('wp_ajax_nopriv_filter_learn', 'handle_ajax_news_learn');
 
@@ -1022,45 +1022,88 @@ function handle_ajax_news_learn() {
     // check_ajax_referer('news_ajax_nonce', 'nonce');
 
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-
     $tax_query = [];
+    $exclude_taxonomies = [];
 
-    if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'learn-type',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['post_type']),
-        ];
+    $filter_setting = get_field('li_learn_filters', 131);
+
+    $enable_type     = $enable_learn_filter['enable_learn_type'];
+    $enable_crop     = $enable_learn_filter['enable_learn_crop'];
+    $enable_audience = $enable_learn_filter['enable_learn_audience'];
+    $enable_topic    = $enable_learn_filter['enable_learn_topic'];
+
+    // Learn Type
+    if (!empty($enable_type)) {
+        $exclude_taxonomies[] = 'learn-type';
+
+        if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
+            $tax_query[] = [
+                'taxonomy' => 'learn-type',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field($_POST['post_type']),
+            ];
+        }
+    } else {
+        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
     }
 
-    if (!empty($_POST['learn_topic']) && $_POST['learn_topic'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'learn-topic',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['learn_topic']),
-        ];
+    // Learn Topic
+    if (!empty($enable_topic)) {
+        $exclude_taxonomies[] = 'learn-topic';
+
+        if (!empty($_POST['learn_topic']) && $_POST['learn_topic'] !== 'all') {
+            $tax_query[] = [
+                'taxonomy' => 'learn-topic',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field($_POST['learn_topic']),
+            ];
+        }
+    } else {
+        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
     }
 
-    if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'learn-crop',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['learn_crops']),
-        ];
+    // Learn Crop
+    if (!empty($enable_crop)) {
+        $exclude_taxonomies[] = 'learn-crop';
+
+        if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
+            $tax_query[] = [
+                'taxonomy' => 'learn-crop',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field($_POST['learn_crops']),
+            ];
+        }
+    } else {
+        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
     }
 
+    // Learn Audience
+    if (!empty($enable_audience)) {
+        $exclude_taxonomies[] = 'learn-audience';
 
-	  // Add exclusions using the helper
-    $exclude_taxonomies = ['learn-crop', 'learn-type', 'learn-topic'];
+        if (!empty($_POST['learn_audience']) && $_POST['learn_audience'] !== 'all') {
+            $tax_query[] = [
+                'taxonomy' => 'learn-audience',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field($_POST['learn_audience']),
+            ];
+        }
+    } else {
+        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
+    }
+
+    // Hardcoded exclusions
+    $exclude_taxonomies = ['learn-crop', 'learn-topic'];
 
     foreach ($exclude_taxonomies as $taxonomy) {
         $exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
+
         if (!empty($exclude_query)) {
             $tax_query[] = $exclude_query;
         }
     }
 
-
+    // Query args
     $args = [
         'post_type'      => 'post',
         'posts_per_page' => 12,
@@ -1073,15 +1116,13 @@ function handle_ajax_news_learn() {
     }
 
     $query = new WP_Query($args);
+
     set_query_var('learn_query', $query);
     set_query_var('paged_var', $paged);
-	set_query_var('requestdbyajax', 'yes');
-
+    set_query_var('requestdbyajax', 'yes');
 
     ob_start();
-    //echo '<div class="filter-cards-grid">';
     get_template_part('partials/content', 'learn-list');
-    //echo '</div>';
     $news_html = ob_get_clean();
 
     ob_start();
@@ -1089,15 +1130,16 @@ function handle_ajax_news_learn() {
     $pagination_html = ob_get_clean();
 
     wp_reset_postdata();
-	$datafound = $query->have_posts() ? 'yes' : 'no';
+
+    $datafound = $query->have_posts() ? 'yes' : 'no';
 
     wp_send_json_success([
         'news_html'       => $news_html,
         'pagination_html' => $pagination_html,
-		'datafound'       => $datafound,
-
+        'datafound'       => $datafound,
     ]);
 }
+
 add_action('wp_ajax_search_filter', 'search_filter_Callback');
 add_action('wp_ajax_nopriv_search_filter', 'search_filter_Callback');
 
