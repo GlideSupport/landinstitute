@@ -330,7 +330,7 @@
 
     &.variation-static {
         .block-ctn-btn {
-            @media(min-width: 1441px) {
+            @media (min-width: 1441px) and (max-width: 1920px) {
                 width: calc(50vw + clamp(100px, 5.875rem + (1vw - 16.8px)*-1.6667, 104px));
             }
         }
