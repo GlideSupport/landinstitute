@@ -1470,11 +1470,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownRow = document.querySelector('.filter-dropdown-row');
 
   if (toggleBtn && dropdownRow) {
-    toggleBtn.addEventListener('click', function () {
-      if (dropdownRow.style.display === 'block') {
-        dropdownRow.style.display = 'none';
+
+   toggleBtn.addEventListener('click', function () {
+      const isActive = dropdownRow.classList.contains('active');
+
+      if (isActive) {
+        // Close
+        dropdownRow.style.maxHeight = '0px';
+        dropdownRow.classList.remove('active');
+        toggleBtn.classList.remove('active');
+
+        // After transition ends, hide it
+        dropdownRow.addEventListener('transitionend', function hideAfterTransition() {
+          dropdownRow.style.display = 'none';
+          dropdownRow.removeEventListener('transitionend', hideAfterTransition);
+        });
+
       } else {
-        dropdownRow.style.display = 'block';
+        // Open
+        dropdownRow.style.display = 'block'; // Make it visible first
+        // Delay needed to allow transition from 0 to scrollHeight
+        requestAnimationFrame(() => {
+          dropdownRow.style.maxHeight = dropdownRow.scrollHeight + 'px';
+          dropdownRow.classList.add('active');
+          toggleBtn.classList.add('active');
+        });
       }
     });
   }
