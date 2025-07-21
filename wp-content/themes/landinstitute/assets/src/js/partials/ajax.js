@@ -832,19 +832,20 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 	menu.querySelectorAll("a[data-post]").forEach((link) => {
 		link.addEventListener("click", (e) => {
 			e.preventDefault();
-			const taxonomy = menu.id; // donor-type or donation-level
+			const taxonomy = menu.id; // e.g., 'search-type'
 			const term = link.getAttribute("data-post");
 
 			// Remove 'active' class from siblings
 			menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
 			link.closest("li").classList.add("active");
 
-			// Set selected term
+			// Set selected term and label
 			if (taxonomy === "search-type") {
 				searcheve = term;
-
 				const label = term === "all" ? "everything" : link.textContent.trim();
-				document.querySelector("button#search-type").innerHTML = "Search: " + label;
+
+				const button = document.querySelector("button#search-type");
+				button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
 			}
 
 			// Reset to page 1
@@ -853,6 +854,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 		});
 	});
 });
+
 
 
 	const search_append_list = document.querySelector(".append-search-result"); // ✅ updated selector
@@ -1057,8 +1059,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			const postType = aTag.getAttribute("data-post");
 			if (postType === selectedType) {
 				li.classList.add("active");
+
 				const label = postType === "all" ? "everything" : aTag.textContent.trim();
-				document.querySelector("button#search-type").innerHTML = "Search: " + label;
+
+				// Set button label with arrow icon
+				const button = document.querySelector("button#search-type");
+				button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
 			} else {
 				li.classList.remove("active");
 			}

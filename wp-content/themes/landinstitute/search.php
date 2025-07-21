@@ -62,7 +62,9 @@ set_query_var( 'paged_var', $paged );
 								</label>
 								<button type="submit" class="site-btn sm-btn btn-lemon-yellow">
 									<?php esc_html_e( 'Search', 'land_institute' ); ?>
+									<div class="arrow-icon"></div>
 								</button>
+
 							</form>
 						</div>
 					</div>
@@ -92,6 +94,7 @@ function get_post_type_label($post_type_slug) {
     <ul id="search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type">
         <li class="active" style="animation-delay: 0s;">
             <a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
+			<div class="arrow-icon"></div>
         </li>
 
         <?php
