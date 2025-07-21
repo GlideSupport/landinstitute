@@ -820,8 +820,10 @@ section:has(.text-featured-block) {
                 }
 
                 .dropdown-toggle {
-                    border: 0px;
-                    border-bottom: 2px solid var(--gb_base_brown);
+                    @media(max-width: 991px) {
+                        border: 0px;
+                        border-bottom: 2px solid var(--gb_base_brown);
+                    }
                 }
             }
         }
