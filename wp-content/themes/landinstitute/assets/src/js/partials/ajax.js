@@ -405,22 +405,31 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 			// Set selected term
 			if (taxonomy === "news-type") {
-				currentnewsType = term;
-				document.querySelector("button#types-view").innerHTML =
-					"News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
-			} else if (taxonomy === "news-topic") {
-				currentnewstopic = term;
-				document.querySelector("button#topic-view").innerHTML =
-					"Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
-			}else if (taxonomy === "news-audience") {
-				currentnewsaudience = term;
-				document.querySelector("button#topic-view").innerHTML =
-					"Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " "));
-			}else if (taxonomy === "news-crop") {
-				currentnewscrop = term;
-				document.querySelector("button#topic-view").innerHTML =
-					"Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
-			}
+					currentnewsType = term;
+					const typeBtn = document.querySelector("button#news-type");
+					if (typeBtn) {
+						typeBtn.innerHTML = "News type: " + (term === "all" ? "All types" : term.replace(/-/g, " "));
+					}
+				} else if (taxonomy === "news-topic") {
+					currentnewstopic = term;
+					const topicBtn = document.querySelector("button#topic-view");
+					if (topicBtn) {
+						topicBtn.innerHTML = "Topic: " + (term === "all" ? "All Topics" : term.replace(/-/g, " "));
+					}
+				} else if (taxonomy === "news-audience") {
+					currentnewsaudience = term;
+					const audienceBtn = document.querySelector("button#news-audience");
+					if (audienceBtn) {
+						audienceBtn.innerHTML = "Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " "));
+					}
+				} else if (taxonomy === "news-crop") {
+					currentnewscrop = term;
+					const cropBtn = document.querySelector("button#types-view");
+					if (cropBtn) {
+						cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " "));
+					}
+				}
+
 
 			// Reset to page 1
 			currentPage = 1;
