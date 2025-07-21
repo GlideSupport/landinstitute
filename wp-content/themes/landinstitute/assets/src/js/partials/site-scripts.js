@@ -1463,3 +1463,20 @@ document.addEventListener("DOMContentLoaded", function () {
 		filterStaff(initialCategory, bgColor);
 	}
 });
+
+// mobile filter dropdown open and close
+document.addEventListener("DOMContentLoaded", function () {
+  const toggleBtn = document.querySelector('.filter-mobile-dropdown');
+  const dropdownRow = document.querySelector('.filter-dropdown-row');
+
+  if (toggleBtn && dropdownRow) {
+    toggleBtn.addEventListener('click', function () {
+      if (dropdownRow.style.display === 'block') {
+        dropdownRow.style.display = 'none';
+      } else {
+        dropdownRow.style.display = 'block';
+      }
+    });
+  }
+});
+
