@@ -951,6 +951,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 					}
 
 					initsearch_pagination();
+					attachPaginationEventListeners();
 
 					// ✅ Push pretty permalink
 					if (updateURL) {
