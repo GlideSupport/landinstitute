@@ -815,7 +815,7 @@ section:has(.text-featured-block) {
                 &.active {
                     @media(max-width: 991px) {
                         max-height: 9999px;
-                        transition: max-height 1s ease-in-out;
+                        transition: max-height 0.5s ease-in-out;
                     }
                 }
 
@@ -859,13 +859,19 @@ section:has(.text-featured-block) {
             height: 10px;
             position: absolute;
             right: 24px;
-            top: 50%;
-            transform: translate(0, -50%);
+            top: 16px;
             width: 10px;
+            transition: all 0.3s ease-in-out;
         }
 
         @media (min-width: 992px) {
             display: none;
+        }
+
+        .active {
+            &:after {
+                transform: rotate(45deg);
+            }
         }
     }
 
