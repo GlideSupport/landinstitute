@@ -706,7 +706,7 @@ section:has(.text-featured-block) {
         position: absolute;
         top: inherit;
         transform: inherit;
-        z-index: 8;
+        z-index: 1;
         width: 100%;
 
         @media(max-width: 991px) {
