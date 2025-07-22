@@ -1203,7 +1203,7 @@ function search_filter_Callback() {
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
     $search_query = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
     $order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
-    $search_type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
+    $search_type = isset($_POST['type']) ? $_POST['type'] : '';
 
     // Full list of allowed post types
     $allowed_post_types = ['post', 'event', 'page', 'news', 'staff'];
