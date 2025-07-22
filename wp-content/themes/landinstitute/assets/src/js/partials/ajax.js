@@ -578,6 +578,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 var learntype = "";
 var learntopic = "";
 var learncrops = "";
+var learnaudiance = "";
 //var currentPage = 1;
 
 // Helper function to get query param
@@ -597,6 +598,9 @@ window.addEventListener("DOMContentLoaded", () => {
 	learntype = getQueryParam("learn-type") || "";
 	learntopic = getQueryParam("learn-topic") || "";
 	learncrops = getQueryParam("learn-crop") || "";
+	learnaudiance = getQueryParam("audience-view") || "";
+
+	
 	//console
 	// Set initial button labels and active states
 	if (learntype) {
@@ -610,6 +614,10 @@ window.addEventListener("DOMContentLoaded", () => {
 	if (learncrops) {
 		document.querySelector("button#category-view").innerHTML = "Crop: " + formatLabel(learncrops, "Crop");
 		document.querySelector(`#learn-crops a[data-term="${learncrops}"]`)?.closest("li")?.classList.add("active");
+	}
+	if (learnaudiance) {
+		document.querySelector("button#audience-view").innerHTML = "Audience: " + formatLabel(learncrops, "Audience");
+		document.querySelector(`#audience-view a[data-term="${learnaudiance}"]`)?.closest("li")?.classList.add("active");
 	}
 
 	//fetchlearn(); // Initial fetch with values from URL
