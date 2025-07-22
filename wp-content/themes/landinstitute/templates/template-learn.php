@@ -118,6 +118,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 
 
 					?>
+					<?php if($bst_fields['li_learn_filters']['enable_learn_type'] || $bst_fields['li_learn_filters']['enable_learn_topic'] || $bst_fields['li_learn_filters']['enable_learn_crop'] || $bst_fields['li_learn_filters']['enable_learn_audience']){ ?>
 						<div class="filter">
 
 							<div class="filter-title ui-18-16-bold">Filter:</div>
@@ -158,79 +159,75 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							</div>
 								</div>
 						</div>
+						<?php }else{
+							$cls = "no-filter";
+						} ?>
 
 						<!-- PHP Dynamic Loop Start -->
 							<?php
 							// Set up query
 							$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+
 							$args = [
 								'post_type'      => 'post',
 								'posts_per_page' => 12,
 								'paged'          => $paged,
 							];
 
-							// Start building tax_query
 							$tax_query = ['relation' => 'AND'];
 
-							// Learn Type
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_type'])) {
-								if (!empty($_GET['learn-type']) && $_GET['learn-type'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-type',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-type']),
-									];
+							// Define filters and their corresponding taxonomy mapping
+							$filters = [
+								'learn-type'  => ['enabled' => $bst_fields['li_learn_filters']['enable_learn_type'] ?? false],
+								'learn-topic' => ['enabled' => $bst_fields['li_learn_filters']['enable_learn_topic'] ?? false],
+								'learn-crop'  => ['enabled' => $bst_fields['li_learn_filters']['enable_learn_crop'] ?? false],
+							];
+
+							
+
+							// Loop through filters and build tax_query
+							foreach ($filters as $param => $config) {
+								$taxonomy = $param; // param name is same as taxonomy slug
+
+							
+
+								$enabled = $config['enabled'];
+								$term = !empty($_GET[$param]) && $_GET[$param] !== 'all' ? sanitize_text_field($_GET[$param]) : null;
+
+								if (!empty($enabled)) {
+									if ($term) {
+										$tax_query[] = [
+											'taxonomy' => $taxonomy,
+											'field'    => 'slug',
+											'terms'    => $term,
+										];
+									}
+								} else {
+									$tax_query = array_merge($tax_query, get_exclude_tax_query_for_taxonomy($taxonomy));
 								}
-							} else {
-								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
 							}
 
-							// Learn Topic
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_topic'])) {
-								if (!empty($_GET['learn-topic']) && $_GET['learn-topic'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-topic',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-topic']),
-									];
-								}
-							} else {
-								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
-							}
-
-							// Learn Crop
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_crop'])) {
-								if (!empty($_GET['learn-crop']) && $_GET['learn-crop'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-crop',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-crop']),
-									];
-								}
-							} else {
-								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
-							}
-
-							// Apply tax_query if needed
+							// Apply tax_query if more than just the 'relation'
 							if (count($tax_query) > 1) {
 								$args['tax_query'] = $tax_query;
 							}
 
-							// echo '<pre>';
-							// print_r($args);
-							// echo '</pre>';
+							
 
+							// Run the query
 							$query = new WP_Query($args);
 
-							// Store query and state for later use
+							// Store query and paged state
 							set_query_var('learn_query', $query);
 							set_query_var('paged_var', $paged);
+
 							$datafoundn = $query->have_posts() ? 'yes' : 'no';
+
 
 
 							?>
 						<?php $class = $query->have_posts() ? '' : ''; ?>
-						<div class="filter-cards-grid <?php echo $class; ?>">
+						<div class="filter-cards-grid <?php echo $class; echo ' '.$cls;?>">
 							<?php get_template_part('partials/content', 'learn-list'); ?>
 						</div>
 						<div class="not-found-append">
