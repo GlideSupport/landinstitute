@@ -711,8 +711,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
 			if (learnaudiance === "all") {
 				url.searchParams.delete("learn-audience");
-			} else if (learncrops) {
+			} else if (learnaudiance) {
 				url.searchParams.set("learn-audience", learnaudiance);
+			}else{
+				url.searchParams.delete("learn-audience");
 			}
 
 
