@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		topBar.classList.add('hide-top-bar');
 
 		// Update header height after top bar is hidden
-		headerInitialSectionHeight = headerSection.offsetHeight - topBar.offsetHeight;
+		headerInitialSectionHeight = headerSection.offsetHeight;
 
 		// Adjust spacing
 		if (herofullSection) {
