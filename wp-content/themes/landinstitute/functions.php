@@ -1169,7 +1169,7 @@ function handle_ajax_news_learn() {
         $args['tax_query'] = $tax_query;
     }
 
-	//print_r($args);
+	print_r($args);
 
     $query = new WP_Query($args);
 
