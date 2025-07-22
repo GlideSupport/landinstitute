@@ -83,11 +83,16 @@ form .v_fw .v_fr .Select-control {
 	padding: 0;
 }
 
+form .v_fw .v_fr .Select-control .Select-multi-value-wrapper .Select-value {
+	align-self: center;
+}
+
 form .v_fw .v_fr .Select-control .Select-value .Select-value-label {
-	display: block;
+	display: block !important;
 	vertical-align: middle;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	@extend .ui-18-16-bold;
 	white-space: nowrap;
 }
 
