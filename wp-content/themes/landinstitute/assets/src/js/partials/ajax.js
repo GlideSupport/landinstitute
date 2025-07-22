@@ -81,7 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				} else {
 					donorGrid.innerHTML = "<p>No donors found for this filter.</p>";
 				}
-     	attachPaginationListeners();
+				attachPaginationListeners();
+				
 
 			})
 			.catch((err) => {
@@ -118,6 +119,14 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		attachPaginationListeners();
+		setTimeout(() => {
+			const scrollTarget = document.querySelector(".logo-grid-filters-row");
+			if (scrollTarget) {
+				const offset = 100;
+				const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - offset;
+				window.scrollTo({ top, behavior: "smooth" });
+			}
+		}, 50);
 	}
 
 	function attachPaginationListeners() {

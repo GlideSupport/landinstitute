@@ -552,28 +552,28 @@ document.addEventListener("DOMContentLoaded", function () {
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
 
 	//footer nav active class js
-	function updateActiveHashNav() {
-		const currentHash = window.location.hash;
-		if (!currentHash) return;
+	// function updateActiveHashNav() {
+	// 	const currentHash = window.location.hash;
+	// 	if (!currentHash) return;
 
-		document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
-			const link = li.querySelector('a');
-			if (link) {
-				const href = link.getAttribute('href');
-				if (href && href.endsWith(currentHash)) {
-					li.classList.add('active');
-				} else {
-					li.classList.remove('active');
-				}
-			}
-		});
-	}
+	// 	document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
+	// 		const link = li.querySelector('a');
+	// 		if (link) {
+	// 			const href = link.getAttribute('href');
+	// 			if (href && href.endsWith(currentHash)) {
+	// 				li.classList.add('active');
+	// 			} else {
+	// 				li.classList.remove('active');
+	// 			}
+	// 		}
+	// 	});
+	// }
 
-	// Run on page load
-	updateActiveHashNav();
+	// // Run on page load
+	// updateActiveHashNav();
 
-	// Run on hash change (e.g., link clicked or updated via JS)
-	window.addEventListener('hashchange', updateActiveHashNav);
+	// // Run on hash change (e.g., link clicked or updated via JS)
+	// window.addEventListener('hashchange', updateActiveHashNav);
 	//footer nav active class end
 
 
