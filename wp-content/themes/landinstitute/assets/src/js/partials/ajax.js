@@ -646,6 +646,12 @@ window.addEventListener("DOMContentLoaded", () => {
 				if (cropBtn) {
 					cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
+			}else if (taxonomy === "audience-view") {
+				learnaudiance = term;
+				const cropBtn = document.querySelector("button#audience-view");
+				if (cropBtn) {
+					cropBtn.innerHTML = "Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				}
 			}
 
 
@@ -695,6 +701,13 @@ window.addEventListener("DOMContentLoaded", () => {
 				url.searchParams.set("learn-crop", learncrops);
 			}
 
+			if (learnaudiance === "all") {
+				url.searchParams.delete("learn-audience");
+			} else if (learncrops) {
+				url.searchParams.set("learn-audience", learnaudiance);
+			}
+
+
 		//	url.searchParams.set("page", paged);
 			window.history.pushState({}, "", url);
 		}
@@ -711,6 +724,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				post_type: learntype,
 				learn_topic:learntopic,
 				learn_crops:learncrops,
+				learn_audience:learnaudiance,
 				nonce: localVars.nonce,
 			}),
 		})
