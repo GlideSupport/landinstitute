@@ -227,6 +227,24 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								}
 							}
 
+							// Learn Audience
+							if (!empty($bst_fields['li_learn_filters']['enable_learn_audience'])) {
+									$exclude_taxonomies[] = 'learn-audience';
+
+								if (!empty($_GET['learn-audience']) && $_GET['learn-audience'] !== 'all') {
+									$tax_query[] = [
+										'taxonomy' => 'learn-audience',
+										'field'    => 'slug',
+										'terms'    => sanitize_text_field($_GET['learn-audience']),
+									];
+								}
+							} else {
+								if($cls != "no-filter"){
+									$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
+								}
+							}
+							
+
 							 foreach ($exclude_taxonomies as $taxonomy) {
 								$exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
 								if (!empty($exclude_query)) {
