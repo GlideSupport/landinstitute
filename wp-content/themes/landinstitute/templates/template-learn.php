@@ -151,7 +151,7 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								<?php if($bst_fields['li_learn_filters']['enable_learn_audience']){ ?>
 									<div class="tab-dropdown tab-dropdown-filter">
 									<button class="dropdown-toggle" id="audience-view" aria-expanded="false"
-										aria-haspopup="true" aria-controls="audience-view">Audience: <?php echo $current_crop_name; ?><div class="arrow-icon"></div>
+										aria-haspopup="true" aria-controls="audience-view">Audience: <?php echo $current_audience_name; ?><div class="arrow-icon"></div>
 									</button>
 								</div>
 								<?php } ?>
