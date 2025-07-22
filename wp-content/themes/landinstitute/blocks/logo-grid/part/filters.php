@@ -9,17 +9,19 @@
 	<div class="logo-grid-filters-row filter-block">
 		<div class="filter">
 			<div class="filter-title ui-18-16-bold">Filter:</div>
+			<div class="md-mobile-filter-main">
 			<div class="filter-mobile-dropdown ui-18-16-bold">Show Filter</div>
-			<div class="filter-dropdown-row">
-				<div class="tab-dropdown">
-					<button class="dropdown-toggle" id="donor-type" aria-expanded="false" aria-haspopup="true" aria-controls="donor-type">Donor type: All types
-						<div class="arrow-icon"></div>
-					</button>
-				</div>
-				<div class="tab-dropdown"> 
-					<button class="dropdown-toggle" id="donation-level" aria-expanded="false" aria-haspopup="true" aria-controls="donation-level">Donation level: All
-						levels<div class="arrow-icon"></div>
-					</button>
+				<div class="filter-dropdown-row">
+					<div class="tab-dropdown">
+						<button class="dropdown-toggle" id="donor-type" aria-expanded="false" aria-haspopup="true" aria-controls="donor-type">Donor type: All types
+							<div class="arrow-icon"></div>
+						</button>
+					</div>
+					<div class="tab-dropdown"> 
+						<button class="dropdown-toggle" id="donation-level" aria-expanded="false" aria-haspopup="true" aria-controls="donation-level">Donation level: All
+							levels<div class="arrow-icon"></div>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
