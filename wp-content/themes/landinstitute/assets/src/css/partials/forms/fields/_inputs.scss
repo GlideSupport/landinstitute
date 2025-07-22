@@ -83,6 +83,14 @@ form .v_fw .v_fr .Select-control {
 	padding: 0;
 }
 
+form .v_fw .v_fr .Select-control .Select-value .Select-value-label {
+	display: block;
+	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
 form .v_fw .v_fr .Select.is-focused:not(.is-open)>.Select-control {
 	background: transparent;
 	box-shadow: none;
