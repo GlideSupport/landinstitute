@@ -629,12 +629,12 @@ window.addEventListener("DOMContentLoaded", () => {
 				const taxonomy = menu.id; // donor-type or donation-level
 				const term = link.getAttribute("data-term");
 
-				//console.log(term+"seleceted term");
+				console.log(term+"seleceted term");
 				
 				// Remove 'active' class from siblings
 				menu.querySelectorAll("li").forEach((li) => li.classList.remove("active"));
 				link.closest("li").classList.add("active");
-				///console.log(taxonomy+"taxo");
+				console.log(taxonomy+"taxo");
 				// Set selected term
 			if (taxonomy === "learn-type") {
 				learntype = term;
@@ -654,11 +654,11 @@ window.addEventListener("DOMContentLoaded", () => {
 				if (cropBtn) {
 					cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
-			}else if (taxonomy === "learn-audience") {
+			}else if (taxonomy === "audience-view") {
 				learnaudiance = term;
-				const cropBtn = document.querySelector("button#audience-view");
-				if (cropBtn) {
-					cropBtn.innerHTML = "Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
+				const audience = document.querySelector("button#audience-view");
+				if (audience) {
+					audience.innerHTML = "Audience: " + (term === "all" ? "All Audiences" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
 			}
 
@@ -713,8 +713,6 @@ window.addEventListener("DOMContentLoaded", () => {
 				url.searchParams.delete("learn-audience");
 			} else if (learnaudiance) {
 				url.searchParams.set("learn-audience", learnaudiance);
-			}else{
-				url.searchParams.delete("learn-audience");
 			}
 
 
