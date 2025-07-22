@@ -55,12 +55,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			document.body.classList.remove("shrink");
 		}
 		lastScrollTop = Math.max(0, scrollTop);
+		setInitialPadding();
 	}
 
 	// Resize event
 	function handleResize() {
 		headerInitialSectionHeight = adminBarHeight + (headerSection?.offsetHeight || 0);
 		setInitialPadding();
+		adjustHeader();
 	}
 
 	// Hide top bar
@@ -98,6 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		setInitialPadding();
 		adjustHeader();
 		adjustContentMinHeight();
+	});
+	document.addEventListener('DOMContentLoaded', () => {
+		setInitialPadding();
 	});
 
 	// Event listeners
