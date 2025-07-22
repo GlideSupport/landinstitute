@@ -654,7 +654,7 @@ window.addEventListener("DOMContentLoaded", () => {
 				if (cropBtn) {
 					cropBtn.innerHTML = "Crop: " + (term === "all" ? "All Crops" : term.replace(/-/g, " ")) + '<div class="arrow-icon"></div>';
 				}
-			}else if (taxonomy === "audience-view") {
+			}else if (taxonomy === "learn-audience") {
 				learnaudiance = term;
 				const cropBtn = document.querySelector("button#audience-view");
 				if (cropBtn) {
