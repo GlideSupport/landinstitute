@@ -37,7 +37,7 @@ $li_cc_repeater        = $bst_block_fields['li_cc_repeater'] ?? null;
 							$link_target = $button['target'] ?? '_self';
 					?>
 					<div class="cta-two-column-col">
-						<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>" class="cta-border-card">
+						<div class="cta-border-card">
 							<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
 							<div class="cta-content">
 								<?php echo (!empty($title) || !empty($text) || !empty($button)) ? '<div class="gl-s64"></div>' : ''; ?>
@@ -45,10 +45,10 @@ $li_cc_repeater        = $bst_block_fields['li_cc_repeater'] ?? null;
 								<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s20"></div>' : ''; ?>
 								<?php echo !empty($text) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($text) . '</div>' : ''; ?>
 								<?php echo (!empty($text) && !empty($button)) ? '<div class="gl-s16"></div>' : ''; ?>
-								<?php echo !empty($button) ? '<div class="block-btn"><div class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</div></div>' : ''; ?>
+								<?php echo !empty($button) ? '<div class="block-btn"><a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</a></div>' : ''; ?>
 								<?php echo (!empty($title) || !empty($text) || !empty($button)) ? '<div class="gl-s80"></div>' : ''; ?>
 							</div>
-						</a>
+						</div>
 					</div>
 					<?php endif; endforeach; ?>
 				<?php endif; ?>
