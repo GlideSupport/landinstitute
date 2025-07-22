@@ -87,6 +87,18 @@ form .v_fw .v_fr .Select-control .Select-multi-value-wrapper .Select-value {
 	align-self: center;
 }
 
+form .v_fw .v_fr .Select-option,
+form .v_fw .v_fr .Select-noresults {
+	padding: 5px 5px;
+	font-size: 14px;
+	line-height: 130%;
+	color: var(--gb_base_brown);
+
+	&.is-focused {
+		background-color: var(--gb_primary_sunflower_yellow);
+	}
+}
+
 form .v_fw .v_fr .Select-control .Select-value .Select-value-label {
 	display: block !important;
 	vertical-align: middle;
