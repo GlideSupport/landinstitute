@@ -178,79 +178,54 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							$tax_query = ['relation' => 'AND'];
 
 							// Learn Type
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_type'])) {
-								$exclude_taxonomies[] = 'learn-type';
-								if (!empty($_GET['learn-type']) && $_GET['learn-type'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-type',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-type']),
-									];
-								}
-							} else {
-								if($cls != "no-filter"){
-									$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
-								}
+							$exclude_taxonomies[] = 'learn-type';
+							if (!empty($_GET['learn-type']) && $_GET['learn-type'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-type',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn-type']),
+								];
 							}
+						
 
 							// Learn Topic
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_topic'])) {
-									$exclude_taxonomies[] = 'learn-topic';
-
-								if (!empty($_GET['learn-topic']) && $_GET['learn-topic'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-topic',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-topic']),
-									];
-								}
-							} else {
-								if($cls != "no-filter"){
-								$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
-								}
-							}
-
-							// Learn Crop
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_crop'])) {
-									$exclude_taxonomies[] = 'learn-crop';
-
-								if (!empty($_GET['learn-crop']) && $_GET['learn-crop'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-crop',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-crop']),
-									];
-								}
-							} else {
-								if($cls != "no-filter"){
-									$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
-								}
-							}
-
-							// Learn Audience
-							if (!empty($bst_fields['li_learn_filters']['enable_learn_audience'])) {
-									$exclude_taxonomies[] = 'learn-audience';
-
-								if (!empty($_GET['learn-audience']) && $_GET['learn-audience'] !== 'all') {
-									$tax_query[] = [
-										'taxonomy' => 'learn-audience',
-										'field'    => 'slug',
-										'terms'    => sanitize_text_field($_GET['learn-audience']),
-									];
-								}
-							} else {
-								if($cls != "no-filter"){
-									$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
-								}
+							$exclude_taxonomies[] = 'learn-topic';
+							if (!empty($_GET['learn-topic']) && $_GET['learn-topic'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-topic',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn-topic']),
+								];
 							}
 							
 
-							 foreach ($exclude_taxonomies as $taxonomy) {
-								$exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
-								if (!empty($exclude_query)) {
-									$tax_query[] = $exclude_query;
-								}
-							 }
+							// Learn Crop
+							$exclude_taxonomies[] = 'learn-crop';
+							if (!empty($_GET['learn-crop']) && $_GET['learn-crop'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-crop',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn-crop']),
+								];
+							}
+				
+
+							// Learn Audience
+							$exclude_taxonomies[] = 'learn-audience';
+							if (!empty($_GET['learn-audience']) && $_GET['learn-audience'] !== 'all') {
+								$tax_query[] = [
+									'taxonomy' => 'learn-audience',
+									'field'    => 'slug',
+									'terms'    => sanitize_text_field($_GET['learn-audience']),
+								];
+							}
+							
+							foreach ($exclude_taxonomies as $taxonomy) {
+							$exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
+							if (!empty($exclude_query)) {
+								$tax_query[] = $exclude_query;
+							}
+							}
 							 // Apply tax_query if needed
 							if (count($tax_query) > 1) {
 								$args['tax_query'] = $tax_query;

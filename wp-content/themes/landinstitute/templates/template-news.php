@@ -118,7 +118,118 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 		<div class="gl-s64"></div>
 	</section>
 	<section class="container-1280 bg-base-cream newsmain">
+		<?php 	
 		
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			 $current_type_slug  = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : 'all';
+			$current_topic_slug = isset($_GET['topic']) ? sanitize_text_field($_GET['topic']) : 'all';
+
+			$current_audience_slug  = isset($_GET['audience']) ? sanitize_text_field($_GET['audience']) : 'all';
+			$current_crop_slug = isset($_GET['crop']) ? sanitize_text_field($_GET['crop']) : 'all';
+
+
+			// Set default display values
+			$current_type_name  = 'All types';
+			$current_topic_name = 'All topics';
+
+			$current_audience_name  = 'All Audiences';
+			$current_crop_name = 'All Crops';
+
+
+			// Try to get the term objects if slugs are not "all"
+			if ($current_type_slug !== 'all') {
+				$type_term = get_term_by('slug', $current_type_slug, 'news-type'); // 'type' is your taxonomy name
+				if ($type_term && !is_wp_error($type_term)) {
+					$current_type_name = $type_term->name;
+				}
+			}
+
+			if ($current_topic_slug !== 'all') {
+				$topic_term = get_term_by('slug', $current_topic_slug, 'news-topic'); // 'topic' is your taxonomy name
+				if ($topic_term && !is_wp_error($topic_term)) {
+					$current_topic_name = $topic_term->name;
+				}
+			}
+			if ($current_audience_slug !== 'all') {
+				$type_term = get_term_by('slug', $current_type_slug, 'news-audience'); // 'type' is your taxonomy name
+				if ($type_term && !is_wp_error($type_term)) {
+					$current_audience_name = $type_term->name;
+				}
+			}
+
+			if ($current_crop_slug !== 'all') {
+				$topic_term = get_term_by('slug', $current_topic_slug, 'news-crop'); // 'topic' is your taxonomy name
+				if ($topic_term && !is_wp_error($topic_term)) {
+					$current_crop_name = $topic_term->name;
+				}
+			}
+
+			$exclude_taxonomies = [];
+			$tax_query = ['relation' => 'AND'];
+
+			// News Type
+			$exclude_taxonomies[] = 'news-type';
+			if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-type',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['type']),
+				];
+			}
+			// News Topic
+			$exclude_taxonomies[] = 'news-topic';	
+			if (!empty($_GET['topic']) && $_GET['topic'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-topic',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['topic']),
+				];
+			}
+			// News Audience
+			$exclude_taxonomies[] = 'news-audience';
+				if (!empty($_GET['audience']) && $_GET['audience'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-audience',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['audience']),
+				];
+			}
+			// News Crop
+			$exclude_taxonomies[] = 'news-crop';
+				if (!empty($_GET['crop']) && $_GET['crop'] !== 'all') {
+				$tax_query[] = [
+					'taxonomy' => 'news-crop',
+					'field'    => 'slug',
+					'terms'    => sanitize_text_field($_GET['crop']),
+				];
+			}
+
+
+			$args = [
+				'post_type'      => 'news',
+				'posts_per_page' => 6,
+				'order'          => 'DESC',
+				'paged'          => $paged,
+				'post_status'    => 'publish',
+			];
+			if (!empty($tax_query)) {
+				$args['tax_query'] = $tax_query;
+			}
+			foreach ($exclude_taxonomies as $taxonomy) {
+				$exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
+				if (!empty($exclude_query)) {
+					$tax_query[] = $exclude_query;
+				}
+			}
+				// Apply tax_query if needed
+			if (count($tax_query) > 1) {
+				$args['tax_query'] = $tax_query;
+			}
+			$news = new WP_Query($args);
+			$datafoundn = $news->have_posts() ? 'yes' : 'no';
+
+			
+?>
 		<div class="wrapper">
 			<div class="full-width-content has-border-bottom">
 				<div class="filter-block">
@@ -165,150 +276,21 @@ $li_news_temp_logo_list_repeater = $bst_fields['li_news_temp_logo_list_repeater'
 						</div>
 						</div>
 					</div>
-					<?php }else{
-							$cls = "no-filter";
-						} ?>
-					<?php
-
-				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-				$current_type_slug  = isset($_GET['type']) ? sanitize_text_field($_GET['type']) : 'all';
-				$current_topic_slug = isset($_GET['topic']) ? sanitize_text_field($_GET['topic']) : 'all';
-
-				$current_audience_slug  = isset($_GET['audience']) ? sanitize_text_field($_GET['audience']) : 'all';
-				$current_crop_slug = isset($_GET['crop']) ? sanitize_text_field($_GET['crop']) : 'all';
-
-
-				// Set default display values
-				$current_type_name  = 'All types';
-				$current_topic_name = 'All topics';
-
-				$current_audience_name  = 'All Audiences';
-				$current_crop_name = 'All Crops';
-
-
-				// Try to get the term objects if slugs are not "all"
-				if ($current_type_slug !== 'all') {
-					$type_term = get_term_by('slug', $current_type_slug, 'news-type'); // 'type' is your taxonomy name
-					if ($type_term && !is_wp_error($type_term)) {
-						$current_type_name = $type_term->name;
-					}
-				}
-
-				if ($current_topic_slug !== 'all') {
-					$topic_term = get_term_by('slug', $current_topic_slug, 'news-topic'); // 'topic' is your taxonomy name
-					if ($topic_term && !is_wp_error($topic_term)) {
-						$current_topic_name = $topic_term->name;
-					}
-				}
-				if ($current_audience_slug !== 'all') {
-					$type_term = get_term_by('slug', $current_type_slug, 'news-audience'); // 'type' is your taxonomy name
-					if ($type_term && !is_wp_error($type_term)) {
-						$current_audience_name = $type_term->name;
-					}
-				}
-
-				if ($current_crop_slug !== 'all') {
-					$topic_term = get_term_by('slug', $current_topic_slug, 'news-crop'); // 'topic' is your taxonomy name
-					if ($topic_term && !is_wp_error($topic_term)) {
-						$current_crop_name = $topic_term->name;
-					}
-				}
-
-
-				$tax_query = [];
-
-				//News Type
-				if (!empty($bst_fields['li_news_filters']['enable_news_type'])) {
-					$exclude_taxonomies[] = 'news-type';
-					if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
-						$tax_query[] = [
-							'taxonomy' => 'news-type',
-							'field'    => 'slug',
-							'terms'    => sanitize_text_field($_GET['type']),
-						];
-					}
-				} else {
-					if($cls != "no-filter"){
-						$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('news-type'));
-					}
-				}
-
-				//News Topic
-				if (!empty($bst_fields['li_news_filters']['enable_news_topic'])) {
-					$exclude_taxonomies[] = 'news-topic';
-					if (!empty($_GET['topic']) && $_GET['topic'] !== 'all') {
-						$tax_query[] = [
-							'taxonomy' => 'news-topic',
-							'field'    => 'slug',
-							'terms'    => sanitize_text_field($_GET['topic']),
-						];
-					}
-				} else {
-					if($cls != "no-filter"){
-						$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('news-topic'));
-					}
-				}
-
-				//News Audience
-				if (!empty($bst_fields['li_news_filters']['enable_news_audience'])) {
-					$exclude_taxonomies[] = 'news-audience';
-					if (!empty($_GET['audience']) && $_GET['audience'] !== 'all') {
-					$tax_query[] = [
-						'taxonomy' => 'news-audience',
-						'field'    => 'slug',
-						'terms'    => sanitize_text_field($_GET['audience']),
-					];
-				}
-				} else {
-					if($cls != "no-filter"){
-						$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('news-audience'));
-					}	
-
-				}
-
-				//News Crop
-				if (!empty($bst_fields['li_news_filters']['enable_news_crop'])) {
-					$exclude_taxonomies[] = 'news-crop';
-					if (!empty($_GET['crop']) && $_GET['crop'] !== 'all') {
-					$tax_query[] = [
-						'taxonomy' => 'news-crop',
-						'field'    => 'slug',
-						'terms'    => sanitize_text_field($_GET['crop']),
-					];
-				}
-				} else {
-					if($cls != "no-filter"){
-						$tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('news-crop'));
-					}
-				}	
-
-
-				$args = [
-					'post_type'      => 'news',
-					'posts_per_page' => 6,
-					'order'          => 'DESC',
-					'paged'          => $paged,
-					'post_status'    => 'publish',
-				];
-				if (!empty($tax_query)) {
-					$args['tax_query'] = $tax_query;
-				}
-				$news = new WP_Query($args);
-				$datafoundn = $news->have_posts() ? 'yes' : 'no';
-			
-				?>
-				<div class="filter-content-cards-grid">
-					<?php include get_template_directory() . '/partials/content-news-list.php'; ?>
-				</div>
-				<div class="fillter-bottom">
-					<?php include get_template_directory() . '/partials/content-news-pagination.php'; ?>
-				</div>
-				<div class="not-found-append">
-					<?php if($datafoundn == "no"){ ?>
-					<div class="not-found-block">
-						<div class="not-found">No news found.</div>
-					</div>
 					<?php } ?>
+						<div class="filter-content-cards-grid">
+							<?php include get_template_directory() . '/partials/content-news-list.php'; ?>
+						</div>
+						<div class="fillter-bottom">
+						<?php include get_template_directory() . '/partials/content-news-pagination.php'; ?>
+					</div>
+						<div class="not-found-append">
+							<?php if($datafoundn == "no"){ ?>
+							<div class="not-found-block">
+								<div class="not-found">No news found.</div>
+							</div>
+							<?php } ?>
+						</div>
+				
 				</div>
 			</div>
 		</div>
@@ -344,68 +326,73 @@ $crop_terms = array_filter($crop_terms, fn($term) => !in_array($term->slug, $exc
 ?>
 
 
-
 <!-- News Type Dropdown -->
-	<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="news-type">
-		<li class="<?php echo $current_type === 'all' ? 'active' : ''; ?>">
-			<a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">All types</a>
-		</li>
+<ul id="news-type" class="dropdown-menu" role="menu" aria-labelledby="news-type">
+    <li class="<?php echo $current_type === 'all' ? 'active' : ''; ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">All types</a>
+    </li>
 
-		<?php if (!empty($terms)) : ?>
-			<?php foreach ($terms as $term) : ?>
-				<li class="<?php echo $current_type === $term->slug ? 'active' : ''; ?>">
-					<a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">
-						<?php echo esc_html($term->name); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</ul>
-			
+    <?php if (!empty($terms)) : ?>
+        <?php foreach ($terms as $term) : ?>
+            <li class="<?php echo $current_type === $term->slug ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" data-term="<?php echo esc_attr($term->slug); ?>" data-taxonomy="<?php echo esc_attr($taxonomy_type); ?>">
+                    <?php echo esc_html($term->name); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</ul>
+
+
 <!-- News Topic Dropdown -->
-	<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
-		<li class="<?php echo $current_topic === 'all' ? 'active' : ''; ?>">
-			<a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_topic); ?>">All Topics</a>
-		</li>
+<ul id="news-topic" class="dropdown-menu" role="menu" aria-labelledby="topic-view">
+    <li class="<?php echo $current_topic === 'all' ? 'active' : ''; ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?php echo esc_attr($taxonomy_topic); ?>">All Topics</a>
+    </li>
 
-		<?php if (!empty($topic_terms)) : ?>
-			<?php foreach ($topic_terms as $topic_term) : ?>
-				<li class="<?php echo $current_topic === $topic_term->slug ? 'active' : ''; ?>">
-					<a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="<?php echo esc_attr($taxonomy_topic); ?>">
-						<?php echo esc_html($topic_term->name); ?>
-					</a>
-				</li>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</ul>
+    <?php if (!empty($topic_terms)) : ?>
+        <?php foreach ($topic_terms as $topic_term) : ?>
+            <li class="<?php echo $current_topic === $topic_term->slug ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" data-term="<?php echo esc_attr($topic_term->slug); ?>" data-taxonomy="<?php echo esc_attr($taxonomy_topic); ?>">
+                    <?php echo esc_html($topic_term->name); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</ul>
 
-	<!-- News Audience Dropdown -->
-	<ul id="news-audience" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
-		<li class="<?= $current_audience === 'all' ? 'active' : '' ?>">
-			<a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_audience) ?>">All Audiences</a>
-		</li>
-		<?php foreach ($audience_terms as $term): ?>
-			<li class="<?= $current_audience === $term->slug ? 'active' : '' ?>">
-				<a href="javascript:void(0)" data-term="<?= esc_attr($term->slug) ?>" data-taxonomy="<?= esc_attr($taxonomy_audience) ?>">
-					<?= esc_html($term->name) ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	</ul>
 
-	<!-- News Crop Dropdown -->
-	<ul id="news-crop" class="dropdown-menu" role="menu" aria-labelledby="cops-view">
-		<li class="<?= $current_crop === 'all' ? 'active' : '' ?>">
-			<a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">All Crops</a>
-		</li>
-		<?php foreach ($crop_terms as $term): ?>
-			<li class="<?= $current_crop === $term->slug ? 'active' : '' ?>">
-				<a href="javascript:void(0)" data-term="<?= esc_attr($term->slug) ?>" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">
-					<?= esc_html($term->name) ?>
-				</a>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+<!-- News Audience Dropdown -->
+<ul id="news-audience" class="dropdown-menu" role="menu" aria-labelledby="audience-view">
+    <li class="<?= $current_audience === 'all' ? 'active' : '' ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_audience) ?>">All Audiences</a>
+    </li>
+    <?php foreach ($audience_terms as $term): ?>
+        <li class="<?= $current_audience === $term->slug ? 'active' : '' ?>">
+            <a href="javascript:void(0)" data-term="<?= esc_attr($term->slug) ?>" data-taxonomy="<?= esc_attr($taxonomy_audience) ?>">
+                <?= esc_html($term->name) ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+<!-- News Crop Dropdown -->
+<ul id="news-crop" class="dropdown-menu" role="menu" aria-labelledby="cops-view">
+    <li class="<?= $current_crop === 'all' ? 'active' : '' ?>">
+        <a href="javascript:void(0)" data-term="all" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">All Crops</a>
+    </li>
+    <?php foreach ($crop_terms as $term): ?>
+        <li class="<?= $current_crop === $term->slug ? 'active' : '' ?>">
+            <a href="javascript:void(0)" data-term="<?= esc_attr($term->slug) ?>" data-taxonomy="<?= esc_attr($taxonomy_crop) ?>">
+                <?= esc_html($term->name) ?>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+
 </div>
 	<?php
 
