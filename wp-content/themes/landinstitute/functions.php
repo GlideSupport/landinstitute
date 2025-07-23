@@ -1033,69 +1033,7 @@ function handle_ajax_news_learn() {
     $enable_topic    = $filter_setting['enable_learn_topic'];
 
 
-	if($enable_type || $enable_crop || $enable_audience || $enable_topic){
-
-		 if (!empty($enable_type)) {
-        $exclude_taxonomies[] = 'learn-type';
-
-        if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-type',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['post_type']),
-            ];
-        }
-    } else {
-        $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-type'));
-    }
-
-    // Learn Topic
-    if (!empty($enable_topic)) {
-        $exclude_taxonomies[] = 'learn-topic';
-
-        if (!empty($_POST['learn_topic']) && $_POST['learn_topic'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-topic',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['learn_topic']),
-            ];
-        }
-    } else {
-    $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-topic'));
-    }
-
-    // Learn Crop
-    if (!empty($enable_crop)) {
-        $exclude_taxonomies[] = 'learn-crop';
-
-        if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-crop',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['learn_crops']),
-            ];
-        }
-    } else {
-       $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-crop'));
-    }
-
-    // Learn Audience
-    if (!empty($enable_audience)) {
-        $exclude_taxonomies[] = 'learn-audience';
-
-        if (!empty($_POST['learn_audience']) && $_POST['learn_audience'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-audience',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['learn_audience']),
-            ];
-        }
-    } else {
-       $tax_query = array_merge($tax_query, get_taxonomy_exclusion_query('learn-audience'));
-    }
-
-	}else{
-        $exclude_taxonomies[] = 'learn-type';
+      $exclude_taxonomies[] = 'learn-type';
 
         if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
             $tax_query[] = [
@@ -1105,8 +1043,9 @@ function handle_ajax_news_learn() {
             ];
         }
 
+
     // Learn Topic
-        $exclude_taxonomies[] = 'learn-topic';
+  $exclude_taxonomies[] = 'learn-topic';
 
         if (!empty($_POST['learn_topic']) && $_POST['learn_topic'] !== 'all') {
             $tax_query[] = [
@@ -1126,10 +1065,9 @@ function handle_ajax_news_learn() {
                 'terms'    => sanitize_text_field($_POST['learn_crops']),
             ];
         }
-    
 
     // Learn Audience
-        $exclude_taxonomies[] = 'learn-audience';
+    $exclude_taxonomies[] = 'learn-audience';
 
         if (!empty($_POST['learn_audience']) && $_POST['learn_audience'] !== 'all') {
             $tax_query[] = [
@@ -1138,11 +1076,19 @@ function handle_ajax_news_learn() {
                 'terms'    => sanitize_text_field($_POST['learn_audience']),
             ];
         }
-	}
 
+	
 
     // Learn Type
-   
+    $exclude_taxonomies[] = 'learn-type';
+
+        if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
+            $tax_query[] = [
+                'taxonomy' => 'learn-type',
+                'field'    => 'slug',
+                'terms'    => sanitize_text_field($_POST['post_type']),
+            ];
+        }
 
     // Hardcoded exclusions
    // $exclude_taxonomies = ['learn-crop', 'learn-topic'];
