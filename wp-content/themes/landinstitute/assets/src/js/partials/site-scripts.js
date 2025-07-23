@@ -1486,6 +1486,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		if (btnPath === currentPath) {
 			btn.classList.add("btn-lilac");
+			btn.classList.remove("btn-lime-green");
 		}
 	});
 });
