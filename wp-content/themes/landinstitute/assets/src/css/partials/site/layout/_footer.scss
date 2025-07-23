@@ -486,7 +486,8 @@
                         padding: 6px 12px;
                     }
 
-                    &.active {
+                    &.active,
+                    &.current-menu-item {
                         a {
                             background: var(--gb_primary_lilac);
                         }
