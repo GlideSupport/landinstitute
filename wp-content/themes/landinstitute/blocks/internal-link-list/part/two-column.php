@@ -16,9 +16,10 @@
 					$image = $li_ill_rep['image'];
 					$link = $li_ill_rep['link'];
 					$link_url = $link['url'] ?? '';
+					$link_target = $link['target'] ?? '_self';
 					if (!empty($title) || !empty($text) || !empty($image) || !empty($link)) { ?>
 						<?php echo !empty($link_url) 
-						? '<a href="' . esc_url($link_url) . '" class="card-item link-with-title' . 
+						? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="card-item link-with-title' . 
 						(($li_ill_show_or_hide_arrow === 'with-arrow' && !empty($link_url)) ? ' with-arrow' : '') . 
 						(!empty($image) ? ' hover-img' : '') . '">' 
 						: '<div class="card-item link-with-title' . 
