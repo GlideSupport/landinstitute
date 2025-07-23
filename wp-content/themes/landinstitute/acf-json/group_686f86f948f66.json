@@ -86,7 +86,7 @@
             "name": "li_nwd_background_pattern",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "If no image is added, the default pattern from \"News List Detail Page BG Pattern\" in Theme Options will be used.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -444,5 +444,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752667142
+    "modified": 1753281629
 }

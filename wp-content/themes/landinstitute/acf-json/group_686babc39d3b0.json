@@ -26,7 +26,7 @@
             "name": "li_po_bg_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "If no image is added, the default pattern from \"Learn Detail Page BG Pattern\" in Theme Options will be used.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -609,5 +609,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1753280959
+    "modified": 1753281601
 }
