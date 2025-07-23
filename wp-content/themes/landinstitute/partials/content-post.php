@@ -31,7 +31,7 @@ $li_ldo_publication = $bst_fields['li_ldo_publication'];
 $li_ldo_url = $bst_fields['li_ldo_url'];
 $link = $li_ldo_url ?? '';
 
-$bg_pattern = $bst_fields['li_ldo_background_pattern'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
+$bg_pattern = $bst_fields['li_po_bg_image'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
 $li_ido_read_more_check = BaseTheme::headline_check($li_ido_read_more);
 $li_ido_relatedselected_post = $bst_fields['li_ido_relatedselected_post'] ?? 'related';
@@ -42,7 +42,6 @@ $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 
 $li_po_bg_image_visible = array_key_exists('li_po_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_po_bg_image_visible'] : true;
-$li_po_bg_image = $bst_fields['li_po_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
 $newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_ldo_newsletter_form_visible'] : true;
 $li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
@@ -176,7 +175,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	<section class="container-1280 ">
 		<div class="wrapper">
 			<div class="bg-pattern-fixed has-border-bottom">
-				<?php echo !empty($li_po_bg_image) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($li_po_bg_image, 'thumb_2000') . '</div>' : ''; ?>
+				<?php echo !empty($bg_pattern) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($bg_pattern, 'thumb_2000') . '</div>' : ''; ?>
 			</div>
 		</div>
 	</section>

@@ -21,16 +21,16 @@
             "selected": 0
         },
         {
-            "key": "field_686e20a35b933",
+            "key": "field_6880ef92194aa",
             "label": "Background Pattern",
-            "name": "li_ldo_background_pattern",
+            "name": "li_po_bg_image",
             "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "100",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -249,6 +249,45 @@
             "default_value": "",
             "allow_in_bindings": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_6880f1264ef26",
+            "label": "Parallax Background Section Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_6880ef70194a9",
+            "label": "Parallax Background Section Visibility",
+            "name": "li_po_bg_image_visible",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
         },
         {
             "key": "field_686e230bb6f8e",
@@ -570,5 +609,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752653342
+    "modified": 1753280959
 }
