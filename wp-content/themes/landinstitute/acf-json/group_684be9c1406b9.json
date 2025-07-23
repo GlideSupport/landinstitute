@@ -8,7 +8,7 @@
             "name": "li_cpt_bg_pattern",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "If no image is added, the default pattern from \"Event Detail Page BG Pattern\" in Theme Options will be used.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -581,5 +581,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752057625
+    "modified": 1753281700
 }
