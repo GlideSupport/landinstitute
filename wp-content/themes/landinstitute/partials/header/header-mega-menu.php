@@ -135,15 +135,15 @@
 			</div>
 			<div class="mega-btns">
 				<?php if (!empty($landinstitute_button_one)): ?>
-					<?php echo BaseTheme::button($landinstitute_button_one, 'site-btn'); ?>
+					<?php echo BaseTheme::button($landinstitute_button_one, 'site-btn btn-lime-green'); ?>
 				<?php endif; ?>
 				<?php if (!empty($landinstitute_button_two) && !empty($landinstitute_button_three)): ?>	
 					<div class="two-btn-row">
 						<?php if (!empty($landinstitute_button_two)): ?>
-							<?php echo BaseTheme::button($landinstitute_button_two, 'site-btn'); ?>
+							<?php echo BaseTheme::button($landinstitute_button_two, 'site-btn btn-lime-green'); ?>
 						<?php endif; ?>
 						<?php if (!empty($landinstitute_button_three)): ?>
-							<?php echo BaseTheme::button($landinstitute_button_three, 'site-btn'); ?>
+							<?php echo BaseTheme::button($landinstitute_button_three, 'site-btn btn-lime-green'); ?>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>

@@ -1474,4 +1474,19 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Header Mega menu append js Start
+document.addEventListener("DOMContentLoaded", function () {
+	const currentPath = window.location.pathname;
+	document.querySelectorAll(".mega-btns a.site-btn").forEach((btn) => {
+		const href = btn.getAttribute("href");
 
+		if (!href || href.startsWith("#")) return;
+
+		const btnPath = new URL(href, window.location.origin).pathname;
+
+		if (btnPath === currentPath) {
+			btn.classList.add("btn-lilac");
+		}
+	});
+});
+// Header Mega menu append js End
