@@ -86,7 +86,7 @@ $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? nu
 									</div>
 								<?php endwhile; ?>
 							<?php else : ?>
-								<p>No posts found in this category.</p>
+								<div class="not-found">No posts found in this category.</div>
 							<?php endif; ?>
 						</div>
 
