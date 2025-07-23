@@ -551,30 +551,33 @@ document.addEventListener("DOMContentLoaded", function () {
 	addHoverEffect(".social-icons a", "active-hover");
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
 
-	//footer nav active class js
-	// function updateActiveHashNav() {
-	// 	const currentHash = window.location.hash;
-	// 	if (!currentHash) return;
+	// footer nav active class js
+	function updateActiveNavByPath() {
+		const currentPath = window.location.pathname;
+		document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
+			const link = li.querySelector('a');
+			if (link) {
+				const href = link.getAttribute('href');
+				// Skip # links or empty links
+				if (!href || href.startsWith('#')) {
+					li.classList.remove('active');
+					return;
+				}
+				// Parse href using current site origin
+				const linkURL = new URL(href, window.location.origin);
+				const linkPath = linkURL.pathname;
 
-	// 	document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
-	// 		const link = li.querySelector('a');
-	// 		if (link) {
-	// 			const href = link.getAttribute('href');
-	// 			if (href && href.endsWith(currentHash)) {
-	// 				li.classList.add('active');
-	// 			} else {
-	// 				li.classList.remove('active');
-	// 			}
-	// 		}
-	// 	});
-	// }
+				if (linkPath === currentPath) {
+					li.classList.add('active');
+				} else {
+					li.classList.remove('active');
+				}
+			}
+		});
+	}
+	updateActiveNavByPath();
+	// footer nav active class end
 
-	// // Run on page load
-	// updateActiveHashNav();
-
-	// // Run on hash change (e.g., link clicked or updated via JS)
-	// window.addEventListener('hashchange', updateActiveHashNav);
-	//footer nav active class end
 
 
 	//hover add class in menu js end
