@@ -6,8 +6,8 @@ $li_sl_staff_category_selector = $bst_block_fields['_li_sl_select_staff_categori
 $li_sl_hide_staff_filter = $bst_block_fields['li_sl_hide_staff_filter'] ?? '';
 $li_sl_hide_all_tab_filter = $bst_block_fields['li_sl_hide_all_tab_filter'] ?? '';
 
-$hide_staff_filter_class = ( $li_sl_hide_staff_filter == '1' ) ? 'show' : 'none-hidden';
-$hide_all_tab_filter_class = ( $li_sl_hide_all_tab_filter == '1' ) ? 'show' : 'none-hidden';
+$hide_staff_filter_class = ( $li_sl_hide_staff_filter == '1' ) ? 'show-filter' : 'none-hidden';
+$hide_all_tab_filter_class = ( $li_sl_hide_all_tab_filter == '1' ) ? 'show-filter' : 'none-hidden';
 
 $show_by_category = $li_sl_staff_selection === 'category' && !empty($li_sl_staff_category_selector);
 $show_by_selector = $li_sl_staff_selection === 'manual' && !empty($li_sl_staff_selector);
