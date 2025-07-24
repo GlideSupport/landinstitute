@@ -660,12 +660,12 @@
             }
 
             .text-card-btn {
-                margin-left: clamp(-114px, calc(-80px - 28 * ((100vw - 1440px) / 240)), -20px);
+                margin-left: clamp(-115px, calc(-80px - 28 * ((100vw - 1440px) / 240)), -20px);
                 margin-top: auto;
                 width: 50vw;
 
                 @media (min-width: 1441px) and (max-width: 1920px) {
-                    margin-left: clamp(-114px, calc(-80px - 28 * ((100vw - 1440px) / 240)), -20px);
+                    margin-left: clamp(-115px, calc(-80px - 28 * ((100vw - 1440px) / 240)), -20px);
                 }
 
                 @media(min-width: 1921px) {
@@ -690,6 +690,7 @@
 
                     @media(max-width: 1920px) {
                         border-left: 0px;
+                        border-right: 2px;
                     }
                 }
             }
