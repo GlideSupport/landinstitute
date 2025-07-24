@@ -158,6 +158,12 @@
 										animation: bubble-pop 0.4s forwards;
 										background-size: auto;
 									}
+
+									&.animate-in {
+										&::after {
+											animation: bubble-pop 0.4s forwards;
+										}
+									}
 								}
 							}
 
