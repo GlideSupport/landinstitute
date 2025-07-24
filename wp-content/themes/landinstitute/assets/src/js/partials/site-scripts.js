@@ -1492,43 +1492,74 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Header Mega menu append js End
 
-document.addEventListener("DOMContentLoaded", function () {
-	if (window.innerWidth < 992) return; // Skip on small screens
+// document.addEventListener("DOMContentLoaded", function () {
+// 	if (window.innerWidth < 992) return; // Skip on small screens
 
-	const block = document.querySelector(".internal-link-list-block.with-parallax-image");
-	const bg = document.querySelector(".parallax-fixed-bg");
-	const target = block?.querySelector(".parallax-img");
-	const header = document.querySelector(".header-section"); // your fixed header
+// 	const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+// 	const bg = document.querySelector(".parallax-fixed-bg");
+// 	const target = block?.querySelector(".parallax-img");
+// 	const header = document.querySelector(".header-section"); // your fixed header
 
-	if (!block || !bg || !target || !header) return;
+// 	if (!block || !bg || !target || !header) return;
 
-	function updateParallaxPosition() {
-		const headerHeight = header.offsetHeight;
-		const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
-		const totalOffset = headerHeight + adminBarHeight;
+// 	function updateParallaxPosition() {
+// 		const headerHeight = header.offsetHeight;
+// 		const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+// 		const totalOffset = headerHeight + adminBarHeight;
 
-		const scrollY = window.scrollY;
+// 		const scrollY = window.scrollY;
 
-		const blockRect = block.getBoundingClientRect();
-		const blockTop = blockRect.top + scrollY;
-		const blockHeight = blockRect.height;
-		const blockBottom = blockTop + blockHeight;
+// 		const blockRect = block.getBoundingClientRect();
+// 		const blockTop = blockRect.top + scrollY;
+// 		const blockHeight = blockRect.height;
+// 		const blockBottom = blockTop + blockHeight;
 
-		const adjustedViewportTop = scrollY + totalOffset;
+// 		const adjustedViewportTop = scrollY + totalOffset;
 
-		if (adjustedViewportTop >= blockTop && adjustedViewportTop <= blockBottom) {
-			const targetRect = target.getBoundingClientRect();
-			bg.style.visibility = "visible";
-			bg.style.top = "0";
-			bg.style.left = `${targetRect.left}px`;
-			bg.style.width = `${targetRect.width}px`;
-			bg.style.height = `${window.innerHeight}px`;
-		} else {
-			bg.style.visibility = "hidden";
-		}
-	}
+// 		if (adjustedViewportTop >= blockTop && adjustedViewportTop <= blockBottom) {
+// 			const targetRect = target.getBoundingClientRect();
+// 			bg.style.visibility = "visible";
+// 			//bg.style.top = "0";
+// 			bg.style.left = `${targetRect.left}px`;
+// 			bg.style.width = `${targetRect.width}px`;
+// 			bg.style.height = `${window.innerHeight}px`;
+// 		} else {
+// 			//bg.style.visibility = "hidden";
+// 		}
+// 	}
 
-	window.addEventListener("scroll", updateParallaxPosition);
-	window.addEventListener("resize", updateParallaxPosition);
-	updateParallaxPosition(); // Run on load
-});
+// 	window.addEventListener("scroll", updateParallaxPosition);
+// 	window.addEventListener("resize", updateParallaxPosition);
+// 	updateParallaxPosition(); // Run on load
+// });
+
+// document.addEventListener("DOMContentLoaded", function () {
+// 	if (window.innerWidth < 992) return;
+
+// 	const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+// 	const bg = document.querySelector(".parallax-fixed-bg");
+// 	const pattern = document.querySelector(".bg-pattern-fixed");
+// 	const patternHeight = pattern.offsetHeight;
+// 	if (!block || !bg) return;
+
+// 	// Observer: Add class when block enters viewport
+// 	const observer = new IntersectionObserver(
+// 		(entries) => {
+// 			entries.forEach((entry) => {
+// 				if (entry.isIntersecting) {
+// 					block.classList.add("is-in-viewport");
+// 					bg.style.top = patternHeight + "px"; // ✅ Apply top value
+// 				} else {
+// 					block.classList.remove("is-in-viewport");
+// 					bg.style.top = ""; // ❌ Reset top when out (optional)
+// 				}
+// 			});
+// 		},
+// 		{
+// 			root: null,
+// 			threshold: 0,
+// 		}
+// 	);
+
+// 	observer.observe(block);
+// });
