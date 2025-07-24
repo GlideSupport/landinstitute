@@ -135,13 +135,12 @@
                         "class": "",
                         "id": ""
                     },
-                    "layout": "table",
+                    "layout": "row",
                     "min": 0,
                     "max": 3,
                     "collapsed": "",
                     "button_label": "Add Stats",
                     "rows_per_page": 20,
-                    "parent_repeater": "field_682c71186232d",
                     "sub_fields": [
                         {
                             "key": "field_682c767a62331",
@@ -257,7 +256,8 @@
                             "append": "",
                             "parent_repeater": "field_682c72ae6232f"
                         }
-                    ]
+                    ],
+                    "parent_repeater": "field_682c71186232d"
                 },
                 {
                     "key": "field_682c7a6b320e7",
@@ -324,5 +324,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1753335283
+    "modified": 1753344063
 }
