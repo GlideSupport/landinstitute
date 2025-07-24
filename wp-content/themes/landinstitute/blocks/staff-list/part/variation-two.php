@@ -3,6 +3,12 @@ $li_sl_staff_selection         = $bst_block_fields['li_sl_staff_selection'] ?? '
 $li_sl_staff_selector          = $bst_block_fields['li_sl_staff_selector'] ?? [];
 $li_sl_staff_category_selector = $bst_block_fields['_li_sl_select_staff_categories'] ?? [];
 
+$li_sl_hide_staff_filter = $bst_block_fields['li_sl_hide_staff_filter'] ?? '';
+$li_sl_hide_all_tab_filter = $bst_block_fields['li_sl_hide_all_tab_filter'] ?? '';
+
+$hide_staff_filter_class = ( $li_sl_hide_staff_filter == '1' ) ? 'show' : 'none-hidden';
+$hide_all_tab_filter_class = ( $li_sl_hide_all_tab_filter == '1' ) ? 'show' : 'none-hidden';
+
 $show_by_category = $li_sl_staff_selection === 'category' && !empty($li_sl_staff_category_selector);
 $show_by_selector = $li_sl_staff_selection === 'manual' && !empty($li_sl_staff_selector);
 
@@ -20,7 +26,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 		} ?>
 	</div>
 	<div class="tabbed-block-content">
-		<div class="tabs-listing">
+		<div class="tabs-listing <?php echo esc_attr($hide_staff_filter_class); ?>">
 			<ul class="tabs">
 				<?php
 				$terms = [];
@@ -50,7 +56,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 					echo '<li class="tab-link ' . esc_attr($active) . '" data-tab="tab-' . $tab_index . '" data-bg-color="' . $bg_color . '" data-category="' . esc_attr($term->term_id) . '">' . esc_html($term->name) . '</li>';
 					$tab_index++;
 				}
-				echo '<li class="tab-link" data-tab="tab-all" data-category="all">All</li>';
+				echo '<li class="tab-link '.esc_attr($hide_all_tab_filter_class).'" data-tab="tab-all" data-category="all">All</li>';
 				?>
 			</ul>
 		</div>

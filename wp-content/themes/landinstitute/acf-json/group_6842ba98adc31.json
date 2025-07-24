@@ -246,6 +246,48 @@
             "bidirectional": 0,
             "multiple": 0,
             "bidirectional_target": []
+        },
+        {
+            "key": "field_6882032b07b46",
+            "label": "Hide Staff Filter",
+            "name": "li_sl_hide_staff_filter",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
+        },
+        {
+            "key": "field_6882038807b48",
+            "label": "Hide All Tab Filter",
+            "name": "li_sl_hide_all_tab_filter",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
         }
     ],
     "location": [
@@ -266,5 +308,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751453193
+    "modified": 1753351061
 }
