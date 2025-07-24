@@ -7,6 +7,7 @@ $li_sl_hide_staff_filter = $bst_block_fields['li_sl_hide_staff_filter'] ?? '';
 $li_sl_hide_all_tab_filter = $bst_block_fields['li_sl_hide_all_tab_filter'] ?? '';
 
 $hide_staff_filter_class = ( $li_sl_hide_staff_filter == '1' ) ? 'show-filter' : 'none-hidden';
+$hide_staff_filter_class_inner = ( $li_sl_hide_staff_filter == '1' ) ? 'has-border-top' : 'none';
 $hide_all_tab_filter_class = ( $li_sl_hide_all_tab_filter == '1' ) ? 'show-filter' : 'none-hidden';
 
 $show_by_category = $li_sl_staff_selection === 'category' && !empty($li_sl_staff_category_selector);
@@ -61,7 +62,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 			</ul>
 		</div>
 
-		<div class="tab-content-group">
+		<div class="tab-content-group <?php echo esc_attr($hide_staff_filter_class_inner); ?>">
 			<div class="tab-row-block staff-listing">
 				<?php
 				// Get all staff once
