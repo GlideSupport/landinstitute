@@ -2,7 +2,7 @@
 	<div class="internal-link-list-block with-parallax-image">
 		<div class="row-flex">
 		<?php echo !empty($li_ill_img) ? '<div class="col-left parallax-img">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
-			<div class="col-right">
+			<div class="col-right bg-base-cream">
 				<div class="gl-s156"></div>
 				<?php echo !empty($li_ill_headline_check) ? BaseTheme::headline($li_ill_headline, 'heading-2 block-title mb-0') : ''; ?>
 				<?php echo (!empty($li_ill_headline_check) && !empty($li_ill_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
