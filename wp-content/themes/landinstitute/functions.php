@@ -827,6 +827,26 @@ function get_formatted_event_datetime($post_id) {
     $timezone            = get_field('timezone', $post_id);
     $all_day             = get_field('li_cpt_event_all_day', $post_id); // checkbox
 
+	if ($start_date_raw == '') {
+		return '';
+	}
+
+	// Normalize date formats
+	if (preg_match('/^\d{8}$/', $start_date_raw)) {
+		$start_date_raw = DateTime::createFromFormat('Ymd', $start_date_raw)->format('Y-m-d');
+	}
+	if (preg_match('/^\d{8}$/', $end_date_raw)) {
+		$end_date_raw = DateTime::createFromFormat('Ymd', $end_date_raw)->format('Y-m-d');
+	}
+
+	// Default times if not set
+	if (empty($event_start_time)) {
+		$event_start_time = '00:00';
+	}
+	if (empty($event_end_time)) {
+		$event_end_time = '23:59';
+
+	}
     // Get timezone code (you must define this helper)
     $timezone_code = function_exists('get_timezone_code') ? get_timezone_code($timezone) : '';
 
