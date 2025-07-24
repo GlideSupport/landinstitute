@@ -174,7 +174,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 <?php if ($li_po_bg_image_visible): ?>
 	<section class="container-1280 ">
 		<div class="wrapper">
-			<div class="bg-pattern-fixed has-border-bottom">
+			<div class="bg-pattern-fixed has-border-top has-border-bottom">
 				<?php echo !empty($bg_pattern) ? ' <div class="bg-pattern-fixed">' . wp_get_attachment_image($bg_pattern, 'thumb_2000') . '</div>' : ''; ?>
 			</div>
 		</div>
