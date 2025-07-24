@@ -148,6 +148,17 @@
 								&:after {
 									right: 28px;
 								}
+
+								&.btn-lilac {
+									background-color: var(--gb_primary_lilac);
+									border-color: var(--gb_base_brown);
+									color: var(--gb_base_brown);
+
+									&:after {
+										animation: bubble-pop 0.4s forwards;
+										background-size: auto;
+									}
+								}
 							}
 
 							.site-btn:not(.two-btn-row .site-btn) {
