@@ -24,6 +24,10 @@
             padding-right: clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 15.6425)), 80px);
             border-left: 2px solid var(--gb_base_brown);
 
+            @media(min-width: 1580px) {
+                max-width: 70ch;
+            }
+
             @media(max-width: 991px) {
                 flex: 100% 0 0;
                 padding-left: 24px;

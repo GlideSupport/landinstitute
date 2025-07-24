@@ -221,6 +221,10 @@
                         flex: 100% 0 0;
                     }
 
+                    @media(min-width: 1580px) {
+                        max-width: 60ch;
+                    }
+
                     ul {
                         li {
                             margin: 0 0 20px;

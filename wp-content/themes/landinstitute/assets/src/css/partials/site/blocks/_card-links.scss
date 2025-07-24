@@ -470,7 +470,7 @@ section:has(.text-featured-block) {
             img {
                 max-height: clamp(188px, calc(11.75rem + ((1vw - 7.68px) * 15.9794)), 281px);
                 max-width: 100%;
-                object-fit: cover;
+                object-fit: contain;
                 height: clamp(188px, 11.75rem + (1vw - 7.68px) * 15.9794, 281px);
             }
         }
@@ -1095,6 +1095,10 @@ section:has(.text-featured-block) {
                 flex: 1 0 0;
                 padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
 
+                @media(min-width: 1580px) {
+                    max-width: 60ch;
+                }
+
                 @media(max-width: 767px) {
                     flex: 100% 0 0;
                 }
@@ -1152,6 +1156,10 @@ section:has(.text-featured-block) {
             .event-teaser-list-content {
                 flex: 1 0 0;
                 padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+                @media(min-width: 1580px) {
+                    max-width: 70ch;
+                }
 
                 @media(max-width: 767px) {
                     flex: 100% 0 0;

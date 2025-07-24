@@ -90,6 +90,10 @@
                 margin-left: -24px;
             }
 
+            @media(min-width: 1580px) {
+                max-width: 60ch;
+            }
+
             &:has(.card-list .card-item.hover-img) {
                 @media(min-width: 1200px) {
                     padding-left: 160px;

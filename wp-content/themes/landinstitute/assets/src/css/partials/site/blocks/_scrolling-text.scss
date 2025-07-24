@@ -55,6 +55,12 @@
         &:last-child {
             border-bottom: 0;
         }
+
+        .list-content {
+            @media(min-width: 1580px) {
+                max-width: 60ch;
+            }
+        }
     }
 }
 

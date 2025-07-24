@@ -33,6 +33,10 @@
             .cl-right {
                 flex: 1 0 0;
 
+                @media(min-width: 1580px) {
+                    max-width: 60ch;
+                }
+
                 @media(max-width: 319px) {
                     flex: 100% 0 0;
                 }
