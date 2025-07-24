@@ -79,7 +79,7 @@ $li_tl_link = $bst_block_fields['li_tl_link'] ?? null;
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
-                <?php echo (!empty($li_tl_repeater) && !empty($li_tl_link)) ? '<div class="gl-s96"></div>' : ''; ?>
+                <?php echo (!empty($li_tl_repeater) || !empty($li_tl_link)) ? '<div class="gl-s96"></div>' : ''; ?>
                 <?php echo (!empty($li_tl_link)) ? '<div class="block-btn">' . BaseTheme::button($li_tl_link, 'site-btn') . '</div>' : ''; ?>
             </div>
         </div>
