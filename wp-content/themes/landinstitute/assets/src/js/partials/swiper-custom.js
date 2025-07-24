@@ -226,11 +226,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			const container = mapCounter.closest(".map-counter");
 			if (!container || container.dataset.counted === "true") return;
 
-			const targetStr = container.getAttribute("data-target");
-			const target = Number(targetStr);
+			const startStr = container.getAttribute("data-start");
+			const endStr = container.getAttribute("data-end");
+			const start = Number(startStr);
+			const end = Number(endStr);
 
-			if (!targetStr || isNaN(target) || target <= 0) {
-				mapCounter.innerText = "0";
+			if (
+				!startStr || !endStr ||
+				isNaN(start) || isNaN(end) ||
+				start === end
+			) {
+				mapCounter.innerText = end.toLocaleString();
 				container.dataset.counted = "true";
 				return;
 			}
@@ -240,13 +246,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			const updateCount = (currentTime) => {
 				const elapsedTime = currentTime - startTime;
 				const progress = Math.min(elapsedTime / speed, 1);
-				const currentCount = Math.ceil(progress * target);
+				const currentCount = Math.floor(start + (end - start) * progress);
 				mapCounter.innerText = currentCount.toLocaleString();
 
 				if (progress < 1) {
 					requestAnimationFrame(updateCount);
 				} else {
-					mapCounter.innerText = target.toLocaleString();
+					mapCounter.innerText = end.toLocaleString();
 					container.dataset.counted = "true";
 				}
 			};

@@ -141,6 +141,7 @@
                     "collapsed": "",
                     "button_label": "Add Stats",
                     "rows_per_page": 20,
+                    "parent_repeater": "field_682c71186232d",
                     "sub_fields": [
                         {
                             "key": "field_682c767a62331",
@@ -166,8 +167,32 @@
                         },
                         {
                             "key": "field_682c768662332",
-                            "label": "Stat",
+                            "label": "Stat Start",
                             "name": "stat_number",
+                            "aria-label": "",
+                            "type": "number",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "min": "",
+                            "max": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "step": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_682c72ae6232f"
+                        },
+                        {
+                            "key": "field_6881c5ddd28c3",
+                            "label": "Stat End",
+                            "name": "stat_number_end",
                             "aria-label": "",
                             "type": "number",
                             "instructions": "",
@@ -232,8 +257,7 @@
                             "append": "",
                             "parent_repeater": "field_682c72ae6232f"
                         }
-                    ],
-                    "parent_repeater": "field_682c71186232d"
+                    ]
                 },
                 {
                     "key": "field_682c7a6b320e7",
@@ -300,5 +324,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751972068
+    "modified": 1753335283
 }

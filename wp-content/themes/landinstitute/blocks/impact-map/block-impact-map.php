@@ -71,11 +71,13 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 								<?php if (!empty($stats)) : ?>
 									<div class="map-values">
 										<?php foreach ($stats as $stat) :
-											$target_number = $stat['stat_number'] ?? 0; ?>
+											$stat_number = $stat['stat_number'] ?? 0;
+											$stat_number_end = $stat['stat_number_end'] ?? 0;
+											 ?>
 											<div class="map-values-col" >
-												<div class="map-counter" data-target="<?php echo esc_attr($target_number); ?>">	
+												 <div class="map-counter" data-start="<?php echo esc_attr($stat_number); ?>" data-end="<?php echo esc_attr($stat_number_end); ?>">	
 													<h2 class="mb-0 block-title heading-2">
-													<?php echo esc_html(($stat['stat_prefix'] ?? '')); ?><span class="count">0</span><?php echo esc_html(($stat['stat_postfix'] ?? '')); ?>
+													<?php echo esc_html(($stat['stat_prefix'] ?? '')); ?><span class="count"><?php echo esc_attr($stat_number); ?></span><?php echo esc_html(($stat['stat_postfix'] ?? '')); ?>
 													</h2>
 												</div>
 												<div class="ui-16-15-bold map-content">
