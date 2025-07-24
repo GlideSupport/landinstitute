@@ -7,6 +7,21 @@
 }
 
 .staff-list {
+    .has-border-top {
+        position: relative;
+
+        &:before {
+            content: '';
+            background-color: var(--gb_base_brown);
+            top: -2px;
+            height: 2px;
+            left: 0;
+            margin-left: calc(-50vw + 50%);
+            position: absolute;
+            width: 1000%;
+        }
+    }
+
     .tabbed-block-content {
         .tabs {
             margin-left: calc(-50vw + 50%);
