@@ -1532,7 +1532,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		window.addEventListener("scroll", updateParallaxPosition);
 		window.addEventListener("resize", updateParallaxPosition);
 	}
-
-	updateParallaxPosition();		
 //parallax for Internal Link List image variation block End
 });
