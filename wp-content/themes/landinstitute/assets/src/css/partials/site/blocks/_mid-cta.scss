@@ -869,7 +869,7 @@ section:has(.two-column-image) {
 }
 
 .two-column-image {
-    padding: 0 0 36px;
+    padding: 0 0 0;
 
     .heading-max {
         position: relative;
@@ -880,13 +880,13 @@ section:has(.two-column-image) {
         position: relative;
         z-index: 2;
 
-        @media(min-width: 641px) {
-            min-height: 700px;
-        }
+        // @media(min-width: 641px) {
+        //     min-height: 700px;
+        // }
 
-        @media(min-width: 991px) {
-            min-height: 901px;
-        }
+        // @media(min-width: 991px) {
+        //     min-height: 901px;
+        // }
 
 
         p {
@@ -896,19 +896,11 @@ section:has(.two-column-image) {
 
     .cta-image-full {
         display: flex;
-        //margin-left: calc(-50vw + 50%);
-        margin-top: -42vw;
+        margin-left: calc(-50vw + 50%);
         overflow: hidden;
         width: 100vw;
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         height: 100%;
-        margin: 0;
-
-        @media(max-width: 640px) {
-            //margin-top: -38vw;
-        }
 
         img {
             height: 100%;
