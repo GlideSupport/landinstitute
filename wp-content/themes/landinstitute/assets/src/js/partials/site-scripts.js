@@ -1492,45 +1492,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Header Mega menu append js End
 
-//parallax for Internal Link List image variation block
-document.addEventListener("DOMContentLoaded", function () {	
+document.addEventListener("DOMContentLoaded", function () {
+	if (window.innerWidth < 992) return; // Skip on small screens
+
+	const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+	const bg = document.querySelector(".parallax-fixed-bg");
+	const target = block?.querySelector(".parallax-img");
+	const header = document.querySelector(".header-section"); // your fixed header
+
+	if (!block || !bg || !target || !header) return;
+
 	function updateParallaxPosition() {
-		// ✅ Skip JS entirely on small screens
-		if (window.innerWidth < 992) return;
+		const headerHeight = header.offsetHeight;
+		const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+		const totalOffset = headerHeight + adminBarHeight;
 
-		const target = document.querySelector(
-			".internal-link-list-block.with-parallax-image .parallax-img"
-		);
-		const bg = document.querySelector(".parallax-fixed-bg");
-
-		if (!target || !bg) return;
-
-		const rect = target.getBoundingClientRect();
 		const scrollY = window.scrollY;
 
-		const top = rect.top + scrollY;
-		const height = rect.height;
-		const left = rect.left;
-		const width = rect.width;
+		const blockRect = block.getBoundingClientRect();
+		const blockTop = blockRect.top + scrollY;
+		const blockHeight = blockRect.height;
+		const blockBottom = blockTop + blockHeight;
 
-		const viewportBottom = scrollY + window.innerHeight;
-		const targetBottom = top + height;
+		const adjustedViewportTop = scrollY + totalOffset;
 
-		if (viewportBottom > top && scrollY < targetBottom) {
+		if (adjustedViewportTop >= blockTop && adjustedViewportTop <= blockBottom) {
+			const targetRect = target.getBoundingClientRect();
 			bg.style.visibility = "visible";
 			bg.style.top = "0";
-			bg.style.left = `${left}px`;
-			bg.style.width = `${width}px`;
+			bg.style.left = `${targetRect.left}px`;
+			bg.style.width = `${targetRect.width}px`;
 			bg.style.height = `${window.innerHeight}px`;
 		} else {
 			bg.style.visibility = "hidden";
 		}
 	}
 
-	// ✅ Only bind scroll/resize events above 992px
-	if (window.innerWidth >= 992) {
-		window.addEventListener("scroll", updateParallaxPosition);
-		window.addEventListener("resize", updateParallaxPosition);
-	}
-//parallax for Internal Link List image variation block End
+	window.addEventListener("scroll", updateParallaxPosition);
+	window.addEventListener("resize", updateParallaxPosition);
+	updateParallaxPosition(); // Run on load
 });
