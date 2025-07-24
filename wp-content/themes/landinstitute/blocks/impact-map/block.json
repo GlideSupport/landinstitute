@@ -10,7 +10,7 @@
 		"anchor": true
 	},
 	"acf": {
-		"mode": "edit",
+		"mode": "preview",
 		"renderTemplate": "block-impact-map.php"
 	},
 	"example": {
