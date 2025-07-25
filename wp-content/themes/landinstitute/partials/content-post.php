@@ -223,7 +223,12 @@ if ($posts_query->have_posts()) : ?>
 				<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
 				<div class="gl-s52"></div>
 				<div class="border-variable-slider">
-					<div class="swiper-container read-slide-preview cursor-drag-icon">
+					<?php
+					// Count total posts before the loop
+						$total_posts = $posts_query->found_posts;
+						$drag_class = ($total_posts > 3) ? 'cursor-drag-icon' : '';
+					?>
+					<div class="swiper-container read-slide-preview <?php echo $drag_class; ?>">
 						<div class="swiper-wrapper">
 							<?php
 							while ($posts_query->have_posts()) : $posts_query->the_post();

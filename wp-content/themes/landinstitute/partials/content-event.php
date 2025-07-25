@@ -146,7 +146,12 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 				<div class="gl-s52"></div>
 				<div class="border-variable-slider">
 					<!-- Swiper -->
-					<div class="swiper-container read-slide-preview cursor-drag-icon">
+					 <?php
+					// Count total posts before the loop
+						$total_posts = $events_query->found_posts;
+						$drag_class = ($total_posts > 3) ? 'cursor-drag-icon' : '';
+					?>
+					<div class="swiper-container read-slide-preview <?php echo $drag_class; ?>">
 						<div class="swiper-wrapper">
 							<?php
 							while ($events_query->have_posts()) :
