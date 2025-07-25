@@ -145,8 +145,12 @@
 									background-color: var(--gb_primary_lilac);
 								}
 
-								&:after {
+								.btn-arrow-animate {
 									right: 28px;
+								}
+
+								&:after {
+									display: none;
 								}
 
 								&.btn-lilac {
@@ -154,7 +158,7 @@
 									border-color: var(--gb_base_brown);
 									color: var(--gb_base_brown);
 
-									&:after {
+									.btn-arrow-animate {
 										animation: bubble-pop 0.4s forwards;
 										background-size: auto;
 										transform: scale(1) !important;

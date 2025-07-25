@@ -26,7 +26,8 @@ body {
             padding: 18px 24px 19px;
         }
 
-        &:after {
+        &:after,
+        .btn-arrow-animate {
             align-items: center;
             //animation: shrink-back 0.4s forwards;
             background-color: var(--gb_base_brown);
@@ -53,13 +54,17 @@ body {
         }
 
         &.animate-in {
-            &::after {
+
+            &::after,
+            .btn-arrow-animate {
                 animation: bubble-pop 0.4s forwards;
             }
         }
 
         &.animate-out {
-            &::after {
+
+            &::after,
+            .btn-arrow-animate {
                 animation: shrink-back 0.3s forwards;
             }
         }
@@ -69,7 +74,8 @@ body {
             border-color: var(--gb_base_brown);
             color: var(--gb_base_brown);
 
-            &:after {
+            &:after,
+            .btn-arrow-animate {
                 //animation: bubble-pop 0.4s forwards;
                 background-size: auto;
             }
