@@ -336,6 +336,8 @@
 
     &.variation-static {
         .block-ctn-btn {
+            margin-bottom: -2px;
+
             @media (min-width: 1441px) and (max-width: 1920px) {
                 width: 50vw;
             }
@@ -365,6 +367,9 @@
 }
 
 
+section:has(.variation-static) {
+    overflow: hidden;
+}
 
 .cta-slider-lft-block {
     // display: flex;
