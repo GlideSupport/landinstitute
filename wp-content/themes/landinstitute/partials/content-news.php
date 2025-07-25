@@ -206,7 +206,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 	<section class="container-1280 bg-base-cream">
 		<div class="gl-s128"></div>
 		<div class="wrapper">
-			<div class="read-more-block">
+			<div class="read-more-block has-border-bottom">
 				<?php echo !empty($li_nwd_read_more_check)
 					? BaseTheme::headline($li_nwd_read_more, 'heading-2 block-title mb-0')
 					: '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>

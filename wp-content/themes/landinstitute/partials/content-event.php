@@ -139,7 +139,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 	<section class="container-1280 bg-base-cream">
 		<div class="gl-s128"></div>
 		<div class="wrapper">
-			<div class="read-more-block">
+			<div class="read-more-block has-border-bottom">
 				<?php echo !empty($li_cpt_more_event_check)
 					? BaseTheme::headline($li_cpt_more_event, 'heading-2 block-title mb-0')
 					: '<h2 class="heading-2 block-title mb-0">See more events</h2>'; ?>
