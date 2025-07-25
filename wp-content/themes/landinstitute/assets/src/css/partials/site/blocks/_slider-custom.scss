@@ -329,6 +329,7 @@
             position: absolute;
             transform: translateY(-50%);
             z-index: 1;
+            transition: top 0.2s ease;
         }
 
         .cta-slider-lft-block {}
