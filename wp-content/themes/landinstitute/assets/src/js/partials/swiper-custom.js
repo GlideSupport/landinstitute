@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		window.addEventListener("resize", updateArrowPosition);
 		if (window.innerWidth >= 992) {
 			function setMaxOuterHeightToImages() {
-				const blockContents = document.querySelectorAll('.cta-slider-box .cl-left');
+				const blockContents = document.querySelectorAll('.cta-slider-box .cl-left .slide-content');
 				const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
 
 				if (!blockContents.length || !ctaImages.length) {
