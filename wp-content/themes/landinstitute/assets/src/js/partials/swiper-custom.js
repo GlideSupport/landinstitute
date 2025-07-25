@@ -175,7 +175,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Make sure arrow position adjusts on window resize
 		window.addEventListener("resize", updateArrowPosition);
+		if (window.innerWidth >= 992) {
+			function setMaxOuterHeightToImages() {
+				const blockContents = document.querySelectorAll('.cta-slider-box .cl-left');
+				const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
+
+				if (!blockContents.length || !ctaImages.length) {
+					console.warn('No .cl-left or .cta-image elements found.');
+					return;
+				}
+
+				let maxOuterHeight = 0;
+
+				// First pass: get the max height
+				blockContents.forEach(blockContent => {
+					const style = window.getComputedStyle(blockContent);
+					const height = blockContent.offsetHeight || 0;
+					const marginTop = parseFloat(style.marginTop) || 0;
+					const marginBottom = parseFloat(style.marginBottom) || 0;
+					const outerHeight = height + marginTop + marginBottom;
+
+					if (outerHeight > maxOuterHeight) {
+						maxOuterHeight = outerHeight;
+					}
+				});
+
+				// Second pass: apply height to .cta-image
+				ctaImages.forEach(ctaImage => {
+					ctaImage.style.height = maxOuterHeight + 'px';
+				});
+			}
+
+			// Trigger on load and resize
+			window.addEventListener('load', setMaxOuterHeightToImages);
+			window.addEventListener('resize', setMaxOuterHeightToImages);
+		}
+
+		
 	});
+	
 	// CTA Slider JS end
 	
 
