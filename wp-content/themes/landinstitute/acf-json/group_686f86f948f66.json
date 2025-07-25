@@ -283,7 +283,7 @@
                 "id": ""
             },
             "post_type": [
-                "post"
+                "news"
             ],
             "post_status": [
                 "publish"
@@ -444,5 +444,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1753281629
+    "modified": 1753425655
 }

@@ -160,7 +160,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 <?php if ($li_no_bg_image_visible): ?>
 	<section class="container-1280">
 		<div class="wrapper">
-			<div class="bg-pattern-fixed has-border-top has-border-bottom">
+			<div class="bg-pattern-fixed has-border-bottom">
 				<?php echo !empty($li_no_bg_image) ? '<div class="bg-pattern-fixed">' . wp_get_attachment_image($li_no_bg_image, 'thumb_2000', false, ['class' => 'desktop-img']) . '</div>' : ''; ?>
 			</div>
 		</div>
@@ -213,7 +213,13 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 				<div class="gl-s52"></div>
 				<div class="border-variable-slider">
 					<!-- Swiper -->
-					<div class="swiper-container read-slide-preview cursor-drag-icon">
+					<?php
+					// Count total posts before the loop
+						$total_posts = $news_query->found_posts;
+						$drag_class = ($total_posts > 3) ? 'cursor-drag-icon' : '';
+					?>
+
+					<div class="swiper-container read-slide-preview <?php echo $drag_class; ?>">
 						<div class="swiper-wrapper">
 							<?php
 							while ($news_query->have_posts()) : $news_query->the_post();
