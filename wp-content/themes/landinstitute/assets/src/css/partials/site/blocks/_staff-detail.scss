@@ -81,6 +81,10 @@ body {
             margin-bottom: -2px;
         }
 
+        @media(min-width: 1921px) {
+            margin-left: calc(-50vw + 850px);
+        }
+
         &:after {
             content: "";
             display: block;
@@ -121,6 +125,15 @@ body {
 
         .back-btn {
             position: relative;
+            margin-left: clamp(-115px, -80px - 28 * (100vw - 1440px) / 240, -20px);
+
+            @media(max-width: 1580px) {
+                margin-left: 0;
+            }
+
+            @media(min-width: 1921px) {
+                margin-left: 0;
+            }
 
             &:after {
                 content: "";
