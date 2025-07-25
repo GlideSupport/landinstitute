@@ -666,6 +666,10 @@
         padding: 0 0 0 80px;
         position: relative;
 
+        @media(min-width: 1580px) {
+            max-width: 60ch;
+        }
+
         &:before {
             background-color: var(--gb_base_brown);
             content: "";

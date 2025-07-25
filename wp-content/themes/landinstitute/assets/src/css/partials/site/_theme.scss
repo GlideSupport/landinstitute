@@ -1350,6 +1350,12 @@ section:has(.has-border-bottom) {
                         text-decoration-color: var(--gb_base_cream);
                     }
                 }
+
+                .number-content {
+                    @media(min-width: 1580px) {
+                        max-width: 50ch;
+                    }
+                }
             }
         }
     }

@@ -71,8 +71,13 @@
         .col-left {
             flex: clamp(500px, calc(31.25rem + ((1vw - 9.92px) * 60.8939)), 718px) 0 0;
 
+
             @media(min-width: 1441px) {
                 flex: 1 0 0;
+            }
+
+            @media(min-width: 1580px) {
+                max-width: 60ch;
             }
 
             @media(max-width: 991px) {
@@ -193,6 +198,10 @@
 
             @media(min-width: 1441px) {
                 flex: 1 0 0;
+            }
+
+            @media(min-width: 1580px) {
+                max-width: 60ch;
             }
 
             @media(max-width: 640px) {

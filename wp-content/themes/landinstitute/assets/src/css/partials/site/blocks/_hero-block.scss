@@ -341,7 +341,7 @@
             .col-left {
                 border-right: 2px solid var(--gb_base_brown);
                 display: flex;
-                flex: clamp(375px, calc(23.4375rem + ((1vw - 7.68px) * 86.7698)), 880px) 0 0;
+                flex: 0 0 66.66%;
                 padding-right: clamp(20px, calc(1.25rem + ((1vw - 9.92px) * 39.1061)), 160px);
                 padding-top: clamp(64px, calc(4rem + ((1vw - 7.68px) * 12.1993)), 135px);
                 position: relative;

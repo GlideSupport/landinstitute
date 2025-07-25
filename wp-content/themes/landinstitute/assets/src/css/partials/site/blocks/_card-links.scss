@@ -998,6 +998,10 @@ section:has(.text-featured-block) {
 
             .cta-content {
                 padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+
+                @media(min-width: 1580px) {
+                    max-width: 50ch;
+                }
             }
 
             &:hover {

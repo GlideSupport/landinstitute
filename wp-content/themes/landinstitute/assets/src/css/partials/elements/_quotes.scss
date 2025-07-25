@@ -189,6 +189,10 @@ cite {
 		position: relative;
 		border-left: 2px solid var(--gb_base_brown);
 
+		@media(min-width: 1580px) {
+			max-width: 40ch;
+		}
+
 		&::after {
 			display: none;
 		}
