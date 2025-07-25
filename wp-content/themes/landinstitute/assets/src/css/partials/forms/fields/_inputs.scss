@@ -79,6 +79,16 @@ form .v_fw .v_fr .Select-control {
 	}
 }
 
+
+form .v_fw .v_fr .v_ig textarea {
+	height: 100px;
+	resize: none;
+
+	@media(max-width: 767px) {
+		height: 60px;
+	}
+}
+
 form .v_fw .v_fr .Select-control {
 	padding: 0;
 }
