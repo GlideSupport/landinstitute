@@ -218,8 +218,8 @@ $posts_query = new WP_Query($args);
 if ($posts_query->have_posts()) : ?>
 	<section class="container-1280 bg-base-cream">
 		<div class="gl-s128"></div>
-		<div class="wrapper">
-			<div class="read-more-block has-border-bottom">
+		<div class="wrapper has-border-bottom">
+			<div class="read-more-block">
 				<?php echo !empty($li_ido_read_more_check) ? BaseTheme::headline($li_ido_read_more, 'heading-2 block-title mb-0') : '<h2 class="heading-2 block-title mb-0">Read more</h2>'; ?>
 				<div class="gl-s52"></div>
 				<div class="border-variable-slider">
