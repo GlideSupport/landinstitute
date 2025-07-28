@@ -691,13 +691,12 @@ window.addEventListener("DOMContentLoaded", () => {
 		currentPage = paged;
 
 
-		if (learn_append_list) {
-			const loadingElem = document.createElement("div");
-			loadingElem.className = "loading-placeholder";
-			loadingElem.innerHTML = "<p>Loading...</p>";
-			learn_append_list.appendChild(loadingElem);
+	if (learn_append_list) {
+		    const loadingElem = document.createElement("div");
+		    loadingElem.className = "loading-placeholder";
+		    loadingElem.innerHTML = '<div class="spin-loader"></div>';
+		    learn_append_list.appendChild(loadingElem);
 		}
-
 		if (updateURL) {
 			const url = new URL(window.location);
 		if (learntype === "all") {
@@ -785,7 +784,7 @@ window.addEventListener("DOMContentLoaded", () => {
 						history.pushState({ paged: paged }, '', newURL);
 					}
 					setTimeout(() => {
-						const newTeaserList = document.querySelector(".filter-cards-grid");
+						const newTeaserList = document.querySelector(".resoruce-filter-title");
 						if (newTeaserList) {
 							const offset = 100;
 							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;

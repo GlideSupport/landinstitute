@@ -19,7 +19,7 @@ set_query_var( 'paged_var', $paged );
 	<!-- Hero Start -->
 	<section id="hero-section" class="hero-section hero-section-default hero-alongside-search">
 		<div class="bg-pattern">
-			<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-Repair-SkyBlue-sticky.jpg" alt="" />
+			<img src="<?php echo site_url(); ?>/wp-content/uploads/2025/05/TLI-Pattern-Repair-SkyBlue-sticky.jpg" alt="" />
 		</div>
 		<div class="hero-default">
 			<div class="wrapper">
@@ -41,7 +41,7 @@ set_query_var( 'paged_var', $paged );
 					</div>
 					<div class="col-right">
 						<div class="bg-pattern pattern-top-align">
-							<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-Repair-SkyBlue-sticky.jpg" alt="" />
+							<img src="<?php echo site_url(); ?>/wp-content/uploads/2025/05/TLI-Pattern-Repair-SkyBlue-sticky.jpg" alt="" />
 						</div>
 					</div>
 				</div>
@@ -147,7 +147,7 @@ function get_post_type_label($post_type_slug) {
 	<section class="container-1280">
 		<div class="wrapper">
 			<div class="bg-pattern-fixed">
-				<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-Repair-SkyBlue-sticky.jpg" alt="" />
+				<img src="<?php echo site_url(); ?>/wp-content/uploads/2025/05/TLI-Pattern-Repair-SkyBlue-sticky.jpg" alt="" />
 			</div>
 		</div>
 	</section>
