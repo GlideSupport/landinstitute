@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		function logSlideHeights() {
 			const slides = wrapper.querySelectorAll(".swiper-slide");
 			slides.forEach((slide, i) => {
-				const slideContent = slide.querySelector(".slide-content");
+				const slideContent = slide.querySelector(".cl-left");
 				const ctaImage = slide.querySelector(".cl-right .cta-image");
 				if (slideContent && ctaImage) {
 					const contentHeight = slideContent.offsetHeight;
