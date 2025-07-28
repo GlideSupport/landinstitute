@@ -80,6 +80,10 @@
         color: var(--gb_base_brown);
         padding: 0 0 36px;
 
+        @media(min-width: 1580px) {
+            max-width: 60ch;
+        }
+
         ul {
             &:last-child {
                 margin: 0;

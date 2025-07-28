@@ -997,7 +997,7 @@ section:has(.text-featured-block) {
             }
 
             .cta-content {
-                padding: 0 clamp(24px, calc(1.5rem + ((1vw - 7.68px) * 9.622)), 80px);
+                padding: 0 clamp(24px, 1.5rem + (1vw - 7.68px)*9.622, 80px) 0 clamp(24px, 80px + 28*(100vw - 1440px)/240, 116px);
 
                 @media(min-width: 1580px) {
                     max-width: 50ch;
