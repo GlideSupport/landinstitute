@@ -88,9 +88,9 @@ $latest_featured_event = new WP_Query(array(
 			$permalink   = get_permalink();
 			$excerpt     = get_the_excerpt();
 			$excerpt = wp_trim_words($excerpt, 20, '...');
-			$thumbnail   = get_the_post_thumbnail_url($event_id, 'full');
+			$thumbnail   = get_the_post_thumbnail_url($event_id, 'thumb_800');
 			if(!$thumbnail){
-				$thumbnail = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');;
+				$thumbnail = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'thumb_800');
 
 			}
 
@@ -231,7 +231,7 @@ $latest_featured_event = new WP_Query(array(
 									$start_date = get_field('li_cpt_event_start_date');
 									$end_date = get_field('li_cpt_event_end_date');
 									$post_id =get_the_ID();
-									$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');;
+									$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'thumb_800');;
 									if (get_the_post_thumbnail_url(get_the_ID(), 'medium')) {
 										$image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
 									}
