@@ -55,12 +55,13 @@
 					background-color: var(--gb_base_cream);
 					display: flex;
 					flex-direction: column;
-					height: 100vh;
+					height: calc(100vh - 90px);
 					left: 0;
 					padding: 0;
 					position: absolute;
 					top: 90px;
 					width: 100%;
+					border-top: 2px solid var(--gb_base_brown);
 
 					&.mp-level-open {
 						opacity: 1;
@@ -92,16 +93,17 @@
 
 						.col-left {
 							background-color: var(--gb_primary_lime_green);
-							border-right: 2px solid var(--gb_base_brown);
+							border-bottom: 2px solid var(--gb_base_brown);
 							display: flex;
-							flex: 372px 0 0;
+							flex: 100% 0 0;
 							flex-direction: column;
 
 							.group-content {
-								padding: 0 44px;
+								padding: 0 24px;
 
 								ul {
 									margin: 0;
+									padding: 0;
 
 									li {
 										margin-bottom: 8px;
@@ -168,11 +170,7 @@
 
 						.col-right {
 							flex: 1 0 0;
-							padding: 36px 44px;
-
-							@media(max-width: 1350px) {
-								padding: 36px 34px;
-							}
+							padding: 28px 0;
 
 							.mega-menu-row {
 								display: flex;
@@ -180,17 +178,33 @@
 								gap: 36px;
 
 								.mega-col {
-									flex: 1 0 0;
+									flex: 100% 0 0;
+									padding: 0 24px 28px;
+									margin-bottom: 28px;
+									border-bottom: 2px solid var(--gb_base_brown);
+
+									&:last-child {
+										margin-bottom: 0;
+										padding-bottom: 0;
+										border-bottom: 0;
+									}
 
 									ul {
 										margin: 0;
+										padding: 0;
+										display: block;
 
 										li {
 											margin-bottom: 8px;
+											display: inline-flex;
+											margin-right: 12px;
+											width: auto;
 
 											&:last-child {
 												margin-bottom: 0;
 											}
+
+											a {}
 										}
 									}
 								}
@@ -201,22 +215,18 @@
 					&.our-work-mega-dropdown {
 						.mega-dropdown-card {
 							.col-left {
-								flex: 240px 0 0;
+								flex: 100% 0 0;
 							}
 
 							.col-right {
 								flex: 1 0 0;
 
 								.mega-menu-row {
-									gap: 44px;
-
-									@media(max-width: 1350px) {
-										gap: 20px;
-									}
+									gap: 0;
 
 									.mega-col {
 										&:last-child {
-											flex: 161px 0 0;
+											flex: 100% 0 0;
 										}
 									}
 								}
@@ -240,6 +250,7 @@
 							span {
 								flex: 63px 0 0;
 								text-transform: uppercase;
+								align-self: center;
 							}
 
 							ul {
@@ -248,6 +259,7 @@
 								flex-wrap: wrap;
 								gap: 24px;
 								margin: 0;
+								padding: 0;
 
 								@media(max-width: 1350px) {
 									gap: 18px;
@@ -256,6 +268,9 @@
 								li {
 									margin: 0;
 									transition: all 0.2s ease-in-out;
+									width: auto;
+									display: inline-flex;
+									margin-right: 12px;
 
 									&.hover-active {
 										opacity: 0.5;
@@ -298,7 +313,7 @@
 				}
 			}
 
-			ul {
+			ul:not(.mega-dropdown ul) {
 				transition: none;
 				display: none;
 				padding: 8px 0 20px 20px;
@@ -632,7 +647,7 @@
 	li.menu-item-has-children {
 		.menu-expand {
 			position: absolute;
-			z-index: 2;
+			z-index: 0;
 			right: 0;
 			top: 50%;
 			display: block;
@@ -642,7 +657,7 @@
 			background-position: center;
 			background-size: cover;
 			background-repeat: no-repeat;
-			background-image: url(../images/submenu-icon.svg);
+			background-image: url(../images/submenu-icon-md.svg);
 			transform: translate(0, -50%);
 		}
 	}
