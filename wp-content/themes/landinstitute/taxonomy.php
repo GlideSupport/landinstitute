@@ -86,9 +86,25 @@ $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? nu
 									</div>
 								<?php endwhile; ?>
 							<?php else : ?>
-								<div class="not-found-append"><div class="not-found-block"><div class="not-found">No posts found in this category.</div></div></div>
 							<?php endif; ?>
 						</div>
+						<?php if (!have_posts()) : ?>	
+							<div class="not-found-append">
+								<div class="not-found-block">
+									<div class="not-found">
+										<?php
+										printf(
+											esc_html__('No Resources found in the %s category.', 'land_institute'),
+											'<span class="category-name">' . single_term_title('', false) . '</span>'
+										);
+										?>
+									</div>
+								</div>
+							</div>
+
+						<?php endif; ?>
+
+
 
 						<!-- Pagination -->
 						<div class="fillter-bottom">
