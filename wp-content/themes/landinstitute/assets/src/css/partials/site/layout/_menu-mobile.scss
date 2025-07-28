@@ -20,7 +20,7 @@
 				opacity: 1;
 				width: 100%;
 
-				a,
+				a:not(.mega-dropdown a),
 				a:visited {
 					color: var(--gb_header_mobile_color);
 					display: inline-block;
@@ -106,10 +106,16 @@
 									padding: 0;
 
 									li {
-										margin-bottom: 8px;
+										margin-bottom: 0;
 
 										&:last-child {
 											margin-bottom: 0;
+										}
+
+										a {
+											@include ui-18-16-regular;
+											font-size: 17px;
+											padding: 6px 0;
 										}
 									}
 								}
@@ -175,7 +181,7 @@
 							.mega-menu-row {
 								display: flex;
 								flex-wrap: wrap;
-								gap: 36px;
+								gap: 0;
 
 								.mega-col {
 									flex: 100% 0 0;
@@ -204,8 +210,19 @@
 												margin-bottom: 0;
 											}
 
-											a {}
+											a {
+												@include ui-18-16-regular;
+												font-size: 17px;
+												padding: 6px 0;
+											}
 										}
+									}
+
+									.icon-content-list-block {
+										.icon-content-row {
+											gap: 16px;
+										}
+
 									}
 								}
 							}

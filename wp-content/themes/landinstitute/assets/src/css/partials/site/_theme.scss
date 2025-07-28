@@ -346,6 +346,7 @@ section:has(.has-border-bottom) {
         stroke-width: 1px;
         transition: background-color 0.3s, color 0.3s;
         will-change: background-color, color;
+        text-transform: capitalize;
 
         @extend .ui-18-16-bold;
 
