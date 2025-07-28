@@ -485,6 +485,7 @@ section:has(.text-featured-block) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-content: center;
+    position: relative;
 
     @media (max-width: 991px) {
         grid-template-columns: repeat(2, 1fr);
