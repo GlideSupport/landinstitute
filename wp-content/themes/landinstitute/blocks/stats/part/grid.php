@@ -16,8 +16,8 @@
 								<div class="ui-72-52-bold head-bold mb-0 counter-number" data-target="<?php echo esc_attr($li_s_number_two); ?>">
 									<?php echo esc_html($li_s_prefix_two); ?><span class="count">0</span> <?php echo esc_html($li_s_postfix_two); ?>
 								</div>
-								<?php echo (!empty($li_s_number_two) && !empty($li_s_label_two)) ? '<div class="gl-s6"></div>' : ''; ?>
 							<?php if ($li_s_label_two): ?>
+								<div class="gl-s6"></div>
 								<div class="ui-24-21-bold block-sub-head">
 									<?php echo esc_html($li_s_label_two); ?>
 								</div>
