@@ -128,11 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
 				init: function () {
 					updateCounter(this);
 					updateArrowPosition();
+					logSlideHeights(); 
 				},
 				slideChangeTransitionEnd: function () {
 					updateCounter(this);
 					updateArrowPosition();
-					animateCtaImageHeight(this);
 				},
 			},
 		});
@@ -156,76 +156,35 @@ document.addEventListener("DOMContentLoaded", function () {
 				counterEl.style.display = "block";
 			}
 		}
+		function updateArrowPosition() {
+			const activeSlide = wrapper.querySelector(".swiper-slide-active");
+			if (!activeSlide) return;
 
-			function updateArrowPosition() {
-				const activeSlide = wrapper.querySelector(".swiper-slide-active");
-				if (!activeSlide) return;
+			const currentContent = activeSlide.querySelector(".cl-left .slide-content");
+			if (!currentContent) return;
 
-				const currentContent = activeSlide.querySelector(".cl-left .slide-content");
-				if (!currentContent) return;
+			const height = currentContent.offsetHeight;
+			const offset = 26;
+			const arrowTop = `${height + offset}px`;
 
-				const height = currentContent.offsetHeight;
-				const offset = 26;
-				const arrowTop = `${height + offset}px`;
-
-				arrowBtns.forEach((btn) => {
-					btn.style.top = arrowTop;
-				});
+			arrowBtns.forEach((btn) => {
+				btn.style.top = arrowTop;
+			});
 		}
-		function animateCtaImageHeight(swiperInstance) {
-		const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
-		if (!activeSlide) return;
-
-		const content = activeSlide.querySelector(".cl-left .slide-content");
-		const image = wrapper.querySelector(".cta-image");
-
-		if (!content || !image) return;
-
-		const targetHeight = content.offsetHeight;
-
-		// Apply smooth transition via JS
-		image.style.height = `${targetHeight}px`;
-	}
-
-
+		function logSlideHeights() {
+			const slides = wrapper.querySelectorAll(".swiper-slide");
+			slides.forEach((slide, i) => {
+				const slideContent = slide.querySelector(".slide-content");
+				const ctaImage = slide.querySelector(".cl-right .cta-image");
+				if (slideContent && ctaImage) {
+					const contentHeight = slideContent.offsetHeight;
+					ctaImage.style.height = `${contentHeight}px`;
+				}
+			});
+		}
 
 		// Make sure arrow position adjusts on window resize
 		window.addEventListener("resize", updateArrowPosition);
-		if (window.innerWidth >= 992) {
-			function setMaxOuterHeightToImages() {
-				const blockContents = document.querySelectorAll('.cta-slider-box .cl-left');
-				const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
-
-				if (!blockContents.length || !ctaImages.length) {
-					console.warn('No .cl-left or .cta-image elements found.');
-					return;
-				}
-
-				let maxOuterHeight = 0;
-
-				// First pass: get the max height
-				blockContents.forEach(blockContent => {
-					const style = window.getComputedStyle(blockContent);
-					const height = blockContent.offsetHeight || 0;
-					const marginTop = parseFloat(style.marginTop) || 0;
-					const marginBottom = parseFloat(style.marginBottom) || 0;
-					const outerHeight = height + marginTop + marginBottom;
-
-					if (outerHeight > maxOuterHeight) {
-						maxOuterHeight = outerHeight;
-					}
-				});
-
-				// Second pass: apply height to .cta-image
-				ctaImages.forEach(ctaImage => {
-					ctaImage.style.height = maxOuterHeight + 'px';
-				});
-			}
-
-			// Trigger on load and resize
-			window.addEventListener('load', setMaxOuterHeightToImages);
-			window.addEventListener('resize', setMaxOuterHeightToImages);
-		}
 
 		
 	});
