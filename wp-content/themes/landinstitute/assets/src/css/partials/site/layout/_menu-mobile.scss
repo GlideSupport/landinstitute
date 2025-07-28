@@ -119,6 +119,12 @@
 										}
 									}
 								}
+
+								.gl-s20 {
+									@media(max-width: 767px) {
+										height: 8px !important;
+									}
+								}
 							}
 
 							.mega-btns {
@@ -195,6 +201,12 @@
 										border-bottom: 0;
 									}
 
+									.gl-s16 {
+										@media(max-width: 767px) {
+											height: 16px !important;
+										}
+									}
+
 									ul {
 										margin: 0;
 										padding: 0;
@@ -205,6 +217,13 @@
 											display: inline-flex;
 											margin-right: 12px;
 											width: auto;
+
+											@media(max-width: 767px) {
+												width: 100%;
+												display: flex;
+												margin-bottom: 0;
+												margin-right: 0;
+											}
 
 											&:last-child {
 												margin-bottom: 0;
@@ -221,6 +240,38 @@
 									.icon-content-list-block {
 										.icon-content-row {
 											gap: 16px;
+
+											.icon-content-col {
+												@media(max-width: 767px) {
+													flex: 100% 0 0;
+												}
+
+												.icon-group-card {
+													.icon-left {
+														@media(max-width: 767px) {
+															display: flex;
+															flex: 32px 0 0;
+														}
+
+														img {
+															@media(max-width: 767px) {
+																height: 32px;
+																width: 32px;
+															}
+														}
+													}
+
+													.icon-content-right {
+														.icon-title {
+															@media(max-width: 767px) {
+																font-size: 17px;
+																line-height: 110%;
+																letter-spacing: -0.51px;
+															}
+														}
+													}
+												}
+											}
 										}
 
 									}
@@ -260,14 +311,22 @@
 							row-gap: 16px;
 
 							@media(max-width: 1350px) {
-								padding: 20px 30px;
+								padding: 20px 24px;
 								gap: 18px;
+							}
+
+							@media(max-width: 767px) {
+								gap: 8px;
 							}
 
 							span {
 								flex: 63px 0 0;
 								text-transform: uppercase;
 								align-self: center;
+
+								@media(max-width: 767px) {
+									flex: 100% 0 0;
+								}
 							}
 
 							ul {
@@ -282,6 +341,10 @@
 									gap: 18px;
 								}
 
+								@media(max-width: 767px) {
+									flex: 100% 0 0;
+								}
+
 								li {
 									margin: 0;
 									transition: all 0.2s ease-in-out;
@@ -293,10 +356,16 @@
 										opacity: 0.5;
 									}
 
+									@media(max-width: 767px) {
+										width: 100%;
+										display: flex;
+									}
+
 									a {
 										@include ui-18-16-regular;
 										display: flex;
 										position: relative;
+										padding: 6px 0;
 
 										&:before {
 											background-color: var(--gb_base_brown);
