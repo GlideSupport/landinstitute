@@ -93,11 +93,10 @@ $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? nu
 								<div class="not-found-block">
 									<div class="not-found">
 										<?php
-										printf(
-											esc_html__('No Resources found in the %s category.', 'land_institute'),
-											'<span class="category-name">' . single_term_title('', false) . '</span>'
-										);
+										$term_name = single_term_title('', false);
 										?>
+										No Resources found in the <span class="category-name"><?php echo esc_html( $term_name ); ?></span> category.
+
 									</div>
 								</div>
 							</div>
