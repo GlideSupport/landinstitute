@@ -106,8 +106,14 @@
         }
 
         .border-card-click {
+            justify-content: flex-end;
+
             .block-title {
                 max-width: 400px;
+
+                @media(max-width: 767px) {
+                    overflow-wrap: anywhere;
+                }
             }
         }
 
