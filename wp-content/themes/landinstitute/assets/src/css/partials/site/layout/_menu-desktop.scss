@@ -57,8 +57,8 @@
 
 	.header-nav ul>ul.sub-menu,
 	.header-nav ul li .mega-dropdown {
-		@include transition(all, 0.3s, ease-in-out);
-		animation-delay: 0.6s;
+		@include transition(all, 0.2s, ease-in-out);
+		animation-delay: 0.3s;
 		opacity: 0;
 		overflow: hidden;
 		visibility: hidden;
@@ -73,7 +73,7 @@
 	.header-nav {
 		ul {
 			.mega-dropdown {
-				@include transition(all, 0.4s, ease-in-out);
+				@include transition(all, 0.3s, ease-in-out);
 				background-color: var(--gb_base_cream);
 				border: 2px solid var(--gb_base_brown);
 				border-radius: 0;
@@ -90,6 +90,7 @@
 				visibility: hidden;
 				width: calc(100% + 4px);
 				z-index: 555;
+				display: block !important;
 
 				.mega-dropdown-card {
 					display: flex;
