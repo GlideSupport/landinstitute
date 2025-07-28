@@ -32,7 +32,7 @@ $cota_cpt_event_external_links = (isset($post_fields['cota_cpt_event_external_li
 $cota_cpt_event_start_date = $post_fields['li_cpt_event_start_date'];
 $cota_cpt_event_end_date = $post_fields['li_cpt_event_end_date'];
 $final_date =  date_formatting_new($cota_cpt_event_start_date, $cota_cpt_event_end_date);
-$src = wp_get_attachment_image_url(get_post_thumbnail_id($pID), 'thumb_300');
+$src = wp_get_attachment_image_url(get_post_thumbnail_id($pID), 'thumb_400');
 if (!$src) {
     $src = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');
 } else {
