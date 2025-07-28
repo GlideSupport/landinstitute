@@ -16,11 +16,12 @@
 								<div class="ui-72-52-bold head-bold mb-0 counter-number" data-target="<?php echo esc_attr($li_s_number_two); ?>">
 									<?php echo esc_html($li_s_prefix_two); ?><span class="count">0</span> <?php echo esc_html($li_s_postfix_two); ?>
 								</div>
+								<div class="gl-s6"></div>
 							<?php if ($li_s_label_two): ?>
 								<div class="ui-24-21-bold block-sub-head">
 									<?php echo esc_html($li_s_label_two); ?>
 								</div>
-								<div class="gl-s44"></div>
+								<div class="gl-s18"></div>
 							<?php endif; ?>
 							<?php if ($li_s_description_two): ?>
 								<div class="body-20-18-regular block-content">
