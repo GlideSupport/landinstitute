@@ -132,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				slideChangeTransitionEnd: function () {
 					updateCounter(this);
 					updateArrowPosition();
+					animateCtaImageHeight(this);
 				},
 			},
 		});
@@ -170,14 +171,29 @@ document.addEventListener("DOMContentLoaded", function () {
 				arrowBtns.forEach((btn) => {
 					btn.style.top = arrowTop;
 				});
-			}
+		}
+		function animateCtaImageHeight(swiperInstance) {
+		const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
+		if (!activeSlide) return;
+
+		const content = activeSlide.querySelector(".cl-left .slide-content");
+		const image = wrapper.querySelector(".cta-image");
+
+		if (!content || !image) return;
+
+		const targetHeight = content.offsetHeight;
+
+		// Apply smooth transition via JS
+		image.style.height = `${targetHeight}px`;
+	}
+
 
 
 		// Make sure arrow position adjusts on window resize
 		window.addEventListener("resize", updateArrowPosition);
 		if (window.innerWidth >= 992) {
 			function setMaxOuterHeightToImages() {
-				const blockContents = document.querySelectorAll('.cta-slider-box .cl-left .slide-content');
+				const blockContents = document.querySelectorAll('.cta-slider-box .cl-left');
 				const ctaImages = document.querySelectorAll('.cta-slider-box .cta-image');
 
 				if (!blockContents.length || !ctaImages.length) {
