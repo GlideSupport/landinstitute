@@ -457,14 +457,12 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 	function fetchnews(paged = 1, updateURL = true) {
 		currentPage = paged;
 
-		if (news_append_list) {
-			const loadingElem = document.createElement("div");
-			loadingElem.className = "loading-placeholder";
-			loadingElem.innerHTML = "<p>Loading...</p>";
-			news_append_list.appendChild(loadingElem);
+	if (news_append_list) {
+		    const loadingElem = document.createElement("div");
+		    loadingElem.className = "loading-placeholder";
+		    loadingElem.innerHTML = '<div class="spin-loader"></div>';
+		    news_append_list.appendChild(loadingElem);
 		}
-
-		
 
 		if (updateURL) {
 			const url = new URL(window.location);
