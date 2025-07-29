@@ -1525,6 +1525,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //   observer.observe(block);
 // });
+
 document.addEventListener("DOMContentLoaded", function () {
   if (window.innerWidth < 992) return;
 
@@ -1549,6 +1550,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateParallaxPosition() {
+    const headerHeight = header.offsetHeight;
+    const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+    const totalOffset = headerHeight + adminBarHeight;
+
     const scrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
 
@@ -1557,34 +1562,52 @@ document.addEventListener("DOMContentLoaded", function () {
     const blockBottom = blockTop + blockRect.height;
 
     const colRect = colLeft.getBoundingClientRect();
-    const colHeight = colRect.height; // dynamic height
+    const colLeftX = colRect.left + window.scrollX;
+    const colWidth = colRect.width;
 
     const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
+
+    const fullyActive =
+      scrollY + totalOffset >= blockTop &&
+      scrollY + viewportHeight <= blockBottom + totalOffset;
 
     if (isBlockInView) {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
-        bg.style.position = "absolute"; // stay inside the column
+        bg.style.position = "absolute"; // switched from fixed to absolute
         lastVisible = true;
       }
 
-      // Always show sticky when in view
-      showElement(parallaxSticky);
-      hideElement(parallaxDefault);
+      // Show/hide based on fullyActive state
+      if (fullyActive) {
+        showElement(parallaxSticky);
+        hideElement(parallaxDefault);
+      } else {
+        hideElement(parallaxSticky);
+        showElement(parallaxDefault);
+      }
 
-      // Fill the entire column (no horizontal calculations needed)
-      bg.style.left = "0px";
-      bg.style.top = "0px"; // no movement
-      bg.style.width = "100%";
-      bg.style.height = `${colHeight}px`;
+      // Align background horizontally (absolute position)
+      bg.style.left = `${colLeftX}px`;
+      bg.style.width = `${colWidth}px`;
 
-      // Make sticky/default match the column
-      parallaxSticky.style.width = "100%";
-      parallaxSticky.style.height = `${colHeight}px`;
-      parallaxDefault.style.width = "100%";
-      parallaxDefault.style.height = `${colHeight}px`;
+      // ALSO adjust sticky and default image widths dynamically
+      parallaxSticky.style.width = `${colWidth}px`;
+      parallaxDefault.style.width = `${colWidth}px`;
 
+      // Compute translateY relative to block, not viewport
+      const buffer = 10;
+      let offsetY = scrollY - blockTop + buffer;
+
+      bg.style.transform = `translateY(${offsetY}px)`;
+
+      const maxVisibleHeight = blockBottom - (scrollY + offsetY);
+      const availableHeight = Math.min(
+        viewportHeight - buffer,
+        maxVisibleHeight + buffer
+      );
+      bg.style.height = `${availableHeight}px`;
     } else {
       // Outside viewport
       hideElement(parallaxSticky);
@@ -1611,6 +1634,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", onScrollOrResize, { passive: true });
   updateParallaxPosition();
 });
+
 
 
 // document.addEventListener("DOMContentLoaded", function () {
