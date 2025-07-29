@@ -1575,7 +1575,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
-        bg.style.position = "absolute"; // switched from fixed to absolute
+       // bg.style.position = "absolute"; // switched from fixed to absolute
         lastVisible = true;
       }
 
