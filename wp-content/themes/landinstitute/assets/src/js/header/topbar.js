@@ -217,11 +217,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		function updateMegaMenuPosition() {
 			const headerLogoHeight = headerLogo.getBoundingClientRect().height;
 			const viewportHeight = window.innerHeight;
+
+			let footerHeight = 0;
+			const footerSticky = document.querySelector('.footer-sub-nav-sticky');
+			if (footerSticky) {
+				footerHeight = footerSticky.offsetHeight; // outer height
+			}
+
+			const availableHeight = viewportHeight - headerLogoHeight - footerHeight;
+
 			allDropdowns.forEach(dd => {
 				dd.style.top = `${headerLogoHeight}px`;
-				dd.style.height = `${viewportHeight - headerLogoHeight}px`;
+				dd.style.height = `${availableHeight}px`;
 			});
 		}
+
 
 		// Initial positioning
 		updateMegaMenuPosition();
