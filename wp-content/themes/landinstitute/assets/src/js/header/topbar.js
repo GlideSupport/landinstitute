@@ -214,23 +214,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		let activeDropdown = null;
 		// Get header height and position all mega dropdowns
-		function updateMegaMenuPosition() {
-			const headerLogoHeight = headerLogo.getBoundingClientRect().height;
-			const viewportHeight = window.innerHeight;
+			function updateMegaMenuPosition() {
+				const headerLogoHeight = headerLogo.getBoundingClientRect().height;
+				const viewportHeight = window.innerHeight;
 
-			let footerHeight = 0;
-			const footerSticky = document.querySelector('.footer-sub-nav-sticky');
-			if (footerSticky) {
-				footerHeight = footerSticky.offsetHeight; // outer height
+				let footerHeight = 0;
+				const footerSticky = document.querySelector('.footer-sub-nav-sticky');
+				if (footerSticky) {
+					footerHeight = footerSticky.offsetHeight;
+				}
+
+				const availableHeight = viewportHeight - headerLogoHeight - footerHeight;
+
+				allDropdowns.forEach(dd => {
+					dd.style.top = `${headerLogoHeight}px`;
+					dd.style.height = `${availableHeight}px`;
+				});
 			}
-
-			const availableHeight = viewportHeight - headerLogoHeight - footerHeight;
-
-			allDropdowns.forEach(dd => {
-				dd.style.top = `${headerLogoHeight}px`;
-				dd.style.height = `${availableHeight}px`;
-			});
-		}
 
 
 		// Initial positioning
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		allDropdowns.forEach(dd => {
 			dd.style.display = 'none';
 			dd.style.opacity = '0';
-			dd.style.visibility = 'hidden';
+			//dd.style.visibility = 'hidden';
 		});
 
 		// Toggle mega menu on expand click
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					dd.classList.remove('mp-level-open');
 					dd.style.display = 'none';
 					dd.style.opacity = '0';
-					dd.style.visibility = 'hidden';
+					//dd.style.visibility = 'hidden';
 				});
 
 				if (dropdown) {
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						dropdown.classList.add('mp-level-open');
 						dropdown.style.display = 'block';
 						dropdown.style.opacity = '1';
-						dropdown.style.visibility = 'visible';
+						//dropdown.style.visibility = 'visible';
 
 						backLink.style.display = 'flex';
 						headerLogo.classList.add('active');
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						dropdown.classList.remove('mp-level-open');
 						dropdown.style.display = 'none';
 						dropdown.style.opacity = '0';
-						dropdown.style.visibility = 'hidden';
+						//dropdown.style.visibility = 'hidden';
 
 						backLink.style.display = 'none';
 						headerLogo.classList.remove('active');
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				dd.classList.remove('mp-level-open');
 				dd.style.display = 'none';
 				dd.style.opacity = '0';
-				dd.style.visibility = 'hidden';
+				//dd.style.visibility = 'hidden';
 			});
 
 			backLink.style.display = 'none';
