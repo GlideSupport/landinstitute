@@ -216,9 +216,10 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Get header height and position all mega dropdowns
 		function updateMegaMenuPosition() {
 			const headerLogoHeight = headerLogo.getBoundingClientRect().height;
+			const viewportHeight = window.innerHeight;
 			allDropdowns.forEach(dd => {
 				dd.style.top = `${headerLogoHeight}px`;
-				dd.style.height = `calc(100vh - ${headerLogoHeight}px)`;
+				dd.style.height = `${viewportHeight - headerLogoHeight}px`;
 			});
 		}
 
