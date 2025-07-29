@@ -4,13 +4,9 @@
 			<?php //echo wp_get_attachment_image($li_ill_img, 'thumb_1400'); ?>
 		</div> -->
 		<div class="row-flex">
-			<div class="col-left ">
-				<div class="parallax-img">
-					<?php echo !empty($li_ill_img) ? '<div class="parallax-fixed-bg">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
-				</div>
-					<div class="parallax-img1">
-					<?php echo !empty($li_ill_img) ? '<div class="parallax-fixed-bg">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
-				</div>
+			<div class="col-left parallax-img">
+					<?php echo !empty($li_ill_img) ? '<div class="parallax-fixed-bg parallax-img-sticky">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
+					<?php echo !empty($li_ill_img) ? '<div class="parallax-fixed-bg parallax-img-default">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
 			</div>
 			
 			<div class="col-right bg-base-cream">

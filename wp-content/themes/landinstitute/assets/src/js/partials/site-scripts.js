@@ -1525,20 +1525,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //   observer.observe(block);
 // });
-
 document.addEventListener("DOMContentLoaded", function () {
   if (window.innerWidth < 992) return;
 
   const block = document.querySelector(".internal-link-list-block.with-parallax-image");
   const bg = document.querySelector(".parallax-fixed-bg");
-  const parallaxImg = block?.querySelector(".parallax-img");
-  const parallaxImg1 = block?.querySelector(".parallax-img1");
+  const parallaxSticky = block?.querySelector(".parallax-img-sticky");
+  const parallaxDefault = block?.querySelector(".parallax-img-default");
   const header = document.querySelector(".header-section");
 
-  if (!block || !bg || !parallaxImg || !parallaxImg1 || !header) return;
+  if (!block || !bg || !parallaxSticky || !parallaxDefault || !header) return;
 
   let ticking = false;
   let lastVisible = false;
+
+  function showElement(el) {
+    el.style.display = "block";
+  }
+
+  function hideElement(el) {
+    el.style.display = "none";
+  }
 
   function updateParallaxPosition() {
     const headerHeight = header.offsetHeight;
@@ -1552,12 +1559,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const blockTop = blockRect.top + scrollY;
     const blockBottom = blockTop + blockRect.height;
 
-    const targetRect = parallaxImg.getBoundingClientRect();
+    const targetRect = parallaxSticky.getBoundingClientRect();
 
-    // When the block enters viewport at all
     const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
 
-    // "Fully active" zone = top passed offset and bottom not yet left viewport
     const fullyActive =
       scrollY + totalOffset >= blockTop &&
       scrollY + viewportHeight <= blockBottom + totalOffset;
@@ -1569,13 +1574,13 @@ document.addEventListener("DOMContentLoaded", function () {
         lastVisible = true;
       }
 
-      // Show/hide images based on fullyActive state
+      // Show/hide based on fullyActive state
       if (fullyActive) {
-        parallaxImg.classList.add("show");
-        parallaxImg1.classList.remove("show");
+        showElement(parallaxSticky);
+        hideElement(parallaxDefault);
       } else {
-        parallaxImg.classList.remove("show");
-        parallaxImg1.classList.add("show");
+        hideElement(parallaxSticky);
+        showElement(parallaxDefault);
       }
 
       // Align background horizontally
@@ -1598,8 +1603,8 @@ document.addEventListener("DOMContentLoaded", function () {
       bg.style.height = `${availableHeight}px`;
     } else {
       // Outside viewport
-      parallaxImg.classList.remove("show");
-      parallaxImg1.classList.add("show");
+      hideElement(parallaxSticky);
+      showElement(parallaxDefault);
 
       if (lastVisible) {
         bg.style.visibility = "hidden";
