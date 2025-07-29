@@ -1492,3 +1492,196 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Header Mega menu append js End
 
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (window.innerWidth < 992) return;
+
+//   const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+//   const bg = document.querySelector(".parallax-fixed-bg");
+//   if (!block || !bg) return;
+
+//   // Observer: Add class when block enters viewport
+//   const observer = new IntersectionObserver(
+//     (entries) => {
+//       entries.forEach((entry) => {
+//         if (entry.isIntersecting) {
+//           block.classList.add("is-in-viewport");
+//           bg.style.top = "12px"; // ✅ Apply top value
+//         } else {
+//           block.classList.remove("is-in-viewport");
+//           bg.style.top = ""; // ❌ Reset top when out (optional)
+//         }
+//       });
+//     },
+//     {
+//       root: null,
+//       threshold: 0,
+//     }
+//   );
+
+//   observer.observe(block);
+// });
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.innerWidth < 992) return;
+
+  const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+  const bg = document.querySelector(".parallax-fixed-bg");
+  const parallaxImg = block?.querySelector(".parallax-img");
+  const parallaxImg1 = block?.querySelector(".parallax-img1");
+  const header = document.querySelector(".header-section");
+
+  if (!block || !bg || !parallaxImg || !parallaxImg1 || !header) return;
+
+  let ticking = false;
+  let lastVisible = false;
+
+  function updateParallaxPosition() {
+    const headerHeight = header.offsetHeight;
+    const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+    const totalOffset = headerHeight + adminBarHeight;
+
+    const scrollY = window.scrollY;
+    const viewportHeight = window.innerHeight;
+
+    const blockRect = block.getBoundingClientRect();
+    const blockTop = blockRect.top + scrollY;
+    const blockBottom = blockTop + blockRect.height;
+
+    const targetRect = parallaxImg.getBoundingClientRect();
+
+    // When the block enters viewport at all
+    const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
+
+    // "Fully active" zone = top passed offset and bottom not yet left viewport
+    const fullyActive =
+      scrollY + totalOffset >= blockTop &&
+      scrollY + viewportHeight <= blockBottom + totalOffset;
+
+    if (isBlockInView) {
+      if (!lastVisible) {
+        bg.style.visibility = "visible";
+        bg.style.zIndex = "1";
+        lastVisible = true;
+      }
+
+      // Show/hide images based on fullyActive state
+      if (fullyActive) {
+        parallaxImg.classList.add("show");
+        parallaxImg1.classList.remove("show");
+      } else {
+        parallaxImg.classList.remove("show");
+        parallaxImg1.classList.add("show");
+      }
+
+      // Align background horizontally
+      bg.style.left = `${targetRect.left}px`;
+      bg.style.width = `${targetRect.width}px`;
+      bg.style.position = "fixed";
+
+      let targetTopInViewport = targetRect.top;
+      if (targetTopInViewport < totalOffset) targetTopInViewport = totalOffset;
+      if (targetTopInViewport > viewportHeight) targetTopInViewport = viewportHeight;
+
+      const buffer = 10;
+      bg.style.transform = `translateY(${targetTopInViewport - buffer}px)`;
+
+      const maxVisibleHeight = blockBottom - (scrollY + targetTopInViewport);
+      const availableHeight = Math.min(
+        viewportHeight - targetTopInViewport + buffer,
+        maxVisibleHeight + buffer
+      );
+      bg.style.height = `${availableHeight}px`;
+    } else {
+      // Outside viewport
+      parallaxImg.classList.remove("show");
+      parallaxImg1.classList.add("show");
+
+      if (lastVisible) {
+        bg.style.visibility = "hidden";
+        bg.style.zIndex = "-1";
+        lastVisible = false;
+      }
+    }
+
+    ticking = false;
+  }
+
+  function onScrollOrResize() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallaxPosition);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize, { passive: true });
+  updateParallaxPosition();
+});
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const parallaxBlocks = document.querySelectorAll(".col-left.parallax-img.show");
+
+//   function updateParallaxVisibility() {
+//     const viewportHeight = window.innerHeight;
+//     const threshold = viewportHeight * 0.10; // top 10%
+
+//     parallaxBlocks.forEach(block => {
+//       const rect = block.getBoundingClientRect();
+
+//       if (rect.top < threshold) {
+//         // Move it up and fade out
+//         block.style.transform = "translateY(-50px)";
+//         block.style.opacity = "0";
+//         block.style.pointerEvents = "none";
+//       } else {
+//         // Reset to normal
+//         block.style.transform = "translateY(0)";
+//         block.style.opacity = "1";
+//         block.style.pointerEvents = "";
+//       }
+//     });
+//   }
+
+//   window.addEventListener("scroll", updateParallaxVisibility);
+//   window.addEventListener("resize", updateParallaxVisibility);
+//   updateParallaxVisibility();
+// });
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (window.innerWidth < 992) return;
+
+//   const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+//   const bg = document.querySelector(".parallax-fixed-bg");
+//   const pattern = document.querySelector(".bg-pattern-fixed");
+//   const patternHeight = pattern.offsetHeight;
+//   if (!block || !bg) return;
+
+//   // Observer: Add class when block enters viewport
+//   const observer = new IntersectionObserver(
+//     (entries) => {
+//       entries.forEach((entry) => {
+//         if (entry.isIntersecting) {
+//           block.classList.add("is-in-viewport");
+//           bg.style.top = patternHeight + "px"; // ✅ Apply top value
+//         } else {
+//           block.classList.remove("is-in-viewport");
+//           bg.style.top = ""; // ❌ Reset top when out (optional)
+//         }
+//       });
+//     },
+//     {
+//       root: null,
+//       threshold: 0,
+//     }
+//   );
+
+//   observer.observe(block);
+// });
+
+ 

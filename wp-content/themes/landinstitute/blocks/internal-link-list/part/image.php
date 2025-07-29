@@ -1,7 +1,18 @@
 <?php if (!empty($li_ill_headline_check) || !empty($li_ill_wysiwyg) || !empty($li_ill_show_or_hide_arrow) || !empty($li_ill_repeater) || !empty($li_ill_img)) { ?>
 	<div class="internal-link-list-block with-parallax-image">
+		<!-- <div class="remove-sticky-img">
+			<?php //echo wp_get_attachment_image($li_ill_img, 'thumb_1400'); ?>
+		</div> -->
 		<div class="row-flex">
-		<?php echo !empty($li_ill_img) ? '<div class="col-left parallax-img">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
+			<div class="col-left ">
+				<div class="parallax-img">
+					<?php echo !empty($li_ill_img) ? '<div class="parallax-fixed-bg">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
+				</div>
+					<div class="parallax-img1">
+					<?php echo !empty($li_ill_img) ? '<div class="parallax-fixed-bg">' . wp_get_attachment_image($li_ill_img, 'thumb_1400') . '</div>' : ''; ?>
+				</div>
+			</div>
+			
 			<div class="col-right bg-base-cream">
 				<div class="gl-s156"></div>
 				<?php echo !empty($li_ill_headline_check) ? BaseTheme::headline($li_ill_headline, 'heading-2 block-title mb-0') : ''; ?>
