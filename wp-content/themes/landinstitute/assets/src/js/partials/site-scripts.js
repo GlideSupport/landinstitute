@@ -416,7 +416,7 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			}
 		};
 
-		if (window.innerWidth >= 1200) {
+		if (window.innerWidth > 1200) {
 			menuItem.addEventListener("mouseover", showDropdown);
 			menuItem.addEventListener("mouseleave", hideDropdown);
 			menuItem.addEventListener("focusin", showDropdown);
