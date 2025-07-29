@@ -1526,114 +1526,129 @@ document.addEventListener("DOMContentLoaded", function () {
 //   observer.observe(block);
 // });
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (window.innerWidth < 992) return;
 
-  const block = document.querySelector(".internal-link-list-block.with-parallax-image");
-  const bg = document.querySelector(".parallax-fixed-bg");
-  const parallaxSticky = block?.querySelector(".parallax-img-sticky");
-  const parallaxDefault = block?.querySelector(".parallax-img-default");
-  const header = document.querySelector(".header-section");
-  const colLeft = block?.querySelector(".col-left.parallax-img");
+// document.addEventListener('scroll', function () {
+//   const section = document.querySelector('.internal-link-list-block.with-parallax-image');
+//   const image = section.querySelector('.parallax-fixed-bg.parallax-img-sticky img');
 
-  if (!block || !bg || !parallaxSticky || !parallaxDefault || !header || !colLeft) return;
+//   const rect = section.getBoundingClientRect();
+//   const windowHeight = window.innerHeight;
 
-  let ticking = false;
-  let lastVisible = false;
+//   // Only apply when section is in viewport
+//   if (rect.top < windowHeight && rect.bottom > 0) {
+//     // How far the section has been scrolled (0 to 1)
+//     const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
 
-  function showElement(el) {
-    el.style.display = "block";
-  }
+//     // Adjust movement speed (e.g., 30% movement)
+//     const move = (progress - 0.5) * 100; 
 
-  function hideElement(el) {
-    el.style.display = "none";
-  }
+//     image.style.transform = `translateY(${move}px)`;
+//   }
+// });
 
-  function updateParallaxPosition() {
-    const headerHeight = header.offsetHeight;
-    const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
-    const totalOffset = headerHeight + adminBarHeight;
+// document.addEventListener("DOMContentLoaded", function () {
+//   if (window.innerWidth < 992) return;
 
-    const scrollY = window.scrollY;
-    const viewportHeight = window.innerHeight;
+//   const block = document.querySelector(".internal-link-list-block.with-parallax-image");
+//   const bg = document.querySelector(".parallax-fixed-bg");
+//   const parallaxSticky = block?.querySelector(".parallax-img-sticky");
+//   const parallaxDefault = block?.querySelector(".parallax-img-default");
+//   const header = document.querySelector(".header-section");
 
-    const blockRect = block.getBoundingClientRect();
-    const blockTop = blockRect.top + scrollY;
-    const blockBottom = blockTop + blockRect.height;
+//   if (!block || !bg || !parallaxSticky || !parallaxDefault || !header) return;
 
-    const colRect = colLeft.getBoundingClientRect();
-    const colLeftX = colRect.left + window.scrollX;
-    const colWidth = colRect.width;
+//   let ticking = false;
+//   let lastVisible = false;
 
-    const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
+//   function showElement(el) {
+//     el.style.display = "block";
+//   }
 
-    const fullyActive =
-      scrollY + totalOffset >= blockTop &&
-      scrollY + viewportHeight <= blockBottom + totalOffset;
+//   function hideElement(el) {
+//     el.style.display = "none";
+//   }
 
-    if (isBlockInView) {
-      if (!lastVisible) {
-        bg.style.visibility = "visible";
-        bg.style.zIndex = "1";
-       // bg.style.position = "absolute"; // switched from fixed to absolute
-        lastVisible = true;
-      }
+//   function updateParallaxPosition() {
+//     const headerHeight = header.offsetHeight;
+//     const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
+//     const totalOffset = headerHeight + adminBarHeight;
 
-      // Show/hide based on fullyActive state
-      if (fullyActive) {
-        showElement(parallaxSticky);
-        hideElement(parallaxDefault);
-      } else {
-        hideElement(parallaxSticky);
-        showElement(parallaxDefault);
-      }
+//     const scrollY = window.scrollY;
+//     const viewportHeight = window.innerHeight;
 
-      // Align background horizontally (absolute position)
-      bg.style.left = `${colLeftX}px`;
-      bg.style.width = `${colWidth}px`;
+//     const blockRect = block.getBoundingClientRect();
+//     const blockTop = blockRect.top + scrollY;
+//     const blockBottom = blockTop + blockRect.height;
 
-      // ALSO adjust sticky and default image widths dynamically
-      parallaxSticky.style.width = `${colWidth}px`;
-      parallaxDefault.style.width = `${colWidth}px`;
+//     const targetRect = parallaxSticky.getBoundingClientRect();
 
-      // Compute translateY relative to block, not viewport
-      const buffer = 10;
-      let offsetY = scrollY - blockTop + buffer;
+//     const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
 
-      bg.style.transform = `translateY(${offsetY}px)`;
+//     const fullyActive =
+//       scrollY + totalOffset >= blockTop &&
+//       scrollY + viewportHeight <= blockBottom + totalOffset;
 
-      const maxVisibleHeight = blockBottom - (scrollY + offsetY);
-      const availableHeight = Math.min(
-        viewportHeight - buffer,
-        maxVisibleHeight + buffer
-      );
-      bg.style.height = `${availableHeight}px`;
-    } else {
-      // Outside viewport
-      hideElement(parallaxSticky);
-      showElement(parallaxDefault);
+//     if (isBlockInView) {
+//       if (!lastVisible) {
+//         bg.style.visibility = "visible";
+//         bg.style.zIndex = "1";
+//         bg.style.position = "absolute"; // switched from fixed to absolute
+//         lastVisible = true;
+//       }
 
-      if (lastVisible) {
-        bg.style.visibility = "hidden";
-        bg.style.zIndex = "-1";
-        lastVisible = false;
-      }
-    }
+//       // Show/hide based on fullyActive state
+//       if (fullyActive) {
+//         showElement(parallaxSticky);
+//         hideElement(parallaxDefault);
+//       } else {
+//         hideElement(parallaxSticky);
+//         showElement(parallaxDefault);
+//       }
 
-    ticking = false;
-  }
+//       // Align background horizontally (absolute position)
+//       const parentLeft = blockRect.left;
+//       const parentWidth = blockRect.width;
+//       bg.style.left = `${parentLeft}px`;
+//       bg.style.width = `${parentWidth}px`;
 
-  function onScrollOrResize() {
-    if (!ticking) {
-      requestAnimationFrame(updateParallaxPosition);
-      ticking = true;
-    }
-  }
+//       // Compute translateY relative to block, not viewport
+//       const buffer = 10;
+//       let offsetY = scrollY - blockTop + buffer;
 
-  window.addEventListener("scroll", onScrollOrResize, { passive: true });
-  window.addEventListener("resize", onScrollOrResize, { passive: true });
-  updateParallaxPosition();
-});
+//       bg.style.transform = `translateY(${offsetY}px)`;
+
+//       const maxVisibleHeight = blockBottom - (scrollY + offsetY);
+//       const availableHeight = Math.min(
+//         viewportHeight - buffer,
+//         maxVisibleHeight + buffer
+//       );
+//       bg.style.height = `${availableHeight}px`;
+//     } else {
+//       // Outside viewport
+//       hideElement(parallaxSticky);
+//       showElement(parallaxDefault);
+
+//       if (lastVisible) {
+//         bg.style.visibility = "hidden";
+//         bg.style.zIndex = "-1";
+//         lastVisible = false;
+//       }
+//     }
+
+//     ticking = false;
+//   }
+
+//   function onScrollOrResize() {
+//     if (!ticking) {
+//       requestAnimationFrame(updateParallaxPosition);
+//       ticking = true;
+//     }
+//   }
+
+//   window.addEventListener("scroll", onScrollOrResize, { passive: true });
+//   window.addEventListener("resize", onScrollOrResize, { passive: true });
+//   updateParallaxPosition();
+// });
 
 
 
