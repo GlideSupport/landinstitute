@@ -17,10 +17,11 @@
 									<?php echo esc_html($li_s_prefix_two); ?><span class="count">0</span> <?php echo esc_html($li_s_postfix_two); ?>
 								</div>
 							<?php if ($li_s_label_two): ?>
+								<div class="gl-s6"></div>
 								<div class="ui-24-21-bold block-sub-head">
 									<?php echo esc_html($li_s_label_two); ?>
 								</div>
-								<div class="gl-s44"></div>
+								<div class="gl-s24"></div>
 							<?php endif; ?>
 							<?php if ($li_s_description_two): ?>
 								<div class="body-20-18-regular block-content">

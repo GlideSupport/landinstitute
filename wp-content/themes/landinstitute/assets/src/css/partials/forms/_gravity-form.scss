@@ -603,3 +603,42 @@ table.ui-datepicker_calendar {
         }
     }
 }
+
+
+
+.donate-form #raise-donors a.btn-lg,
+.donate-form #raise-donors a.rd-btn-lg,
+.donate-form #raise-donors button.btn-lg,
+.donate-form #raise-donors button.rd-btn-lg,
+.donate-form #rd-modal-container a.btn-lg,
+.donate-form #rd-modal-container a.rd-btn-lg,
+.donate-form #rd-modal-container button.btn-lg,
+.donate-form #rd-modal-container button.rd-btn-lg {
+    font-size: 20px;
+}
+
+.donate-form #raise-donors .gift-total,
+.donate-form #rd-modal-container .gift-total {
+    font-size: 16px;
+}
+
+.donate-form #raise-donors .rd-text-sm,
+.donate-form #rd-modal-container .rd-text-sm {
+    font-size: 16px;
+}
+
+.donate-form #raise-donors .label,
+.donate-form #raise-donors label,
+.donate-form #rd-modal-container .label,
+.donate-form #rd-modal-container label {
+    font-size: 15px;
+}
+
+.donate-form #raise-donors .btn,
+.donate-form #raise-donors .rd-btn,
+.donate-form #raise-donors button,
+.donate-form #rd-modal-container .btn,
+.donate-form #rd-modal-container .rd-btn,
+.donate-form #rd-modal-container button {
+    font-size: 16px;
+}

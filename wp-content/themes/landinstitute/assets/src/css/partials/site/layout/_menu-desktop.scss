@@ -1,4 +1,10 @@
 @media (min-width: 1201px) {
+	.header-logo {
+		.main-menu {
+			display: none;
+		}
+	}
+
 	body {
 		&.megamenu-hover-active {
 			position: relative;

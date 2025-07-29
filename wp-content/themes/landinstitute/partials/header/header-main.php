@@ -9,6 +9,11 @@
 				<a href="<?php echo esc_url(home_url('/')); ?>" class="site-logo" aria-label="site logo" title="site logo">
 					<?php echo wp_get_attachment_image($bst_var_header_logo, 'admin-landscape', false, array('class' => 'site-logo')); ?>
 				</a>
+				<div class="main-menu">
+					<a class="mp-back" href="#">
+						<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/images/back-arrow-menu.svg" alt="back-arrow-menu" width="20" height="20" /> Main menu
+					</a>
+				</div>
 			</div>
 			<div class="right-header header-navigation">
 				<?php include get_template_directory() . '/partials/header/hello-bar.php'; ?>
