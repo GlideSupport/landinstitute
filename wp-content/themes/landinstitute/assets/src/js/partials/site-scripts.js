@@ -1560,10 +1560,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const blockTop = blockRect.top + scrollY;
     const blockBottom = blockTop + blockRect.height;
 
-    const colRect = colLeft.getBoundingClientRect();
-    const colLeftX = colRect.left + window.scrollX;
-    const colWidth = colRect.width;
-
     const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
 
     const fullyActive =
@@ -1574,7 +1570,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
-        bg.style.position = "absolute"; // absolute positioning
+        bg.style.position = "absolute";
         lastVisible = true;
       }
 
@@ -1587,13 +1583,13 @@ document.addEventListener("DOMContentLoaded", function () {
         showElement(parallaxDefault);
       }
 
-      // Align background horizontally to column
-      bg.style.left = `${colLeftX}px`;
-      bg.style.width = `${colWidth}px`;
+      // Since bg is inside .col-left, set left to 0 and width to 100%
+      bg.style.left = "0px";
+      bg.style.width = "100%";
 
-      // Also set sticky/default widths dynamically
-      parallaxSticky.style.width = `${colWidth}px`;
-      parallaxDefault.style.width = `${colWidth}px`;
+      // Make sure sticky/default images also take full column width
+      parallaxSticky.style.width = "100%";
+      parallaxDefault.style.width = "100%";
 
       // Compute vertical position relative to block
       const buffer = 10;
@@ -1635,8 +1631,6 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", onScrollOrResize, { passive: true });
   updateParallaxPosition();
 });
-
-
 
 
 // document.addEventListener("DOMContentLoaded", function () {
