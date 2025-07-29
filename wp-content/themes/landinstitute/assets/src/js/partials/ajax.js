@@ -501,7 +501,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 		}
 
 					setTimeout(() => {
-						const newTeaserList = document.querySelector(".filter-content-cards-grid");
+						const newTeaserList = document.querySelector(".newsmain");
 						if (newTeaserList) {
 							const offset = 100;
 							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
