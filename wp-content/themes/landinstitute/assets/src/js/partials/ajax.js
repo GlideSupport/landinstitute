@@ -500,6 +500,14 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 			window.history.pushState({}, "", url);
 		}
 
+					setTimeout(() => {
+						const newTeaserList = document.querySelector(".filter-content-cards-grid");
+						if (newTeaserList) {
+							const offset = 100;
+							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
+							window.scrollTo({ top: top, behavior: "smooth" });
+						}
+					}, 50);
 
 		fetch(localVars.ajax_url, {
 			method: "POST",
@@ -560,14 +568,6 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 					}
 
 
-					setTimeout(() => {
-						const newTeaserList = document.querySelector(".filter-content-cards-grid");
-						if (newTeaserList) {
-							const offset = 100;
-							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
-							window.scrollTo({ top: top, behavior: "smooth" });
-						}
-					}, 50);
 				} else {
 					news_append_list.innerHTML = "<p>No news posts found.</p>";
 				}
