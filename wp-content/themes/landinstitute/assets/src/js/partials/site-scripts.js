@@ -1525,6 +1525,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //   observer.observe(block);
 // });
+
 document.addEventListener("DOMContentLoaded", function () {
   if (window.innerWidth < 992) return;
 
@@ -1533,8 +1534,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const parallaxSticky = block?.querySelector(".parallax-img-sticky");
   const parallaxDefault = block?.querySelector(".parallax-img-default");
   const header = document.querySelector(".header-section");
+  const colLeft = block?.querySelector(".col-left.parallax-img");
 
-  if (!block || !bg || !parallaxSticky || !parallaxDefault || !header) return;
+  if (!block || !bg || !parallaxSticky || !parallaxDefault || !header || !colLeft) return;
 
   let ticking = false;
   let lastVisible = false;
@@ -1559,7 +1561,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const blockTop = blockRect.top + scrollY;
     const blockBottom = blockTop + blockRect.height;
 
-    const targetRect = parallaxSticky.getBoundingClientRect();
+    const colRect = colLeft.getBoundingClientRect();
+    const colLeftX = colRect.left + window.scrollX;
+    const colWidth = colRect.width;
 
     const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
 
@@ -1571,7 +1575,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
-        bg.style.position = "absolute"; // switched from fixed to absolute
+       // bg.style.position = "absolute"; // switched from fixed to absolute
         lastVisible = true;
       }
 
@@ -1585,10 +1589,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Align background horizontally (absolute position)
-      const parentLeft = blockRect.left;
-      const parentWidth = blockRect.width;
-      bg.style.left = `${parentLeft}px`;
-      bg.style.width = `${parentWidth}px`;
+      bg.style.left = `${colLeftX}px`;
+      bg.style.width = `${colWidth}px`;
+
+      // ALSO adjust sticky and default image widths dynamically
+      parallaxSticky.style.width = `${colWidth}px`;
+      parallaxDefault.style.width = `${colWidth}px`;
 
       // Compute translateY relative to block, not viewport
       const buffer = 10;
