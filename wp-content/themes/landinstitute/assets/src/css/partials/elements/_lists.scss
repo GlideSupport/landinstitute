@@ -35,13 +35,16 @@ dl {
 // Ordered / Unordered List
 ul,
 ol {
-	margin: 0;
+	margin: 0 0 30px 20px;
 }
 
 ul li,
 ol li {
+	margin: 0 0 12px;
 	box-sizing: border-box;
-	margin: 0 0 16px;
+	&:last-child{
+		margin-bottom: 0;
+	}
 }
 
 ul ul,
@@ -49,6 +52,9 @@ ol ol,
 ul ol,
 ol ul {
 	margin: 12px 0 0 30px;
+	&:last-child{
+		margin-bottom: 0;
+	}
 }
 
 .page-section {
@@ -62,31 +68,19 @@ ol ul {
 		}
 
 		li {
-			padding-left: 36px;
+			padding-left: 20px;
 			position: relative;
 
-			@media(max-width: 640px) {
-				padding-left: 16px;
-			}
-
 			&::before {
-				background-color: var(--gb_list_ul_marker_color);
-				background-position: left top;
-				border-radius: 50%;
 				content: "";
-				height: 5px;
-				left: 0;
-				position: absolute;
-				top: 13px;
 				width: 5px;
-			}
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-
-			a {
-				word-break: break-all;
+				height: 5px;
+				background-position: left top;
+				position: absolute;
+				background-color: var(--gb_heading_color);
+				left: 0;
+				top: 13px;
+				border-radius: 50%;
 			}
 		}
 
@@ -95,8 +89,8 @@ ol ul {
 
 			&>li {
 				&::before {
-					content: counters(list1, ".") ".";
 					counter-increment: list1;
+					content: counters(list1, ".") ".";
 				}
 			}
 		}
@@ -113,29 +107,24 @@ ol ul {
 		}
 
 		&>li {
-			padding-left: 36px;
 			position: relative;
+			padding-left: 24px;
 
 			&::marker {
 				display: none;
 			}
 
 			&::before {
-				background-color: transparent;
 				color: var(--gb_list_ul_marker_color);
+
+				@include font(axi, reg);
+
 				content: counters(list, ".") ".";
 				counter-increment: list;
 				left: 0;
-				position: absolute;
 				top: 0;
-			}
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-
-			a {
-				word-break: break-all;
+				position: absolute;
+				background-color: transparent;
 			}
 		}
 
@@ -164,211 +153,15 @@ ol ul {
 				padding-left: 20px;
 
 				&::before {
-					background-color: var(--gb_list_ul_marker_color);
-					background-position: left top;
 					content: "";
-					height: 5px;
-					left: 0;
+					width: 6px;
+					height: 6px;
+					background-position: left top;
 					position: absolute;
-					top: 13px;
-					width: 5px;
+					background-color: var(--gb_list_ul_marker_color);
+					left: 0;
+					top: 9px;
 				}
-			}
-		}
-	}
-}
-
-.dot-hover {
-	li {
-		a {
-			color: var(--gb_base_brown);
-			@include font(plusjakarta, reg);
-			@extend .ui-18-16-regular;
-			padding-left: 0px;
-			display: inline-flex;
-
-			&:hover {
-				padding-left: 12px;
-				margin-right: -12px;
-
-				&:before {
-					opacity: 1;
-				}
-			}
-
-			&:before {
-				background-color: var(--gb_base_brown);
-				border-radius: 50%;
-				content: "";
-				display: block;
-				height: 5px;
-				left: 0;
-				opacity: 0;
-				position: absolute;
-				top: 7px;
-				transition: 0.3s;
-				width: 5px;
-			}
-		}
-	}
-}
-
-.icon-content-list-block {
-	.icon-content-row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20px;
-
-		.icon-content-col {
-			flex: calc(50% - 10px) 0 0;
-			transition: all 0.2s ease-in-out;
-
-			.icon-group-card {
-				display: flex;
-				flex-wrap: wrap;
-
-				.icon-left {
-					flex: 36px 0 0;
-					align-self: center;
-
-					img {
-						height: 36px;
-						width: 36px;
-					}
-				}
-
-				.icon-content-right {
-					flex: 1 0 0;
-					margin-left: 12px;
-					padding-right: 12px;
-
-					.icon-content {
-						opacity: 0.7;
-					}
-
-					.icon-title {
-						position: relative;
-						transition: all 0.2s ease-in-out;
-
-						&:before {
-							background-color: var(--gb_base_brown);
-							border-radius: 50%;
-							content: "";
-							display: block;
-							height: 5px;
-							left: 0;
-							opacity: 0;
-							position: absolute;
-							top: 7px;
-							transform: opacity 1s;
-							transition: .3s;
-							width: 5px;
-						}
-					}
-				}
-			}
-
-			&.active-hover {
-				opacity: 0.5;
-			}
-
-			&.active {
-				.icon-group-card {
-					.icon-content-right {
-						.icon-title {
-							padding-left: 12px;
-
-							&:before {
-								opacity: 1;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
-.tags-cols {
-	ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px;
-		list-style: none;
-		margin: 0;
-
-		li {
-			display: flex;
-			margin: 0;
-		}
-	}
-}
-
-.tags {
-	background: var(--gb_primary_lilac);
-	border-radius: 100px;
-	color: var(--gb_base_brown);
-	display: inline-flex;
-	padding: 5px 12px 7px;
-
-	@extend .ui-16-15-bold;
-
-	&:has(a) {
-		padding: 0;
-		transition: all .2s ease-in-out;
-	}
-
-	a {
-		@extend .ui-16-15-bold;
-		transition: all .2s ease-in-out;
-		display: flex;
-		padding: 5px 12px 7px;
-		color: var(--gb_base_brown);
-	}
-
-
-}
-
-.numbered-grid-row {
-	ol {
-		display: flex;
-		flex-wrap: wrap;
-		row-gap: 80px;
-
-		@media(max-width: 991px) {
-			row-gap: 50px;
-		}
-
-		li {
-			border-top: 1px solid var(--gb_base_brown);
-			flex: calc(50% - 44px) 0 0;
-			padding: 44px 0 0;
-			margin: 0 44px 0 0;
-
-			@media(max-width: 991px) {
-				flex: 100% 0 0;
-				padding: 32px 0 0;
-				margin: 0;
-			}
-
-			&:last-child {
-				margin-bottom: 0;
-			}
-
-			&::before {
-				align-items: center;
-				background-color: var(--primary_dark_green);
-				border-radius: 50%;
-				color: var(--gb_white);
-				content: counters(list, ".");
-				display: flex;
-				height: clamp(37px, calc(2.3125rem + ((1vw - 7.68px) * 0.6873)), 41px);
-				justify-content: center;
-				margin-bottom: clamp(18px, calc(1.125rem + ((1vw - 7.68px) * 1.0309)), 24px);
-				position: inherit;
-				width: clamp(37px, calc(2.3125rem + ((1vw - 7.68px) * 0.6873)), 41px);
-
-				@extend .ui-18-16-bold;
 			}
 		}
 	}

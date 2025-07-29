@@ -156,6 +156,8 @@
 
 									li {
 										margin-bottom: 0;
+										margin-top: 6px;
+										margin-bottom: 6px;
 
 										&:last-child {
 											margin-bottom: 0;
@@ -164,7 +166,8 @@
 										a {
 											@include ui-18-16-regular;
 											font-size: 17px;
-											padding: 6px 0;
+											padding-top: 0;
+											padding-bottom: 0;
 										}
 									}
 								}
@@ -269,6 +272,8 @@
 											display: inline-flex;
 											margin-right: 12px;
 											width: auto;
+											margin-top: 6px;
+											margin-bottom: 6px;
 
 											@media(max-width: 767px) {
 												width: 100%;
@@ -284,7 +289,8 @@
 											a {
 												@include ui-18-16-regular;
 												font-size: 17px;
-												padding: 6px 0;
+												padding-top: 0;
+												padding-bottom: 0;
 											}
 										}
 									}
@@ -404,6 +410,8 @@
 									width: auto;
 									display: inline-flex;
 									margin-right: 12px;
+									margin-top: 6px;
+									margin-bottom: 6px;
 
 									&.hover-active {
 										opacity: 0.5;
@@ -418,7 +426,8 @@
 										@include ui-18-16-regular;
 										display: flex;
 										position: relative;
-										padding: 6px 0;
+										padding-top: 0;
+										padding-bottom: 0;
 
 										&:before {
 											background-color: var(--gb_base_brown);
