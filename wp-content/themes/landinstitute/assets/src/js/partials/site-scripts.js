@@ -1571,6 +1571,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
+        bg.style.position = "absolute"; // switched from fixed to absolute
         lastVisible = true;
       }
 
@@ -1583,21 +1584,21 @@ document.addEventListener("DOMContentLoaded", function () {
         showElement(parallaxDefault);
       }
 
-      // Align background horizontally
-      bg.style.left = `${targetRect.left}px`;
-      bg.style.width = `${targetRect.width}px`;
-      bg.style.position = "fixed";
+      // Align background horizontally (absolute position)
+      const parentLeft = blockRect.left;
+      const parentWidth = blockRect.width;
+      bg.style.left = `${parentLeft}px`;
+      bg.style.width = `${parentWidth}px`;
 
-      let targetTopInViewport = targetRect.top;
-      if (targetTopInViewport < totalOffset) targetTopInViewport = totalOffset;
-      if (targetTopInViewport > viewportHeight) targetTopInViewport = viewportHeight;
-
+      // Compute translateY relative to block, not viewport
       const buffer = 10;
-      bg.style.transform = `translateY(${targetTopInViewport - buffer}px)`;
+      let offsetY = scrollY - blockTop + buffer;
 
-      const maxVisibleHeight = blockBottom - (scrollY + targetTopInViewport);
+      bg.style.transform = `translateY(${offsetY}px)`;
+
+      const maxVisibleHeight = blockBottom - (scrollY + offsetY);
       const availableHeight = Math.min(
-        viewportHeight - targetTopInViewport + buffer,
+        viewportHeight - buffer,
         maxVisibleHeight + buffer
       );
       bg.style.height = `${availableHeight}px`;
@@ -1627,6 +1628,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", onScrollOrResize, { passive: true });
   updateParallaxPosition();
 });
+
 
 
 // document.addEventListener("DOMContentLoaded", function () {
