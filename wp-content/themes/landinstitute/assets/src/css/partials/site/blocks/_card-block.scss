@@ -99,8 +99,19 @@
             height: auto;
             display: flex;
 
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 2px;
+                background: var(--gb_base_brown);
+                bottom: 0;
+                height: 100vh;
+            }
+
             .fancy-border-card {
-                align-self: flex-end;
+                //align-self: flex-end;
                 //height: auto;
             }
         }
@@ -124,6 +135,10 @@
             }
         }
     }
+}
+
+section:has(.timeline-slides-block.timeline-block-fancy) {
+    overflow: hidden;
 }
 
 .has-border-bottom {
@@ -151,7 +166,7 @@
     &.fancy-border-card {
         .border-card-click {
             border-top: 0;
-            border-left: 2px solid var(--gb_base_brown);
+            border-left: none;
             border-right: 0px;
 
             .block-image {
