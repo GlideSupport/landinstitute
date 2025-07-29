@@ -199,3 +199,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	
 });
+
+// resposive mega menu js start
+document.addEventListener('DOMContentLoaded', function () {
+	const menuExpandBtns = document.querySelectorAll('.menu-expand');
+	const headerLogo = document.querySelector('.header-logo');
+	const backLink = document.querySelector('.mp-back');
+	const siteLogo = headerLogo?.querySelector('.site-logo');
+	const menuBtn = document.querySelector('.menu-btn');
+	const allDropdowns = document.querySelectorAll('.mega-dropdown');
+
+	if (!menuExpandBtns.length || !headerLogo || !backLink || !menuBtn) return;
+
+	let activeDropdown = null;
+	allDropdowns.forEach(dd => {
+		dd.style.display = 'none';
+		dd.style.opacity = '0';
+		dd.style.overflow = 'hidden';
+		dd.style.visibility = 'hidden';
+	});
+
+	// Toggle mega menu on expand click
+	menuExpandBtns.forEach((btn) => {
+		btn.addEventListener('click', function (e) {
+			e.preventDefault();
+
+			const parentMenuItem = btn.closest('.menu-item');
+			const dropdown = parentMenuItem?.querySelector('.mega-dropdown');
+
+			// Hide other open dropdowns
+			allDropdowns.forEach(dd => {
+				dd.classList.remove('mp-level-open');
+				dd.style.display = 'none';
+				dd.style.opacity = '0';
+				dd.style.overflow = 'hidden';
+				dd.style.visibility = 'hidden';
+			});
+
+			if (dropdown) {
+				const isOpen = dropdown.classList.contains('mp-level-open');
+
+				if (!isOpen) {
+					dropdown.classList.add('mp-level-open');
+					dropdown.style.display = 'block';
+					dropdown.style.opacity = '1';
+					dropdown.style.overflow = 'visible';
+					dropdown.style.visibility = 'visible';
+
+					backLink.style.display = 'flex';
+					if (siteLogo) siteLogo.style.display = 'none';
+					headerLogo.classList.add('active');
+
+					activeDropdown = dropdown;
+				} else {
+					dropdown.classList.remove('mp-level-open');
+					dropdown.style.display = 'none';
+					dropdown.style.opacity = '0';
+					dropdown.style.overflow = 'hidden';
+					dropdown.style.visibility = 'hidden';
+
+					backLink.style.display = 'none';
+					if (siteLogo) siteLogo.style.display = '';
+					headerLogo.classList.remove('active');
+					activeDropdown = null;
+				}
+			}
+		});
+	});
+
+	// Back button resets mega menu
+	backLink.addEventListener('click', function (e) {
+		e.preventDefault();
+		resetMegaMenus();
+	});
+
+	// Menu button resets everything
+	menuBtn.addEventListener('click', function (e) {
+		e.preventDefault();
+		resetMegaMenus();
+	});
+
+	// Function to close all mega menus and reset header
+	function resetMegaMenus() {
+		allDropdowns.forEach(dd => {
+			dd.classList.remove('mp-level-open');
+			dd.style.display = 'none';
+			dd.style.opacity = '0';
+			dd.style.overflow = 'hidden';
+			dd.style.visibility = 'hidden';
+		});
+
+		backLink.style.display = 'none';
+		if (siteLogo) siteLogo.style.display = '';
+		headerLogo.classList.remove('active');
+		activeDropdown = null;
+	}
+});
+// responsive mega menu js end

@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Initialize multiple timeline fancy sliders
 	document.querySelectorAll('.timeline-slider-fancy').forEach((el) => {
         new Swiper(el, {
-            loop: false,
+			loop: false,
+			autoHeight: true,
             initialSlide: 0,
             observer: true,
             observeParents: true,

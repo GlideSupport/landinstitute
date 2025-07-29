@@ -416,15 +416,17 @@ HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
 			}
 		};
 
-		menuItem.addEventListener("mouseover", showDropdown);
-		menuItem.addEventListener("mouseleave", hideDropdown);
-		menuItem.addEventListener("focusin", showDropdown);
-		menuItem.addEventListener("focusout", hideDropdown);
+		if (window.innerWidth >= 1200) {
+			menuItem.addEventListener("mouseover", showDropdown);
+			menuItem.addEventListener("mouseleave", hideDropdown);
+			menuItem.addEventListener("focusin", showDropdown);
+			menuItem.addEventListener("focusout", hideDropdown);
 
-		// Also hide when mouse leaves the inner container
-		const inner = dropdown.querySelector(".mega-dropdown-inner");
-		if (inner) {
+			// Also hide when mouse leaves the inner container
+			const inner = dropdown.querySelector(".mega-dropdown-inner");
+			if (inner) {
 			inner.addEventListener("mouseleave", hideDropdown);
+			}
 		}
 	}
 });
