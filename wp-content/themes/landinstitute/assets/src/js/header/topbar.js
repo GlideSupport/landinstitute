@@ -247,9 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
 					dropdown.style.visibility = 'visible';
 
 					backLink.style.display = 'flex';
-					if (siteLogo) siteLogo.style.display = 'none';
 					headerLogo.classList.add('active');
-
 					activeDropdown = dropdown;
 				} else {
 					dropdown.classList.remove('mp-level-open');
@@ -259,7 +257,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					dropdown.style.visibility = 'hidden';
 
 					backLink.style.display = 'none';
-					if (siteLogo) siteLogo.style.display = '';
 					headerLogo.classList.remove('active');
 					activeDropdown = null;
 				}
