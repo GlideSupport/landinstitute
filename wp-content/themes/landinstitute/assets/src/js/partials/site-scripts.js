@@ -1549,10 +1549,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function updateParallaxPosition() {
-    const headerHeight = header.offsetHeight;
-    const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
-    const totalOffset = headerHeight + adminBarHeight;
-
     const scrollY = window.scrollY;
     const viewportHeight = window.innerHeight;
 
@@ -1560,51 +1556,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const blockTop = blockRect.top + scrollY;
     const blockBottom = blockTop + blockRect.height;
 
-    const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
+    const colRect = colLeft.getBoundingClientRect();
+    const colHeight = colRect.height; // dynamic height
 
-    const fullyActive =
-      scrollY + totalOffset >= blockTop &&
-      scrollY + viewportHeight <= blockBottom + totalOffset;
+    const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
 
     if (isBlockInView) {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
-        bg.style.position = "absolute";
+        bg.style.position = "absolute"; // stay inside the column
         lastVisible = true;
       }
 
-      // Show/hide based on fullyActive state
-      if (fullyActive) {
-        showElement(parallaxSticky);
-        hideElement(parallaxDefault);
-      } else {
-        hideElement(parallaxSticky);
-        showElement(parallaxDefault);
-      }
+      // Always show sticky when in view
+      showElement(parallaxSticky);
+      hideElement(parallaxDefault);
 
-      // Since bg is inside .col-left, set left to 0 and width to 100%
+      // Fill the entire column (no horizontal calculations needed)
       bg.style.left = "0px";
+      bg.style.top = "0px"; // no movement
       bg.style.width = "100%";
+      bg.style.height = `${colHeight}px`;
 
-      // Make sure sticky/default images also take full column width
+      // Make sticky/default match the column
       parallaxSticky.style.width = "100%";
+      parallaxSticky.style.height = `${colHeight}px`;
       parallaxDefault.style.width = "100%";
+      parallaxDefault.style.height = `${colHeight}px`;
 
-      // Compute vertical position relative to block
-      const buffer = 10;
-      let offsetY = scrollY - blockTop + buffer;
-
-      // Use top instead of transform
-      bg.style.transform = "";
-      bg.style.top = `${offsetY}px`;
-
-      const maxVisibleHeight = blockBottom - (scrollY + offsetY);
-      const availableHeight = Math.min(
-        viewportHeight - buffer,
-        maxVisibleHeight + buffer
-      );
-      bg.style.height = `${availableHeight}px`;
     } else {
       // Outside viewport
       hideElement(parallaxSticky);
