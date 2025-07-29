@@ -1587,14 +1587,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // Align background horizontally (absolute position)
       const parentLeft = blockRect.left;
       const parentWidth = blockRect.width;
-      bg.style.left = `${parentLeft}px`;
-      bg.style.width = `${parentWidth}px`;
+      //bg.style.left = `${parentLeft}px`;
+      //bg.style.width = `${parentWidth}px`;
 
       // Compute translateY relative to block, not viewport
       const buffer = 100;
       let offsetY = scrollY - blockTop + buffer;
 
-      bg.style.transform = `translateY(${offsetY}px)`;
+    //  bg.style.transform = `translateY(${offsetY}px)`;
 
       const maxVisibleHeight = blockBottom - (scrollY + offsetY);
       const availableHeight = Math.min(
