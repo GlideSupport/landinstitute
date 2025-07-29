@@ -1537,6 +1537,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!block || !bg || !parallaxSticky || !parallaxDefault || !header || !colLeft) return;
 
+  // FIX: Force correct style on images inside parallax-fixed-bg
+  document.querySelectorAll(".parallax-fixed-bg img").forEach(img => {
+    img.style.position = "absolute";
+    img.style.top = "0";
+    img.style.left = "0";
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+  });
+
   let ticking = false;
   let lastVisible = false;
 
@@ -1557,7 +1567,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const blockBottom = blockTop + blockRect.height;
 
     const colRect = colLeft.getBoundingClientRect();
-    const colHeight = colRect.height; // dynamic height
+    const colHeight = colRect.height;
 
     const isBlockInView = blockBottom > scrollY && blockTop < scrollY + viewportHeight;
 
@@ -1565,7 +1575,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!lastVisible) {
         bg.style.visibility = "visible";
         bg.style.zIndex = "1";
-        bg.style.position = "absolute"; // stay inside the column
+        bg.style.position = "absolute";
         lastVisible = true;
       }
 
@@ -1573,7 +1583,7 @@ document.addEventListener("DOMContentLoaded", function () {
       showElement(parallaxSticky);
       hideElement(parallaxDefault);
 
-      // Fill the entire column (no horizontal calculations needed)
+      // Fill the entire column
       bg.style.left = "0px";
       bg.style.top = "0px"; // no movement
       bg.style.width = "100%";
@@ -1586,7 +1596,6 @@ document.addEventListener("DOMContentLoaded", function () {
       parallaxDefault.style.height = `${colHeight}px`;
 
     } else {
-      // Outside viewport
       hideElement(parallaxSticky);
       showElement(parallaxDefault);
 
@@ -1611,6 +1620,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", onScrollOrResize, { passive: true });
   updateParallaxPosition();
 });
+
 
 
 // document.addEventListener("DOMContentLoaded", function () {
