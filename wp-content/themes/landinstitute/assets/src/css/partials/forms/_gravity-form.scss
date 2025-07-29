@@ -642,3 +642,39 @@ table.ui-datepicker_calendar {
 .donate-form #rd-modal-container button {
     font-size: 16px;
 }
+
+
+.donate-form #raise-donors [multiple],
+.donate-form #raise-donors [type=color],
+.donate-form #raise-donors [type=date],
+.donate-form #raise-donors [type=datetime-local],
+.donate-form #raise-donors [type=email],
+.donate-form #raise-donors [type=month],
+.donate-form #raise-donors [type=number],
+.donate-form #raise-donors [type=password],
+.donate-form #raise-donors [type=search],
+.donate-form #raise-donors [type=tel],
+.donate-form #raise-donors [type=text],
+.donate-form #raise-donors [type=time],
+.donate-form #raise-donors [type=url],
+.donate-form #raise-donors [type=week],
+.donate-form #raise-donors select,
+.donate-form #raise-donors textarea,
+.donate-form #rd-modal-container [multiple],
+.donate-form #rd-modal-container [type=color],
+.donate-form #rd-modal-container [type=date],
+.donate-form #rd-modal-container [type=datetime-local],
+.donate-form #rd-modal-container [type=email],
+.donate-form #rd-modal-container [type=month],
+.donate-form #rd-modal-container [type=number],
+.donate-form #rd-modal-container [type=password],
+.donate-form #rd-modal-container [type=search],
+.donate-form #rd-modal-container [type=tel],
+.donate-form #rd-modal-container [type=text],
+.donate-form #rd-modal-container [type=time],
+.donate-form #rd-modal-container [type=url],
+.donate-form #rd-modal-container [type=week],
+.donate-form #rd-modal-container select,
+.donate-form #rd-modal-container textarea {
+    font-size: 16px;
+}
