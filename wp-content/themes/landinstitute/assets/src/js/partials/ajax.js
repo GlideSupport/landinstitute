@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (scrollTarget) {
 				const offset = 100;
 				const top = scrollTarget.getBoundingClientRect().top + window.pageYOffset - offset;
-				window.scrollTo({ top, behavior: "smooth" });
+				window.scrollTo({ top, behavior: "instant" });
 			}
 		}, 50);
 	}
@@ -302,7 +302,7 @@ function fetchPastEvents(paged = 1, updateURL = true) {
 					if (newTeaserList) {
 						const offset = 100; // adjust for sticky headers
 						const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
-						window.scrollTo({ top: top, behavior: "smooth" });
+						window.scrollTo({ top: top, behavior: "instant" });
 					}
 				}, 50);
 			} else {
@@ -505,7 +505,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 						if (newTeaserList) {
 							const offset = 100;
 							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
-							window.scrollTo({ top: top, behavior: "smooth" });
+							window.scrollTo({ top: top, behavior: "instant" });
 						}
 					}, 50);
 
@@ -731,7 +731,7 @@ window.addEventListener("DOMContentLoaded", () => {
 						if (newTeaserList) {
 							const offset = 100;
 							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
-							window.scrollTo({ top: top, behavior: "smooth" });
+							window.scrollTo({ top: top, behavior: "instant" });
 						}
 					}, 50);
 
@@ -998,13 +998,13 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 						history.pushState({ paged: paged }, '', newURL);
 					}
 
-					// ✅ Smooth scroll to results
+					// ✅ instant scroll to results
 					setTimeout(() => {
 						const newTeaserList = document.querySelector(".append-search-result");
 						if (newTeaserList) {
 							const offset = 100;
 							const top = newTeaserList.getBoundingClientRect().top + window.pageYOffset - offset;
-							window.scrollTo({ top: top, behavior: "smooth" });
+							window.scrollTo({ top: top, behavior: "instant" });
 						}
 					}, 50);
 				} else {
