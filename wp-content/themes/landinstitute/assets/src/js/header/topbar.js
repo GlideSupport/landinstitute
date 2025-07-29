@@ -215,9 +215,9 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Get header height and position all mega dropdowns
 	function updateMegaMenuPosition() {
 		const headerLogoHeight = headerLogo.getBoundingClientRect().height;
-		console.log('Header Logo Height:', headerLogoHeight);
 		allDropdowns.forEach(dd => {
 			dd.style.top = `${headerLogoHeight}px`;
+			dd.style.height = `calc(100vh - ${headerLogoHeight}px)`;
 		});
 	}
 
@@ -230,7 +230,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	allDropdowns.forEach(dd => {
 		dd.style.display = 'none';
 		dd.style.opacity = '0';
-		dd.style.overflow = 'hidden';
 		dd.style.visibility = 'hidden';
 	});
 
@@ -247,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function () {
 				dd.classList.remove('mp-level-open');
 				dd.style.display = 'none';
 				dd.style.opacity = '0';
-				dd.style.overflow = 'hidden';
 				dd.style.visibility = 'hidden';
 			});
 
@@ -258,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					dropdown.classList.add('mp-level-open');
 					dropdown.style.display = 'block';
 					dropdown.style.opacity = '1';
-					dropdown.style.overflow = 'visible';
 					dropdown.style.visibility = 'visible';
 
 					backLink.style.display = 'flex';
@@ -268,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function () {
 					dropdown.classList.remove('mp-level-open');
 					dropdown.style.display = 'none';
 					dropdown.style.opacity = '0';
-					dropdown.style.overflow = 'hidden';
 					dropdown.style.visibility = 'hidden';
 
 					backLink.style.display = 'none';
@@ -297,7 +293,6 @@ document.addEventListener('DOMContentLoaded', function () {
 			dd.classList.remove('mp-level-open');
 			dd.style.display = 'none';
 			dd.style.opacity = '0';
-			dd.style.overflow = 'hidden';
 			dd.style.visibility = 'hidden';
 		});
 
