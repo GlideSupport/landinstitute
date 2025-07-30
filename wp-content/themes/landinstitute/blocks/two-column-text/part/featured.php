@@ -4,10 +4,9 @@
 		<?php foreach ($li_tct_repeater as $section) {
 			$kicker = $section['kicker'];
 			$headline = $section['headline'];
-			$description = $section['description'];
 			$button = $section['link'];
 			$bg_color = $section['li_globel_bg_color_options'] ?? null;
-			if (!empty($kicker) || !empty($headline) || !empty($description) || !empty($button) || !empty($bg_color)) {
+			if (!empty($kicker) || !empty($headline) || !empty($button) || !empty($bg_color)) {
 				$has_link = !empty($button['url']);
 				?>
 				<div class="text-card-col <?php echo esc_attr($bg_color); ?>">
