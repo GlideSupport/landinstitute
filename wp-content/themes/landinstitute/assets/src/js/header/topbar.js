@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	const maxHeight = 88;
 	const minHeight = 54;
-	const maxScroll = 300; // adjust based on your design
+	const maxScroll = 120; // adjust based on your design
 
 	window.addEventListener('scroll', function () {
 		const scrollY = Math.min(window.scrollY, maxScroll);
