@@ -440,8 +440,8 @@ window.addEventListener("scroll", () => {
 		if (dropdown && menuItem) {
 			dropdown.style.display = "none";
 			dropdown.style.opacity = "0";
-			dropdown.style.overflow = "hidden";
-			dropdown.style.visibility = "hidden";
+			//dropdown.style.overflow = "hidden";
+			//dropdown.style.visibility = "hidden";
 			document.body.classList.remove("megamenu-hover-active");
 
 			if (triggerLink) {
