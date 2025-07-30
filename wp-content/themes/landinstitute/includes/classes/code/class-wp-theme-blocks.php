@@ -160,20 +160,11 @@ class WP_Theme_Blocks {
 		// Register a block - Accordion with Image.
 		self::register_acf_block('accordion-with-image');
 		
-		// Register a block - Text List.
-		self::register_acf_block('text-list');
-		
-		// Register a block - Airtable Map.
-		self::register_acf_block('airtable-map');
-
 		// Register a block - Info Box.
 		self::register_acf_block('info-box');
 
 		// Register a block - Past Event.
 		self::register_acf_block('past-events');
-
-		// Register a block - Lead Paragraph.
-		self::register_acf_block('lead-paragraph');
 
 		// [register_here].
 	}
