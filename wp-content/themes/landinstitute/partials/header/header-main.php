@@ -11,7 +11,7 @@
 				</a>
 				<div class="main-menu">
 					<a class="mp-back" href="#">
-						<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/images/submenu-icon-md.svg" alt="back-arrow-menu" width="20" height="20" /> Main menu
+						<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/images/submenu-icon-md.svg" alt="back-arrow-menu" width="20" height="20" /> Main Menu
 					</a>
 				</div>
 			</div>
