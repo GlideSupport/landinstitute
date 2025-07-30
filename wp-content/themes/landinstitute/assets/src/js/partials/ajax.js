@@ -599,6 +599,14 @@ function formatLabel(label, fallback) {
 	return label === "all" ? fallback : label.replace(/-/g, " ");
 }
 
+function updateFilterButton(selector, prefix, value, fallback) {
+	const button = document.querySelector(selector);
+	if (button) {
+		const label = formatLabel(value, fallback);
+		button.innerHTML = `${prefix}: ${label}<div class="arrow-icon"></div>`;
+	}
+}
+
 // Load values from URL
 window.addEventListener("DOMContentLoaded", () => {
 	// Get values from URL if present
@@ -611,19 +619,19 @@ window.addEventListener("DOMContentLoaded", () => {
 	//console
 	// Set initial button labels and active states
 	if (learntype) {
-		document.querySelector("button#type-view").innerHTML = "Type: " + formatLabel(learntype, "Type");
+		updateFilterButton("button#type-view", "Type", learntype, "Type");
 		document.querySelector(`#learn-type a[data-term="${learntype}"]`)?.closest("li")?.classList.add("active");
 	}
 	if (learntopic) {
-		document.querySelector("button#topic-view").innerHTML = "Topic: " + formatLabel(learntopic, "Topic");
+		updateFilterButton("button#topic-view", "Topic", learntopic, "All Topics");
 		document.querySelector(`#learn-topic a[data-term="${learntopic}"]`)?.closest("li")?.classList.add("active");
 	}
 	if (learncrops) {
-		document.querySelector("button#category-view").innerHTML = "Crop: " + formatLabel(learncrops, "Crop");
+		updateFilterButton("button#category-view", "Crop", learncrops, "All Crops");
 		document.querySelector(`#learn-crops a[data-term="${learncrops}"]`)?.closest("li")?.classList.add("active");
 	}
 	if (learnaudiance) {
-		document.querySelector("button#audience-view").innerHTML = "Audience: " + formatLabel(learncrops, "Audience");
+		updateFilterButton("button#audience-view", "Audience", learnaudiance, "All Audiences");
 		document.querySelector(`#audience-view a[data-term="${learnaudiance}"]`)?.closest("li")?.classList.add("active");
 	}
 
