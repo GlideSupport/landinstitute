@@ -202,117 +202,97 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // resposive mega menu js start
 document.addEventListener('DOMContentLoaded', function () {
-	if (window.innerWidth <= 1200) {
-		const menuExpandBtns = document.querySelectorAll('.menu-expand');
-		const headerLogo = document.querySelector('.header-logo');
-		const backLink = document.querySelector('.mp-back');
-		const siteLogo = headerLogo?.querySelector('.site-logo');
-		const menuBtn = document.querySelector('.menu-btn');
-		const allDropdowns = document.querySelectorAll('.mega-dropdown');
+	const isMobileView = () => window.innerWidth <= 1200;
 
-		if (!menuExpandBtns.length || !headerLogo || !backLink || !menuBtn) return;
+	if (!isMobileView()) return;
 
-		let activeDropdown = null;
-		// Get header height and position all mega dropdowns
-			function updateMegaMenuPosition() {
-				const headerLogoHeight = headerLogo.getBoundingClientRect().height;
-				const viewportHeight = window.innerHeight;
+	const headerLogo = document.querySelector('.header-logo');
+	const backLink = document.querySelector('.mp-back');
+	const siteLogo = headerLogo?.querySelector('.site-logo');
+	const menuBtn = document.querySelector('.menu-btn');
+	const allDropdowns = document.querySelectorAll('.mega-dropdown');
+	let menuExpandBtns = document.querySelectorAll('.menu-expand');
 
-				let footerHeight = 0;
-				const footerSticky = document.querySelector('.footer-sub-nav-sticky');
-				if (footerSticky) {
-					footerHeight = footerSticky.offsetHeight;
-				}
+	if (!menuExpandBtns.length || !headerLogo || !backLink || !menuBtn) return;
 
-				const availableHeight = viewportHeight - headerLogoHeight - footerHeight;
+	let activeDropdown = null;
 
-				allDropdowns.forEach(dd => {
-					dd.style.top = `${headerLogoHeight}px`;
-					dd.style.height = `${availableHeight}px`;
-				});
-			}
+	function updateMegaMenuPosition() {
+		const headerLogoHeight = headerLogo.getBoundingClientRect().height;
+		const viewportHeight = window.innerHeight;
 
+		let footerHeight = 0;
+		const footerSticky = document.querySelector('.footer-sub-nav-sticky');
+		if (footerSticky) {
+			footerHeight = footerSticky.offsetHeight;
+		}
 
-		// Initial positioning
-		updateMegaMenuPosition();
-
-		// Recalculate on window resize
-		window.addEventListener('resize', updateMegaMenuPosition);
+		const availableHeight = viewportHeight - headerLogoHeight - footerHeight;
 
 		allDropdowns.forEach(dd => {
+			dd.style.top = `${headerLogoHeight}px`;
+			dd.style.height = `${availableHeight}px`;
+		});
+	}
+
+	function resetMegaMenus() {
+		allDropdowns.forEach(dd => {
+			dd.classList.remove('mp-level-open');
 			dd.style.display = 'none';
 			dd.style.opacity = '0';
-			//dd.style.visibility = 'hidden';
 		});
+		backLink.style.display = 'none';
+		if (siteLogo) siteLogo.style.display = '';
+		headerLogo.classList.remove('active');
+		activeDropdown = null;
+	}
 
-		// Toggle mega menu on expand click
-		menuExpandBtns.forEach((btn) => {
-			btn.addEventListener('click', function (e) {
-				e.preventDefault();
+	// Run once
+	updateMegaMenuPosition();
+	allDropdowns.forEach(dd => {
+		dd.style.display = 'none';
+		dd.style.opacity = '0';
+	});
 
-				const parentMenuItem = btn.closest('.menu-item');
-				const dropdown = parentMenuItem?.querySelector('.mega-dropdown');
+	// Resize listener
+	window.addEventListener('resize', function () {
+		if (isMobileView()) updateMegaMenuPosition();
+	});
 
-				// Hide other open dropdowns
-				allDropdowns.forEach(dd => {
-					dd.classList.remove('mp-level-open');
-					dd.style.display = 'none';
-					dd.style.opacity = '0';
-					//dd.style.visibility = 'hidden';
-				});
-
-				if (dropdown) {
-					const isOpen = dropdown.classList.contains('mp-level-open');
-
-					if (!isOpen) {
-						dropdown.classList.add('mp-level-open');
-						dropdown.style.display = 'block';
-						dropdown.style.opacity = '1';
-						//dropdown.style.visibility = 'visible';
-
-						backLink.style.display = 'flex';
-						headerLogo.classList.add('active');
-						activeDropdown = dropdown;
-					} else {
-						dropdown.classList.remove('mp-level-open');
-						dropdown.style.display = 'none';
-						dropdown.style.opacity = '0';
-						//dropdown.style.visibility = 'hidden';
-
-						backLink.style.display = 'none';
-						headerLogo.classList.remove('active');
-						activeDropdown = null;
-					}
-				}
-			});
-		});
-
-		// Back button resets mega menu
-		backLink.addEventListener('click', function (e) {
+	// Expand click
+	menuExpandBtns.forEach((btn) => {
+		btn.addEventListener('click', function (e) {
 			e.preventDefault();
-			resetMegaMenus();
-		});
 
-		// Menu button resets everything
-		menuBtn.addEventListener('click', function (e) {
-			e.preventDefault();
-			resetMegaMenus();
-		});
+			const parentMenuItem = btn.closest('.menu-item');
+			const dropdown = parentMenuItem?.querySelector('.mega-dropdown');
 
-		// Function to close all mega menus and reset header
-		function resetMegaMenus() {
+			if (!dropdown) return;
+
+			const isOpen = dropdown.classList.contains('mp-level-open');
+
 			allDropdowns.forEach(dd => {
 				dd.classList.remove('mp-level-open');
 				dd.style.display = 'none';
 				dd.style.opacity = '0';
-				//dd.style.visibility = 'hidden';
 			});
 
-			backLink.style.display = 'none';
-			if (siteLogo) siteLogo.style.display = '';
-			headerLogo.classList.remove('active');
-			activeDropdown = null;
-		}
-	}
+			if (!isOpen) {
+				dropdown.classList.add('mp-level-open');
+				dropdown.style.display = 'block';
+				dropdown.style.opacity = '1';
+
+				backLink.style.display = 'flex';
+				headerLogo.classList.add('active');
+				activeDropdown = dropdown;
+			} else {
+				resetMegaMenus();
+			}
+		});
+	});
+
+	backLink.addEventListener('click', resetMegaMenus);
+	menuBtn.addEventListener('click', resetMegaMenus);
 });
+
 // responsive mega menu js end
