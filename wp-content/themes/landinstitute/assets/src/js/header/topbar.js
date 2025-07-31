@@ -298,6 +298,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // responsive mega menu js end
 
 document.addEventListener('DOMContentLoaded', function () {
+	const isMobileView = () => window.innerWidth >= 1200;
+	if (!isMobileView()) return;
 	const logoImg = document.querySelector('.site-logo img');
 	if (!logoImg) return;
 
