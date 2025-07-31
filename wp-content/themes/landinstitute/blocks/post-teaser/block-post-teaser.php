@@ -91,25 +91,17 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 							$post_id = get_the_ID();
 							$title = get_the_title();
 							$permalink = get_the_permalink();
-							$bg_pattern_image = get_field('li_po_bg_image', $post_id);
-							$has_pattern = !empty($bg_pattern_image);
 							// Calculate class for current slide
 							$class = $slide_classes[$index % count($slide_classes)];
 						?>
 							<div class="swiper-slide <?php echo esc_attr($class); ?>">
 								<a href="<?php echo esc_url($permalink); ?>" class="border-image-content">
-									<div class="variable-image <?php echo $has_pattern ? 'pattern-image' : ''; ?>">
-										<?php if ($has_pattern && $bg_pattern_image) : ?>
-											<?php echo wp_get_attachment_image($bg_pattern_image, 'thumb_800'); ?>
+									<div class="variable-image">
+										<?php if (has_post_thumbnail()) : ?>
+											<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800'); ?>
+										<?php else : ?>
+											<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="800" height="800" />
 										<?php endif; ?>
-										<?php if ($has_pattern && $bg_pattern_image) : ?><div class="pattern-child-image"><?php endif; ?>
-											<?php if (has_post_thumbnail()) : ?>
-												<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800'); ?>
-											<?php else : ?>
-												<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="800" height="800" />
-											<?php endif; ?>
-											<?php if ($has_pattern && $bg_pattern_image) : ?>
-											</div><?php endif; ?>
 									</div>
 									<div class="border-card-content">
 										<div class="gl-s52"></div>
