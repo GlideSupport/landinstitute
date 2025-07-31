@@ -21,7 +21,7 @@
             <?php //echo (!empty($title) || !empty($text) || !empty($link)) ? '<div class="gl-s96"></div>' : ''; ?>
             <?php echo !empty($title) ? '<div class="ui-34-28-bold card-title">' . esc_html($title) . '</div>' : ''; ?>
             <?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s20"></div>' : ''; ?>
-            <?php echo !empty($text) ? '<div class="card-content">' . esc_html($text) . '</div>' : ''; ?>
+            <?php echo !empty($text) ? '<div class="card-content">' . html_entity_decode($text) . '</div>' : ''; ?>
             <?php echo (!empty($text) && !empty($link)) ? '<div class="gl-s24"></div>' : ''; ?>
             <?php echo !empty($link) ? '<div class="block-btn"><div class="site-btn text-link" role="button" aria-label="' . esc_attr($link_title) . '">' . esc_html($link_title) . '</div></div>' : ''; ?>
             <?php //echo (!empty($title) || !empty($text) || !empty($link)) ? '<div class="gl-s96"></div>' : ''; ?>
