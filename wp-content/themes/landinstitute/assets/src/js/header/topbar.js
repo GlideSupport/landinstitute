@@ -296,23 +296,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // responsive mega menu js end
-
-document.addEventListener('DOMContentLoaded', function () {
-	const isMobileView = () => window.innerWidth >= 1200;
-	if (!isMobileView()) return;
-	const logoImg = document.querySelector('.site-logo img');
-	if (!logoImg) return;
-
-	const maxHeight = 88;
-	const minHeight = 54;
-	const maxScroll = 120; // adjust based on your design
-
-	window.addEventListener('scroll', function () {
-		const scrollY = Math.min(window.scrollY, maxScroll);
-		const scale = 1 - ((scrollY / maxScroll) * (1 - (minHeight / maxHeight)));
-		const size = maxHeight * scale;
-
-		logoImg.style.width = `${size}px`;
-		logoImg.style.height = `${size}px`;
-	});
-});
