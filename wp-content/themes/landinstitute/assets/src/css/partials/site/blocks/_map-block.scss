@@ -139,15 +139,21 @@
 
         .swiper-slide {
             cursor: pointer;
-            height: auto;
+            height: 130px;
+            margin-top: -58px;
             width: 160px;
+
+            @media(max-width: 991px) {
+                height: auto;
+                margin-top: 0;
+            }
 
             @media(max-width: 767px) {
                 width: 73px;
             }
 
             &.swiper-slide-active {
-                cursor: default;
+                cursor: pointer;
 
                 .slide-year {
                     opacity: 1;
