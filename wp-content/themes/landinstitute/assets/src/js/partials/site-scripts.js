@@ -554,23 +554,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
 
 	//footer nav active class js
-		// function updateActiveNavByPath() {
-		// 	const currentPath = window.location.pathname;
+		function updateActiveNavByPath() {
+			const currentPath = window.location.pathname;
 
-		// 	document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
-		// 		const link = li.querySelector('a');
-		// 		if (link) {
-		// 			const linkPath = new URL(link.href, window.location.origin).pathname;
+			document.querySelectorAll('.jump-nav-us ul li').forEach((li) => {
+				const link = li.querySelector('a');
+				if (link) {
+					const linkPath = new URL(link.href, window.location.origin).pathname;
 
-		// 			if (linkPath === currentPath) {
-		// 				li.classList.add('active');
-		// 			} else {
-		// 				li.classList.remove('active');
-		// 			}
-		// 		}
-		// 	});
-		// }
-		// updateActiveNavByPath();
+					if (linkPath === currentPath) {
+						li.classList.add('active');
+					} else {
+						li.classList.remove('active');
+					}
+				}
+			});
+		}
+		updateActiveNavByPath();
 	//footer nav active class end
 
 
