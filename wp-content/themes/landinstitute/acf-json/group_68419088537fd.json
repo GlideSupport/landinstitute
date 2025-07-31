@@ -432,7 +432,7 @@
                     "allow_in_bindings": 0,
                     "tabs": "all",
                     "toolbar": "full",
-                    "media_upload": 1,
+                    "media_upload": 0,
                     "delay": 0,
                     "parent_repeater": "field_684191c48af34"
                 },
@@ -510,5 +510,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1753971043
+    "modified": 1753971252
 }
