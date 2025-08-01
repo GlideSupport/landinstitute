@@ -156,8 +156,8 @@
 
 									li {
 										margin-bottom: 0;
-										margin-top: 6px;
-										margin-bottom: 6px;
+										margin-top: 0;
+										margin-bottom: 0;
 
 										&:last-child {
 											margin-bottom: 0;
@@ -166,8 +166,8 @@
 										a {
 											@include ui-18-16-regular;
 											font-size: 17px;
-											padding-top: 0;
-											padding-bottom: 0;
+											padding-top: 6px;
+											padding-bottom: 6px;
 										}
 									}
 								}
@@ -268,18 +268,15 @@
 										display: block;
 
 										li {
-											margin-bottom: 8px;
 											display: inline-flex;
 											margin-right: 12px;
 											width: auto;
-											margin-top: 6px;
-											margin-bottom: 6px;
+											margin-top: 0;
+											margin-bottom: 0;
 
 											@media(max-width: 767px) {
 												width: 100%;
 												display: flex;
-												margin-bottom: 0;
-												margin-right: 0;
 											}
 
 											&:last-child {
@@ -289,8 +286,8 @@
 											a {
 												@include ui-18-16-regular;
 												font-size: 17px;
-												padding-top: 0;
-												padding-bottom: 0;
+												padding-top: 6px;
+												padding-bottom: 6px;
 											}
 										}
 									}
@@ -405,13 +402,12 @@
 								}
 
 								li {
-									margin: 0;
 									transition: all 0.2s ease-in-out;
 									width: auto;
 									display: inline-flex;
 									margin-right: 12px;
-									margin-top: 6px;
-									margin-bottom: 6px;
+									margin-top: 0;
+									margin-bottom: 0;
 
 									&.hover-active {
 										opacity: 0.5;
@@ -423,11 +419,12 @@
 									}
 
 									a {
-										@include ui-18-16-regular;
-										display: flex;
-										position: relative;
-										padding-top: 0;
-										padding-bottom: 0;
+										a {
+											@include ui-18-16-regular;
+											font-size: 17px;
+											padding-top: 6px;
+											padding-bottom: 6px;
+										}
 
 										&:before {
 											background-color: var(--gb_base_brown);
