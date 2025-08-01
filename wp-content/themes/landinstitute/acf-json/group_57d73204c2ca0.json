@@ -1233,7 +1233,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -1245,6 +1245,30 @@
             "append": ""
         },
         {
+            "key": "field_688c5b59768e6",
+            "label": "Select form Type",
+            "name": "bst_var_ftrop_select_form_type",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "gravity-form": "Gravity form",
+                "form-embed": "Form Embed"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_682ad24c7fefd",
             "label": "Form Selector",
             "name": "bst_var_ftrop_form_selector",
@@ -1252,7 +1276,15 @@
             "type": "forms",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_688c5b59768e6",
+                        "operator": "==",
+                        "value": "gravity-form"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -1264,23 +1296,33 @@
             "allow_in_bindings": 1
         },
         {
-            "key": "field_682b019b5e5c2",
-            "label": "Select Footer Legal menu",
-            "name": "landinstitute_select_footer_legal_menu",
+            "key": "field_688c5bbbca861",
+            "label": "Form Embed",
+            "name": "bst_var_ftrop_form_embed",
             "aria-label": "",
-            "type": "nav_menu",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_688c5b59768e6",
+                        "operator": "==",
+                        "value": "form-embed"
+                    }
+                ]
+            ],
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "save_format": "object",
-            "container": "div",
-            "allow_null": 1,
-            "allow_in_bindings": 0
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_62683b44efa45",
@@ -1319,6 +1361,25 @@
             "message": "",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_682b019b5e5c2",
+            "label": "Select Footer Legal menu",
+            "name": "landinstitute_select_footer_legal_menu",
+            "aria-label": "",
+            "type": "nav_menu",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "save_format": "object",
+            "container": "div",
+            "allow_null": 1,
+            "allow_in_bindings": 0
         },
         {
             "key": "field_682afb3a019bf",
@@ -3912,5 +3973,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1753097416
+    "modified": 1754030034
 }

@@ -39,7 +39,9 @@ $bst_var_footer_logo = $bst_option_fields['bst_var_footer_logo'] ?? null;
 $bst_var_ftrop_title = $bst_option_fields['bst_var_ftrop_title'] ?? null;
 $bst_var_ftrop_text = $bst_option_fields['bst_var_ftrop_text'] ?? null;
 $bst_var_ftrop_form_title = $bst_option_fields['bst_var_ftrop_form_title'] ?? null;
+$bst_var_ftrop_select_form_type = $bst_option_fields['bst_var_ftrop_select_form_type'] ?? 'gravity-form';
 $bst_var_ftrop_form_selector = $bst_option_fields['bst_var_ftrop_form_selector'] ?? null;
+$bst_var_ftrop_form_embed = $bst_option_fields['bst_var_ftrop_form_embed'] ?? null;
 $li_select_footer_legal_menu = $bst_option_fields['landinstitute_select_footer_legal_menu'] ?? null;
 $bst_var_ftrop_copyright = $bst_option_fields['bst_var_ftrop_copyright'] ?? null;
 $bst_var_social_profiles = $bst_option_fields['bst_var_social_profiles'] ?? null;
@@ -143,7 +145,11 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                     <div class="footer-newsletter">
                         <?php echo $bst_var_ftrop_form_title ? ' <div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>' : ''; ?>
                     </div>
-                    <?php echo do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" description="false" ajax="true" tabindex="0"]'); ?>
+                    <?php if (($bst_var_ftrop_select_form_type == 'gravity-form')): ?>
+						<?php echo !empty($bst_var_ftrop_form_selector) ? do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
+					<?php else :?>
+							<?php echo html_entity_decode($bst_var_ftrop_form_embed); ?>
+					<?php endif; ?>
                     <div class="gl-s64"></div>
                     <div class="social-icons">
                         <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
