@@ -421,6 +421,10 @@ body {
 	width: 148px;
 	z-index: 9;
 
+	@media(min-width: 1201px) {
+		transition: inherit;
+	}
+
 	@media(max-width: 1200px) {
 		border-right: 0px solid var(--gb_base_brown);
 		width: auto;
@@ -438,6 +442,10 @@ body {
 		padding-right: 29px;
 		padding-top: 11px;
 
+		@media(min-width: 1201px) {
+			transition: inherit;
+		}
+
 		@media(max-width: 1200px) {
 			padding-bottom: 12px;
 			padding-left: 24px;
@@ -450,6 +458,10 @@ body {
 			transition: all 0.2s ease-in-out;
 			width: 100%;
 			width: clamp(54px, calc(3.375rem + ((1vw - 7.68px) * 5.8419)), 88px);
+
+			@media(min-width: 1201px) {
+				transition: inherit;
+			}
 		}
 	}
 }
@@ -490,6 +502,10 @@ header {
 	top: 0;
 	width: 100%;
 	z-index: 9;
+
+	@media(min-width: 1201px) {
+		transition: inherit;
+	}
 
 	&.shrink {
 		.header-logo {
@@ -593,6 +609,10 @@ header {
 	max-width: 100%;
 	padding: 0;
 	width: 100%;
+
+	@media(min-width: 1201px) {
+		transition: inherit;
+	}
 
 	@media(max-width: 1200px) {
 		border-bottom: 2px solid var(--gb_base_brown);
