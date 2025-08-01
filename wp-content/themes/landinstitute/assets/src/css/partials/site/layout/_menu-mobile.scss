@@ -419,12 +419,10 @@
 									}
 
 									a {
-										a {
-											@include ui-18-16-regular;
-											font-size: 17px;
-											padding-top: 6px;
-											padding-bottom: 6px;
-										}
+										@include ui-18-16-regular;
+										font-size: 17px;
+										padding-top: 6px;
+										padding-bottom: 6px;
 
 										&:before {
 											background-color: var(--gb_base_brown);
