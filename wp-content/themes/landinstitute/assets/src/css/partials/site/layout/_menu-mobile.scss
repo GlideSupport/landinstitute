@@ -794,14 +794,17 @@
 			right: 0;
 			top: 50%;
 			display: block;
-			height: 16px;
-			width: 16px;
+			height: 100%;
+			// height: 16px;
+			// width: 16px;
 			cursor: pointer;
 			background-position: center;
-			background-size: cover;
+			background-size: 16px;
+			width: 100%;
 			background-repeat: no-repeat;
 			background-image: url(../images/submenu-icon-md.svg);
 			transform: translate(0, -50%);
+			background-position: 100% 50%;
 		}
 	}
 
