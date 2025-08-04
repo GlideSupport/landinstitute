@@ -30,7 +30,7 @@ $bst_var_header_logo = $bst_option_fields['bst_var_header_logo'] ?? null;
 $landinstitute_header_main_menu = $bst_option_fields['landinstitute_header_main_menu'] ?? null;
 $bst_var_tohdr_btn = $bst_option_fields['bst_var_tohdr_btn'] ?? null;
 
-
+$landinstitute_nav_button = $bst_option_fields['landinstitute_nav_button'] ?? null;
 //Our Work Mega Menu 1
 $landinstitute_nav_menu_title_1 = $bst_option_fields['landinstitute_nav_menu_title_1'] ?? null;
 $landinstitute_select_nav_menu_1 = $bst_option_fields['landinstitute_select_nav_menu_1'] ?? null;
@@ -45,6 +45,7 @@ $landinstitute_nav_menu_title_4 = $bst_option_fields['landinstitute_nav_menu_tit
 $landinstitute_select_nav_menu_4 = $bst_option_fields['landinstitute_select_nav_menu_4'] ?? null;
 
 //Learn Mega Menu 2
+$landinstitute_nav_button_two = $bst_option_fields['landinstitute_nav_button_two'] ?? null;
 $landinstitute_title_two = $bst_option_fields['landinstitute_title_two'] ?? null;
 $landinstitute_text_two = $bst_option_fields['landinstitute_text_two'] ?? null;
 $landinstitute_button_one = $bst_option_fields['landinstitute_button_one'] ?? null;

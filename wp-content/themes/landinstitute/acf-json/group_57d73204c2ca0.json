@@ -435,6 +435,23 @@
             "endpoint": 0
         },
         {
+            "key": "field_68907dc05abe4",
+            "label": "Mobile Nav Button",
+            "name": "landinstitute_nav_button",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
             "key": "field_682735ac7d605",
             "label": "Nav Menu Title 1",
             "name": "landinstitute_nav_menu_title_1",
@@ -629,6 +646,23 @@
             "open": 0,
             "multi_expand": 0,
             "endpoint": 0
+        },
+        {
+            "key": "field_68907eabafca3",
+            "label": "Mobile Nav Button",
+            "name": "landinstitute_nav_button_two",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
         },
         {
             "key": "field_682abe38d5ce2",
@@ -3973,5 +4007,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1754030034
+    "modified": 1754300167
 }

@@ -14,6 +14,7 @@
 <div class="mega-dropdown our-work-mega-dropdown" id="mega-dropdown-our-work" style="display: none;">
 	<div class="mega-dropdown-card">
 		<div class="col-left">
+			<?php echo !empty($landinstitute_nav_button) ? '<div class="mega-btns desktop-none">' . BaseTheme::button($landinstitute_nav_button, 'site-btn btn-lime-green') . '</div>' : ''; ?>
 			<div class="group-content mega-one">
 				<?php if (!empty($landinstitute_nav_menu_title_1)): ?>
 					<div class="gl-s36"></div>
@@ -121,17 +122,17 @@
 <div class="mega-dropdown learn-mega-dropdown" id="mega-dropdown-learn" style="display: none;">
 	<div class="mega-dropdown-card">
 		<div class="col-left">
+			<?php echo !empty($landinstitute_nav_button_two) ? '<div class="mega-btns desktop-none">' . BaseTheme::button($landinstitute_nav_button_two, 'site-btn btn-lime-green') . '</div>' : ''; ?>
 			<div class="group-content">
-			<?php if (!empty($landinstitute_title_two)): ?>
-				<div class="gl-s36"></div>
-					<div class="ui-24-21-bold mega-title"><?php echo html_entity_decode($landinstitute_title_two); ?></div>
-				<div class="gl-s16"></div>
-			<?php endif; ?>
-			<?php if (!empty($landinstitute_text_two)): ?>
-				<div class="body-18-16-regular mega-content"><?php echo html_entity_decode($landinstitute_text_two); ?></div>
-				<div class="gl-s36"></div>
-			<?php endif; ?>
-				
+				<?php if (!empty($landinstitute_title_two)): ?>
+					<div class="gl-s36"></div>
+						<div class="ui-24-21-bold mega-title"><?php echo html_entity_decode($landinstitute_title_two); ?></div>
+					<div class="gl-s16"></div>
+				<?php endif; ?>
+				<?php if (!empty($landinstitute_text_two)): ?>
+					<div class="body-18-16-regular mega-content"><?php echo html_entity_decode($landinstitute_text_two); ?></div>
+					<div class="gl-s36"></div>
+				<?php endif; ?>
 			</div>
 			<div class="mega-btns">
 				<?php if (!empty($landinstitute_button_one)): ?>
