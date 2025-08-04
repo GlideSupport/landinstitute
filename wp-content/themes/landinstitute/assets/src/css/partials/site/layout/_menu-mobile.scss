@@ -179,6 +179,14 @@
 								}
 							}
 
+							>.mega-btns {
+								&.desktop-none {
+									.site-btn {
+										border-top: none;
+									}
+								}
+							}
+
 							.mega-btns {
 								.site-btn {
 									padding-left: 40px;
