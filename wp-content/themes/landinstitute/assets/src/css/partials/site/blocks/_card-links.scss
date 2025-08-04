@@ -1015,12 +1015,12 @@ section:has(.text-featured-block) {
                         color: var(--gb_base_brown);
 
                         &:after {
-                            animation: bubble-pop 0.4s forwards;
+                            animation: bubble-pop 0.5s forwards;
                             background-size: auto;
                         }
 
                         &:before {
-                            animation: bubble-width 0.4s forwards;
+                            animation: bubble-width 0.5s forwards;
                             width: 100%;
                         }
                     }
