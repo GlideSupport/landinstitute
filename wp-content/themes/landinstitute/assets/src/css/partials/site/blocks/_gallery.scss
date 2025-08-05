@@ -16,6 +16,11 @@
     }
 }
 
+.image-gallery-block {
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+
 .gallery-block {
     cursor: pointer;
     display: flex;
