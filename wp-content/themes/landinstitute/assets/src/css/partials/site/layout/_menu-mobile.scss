@@ -79,9 +79,9 @@
 					@include ui-24-21-bold;
 				}
 
-				&.current-menu-item>a,
-				&.current-menu-parent>a,
-				a:hover {
+				&.current-menu-item>a:not(.nav-overlay .header-nav ul li .mega-dropdown .mega-dropdown-card .col-left .mega-btns .site-btn),
+				&.current-menu-parent>a:not(.nav-overlay .header-nav ul li .mega-dropdown .mega-dropdown-card .col-left .mega-btns .site-btn),
+				a:hover:not(.nav-overlay .header-nav ul li .mega-dropdown .mega-dropdown-card .col-left .mega-btns .site-btn) {
 					border-bottom: none;
 				}
 
