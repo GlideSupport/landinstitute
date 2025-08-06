@@ -298,72 +298,106 @@ document.addEventListener('DOMContentLoaded', function () {
 // responsive mega menu js end
 
 //Donate page js start
- document.addEventListener('DOMContentLoaded', function() {
-        const subNav = document.querySelector('.top-sticky-top-touch');
-        const parentSection = subNav?.parentElement?.parentElement; // Assumes structure remains the same
-        const stickyParent = document.querySelector('.top-sticky-parent');
+document.addEventListener('DOMContentLoaded', function () {
+    const subNav = document.querySelector('.top-sticky-top-touch');
+    const stickyParent = document.querySelector('.top-sticky-parent');
 
-        if (!subNav || !parentSection || !stickyParent) return;
+    // Guard
+    if (!subNav || !stickyParent) return;
 
-        function updateStickyWidth() {
-            const stickyParentWidth = stickyParent.offsetWidth;
-            subNav.style.width = stickyParentWidth + 'px';
-        }
+    // parentSection as two-level parent as you had before (safe fallback)
+    const parentSection = subNav.parentElement?.parentElement || subNav.parentElement;
 
-        function onScroll() {
+    let ticking = false;
+
+    function getParentBounds() {
+        const rect = parentSection.getBoundingClientRect();
+        const top = rect.top + window.pageYOffset;
+        const height = rect.height;
+        const bottom = top + height;
+        return { top, height, bottom };
+    }
+
+    function updateStickyWidth() {
+        // Use stickyParent width (matching header layout)
+        const stickyParentWidth = stickyParent.offsetWidth;
+        subNav.style.width = stickyParentWidth + 'px';
+    }
+
+    function resetStyles() {
+        subNav.classList.remove('scrolled');
+        subNav.style.position = '';
+        subNav.style.top = '';
+        subNav.style.bottom = '';
+        subNav.style.width = '';
+    }
+
+    function onScroll() {
+        // throttle with rAF
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () {
+            ticking = false;
+
+            // Do nothing on small screens
             if (window.innerWidth <= 991) {
-                // Reset styles on smaller screens
-                subNav.classList.remove('scrolled');
-                subNav.style.position = '';
-                subNav.style.top = '';
-                subNav.style.bottom = '';
-                subNav.style.width = '';
+                resetStyles();
                 return;
             }
 
             const scrollY = window.scrollY || window.pageYOffset;
-
-            const parentTop = parentSection.offsetTop;
-            const parentHeight = parentSection.offsetHeight;
-            const parentBottom = parentTop + parentHeight;
-
+            const { top: parentTop, bottom: parentBottom } = getParentBounds();
             const stickyHeight = subNav.offsetHeight;
 
-            if (scrollY >= parentTop && scrollY < parentBottom - stickyHeight) {
+            // When we are between top of parent and the bottom minus stickyHeight -> fixed at top
+            if (scrollY > parentTop && scrollY < (parentBottom - stickyHeight)) {
+                // Fixed to top
                 subNav.classList.add('scrolled');
                 subNav.style.position = 'fixed';
-                subNav.style.top = '0'; // Stick to top of viewport
-                updateStickyWidth();
+                subNav.style.top = '0';
                 subNav.style.bottom = '';
-            } else if (scrollY >= parentBottom - stickyHeight) {
+                updateStickyWidth();
+            }
+            // Only make it absolute when we've actually scrolled past (strict greater)
+            else if (scrollY > (parentBottom - stickyHeight)) {
                 subNav.classList.remove('scrolled');
                 subNav.style.position = 'absolute';
                 subNav.style.top = '';
                 subNav.style.bottom = '0';
                 updateStickyWidth();
             } else {
-                subNav.classList.remove('scrolled');
-                subNav.style.position = '';
-                subNav.style.top = '';
-                subNav.style.bottom = '';
-                subNav.style.width = '';
+                // Before parentTop
+                resetStyles();
             }
-        }
+        });
+    }
 
-        window.addEventListener('scroll', onScroll);
-
-        window.addEventListener('resize', function() {
+    // Resize handler: update width if sticky, else reset
+    function onResize() {
+        // throttle using rAF as well
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () {
+            ticking = false;
             if (window.innerWidth > 991 && (subNav.style.position === 'fixed' || subNav.style.position === 'absolute')) {
                 updateStickyWidth();
             } else {
-                subNav.style.width = '';
-                subNav.style.position = '';
-                subNav.style.top = '';
-                subNav.style.bottom = '';
-                subNav.classList.remove('scrolled');
+                resetStyles();
             }
+            // Re-evaluate scroll state after resize
             onScroll();
         });
+    }
 
-        onScroll();
+    // Run on load (after images/fonts/layout settled) to avoid incorrect initial absolute
+    window.addEventListener('load', function () {
+        // small timeout to let layout settle on some browsers
+        setTimeout(onScroll, 20);
     });
+
+    // Also run initial check on DOMContentLoaded (in case load already fired)
+    onScroll();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+});
