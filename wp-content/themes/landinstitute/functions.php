@@ -1512,15 +1512,20 @@ function ll_fix_duplicate_pagination_url() {
     $page_count = substr_count($request_uri, '/page/');
 
     if ($page_count > 1) {
-        // Option 1: Show 404 page
+        // Show 404 page
         global $wp_query;
         $wp_query->set_404();
         status_header(404);
         nocache_headers();
         include(get_query_template('404'));
         exit;
+    } else {
+        // Ensure trailing slash after page number
+        if (preg_match('#/page/\d+$#', $request_uri)) {
+            // Redirect to correct URL with slash
+            $corrected_url = $request_uri . '/';
+            wp_redirect($corrected_url, 301);
+            exit;
+        }
     }
 }
-
-
- 
