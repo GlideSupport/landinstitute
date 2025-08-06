@@ -10,7 +10,7 @@
 		<div class="gl-s64"></div>
 		<div class="cta-grid-slider-cards">
 			<?php if (!empty($li_cg_repeater)): ?>
-				<div class="swiper-container cta-card-slide <?php echo (count($li_cg_repeater) >= 3) ? 'cursor-drag-icon' : ''; ?>">
+				<div class="swiper-container cta-card-slide <?php echo (count($li_cg_repeater) >= 4) ? 'cursor-drag-icon' : ''; ?>">
 					<div class="swiper-wrapper">
 					<?php   
 						foreach ($li_cg_repeater as $li_cg_rep) :
