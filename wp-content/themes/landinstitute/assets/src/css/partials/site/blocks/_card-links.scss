@@ -441,6 +441,12 @@ section:has(.text-featured-block) {
 .trans-border-card {
     height: 100%;
 
+    a {
+        &.trans-border-on {
+            cursor: none;
+        }
+    }
+
     .trans-border-on {
         background: var(--gb_primary_butter_yellow);
         border: 2px solid var(--gb_base_brown);
