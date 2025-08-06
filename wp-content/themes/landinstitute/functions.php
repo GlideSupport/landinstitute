@@ -1502,3 +1502,23 @@ function limit_search_to_specific_post_types($query) {
     }
 }
 add_action('pre_get_posts', 'limit_search_to_specific_post_types');
+
+
+add_action('template_redirect', 'dpf_fix_duplicate_pagination_url');
+function dpf_fix_duplicate_pagination_url() {
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    // Count how many times "/page/" appears
+    $page_count = substr_count($request_uri, '/page/');
+
+    if ($page_count > 1) {
+        // Option 1: Show 404 page
+        global $wp_query;
+        $wp_query->set_404();
+        status_header(404);
+        nocache_headers();
+        include(get_query_template('404'));
+        exit;
+    }
+}
+ 

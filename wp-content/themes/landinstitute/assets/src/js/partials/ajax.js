@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+	// Add hover effect to buttons start
+	function initButtonHoverAnimations(selector = '.site-btn') {
+	    const btns = document.querySelectorAll(selector);
+
+	    if (btns.length === 0) return; // no buttons found
+
+	    btns.forEach(btn => {
+	        btn.addEventListener('mouseenter', () => {
+	            btn.classList.remove('animate-out');
+	            btn.classList.add('animate-in');
+	        });
+
+	        btn.addEventListener('mouseleave', () => {
+	            btn.classList.remove('animate-in');
+	            btn.classList.add('animate-out');
+	        });
+	    });
+	}
+
+
+
 	//Logo Filter code start
 	const donorGrid = document.querySelector(".filter-logos-row");
 	let currentDonorType = getURLParam("donor_type") || "all";
@@ -193,10 +215,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 	});
-//	   attachPaginationListeners();
 
 }
-
 
 	document.querySelectorAll(".logo-filter-main .dropdown-menu").forEach((menu) => {
 		menu.querySelectorAll("a[data-term]").forEach((link) => {
@@ -271,6 +291,7 @@ function fetchPastEvents(paged = 1, updateURL = true) {
 
 				initPaginationListeners(); // reattach buttons
 				attachPaginationEventListeners(); // reattach popup toggle
+				initButtonHoverAnimations();
 
 				// Update browser URL without reload
 				if (updateURL) {
@@ -331,21 +352,6 @@ function initPaginationListeners() {
 	const prevBtns = document.querySelectorAll(".pastevent #desktopPrev, .pastevent #prevBtn, .pastevent #popupPrev");
 	const nextBtns = document.querySelectorAll(".pastevent #desktopNext, .pastevent #nextBtn, .pastevent #popupNext");
 
-	// prevBtns.forEach((btn) => {
-	// 	btn.addEventListener("click", (e) => {
-	// 		e.preventDefault(); // ✅ prevent default for Prev buttons
-	// 		if (currentPage > 1) fetchPastEvents( currentPage - 1);
-	// 	});
-	// });
-
-	
-
-	// nextBtns.forEach((btn) => {
-	// 	btn.addEventListener("click", (e) => {
-	// 		e.preventDefault(); // ✅ prevent default for Next buttons
-	// 		fetchPastEvents( currentPage + 1);
-	// 	});
-	// });
 }
 
 function attachPaginationEventListeners() {
@@ -368,24 +374,6 @@ function attachPaginationEventListeners() {
 		});
 	}
 }
-
-// Detect back/forward browser navigation
-// window.addEventListener('popstate', function (e) {
-// 	const paged = (e.state && e.state.paged) ? e.state.paged : 1;
-// 	fetchPastEvents(paged, false); // false = don't update URL again
-// });
-
-// On initial load, if /page/2 exists in URL, trigger fetch
-// document.addEventListener("DOMContentLoaded", function () {
-// 	const match = window.location.pathname.match(/\/page\/(\d+)/);
-// 	if (match) {
-// 		const page = parseInt(match[1]);
-// 		if (!isNaN(page) && page > 1) {
-// 			fetchPastEvents(page, false); // load via AJAX on first hit
-// 		}
-// 	}
-// });
-
 
 // Initialize listeners on first load
 initPaginationListeners();
@@ -785,6 +773,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 					initLearnPaginationListeners();
 					attachPaginationEventListeners?.(); // Safe optional chaining
+					initButtonHoverAnimations();
 					
 
 					if (updateURL) {
@@ -993,6 +982,7 @@ document.querySelectorAll(".search-list-filter .dropdown-menu").forEach((menu) =
 
 					initsearch_pagination();
 					attachPaginationEventListeners();
+					initButtonHoverAnimations();
 
 					// ✅ Push pretty permalink
 					if (updateURL) {
