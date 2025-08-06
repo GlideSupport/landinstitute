@@ -1504,62 +1504,22 @@ function limit_search_to_specific_post_types($query) {
 add_action('pre_get_posts', 'limit_search_to_specific_post_types');
 
 
-add_action( 'template_redirect', 'dpf_fix_duplicate_pagination_url' );
-function dpf_fix_duplicate_pagination_url() {
-    // Don't run in admin or during AJAX requests
-    if ( is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-        return;
-    }
+add_action('template_redirect', 'll_fix_duplicate_pagination_url');
+function ll_fix_duplicate_pagination_url() {
+    $request_uri = $_SERVER['REQUEST_URI'];
 
-    // Get raw request URI safely
-    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+    // Count how many times "/page/" appears
+    $page_count = substr_count($request_uri, '/page/');
 
-    // Only care about path + query; ignore host
-    $path  = wp_parse_url( $request_uri, PHP_URL_PATH ) ?? '';
-    $query = wp_parse_url( $request_uri, PHP_URL_QUERY );
-
-    // Normalize path: remove duplicate slashes
-    $path = preg_replace( '#(?<!:)//+#', '/', $path );
-
-    // 1) If there are multiple /page/<num> segments -> treat as invalid (404)
-    $page_segments = [];
-    if ( preg_match_all( '#/page/(\d+)/?#i', $path, $matches ) ) {
-        $page_segments = $matches[1]; // array of captured numbers
-    }
-
-    if ( count( $page_segments ) > 1 ) {
-        // Show 404 and exit (same behavior you had)
+    if ($page_count > 1) {
+        // Option 1: Show 404 page
         global $wp_query;
         $wp_query->set_404();
-        status_header( 404 );
+        status_header(404);
         nocache_headers();
-        // load 404 template (this will end execution)
-        include( get_query_template( '404' ) );
+        include(get_query_template('404'));
         exit;
     }
-
-    // 2) If the path ends with /page/<num> (without trailing slash), redirect to trailing-slash version
-    // Match patterns like: /learn/page/2  or /learn/something/page/2
-    if ( preg_match( '#/page/(\d+)$#i', $path, $m ) ) {
-        $page = intval( $m[1] );
-
-        // Build the clean path with trailing slash
-        $clean_path = rtrim( $path ) . '/'; // adds trailing slash
-
-        // Build full redirect URL using home_url to preserve site URL / subdirectory install
-        $redirect = home_url( $clean_path );
-
-        // Re-append query string if present
-        if ( ! empty( $query ) ) {
-            $redirect .= '?' . $query;
-        }
-
-        // Perform 301 redirect
-        wp_safe_redirect( $redirect, 301 );
-        exit;
-    }
-
-    // Otherwise do nothing and allow normal flow
 }
 
 
