@@ -296,3 +296,74 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // responsive mega menu js end
+
+//Donate page js start
+ document.addEventListener('DOMContentLoaded', function() {
+        const subNav = document.querySelector('.top-sticky-top-touch');
+        const parentSection = subNav?.parentElement?.parentElement; // Assumes structure remains the same
+        const stickyParent = document.querySelector('.top-sticky-parent');
+
+        if (!subNav || !parentSection || !stickyParent) return;
+
+        function updateStickyWidth() {
+            const stickyParentWidth = stickyParent.offsetWidth;
+            subNav.style.width = stickyParentWidth + 'px';
+        }
+
+        function onScroll() {
+            if (window.innerWidth <= 991) {
+                // Reset styles on smaller screens
+                subNav.classList.remove('scrolled');
+                subNav.style.position = '';
+                subNav.style.top = '';
+                subNav.style.bottom = '';
+                subNav.style.width = '';
+                return;
+            }
+
+            const scrollY = window.scrollY || window.pageYOffset;
+
+            const parentTop = parentSection.offsetTop;
+            const parentHeight = parentSection.offsetHeight;
+            const parentBottom = parentTop + parentHeight;
+
+            const stickyHeight = subNav.offsetHeight;
+
+            if (scrollY >= parentTop && scrollY < parentBottom - stickyHeight) {
+                subNav.classList.add('scrolled');
+                subNav.style.position = 'fixed';
+                subNav.style.top = '0'; // Stick to top of viewport
+                updateStickyWidth();
+                subNav.style.bottom = '';
+            } else if (scrollY >= parentBottom - stickyHeight) {
+                subNav.classList.remove('scrolled');
+                subNav.style.position = 'absolute';
+                subNav.style.top = '';
+                subNav.style.bottom = '0';
+                updateStickyWidth();
+            } else {
+                subNav.classList.remove('scrolled');
+                subNav.style.position = '';
+                subNav.style.top = '';
+                subNav.style.bottom = '';
+                subNav.style.width = '';
+            }
+        }
+
+        window.addEventListener('scroll', onScroll);
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 991 && (subNav.style.position === 'fixed' || subNav.style.position === 'absolute')) {
+                updateStickyWidth();
+            } else {
+                subNav.style.width = '';
+                subNav.style.position = '';
+                subNav.style.top = '';
+                subNav.style.bottom = '';
+                subNav.classList.remove('scrolled');
+            }
+            onScroll();
+        });
+
+        onScroll();
+    });
