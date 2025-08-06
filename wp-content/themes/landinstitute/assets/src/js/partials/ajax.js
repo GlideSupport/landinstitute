@@ -543,6 +543,7 @@ document.querySelectorAll(".news-list-filter .dropdown-menu").forEach((menu) => 
 
 					initnewsPaginationListeners();
 					attachPaginationEventListeners?.(); // Safe optional chaining
+					initButtonHoverAnimations();
 
 					if (updateURL) {
 						const { pathname, search } = window.location;
