@@ -60,7 +60,14 @@ if (btns.length > 0) {
 	});
 } 
 // Add hover effect to buttons end
+document.addEventListener('DOMContentLoaded', function () {
+    const video = document.getElementById('myVideo');
 
+    // Optional autoplay after user clicks anywhere
+    document.body.addEventListener('click', function () {
+        video.play();
+    }, { once: true }); // only run once
+});
 // Focus and blur events for menu items with sub-menus
 document.querySelectorAll(".menu-item-has-children > a").forEach((anchor) => {
 	anchor.addEventListener("focus", () => {
