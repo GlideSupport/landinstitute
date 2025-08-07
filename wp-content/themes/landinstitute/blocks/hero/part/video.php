@@ -36,7 +36,7 @@ switch ($video_type) {
     case 'Upload':
         if ($uploaded_video) {
             $modal_video_embed = '
-                <video class="videos" playsinline autoplay muted loop controls poster="' . esc_url($short_video_poster) . '">
+                <video class="videos" playsinline autoplay loop controls poster="' . esc_url($short_video_poster) . '">
                     <source src="' . esc_url($uploaded_video) . '" type="video/mp4">
                 </video>';
         }
