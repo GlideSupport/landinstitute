@@ -92,24 +92,6 @@
                 border-right: 0;
             }
 
-            // &:nth-child(even) {
-            //     @media (max-width: 767px) {
-            //         border-right: none;
-            //     }
-            // }
-
-            // &:nth-child(4n) {
-            //     @media (min-width: 1580px) {
-            //         border-right: none;
-            //     }
-            // }
-
-            // &:nth-child(3n) {
-            //     @media only screen and (min-width:768px) and (max-width:1580px) {
-            //         border-right: none;
-            //     }
-            // }
-
 
             &.bg-lilac {
                 background-color: var(--gb_primary_lilac);
@@ -138,6 +120,44 @@
             &.bg-primary-pink {
                 &:before {
                     background-color: var(--gb_primary_pink);
+                }
+            }
+
+            &.bg-dark-green:not(.card-item:hover) {
+                background-color: var(--primary_dark_green);
+
+                .card-body {
+
+                    .card-title,
+                    .sub-head {
+                        color: var(--gb_base_cream);
+                    }
+
+                    .border-text-btn {
+                        background-image: linear-gradient(transparent calc(100% - 1px), var(--gb_base_cream) 1px);
+                        color: var(--gb_base_cream);
+                    }
+                }
+            }
+
+            &.bg-primary-orange {
+                background-color: var(--gb_primary_orange);
+            }
+
+            &.bg-primary-plum:not(.card-item:hover) {
+                background-color: var(--gb_primary_plum);
+
+                .card-body {
+
+                    .card-title,
+                    .sub-head {
+                        color: var(--gb_base_cream);
+                    }
+
+                    .border-text-btn {
+                        background-image: linear-gradient(transparent calc(100% - 1px), var(--gb_base_cream) 1px);
+                        color: var(--gb_base_cream);
+                    }
                 }
             }
 
