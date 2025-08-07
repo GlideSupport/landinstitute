@@ -73,7 +73,7 @@ switch ($video_type) {
     case 'Upload':
         if ($uploaded_video) {
             $modal_video_embed = '
-                <video class="videos" playsinline autoplay muted loop controls poster="' . esc_url($li_vat_short_video_poster) . '">
+                <video class="videos" playsinline autoplay loop controls poster="' . esc_url($li_vat_short_video_poster) . '">
                     <source src="' . esc_url($uploaded_video) . '" type="video/mp4">
                 </video>';
         }
@@ -98,7 +98,7 @@ switch ($video_type) {
         <div class="cl-right">
             <div class="video-play-group">
                 <div class="video-play">
-                    <video class="videos" playsinline="playsinline" muted="muted" preload="metadata" autoplay="autoplay" loop="loop"
+                    <video class="videos" playsinline="playsinline" preload="metadata" autoplay="autoplay" loop="loop"
                         poster="<?php echo esc_url($li_vat_short_video_poster); ?>" data-video-init="">
                         <source src="<?php echo esc_url($li_vat_short_video); ?>"  type="video/mp4">
                     </video>
