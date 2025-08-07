@@ -242,6 +242,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "return_format": "id",
             "library": "all",
             "min_width": "",
@@ -308,5 +309,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1754550517
+    "modified": 1754550653
 }
