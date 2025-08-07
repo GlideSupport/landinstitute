@@ -1,8 +1,7 @@
-<?php if (!empty($li_iat_headline_check) || !empty($li_iat_kicker) || !empty($li_iat_wysiwyg) || !empty($li_iat_button) || !empty($li_iat_image) || !empty($li_iat_bg_image)): ?>
+<?php if (!empty($li_iat_headline_check) || !empty($li_iat_kicker) || !empty($li_iat_wysiwyg) || !empty($li_iat_button) || !empty($li_iat_image)): ?>
 	<div class="image-alongside-text <?php echo esc_attr($image_position_class); ?>">
 		<div class="cl-left">
 			<div class="pattern-image-group">
-				<?php echo !empty($li_iat_bg_image) ? wp_get_attachment_image($li_iat_bg_image, 'thumb_900', false, ['class' => 'pattern-image']) : ''; ?>
 				<?php echo !empty($li_iat_image) ? wp_get_attachment_image($li_iat_image, 'thumb_800', false, ['class' => 'visual-image']) : ''; ?>
 			</div>
 		</div>
