@@ -16,6 +16,7 @@
                 "class": "bg-color-selector",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "choices": {
                 "bg-none": "<div style=\"background-color: transparent; color: #FF0000; padding: 8px; text-align: center;\">None<\/div>",
                 "bg-lilac": "<div style=\"background-color: #E6DDEA; padding: 8px; text-align: center;\">Lilac<\/div>",
@@ -24,7 +25,9 @@
                 "bg-butter-yellow": "<div style=\"background-color: #FDF9D0; padding: 8px; text-align: center;\">Butter Yellow<\/div>",
                 "bg-lemon-yellow": "<div style=\"background-color: #FDF388; padding: 8px; text-align: center;\">Lemon Yellow<\/div>",
                 "bg-sunflower-yellow": "<div style=\"background-color: #FFB403; padding: 8px; text-align: center;\">Sunflower Yellow<\/div>",
-                "bg-primary-pink": "<div style=\"background-color: #F593A4; padding: 8px; text-align: center;\">Primary Pink<\/div>"
+                "bg-primary-pink": "<div style=\"background-color: #F593A4; padding: 8px; text-align: center;\">Primary Pink<\/div>",
+                "bg-primary-orange": "<div style=\"background-color: #FD7C21; padding: 8px; text-align: center;\">Primary Orange<\/div>",
+                "bg-primary-plum": "<div style=\"background-color: #AC2864; padding: 8px; text-align: center;\">Primary Plum<\/div>"
             },
             "default_value": "",
             "return_format": "value",
@@ -51,5 +54,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1751373216
+    "modified": 1754572786
 }

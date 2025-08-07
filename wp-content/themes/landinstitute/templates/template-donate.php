@@ -29,9 +29,10 @@ $li_td_form_embed = $bst_fields['li_td_form_embed'];
 $li_td_title = $bst_fields['li_td_title'];
 $li_td_repeater = $bst_fields['li_td_repeater'];
 $logo_url = wp_get_attachment_url($bst_var_header_logo);
+$bg_color = $bst_fields['li_globel_bg_color_options'] ?? 'bg-lime-green';
 ?>
 
-<section class="container-1280 bg-lime-green">
+<section class="container-1280 <?php echo esc_attr($bg_color); ?>">
     <div class="wrapper">
         <div class="sticky-part-row donate-form-block">
             <div class="col-left bg-base-cream">

@@ -3,6 +3,29 @@
     "title": "Template-Donate",
     "fields": [
         {
+            "key": "field_6894a97f7f08a",
+            "label": "BG Color Options",
+            "name": "bg_color_options",
+            "aria-label": "",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "clone": [
+                "group_682b323a52258"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+        },
+        {
             "key": "field_6842f1e001f50",
             "label": "Name",
             "name": "li_td_name",
@@ -259,5 +282,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752123890
+    "modified": 1754573285
 }
