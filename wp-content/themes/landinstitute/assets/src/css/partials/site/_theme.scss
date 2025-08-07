@@ -3258,6 +3258,16 @@ section:has(.has-border-bottom) {
         }
     }
 
+    .lbs-block {
+
+        .blocksubhead,
+        .block-title,
+        .lbs-sub,
+        .block-content {
+            color: var(--gb_base_cream);
+        }
+    }
+
 }
 
 .bg-primary-orange {
@@ -3266,6 +3276,16 @@ section:has(.has-border-bottom) {
 
 .bg-primary-plum {
     background-color: var(--gb_primary_plum);
+
+    .lbs-block {
+
+        .blocksubhead,
+        .block-title,
+        .lbs-sub,
+        .block-content {
+            color: var(--gb_base_cream);
+        }
+    }
 }
 
 .internal-link-list-block {
