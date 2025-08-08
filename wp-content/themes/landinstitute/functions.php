@@ -156,7 +156,7 @@ function ajax_filter_logo_grid_filter()
 					<?php endif; ?>
 					<div class="logo-content">
 						<div class="gl-s24"></div>
-						<div class="ui-20-18-bold logo-title"><?php echo esc_html($title); ?></div>
+						<div class="ui-20-18-bold logo-title"><?php echo html_entity_decode($title); ?></div>
 						<div class="gl-s2"></div>
 						<?php if ($level_name) : ?>
 							<div class="body-18-16-regular logo-content"><?php echo esc_html($level_name); ?></div>
