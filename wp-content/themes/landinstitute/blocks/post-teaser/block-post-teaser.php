@@ -45,8 +45,13 @@ $li_pt_headline = $bst_block_fields['li_pt_headline'] ?? null;
 $li_pt_headline_check = BaseTheme::headline_check($li_pt_headline);
 $li_pt_post_select_option = $bst_block_fields['li_pt_post_select_option'] ?? 'manual';
 $li_pt_select_manual_post = $bst_block_fields['li_pt_select_manual_post'] ?? null;
-$li_pt_button = $bst_block_fields['li_pt_button'] ?? null;
+$li_pt_select_taxonomies = $bst_block_fields['li_pt_select_taxonomies'] ?? null;
+$li_pt_select_audience = $bst_block_fields['li_pt_select_audience'] ?? null;
+$li_pt_select_crop = $bst_block_fields['li_pt_select_crop'] ?? null;
+$li_pt_select_type = $bst_block_fields['li_pt_select_type'] ?? null;
+$li_pt_select_topic = $bst_block_fields['li_pt_select_topic'] ?? null;
 
+$li_pt_button = $bst_block_fields['li_pt_button'] ?? null;
 // Query posts based on selection
 $args = array(
 	'post_type'      => 'post',
@@ -66,8 +71,54 @@ switch ($li_pt_post_select_option) {
 	case 'most-recent':
 		// Default args are already set for most recent
 		break;
+	case 'by-taxonomies':
+		$tax_query = array();
 
-		// You could add more cases here for other selection options
+		if (!empty($li_pt_select_audience)) {
+			$tax_query[] = array(
+				'taxonomy' => 'learn-audience',
+				'field'    => 'term_id',
+				'terms'    => $li_pt_select_audience,
+			);
+		}
+
+
+		if (!empty($li_pt_select_crop)) {
+			$tax_query[] = array(
+				'taxonomy' => 'learn-crop',
+				'field'    => 'term_id',
+				'terms'    => $li_pt_select_crop,
+			);
+		}
+
+		if (!empty($li_pt_select_type)) {
+			$tax_query[] = array(
+				'taxonomy' => 'learn-learn-type',
+				'field'    => 'term_id',
+				'terms'    => $li_pt_select_type,
+			);
+		}
+
+		if (!empty($li_pt_select_topic)) {
+			$tax_query[] = array(
+				'taxonomy' => 'learn-topic',
+				'field'    => 'term_id',
+				'terms'    => $li_pt_select_topic,
+			);
+		}
+
+		if (!empty($tax_query)) {
+			$args['tax_query'] = $tax_query;
+			$args['orderby']   = 'date';
+			$args['order']     = 'DESC';
+		} else {
+			// No taxonomies selected, so no posts
+			$args['post__in'] = array(0); // Forces WP_Query to return nothing
+		}
+		break;
+
+
+
 }
 
 $posts_query = new WP_Query($args);
@@ -105,7 +156,7 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 									</div>
 									<div class="border-card-content">
 										<div class="gl-s52"></div>
-										<div class="mb-0 heading-6 block-title"><?php echo esc_html($title); ?></div>
+										<div class="mb-0 heading-6 block-title"><?php echo html_entity_decode($title); ?></div>
 										<div class="gl-s16"></div>
 										<div class="card-btn">
 											<div class="border-text-btn">Read more</div>
@@ -125,4 +176,14 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 			<?php echo !empty($li_pt_button) ? '<div class="section-btn full-width-button">' . BaseTheme::button($li_pt_button, 'site-btn') . '</div>' : ''; ?>
 		</div>
 	</div>
+<?php else : ?>
+    <div class="no-posts-message">
+        <?php
+        if (!empty($li_pt_select_audience) || !empty($li_pt_select_crop) || !empty($li_pt_select_type) || !empty($li_pt_select_topic)) {
+            echo '<p>No posts found for the selected filters.</p>';
+        } else {
+            echo '<p>No posts found.</p>';
+        }
+        ?>
+    </div>
 <?php endif; ?>
