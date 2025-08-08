@@ -78,16 +78,17 @@ switch ($li_pt_post_select_option) {
 			$tax_query[] = array(
 				'taxonomy' => 'learn-audience',
 				'field'    => 'term_id',
-				'terms'    => $li_pt_select_audience,
+				'terms'    => (array) $li_pt_select_audience,
+				'operator' => 'AND', // match ALL selected terms in audience
 			);
 		}
-
 
 		if (!empty($li_pt_select_crop)) {
 			$tax_query[] = array(
 				'taxonomy' => 'learn-crop',
 				'field'    => 'term_id',
-				'terms'    => $li_pt_select_crop,
+				'terms'    => (array) $li_pt_select_crop,
+				'operator' => 'AND', // match ALL selected crops
 			);
 		}
 
@@ -95,7 +96,8 @@ switch ($li_pt_post_select_option) {
 			$tax_query[] = array(
 				'taxonomy' => 'learn-learn-type',
 				'field'    => 'term_id',
-				'terms'    => $li_pt_select_type,
+				'terms'    => (array) $li_pt_select_type,
+				'operator' => 'AND', // match ALL selected types
 			);
 		}
 
@@ -103,7 +105,8 @@ switch ($li_pt_post_select_option) {
 			$tax_query[] = array(
 				'taxonomy' => 'learn-topic',
 				'field'    => 'term_id',
-				'terms'    => $li_pt_select_topic,
+				'terms'    => (array) $li_pt_select_topic,
+				'operator' => 'AND', // match ALL selected topics
 			);
 		}
 
@@ -113,9 +116,10 @@ switch ($li_pt_post_select_option) {
 			$args['order']     = 'DESC';
 		} else {
 			// No taxonomies selected, so no posts
-			$args['post__in'] = array(0); // Forces WP_Query to return nothing
+			$args['post__in'] = array(0);
 		}
 		break;
+
 
 
 
