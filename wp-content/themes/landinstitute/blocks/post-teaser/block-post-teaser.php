@@ -94,7 +94,7 @@ switch ($li_pt_post_select_option) {
 
 		if (!empty($li_pt_select_type)) {
 			$tax_query[] = array(
-				'taxonomy' => 'learn-learn-type',
+				'taxonomy' => 'learn-type',
 				'field'    => 'term_id',
 				'terms'    => (array) $li_pt_select_type,
 				'operator' => 'IN',
