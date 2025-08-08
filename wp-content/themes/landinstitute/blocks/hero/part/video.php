@@ -61,7 +61,7 @@ switch ($video_type) {
                     <?php if ($short_video): ?>
                         <div class="video-play-group">
                             <div class="video-play">
-                                <video class="videos" playsinline preload="metadata" autoplay loop
+                                <video class="videos" playsinline muted preload="metadata" autoplay loop
                                     poster="<?php echo esc_url($short_video_poster); ?>" data-video-init>
                                     <source src="<?php echo esc_url($short_video); ?>" type="video/mp4">
                                 </video>
