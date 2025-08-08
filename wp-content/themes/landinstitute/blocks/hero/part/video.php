@@ -36,7 +36,7 @@ switch ($video_type) {
     case 'Upload':
         if ($uploaded_video) {
             $modal_video_embed = '
-                <video class="videos" playsinline autoplay loop controls poster="' . esc_url($short_video_poster) . '">
+                <video class="videos" muted playsinline autoplay loop controls poster="' . esc_url($short_video_poster) . '">
                     <source src="' . esc_url($uploaded_video) . '" type="video/mp4">
                 </video>';
         }
@@ -61,7 +61,7 @@ switch ($video_type) {
                     <?php if ($short_video): ?>
                         <div class="video-play-group">
                             <div class="video-play">
-                                <video class="videos" playsinline preload="metadata" autoplay loop
+                                <video class="videos" muted playsinline preload="metadata" autoplay loop
                                     poster="<?php echo esc_url($short_video_poster); ?>" data-video-init>
                                     <source src="<?php echo esc_url($short_video); ?>" type="video/mp4">
                                 </video>
