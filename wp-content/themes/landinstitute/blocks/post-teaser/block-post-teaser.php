@@ -78,8 +78,8 @@ switch ($li_pt_post_select_option) {
 			$tax_query[] = array(
 				'taxonomy' => 'learn-audience',
 				'field'    => 'term_id',
-				'terms'    => (array) $li_pt_select_audience,
-				'operator' => 'AND', // match ALL selected terms in audience
+				'terms'    => (array) $li_pt_select_audience, // Ensure array
+				'operator' => 'IN',
 			);
 		}
 
@@ -88,7 +88,7 @@ switch ($li_pt_post_select_option) {
 				'taxonomy' => 'learn-crop',
 				'field'    => 'term_id',
 				'terms'    => (array) $li_pt_select_crop,
-				'operator' => 'AND', // match ALL selected crops
+				'operator' => 'IN',
 			);
 		}
 
@@ -97,7 +97,7 @@ switch ($li_pt_post_select_option) {
 				'taxonomy' => 'learn-learn-type',
 				'field'    => 'term_id',
 				'terms'    => (array) $li_pt_select_type,
-				'operator' => 'AND', // match ALL selected types
+				'operator' => 'IN',
 			);
 		}
 
@@ -106,19 +106,23 @@ switch ($li_pt_post_select_option) {
 				'taxonomy' => 'learn-topic',
 				'field'    => 'term_id',
 				'terms'    => (array) $li_pt_select_topic,
-				'operator' => 'AND', // match ALL selected topics
+				'operator' => 'IN',
 			);
 		}
 
 		if (!empty($tax_query)) {
+			// If multiple taxonomy queries exist, they should be AND'ed together
+			if (count($tax_query) > 1) {
+				$tax_query['relation'] = 'AND';
+			}
 			$args['tax_query'] = $tax_query;
 			$args['orderby']   = 'date';
 			$args['order']     = 'DESC';
 		} else {
-			// No taxonomies selected, so no posts
+			// No taxonomies selected — return no results
 			$args['post__in'] = array(0);
 		}
-		break;
+   	 	break;
 
 
 
