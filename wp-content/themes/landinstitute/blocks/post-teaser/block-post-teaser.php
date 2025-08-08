@@ -69,8 +69,8 @@ switch ($li_pt_post_select_option) {
 		break;
 
 	case 'most-recent':
-		// Default args are already set for most recent
 		break;
+		
 	case 'by-taxonomies':
 		$tax_query = array();
 
