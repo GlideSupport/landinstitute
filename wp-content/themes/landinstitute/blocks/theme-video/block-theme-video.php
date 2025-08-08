@@ -90,7 +90,7 @@ switch ($video_type) {
     <?php endif; ?>
     <?php echo (!empty($li_tv_headline_check) && !empty($li_tv_kicker)) ? '<div class="gl-s52"></div>' : ''; ?>
     <div class="full-width-video">
-        <video class="videos" muted playsinline="playsinline" preload="metadata" autoplay="autoplay" loop="loop"
+        <video class="videos" playsinline="playsinline" preload="metadata" autoplay="autoplay" loop="loop"
             poster="<?php echo esc_url($li_tv_short_video_poster); ?>" data-video-init="">
             <source src="<?php echo esc_url($li_tv_short_video); ?>"  type="video/mp4">
         </video>

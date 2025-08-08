@@ -67,7 +67,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 															<iframe class="videos vimeo" width="100%" height="100%" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen src="https://player.vimeo.com/video/<?php echo esc_attr($vimeo_id); ?>?background=1&title=0&byline=0&portrait=0&sidedock=0&controls=0"></iframe>
 															<?php
 														} elseif ($li_hero_to_choose_video_type === 'upload' && !empty($video_file)) { ?>
-															<video class="videos" muted playsinline="playsinline" preload="none"
+															<video class="videos" playsinline="playsinline" preload="none"
 																autoplay="autoplay" loop="loop" poster="<?php echo $video_thumb_url; ?>"
 																data-video-init="">
 																<source src="<?php echo esc_url(wp_get_attachment_url($video_file)); ?>"
@@ -75,7 +75,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 															</video>
 															<?php
 														} elseif (!empty($video_thumb)) { ?>
-															<video class="videos" muted playsinline="playsinline" preload="metadata"
+															<video class="videos" playsinline="playsinline" preload="metadata"
 																autoplay="autoplay" loop="loop" poster="<?php echo $video_thumb_url; ?>"
 																data-video-init="">
 															</video>
