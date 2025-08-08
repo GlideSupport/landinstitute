@@ -64,7 +64,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<div class="gl-s128"></div>
 							<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
-							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
+							<h3 class="heading-3 mb-0 block-title"><?php echo html_entity_decode($bst_var_posttitle); ?></h3>
 							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
 						</div>
 						<div class="col-content-row d-flex">
@@ -99,7 +99,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 						<div class="hero-content">
 							<?php echo !empty($learn_type_name) ? '<div class="ui-eyebrow-20-18-regular sub-title">' . $learn_type_name . '</div>' : ''; ?>
 							<div class="gl-s20"></div>
-							<h3 class="heading-3 mb-0 block-title"><?php echo esc_html($bst_var_posttitle); ?></h3>
+							<h3 class="heading-3 mb-0 block-title"><?php echo html_entity_decode($bst_var_posttitle); ?></h3>
 							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s30"></div>' : ''; ?>
 							<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
 							<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
