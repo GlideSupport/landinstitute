@@ -453,8 +453,15 @@
 					.search-everything {
 						height: 68px;
 
-						.site-btn {
+						.site-btn,
+						.dropdown-toggle {
 							height: 100%;
+						}
+
+						.dropdown-toggle {
+							border-left: 0;
+							border-right: 0;
+							border-top: 0;
 						}
 					}
 				}

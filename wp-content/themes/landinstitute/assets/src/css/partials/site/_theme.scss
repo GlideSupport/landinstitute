@@ -441,7 +441,8 @@ section:has(.has-border-bottom) {
     }
 }
 
-.page-section {
+.page-section,
+.search-mega-dropdown {
     .dropdown-menu {
         background: var(--gb_base_cream);
         border: 2px solid var(--gb_base_brown);
