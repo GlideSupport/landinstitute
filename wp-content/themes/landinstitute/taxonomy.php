@@ -57,15 +57,34 @@ $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? nu
 						<!-- Dynamic Post Cards Start -->
 						<div class="filter-cards-grid">
 							<?php if (have_posts()) : ?>
-								<?php while (have_posts()) : the_post(); ?>
+								<?php while (have_posts()) : the_post();
+								$youtube_url = get_field('li_ldo_youtube_url', get_the_ID()); ?>
 									<div class="filter-card-item">
 										<a href="<?php the_permalink(); ?>" class="filter-card-link">
 											<div class="image">
-											<?php if (has_post_thumbnail()) : ?>
-												<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_500'); ?>
-											<?php else : ?>
-												<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="500" height="300" />
-											<?php endif; ?>
+												<?php
+												if (has_post_thumbnail()) {
+													// Featured image
+													echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_500');
+												} elseif (!empty($youtube_url)) {
+													// Extract YouTube video ID
+													preg_match(
+														'%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i',
+														$youtube_url,
+														$matches
+													);
+													if (!empty($matches[1])) {
+														$video_id = $matches[1];
+														echo '<img src="' . esc_url('https://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg') . '" alt="' . esc_attr(get_the_title()) . '" width="500" height="300" />';
+													} else {
+														// Fallback default
+														echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="500" height="300" />';
+													}
+												} else {
+													// Fallback default
+													echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="500" height="300" />';
+												}
+												?>
 											</div>
 											<div class="filter-card-content">
 												<div class="gl-s52"></div>
