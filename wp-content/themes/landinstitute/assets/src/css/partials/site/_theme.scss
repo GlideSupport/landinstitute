@@ -441,6 +441,13 @@ section:has(.has-border-bottom) {
     }
 }
 
+.search-mega-dropdown {
+    .dropdown-menu {
+        border-right: 0;
+        border-left: 0;
+    }
+}
+
 .page-section,
 .search-mega-dropdown {
     .dropdown-menu {
