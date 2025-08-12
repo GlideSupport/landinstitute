@@ -87,7 +87,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 				if ($staff_query->have_posts()) :
 					while ($staff_query->have_posts()) : $staff_query->the_post();
 						$title = get_the_title();
-						$position = get_field('staff_designation');
+						$position = get_field('staff_designation',get_the_ID());
 						$image = get_the_post_thumbnail_url(get_the_ID(), 'thumb_500');
 						if (empty($image)) {
 							$image = wp_get_attachment_image_url($bst_var_theme_default_avatar_for_staff, 'thumb_500');
