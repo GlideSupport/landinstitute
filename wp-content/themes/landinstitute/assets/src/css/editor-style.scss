@@ -2520,3 +2520,14 @@ body {
         }
     }
 }
+
+
+
+body .acf-field-taxonomy .select2-container.-acf .select2-selection--multiple .select2-selection__choice.ui-sortable-helper {
+    background: #f7f7f7;
+    color: #000 !important;
+}
+
+body .acf-field-taxonomy .select2-container.-acf .select2-selection--multiple .select2-selection__choice.ui-sortable-helper span {
+    visibility: visible;
+}
