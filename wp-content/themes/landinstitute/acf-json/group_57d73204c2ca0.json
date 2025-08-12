@@ -3186,6 +3186,66 @@
             "selected": 0
         },
         {
+            "key": "field_689b539a9bab4",
+            "label": "Show Learn Taxonomies in the filter",
+            "name": "show_learn_taxonomies_in_the_filter",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "This will display the selected taxonomies filter exclusively on the learn taxonomy pages.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "learn-type": "Learn Type",
+                "learn-topic": "Learn Topic",
+                "learn-crop": "Learn Crop",
+                "learn-audience": "Learn Audience"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
+        },
+        {
+            "key": "field_689b54239bab5",
+            "label": "Show News Taxonomies in the filter",
+            "name": "show_news_taxonomies_in_the_filter",
+            "aria-label": "",
+            "type": "checkbox",
+            "instructions": "This will display the selected taxonomies filter exclusively on the news taxonomy pages.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "news-type": "News Type",
+                "news-topic": "News Topic",
+                "news-crop": "News Crop",
+                "news-audience": "News Audience"
+            },
+            "default_value": [],
+            "return_format": "value",
+            "allow_custom": 0,
+            "allow_in_bindings": 0,
+            "layout": "vertical",
+            "toggle": 0,
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
+        },
+        {
             "key": "field_686cf11aa8415",
             "label": "Default Newsletter Form",
             "name": "",
@@ -4008,5 +4068,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1754577378
+    "modified": 1755010477
 }
