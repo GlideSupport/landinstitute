@@ -38,7 +38,7 @@ $li_cc_repeater        = $bst_block_fields['li_cc_repeater'] ?? null;
 					?>
 					<div class="cta-two-column-col">
 						<div class="cta-border-card">
-							<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
+							<?php echo !empty($image) ? '<div class="cta-image">' . wp_get_attachment_image($image , 'thumb_1000') . '</div>' : ''; ?>
 							<div class="cta-content">
 								<?php echo (!empty($title) || !empty($text) || !empty($button)) ? '<div class="gl-s64"></div>' : ''; ?>
 								<?php echo !empty($title) ? '<h3 class="heading-3 block-title mb-0">' . esc_html($title) . '</h3>' : ''; ?>

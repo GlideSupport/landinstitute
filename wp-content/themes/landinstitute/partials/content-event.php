@@ -29,7 +29,7 @@ $li_cpt_select_events = $bst_fields['li_cpt_select_events'] ?? null;
 $bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
 $featured_image_id = get_post_thumbnail_id();
 $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
-$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_800', false, ['alt' => esc_attr(get_the_title())]);
+$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_1000', false, ['alt' => esc_attr(get_the_title())]);
 
 $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;

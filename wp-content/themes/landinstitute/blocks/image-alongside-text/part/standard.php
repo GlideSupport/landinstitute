@@ -2,7 +2,7 @@
 	<div class="image-alongside-text <?php echo esc_attr($image_position_class); ?>">
 		<div class="cl-left">
 			<div class="pattern-image-group">
-				<?php echo !empty($li_iat_image) ? wp_get_attachment_image($li_iat_image, 'thumb_800', false, ['class' => 'visual-image']) : ''; ?>
+				<?php echo !empty($li_iat_image) ? wp_get_attachment_image($li_iat_image, 'thumb_1000', false, ['class' => 'visual-image']) : ''; ?>
 			</div>
 		</div>
 		<div class="cl-right">

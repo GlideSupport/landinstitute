@@ -16,7 +16,7 @@ $news_type_name = !empty($news_type_terms) && !is_wp_error($news_type_terms) ? e
 $bst_var_theme_default_image = $bst_option_fields['bst_var_theme_default_image'] ?? null;
 $featured_image_id = get_post_thumbnail_id();
 $featured_image_id = $featured_image_id ? $featured_image_id : $bst_var_theme_default_image;
-$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_800', false, ['alt' => esc_attr(get_the_title())]);
+$featured_image_html = wp_get_attachment_image($featured_image_id, 'thumb_1000', false, ['alt' => esc_attr(get_the_title())]);
 
 $bst_var_posttitle = $bst_fields['bst_var_posttitle'] ?? get_the_title();
 $li_nwd_authors = $bst_fields['li_nwd_authors'] ?? '';
