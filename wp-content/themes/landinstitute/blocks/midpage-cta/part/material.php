@@ -33,7 +33,7 @@ $li_mpc_right_bg_image = $li_mpc_material['li_mpc_right_bg_image'] ?? null; ?>
 				<div class="footer-newsletter">
 				<?php echo !empty($li_mpc_kicker) ? '<div class="form-title ui-eyebrow-18-16-regular">' . esc_html($li_mpc_kicker) . '</div><div class="gl-s12"></div>' : ''; ?>  
 				<?php echo !empty($li_mpc_headline_check) ? BaseTheme::headline($li_mpc_headline, 'heading-3 mb-0 block-title') : ''; ?>
-				<?php echo (!empty($li_mpc_headline_check) && !empty($li_mpc_form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
+				<?php echo (!empty($li_mpc_headline_check) && !empty($li_mpc_form_selector) || $li_mpc_form_embed) ? '<div class="gl-s44"></div>' : ''; ?>
 				<?php if (($li_mpc_select_form_type == 'gravity-form')): ?>
 					<?php echo !empty($li_mpc_form_selector) ? do_shortcode('[gravityform id="' . $li_mpc_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
 				<?php else :?>
