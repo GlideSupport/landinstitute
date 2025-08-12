@@ -150,18 +150,30 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 							$post_id = get_the_ID();
 							$title = get_the_title();
 							$permalink = get_the_permalink();
-							// Calculate class for current slide
+							$youtube_url = get_field('li_ldo_youtube_url', $post_id);
 							$class = $slide_classes[$index % count($slide_classes)];
 						?>
 							<div class="swiper-slide <?php echo esc_attr($class); ?>">
 								<a href="<?php echo esc_url($permalink); ?>" class="border-image-content">
 									<div class="variable-image">
-										<?php if (has_post_thumbnail()) : ?>
-											<?php echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800'); ?>
-										<?php else : ?>
-											<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="800" height="800" />
-										<?php endif; ?>
+										<?php
+										if (has_post_thumbnail($post_id)) {
+											echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800');
+										} elseif (!empty($youtube_url)) {
+											preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i',$youtube_url,
+												$matches );
+											if (!empty($matches[1])) {
+												$video_id = $matches[1];
+												echo '<img src="' . esc_url('https://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg') . '" alt="' . esc_attr($title) . '" width="800" height="800" />';
+											} else {
+												echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="800" height="800" />';
+											}
+										} else {
+											echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="800" height="800" />';
+										}
+										?>
 									</div>
+
 									<div class="border-card-content">
 										<div class="gl-s52"></div>
 										<div class="mb-0 heading-6 block-title"><?php echo html_entity_decode($title); ?></div>
