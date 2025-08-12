@@ -80,8 +80,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 						'field'    => 'term_id',
 						'terms'    => wp_list_pluck($li_sl_staff_category_selector, 'term_id'),
 					]];
-					$args['orderby'] = 'title';
-					$args['order']   = 'ASC';
+					$args['orderby'] = 'menu_order';
 				}
 
 				$staff_query = new WP_Query($args);
