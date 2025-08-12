@@ -141,17 +141,26 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                         <?php echo $bst_var_ftrop_title ? '<div class="heading-5 block-title mb-0">' . html_entity_decode($bst_var_ftrop_title) . '</div><div class="gl-s12"></div>' : ''; ?>
                         <?php echo $bst_var_ftrop_text ? '<div class="intro-content body-20-18-regular">' . html_entity_decode($bst_var_ftrop_text) . '</div><div class="gl-s64"></div>' : ''; ?>
                     </div>
-                    <?php if($bst_var_ftrop_form_selector != '' ):?>
-                    <div class="footer-newsletter">
-                        <?php echo $bst_var_ftrop_form_title ? ' <div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>' : ''; ?>
-                    </div>
+                    <?php if ( ($bst_var_ftrop_select_form_type == 'gravity-form' && $bst_var_ftrop_form_selector != '') ||  ($bst_var_ftrop_select_form_type == 'form-embed' && $bst_var_ftrop_form_embed != '')) : ?>
+                        <div class="footer-newsletter">
+                            <?php  echo $bst_var_ftrop_form_title  ? '<div class="form-title ui-24-21-bold">' . html_entity_decode($bst_var_ftrop_form_title) . '</div><div class="gl-s30"></div>'
+                                : ''; ?>
+                        </div>
                     <?php endif; ?>
                     <?php if (($bst_var_ftrop_select_form_type == 'gravity-form')): ?>
-						<?php echo !empty($bst_var_ftrop_form_selector) ? do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
+						<?php
+                        echo !empty($bst_var_ftrop_form_selector)
+                            ? do_shortcode('[gravityform id="' . $bst_var_ftrop_form_selector . '" title="false" ajax="true" tabindex="0"]') . '<div class="gl-s64"></div>'
+                            : '';
+                        ?>
 					<?php else :?>
-							<?php echo html_entity_decode($bst_var_ftrop_form_embed); ?>
+						<?php
+                        echo !empty($bst_var_ftrop_form_embed)
+                            ? html_entity_decode($bst_var_ftrop_form_embed) . '<div class="gl-s64"></div>'
+                            : '';
+                        ?>
 					<?php endif; ?>
-                    <div class="gl-s64"></div>
+                    
                     <div class="social-icons">
                         <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
                     </div>
