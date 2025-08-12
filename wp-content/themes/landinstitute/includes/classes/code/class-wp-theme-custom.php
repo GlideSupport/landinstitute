@@ -901,7 +901,8 @@ class WP_Theme_Custom extends \Boilerplate
 
 				// Create a title and aria-label based on the social icon layout or link.
 				$title = 'Visit our ' . ucfirst($acf_fc_layout) . ' page';
-				$aria_label = 'Link to our ' . ucfirst($acf_fc_layout) . ' page';
+				$aria_label = 'Link to our ' . ucfirst($acf_fc_layout) . ' page (opens in a new tab)';
+
 
 				if ($social_link) {
 					echo '<a href="' . esc_url($social_link) . '" target="_blank" class="' . esc_html($acf_fc_layout) . ' flex-center" title="' . esc_attr($title) . '" aria-label="' . esc_attr($aria_label) . '">';
