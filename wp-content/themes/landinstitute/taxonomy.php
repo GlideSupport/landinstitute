@@ -40,7 +40,7 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 		<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu">
 			<!-- Hero Start -->
 			<?php echo !empty($bst_var_learn_bg_pattern) ? '<div class="bg-pattern">' . wp_get_attachment_image($bst_var_learn_bg_pattern, 'thumb_1600') . '</div>' : ''; ?>
-			<div class="hero-default has-border-bottom">
+			<div class="hero-default">
 				<div class="wrapper">
 					<div class="hero-alongside-block">
 						<div class="col-left bg-lime-green">
