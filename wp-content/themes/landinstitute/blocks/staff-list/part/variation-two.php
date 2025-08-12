@@ -81,6 +81,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 						'terms'    => wp_list_pluck($li_sl_staff_category_selector, 'term_id'),
 					]];
 					$args['orderby'] = 'menu_order';
+					$args['order']   = 'ASC';
 				}
 
 				$staff_query = new WP_Query($args);
