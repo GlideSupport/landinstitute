@@ -38,7 +38,7 @@
 								<!-- Add "active-search" on click of "search-popup" it will open sub menu of search  -->
 								<a href="javascript:void(0)" class="search-popup" role="button">
 									<!-- when hover on menu add "active-hover" class -->
-									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" title="search-icon" />
+									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" title="search-icon" role="presentation"/>
 								</a>
 								<div class="mega-dropdown search-mega-dropdown" id="mega-dropdown-product">
 									<div class="mega-dropdown-card">

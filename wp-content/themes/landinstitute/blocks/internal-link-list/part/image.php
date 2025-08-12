@@ -29,7 +29,7 @@
 						(!empty($image) ? ' hover-img' : '') . '">'; ?>
 						<?php echo !empty($image) ? '<div class="card-img">' . wp_get_attachment_image($image, 'thumb_200') . '</div>' : ''; ?>
 								<div class="card-item-left">
-									<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
+									<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold" role="heading">' . esc_html($title) . '</div>' : ''; ?>
 									<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
 									<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
 								</div>
