@@ -53,34 +53,33 @@
 											// Remove excluded post types from the allowed list
 											$final_post_types = array_diff($allowed_post_types, $excluded_post_types);
 											if (!empty($landinstitute_to_title)): ?>
-												<div class="search-everything tab-dropdown tab-dropdown-filter">
+												<div class="search-everything tab-dropdown tab-dropdown-filter header-search-menu">
 													<button id="menu-search-type-btn" aria-expanded="false" aria-haspopup="true" aria-controls="menu-search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php echo esc_html($landinstitute_to_title); ?>
 														<div class="arrow-icon"></div>
 													</button>
-												</div>
-
-												<div class="menu-search-type-list">
-													<ul id="menu-search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type">
-														<li class="active" style="animation-delay: 0s;">
-															<a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
-															<div class="arrow-icon"></div>
-														</li>
-
-														<?php
-														$delay = 0.1;
-														foreach ($final_post_types as $post_type):
-															$label = get_post_type_label($post_type);
-														?>
-															<li style="animation-delay: <?= esc_attr($delay) ?>s;">
-																<a href="javascript:void(0)" data-post="<?= esc_attr($post_type) ?>" data-taxonomy="search-type">
-																	<?= esc_html($label) ?>
-																</a>
+													<div class="menu-search-type-list">
+														<ul id="menu-search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type">
+															<li class="active" style="animation-delay: 0s;">
+																<a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
+																<div class="arrow-icon"></div>
 															</li>
-														<?php
-															$delay += 0.1;
-														endforeach;
-														?>
-													</ul>
+
+															<?php
+															$delay = 0.1;
+															foreach ($final_post_types as $post_type):
+																$label = get_post_type_label($post_type);
+															?>
+																<li style="animation-delay: <?= esc_attr($delay) ?>s;">
+																	<a href="javascript:void(0)" data-post="<?= esc_attr($post_type) ?>" data-taxonomy="search-type">
+																		<?= esc_html($label) ?>
+																	</a>
+																</li>
+															<?php
+																$delay += 0.1;
+															endforeach;
+															?>
+														</ul>
+													</div>
 												</div>
 											<?php endif; ?>
 											<?php

@@ -748,10 +748,13 @@ function initDropdowns() {
 			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
 			dropdownMenu.style.position = "absolute";
-			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
-			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
-			dropdownMenu.style.width = `${rect.width}px`;
 			dropdownMenu.style.zIndex = "1";
+			const insideHeaderSearchMenu = toggleButton.closest('.header-search-menu') !== null;
+			    if (!insideHeaderSearchMenu) {
+			        dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
+			        dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
+			        dropdownMenu.style.width = `${rect.width}px`;
+			    }
 		}
 
 		function closeDropdown() {
