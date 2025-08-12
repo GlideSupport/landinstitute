@@ -1,7 +1,7 @@
 <?php 
 //Block Fields
 $li_mpc_material = $bst_block_fields['li_mpc_material'] ?? null;
-$li_mpc_select_form_type = $bst_block_fields['li_mpc_select_form_type'] ?? 'gravity-form';
+$li_mpc_select_form_type = $li_mpc_material['li_mpc_select_form_type'] ?? 'gravity-form';
 $li_mpc_form_selector = $li_mpc_material['li_mpc_form_selector'] ?? null;
 $li_mpc_form_embed = $li_mpc_material['li_mpc_form_embed'] ?? null;
 $li_mpc_title = $li_mpc_material['li_mpc_title'] ?? null;
