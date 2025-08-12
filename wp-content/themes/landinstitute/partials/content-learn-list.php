@@ -11,7 +11,7 @@ $requestdbyajax = get_query_var('requestdbyajax');
 
 if ($query->have_posts()) :
 	while ($query->have_posts()) : $query->the_post();
-
+	$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
 	$terms = get_the_terms( get_the_ID(), 'learn-type' );
 	$learn_type = ''; // default fallback value
 	if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
@@ -23,12 +23,31 @@ if ($query->have_posts()) :
 		<div class="filter-card-item">
 			<a href="<?php the_permalink(); ?>" class="filter-card-link">
 				<div class="image">
-					<?php if (has_post_thumbnail()) : ?>
-						<?php echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_500'); ?>
-					<?php else : ?>
-						<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="500" height="300" />
-						<?php endif; ?>
+					<?php
+					if (has_post_thumbnail()) {
+						// Featured image
+						echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_500');
+					} elseif (!empty($youtube_url)) {
+						// Extract YouTube video ID
+						preg_match(
+							'%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i',
+							$youtube_url,
+							$matches
+						);
+						if (!empty($matches[1])) {
+							$video_id = $matches[1];
+							echo '<img src="' . esc_url('https://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg') . '" alt="' . esc_attr(get_the_title()) . '" width="500" height="300" />';
+						} else {
+							// Fallback default
+							echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="500" height="300" />';
+						}
+					} else {
+						// Fallback default
+						echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="500" height="300" />';
+					}
+					?>
 				</div>
+
 				<div class="filter-card-content">
 					<div class="gl-s52"></div>
 					<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html(ucfirst($learn_type)); ?></div>
