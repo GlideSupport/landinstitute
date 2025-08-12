@@ -70,7 +70,7 @@ $li_tl_link = $bst_block_fields['li_tl_link'] ?? null;
                             if (!empty($title) || !empty($wysiwyg)): ?>
                                 <div class="card-item link-with-title">
                                     <div class="card-item-left">
-                                        <?php echo (!empty($title)) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>
+                                        <?php echo (!empty($title)) ? '<div class="card-title ui-24-21-bold" role="heading">' . esc_html($title) . '</div>' : ''; ?>
                                         <?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s16"></div>' : ''; ?>
                                         <?php echo (!empty($wysiwyg)) ? '<div class="card-content body-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
                                     </div>

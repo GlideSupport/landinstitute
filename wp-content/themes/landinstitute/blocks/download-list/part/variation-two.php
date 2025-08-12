@@ -22,7 +22,7 @@
 							<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="card-item link-with-title with-arrow">' : '<div class="card-item link-with-title with-arrow">'; ?>
 								<?php if(!empty($li_dl_title_two) || !empty($li_dl_wysiwyg_two)): ?>
 									<div class="card-item-left">
-										<?php echo !empty($li_dl_title_two) ? '<div class="card-title ui-24-21-bold">' . esc_html($li_dl_title_two) . '</div>' : ''; ?>   								
+										<?php echo !empty($li_dl_title_two) ? '<div class="card-title ui-24-21-bold" role="heading">' . esc_html($li_dl_title_two) . '</div>' : ''; ?>   								
 										<?php echo (!empty($li_dl_title_two) && !empty($li_dl_wysiwyg_two)) ? '<div class="gl-s4"></div>' : ''; ?>
 										<?php echo !empty($li_dl_wysiwyg_two) ? '<div class="card-content body-18-16-regular">' . html_entity_decode($li_dl_wysiwyg_two) . '</div>' : ''; ?>   
 									</div>

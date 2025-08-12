@@ -230,12 +230,31 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 								$terms      = get_the_terms($post_id, 'learn-type');
 								$term_name  = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
 								$thumbnail_id = get_post_thumbnail_id($post_id) ?: $bst_var_theme_default_image;
+								$youtube_url = get_field('li_ldo_youtube_url', $post_id);
 							?>
 								<div class="swiper-slide">
 									<div class="image-card-caption">
 										<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
 											<div class="image">
-												<?php echo wp_get_attachment_image($thumbnail_id, 'thumb_800'); ?>						
+												<?php
+												if (has_post_thumbnail($post_id)) {
+													echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800');
+												} elseif (!empty($youtube_url)) {
+													preg_match(
+														'%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i',
+														$youtube_url,
+														$matches
+													);
+													if (!empty($matches[1])) {
+														$video_id = $matches[1];
+														echo '<img src="' . esc_url('https://img.youtube.com/vi/' . $video_id . '/maxresdefault.jpg') . '" alt="' . esc_attr($title) . '" width="800" height="800" />';
+													} else {
+														echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="800" height="800" />';
+													}
+												} else {
+													echo '<img src="' . esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')) . '" alt="Default thumbnail" width="800" height="800" />';
+												}
+												?>
 											</div>
 											<div class="caption-card-content">
 												<div class="gl-s52"></div>

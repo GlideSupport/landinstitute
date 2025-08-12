@@ -157,7 +157,7 @@ $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? nu
 										<?php echo !empty($link_url) ? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="card-item link-with-title with-arrow">' : '<div class="card-item link-with-title with-arrow">'; ?>								
 											<?php if(!empty($title) || !empty($wysiwyg)): ?>
 												<div class="card-item-left">
-													<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold">' . esc_html($title) . '</div>' : ''; ?>   
+													<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold" role="heading">' . esc_html($title) . '</div>' : ''; ?>   
 													<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s4"></div>' : ''; ?>
 													<?php echo !empty($wysiwyg) ? '<div class="card-content body-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>   
 												</div>
