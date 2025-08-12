@@ -11,7 +11,7 @@
 				</a>
 				<div class="main-menu">
 					<a class="mp-back" href="#">
-						<img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/src/images/submenu-icon-md.svg" alt="back-arrow-menu" width="20" height="20" /> Main Menu
+						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/submenu-icon-md.svg" alt="back-arrow-menu" width="20" height="20" /> Main Menu
 					</a>
 				</div>
 			</div>
@@ -33,19 +33,54 @@
 										<?php echo BaseTheme::button($bst_var_tohdr_btn, 'site-btn btn-sunflower-yellow sm-btn arrow-heart-symbol'); ?>
 									<?php endif; ?>
 								</div>
-							</div>	
+							</div>
 							<div class="search-drop">
 								<!-- Add "active-search" on click of "search-popup" it will open sub menu of search  -->
 								<a href="javascript:void(0)" class="search-popup">
 									<!-- when hover on menu add "active-hover" class -->
 									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" title="search-icon" />
-									</a>
+								</a>
 								<div class="mega-dropdown search-mega-dropdown" id="mega-dropdown-product">
 									<div class="mega-dropdown-card">
 										<div class="col-left">
-											<?php if (!empty($landinstitute_to_title)): ?>
-												<div class="search-everything">
-													<a class="site-btn arrow-btn" href=""><?php echo esc_html($landinstitute_to_title); ?></a>
+											<?php
+											$allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+											$excluded_post_types = get_field('li_search_exclude_post_type', 'option');
+											if (!is_array($excluded_post_types)) {
+												$excluded_post_types = [];
+											}
+
+											// Remove excluded post types from the allowed list
+											$final_post_types = array_diff($allowed_post_types, $excluded_post_types);
+											if (!empty($landinstitute_to_title)): ?>
+												<div class="search-everything tab-dropdown tab-dropdown-filter">
+													<button id="menu-search-type-btn" aria-expanded="false" aria-haspopup="true" aria-controls="menu-search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php echo esc_html($landinstitute_to_title); ?>
+														<div class="arrow-icon"></div>
+													</button>
+												</div>
+
+												<div class="menu-search-type-list">
+													<ul id="menu-search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type">
+														<li class="active" style="animation-delay: 0s;">
+															<a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
+															<div class="arrow-icon"></div>
+														</li>
+
+														<?php
+														$delay = 0.1;
+														foreach ($final_post_types as $post_type):
+															$label = get_post_type_label($post_type);
+														?>
+															<li style="animation-delay: <?= esc_attr($delay) ?>s;">
+																<a href="javascript:void(0)" data-post="<?= esc_attr($post_type) ?>" data-taxonomy="search-type">
+																	<?= esc_html($label) ?>
+																</a>
+															</li>
+														<?php
+															$delay += 0.1;
+														endforeach;
+														?>
+													</ul>
 												</div>
 											<?php endif; ?>
 											<?php
@@ -70,7 +105,7 @@
 																	<?php if (has_post_thumbnail()) : ?>
 																		<?php echo wp_get_attachment_image(get_post_thumbnail_id(get_the_ID()), 'thumb_400'); ?>
 																	<?php else : ?>
-																		<img src="<?php echo esc_url( wp_get_attachment_image_url( BASETHEME_DEFAULT_IMAGE, 'full' ) ); ?>" alt="Default thumbnail" width="367" height="232" />
+																		<img src="<?php echo esc_url(wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full')); ?>" alt="Default thumbnail" width="367" height="232" />
 																	<?php endif; ?>
 																	<div class="tag-label">
 																		<span class="tags">Popular Resource</span> <!-- You can customize or make this dynamic -->
@@ -94,8 +129,9 @@
 										</div>
 										<div class="col-right">
 											<div class="popup-search">
-												<form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
+												<form id="header-search-form" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
 													<input type="text" name="s" placeholder="What are you searching for?" autofocus>
+													<input type="hidden" name="search-type" value="all" class="search-type-field">
 													<button class="site-btn btn-lemon-yellow sm-btn" type="submit">Search</button>
 												</form>
 											</div>
@@ -170,15 +206,15 @@
 
 						<div class="top-bar-cross" role="button" tabindex="0" aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
 							<span>
-								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>" 
-								width="16" height="16" 
-								alt="<?php esc_attr_e('Top bar', 'land_institute'); ?>" 
-								title="topbar-cross-icon">
+								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
+									width="16" height="16"
+									alt="<?php esc_attr_e('Top bar', 'land_institute'); ?>"
+									title="topbar-cross-icon">
 							</span>
 						</div>
 					</div>
+				</div>
 			</div>
-		</div>
 		</div>
 		</div>
 	<?php } ?>

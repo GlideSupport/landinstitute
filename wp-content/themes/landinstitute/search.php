@@ -48,7 +48,7 @@ set_query_var( 'paged_var', $paged );
 
 				<div class="search-clicks">
 					<div class="search-everything tab-dropdown tab-dropdown-filter">
-						<button  id="search-type" aria-expanded="false" aria-haspopup="true" aria-controls="search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php esc_html_e( 'Search everything', 'land_institute' ); ?>
+						<button id="search-type-btn" aria-expanded="false" aria-haspopup="true" aria-controls="search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php esc_html_e( 'Search everything', 'land_institute' ); ?>
 							<div class="arrow-icon"></div>
 						</button>
 					</div>
@@ -82,12 +82,6 @@ if (!is_array($excluded_post_types)) {
 
 // Remove excluded post types from the allowed list
 $final_post_types = array_diff($allowed_post_types, $excluded_post_types);
-
-// Helper to get post type label
-function get_post_type_label($post_type_slug) {
-    $post_type_obj = get_post_type_object($post_type_slug);
-    return $post_type_obj ? $post_type_obj->labels->singular_name : ucfirst($post_type_slug);
-}
 ?>
 
 <div class="search-list-filter">
