@@ -94,9 +94,9 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 			</div>
 			<!-- Add Arrows -->
 			<div class="drag-arrows">
-				<div class="swiper-button-next"></div>
+				<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
 				<span>Drag</span>
-				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
 			</div>
 		</div>
 
