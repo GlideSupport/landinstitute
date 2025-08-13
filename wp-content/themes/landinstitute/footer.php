@@ -165,7 +165,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                         <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
                     </div>
                     <div class="gl-s64"></div>
-                    <div class="legal-nav">
+                    <div class="legal-nav" role="navigation">
                         <nav>
                             <?php
                             if (!empty($li_select_footer_legal_menu) && is_array($li_select_footer_legal_menu) && !empty($li_select_footer_legal_menu['slug'])) {
