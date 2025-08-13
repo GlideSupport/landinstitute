@@ -165,20 +165,22 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                         <?php BaseTheme::the_social_icons($bst_var_social_profiles); ?>
                     </div>
                     <div class="gl-s64"></div>
-                    <div class="legal-nav" role="navigation">
-                        <nav>
-                            <?php
-                            if (!empty($li_select_footer_legal_menu) && is_array($li_select_footer_legal_menu) && !empty($li_select_footer_legal_menu['slug'])) {
-                                wp_nav_menu(
-                                    array(
-                                        'menu'             => $li_select_footer_legal_menu['slug'],
-                                        'fallback_cb'      => 'BaseTheme::nav_fallback',
-                                        'container'   => false,
-                                    )
-                                );
-                            }
-                            ?>
-                        </nav>
+                    <div class="legal-nav">
+                        <div class="menu-legal-nav-container" role="navigation">
+                            <nav>
+                                <?php
+                                if (!empty($li_select_footer_legal_menu) && is_array($li_select_footer_legal_menu) && !empty($li_select_footer_legal_menu['slug'])) {
+                                    wp_nav_menu(
+                                        array(
+                                            'menu'             => $li_select_footer_legal_menu['slug'],
+                                            'fallback_cb'      => 'BaseTheme::nav_fallback',
+                                            'container'   => false,
+                                        )
+                                    );
+                                }
+                                ?>
+                            </nav>
+                        </div>
                     </div>
                     <div class="gl-s8"></div>
                     <?php echo !empty($bst_var_ftrop_copyright) ? '<div class="copy-right">&copy; ' . date('Y') . ' ' . html_entity_decode($bst_var_ftrop_copyright) . '</div>' : ''; ?>
