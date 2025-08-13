@@ -24,7 +24,7 @@ while ($news->have_posts()) : $news->the_post();
                     <div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($topics_name); ?></div>
                 </div>
                 <div class="gl-s8"></div>
-                <div class="card-title heading-7"><?php echo html_entity_decode($title); ?></div>
+                <div class="card-title heading-7"><?php echo $title; ?></div>
                 <?php if ($short_content): ?>
                     <div class="gl-s16"></div>
                     <div class="description ui-18-16-regular"><?php echo html_entity_decode($short_content); ?></div>
