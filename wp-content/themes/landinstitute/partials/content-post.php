@@ -104,8 +104,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
 							<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
 							<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
-							<div class="gl-s36"></div>
-							<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
+							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s36"></div><div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
+							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s36"></div><div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
 							<?php if (!empty($link) && !empty($li_ldo_publication)) : ?>
 								<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
@@ -269,7 +269,7 @@ if ($posts_query->have_posts()) : ?>
 												<div class="gl-s52"></div>
 												<?php echo !empty($term_name) ? '<div class="eyebrow ui-eyebrow-16-15-regular">' . $term_name . '</div>' : ''; ?>
 												<?php echo (!empty($term_name) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
-												<?php echo !empty($title) ? '<div class="card-title heading-7">' . $title . '</div>' : ''; ?>
+												<?php echo !empty($title) ? '<div class="card-title heading-7">' . html_entity_decode($title) . '</div>' : ''; ?>
 												<?php echo (!empty($title) && !empty($excerpt)) ? '<div class="gl-s12"></div>' : ''; ?>
 												<?php echo !empty($excerpt) ? '<div class="description ui-18-16-regular">' . html_entity_decode($excerpt) . '</div>' : ''; ?>
 												<?php echo !empty($excerpt) ? '<div class="gl-s20"></div>' : ''; ?>
