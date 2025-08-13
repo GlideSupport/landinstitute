@@ -182,47 +182,27 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//if has children then add triangle div on nav js start
-		const menuItems = document.querySelectorAll("li.menu-item-has-children");
+	const menuItems = document.querySelectorAll("li.menu-item-has-children");
+	menuItems.forEach(function (item) {
+		const link = item.querySelector("a");
+		// Only wrap if not already wrapped
+		if (link && !link.closest(".child-triangle")) {
+			const wrapper = document.createElement("div");
+			wrapper.classList.add("child-triangle");
 
-		menuItems.forEach(function (item) {
-			const link = item.querySelector("a");
+			// Add accessibility attributes only to wrapper
+			wrapper.setAttribute("aria-haspopup", "true");
+			wrapper.setAttribute("aria-expanded", "false");
 
-			// Only wrap if not already wrapped
-			if (link && !link.closest(".child-triangle")) {
-				// Accessibility attributes
-				link.setAttribute("aria-haspopup", "true");
-				link.setAttribute("aria-expanded", "false");
+			// Remove aria attributes from <a> if they exist
+			link.removeAttribute("aria-haspopup");
+			link.removeAttribute("aria-expanded");
 
-				const wrapper = document.createElement("div");
-				wrapper.classList.add("child-triangle");
-
-				// Move the <a> tag into the new wrapper
-				link.parentNode.insertBefore(wrapper, link);
-				wrapper.appendChild(link);
-			}
-
-			// Toggle aria-expanded when dropdown opens/closes
-			link.addEventListener("click", function (e) {
-				// Prevent normal navigation if this is just a toggle
-				e.preventDefault();
-
-				// Close other open dropdowns (optional)
-				menuItems.forEach(function (otherItem) {
-					if (otherItem !== item) {
-						const otherLink = otherItem.querySelector("a");
-						if (otherLink) {
-							otherLink.setAttribute("aria-expanded", "false");
-							otherItem.classList.remove("dropdown-open");
-						}
-					}
-				});
-
-				// Toggle current dropdown
-				const isOpen = link.getAttribute("aria-expanded") === "true";
-				link.setAttribute("aria-expanded", isOpen ? "false" : "true");
-				item.classList.toggle("dropdown-open", !isOpen);
-			});
-		});
+			// Move the <a> tag into the new wrapper
+			link.parentNode.insertBefore(wrapper, link);
+			wrapper.appendChild(link);
+		}
+	});
 
 	//end
 	
