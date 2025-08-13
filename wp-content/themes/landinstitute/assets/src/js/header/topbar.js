@@ -181,43 +181,21 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 
-	// Add wrapper + accessibility attributes
-	const menuItems = document.querySelectorAll("li.menu-item-has-children");
-	menuItems.forEach(function (item) {
-	    const link = item.querySelector("a");
+	//if has children then add triangle div on nav js start
+		const menuItems = document.querySelectorAll("li.menu-item-has-children");
+		menuItems.forEach(function (item) {
+			const link = item.querySelector("a");
+			// Only wrap if not already wrapped
+			if (link && !link.closest(".child-triangle")) {
+				const wrapper = document.createElement("div");
+				wrapper.classList.add("child-triangle");
 
-	    if (link && !link.closest(".child-triangle")) {
-	        const wrapper = document.createElement("div");
-	        wrapper.classList.add("child-triangle");
-
-	        // Accessibility attributes
-	        link.setAttribute("aria-haspopup", "true");
-	        link.setAttribute("aria-expanded", "false");
-
-	        // Move the <a> tag into the new wrapper
-	        link.parentNode.insertBefore(wrapper, link);
-	        wrapper.appendChild(link);
-
-	        // Toggle aria-expanded on click
-	        link.addEventListener("click", function (e) {
-	            const expanded = this.getAttribute("aria-expanded") === "true";
-	            this.setAttribute("aria-expanded", expanded ? "false" : "true");
-
-	            // If your dropdown uses a class to show/hide
-	            item.classList.toggle("open", !expanded);
-	            e.preventDefault(); // prevent navigation if it's just a toggle
-	        });
-
-	        // Optional: close dropdown when clicking outside
-	        document.addEventListener("click", function (e) {
-	            if (!item.contains(e.target)) {
-	                link.setAttribute("aria-expanded", "false");
-	                item.classList.remove("open");
-	            }
-	        });
-	    }
-	});
-
+				// Move the <a> tag into the new wrapper
+				link.parentNode.insertBefore(wrapper, link);
+				wrapper.appendChild(link);
+			}
+		});
+	//end
 	
 });
 
