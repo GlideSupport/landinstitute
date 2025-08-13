@@ -100,7 +100,6 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php echo !empty($li_nwd_authors) ? '<div class="gl-s6"></div>' : ''; ?>
 							<?php echo !empty($li_nwd_authors) ? '<div class="block-content body-18-16-regular">' . $li_nwd_authors . '</div>' : ''; ?>
 							<?php echo !empty($li_nwd_publication) ? '<div class="gl-s36"></div><div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
-							<?php echo !empty($li_nwd_publication) ? '<div class="gl-s36"></div><div class="ui-eyebrow-16-15-bold eybrow-title">Publications (DOI)</div>' : ''; ?>
 							<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
 							<?php if (!empty($link) && !empty($li_nwd_publication)) : ?>
 								<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
