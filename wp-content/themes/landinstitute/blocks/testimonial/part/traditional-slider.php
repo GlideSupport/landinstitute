@@ -49,7 +49,7 @@ if ($li_t_choose_variation === 'traditional-slider' && !empty($li_t_selector_tes
                 </div>
                <?php if ($total_testimonials > 1) : ?>
                     <div class="slider-btn">
-                        <div  class="swiper-button-prev prev-<?php echo esc_attr($unique_id); ?>" role="button" tabindex="-1" aria-label="Previous testimonial"></div>
+                        <div  class="swiper-button-prev prev-<?php echo esc_attr($unique_id); ?>" role="button" tabindex="0" aria-label="Previous testimonial"></div>
                         <div class="swiper-button-next next-<?php echo esc_attr($unique_id); ?>" role="button"  tabindex="0" aria-label="Next testimonial"></div>
                     </div>
                 <?php endif; ?>

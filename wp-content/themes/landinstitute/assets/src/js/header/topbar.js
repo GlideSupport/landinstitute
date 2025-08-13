@@ -182,19 +182,26 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//if has children then add triangle div on nav js start
-		const menuItems = document.querySelectorAll("li.menu-item-has-children");
-		menuItems.forEach(function (item) {
-			const link = item.querySelector("a");
-			// Only wrap if not already wrapped
-			if (link && !link.closest(".child-triangle")) {
-				const wrapper = document.createElement("div");
-				wrapper.classList.add("child-triangle");
+	const menuItems = document.querySelectorAll("li.menu-item-has-children");
+	menuItems.forEach(function (item) {
+	    const link = item.querySelector("a");
 
-				// Move the <a> tag into the new wrapper
-				link.parentNode.insertBefore(wrapper, link);
-				wrapper.appendChild(link);
-			}
-		});
+	    if (link) {
+	        // Add aria-haspopup for accessibility
+	        link.setAttribute("aria-haspopup", "true");
+	        link.setAttribute("aria-expanded", "false"); // optional but useful
+
+	        // Only wrap if not already wrapped
+	        if (!link.closest(".child-triangle")) {
+	            const wrapper = document.createElement("div");
+	            wrapper.classList.add("child-triangle");
+
+	            // Move the <a> tag into the new wrapper
+	            link.parentNode.insertBefore(wrapper, link);
+	            wrapper.appendChild(link);
+	        }
+	    }
+	});
 	//end
 	
 });
