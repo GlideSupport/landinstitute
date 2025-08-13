@@ -200,7 +200,7 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 													echo $cats ? esc_html($cats[0]->name) : 'Uncategorized'; ?>
 												</div>
 												<div class="gl-s6"></div>
-												<div class="card-title heading-7"><?php echo get_the_title(); ?></div>
+												<div class="card-title heading-7"><?php echo html_entity_decode(get_the_title()); ?></div>
 												<div class="gl-s12"></div>
 												<div class="description ui-18-16-regular"><?php echo wp_trim_words(get_the_excerpt(), 35); ?></div>
 												<div class="gl-s20"></div>
