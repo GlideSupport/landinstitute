@@ -167,7 +167,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                     <div class="gl-s64"></div>
                     <div class="legal-nav">
                         <div class="menu-legal-nav-container" role="navigation">
-                            <nav>
+                            <nav aria-label="Footer legal navigation">
                                 <?php
                                 if (!empty($li_select_footer_legal_menu) && is_array($li_select_footer_legal_menu) && !empty($li_select_footer_legal_menu['slug'])) {
                                     wp_nav_menu(
