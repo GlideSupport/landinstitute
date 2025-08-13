@@ -25,6 +25,7 @@ $bg_pattern = $bst_fields['li_nwd_background_pattern'] ??  $bst_option_fields['l
 
 $li_ldo_url = $bst_fields['li_nwd_pdf_url'];
 $link = $li_ldo_url ?? '';
+$li_nwd_date = $bst_fields['li_nwd_date'];
 
 $li_nwd_read_more = $bst_fields['li_nwd_read_more'] ?? '';
 $li_nwd_read_more_check = BaseTheme::headline_check($li_nwd_read_more);
@@ -86,6 +87,15 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 									</div>
 								<?php endif; ?>
 							</div>
+							<?php if ( ! empty( $li_nwd_date ) ) : ?>
+								<div class="column-content">
+									<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
+									<div class="gl-s6"></div>
+									<div class="block-content body-18-16-regular">
+										<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_nwd_date ) ) ); ?>
+									</div>
+								</div>
+							<?php endif; ?>
 						</div>
 						<div class="gl-s96"></div>
 					</div>
@@ -115,7 +125,15 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 									<?php echo esc_html($li_nwd_publication); ?>
 								</div>
 							<?php endif; ?>
-							<div class="gl-s96"></div>
+							<?php if ( ! empty( $li_nwd_date ) ) : ?>
+								<div class="gl-s36"></div>
+								<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
+								<div class="block-content body-18-16-regular">
+									<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_nwd_date ) ) ); ?>
+								</div>
+								<div class="gl-s96"></div>
+							<?php endif; ?>
+
 						</div>
 					</div>
 				<?php endif; ?>

@@ -30,6 +30,8 @@ $li_ldo_publication = $bst_fields['li_ldo_publication'];
 
 $li_ldo_url = $bst_fields['li_ldo_url'];
 $link = $li_ldo_url ?? '';
+$li_ido_date = $bst_fields['li_ido_date'];
+
 
 $bg_pattern = $bst_fields['li_po_bg_image'] ??  $bst_option_fields['li_learn_detail_page_bg_pattern'];
 $li_ido_read_more = $bst_fields['li_ido_read_more'];
@@ -91,6 +93,16 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 									</div>
 								<?php endif; ?>
 							</div>
+							<?php if ( ! empty( $li_ido_date ) ) : ?>
+								<div class="column-content">
+									<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
+									<div class="gl-s6"></div>
+									<div class="block-content body-18-16-regular">
+										<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_ido_date ) ) ); ?>
+									</div>
+								</div>
+							<?php endif; ?>
+
 						</div>
 						<div class="gl-s96"></div>
 					</div>
@@ -121,6 +133,14 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 									<?php echo esc_html($li_ldo_publication); ?>
 								</div>
 							<?php endif; ?>
+							<?php if ( ! empty( $li_ido_date ) ) : ?>
+								<div class="gl-s36"></div>
+								<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
+								<div class="block-content body-18-16-regular">
+									<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_ido_date ) ) ); ?>
+								</div>
+							<?php endif; ?>
+
 							<div class="gl-s96"></div>
 						</div>
 					</div>
