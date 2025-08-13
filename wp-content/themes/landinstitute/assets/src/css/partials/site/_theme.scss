@@ -292,6 +292,10 @@ picture {
     display: none;
 }
 
+*:focus {
+    outline: none;
+}
+
 // section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block, .cta-grid-mosaic-block, .video-alongside-text, .theme-video, .tabbed-content-block, .map-embed-block, .timeline-block, .logo-grid-links-block, .cta-grid-slider-block, .midpage-cta-map, .midpage-cta-material, .footer-cta, .midpage-cta-image-right, .resoruce-filter-title, .logo-grid-filters, .cta-slider-block, .testimonial-traditional-block, .tab-content-block, .two-column-image, .cta-columns-two-block, .cta-rows-list-block, .event-teaser-list-block, .cta-grid-traditional-block, .state-grid-block, .scrolling-text-block, .single-section-btn, .news-list-filter-title, .read-more-block, .past-event-filter-title, .image-gallery-block, .block-chart) {
 // 	overflow: hidden;
 // }
