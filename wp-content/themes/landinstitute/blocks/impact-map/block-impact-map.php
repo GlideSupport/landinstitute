@@ -105,7 +105,7 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 				<div class="swiper-wrapper">
 					<?php foreach ($li_im_repeater as $row) : ?>
 						<div class="swiper-slide">
-							<div class="slide-year"><?php echo esc_html($row['li_im_year'] ?? ''); ?></div>
+							<div class="slide-year" role="button" tabindex="0" aria-pressed="false"><?php echo esc_html($row['li_im_year'] ?? ''); ?></div>
 						</div>
 					<?php endforeach; ?>
 				</div>

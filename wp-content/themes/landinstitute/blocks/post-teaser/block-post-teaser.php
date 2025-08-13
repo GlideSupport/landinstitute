@@ -176,7 +176,7 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 
 									<div class="border-card-content">
 										<div class="gl-s52"></div>
-										<div class="mb-0 heading-6 block-title"><?php echo html_entity_decode($title); ?></div>
+										<div class="mb-0 heading-6 block-title" role="heading"><?php echo html_entity_decode($title); ?></div>
 										<div class="gl-s16"></div>
 										<div class="card-btn">
 											<div class="border-text-btn">Read more</div>

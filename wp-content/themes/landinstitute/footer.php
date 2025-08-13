@@ -197,7 +197,7 @@ if ($li_po_nav_button_position == 'both' && $li_po_left_btn_arrow_position == 'r
                                     role="<?php echo esc_attr($link['title']); ?>"
                                     aria-label="<?php echo esc_attr($link['title']); ?>">
                                 <?php endif; ?>
-                                <div class="footer-nav-title"> <?php echo esc_html($label); ?></div>
+                                <div class="footer-nav-title" role="heading"> <?php echo esc_html($label); ?></div>
                                 <div class="gl-s16"></div>
                                 <?php if (!empty($link)) : ?>
                                 </a>
