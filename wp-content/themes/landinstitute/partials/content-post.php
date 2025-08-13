@@ -233,7 +233,7 @@ if ($posts_query->have_posts()) : ?>
 							<?php
 							while ($posts_query->have_posts()) : $posts_query->the_post();
 								$post_id    = get_the_ID();
-								$title      = get_the_title();
+								$title      = html_entity_decode(get_the_title());
 								$permalink  = get_permalink();
 								$excerpt    = get_the_excerpt($post_id);
 								$terms      = get_the_terms($post_id, 'learn-type');

@@ -157,7 +157,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 							while ($events_query->have_posts()) :
 								$events_query->the_post();
 								$event_id     = get_the_ID();
-								$title        = get_the_title();
+								$title        = html_entity_decode(get_the_title());
 								$permalink    = get_permalink();
 								$start_date   = get_field('li_cpt_event_start_date', $event_id);
 								$end_date     = get_field('li_cpt_event_end_date', $event_id);

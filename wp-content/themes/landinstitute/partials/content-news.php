@@ -224,7 +224,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php
 							while ($news_query->have_posts()) : $news_query->the_post();
 								$post_id    = get_the_ID();
-								$title      = get_the_title();
+								$title      = html_entity_decode(get_the_title());
 								$permalink  = get_permalink();
 								$excerpt    = get_the_excerpt($post_id);
 								$terms      = get_the_terms($post_id, 'learn-type');
