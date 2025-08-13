@@ -130,7 +130,7 @@ function ajax_filter_logo_grid_filter()
 	if ($donors->have_posts()) :
 		while ($donors->have_posts()) : $donors->the_post();
 			$image_id = get_post_thumbnail_id(get_the_ID());
-			$title    = get_the_title();
+			$title    = html_entity_decode(get_the_title());
 			$title_words = explode(' ', trim($title));
 			$first_initial = !empty($title_words[0]) ? strtoupper($title_words[0][0]) : '';
 			$last_initial  = !empty($title_words[1]) ? strtoupper($title_words[1][0]) : '';

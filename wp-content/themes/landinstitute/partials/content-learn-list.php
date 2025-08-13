@@ -52,7 +52,7 @@ if ($query->have_posts()) :
 					<div class="gl-s52"></div>
 					<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html(ucfirst($learn_type)); ?></div>
 					<div class="gl-s6"></div>
-					<div class="card-title heading-7"><?php echo get_the_title(); ?></div>
+					<div class="card-title heading-7"><?php echo html_entity_decode(get_the_title()); ?></div>
 					<div class="gl-s12"></div>
 					<div class="description ui-18-16-regular">
 						<?php echo wp_trim_words(get_the_excerpt(), 30); ?>

@@ -48,7 +48,7 @@
 					$first_name = get_field('li_cpt_d_first_name',get_the_ID());
 					$last_name = get_field('li_cpt_d_last_name',get_the_ID());
 
-					$title = get_the_title();
+					$title = html_entity_decode(get_the_title());
 					$title_words = explode(' ', trim($title));
 					$first_initial = !empty($title_words[0]) ? strtoupper($title_words[0][0]) : '';
 					$last_initial  = !empty($title_words[1]) ? strtoupper($title_words[1][0]) : '';

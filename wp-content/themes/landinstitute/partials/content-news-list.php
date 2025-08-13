@@ -4,7 +4,7 @@ $requestdbyajax = get_query_var('requestdbyajax');
 
 if ($news->have_posts()) :
 while ($news->have_posts()) : $news->the_post();
-    $title         = get_the_title();
+    $title         = html_entity_decode(get_the_title());
     $date          = get_the_date('M j, Y');
     $permalink     = get_the_permalink();
     $short_Desc    = get_the_excerpt();

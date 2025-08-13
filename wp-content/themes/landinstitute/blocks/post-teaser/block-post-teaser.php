@@ -148,7 +148,7 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 						$index = 0;
 						while ($posts_query->have_posts()) : $posts_query->the_post();
 							$post_id = get_the_ID();
-							$title = get_the_title();
+							$title = html_entity_decode(get_the_title());
 							$permalink = get_the_permalink();
 							$youtube_url = get_field('li_ldo_youtube_url', $post_id);
 							$class = $slide_classes[$index % count($slide_classes)];

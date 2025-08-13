@@ -16,7 +16,7 @@ if ($li_t_choose_variation === 'single' && !empty($li_t_selector_testimonial_sin
             <div class="testimonial-slide-group">
                 <?php while ($testimonial_query->have_posts()) : $testimonial_query->the_post();
                     $testimonial_id     = get_the_ID();
-                    $title              = get_the_title();
+                    $title              = html_entity_decode(get_the_title());
                     $wysiwyg            = get_field('li_cpt_t_wysiwyg', $testimonial_id);
                     $author_name        = get_field('li_cpt_t_name', $testimonial_id);
                     $author_company     = get_field('li_cpt_t_company', $testimonial_id);
