@@ -124,8 +124,8 @@
                 "id": ""
             },
             "relevanssi_exclude": 0,
-            "display_format": "d\/m\/Y",
-            "return_format": "d\/m\/Y",
+            "display_format": "F j, Y",
+            "return_format": "F j, Y",
             "first_day": 1,
             "allow_in_bindings": 0
         },
@@ -632,5 +632,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1755066433
+    "modified": 1755084577
 }

@@ -98,7 +98,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 									<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
 									<div class="gl-s6"></div>
 									<div class="block-content body-18-16-regular">
-										<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_ido_date ) ) ); ?>
+										<?php echo esc_html( $li_ido_date ); ?>
 									</div>
 								</div>
 							<?php endif; ?>
@@ -137,7 +137,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 								<div class="gl-s36"></div>
 								<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
 								<div class="block-content body-18-16-regular">
-									<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_ido_date ) ) ); ?>
+									<?php echo esc_html( $li_ido_date ); ?>
 								</div>
 							<?php endif; ?>
 
