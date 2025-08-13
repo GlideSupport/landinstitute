@@ -60,17 +60,6 @@ if (btns.length > 0) {
 	});
 } 
 // Add hover effect to buttons end
-document.addEventListener('keydown', function(e) {
-    if (
-        (e.key === 'Enter' || e.key === ' ') &&
-        e.target.getAttribute('role') === 'button' &&
-        e.target.tabIndex === 0 &&
-        e.target.getAttribute('aria-disabled') !== 'true'
-    ) {
-        e.preventDefault();
-        e.target.click();
-    }
-});
 
 // Focus and blur events for menu items with sub-menus
 document.querySelectorAll(".menu-item-has-children > a").forEach((anchor) => {
