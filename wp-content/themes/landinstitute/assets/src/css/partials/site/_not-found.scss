@@ -44,6 +44,16 @@
     }
 }
 
+.error-page-hero {
+    .back-to-home {
+        .site-btn {
+            @media(max-width: 767px) {
+                width: 100%
+            }
+        }
+    }
+}
+
 .not-found {
     .page-content {
         max-width: 550px;
