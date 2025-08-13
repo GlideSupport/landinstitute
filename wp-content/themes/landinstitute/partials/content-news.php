@@ -131,9 +131,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 								<div class="block-content body-18-16-regular">
 									<?php echo esc_html( date_i18n( 'F j, Y', strtotime( $li_nwd_date ) ) ); ?>
 								</div>
-								<div class="gl-s96"></div>
 							<?php endif; ?>
-
+							<div class="gl-s96"></div>
 						</div>
 					</div>
 				<?php endif; ?>
