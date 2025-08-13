@@ -182,32 +182,20 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//if has children then add triangle div on nav js start
-		// const menuItems = document.querySelectorAll("li.menu-item-has-children");
-		// menuItems.forEach(function (item) {
-		//     const link = item.querySelector("a");
+		const menuItems = document.querySelectorAll("li.menu-item-has-children");
+		menuItems.forEach(function (item) {
+			const link = item.querySelector("a");
 
-		//     if (link) {
-		//         link.setAttribute("aria-haspopup", "true");
-		//         link.setAttribute("aria-expanded", "false");
+			// Only wrap if not already wrapped
+			if (link && !link.closest(".child-triangle")) {
+				const wrapper = document.createElement("div");
+				wrapper.classList.add("child-triangle");
 
-		//         // Update aria-expanded on hover
-		//         item.addEventListener("mouseenter", () => {
-		//             link.setAttribute("aria-expanded", "true");
-		//         });
-		//         item.addEventListener("mouseleave", () => {
-		//             link.setAttribute("aria-expanded", "false");
-		//         });
-
-		//         // Keep your triangle wrapper logic
-		//         if (!link.closest(".child-triangle")) {
-		//             const wrapper = document.createElement("div");
-		//             wrapper.classList.add("child-triangle");
-		//             link.parentNode.insertBefore(wrapper, link);
-		//             wrapper.appendChild(link);
-		//         }
-		//     }
-		// });
-
+				// Move the <a> tag into the new wrapper
+				link.parentNode.insertBefore(wrapper, link);
+				wrapper.appendChild(link);
+			}
+		});
 	//end
 	
 });

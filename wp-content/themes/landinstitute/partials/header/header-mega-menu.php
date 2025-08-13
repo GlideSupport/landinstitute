@@ -5,6 +5,7 @@
 				'menu'             => $landinstitute_header_main_menu['slug'],
 				'fallback_cb'      => 'BaseTheme::nav_fallback',
 				'container'   => false,
+				'items_wrap'   => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
 			)
 		);
 	}
