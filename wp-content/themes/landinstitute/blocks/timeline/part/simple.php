@@ -31,7 +31,7 @@
 
 			<div class="gl-s44"></div>
 			<div class="slider-btn">
-				<div class="swiper-button-prev" role="button" tabindex="-1" aria-label="Previous slide"></div>
+				<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide" aria-disabled="true"></div>
 				<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
 			</div>
 

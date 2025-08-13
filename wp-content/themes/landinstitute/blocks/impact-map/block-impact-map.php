@@ -96,7 +96,7 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 			<div class="drag-arrows">
 				<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
 				<span>Drag</span>
-				<div class="swiper-button-prev" role="button" tabindex="-1" aria-label="Previous slide"></div>
+				<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide" aria-disabled="true"></div>
 			</div>
 		</div>
 
