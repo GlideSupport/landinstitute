@@ -294,10 +294,23 @@ picture {
 
 *:focus {
     outline: none;
+    /* 🚫 This removes visible focus */
 }
 
 *:focus-visible {
-    outline-color: var(--wp--preset--color--black) !important;
+    outline: 2px solid #4D3016;
+    outline-offset: 2px;
+}
+
+.menu-search-type-list .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
 }
 
 // section:has(.all-resources-block, .bg-pattern-fixed, .impact-map-block, .cta-grid-mosaic-block, .video-alongside-text, .theme-video, .tabbed-content-block, .map-embed-block, .timeline-block, .logo-grid-links-block, .cta-grid-slider-block, .midpage-cta-map, .midpage-cta-material, .footer-cta, .midpage-cta-image-right, .resoruce-filter-title, .logo-grid-filters, .cta-slider-block, .testimonial-traditional-block, .tab-content-block, .two-column-image, .cta-columns-two-block, .cta-rows-list-block, .event-teaser-list-block, .cta-grid-traditional-block, .state-grid-block, .scrolling-text-block, .single-section-btn, .news-list-filter-title, .read-more-block, .past-event-filter-title, .image-gallery-block, .block-chart) {
