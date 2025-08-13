@@ -76,13 +76,6 @@ document.querySelectorAll(".menu-item-has-children > a").forEach((anchor) => {
 		}
 	});
 });
-document.querySelectorAll('*').forEach(el => {
-  el.addEventListener('focus', () => {
-    console.log('Focused:', el);
-    el.style.outline = '3px solid magenta';
-    el.style.outlineOffset = '3px';
-  });
-});
 
 // Toggle menu button functionality
 const menuBtn = document.querySelector(".menu-btn");
