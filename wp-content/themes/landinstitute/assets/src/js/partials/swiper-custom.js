@@ -279,6 +279,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				slideToClickedSlide: true,
 				speed: 1000,
 				centeredSlides: true,
+				a11y: {
+				    slideRole: 'button'
+				  }
 			});
 
 			galleryTop.controller.control = galleryThumbs;
