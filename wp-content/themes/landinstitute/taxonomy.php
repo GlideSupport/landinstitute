@@ -196,8 +196,12 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 											<div class="filter-card-content">
 												<div class="gl-s52"></div>
 												<div class="eyebrow ui-eyebrow-16-15-regular">
-													<?php $cats = get_the_category();
-													echo $cats ? esc_html($cats[0]->name) : 'Uncategorized'; ?>
+													<?php
+													$learn_types = get_the_terms(get_the_ID(), 'learn-type');
+													if ($learn_types && !is_wp_error($learn_types)) {
+														echo esc_html($learn_types[0]->name);
+													}
+													?>
 												</div>
 												<div class="gl-s6"></div>
 												<div class="card-title heading-7"><?php echo html_entity_decode(get_the_title()); ?></div>
