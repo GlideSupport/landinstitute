@@ -96,7 +96,7 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 			<div class="drag-arrows">
 				<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
 				<span>Drag</span>
-				<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
+				<div class="swiper-button-prev" role="button" tabindex="-1" aria-label="Previous slide"></div>
 			</div>
 		</div>
 
@@ -104,13 +104,16 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 			<div class="swiper-container map-years">
 				<div class="swiper-wrapper">
 					<?php foreach ($li_im_repeater as $row) : ?>
-						<div class="swiper-slide">
-							<div class="slide-year" role="button" tabindex="0" aria-pressed="false"><?php echo esc_html($row['li_im_year'] ?? ''); ?></div>
+						<div class="swiper-slide" role="button" tabindex="0" aria-label="<?php echo esc_attr($row['li_im_year']); ?>">
+							<div class="slide-year">
+								<?php echo esc_html($row['li_im_year'] ?? ''); ?>
+							</div>
 						</div>
 					<?php endforeach; ?>
 				</div>
 			</div>
 		</div>
+
 	<?php endif; ?>
 	<?php echo !empty($li_im_button) ? '<div class="map-bottom-cta"><div class="map-cta-btn">' . BaseTheme::button($li_im_button, 'site-btn') . '</div></div>' : ''; ?>
 </div>

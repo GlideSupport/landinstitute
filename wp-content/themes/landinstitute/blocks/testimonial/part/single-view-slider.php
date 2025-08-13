@@ -58,7 +58,7 @@ if ($li_t_choose_variation === 'single-view-slider' && !empty($li_t_selector_tes
             </div>
             <?php if ($total_testimonials > 1) : ?>
                 <div class="slider-btn">
-                    <div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
+                    <div class="swiper-button-prev" role="button" tabindex="-1" aria-label="Previous slide"></div>
                     <div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
                 </div>
             <?php endif; ?>
