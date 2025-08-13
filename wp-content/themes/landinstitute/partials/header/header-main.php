@@ -58,7 +58,8 @@
 														<div class="arrow-icon"></div>
 													</button>
 													<div class="menu-search-type-list">
-														<ul id="menu-search-type" class="dropdown-menu" role="menu" aria-label="search-type" aria-labelledby="search-type">
+														<ul id="menu-search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type-label">
+															 <span id="search-type-label" class="visually-hidden">Search Type Menu</span>
 															<li class="active" style="animation-delay: 0s;">
 																<a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
 																<div class="arrow-icon"></div>
