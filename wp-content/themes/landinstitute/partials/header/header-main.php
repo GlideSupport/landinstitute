@@ -54,7 +54,7 @@
 											$final_post_types = array_diff($allowed_post_types, $excluded_post_types);
 											if (!empty($landinstitute_to_title)): ?>
 												<div class="search-everything tab-dropdown tab-dropdown-filter header-search-menu">
-													<button id="menu-search-type-btn" aria-expanded="false" aria-haspopup="true" aria-controls="menu-search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php echo esc_html($landinstitute_to_title); ?>
+													<button id="menu-search-type-btn" aria-label="search-type" aria-expanded="false" aria-haspopup="true" aria-controls="menu-search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php echo esc_html($landinstitute_to_title); ?>
 														<div class="arrow-icon"></div>
 													</button>
 													<div class="menu-search-type-list">
