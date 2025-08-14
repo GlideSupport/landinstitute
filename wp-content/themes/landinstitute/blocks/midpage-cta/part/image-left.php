@@ -1,5 +1,5 @@
 <?php if (!empty($li_mpc_headline_check) || !empty($li_mpc_kicker) || !empty($li_mpc_wysiwyg) || !empty($li_mpc_link) || !empty($li_mpc_image)) { ?>
-<div class="sticky-lft-block">
+<div class="sticky-lft-block mid-page-cta-sticky">
 	<div class="row-flex">
 		<?php echo !empty($li_mpc_image)  ? '<div class="col-left sticky-img"><div class="sticky-image-stick">' . wp_get_attachment_image($li_mpc_image, 'thumb_1400') . '</div></div>' : ''; ?>
 		<div class="cl-right">
