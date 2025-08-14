@@ -12,11 +12,16 @@
 			<?php if (!empty($li_ig_repeater)) : ?>
 				<div class="gallery-grid">
 					<div class="gallery-image">
-						<?php foreach ($li_ig_repeater as $li_ig_rep) :
+						<?php 
+						$count = 0;
+						foreach ($li_ig_repeater as $li_ig_rep) :
+							if ($count >= 8) break; // stop after 8
 							$image = $li_ig_rep['image'] ?? '';
 							if (!empty($image)): ?>
 								<?php echo !empty($image) ? '<div class="card-img">' . wp_get_attachment_image($image, false) . '</div>' : ''; ?>
-						<?php endif;
+						<?php 
+						$count++;	
+						endif;
 						endforeach; ?>
 					</div>
 				</div>
