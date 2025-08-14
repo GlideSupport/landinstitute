@@ -41,26 +41,6 @@ $bst_var_post_catagories = get_categories( $bst_var_post_id );
 				<?php } ?>
 
 			</div>
-			<!-- <div class="search-blog-area">
-				<span class="search-blog">Search Blog</span>
-				<div class="blog-form-area">
-					<div class="close-btn"><img
-							src="https://cancerchoices.wpengine.com/wp-content/themes/cancerchoices/assets/build/images/close-light.svg"
-							alt="Close"></div>
-					<div class="blog-form">
-						<form role="search" method="get" class="search-form"
-							action="https://cancerchoices.wpengine.com/">
-							<label>
-								<span class="screen-reader-text">Search for:</span>
-								<input type="hidden" name="post_type" value="post">
-								<input type="search" class="search-field" placeholder="What are you searching for?"
-									value="" name="s">
-							</label>
-							<input type="submit" class="search-submit" value="Search Blog">
-						</form>
-					</div>
-				</div>
-			</div> -->
 		</div>
 		<div class="gl-s11"></div>
 		<?php
