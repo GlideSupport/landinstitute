@@ -232,3 +232,9 @@ body form .v_fw .v_fr .Select-control:focus {
 		padding: 10px 0 10px 0;
 	}
 }
+
+
+.lity-close:active, .lity-close:focus, .lity-close:hover, .lity-close:visited {
+    background: var(--gb_base_brown);
+    border-color: var(--gb_base_brown);
+}
