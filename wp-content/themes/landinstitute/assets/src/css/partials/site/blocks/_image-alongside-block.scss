@@ -543,6 +543,22 @@
             }
         }
     }
+
+    &.mid-page-cta-sticky {
+        .row-flex {
+            .cl-right {
+                .block-btn {
+                    margin-right: 0;
+                    margin-left: 0;
+
+                    .site-btn {
+                        width: auto;
+                        border: 2px solid var(--gb_base_brown);
+                    }
+                }
+            }
+        }
+    }
 }
 
 
