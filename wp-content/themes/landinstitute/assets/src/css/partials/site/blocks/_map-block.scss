@@ -20,6 +20,12 @@
             object-fit: contain;
             width: 100%;
         }
+
+        &.single-map-custom {
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
     }
 
     .map-content-value {
@@ -799,4 +805,92 @@ html {
             }
         }
     }
+}
+
+
+
+
+
+
+
+// map
+
+
+:root {
+    --color-0: #FAF2A7;
+    --color-1: #EBE59D;
+    --color-2: #CECC89;
+    --color-3: #9A9F66;
+    --color-4: #677343;
+    --svg-map-background: #FDF9D0;
+    --svg-map-stroke: rgba(52, 63, 24, 0.70);
+}
+
+.impact-map-block .single-map-custom svg {
+    width: 100%;
+    height: auto;
+    background-color: var(--svg-map-background);
+}
+
+.impact-map-block .single-map-custom .country,
+.impact-map-block .single-map-custom.country path {
+    transition: fill 0.5s ease-in-out;
+    stroke-width: .65px;
+    stroke: var(--svg-map-stroke);
+    fill: var(--color-0);
+}
+
+.impact-map-block .single-map-custom .timeline {
+    margin: 1em 0;
+}
+
+.impact-map-block .single-map-custom .timeline button {
+    margin-right: 0.5em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+.impact-map-block .single-map-custom .water {
+    fill: var(--svg-map-background);
+    stroke: var(--svg-map-stroke);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="0"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="0"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="0"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="0"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="0"] {
+    fill: var(--color-0);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="1"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="1"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="1"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="1"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="1"] {
+    fill: var(--color-1);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="2"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="2"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="2"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="2"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="2"] {
+    fill: var(--color-2);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="3"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="3"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="3"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="3"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="3"] {
+    fill: var(--color-3);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="4"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="4"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="4"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="4"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="4"] {
+    fill: var(--color-4);
 }
