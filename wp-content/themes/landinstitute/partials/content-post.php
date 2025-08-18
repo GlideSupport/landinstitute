@@ -260,11 +260,15 @@ if ($posts_query->have_posts()) : ?>
 								$term_name  = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';
 								$thumbnail_id = get_post_thumbnail_id($post_id) ?: $bst_var_theme_default_image;
 								$youtube_url = get_field('li_ldo_youtube_url', $post_id);
+								$li_ido_date = get_field('li_ido_date', $post_id);
 							?>
 								<div class="swiper-slide">
 									<div class="image-card-caption">
 										<a href="<?php echo esc_url($permalink); ?>" class="caption-card-link">
-											<div class="image">
+											<div class="image tag-show">
+												<?php if ( ! empty( $li_ido_date ) ) : ?>
+													<div class="tag-date"><div class="block-content eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html( $li_ido_date ); ?></div></div>
+												<?php endif; ?>
 												<?php
 												if (has_post_thumbnail($post_id)) {
 													echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800');

@@ -151,11 +151,15 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 							$title = html_entity_decode(get_the_title());
 							$permalink = get_the_permalink();
 							$youtube_url = get_field('li_ldo_youtube_url', $post_id);
+							$li_ido_date = get_field('li_ido_date', $post_id);
 							$class = $slide_classes[$index % count($slide_classes)];
 						?>
 							<div class="swiper-slide <?php echo esc_attr($class); ?>">
 								<a href="<?php echo esc_url($permalink); ?>" class="border-image-content">
-									<div class="variable-image">
+									<div class="variable-image tag-show">
+										<?php if ( ! empty( $li_ido_date ) ) : ?>
+											<div class="tag-date"><div class="block-content eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html( $li_ido_date ); ?></div></div>
+										<?php endif; ?>
 										<?php
 										if (has_post_thumbnail($post_id)) {
 											echo wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_800');

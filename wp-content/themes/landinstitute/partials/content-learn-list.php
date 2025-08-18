@@ -23,7 +23,10 @@ if ($query->have_posts()) :
 		?>
 		<div class="filter-card-item">
 			<a href="<?php the_permalink(); ?>" class="filter-card-link">
-				<div class="image">
+				<div class="image tag-show">
+					<?php if ( ! empty( $li_ido_date ) ) : ?>
+						<div class="tag-date"><div class="block-content eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html( $li_ido_date ); ?></div></div>
+					<?php endif; ?>
 					<?php
 					if (has_post_thumbnail()) {
 						// Featured image
