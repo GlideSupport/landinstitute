@@ -20,12 +20,6 @@
             object-fit: contain;
             width: 100%;
         }
-
-        &.single-map-custom {
-            position: absolute;
-            left: 0;
-            right: 0;
-        }
     }
 
     .map-content-value {
@@ -831,7 +825,6 @@ html {
 .impact-map-block .single-map-custom svg {
     width: 100%;
     height: auto;
-    background-color: var(--svg-map-background);
 }
 
 .impact-map-block .single-map-custom .country,
