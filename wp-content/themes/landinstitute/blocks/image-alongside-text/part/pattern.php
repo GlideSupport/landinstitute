@@ -1,5 +1,5 @@
 <?php if (!empty($li_iat_headline_check) || !empty($li_iat_kicker) || !empty($li_iat_wysiwyg) || !empty($li_iat_button) || !empty($li_iat_bg_image)): ?>
-    <div class="sticky-lft-block">
+    <div class="sticky-lft-block iat-text-link">
         <div class="row-flex">
             <?php echo !empty($li_iat_bg_image) ? '<div class="col-left sticky-img"><div class="sticky-image-stick">' . wp_get_attachment_image($li_iat_bg_image, 'thumb_1200', false) . '</div></div>' : ''; ?>
             <div class="cl-right">
