@@ -30,6 +30,8 @@
 
     .map-content-value {
         position: relative;
+        display: flex;
+        flex-direction: column;
 
         .drag-arrows {
             @media(max-width: 991px) {
