@@ -541,6 +541,15 @@ section:has(.variation-static) {
             object-fit: cover;
             width: 100%;
         }
+
+        .tag-date {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
     }
 
     .caption-card-content {
@@ -599,5 +608,17 @@ section:has(.variation-static) {
 
     .img-grid-block {
         display: flex;
+    }
+}
+
+
+.tag-show {
+    position: relative;
+
+    .tag-date {
+        .block-content {
+            background: var(--gb_base_cream);
+            padding: 4px 6px;
+        }
     }
 }
