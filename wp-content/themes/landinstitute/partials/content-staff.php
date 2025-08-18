@@ -43,9 +43,9 @@ $li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? n
 								<div class="staff-image">
 									<?php
 									if (has_post_thumbnail($bst_var_post_id)) {
-										echo get_the_post_thumbnail($bst_var_post_id, 'thumb_900');
+										echo get_the_post_thumbnail($bst_var_post_id, 'full');
 									} else {
-										echo wp_get_attachment_image($bst_var_theme_default_avatar_for_staff, 'thumb_500');
+										echo wp_get_attachment_image($bst_var_theme_default_avatar_for_staff, 'full');
 									}
 									?>
 								</div>
