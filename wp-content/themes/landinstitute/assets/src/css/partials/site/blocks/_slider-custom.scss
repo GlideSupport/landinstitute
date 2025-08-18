@@ -607,12 +607,12 @@ section:has(.variation-static) {
     position: relative;
 
     .tag-date {
+        gap: 8px;
         position: absolute;
         left: 20px;
         top: 20px;
         display: flex;
         flex-wrap: wrap;
-        gap: 9px;
 
         .block-content {
             background: var(--gb_base_cream);
