@@ -3326,7 +3326,7 @@
         },
         {
             "key": "field_686e323684bee",
-            "label": "Learn Category Page Options",
+            "label": "Category Page Options",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -3338,6 +3338,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "placement": "top",
             "endpoint": 0,
             "selected": 0
@@ -4068,5 +4069,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1755010477
+    "modified": 1755494179
 }
