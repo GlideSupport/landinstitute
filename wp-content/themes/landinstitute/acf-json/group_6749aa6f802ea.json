@@ -339,7 +339,7 @@
                     "name": "image",
                     "aria-label": "",
                     "type": "image",
-                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 480px by 579px (Regular Display) - Maximum 960px by 1158px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+                    "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1000px by 440px (Regular Display) - Maximum 2000px by 880px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -347,6 +347,7 @@
                         "class": "",
                         "id": ""
                     },
+                    "relevanssi_exclude": 0,
                     "return_format": "id",
                     "library": "all",
                     "min_width": "",
@@ -1107,5 +1108,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752745192
+    "modified": 1755521605
 }

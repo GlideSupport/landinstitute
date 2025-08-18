@@ -118,7 +118,8 @@
                 "class": "",
                 "id": ""
             },
-            "message": "<div class=\"upload-instructions\">\r\n<b>Recommended Size: Image 1<\/b> Minimum 720px by 900px (Regular Display) - Maximum 1440px by 1800px (Retina Display) - (width x height)<br \/>\r\n<b>Recommended Size: Image 2<\/b> Minimum 728px by 482px (Regular Display) - Maximum 1456px by 964px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+            "relevanssi_exclude": 0,
+            "message": "<div class=\"upload-instructions\">\r\n<b>Recommended Size<\/b> Minimum 1000px by 500px (Regular Display) - Maximum 2000px by 1000px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -255,5 +256,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1752821439
+    "modified": 1755522010
 }
