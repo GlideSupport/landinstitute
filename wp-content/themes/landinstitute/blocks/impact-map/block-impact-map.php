@@ -43,6 +43,7 @@ if ($block['name']) {
 
 // Block variables.
 $li_im_title = $bst_block_fields['li_im_title'] ?? null;
+$li_im_map_svg = $bst_block_fields['li_im_map_svg'] ?? null;
 $li_im_repeater = $bst_block_fields['li_im_repeater'] ?? null;
 $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 ?>
@@ -52,22 +53,33 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 		<!-- Years slider -->
 		<?php if (!empty($li_im_repeater)) : ?>
 		<div class="map-content-value">
+			<?php if ($li_im_map_svg) : ?>
+				<div class="map-image single-map-custom">
+					<?php
+					// If field returns ID
+					if (is_numeric($li_im_map_svg)) {
+						$svg_path = get_attached_file($li_im_map_svg);
+					} else {
+						// If field returns URL
+						$svg_path = str_replace(home_url('/'), ABSPATH, $li_im_map_svg);
+					}
+
+					if ($svg_path && file_exists($svg_path)) {
+						echo file_get_contents($svg_path);
+					} else {
+						// fallback: show as <img>
+						echo wp_get_attachment_image($li_im_map_svg, 'full', false, ['alt' => 'Map Image']);
+					}
+					?>
+				</div>
+			<?php endif; ?>
 			<div class="swiper-container map-slides">
 				<div class="swiper-wrapper">
 					<?php foreach ($li_im_repeater as $row) : 
 						$year = $row['li_im_year'] ?? '';
-						$stats = $row['li_im_stats_details'] ?? [];
-						$image = $row['li_im_image'] ?? [];
-						
-					?>
+						$stats = $row['li_im_stats_details'] ?? [];?>
 						<div class="swiper-slide">
-							<div class="swiper-slide-container">
-								<?php if ($image) : ?>
-									<div class="map-image">
-									<?php echo wp_get_attachment_image($image, 'thumb_1200', false, array( 'width'  => 1003, 'height' => 534, 'alt' => 'Map Image') ); ?>
-
-									</div>
-								<?php endif; ?>
+							<div class="swiper-slide-container" data-map="<?php echo esc_attr($row['li_im_year']); ?>">
 								<?php if (!empty($stats)) : ?>
 									<div class="map-values">
 										<?php foreach ($stats as $stat) :

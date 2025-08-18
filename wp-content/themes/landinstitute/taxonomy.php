@@ -165,7 +165,8 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 						<div class="filter-cards-grid">
 							<?php if (have_posts()) : ?>
 								<?php while (have_posts()) : the_post();
-									$youtube_url = get_field('li_ldo_youtube_url', get_the_ID()); ?>
+									$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
+									$li_ido_date = get_field('li_ido_date', get_the_ID()); ?>
 									<div class="filter-card-item">
 										<a href="<?php the_permalink(); ?>" class="filter-card-link">
 											<div class="image">

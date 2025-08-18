@@ -249,8 +249,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			navigation:
 				nextBtn && prevBtn
 					? {
-							nextEl: nextBtn,
-							prevEl: prevBtn,
+					nextEl: nextBtn,
+					prevEl: prevBtn,
 					  }
 					: false,
 			effect: "fade",
@@ -259,16 +259,34 @@ document.addEventListener("DOMContentLoaded", function () {
             simulateTouch: true,
             allowTouchMove: true,
 			on: {
-				slideChangeTransitionEnd: function () {
-					const activeSlide = this.slides[this.activeIndex];
-					const mapCounters = activeSlide.querySelectorAll(
-						".map-counter .count"
-					);
-					mapCounters.forEach((mapCounter) => {
-						observer.observe(mapCounter.closest(".map-counter"));
-					});
-				},
-			},
+		    slideChange: function () {
+		        const activeSlide = this.slides[this.activeIndex];
+		        const slideContainer = activeSlide.querySelector(".swiper-slide-container");
+
+		        const year = slideContainer ? slideContainer.getAttribute("data-map") : null;
+		        const svgMaps = document.querySelectorAll(".impact-map-block .map-image svg");
+
+		        if (year) {
+		            svgMaps.forEach((svg) => {
+		                svg.classList.forEach((cls) => {
+		                    if (cls.startsWith("year-")) {
+		                        svg.classList.remove(cls);
+		                    }
+		                });
+		                svg.classList.add(`year-${year}`);
+		            });
+		        }
+		    },
+		    // Keep counters triggered at the end of the transition
+		    slideChangeTransitionEnd: function () {
+		        const activeSlide = this.slides[this.activeIndex];
+		        const mapCounters = activeSlide.querySelectorAll(".map-counter .count");
+		        mapCounters.forEach((mapCounter) => {
+		            observer.observe(mapCounter.closest(".map-counter"));
+		        });
+		    }
+		}
+
 		});
 
 		// Swiper thumbs
