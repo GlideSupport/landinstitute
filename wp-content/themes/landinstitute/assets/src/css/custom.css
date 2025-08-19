@@ -238,3 +238,53 @@ body form .v_fw .v_fr .Select-control:focus {
     background: var(--gb_base_brown);
     border-color: var(--gb_base_brown);
 }
+
+:root {
+    --color-0: #FAF2A7;
+    --color-1: #EBE59D;
+    --color-2: #CECC89;
+    --color-3: #9A9F66;
+    --color-4: #677343;
+    --svg-map-background: #FDF9D0;
+    --svg-map-stroke: rgba(52, 63, 24, 0.70);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="0"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="0"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="0"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="0"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="0"] {
+    fill: var(--color-0);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="1"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="1"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="1"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="1"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="1"] {
+    fill: var(--color-1);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="2"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="2"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="2"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="2"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="2"] {
+    fill: var(--color-2);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="3"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="3"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="3"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="3"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="3"] {
+    fill: var(--color-3);
+}
+
+.impact-map-block .single-map-custom svg.year-2025 [data-2025="4"],
+.impact-map-block .single-map-custom svg.year-2030 [data-2030="4"],
+.impact-map-block .single-map-custom svg.year-2040 [data-2040="4"],
+.impact-map-block .single-map-custom svg.year-2050 [data-2050="4"],
+.impact-map-block .single-map-custom svg.year-2100 [data-2100="4"] {
+    fill: var(--color-4);
+}
