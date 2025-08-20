@@ -939,7 +939,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		function updateStickyWidth() {
 			const stickyParentWidth = stickyParent.offsetWidth;
 			subNav.style.width = stickyParentWidth + "px";
-			subNav.getBoundingClientRect();
+		}
+		function updateParentHeight() {
+			const stickyHeight = subNav.offsetHeight;
+			stickyParent.style.height = stickyHeight + "px";
 		}
 
 		function onScroll() {
@@ -955,12 +958,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			const scrollY = window.scrollY || window.pageYOffset;
 
-			const parentRect = parentSection.getBoundingClientRect();
-			const parentTop = parentRect.top + window.scrollY;
-			const parentBottom = parentTop + parentRect.height;
+			const parentTop = parentSection.offsetTop;
+			const parentHeight = parentSection.offsetHeight;
+			const parentBottom = parentTop + parentHeight;
 
 			const stickyHeight = subNav.offsetHeight;
 			const totalOffset = headerHeight + (wpAdminBar ? wpAdminBar.offsetHeight : 0);
+			updateParentHeight();
 
 			if ( scrollY + headerHeight >= parentTop && scrollY + headerHeight < parentBottom - stickyHeight ) {
 				subNav.classList.add("scrolled");
