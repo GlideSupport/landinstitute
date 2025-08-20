@@ -81,7 +81,7 @@ class WP_Theme_Scripts {
 				'strategy'  => 'defer',
 			)
 		);
-		BaseTheme::enqueue_style( 'assets/src/css/custom.css');
+		BaseTheme::enqueue_style( 'assets/src/css/custom.css', [], filemtime( get_stylesheet_directory() . '/assets/src/css/custom.css' ));
 	}
 	/**
 	 * Enqueue Backend Assets
