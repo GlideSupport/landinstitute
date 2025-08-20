@@ -32,6 +32,7 @@ $cota_cpt_event_external_links = (isset($post_fields['cota_cpt_event_external_li
 $cota_cpt_event_start_date = $post_fields['li_cpt_event_start_date'];
 $cota_cpt_event_end_date = $post_fields['li_cpt_event_end_date'];
 $final_date =  date_formatting_new($cota_cpt_event_start_date, $cota_cpt_event_end_date);
+$city_state   = get_field('li_cpt_event_city_state',$pID);
 $src = wp_get_attachment_image_url(get_post_thumbnail_id($pID), 'thumb_400');
 if (!$src) {
     $src = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');
@@ -62,6 +63,7 @@ if (!$src) {
 								target="_blank <?php } else {
 							echo get_the_permalink($pID);
 						} ?>"><?php echo $cota_cpt_event_title; ?></a>
+						
 					</div>
 					<div class="tooltip-date">
 					<div class="gl-s2"></div>
@@ -70,6 +72,15 @@ if (!$src) {
 								target="_blank <?php } else {
 							echo get_the_permalink($pID);
 						} ?>"><?php echo $final_date; ?></a>
+					</div>
+					<div class="tooltip-date">
+						<div class="gl-s2"></div>
+						<a href="<?php if ($cota_cpt_event_external_links == "true") {
+							echo $cota_cpt_event_button['url']; ?>"
+								target="_blank <?php } else {
+							echo get_the_permalink($pID);
+						} ?>"><?php echo $city_state; ?></a>
+						<div class="gl-s4"></div>
 					</div>
 					<div class="block-btn">
 					<a href="<?php if ($cota_cpt_event_external_links == "true") {

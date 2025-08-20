@@ -56,10 +56,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33.33",
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "display_format": "Y-m-d",
             "return_format": "Y-m-d",
             "first_day": 1,
@@ -75,14 +76,37 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "33.33",
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "display_format": "Y-m-d",
             "return_format": "Y-m-d",
             "first_day": 1,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68a5c4daf7107",
+            "label": "City\/State",
+            "name": "li_cpt_event_city_state",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_6853ec6149e8b",
@@ -581,5 +605,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1753281700
+    "modified": 1755694520
 }

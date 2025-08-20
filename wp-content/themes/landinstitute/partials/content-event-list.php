@@ -34,6 +34,9 @@ if ($end_date) {
                 <?php echo $event_display; ?>
             </div>
             <div class="gl-s4"></div>
+            <?php if($city_state): ?>
+                <div class="ui-eyebrow-18-16-regular block-subhead"><?php echo esc_html($city_state); ?></div><div class="gl-s4"></div>
+            <?php endif; ?>
             <h4 class="heading-4 mb-0 block-title"><?php the_title(); ?></h4>
         <?php if($excerpt){ ?>
             <div class="gl-s16"></div>

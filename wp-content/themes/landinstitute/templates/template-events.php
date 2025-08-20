@@ -214,6 +214,7 @@ $latest_featured_event = new WP_Query(array(
 									$event_query->the_post();
 									$start_date = get_field('li_cpt_event_start_date');
 									$end_date = get_field('li_cpt_event_end_date');
+									$city_state   = get_field('li_cpt_event_city_state');
 									$post_id =get_the_ID();
 									$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'thumb_800');;
 									if (get_the_post_thumbnail_url(get_the_ID(), 'thumb_800')) {
@@ -229,6 +230,7 @@ $latest_featured_event = new WP_Query(array(
 									// Pass variables to template part
 									set_query_var('start_date', $start_date);
 									set_query_var('end_date', $end_date);
+									set_query_var('city_state', $city_state);
 									set_query_var('image', $image);
 									set_query_var('excerpt', $excerpt);
 									set_query_var('url', $url);

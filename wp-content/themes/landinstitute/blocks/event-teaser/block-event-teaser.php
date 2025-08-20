@@ -91,6 +91,7 @@ if (!empty($headline_check) && $events_query->have_posts()) : ?>
 					$end_date   = strtotime(get_field('li_cpt_event_end_date', $event_id));
 					$start_time = get_field('li_cpt_event_start_time', $event_id);
 					$end_time   = get_field('li_cpt_event_end_time', $event_id);
+					$city_state   = get_field('li_cpt_event_city_state', $event_id);
 					$all_day    = get_field('li_cpt_event_all_day', $event_id);
 					$timezone   = get_field('timezone', $event_id);
 
@@ -126,7 +127,9 @@ if (!empty($headline_check) && $events_query->have_posts()) : ?>
 								<?php endif; ?>
 
 								<?php if ($event_date && $title) echo '<div class="gl-s4"></div>'; ?>
-
+								<?php if($city_state): ?>
+									<div class="ui-eyebrow-18-16-regular block-subhead"><?php echo esc_html($city_state); ?></div><div class="gl-s4"></div>
+								<?php endif; ?>
 								<?php if ($title) : ?>
 									<h4 class="heading-4 mb-0 block-title"><?php echo esc_html($title); ?></h4>
 								<?php endif; ?>

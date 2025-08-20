@@ -97,6 +97,7 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 							$event_link = get_permalink($post_id);
 
 							$event_date = get_formatted_event_datetime($post_id);
+							$city_state   = get_field('li_cpt_event_city_state', $post_id);
 							$excerpt     = get_the_excerpt($post_id);
 							$event_content = wp_trim_words($excerpt, 25, '...');
 
@@ -110,6 +111,9 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 										<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_date; ?>
 										</div>
 										<div class="gl-s6"></div>
+										<?php if($city_state): ?>
+											<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($city_state); ?></div><div class="gl-s4"></div>
+										<?php endif; ?>
 										<div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
 										<div class="gl-s16"></div>
 										<div class="description ui-18-16-regular"><?php echo $event_content; ?></div>
