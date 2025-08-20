@@ -995,15 +995,14 @@ document.addEventListener("DOMContentLoaded", function () {
 				headerHeight = headerSection.offsetHeight;
 
 				stickyElements.forEach(function (nav) {
-					if (
-						window.innerWidth > 991 &&
-						(nav.style.position === "fixed" ||
-							nav.style.position === "absolute")
-					) {
+					if (window.innerWidth > 991 && (nav.style.position === "fixed" || nav.style.position === "absolute")) {
 						const navStickyParent = nav.closest(".sticky-parent");
 						if (navStickyParent) {
 							nav.style.width =
 								navStickyParent.offsetWidth + "px";
+						}
+						if (navStickyParent) {
+						    navStickyParent.style.height = nav.offsetHeight + "px";
 						}
 					} else {
 						nav.style.width = "";
