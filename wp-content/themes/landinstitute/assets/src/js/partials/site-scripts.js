@@ -946,46 +946,49 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		function onScroll() {
-			if (window.innerWidth <= 991) {
-				// Reset styles on smaller screens
-				subNav.classList.remove("scrolled");
-				subNav.style.position = "";
-				subNav.style.top = "";
-				subNav.style.bottom = "";
-				subNav.style.width = "";
-				return;
-			}
+	if (window.innerWidth <= 991) {
+		// Reset styles on smaller screens
+		subNav.classList.remove("scrolled");
+		subNav.style.position = "";
+		subNav.style.top = "";
+		subNav.style.bottom = "";
+		subNav.style.width = "";
+		return;
+	}
 
-			const scrollY = window.scrollY || window.pageYOffset;
+	// ✅ Recalculate every scroll
+	const headerHeight = headerSection.offsetHeight;
+	const wpAdminBarHeight = wpAdminBar ? wpAdminBar.offsetHeight : 0;
+	const totalOffset = headerHeight + wpAdminBarHeight;
 
-			const parentTop = parentSection.offsetTop;
-			const parentHeight = parentSection.offsetHeight;
-			const parentBottom = parentTop + parentHeight;
+	const scrollY = window.scrollY || window.pageYOffset;
+	const parentTop = parentSection.offsetTop;
+	const parentHeight = parentSection.offsetHeight;
+	const parentBottom = parentTop + parentHeight;
 
-			const stickyHeight = subNav.offsetHeight;
-			const totalOffset = headerHeight + (wpAdminBar ? wpAdminBar.offsetHeight : 0);
-			updateParentHeight();
+	const stickyHeight = subNav.offsetHeight;
+	updateParentHeight();
 
-			if ( scrollY + headerHeight >= parentTop && scrollY + headerHeight < parentBottom - stickyHeight ) {
-				subNav.classList.add("scrolled");
-				subNav.style.position = "fixed";
-				subNav.style.top = totalOffset + "px";
-				updateStickyWidth();
-				subNav.style.bottom = "";
-			} else if (scrollY + headerHeight >= parentBottom - stickyHeight) {
-				subNav.classList.remove("scrolled");
-				subNav.style.position = "absolute";
-				subNav.style.top = "";
-				subNav.style.bottom = "0";
-				updateStickyWidth();
-			} else {
-				subNav.classList.remove("scrolled");
-				subNav.style.position = "";
-				subNav.style.top = "";
-				subNav.style.bottom = "";
-				subNav.style.width = "";
-			}
-		}
+	if (scrollY + totalOffset >= parentTop && scrollY + totalOffset < parentBottom - stickyHeight) {
+		subNav.classList.add("scrolled");
+		subNav.style.position = "fixed";
+		subNav.style.top = totalOffset + "px"; // ✅ always fresh
+		updateStickyWidth();
+		subNav.style.bottom = "";
+	} else if (scrollY + totalOffset >= parentBottom - stickyHeight) {
+		subNav.classList.remove("scrolled");
+		subNav.style.position = "absolute";
+		subNav.style.top = "";
+		subNav.style.bottom = "0";
+		updateStickyWidth();
+	} else {
+		subNav.classList.remove("scrolled");
+		subNav.style.position = "";
+		subNav.style.top = "";
+		subNav.style.bottom = "";
+		subNav.style.width = "";
+	}
+}
 
 		window.addEventListener("scroll", onScroll);
 
