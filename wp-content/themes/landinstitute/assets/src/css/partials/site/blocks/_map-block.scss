@@ -4,6 +4,7 @@
         height: clamp(203px, calc(12.6875rem + ((1vw - 7.68px) * 59.2596)), 547.891px);
         margin: 0 auto;
         max-width: 100%;
+        width: 100%;
 
         @media(max-width: 991px) {
             margin-bottom: 22px;
