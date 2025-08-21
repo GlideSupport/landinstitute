@@ -163,6 +163,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 								$end_date     = get_field('li_cpt_event_end_date', $event_id);
 								$start_time   = get_field('li_cpt_event_start_time', $event_id);
 								$end_time     = get_field('li_cpt_event_end_time', $event_id);
+								$city_state   = get_field('li_cpt_event_city_state', $event_id);
 								$all_day      = get_field('li_cpt_event_all_day', $event_id);
 								$wysiwyg      = get_the_excerpt($event_id);
 								$event_image_id = get_post_thumbnail_id($event_id);
@@ -218,6 +219,9 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 												<div class="gl-s52"></div>
 												<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($event_date); ?></div>
 												<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s6"></div>' : ''; ?>
+												<?php if($city_state): ?>
+													<div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($city_state); ?></div><div class="gl-s4"></div>
+												<?php endif; ?>
 												<?php echo !empty($title) ? '<div class="card-title heading-7">' . html_entity_decode($title) . '</div>' : ''; ?>
 												<?php echo (!empty($title) && !empty($wysiwyg)) ? '<div class="gl-s12"></div>' : ''; ?>
 												<?php echo !empty($wysiwyg) ? '<div class="description ui-18-16-regular">' . html_entity_decode($wysiwyg) . '</div>' : ''; ?>
