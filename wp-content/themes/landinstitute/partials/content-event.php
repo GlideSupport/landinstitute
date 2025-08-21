@@ -16,6 +16,7 @@ $bst_var_post_categories = get_categories( $bst_var_post_id );
 $title = get_the_title();
 $start_date = $bst_fields['li_cpt_event_start_date'];
 $end_date = $bst_fields['li_cpt_event_end_date'];
+$city_state = $bst_fields['li_cpt_event_city_state'];
 $start_time = $bst_fields['li_cpt_event_start_time'];
 $end_time = $bst_fields['li_cpt_event_end_time'];
 $all_day = $bst_fields['li_cpt_event_all_day'];
@@ -63,6 +64,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 					<div class="hero-content">
 						<?php echo !empty($event_date) ? '<div class="ui-eyebrow-18-16-regular">' . esc_html($event_date) . '</div>' : ''; ?>
 						<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s12"></div>' : ''; ?>
+						<?php echo !empty($city_state) ? '<div class="ui-eyebrow-18-16-regular">' . esc_html($city_state) . '</div><div class="gl-s12"></div>' : ''; ?>
 						<?php echo !empty($title) ? '<div class="heading-2 mb-0 block-title">' . esc_html($title) . '</div>' : ''; ?>
 						<?php echo (!empty($title) && !empty($link)) ? '<div class="gl-s30"></div>' : ''; ?>
 						<?php echo !empty($link) ? '<div class="block-btn">' . BaseTheme::button($link, 'site-btn text-link') . '</div>' : ''; ?>
