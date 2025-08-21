@@ -17,6 +17,7 @@ $staff_designation  = get_field('staff_designation', $bst_var_post_id);
 $staff_email        = get_field('staff_email_address', $bst_var_post_id);
 $bst_var_theme_default_avatar_for_staff  = $bst_option_fields['bst_var_theme_default_avatar_for_staff'] ?? null;
 $li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? null;
+$li_staff_detail_page_button  = $bst_option_fields['li_staff_detail_page_button'] ?? null;
 ?>
 
 <div id="page-section" class="page-section">
@@ -33,13 +34,11 @@ $li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? n
 					<div class="col-left">
 						<div class="sticky-parent">
 							<div class="sticky-top-touch">
-
-								<div class="back-btn">
-									<a class="site-btn arrow-pointing-left btn-lilac" href="/about-us/staff/" role="button" aria-label="Back to All Staff">
-										Back to All Staff
-									</a>
-								</div>
-
+								<?php if ($li_staff_detail_page_button) : ?>
+									<div class="back-btn">
+										<?php echo BaseTheme::button($li_staff_detail_page_button, 'site-btn arrow-pointing-left btn-lilac'); ?>
+									</div>
+								<?php endif; ?>
 								<div class="staff-image">
 									<?php
 									if (has_post_thumbnail($bst_var_post_id)) {
