@@ -829,44 +829,53 @@ function get_formatted_event_datetime($post_id) {
     $timezone            = get_field('timezone', $post_id);
     $all_day             = get_field('li_cpt_event_all_day', $post_id); // checkbox
 
-	if ($start_date_raw == '') {
-		return '';
-	}
+    if (empty($start_date_raw)) {
+        return '';
+    }
 
-	// Normalize date formats
-	if (preg_match('/^\d{8}$/', $start_date_raw)) {
-		$start_date_raw = DateTime::createFromFormat('Ymd', $start_date_raw)->format('Y-m-d');
-	}
-	if (preg_match('/^\d{8}$/', $end_date_raw)) {
-		$end_date_raw = DateTime::createFromFormat('Ymd', $end_date_raw)->format('Y-m-d');
-	}
+    // Normalize date formats (ACF date picker usually stores as Ymd)
+    if (preg_match('/^\d{8}$/', $start_date_raw)) {
+        $start_date_raw = DateTime::createFromFormat('Ymd', $start_date_raw)->format('Y-m-d');
+    }
+    if (!empty($end_date_raw) && preg_match('/^\d{8}$/', $end_date_raw)) {
+        $end_date_raw = DateTime::createFromFormat('Ymd', $end_date_raw)->format('Y-m-d');
+    }
 
-	// Default times if not set
-	if (empty($event_start_time)) {
-		$event_start_time = '00:00';
-	}
-	if (empty($event_end_time)) {
-		$event_end_time = '23:59';
+    // If no end date, assume same as start
+    if (empty($end_date_raw)) {
+        $end_date_raw = $start_date_raw;
+    }
 
-	}
     // Get timezone code (you must define this helper)
     $timezone_code = function_exists('get_timezone_code') ? get_timezone_code($timezone) : '';
 
     // Create DateTime objects
-    $start_datetime = new DateTime("$start_date_raw $event_start_time");
-    $end_datetime   = new DateTime("$end_date_raw $event_end_time");
-
-    
+    $start_datetime = new DateTime($start_date_raw . (!empty($event_start_time) ? " $event_start_time" : ''));
+    $end_datetime   = new DateTime($end_date_raw . (!empty($event_end_time) ? " $event_end_time" : ''));
 
     // Build display output
     if ($start_datetime->format('Y-m-d') === $end_datetime->format('Y-m-d')) {
         // Single-day event
-        $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code - " .
-                         $end_datetime->format('g:i a') . " $timezone_code";
+        if (!empty($event_start_time) && !empty($event_end_time)) {
+            // With times
+            $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code - " .
+                             $end_datetime->format('g:i a') . " $timezone_code";
+        } elseif (!empty($event_start_time)) {
+            // Only start time
+            $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code";
+        } else {
+            // Date only
+            $event_display = $start_datetime->format('l, F j, Y');
+        }
     } else {
         // Multi-day event
-        $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code - " .
-                         $end_datetime->format('l, F j, Y g:i a') . " $timezone_code";
+        if (!empty($event_start_time) && !empty($event_end_time)) {
+            $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code - " .
+                             $end_datetime->format('l, F j, Y g:i a') . " $timezone_code";
+        } else {
+            $event_display = $start_datetime->format('l, F j, Y') . " - " .
+                             $end_datetime->format('l, F j, Y');
+        }
     }
 
     // Add all-day label
@@ -876,6 +885,7 @@ function get_formatted_event_datetime($post_id) {
 
     return $event_display;
 }
+
 
 
 add_action('save_post', 'save_event_timestamp_with_timezone', 20, 3);
