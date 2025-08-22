@@ -138,7 +138,7 @@
 }
 
 
-.timeline-block {
+.timeline-block:has(.slider-btn) {
     .slider-btn {
         padding-left: clamp(24px, 1.5rem + (1vw - 7.68px) * 9.622, 80px);
         margin: clamp(-149px, calc(-6.0625rem + ((1vw - 7.68px) * -8.9347)), -97px) 0 clamp(70px, calc(4.375rem + ((1vw - 7.68px) * 4.4674)), 96px);

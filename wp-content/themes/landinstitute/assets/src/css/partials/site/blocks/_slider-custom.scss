@@ -1,4 +1,4 @@
-.all-resources-block {
+.all-resources-block:has(.slider-btn) {
     .block-title {
         max-width: 560px;
     }
