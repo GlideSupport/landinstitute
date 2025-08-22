@@ -7,7 +7,7 @@ while ($news->have_posts()) : $news->the_post();
     $title         = html_entity_decode(get_the_title());
     $date          = get_the_date('M j, Y');
     $permalink     = get_the_permalink();
-    $short_Desc    = get_the_excerpt();
+    $short_Desc    = apply_filters('the_content', get_the_content());
     $short_content = wp_trim_words($short_Desc, 15, '...');
     $topics        = get_the_terms(get_the_ID(), 'news-type');
     $topics_name   = (!empty($topics) && !is_wp_error($topics)) ? $topics[0]->name : '';

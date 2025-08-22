@@ -607,8 +607,8 @@ function filter_past_events() {
 	  $post_id = get_the_ID();
 	  $event_title = get_the_title($post_id);
 	  $event_link = get_permalink($post_id);  
-	  $excerpt = get_the_excerpt( $post_id);
-	  $event_content = wp_trim_words($excerpt, 25, '...');
+	  $excerpt = apply_filters('the_content', get_the_content($post_id));
+	  $event_content = wp_trim_words($excerpt, 15, '...');
 	  $event_date = get_formatted_event_datetime($post_id);
 	  $city_state   = get_field('li_cpt_event_city_state', $post_id);
    

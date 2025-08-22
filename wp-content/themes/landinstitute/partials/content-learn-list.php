@@ -13,6 +13,8 @@ if ($query->have_posts()) :
 	while ($query->have_posts()) : $query->the_post();
 	$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
 	$li_ido_date = get_field('li_ido_date', get_the_ID());
+	$short_Desc    = apply_filters('the_content', get_the_content());
+    $short_content = wp_trim_words($short_Desc, 30, '...');
 	$terms = get_the_terms( get_the_ID(), 'learn-type' );
 	$learn_type = ''; // default fallback value
 	if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
@@ -59,7 +61,7 @@ if ($query->have_posts()) :
 					<div class="card-title heading-7"><?php echo html_entity_decode(get_the_title()); ?></div>
 					<div class="gl-s12"></div>
 					<div class="description ui-18-16-regular">
-						<?php echo wp_trim_words(get_the_excerpt(), 30); ?>
+						<?php echo html_entity_decode($short_content); ?>
 					</div>
 					<div class="gl-s20"></div>
 					<div class="read-more-link">
