@@ -82,11 +82,9 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 					'hide_empty' => true,
 				];
 
-				// If we have slugs to exclude, we'll need to get all terms first then filter
 				$terms = get_terms($args);
 
 				if (!is_wp_error($terms)) {
-					// Filter out excluded terms by slug
 					if (!empty($exclude_slugs) && is_array($exclude_slugs)) {
 						$terms = array_filter($terms, function ($term) use ($exclude_slugs) {
 							return !in_array($term->slug, $exclude_slugs);
@@ -109,6 +107,26 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 				$key = str_replace("$prefix-", '', $tax);
 				$current_names[$key] = ($bst_queried_object->taxonomy == $tax) ? $bst_queried_object->name : 'All ' . $label_mapping[$key];
 			}
+
+			// Determine if we're on a taxonomy archive page or multi-filter page
+			$is_taxonomy_archive = is_tax();
+			$current_taxonomy = $is_taxonomy_archive ? $bst_queried_object->taxonomy : '';
+			$current_term_slug = $is_taxonomy_archive ? $bst_queried_object->slug : '';
+
+			// Get current query parameters from multi-filter page
+			$current_params = [];
+			if (!$is_taxonomy_archive) {
+				foreach ($visible_taxonomies as $tax) {
+					$param_key = ($prefix == 'learn') ? $tax : str_replace("$prefix-", '', $tax);
+					if (isset($_GET[$param_key])) {
+						$current_params[$param_key] = $_GET[$param_key];
+					}
+				}
+			} else {
+				// If we're on a taxonomy archive, set the current term as the initial filter
+				$tax_key = ($prefix == 'learn') ? $current_taxonomy : str_replace("$prefix-", '', $current_taxonomy);
+				$current_params[$tax_key] = $current_term_slug;
+			}
 		?>
 			<div class="filter-block">
 				<div class="filter">
@@ -117,7 +135,6 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 						<div class="filter-mobile-dropdown icon-add ui-18-16-bold">Show Filter</div>
 						<div class="filter-dropdown-row">
 							<?php
-							// Generate filter buttons only for visible taxonomies
 							foreach ($visible_taxonomies as $tax) :
 								$key = str_replace("$prefix-", '', $tax);
 							?>
@@ -136,17 +153,47 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 
 			<div class="learn-list-filter md-mobile-filter">
 				<?php
-				// Generate dropdown menus for each visible taxonomy
 				foreach ($visible_taxonomies as $tax) :
-					$key = str_replace("$prefix-", '', $tax);
+					$key = ($prefix == 'learn') ? $tax : str_replace("$prefix-", '', $tax);
 				?>
 					<ul id="<?php echo $tax; ?>" class="dropdown-menu" role="menu" aria-labelledby="<?php echo $key; ?>-view">
-						<li><a href="<?php echo $base_url; ?>" data-taxonomy="<?php echo $tax; ?>">All <?php echo $label_mapping[$key]; ?></a></li>
+						<li>
+							<a href="<?php
+										if ($is_taxonomy_archive && $tax === $current_taxonomy) {
+											// If we're on this taxonomy's archive page, "All" goes to base multi-filter page
+											echo $base_url;
+										} else {
+											// Remove this taxonomy filter but keep others
+											$all_params = $current_params;
+											unset($all_params[$key]);
+											echo $base_url . (!empty($all_params) ? '?' . http_build_query($all_params) : '');
+										}
+										?>" data-taxonomy="<?php echo $tax; ?>">
+								All <?php echo $label_mapping[$key]; ?>
+							</a>
+						</li>
 						<?php if (!empty($taxonomy_terms[$tax])) : ?>
 							<?php foreach ($taxonomy_terms[$tax] as $term) : ?>
 								<li>
-									<a href="<?php echo esc_url(get_term_link((int) $term->term_id, $term->taxonomy)); ?>"
-										data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>">
+									<a href="<?php
+												if ($is_taxonomy_archive && $tax === $current_taxonomy && $term->slug === $current_term_slug) {
+													// If this is the current term on archive page, stay on same page
+													echo get_term_link($term);
+												} else {
+													// Redirect to multi-filter page with appropriate parameters
+													$term_params = $current_params;
+
+													// If we're on a taxonomy archive of a different taxonomy, 
+													// we need to preserve that filter when adding new one
+													if ($is_taxonomy_archive && $tax !== $current_taxonomy) {
+														$current_tax_key = ($prefix == 'learn') ? $current_taxonomy : str_replace("$prefix-", '', $current_taxonomy);
+														$term_params[$current_tax_key] = $current_term_slug;
+													}
+
+													$term_params[$key] = $term->slug;
+													echo $base_url . '?' . http_build_query($term_params);
+												}
+												?>" data-taxonomy="<?php echo esc_attr($term->taxonomy); ?>">
 										<?php echo esc_html($term->name); ?>
 									</a>
 								</li>
@@ -167,13 +214,15 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 								<?php while (have_posts()) : the_post();
 									$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
 									$li_ido_date = get_field('li_ido_date', get_the_ID());
-									$short_Desc = ! empty( get_the_excerpt() )  ? get_the_excerpt() : apply_filters( 'the_content', get_the_content(get_the_ID()) );
-    								$short_content = wp_trim_words($short_Desc, 25, '...'); ?>
+									$short_Desc = ! empty(get_the_excerpt())  ? get_the_excerpt() : apply_filters('the_content', get_the_content(get_the_ID()));
+									$short_content = wp_trim_words($short_Desc, 25, '...'); ?>
 									<div class="filter-card-item">
 										<a href="<?php the_permalink(); ?>" class="filter-card-link">
 											<div class="image tag-show">
-												<?php if ( ! empty( $li_ido_date ) ) : ?>
-													<div class="tag-date"><div class="block-content eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html( $li_ido_date ); ?></div></div>
+												<?php if (! empty($li_ido_date)) : ?>
+													<div class="tag-date">
+														<div class="block-content eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($li_ido_date); ?></div>
+													</div>
 												<?php endif; ?>
 												<?php
 												if (has_post_thumbnail()) {

@@ -667,6 +667,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (button) {
 			const label = formatLabel(value, fallback);
 			button.innerHTML = `${prefix}: ${label}<div class="arrow-icon"></div>`;
+
+			const top = document.querySelector('.mainlearn').getBoundingClientRect().top;
+			window.scrollTo({
+				top: top,
+				behavior: "smooth" // use "smooth" if you want animated scrolling
+			});
 		}
 	}
 
