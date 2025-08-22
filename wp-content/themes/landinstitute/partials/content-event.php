@@ -237,14 +237,14 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 							<?php endwhile; wp_reset_postdata(); ?>
 						</div> <!-- swiper-wrapper -->
 					</div> <!-- swiper-container -->
+					<?php if($total_posts > 3): ?>
+						<div class="gl-s44"></div>
+						<div class="slider-btn">
+							<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
+							<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
+						</div>
+					<?php endif; ?>
 				</div> <!-- border-variable-slider -->
-				<?php if($total_posts > 3): ?>
-					<div class="gl-s44"></div>
-					<div class="slider-btn">
-						<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
-						<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
-					</div>
-				<?php endif; ?>
 			</div> <!-- read-more-block -->
 		</div> <!-- wrapper -->
 	</section>
