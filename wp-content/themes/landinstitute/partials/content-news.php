@@ -295,7 +295,6 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 						</div>
 					</div>
 					<?php if($total_posts > 3): ?>
-						<div class="gl-s44"></div>
 						<div class="slider-btn">
 							<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
 							<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
