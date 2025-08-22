@@ -16,6 +16,25 @@
     }
 }
 
+.read-more-block:has(.slider-btn) {
+    .image-card-caption {
+        .caption-card-link {
+            padding-bottom: 98px;
+        }
+    }
+
+    .slider-btn {
+        margin-top: -100px;
+        margin-bottom: 44px;
+        padding-left: clamp(24px, 1.5rem + (1vw - 7.68px) * 9.622, 80px);
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            pointer-events: inherit;
+        }
+    }
+}
+
 .custom-cursor {
     background-image: url(../images/drag-button.svg);
     background-repeat: no-repeat;

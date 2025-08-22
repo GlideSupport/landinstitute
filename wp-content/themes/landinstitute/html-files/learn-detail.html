@@ -646,7 +646,7 @@
 						<div class="gl-s52"></div>
 						<div class="border-variable-slider">
 							<!-- Swiper -->
-							<div class="swiper-container read-slide-preview cursor-drag-icon">
+							<div class="swiper-container read-slide-preview">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide">
 										<div class="image-card-caption">
@@ -673,6 +673,38 @@
 														partners, a research paper from Texas A&M University details the
 														breeding potential of perennial sorghum to enhance
 														carbon sequestration while maintaining grain yields.
+													</div>
+													<div class="gl-s20"></div>
+													<div class="read-more-link">
+														<div class="border-text-btn">Read more</div>
+													</div>
+													<div class="gl-s80"></div>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="swiper-slide">
+										<div class="image-card-caption">
+											<a href="#" class="caption-card-link">
+												<div class="image">
+													<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/Associated-Herbivory.jpg"
+														alt="">
+												</div>
+												<div class="caption-card-content">
+													<div class="gl-s52"></div>
+													<div class="eyebrow ui-eyebrow-16-15-regular">Publication</div>
+													<div class="gl-s6"></div>
+													<div class="card-title heading-7">Intercropping Alters
+														Phytochemicals Associated With Insect Herbivory</div>
+													<div class="gl-s12"></div>
+													<div class="description ui-18-16-regular">Ebony Murrell, Lead
+														Scientist in Crop Protection Ecology, collaborated with former
+														Land Institute researchers Chase
+														Stratton and Jarrod Fyie and USDA-ARS researcher William
+														Morrison on a study assessing the impact of intercropping
+														diverse crops like silphium integrifolium (a perennial oilseed
+														in development at The Land Institute) with wheat to
+														potentially optimize natural pest management strategies.
 													</div>
 													<div class="gl-s20"></div>
 													<div class="read-more-link">
@@ -748,6 +780,10 @@
 										</div>
 									</div>
 								</div>
+							</div>
+							<div class="slider-btn">
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
 							</div>
 						</div>
 					</div>
@@ -1318,6 +1354,10 @@
 	var swiper = new Swiper('.read-slide-preview', {
 		slidesPerView: 1,
 		spaceBetween: 0,
+		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
 		breakpoints: {
 			1920: {
 				slidesPerView: 3,
@@ -1332,25 +1372,6 @@
 				spaceBetween: 0
 			}
 		}
-	});
-
-	const customCursor = document.createElement("div");
-	customCursor.classList.add("custom-cursor");
-	document.body.appendChild(customCursor);
-
-	const swiperContainer = document.querySelector(".cursor-drag-icon");
-
-	swiperContainer.addEventListener("pointerenter", () => {
-		customCursor.classList.add("visible");
-	});
-
-	swiperContainer.addEventListener("pointerleave", () => {
-		customCursor.classList.remove("visible");
-	});
-
-	swiperContainer.addEventListener("pointermove", (e) => {
-		customCursor.style.left = `${e.clientX}px`;
-		customCursor.style.top = `${e.clientY}px`;
 	});
 
 
