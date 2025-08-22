@@ -4,83 +4,56 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Initialize multiple timeline fancy sliders
 	document.querySelectorAll('.timeline-slider-fancy').forEach((el) => {
-        new Swiper(el, {
-			loop: false,
-			autoHeight: true,
-            initialSlide: 0,
-            observer: true,
-            observeParents: true,
-            updateOnWindowResize: true,
-            centeredSlides: false,
-            slidesPerView: 1.2,
-            spaceBetween: 0,
-            navigation: {
-                nextEl: el.closest('.swiper-container-wrapper')?.querySelector('.swiper-button-next'),
-                prevEl: el.closest('.swiper-container-wrapper')?.querySelector('.swiper-button-prev'),
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2.285,
-                    spaceBetween: 0,
-                    centeredSlides: false,
-                },
-                1028: {
-                    slidesPerView: 2.285,
-                    spaceBetween: 0,
-                    centeredSlides: false,
-                },
-                1920: {
-                    slidesPerView: 2.285,
-                    spaceBetween: 0,
-                    centeredSlides: false,
-                },
-            },
-        });
-    });
+    const container = el.closest('.timeline-block'); // parent containing arrows
+    const nextBtn = container.querySelector('.swiper-button-next');
+    const prevBtn = container.querySelector('.swiper-button-prev');
 
-	// Initialize multiple post teaser sliders
-	document.querySelectorAll(".variable-slide-preview").forEach((el) => {
-		new Swiper(el, {
+    new Swiper(el, {
+        loop: false,
+        autoHeight: true,
+        initialSlide: 0,
+        observer: true,
+        observeParents: true,
+        updateOnWindowResize: true,
+        centeredSlides: false,
+        slidesPerView: 1.2,
+        spaceBetween: 0,
+        navigation: {
+            nextEl: nextBtn, // DOM element
+            prevEl: prevBtn, // DOM element
+        },
+        breakpoints: {
+            640: { slidesPerView: 2.285, spaceBetween: 0 },
+            1028: { slidesPerView: 2.285, spaceBetween: 0 },
+            1920: { slidesPerView: 2.285, spaceBetween: 0 },
+        },
+    });
+});
+
+
+	// post teaser sliders start
+	document.querySelectorAll(".variable-slide-preview").forEach(slider => {
+		const container = slider.closest(".all-resources-block"); 
+		const nextBtn = container.querySelector(".swiper-button-next");
+		const prevBtn = container.querySelector(".swiper-button-prev");
+
+		if (!slider) return;
+
+		new Swiper(slider, {
 			slidesPerView: "auto",
 			spaceBetween: 0,
+			navigation: {
+				nextEl: nextBtn, // pass DOM element
+				prevEl: prevBtn, // pass DOM element
+			},
 		});
 	});
+	//end
 
-	// Create one global custom cursor element
-	let customCursor = document.querySelector(".custom-cursor");
-	if (!customCursor) {
-		customCursor = document.createElement("div");
-		customCursor.classList.add("custom-cursor");
-		document.body.appendChild(customCursor);
-	}
 
-	// Add cursor behavior for all drag-icon zones
-	document.querySelectorAll(".cursor-drag-icon").forEach((container) => {
-		container.addEventListener("pointerenter", () => {
-			customCursor.classList.add("visible");
-		});
-		container.addEventListener("pointerleave", () => {
-			customCursor.classList.remove("visible");
-		});
-		container.addEventListener("pointermove", (e) => {
-			customCursor.style.left = `${e.clientX}px`;
-			customCursor.style.top = `${e.clientY}px`;
-		});
-	});
 
-	// Remove custom cursor when hovering over border-text-btn elements
-	document.querySelectorAll(".border-text-btn").forEach((btn) => {
-		btn.addEventListener("pointerenter", () => {
-			customCursor.classList.remove("visible");
-		});
-		btn.addEventListener("pointerleave", () => {
-			// Check if we're still inside a cursor-drag-icon container
-			const dragContainer = btn.closest(".cursor-drag-icon");
-			if (dragContainer) {
-				customCursor.classList.add("visible");
-			}
-		});
-	});
+
+	
 	//end
 
 	// CTA Slider JS start
@@ -565,36 +538,29 @@ document.addEventListener("DOMContentLoaded", function () {
 	//Event detail page js code end
 
 	//Image gallery slider code start
-		document.querySelectorAll('.image-gallery-slider').forEach((sliderEl, index) => {
-			new Swiper(sliderEl, {
-				loop: true,
-				navigation: {
-					nextEl: sliderEl.parentElement.querySelector('.swiper-button-next'),
-					prevEl: sliderEl.parentElement.querySelector('.swiper-button-prev'),
-				},
-				centeredSlides: false,
-				slidesPerView: 1.5,
-				spaceBetween: 16,
-				breakpoints: {
-					375: {
-						slidesPerView: 1.27,
-						spaceBetween: 16,
-					},
-					641: {
-						slidesPerView: 2.5,
-						spaceBetween: 16,
-					},
-					1440: {
-						slidesPerView: 2.97,
-						spaceBetween: 20,
-					},
-					1920: {
-						slidesPerView: 3.7,
-						spaceBetween: 20,
-					}
-				},
-			});
+	document.querySelectorAll('.image-gallery-slider').forEach(sliderEl => {
+		const container = sliderEl.closest('.image-gallery-block'); // find wrapper containing slider + arrows
+		const nextBtn = container.querySelector('.swiper-button-next');
+		const prevBtn = container.querySelector('.swiper-button-prev');
+
+		new Swiper(sliderEl, {
+			loop: true,
+			slidesPerView: 1.5,
+			spaceBetween: 16,
+			centeredSlides: false,
+			navigation: {
+				nextEl: nextBtn, // pass DOM elements
+				prevEl: prevBtn,
+			},
+			breakpoints: {
+				375: { slidesPerView: 1.27, spaceBetween: 16 },
+				641: { slidesPerView: 2.5, spaceBetween: 16 },
+				1440: { slidesPerView: 2.97, spaceBetween: 20 },
+				1920: { slidesPerView: 3.7, spaceBetween: 20 },
+			},
 		});
+	});
+
 	//Image gallery slider code end
 	
 	

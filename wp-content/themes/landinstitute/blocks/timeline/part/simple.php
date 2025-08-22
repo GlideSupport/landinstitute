@@ -28,12 +28,13 @@
 					<?php endif; endforeach; ?>
 				</div>
 			</div>
-
-			<div class="gl-s44"></div>
-			<div class="slider-btn">
-				<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide" aria-disabled="true"></div>
-				<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
-			</div>
+			<?php if(count($li_t_repeater) >= 3): ?>
+				<div class="gl-s44"></div>
+				<div class="slider-btn">
+					<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide" aria-disabled="true"></div>
+					<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
+				</div>
+			<?php endif; ?>
 
 		</div>
 	</div>

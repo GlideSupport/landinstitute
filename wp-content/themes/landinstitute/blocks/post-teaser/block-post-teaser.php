@@ -138,10 +138,10 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 				<?php
 				// Count total posts before the loop
 				$total_posts = $posts_query->found_posts;
-				$drag_class = ($total_posts > 3) ? 'cursor-drag-icon' : '';
 				?>
 				<!-- Swiper -->
-				<div class="swiper-container variable-slide-preview <?php echo $drag_class; ?>">
+				 
+				<div class="swiper-container variable-slide-preview">
 					<div class="swiper-wrapper">
 						<?php
 						$slide_classes = ['slide-larg', 'slide-xlarg', 'slide-smlarg', 'slide-xsmlarg'];
@@ -197,6 +197,12 @@ if (!empty($li_pt_headline_check) || $posts_query->have_posts()): ?>
 					</div>
 				</div>
 			</div>
+			<?php if($total_posts > 3): ?>
+				<div class="slider-btn">
+					<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
+					<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
+				</div>
+			<?php endif; ?>
 			<?php echo !empty($li_pt_button) ? '<div class="section-btn full-width-button">' . BaseTheme::button($li_pt_button, 'site-btn') . '</div>' : ''; ?>
 		</div>
 	</div>
