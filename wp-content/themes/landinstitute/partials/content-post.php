@@ -255,7 +255,7 @@ if ($posts_query->have_posts()) : ?>
 								$post_id    = get_the_ID();
 								$title      = html_entity_decode(get_the_title());
 								$permalink  = get_permalink();
-								$short_Desc    = apply_filters('the_content', get_the_content());
+								$short_Desc = ! empty( get_the_excerpt() )  ? get_the_excerpt() : apply_filters( 'the_content', get_the_content() );
    								$excerpt = wp_trim_words($short_Desc, 25, '...');
 								$terms      = get_the_terms($post_id, 'learn-type');
 								$term_name  = (!empty($terms) && !is_wp_error($terms)) ? esc_html($terms[0]->name) : '';

@@ -167,7 +167,7 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 								<?php while (have_posts()) : the_post();
 									$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
 									$li_ido_date = get_field('li_ido_date', get_the_ID());
-									$short_Desc    = apply_filters('the_content', get_the_content(get_the_ID()));
+									$short_Desc = ! empty( get_the_excerpt() )  ? get_the_excerpt() : apply_filters( 'the_content', get_the_content(get_the_ID()) );
     								$short_content = wp_trim_words($short_Desc, 25, '...'); ?>
 									<div class="filter-card-item">
 										<a href="<?php the_permalink(); ?>" class="filter-card-link">
