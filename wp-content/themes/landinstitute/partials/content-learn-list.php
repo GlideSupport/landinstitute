@@ -14,7 +14,7 @@ if ($query->have_posts()) :
 	$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
 	$li_ido_date = get_field('li_ido_date', get_the_ID());
 	$short_Desc    = apply_filters('the_content', get_the_content());
-    $short_content = wp_trim_words($short_Desc, 30, '...');
+    $short_content = wp_trim_words($short_Desc, 25, '...');
 	$terms = get_the_terms( get_the_ID(), 'learn-type' );
 	$learn_type = ''; // default fallback value
 	if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
