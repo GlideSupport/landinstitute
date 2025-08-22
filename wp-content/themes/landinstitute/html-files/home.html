@@ -934,7 +934,7 @@
 						<div class="gl-s52"></div>
 						<div class="border-variable-slider">
 							<!-- Swiper -->
-							<div class="swiper-container variable-slide-preview cursor-drag-icon">
+							<div class="swiper-container variable-slide-preview">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide slide-larg">
 										<a href="#" class="border-image-content">
@@ -1020,6 +1020,10 @@
 									</div>
 								</div>
 							</div>
+						</div>
+						<div class="slider-btn">
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
 						</div>
 						<div class="section-btn full-width-button">
 							<a class="site-btn" href="" title="" title="Button" role="Button" aria-label="Button">
@@ -1788,25 +1792,11 @@
 		var swiper = new Swiper('.variable-slide-preview', {
 			slidesPerView: 'auto',
 			spaceBetween: 0,
-		});
 
-		const customCursor = document.createElement("div");
-		customCursor.classList.add("custom-cursor");
-		document.body.appendChild(customCursor);
-
-		const swiperContainer = document.querySelector(".cursor-drag-icon");
-
-		swiperContainer.addEventListener("pointerenter", () => {
-			customCursor.classList.add("visible");
-		});
-
-		swiperContainer.addEventListener("pointerleave", () => {
-			customCursor.classList.remove("visible");
-		});
-
-		swiperContainer.addEventListener("pointermove", (e) => {
-			customCursor.style.left = `${e.clientX}px`;
-			customCursor.style.top = `${e.clientY}px`;
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
 		});
 
 	</script>

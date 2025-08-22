@@ -2,6 +2,16 @@
     .block-title {
         max-width: 560px;
     }
+
+    .border-variable-slider {
+        .border-image-content {
+            padding-bottom: clamp(85px, calc(5.3125rem + ((1vw - 7.68px) * 2.0619)), 97px);
+        }
+    }
+
+    .slider-btn {
+        margin: clamp(-97px, calc(-5.3125rem + ((1vw - 7.68px) * -2.0619)), -85px) 0 clamp(32px, calc(2rem + ((1vw - 7.68px) * 2.0619)), 44px);
+    }
 }
 
 .custom-cursor {
