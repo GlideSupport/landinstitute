@@ -494,47 +494,25 @@ document.addEventListener("DOMContentLoaded", function () {
 	//Event detail page js code start
 	const swiperEl = document.querySelector('.read-slide-preview');
 	if (swiperEl) {
-		const swiper = new Swiper(swiperEl, {
-			slidesPerView: 1,
-			spaceBetween: 0,
-			breakpoints: {
-				480: {
-					slidesPerView: 2,
-					spaceBetween: 0
-				},
-				1028: {
-					slidesPerView: 3,
-					spaceBetween: 0
-				},
-				1920: {
-					slidesPerView: 3,
-					spaceBetween: 0
-				}
-			}
-		});
+	    const container = swiperEl.closest('.border-variable-slider'); // wrapper that has arrows
+	    const nextBtn = container.querySelector('.swiper-button-next');
+	    const prevBtn = container.querySelector('.swiper-button-prev');
+
+	    const swiper = new Swiper(swiperEl, {
+	        slidesPerView: 1,
+	        spaceBetween: 0,
+	        breakpoints: {
+	            480: { slidesPerView: 2, spaceBetween: 0 },
+	            1028: { slidesPerView: 3, spaceBetween: 0 },
+	            1920: { slidesPerView: 3, spaceBetween: 0 }
+	        },
+	        navigation: {
+	            nextEl: nextBtn,
+	            prevEl: prevBtn,
+	        },
+	    });
 	}
 
-	// Custom cursor logic if .cursor-drag-icon exists
-	const swiperContainer = document.querySelector(".cursor-drag-icon");
-
-	if (swiperContainer) {
-		const customCursor = document.createElement("div");
-		customCursor.classList.add("custom-cursor");
-		document.body.appendChild(customCursor);
-
-		swiperContainer.addEventListener("pointerenter", () => {
-			customCursor.classList.add("visible");
-		});
-
-		swiperContainer.addEventListener("pointerleave", () => {
-			customCursor.classList.remove("visible");
-		});
-
-		swiperContainer.addEventListener("pointermove", (e) => {
-			customCursor.style.left = `${e.clientX}px`;
-			customCursor.style.top = `${e.clientY}px`;
-		});
-	}
 	//Event detail page js code end
 
 	//Image gallery slider code start

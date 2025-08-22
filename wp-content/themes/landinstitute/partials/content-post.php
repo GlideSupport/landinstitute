@@ -246,9 +246,8 @@ if ($posts_query->have_posts()) : ?>
 					<?php
 					// Count total posts before the loop
 						$total_posts = $posts_query->found_posts;
-						$drag_class = ($total_posts > 3) ? 'cursor-drag-icon' : '';
 					?>
-					<div class="swiper-container read-slide-preview <?php echo $drag_class; ?>">
+					<div class="swiper-container read-slide-preview">
 						<div class="swiper-wrapper">
 							<?php
 							while ($posts_query->have_posts()) : $posts_query->the_post();
@@ -311,6 +310,13 @@ if ($posts_query->have_posts()) : ?>
 						</div>
 					</div>
 				</div>
+				<?php if($total_posts > 3): ?>
+					<div class="gl-s44"></div>
+					<div class="slider-btn">
+						<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
+						<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</section>
