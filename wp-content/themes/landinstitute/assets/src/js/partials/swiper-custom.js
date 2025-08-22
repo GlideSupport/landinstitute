@@ -464,49 +464,31 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Testimonial Single View Slider end
 
 	// CTA Card Slide js start
-	// CTA Card Slide js start
-const ctaSliders = document.querySelectorAll(".cta-card-slide");
-
-ctaSliders.forEach((slider, index) => {
-	if (!slider) return;
-
-	// Optional: Add unique class for debugging or styling
-	slider.classList.add(`cta-card-slide-${index}`);
-
-	// Initialize Swiper
-	new Swiper(slider, {
-		loop: false,
-		slidesPerView: 1,
-		spaceBetween: 0,
-		breakpoints: {
-			375: { slidesPerView: 1.5, spaceBetween: 0 },
-			580: { slidesPerView: 2.5, spaceBetween: 0 },
-			641: { slidesPerView: 3, spaceBetween: 0 },
-			1028: { slidesPerView: 4, spaceBetween: 0 },
-			1920: { slidesPerView: 4, spaceBetween: 0 },
-		},
+	const ctaSliders = document.querySelectorAll(".cta-card-slide");
+	ctaSliders.forEach((slider, index) => {
+		if (!slider) return;
+		slider.classList.add(`cta-card-slide-${index}`);
+		const block = slider.closest(".cta-grid-slider-block"); 
+		const nextBtn = block?.querySelector(".swiper-button-next");
+		const prevBtn = block?.querySelector(".swiper-button-prev");
+		// Initialize Swiper
+		new Swiper(slider, {
+			loop: false,
+			slidesPerView: 1,
+			spaceBetween: 0,
+			navigation: {
+				nextEl: nextBtn,
+				prevEl: prevBtn,
+			},
+			breakpoints: {
+				375: { slidesPerView: 1.5, spaceBetween: 0 },
+				580: { slidesPerView: 2.5, spaceBetween: 0 },
+				641: { slidesPerView: 3, spaceBetween: 0 },
+				1028: { slidesPerView: 4, spaceBetween: 0 },
+				1920: { slidesPerView: 4, spaceBetween: 0 },
+			},
+		});
 	});
-});
-
-// Custom cursor logic for all sliders inside .cursor-drag-icon
-document.querySelectorAll(".cursor-drag-icon").forEach((container) => {
-	const customCursor = document.createElement("div");
-	customCursor.classList.add("custom-cursor");
-	document.body.appendChild(customCursor);
-
-	container.addEventListener("pointerenter", () => {
-		customCursor.classList.add("visible");
-	});
-
-	container.addEventListener("pointerleave", () => {
-		customCursor.classList.remove("visible");
-	});
-
-	container.addEventListener("pointermove", (e) => {
-		customCursor.style.left = `${e.clientX}px`;
-		customCursor.style.top = `${e.clientY}px`;
-	});
-});
 
 	// CTA Card Slide js end
 

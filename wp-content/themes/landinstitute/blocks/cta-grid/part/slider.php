@@ -10,7 +10,7 @@
 		<div class="gl-s64"></div>
 		<div class="cta-grid-slider-cards">
 			<?php if (!empty($li_cg_repeater)): ?>
-				<div class="swiper-container cta-card-slide <?php echo (count($li_cg_repeater) >= 4) ? 'cursor-drag-icon' : ''; ?>">
+				<div class="swiper-container cta-card-slide">
 					<div class="swiper-wrapper">
 					<?php   
 						foreach ($li_cg_repeater as $li_cg_rep) :
@@ -38,6 +38,13 @@
 					<?php endforeach; ?>
 					</div>
 				</div>
+				<?php if(count($li_cg_repeater) >= 4): ?>
+					<div class="gl-s44"></div>
+					<div class="slider-btn">
+						<div class="swiper-button-prev" role="button" tabindex="0" aria-label="Previous slide"></div>
+						<div class="swiper-button-next" role="button" tabindex="0" aria-label="Next slide"></div>
+					</div>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</div>
