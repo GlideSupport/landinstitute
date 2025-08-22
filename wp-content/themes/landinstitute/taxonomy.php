@@ -166,7 +166,9 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 							<?php if (have_posts()) : ?>
 								<?php while (have_posts()) : the_post();
 									$youtube_url = get_field('li_ldo_youtube_url', get_the_ID());
-									$li_ido_date = get_field('li_ido_date', get_the_ID()); ?>
+									$li_ido_date = get_field('li_ido_date', get_the_ID());
+									$short_Desc    = apply_filters('the_content', get_the_content(get_the_ID()));
+    								$short_content = wp_trim_words($short_Desc, 25, '...'); ?>
 									<div class="filter-card-item">
 										<a href="<?php the_permalink(); ?>" class="filter-card-link">
 											<div class="image tag-show">
@@ -210,7 +212,7 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 												<div class="gl-s6"></div>
 												<div class="card-title heading-7"><?php echo html_entity_decode(get_the_title()); ?></div>
 												<div class="gl-s12"></div>
-												<div class="description ui-18-16-regular"><?php echo wp_trim_words(get_the_excerpt(), 35); ?></div>
+												<div class="description ui-18-16-regular"><?php echo html_entity_decode($short_content); ?></div>
 												<div class="gl-s20"></div>
 												<div class="read-more-link">
 													<div class="border-text-btn">Read more</div>
