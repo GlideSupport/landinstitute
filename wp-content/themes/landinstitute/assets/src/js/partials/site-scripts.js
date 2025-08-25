@@ -1118,14 +1118,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initially hide the close button and all drag indicators
     closeBtn.style.display = "none";
-	dragIndicators.forEach(indicator => {
-        indicator.style.display = "none";
-    });
+	// dragIndicators.forEach(indicator => {
+    //     indicator.style.display = "none";
+    // });
    
     // Show only the first drag indicator (if any exist)
-    if (dragIndicators.length > 0) {
-        dragIndicators[0].style.display = "block";
-    }
+    // if (dragIndicators.length > 0) {
+    //     dragIndicators[0].style.display = "block";
+    // }
 
     let isDragging = false;
     let startX = 0,
@@ -1154,9 +1154,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show the close button when expanded
         closeBtn.style.display = "block";
 		// Show drag indicator when expanded
-        if (dragIndicators.length > 0) {
-            dragIndicators[0].style.display = "block";
-        }
+        // if (dragIndicators.length > 0) {
+        //     dragIndicators[0].style.display = "block";
+        // }
 		if (window.innerWidth < 992) {
 	        expandBtn.style.opacity = "0";
 	        expandBtn.style.pointerEvents = "none";
@@ -1180,9 +1180,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hide the close button when not expanded
         closeBtn.style.display = "none";
 		 // Hide drag indicator when not expanded
-        dragIndicators.forEach(indicator => {
-            indicator.style.display = "none";
-        });
+        // dragIndicators.forEach(indicator => {
+        //     indicator.style.display = "none";
+        // });
   
         // Show the expand button when not expanded
         expandBtn.style.display = "block";
