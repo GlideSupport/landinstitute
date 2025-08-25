@@ -88,9 +88,9 @@ $li_im_button = $bst_block_fields['li_im_button'] ?? null;
 											 ?>
 											<div class="map-values-col" >
 												 <div class="map-counter" data-start="<?php echo esc_attr($stat_number); ?>" data-end="<?php echo esc_attr($stat_number_end); ?>">	
-													<h2 class="mb-0 block-title heading-2">
+													<div class="mb-0 block-title heading-2">
 													<?php echo esc_html(($stat['stat_prefix'] ?? '')); ?><span class="count"><?php echo esc_attr(number_format($stat_number)); ?></span><?php echo esc_html(($stat['stat_postfix'] ?? '')); ?>
-													</h2>
+													</div>
 												</div>
 												<div class="ui-16-15-bold map-content">
 													<?php echo esc_html($stat['stat_label'] ?? ''); ?>

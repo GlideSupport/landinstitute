@@ -12,9 +12,9 @@
 						<?php foreach ($li_s_repeater_one as $li_s_rep_one) :?>
 							<div class="map-values-col" >
 								<div class="map-counter counter-number" data-target="<?php echo esc_attr($li_s_rep_one['li_s_number_one']); ?>">	
-									<h2 class="mb-0 block-title heading-2">
+									<div class="mb-0 block-title heading-2">
 									<?php echo esc_html(($li_s_rep_one['li_s_prefix_one'] ?? '')); ?><span class="count">0</span><?php echo esc_html(($li_s_rep_one['li_s_postfix_one'] ?? '')); ?>
-									</h2>
+									</div>
 								</div>
 								<div class="ui-16-15-bold map-content">
 									<?php echo html_entity_decode($li_s_rep_one['li_s_label_one'] ?? ''); ?>

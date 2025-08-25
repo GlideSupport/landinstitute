@@ -1,39 +1,37 @@
 import Swiper from "swiper/bundle";
 
 document.addEventListener("DOMContentLoaded", function () {
-
 	// Initialize multiple timeline fancy sliders
-	document.querySelectorAll('.timeline-slider-fancy').forEach((el) => {
-    const container = el.closest('.timeline-block'); // parent containing arrows
-    const nextBtn = container.querySelector('.swiper-button-next');
-    const prevBtn = container.querySelector('.swiper-button-prev');
+	document.querySelectorAll(".timeline-slider-fancy").forEach((el) => {
+		const container = el.closest(".timeline-block"); // parent containing arrows
+		const nextBtn = container.querySelector(".swiper-button-next");
+		const prevBtn = container.querySelector(".swiper-button-prev");
 
-    new Swiper(el, {
-        loop: false,
-        autoHeight: true,
-        initialSlide: 0,
-        observer: true,
-        observeParents: true,
-        updateOnWindowResize: true,
-        centeredSlides: false,
-        slidesPerView: 1.2,
-        spaceBetween: 0,
-        navigation: {
-            nextEl: nextBtn, // DOM element
-            prevEl: prevBtn, // DOM element
-        },
-        breakpoints: {
-            640: { slidesPerView: 2.285, spaceBetween: 0 },
-            1028: { slidesPerView: 2.285, spaceBetween: 0 },
-            1920: { slidesPerView: 2.285, spaceBetween: 0 },
-        },
-    });
-});
-
+		new Swiper(el, {
+			loop: false,
+			autoHeight: true,
+			initialSlide: 0,
+			observer: true,
+			observeParents: true,
+			updateOnWindowResize: true,
+			centeredSlides: false,
+			slidesPerView: 1.2,
+			spaceBetween: 0,
+			navigation: {
+				nextEl: nextBtn, // DOM element
+				prevEl: prevBtn, // DOM element
+			},
+			breakpoints: {
+				640: { slidesPerView: 2.285, spaceBetween: 0 },
+				1028: { slidesPerView: 2.285, spaceBetween: 0 },
+				1920: { slidesPerView: 2.285, spaceBetween: 0 },
+			},
+		});
+	});
 
 	// post teaser sliders start
-	document.querySelectorAll(".variable-slide-preview").forEach(slider => {
-		const container = slider.closest(".all-resources-block"); 
+	document.querySelectorAll(".variable-slide-preview").forEach((slider) => {
+		const container = slider.closest(".all-resources-block");
 		const nextBtn = container.querySelector(".swiper-button-next");
 		const prevBtn = container.querySelector(".swiper-button-prev");
 
@@ -50,10 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 	//end
 
-
-
-
-	
 	//end
 
 	// CTA Slider JS start
@@ -102,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				init: function () {
 					updateCounter(this);
 					updateArrowPosition();
-					logSlideHeights(); 
+					logSlideHeights();
 				},
 				slideChangeTransitionEnd: function () {
 					updateCounter(this);
@@ -134,7 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			const activeSlide = wrapper.querySelector(".swiper-slide-active");
 			if (!activeSlide) return;
 
-			const currentContent = activeSlide.querySelector(".cl-left .slide-content");
+			const currentContent = activeSlide.querySelector(
+				".cl-left .slide-content",
+			);
 			if (!currentContent) return;
 
 			const height = currentContent.offsetHeight;
@@ -159,153 +155,155 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		// Make sure arrow position adjusts on window resize
 		window.addEventListener("resize", updateArrowPosition);
-
-		
 	});
-	
+
 	// CTA Slider JS end
-	
 
 	// Map slider with counter start
-	document.querySelectorAll(".impact-map-block").forEach((blockWrapper) => {
-		const speed = 2000;
+document.querySelectorAll(".impact-map-block").forEach((blockWrapper) => {
+  const mapSlides = blockWrapper.querySelector(".map-slides");
+  const mapYears = blockWrapper.querySelector(".map-years");
+  const nextBtn = blockWrapper.querySelector(".swiper-button-next");
+  const prevBtn = blockWrapper.querySelector(".swiper-button-prev");
 
-		const countUp = (mapCounter) => {
-			const container = mapCounter.closest(".map-counter");
-			if (!container || container.dataset.counted === "true") return;
+  if (!mapSlides) return;
 
-			const startStr = container.getAttribute("data-start");
-			const endStr = container.getAttribute("data-end");
-			const start = Number(startStr);
-			const end = Number(endStr);
+  let animations = [];
+  const lastValues = {}; // store last visible number for each counter index
 
-			if (
-				!startStr || !endStr ||
-				isNaN(start) || isNaN(end) ||
-				start === end
-			) {
-				mapCounter.innerText = end.toLocaleString();
-				container.dataset.counted = "true";
-				return;
-			}
+  // format number with commas
+  function formatNumber(num) {
+    return num.toLocaleString("en-US");
+  }
 
-			const startTime = performance.now();
+  // animate counter
+  function animateCounter(counterEl, start, end, duration = 1200, index) {
+    const countSpan = counterEl.querySelector(".count");
+    let startTime = null;
 
-			const updateCount = (currentTime) => {
-				const elapsedTime = currentTime - startTime;
-				const progress = Math.min(elapsedTime / speed, 1);
-				const currentCount = Math.floor(start + (end - start) * progress);
-				mapCounter.innerText = currentCount.toLocaleString();
+    function update(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const current = Math.floor(start + (end - start) * progress);
+      countSpan.textContent = formatNumber(current);
 
-				if (progress < 1) {
-					requestAnimationFrame(updateCount);
-				} else {
-					mapCounter.innerText = end.toLocaleString();
-					container.dataset.counted = "true";
-				}
-			};
+      // keep track of the last animated number
+      lastValues[index] = current;
 
-			requestAnimationFrame(updateCount);
-		};
+      if (progress < 1) {
+        const frame = requestAnimationFrame(update);
+        animations.push(frame);
+      }
+    }
+    const frame = requestAnimationFrame(update);
+    animations.push(frame);
+  }
 
-		const mapSlides = blockWrapper.querySelector(".map-slides");
-		const mapYears = blockWrapper.querySelector(".map-years");
-		const nextBtn = blockWrapper.querySelector(".swiper-button-next");
-		const prevBtn = blockWrapper.querySelector(".swiper-button-prev");
+  // run counters for a specific slide
+  function runCounters(fromSlide, toSlide, isInitial = false) {
+    // cancel ongoing animations
+    animations.forEach((frame) => cancelAnimationFrame(frame));
+    animations = [];
 
-		if (!mapSlides) return;
+    const toCounters = toSlide.querySelectorAll(".map-counter");
 
-		// Swiper main
-		const galleryTop = new Swiper(mapSlides, {
-			spaceBetween: 0,
-			speed: 1000,
-			navigation:
-				nextBtn && prevBtn
-					? {
-					nextEl: nextBtn,
-					prevEl: prevBtn,
-					  }
-					: false,
-			effect: "fade",
-			fadeEffect: { crossFade: true },
-			touchRatio: 1,
-            simulateTouch: true,
-            allowTouchMove: true,
-			on: {
-		    slideChange: function () {
-		        const activeSlide = this.slides[this.activeIndex];
-		        const slideContainer = activeSlide.querySelector(".swiper-slide-container");
+    toCounters.forEach((counter, i) => {
+      const end = parseInt(counter.dataset.end, 10);
 
-		        const year = slideContainer ? slideContainer.getAttribute("data-map") : null;
-		        const svgMaps = document.querySelectorAll(".impact-map-block .map-image svg");
+      let start;
+      if (isInitial) {
+        start = parseInt(counter.dataset.start, 10);
+      } else {
+        // if we already have a last value, use it, otherwise fall back to start
+        start = lastValues[i] !== undefined
+          ? lastValues[i]
+          : parseInt(counter.dataset.start, 10);
+      }
 
-		        if (year) {
-		            svgMaps.forEach((svg) => {
-		                svg.classList.forEach((cls) => {
-		                    if (cls.startsWith("year-")) {
-		                        svg.classList.remove(cls);
-		                    }
-		                });
-		                svg.classList.add(`year-${year}`);
-		            });
-		        }
-		    },
-		    // Keep counters triggered at the end of the transition
-		    slideChangeTransitionEnd: function () {
-		        const activeSlide = this.slides[this.activeIndex];
-		        const mapCounters = activeSlide.querySelectorAll(".map-counter .count");
-		        mapCounters.forEach((mapCounter) => {
-		            observer.observe(mapCounter.closest(".map-counter"));
-		        });
-		    }
-		}
+      animateCounter(counter, start, end, 1200, i);
+    });
+  }
 
-		});
+  // Swiper main
+  const galleryTop = new Swiper(mapSlides, {
+    spaceBetween: 0,
+    speed: 10,
+    navigation:
+      nextBtn && prevBtn
+        ? {
+            nextEl: nextBtn,
+            prevEl: prevBtn,
+          }
+        : false,
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    touchRatio: 1,
+    simulateTouch: true,
+    allowTouchMove: true,
+    on: {
+      slideChange: function () {
+        const activeSlide = this.slides[this.activeIndex];
+        const slideContainer = activeSlide.querySelector(".swiper-slide-container");
 
-		// Swiper thumbs
-		if (mapYears) {
-			const galleryThumbs = new Swiper(mapYears, {
-				spaceBetween: 0,
-				slidesPerView: "auto",
-				slideToClickedSlide: true,
-				speed: 1000,
-				centeredSlides: true,
-				a11y: {
-				    slideRole: 'button'
-				  }
-			});
+        const year = slideContainer ? slideContainer.getAttribute("data-map") : null;
+        const svgMaps = document.querySelectorAll(".impact-map-block .map-image svg");
 
-			galleryTop.controller.control = galleryThumbs;
-			galleryThumbs.controller.control = galleryTop;
-		}
+        if (year) {
+          svgMaps.forEach((svg) => {
+            svg.classList.forEach((cls) => {
+              if (cls.startsWith("year-")) {
+                svg.classList.remove(cls);
+              }
+            });
+            svg.classList.add(`year-${year}`);
+          });
+        }
+      },
+      slideChangeTransitionEnd: function () {
+        const activeSlide = this.slides[this.activeIndex];
+        runCounters(null, activeSlide, false);
+      },
+    },
+  });
 
-		// IntersectionObserver for countUp
-		const observerOptions = { threshold: 0.3 };
-		const observer = new IntersectionObserver((entries, observer) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					const mapCounter = entry.target.querySelector(".count");
-					if (mapCounter) {
-						countUp(mapCounter);
-						observer.unobserve(entry.target);
-					}
-				}
-			});
-		}, observerOptions);
+  // Swiper thumbs
+  if (mapYears) {
+    const galleryThumbs = new Swiper(mapYears, {
+      spaceBetween: 0,
+      slidesPerView: "auto",
+      slideToClickedSlide: true,
+      speed: 10,
+      centeredSlides: true,
+      a11y: {
+        slideRole: "button",
+      },
+    });
 
-		// Trigger observer on initial slide
-		const initialSlide = galleryTop.slides[galleryTop.activeIndex];
-		if (initialSlide) {
-			const initialMapCounters = initialSlide.querySelectorAll(".map-counter");
-			initialMapCounters.forEach((counterContainer) =>
-				observer.observe(counterContainer)
-			);
-		}
-	});
-	// Map slider with counter end
+    galleryTop.controller.control = galleryThumbs;
+    galleryThumbs.controller.control = galleryTop;
+  }
+
+  // IntersectionObserver for initial trigger
+  const observerOptions = { threshold: 0.3 };
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const activeSlide = galleryTop.slides[galleryTop.activeIndex];
+        runCounters(null, activeSlide, true);
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  observer.observe(blockWrapper);
+});
+// Map slider with counter end
+
 
 	// Timeline js start
-	const timelineBlocks = document.querySelectorAll(".timeline-block"); timelineBlocks.forEach((block, index) => {
+	const timelineBlocks = document.querySelectorAll(".timeline-block");
+	timelineBlocks.forEach((block, index) => {
 		const slider = block.querySelector(".timeline-slider");
 		const nextBtn = block.querySelector(".swiper-button-next");
 		const prevBtn = block.querySelector(".swiper-button-prev");
@@ -351,14 +349,16 @@ document.addEventListener("DOMContentLoaded", function () {
 			on: {
 				init(swiper) {
 					swiper.slideTo(0, 0); // Scroll to slide index 3 on init
-				}
+				},
 			},
 		});
 	});
 	// Timeline js end
 
 	// Testimonial Traditional js start
-	const sliderWrappers = document.querySelectorAll( ".testimonial-traditional-block");
+	const sliderWrappers = document.querySelectorAll(
+		".testimonial-traditional-block",
+	);
 	sliderWrappers.forEach((wrapper, index) => {
 		const swiperContainer = wrapper.querySelector(".traditional-slide");
 		const swiperWrapper = swiperContainer?.querySelector(".swiper-wrapper");
@@ -398,7 +398,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Testimonial Traditional js end
 
 	// Testimonial Single View Slider start
-	const testimonial_single_view_Sliders = document.querySelectorAll( ".testimonial-single-view-slider");
+	const testimonial_single_view_Sliders = document.querySelectorAll(
+		".testimonial-single-view-slider",
+	);
 	testimonial_single_view_Sliders.forEach((sliderWrapper, index) => {
 		const slider = sliderWrapper.querySelector(".single-view-slide");
 		if (!slider) return; // Skip if the slider container is missing
@@ -441,7 +443,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	ctaSliders.forEach((slider, index) => {
 		if (!slider) return;
 		slider.classList.add(`cta-card-slide-${index}`);
-		const block = slider.closest(".cta-grid-slider-block"); 
+		const block = slider.closest(".cta-grid-slider-block");
 		const nextBtn = block?.querySelector(".swiper-button-next");
 		const prevBtn = block?.querySelector(".swiper-button-prev");
 		// Initialize Swiper
@@ -465,9 +467,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// CTA Card Slide js end
 
-
 	// New Page slider start
-	const logolistslider = document.querySelector('.logolist-wrapp');
+	const logolistslider = document.querySelector(".logolist-wrapp");
 
 	if (logolistslider) {
 		new Swiper(logolistslider, {
@@ -485,41 +486,41 @@ document.addEventListener("DOMContentLoaded", function () {
 				},
 				480: {
 					slidesPerView: 2.2,
-				}
-			}
+				},
+			},
 		});
 	}
 	// New Page slider end
 
 	//Event detail page js code start
-	const swiperEl = document.querySelector('.read-slide-preview');
+	const swiperEl = document.querySelector(".read-slide-preview");
 	if (swiperEl) {
-	    const container = swiperEl.closest('.border-variable-slider'); // wrapper that has arrows
-	    const nextBtn = container.querySelector('.swiper-button-next');
-	    const prevBtn = container.querySelector('.swiper-button-prev');
+		const container = swiperEl.closest(".border-variable-slider"); // wrapper that has arrows
+		const nextBtn = container.querySelector(".swiper-button-next");
+		const prevBtn = container.querySelector(".swiper-button-prev");
 
-	    const swiper = new Swiper(swiperEl, {
-	        slidesPerView: 1,
-	        spaceBetween: 0,
-	        breakpoints: {
-	            480: { slidesPerView: 2, spaceBetween: 0 },
-	            1028: { slidesPerView: 3, spaceBetween: 0 },
-	            1920: { slidesPerView: 3, spaceBetween: 0 }
-	        },
-	        navigation: {
-	            nextEl: nextBtn,
-	            prevEl: prevBtn,
-	        },
-	    });
+		const swiper = new Swiper(swiperEl, {
+			slidesPerView: 1,
+			spaceBetween: 0,
+			breakpoints: {
+				480: { slidesPerView: 2, spaceBetween: 0 },
+				1028: { slidesPerView: 3, spaceBetween: 0 },
+				1920: { slidesPerView: 3, spaceBetween: 0 },
+			},
+			navigation: {
+				nextEl: nextBtn,
+				prevEl: prevBtn,
+			},
+		});
 	}
 
 	//Event detail page js code end
 
 	//Image gallery slider code start
-	document.querySelectorAll('.image-gallery-slider').forEach(sliderEl => {
-		const container = sliderEl.closest('.image-gallery-block'); // find wrapper containing slider + arrows
-		const nextBtn = container.querySelector('.swiper-button-next');
-		const prevBtn = container.querySelector('.swiper-button-prev');
+	document.querySelectorAll(".image-gallery-slider").forEach((sliderEl) => {
+		const container = sliderEl.closest(".image-gallery-block"); // find wrapper containing slider + arrows
+		const nextBtn = container.querySelector(".swiper-button-next");
+		const prevBtn = container.querySelector(".swiper-button-prev");
 
 		new Swiper(sliderEl, {
 			loop: true,
@@ -540,6 +541,4 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//Image gallery slider code end
-	
-	
 });
