@@ -1036,15 +1036,75 @@ document.addEventListener("DOMContentLoaded", function () {
 //Scrolling Text block js end
 
 document.addEventListener("DOMContentLoaded", () => {
+	const galleryGrid = document.querySelector(".gallery-grid");
+	const galleryBlock = document.querySelector(".gallery-block");
+	const customCursor = document.querySelector(".custom-cursor");
 
-		// Image Gallery js start
+	if (!galleryGrid || !galleryBlock || !customCursor) {
+		return;
+	}
+
+	calculateBounds(galleryBlock);
+});
+
+function calculateBounds(galleryBlock) {
+	if (!galleryBlock) {
+		return;
+	}
+	const isMobile = window.innerWidth <= 767;
+
+	let maxX, maxY;
+
+	if (isMobile) {
+		maxX = galleryBlock.clientWidth / 0.6;
+		maxY = galleryBlock.clientHeight / 1.5;
+	} else {
+		maxX = galleryBlock.clientWidth / 2;
+		maxY = galleryBlock.clientHeight / 1.5;
+	}
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+	// Image Gallery js start
+	const button = document.getElementById('followBtn');
+	// Find the closest parent <section> to the button
+	const parentSection = button.closest('section');
+
+	// Show button when mouse enters section
+	parentSection.addEventListener('mouseenter', function() {
+	  button.style.opacity = '1';
+	});
+
+	// Move button with cursor inside section
+	parentSection.addEventListener('mousemove', function(e) {
+	  const rect = parentSection.getBoundingClientRect();
+	  let x = e.clientX - rect.left;
+	  let y = e.clientY - rect.top;
+	  x -= button.offsetWidth / 2;
+	  y -= button.offsetHeight / 2;
+	  x = Math.max(0, Math.min(x, rect.width - button.offsetWidth));
+	  y = Math.max(0, Math.min(y, rect.height - button.offsetHeight));
+	  button.style.left = x + 'px';
+	  button.style.top = y + 'px';
+	});
+
+	// Hide and reset button when mouse leaves section
+	parentSection.addEventListener('mouseleave', function() {
+	  button.style.left = '0px';
+	  button.style.top = '0px';
+	  button.style.opacity = '0';
+	});
+			
     const galleryGrid = document.querySelector(".gallery-grid");
     const galleryBlock = document.querySelector(".gallery-block");
     const customCursor = document.querySelector(".custom-cursor");
     const expandBtn = document.querySelector(".gallery-expand-btn");
     const closeBtn = document.querySelector(".gallery-close-btn");
     const imageGalleryBlock = document.querySelector(".image-gallery-block");
-    const dragIndicators = document.querySelectorAll(".cursor-static");
+    const GalleryBlock = document.querySelector(".gallery-block");
+ 
     
     // Check if required elements exist before proceeding
     if (!galleryGrid || !galleryBlock || !customCursor || !expandBtn || !closeBtn || !imageGalleryBlock) {
@@ -1053,14 +1113,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initially hide the close button and all drag indicators
     closeBtn.style.display = "none";
-    dragIndicators.forEach(indicator => {
-        indicator.style.display = "none";
-    });
-
+   
     // Show only the first drag indicator (if any exist)
-    if (dragIndicators.length > 0) {
-        dragIndicators[0].style.display = "block";
-    }
+   
 
     let isDragging = false;
     let startX = 0,
@@ -1076,34 +1131,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Expand gallery function
     function expandGallery() {
         imageGalleryBlock.classList.add("expanded");
+		GalleryBlock.style.height = "100vh";
         document.body.style.overflow = "hidden";
         
         // Show the close button when expanded
         closeBtn.style.display = "block";
-        // Show drag indicator when expanded
-        if (dragIndicators.length > 0) {
-            dragIndicators[0].style.display = "block";
-        }
         // Hide the expand button when expanded
         expandBtn.style.display = "none";
         
         // Enable dragging
         enableDragging();
-        
         calculateBounds();
     }
 
     // Close gallery function
     function closeGallery() {
         imageGalleryBlock.classList.remove("expanded");
+		GalleryBlock.style.height = "";
         document.body.style.overflow = "";
         
         // Hide the close button when not expanded
         closeBtn.style.display = "none";
-        // Hide drag indicator when not expanded
-        dragIndicators.forEach(indicator => {
-            indicator.style.display = "none";
-        });
+  
         // Show the expand button when not expanded
         expandBtn.style.display = "block";
         
@@ -1327,9 +1376,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initially disable dragging
     disableDragging();
-
-//Image Gallery js end
-
+	//Image Gallery js end
+	
+	
 	//staff tab js
 	const tabs = document.querySelectorAll("ul.tabs li");
 	const contents = document.querySelectorAll(".tab-content");
@@ -1544,3 +1593,31 @@ document.addEventListener('DOMContentLoaded', function () {
 		logoImg.style.height = `${size}px`;
 	});
 });
+
+//Footer Menu accordion js start
+document.querySelectorAll(".footer-nav-title").forEach((title) => {
+	title.addEventListener("click", () => {
+		if (window.innerWidth <= 991) {
+			const parent = title.closest(".footer-nav");
+
+			// Close all others
+			document.querySelectorAll(".footer-nav").forEach((nav) => {
+				if (nav !== parent) {
+					nav.classList.remove("active");
+				}
+			});
+
+			// Toggle the clicked one
+			parent.classList.toggle("active");
+		}
+	});
+});
+
+window.addEventListener("resize", () => {
+	if (window.innerWidth > 991) {
+		document.querySelectorAll(".footer-nav").forEach((nav) => {
+			nav.classList.remove("active");
+		});
+	}
+});
+//Footer Menu accordion end start

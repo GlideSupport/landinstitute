@@ -25,7 +25,7 @@
 			<?php endif; ?>
 		</div>
 		 <!-- Expand / Close Buttons -->
-        <button class="gallery-expand-btn">Browse Gallery</button>
+        <button class="gallery-expand-btn" id="followBtn">Browse Gallery</button>
         <button class="gallery-close-btn">✕</button>
 	</div>
 <?php endif; ?>
