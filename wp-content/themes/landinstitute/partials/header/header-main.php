@@ -44,7 +44,7 @@
 									<div class="mega-dropdown-card">
 										<div class="col-left">
 											<?php
-											$allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+											$allowed_post_types = ['staff', 'event', 'news', 'post', 'page'];
 											$excluded_post_types = get_field('li_search_exclude_post_type', 'option');
 											if (!is_array($excluded_post_types)) {
 												$excluded_post_types = [];

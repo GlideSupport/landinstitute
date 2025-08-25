@@ -74,7 +74,7 @@ set_query_var( 'paged_var', $paged );
 		</div>
 	</section>
 <?php
-$allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+$allowed_post_types = ['staff', 'event', 'news', 'post', 'page'];
 $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
 if (!is_array($excluded_post_types)) {
     $excluded_post_types = [];

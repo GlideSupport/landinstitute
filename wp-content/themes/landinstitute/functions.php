@@ -1479,7 +1479,7 @@ function limit_search_to_specific_post_types($query) {
     if ($query->is_main_query() && $query->is_search() && !is_admin()) {
 
         // Allowed post types
-        $allowed_post_types = ['staff', 'event', 'post', 'news', 'page'];
+        $allowed_post_types = ['staff', 'event', 'news', 'post', 'page'];
 
         // ACF field to exclude post types (array expected)
         $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
@@ -1536,5 +1536,5 @@ function ll_fix_duplicate_pagination_url() {
 // Helper to get post type label
 function get_post_type_label($post_type_slug) {
     $post_type_obj = get_post_type_object($post_type_slug);
-    return $post_type_obj ? $post_type_obj->labels->singular_name : ucfirst($post_type_slug);
+    return $post_type_obj ? $post_type_obj->labels->name : ucfirst($post_type_slug);
 }
