@@ -25,6 +25,8 @@
         right: 20px;
         top: 20px;
         z-index: 2;
+        opacity: 0;
+        visibility: hidden;
     }
 
     .gallery-expand-btn {
@@ -35,6 +37,13 @@
         transition: inherit;
         opacity: 0;
         pointer-events: auto;
+    }
+
+    &.expanded {
+        .gallery-close-btn {
+            opacity: 1;
+            visibility: visible;
+        }
     }
 
 }
