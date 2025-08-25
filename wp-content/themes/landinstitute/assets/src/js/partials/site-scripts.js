@@ -1106,7 +1106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.querySelector(".gallery-close-btn");
     const imageGalleryBlock = document.querySelector(".image-gallery-block");
     const GalleryBlock = document.querySelector(".gallery-block");
-	const dragIndicators = document.querySelectorAll(".cursor-static");
+	//const dragIndicators = document.querySelectorAll(".cursor-static");
  
     
     // Check if required elements exist before proceeding
