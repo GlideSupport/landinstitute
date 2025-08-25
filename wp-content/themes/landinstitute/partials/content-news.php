@@ -39,7 +39,7 @@ $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 $li_no_bg_image_visible = $bst_fields['li_no_bg_image_visible'] ?? 'Show';
 $li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_select_default_background_pattern'];
 
-$newsletter_form_visible = $bst_fields['li_nwd_newsletter_form_visible'] ?? 'Show';
+$newsletter_form_visible = get_field('li_nwd_newsletter_form_visible') ?: 'Show';
 $li_nwd_title = $bst_fields['li_nwd_title'] ?? $bst_var_title;
 $li_nwd_kicker = $bst_fields['li_nwd_kicker'] ?? $bst_var_kicker;
 $form_selector = $bst_fields['li_nwd_form_selector'] ?? $bst_var_form_selector;
