@@ -1036,252 +1036,299 @@ document.addEventListener("DOMContentLoaded", function () {
 //Scrolling Text block js end
 
 document.addEventListener("DOMContentLoaded", () => {
-	const galleryGrid = document.querySelector(".gallery-grid");
-	const galleryBlock = document.querySelector(".gallery-block");
-	const customCursor = document.querySelector(".custom-cursor");
 
-	if (!galleryGrid || !galleryBlock || !customCursor) {
-		return;
-	}
+		// Image Gallery js start
+    const galleryGrid = document.querySelector(".gallery-grid");
+    const galleryBlock = document.querySelector(".gallery-block");
+    const customCursor = document.querySelector(".custom-cursor");
+    const expandBtn = document.querySelector(".gallery-expand-btn");
+    const closeBtn = document.querySelector(".gallery-close-btn");
+    const imageGalleryBlock = document.querySelector(".image-gallery-block");
+    const dragIndicators = document.querySelectorAll(".cursor-static");
+    
+    // Check if required elements exist before proceeding
+    if (!galleryGrid || !galleryBlock || !customCursor || !expandBtn || !closeBtn || !imageGalleryBlock) {
+        return;
+    }
 
-	calculateBounds(galleryBlock);
-});
+    // Initially hide the close button and all drag indicators
+    closeBtn.style.display = "none";
+    dragIndicators.forEach(indicator => {
+        indicator.style.display = "none";
+    });
 
-function calculateBounds(galleryBlock) {
-	if (!galleryBlock) {
-		return;
-	}
-	const isMobile = window.innerWidth <= 767;
+    // Show only the first drag indicator (if any exist)
+    if (dragIndicators.length > 0) {
+        dragIndicators[0].style.display = "block";
+    }
 
-	let maxX, maxY;
+    let isDragging = false;
+    let startX = 0,
+        startY = 0;
+    let targetX = 0,
+        targetY = 0;
+    let hasDragged = false;
+    let tween = null;
 
-	if (isMobile) {
-		maxX = galleryBlock.clientWidth / 0.6;
-		maxY = galleryBlock.clientHeight / 1.5;
-	} else {
-		maxX = galleryBlock.clientWidth / 2;
-		maxY = galleryBlock.clientHeight / 1.5;
-	}
-}
-//Footer Menu accordion js start
-document.querySelectorAll(".footer-nav-title").forEach((title) => {
-	title.addEventListener("click", () => {
-		if (window.innerWidth <= 991) {
-			const parent = title.closest(".footer-nav");
+    let maxX = 0;
+    let maxY = 0;
 
-			// Close all others
-			document.querySelectorAll(".footer-nav").forEach((nav) => {
-				if (nav !== parent) {
-					nav.classList.remove("active");
-				}
-			});
+    // Expand gallery function
+    function expandGallery() {
+        imageGalleryBlock.classList.add("expanded");
+        document.body.style.overflow = "hidden";
+        
+        // Show the close button when expanded
+        closeBtn.style.display = "block";
+        // Show drag indicator when expanded
+        if (dragIndicators.length > 0) {
+            dragIndicators[0].style.display = "block";
+        }
+        // Hide the expand button when expanded
+        expandBtn.style.display = "none";
+        
+        // Enable dragging
+        enableDragging();
+        
+        calculateBounds();
+    }
 
-			// Toggle the clicked one
-			parent.classList.toggle("active");
-		}
-	});
-});
+    // Close gallery function
+    function closeGallery() {
+        imageGalleryBlock.classList.remove("expanded");
+        document.body.style.overflow = "";
+        
+        // Hide the close button when not expanded
+        closeBtn.style.display = "none";
+        // Hide drag indicator when not expanded
+        dragIndicators.forEach(indicator => {
+            indicator.style.display = "none";
+        });
+        // Show the expand button when not expanded
+        expandBtn.style.display = "block";
+        
+        // Disable dragging
+        disableDragging();
+        
+        // Reset position when closing
+        targetX = 0;
+        targetY = 0;
+        updateTransform();
+    }
 
-window.addEventListener("resize", () => {
-	if (window.innerWidth > 991) {
-		document.querySelectorAll(".footer-nav").forEach((nav) => {
-			nav.classList.remove("active");
-		});
-	}
-});
-//Footer Menu accordion end start
+    // Enable dragging functionality
+    function enableDragging() {
+        // Mouse events
+        galleryBlock.addEventListener("mousedown", startDrag);
+        window.addEventListener("mousemove", moveDrag);
+        window.addEventListener("mouseup", endDrag);
+        window.addEventListener("mouseleave", endDrag);
 
-//Image Gallery js start
-document.addEventListener("DOMContentLoaded", () => {
-	const galleryGrid = document.querySelector(".gallery-grid");
-	const galleryBlock = document.querySelector(".gallery-block");
-	const customCursor = document.querySelector(".custom-cursor");
+        // Touch events
+        galleryBlock.addEventListener("touchstart", startDrag, { passive: false });
+        window.addEventListener("touchmove", moveDrag, { passive: false });
+        window.addEventListener("touchend", endDrag);
+        window.addEventListener("touchcancel", endDrag);
 
-	// Check if required elements exist before proceeding
-	if (!galleryGrid || !galleryBlock || !customCursor) {
-		return;
-	}
+        // Enable cursor
+        galleryBlock.style.cursor = "grab";
+        
+        // Mouse movement for cursor
+        galleryBlock.addEventListener("mousemove", updateCursorPosition);
+        galleryBlock.addEventListener("mouseenter", showCursor);
+        galleryBlock.addEventListener("mouseleave", hideCursor);
 
-	let isDragging = false;
-	let startX = 0,
-		startY = 0;
-	let targetX = 0,
-		targetY = 0;
-	let hasDragged = false;
-	let tween = null;
+        // Touch movement for cursor
+        galleryBlock.addEventListener(
+            "touchstart",
+            (e) => {
+                updateCursorPosition(e);
+                showCursor();
+            },
+            { passive: false },
+        );
 
-	let maxX = 0;
-	let maxY = 0;
+        galleryBlock.addEventListener("touchmove", updateCursorPosition, {
+            passive: false,
+        });
+        galleryBlock.addEventListener("touchend", hideCursor);
+        galleryBlock.addEventListener("touchcancel", hideCursor);
+    }
 
-	function calculateBounds() {
-		// Additional safety check inside the function
-		if (!galleryBlock) {
-			return;
-		}
+    // Disable dragging functionality
+    function disableDragging() {
+        // Remove mouse events
+        galleryBlock.removeEventListener("mousedown", startDrag);
+        window.removeEventListener("mousemove", moveDrag);
+        window.removeEventListener("mouseup", endDrag);
+        window.removeEventListener("mouseleave", endDrag);
 
-		const isMobile = window.innerWidth <= 767;
+        // Remove touch events
+        galleryBlock.removeEventListener("touchstart", startDrag);
+        window.removeEventListener("touchmove", moveDrag);
+        window.removeEventListener("touchend", endDrag);
+        window.removeEventListener("touchcancel", endDrag);
 
-		if (isMobile) {
-			maxX = galleryBlock.clientWidth / 0.6;
-			maxY = galleryBlock.clientHeight / 1.5;
-		} else {
-			maxX = galleryBlock.clientWidth / 2;
-			maxY = galleryBlock.clientHeight / 1.5;
-		}
-	}
+        // Remove cursor events
+        galleryBlock.removeEventListener("mousemove", updateCursorPosition);
+        galleryBlock.removeEventListener("mouseenter", showCursor);
+        galleryBlock.removeEventListener("mouseleave", hideCursor);
+        galleryBlock.removeEventListener("touchstart", updateCursorPosition);
+        galleryBlock.removeEventListener("touchmove", updateCursorPosition);
+        galleryBlock.removeEventListener("touchend", hideCursor);
+        galleryBlock.removeEventListener("touchcancel", hideCursor);
 
-	calculateBounds();
+        // Reset cursor style
+        galleryBlock.style.cursor = "default";
+        hideCursor();
+    }
 
-	window.addEventListener("resize", () => {
-		calculateBounds();
-		targetX = Math.max(-maxX, Math.min(targetX, maxX));
-		targetY = Math.max(-maxY, Math.min(targetY, maxY));
-		updateTransform();
-	});
+    // Add event listeners for expand/close buttons
+    expandBtn.addEventListener("click", expandGallery);
+    closeBtn.addEventListener("click", closeGallery);
 
-	document.querySelectorAll(".gallery-grid img").forEach((img) => {
-		img.setAttribute("draggable", "false");
-		img.style.userSelect = "none";
-		img.style.pointerEvents = "none";
-	});
+    function calculateBounds() {
+        // Additional safety check inside the function
+        if (!galleryBlock) {
+            return;
+        }
 
-	function updateTransform() {
-		if (tween) {
-			tween.kill();
-		}
-		tween = gsap.to(galleryGrid, {
-			x: targetX,
-			y: targetY,
-			duration: 0.1,
-			ease: "power1.out",
-		});
-	}
+        const isMobile = window.innerWidth <= 767;
 
-	function getEventPosition(e) {
-		if (e.type.startsWith("touch")) {
-			const touch = e.touches[0] || e.changedTouches[0];
-			return { x: touch.clientX, y: touch.clientY };
-		}
-		return { x: e.clientX, y: e.clientY };
-	}
+        if (isMobile) {
+            maxX = galleryBlock.clientWidth / 0.6;
+            maxY = galleryBlock.clientHeight / 1.5;
+        } else {
+            maxX = galleryBlock.clientWidth / 2;
+            maxY = galleryBlock.clientHeight / 1.5;
+        }
+    }
 
-	function startDrag(e) {
-		isDragging = true;
-		hasDragged = false;
-		const pos = getEventPosition(e);
-		startX = pos.x;
-		startY = pos.y;
-		galleryBlock.style.cursor = "grabbing";
-		document.body.style.userSelect = "none";
-		customCursor.classList.add("dragging");
-	}
+    calculateBounds();
 
-	function moveDrag(e) {
-		if (!isDragging) {
-			return;
-		}
+    window.addEventListener("resize", () => {
+        calculateBounds();
+        targetX = Math.max(-maxX, Math.min(targetX, maxX));
+        targetY = Math.max(-maxY, Math.min(targetY, maxY));
+        updateTransform();
+    });
 
-		const pos = getEventPosition(e);
-		const dx = pos.x - startX;
-		const dy = pos.y - startY;
+    document.querySelectorAll(".gallery-grid img").forEach((img) => {
+        img.setAttribute("draggable", "false");
+        img.style.userSelect = "none";
+        img.style.pointerEvents = "none";
+    });
 
-		if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-			hasDragged = true;
-		}
+    function updateTransform() {
+        if (tween) {
+            tween.kill();
+        }
+        tween = gsap.to(galleryGrid, {
+            x: targetX,
+            y: targetY,
+            duration: 0.1,
+            ease: "power1.out",
+        });
+    }
 
-		targetX += dx;
-		targetY += dy;
+    function getEventPosition(e) {
+        if (e.type.startsWith("touch")) {
+            const touch = e.touches[0] || e.changedTouches[0];
+            return { x: touch.clientX, y: touch.clientY };
+        }
+        return { x: e.clientX, y: e.clientY };
+    }
 
-		targetX = Math.max(-maxX, Math.min(targetX, maxX));
-		targetY = Math.max(-maxY, Math.min(targetY, maxY));
+    function startDrag(e) {
+        isDragging = true;
+        hasDragged = false;
+        const pos = getEventPosition(e);
+        startX = pos.x;
+        startY = pos.y;
+        galleryBlock.style.cursor = "grabbing";
+        document.body.style.userSelect = "none";
+        if (customCursor) customCursor.classList.add("dragging");
+    }
 
-		updateTransform();
+    function moveDrag(e) {
+        if (!isDragging) {
+            return;
+        }
 
-		startX = pos.x;
-		startY = pos.y;
+        const pos = getEventPosition(e);
+        const dx = pos.x - startX;
+        const dy = pos.y - startY;
 
-		// Move custom cursor on drag
-		updateCursorPosition(e);
-	}
+        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+            hasDragged = true;
+        }
 
-	function endDrag() {
-		if (!isDragging) {
-			return;
-		}
-		isDragging = false;
-		galleryBlock.style.cursor = "grab";
-		document.body.style.userSelect = "";
-		customCursor.classList.remove("dragging");
-	}
+        targetX += dx;
+        targetY += dy;
 
-	// Mouse events
-	galleryBlock.addEventListener("mousedown", startDrag);
-	window.addEventListener("mousemove", moveDrag);
-	window.addEventListener("mouseup", endDrag);
-	window.addEventListener("mouseleave", endDrag);
+        targetX = Math.max(-maxX, Math.min(targetX, maxX));
+        targetY = Math.max(-maxY, Math.min(targetY, maxY));
 
-	// Touch events
-	galleryBlock.addEventListener("touchstart", startDrag, { passive: false });
-	window.addEventListener("touchmove", moveDrag, { passive: false });
-	window.addEventListener("touchend", endDrag);
-	window.addEventListener("touchcancel", endDrag);
+        updateTransform();
 
-	// Reset on click/tap if not dragged
-	galleryBlock.addEventListener("click", () => {
-		if (hasDragged) {
-			hasDragged = false;
-			return;
-		}
-		targetX = 0;
-		targetY = 0;
-		updateTransform();
-	});
+        startX = pos.x;
+        startY = pos.y;
 
-	// Initial cursor style
-	galleryBlock.style.cursor = "grab";
+        // Move custom cursor on drag
+        updateCursorPosition(e);
+    }
 
-	// ----------------------------
-	// CUSTOM CURSOR HANDLING
-	// ----------------------------
+    function endDrag() {
+        if (!isDragging) {
+            return;
+        }
+        isDragging = false;
+        galleryBlock.style.cursor = "grab";
+        document.body.style.userSelect = "";
+        if (customCursor) customCursor.classList.remove("dragging");
+    }
 
-	// Follow mouse or touch
-	function updateCursorPosition(e) {
-		const pos = getEventPosition(e);
-		customCursor.style.left = `${pos.x}px`;
-		customCursor.style.top = `${pos.y}px`;
-	}
+    // Reset on click/tap if not dragged
+    galleryBlock.addEventListener("click", () => {
+        if (hasDragged) {
+            hasDragged = false;
+            return;
+        }
+        targetX = 0;
+        targetY = 0;
+        updateTransform();
+    });
 
-	// Show cursor
-	function showCursor() {
-		customCursor.style.opacity = "1";
-	}
+    // ----------------------------
+    // CUSTOM CURSOR HANDLING
+    // ----------------------------
 
-	// Hide cursor
-	function hideCursor() {
-		customCursor.style.opacity = "0";
-		customCursor.classList.remove("dragging");
-	}
+    // Follow mouse or touch
+    function updateCursorPosition(e) {
+        const pos = getEventPosition(e);
+        if (customCursor) {
+            customCursor.style.left = `${pos.x}px`;
+            customCursor.style.top = `${pos.y}px`;
+        }
+    }
 
-	// Mouse movement for cursor
-	galleryBlock.addEventListener("mousemove", updateCursorPosition);
-	galleryBlock.addEventListener("mouseenter", showCursor);
-	galleryBlock.addEventListener("mouseleave", hideCursor);
+    // Show cursor
+    function showCursor() {
+        if (customCursor) customCursor.style.opacity = "1";
+    }
 
-	// Touch movement for cursor
-	galleryBlock.addEventListener(
-		"touchstart",
-		(e) => {
-			updateCursorPosition(e);
-			showCursor();
-		},
-		{ passive: false },
-	);
+    // Hide cursor
+    function hideCursor() {
+        if (customCursor) {
+            customCursor.style.opacity = "0";
+            customCursor.classList.remove("dragging");
+        }
+    }
 
-	galleryBlock.addEventListener("touchmove", updateCursorPosition, {
-		passive: false,
-	});
-	galleryBlock.addEventListener("touchend", hideCursor);
-	galleryBlock.addEventListener("touchcancel", hideCursor);
+    // Initially disable dragging
+    disableDragging();
+
+//Image Gallery js end
 
 	//staff tab js
 	const tabs = document.querySelectorAll("ul.tabs li");
