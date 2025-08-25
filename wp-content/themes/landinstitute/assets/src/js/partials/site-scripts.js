@@ -1133,6 +1133,13 @@ document.addEventListener("DOMContentLoaded", () => {
         imageGalleryBlock.classList.add("expanded");
 		GalleryBlock.style.height = "100vh";
         document.body.style.overflow = "hidden";
+		const header = document.getElementById("header-section");
+	    const headerHeight = header ? header.offsetHeight : 0;
+	    const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
+	    window.scrollTo({
+	        top: sectionTop - headerHeight,
+	        behavior: "smooth"
+	    });
         
         // Show the close button when expanded
         closeBtn.style.display = "block";
