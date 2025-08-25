@@ -1,11 +1,14 @@
 <?php if (!empty($li_ig_headline_check) || !empty($li_ig_repeater)): ?>
 	<div class="image-gallery-block">
-		<div class="custom-cursor mobile-hidden"></div>
+		<div class="custom-cursor"></div>
 		<div class="gallery-block">
 			<div class="bg-lines">
 				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/src/images/bg-lines2x-scaled.png" alt="Image" title="Image">
 			</div>
 			<?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'block-heading ui-128-78-bold white_text mb-0') : ''; ?>
+			<div class="cursor-static">
+				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/src/images/close-gallery.svg" alt="Image" title="Image"/>
+			</div>
 			<?php if (!empty($li_ig_repeater)) : ?>
 				<div class="gallery-grid">
 					<div class="gallery-image">
