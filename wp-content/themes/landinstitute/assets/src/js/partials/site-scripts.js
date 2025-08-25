@@ -1068,35 +1068,37 @@ function calculateBounds(galleryBlock) {
 document.addEventListener("DOMContentLoaded", () => {
 
 	// Image Gallery js start
-	const button = document.getElementById('followBtn');
-	// Find the closest parent <section> to the button
-	const parentSection = button.closest('section');
+	
+		const button = document.getElementById('followBtn');
+		// Find the closest parent <section> to the button
+		const parentSection = button.closest('section');
 
-	// Show button when mouse enters section
-	parentSection.addEventListener('mouseenter', function() {
-	  button.style.opacity = '1';
-	});
+		// Show button when mouse enters section
+		parentSection.addEventListener('mouseenter', function() {
+		  button.style.opacity = '1';
+		});
 
-	// Move button with cursor inside section
-	parentSection.addEventListener('mousemove', function(e) {
-	  const rect = parentSection.getBoundingClientRect();
-	  let x = e.clientX - rect.left;
-	  let y = e.clientY - rect.top;
-	  x -= button.offsetWidth / 2;
-	  y -= button.offsetHeight / 2;
-	  x = Math.max(0, Math.min(x, rect.width - button.offsetWidth));
-	  y = Math.max(0, Math.min(y, rect.height - button.offsetHeight));
-	  button.style.left = x + 'px';
-	  button.style.top = y + 'px';
-	});
+		// Move button with cursor inside section
+		parentSection.addEventListener('mousemove', function(e) {
+		  const rect = parentSection.getBoundingClientRect();
+		  let x = e.clientX - rect.left;
+		  let y = e.clientY - rect.top;
+		  x -= button.offsetWidth / 2;
+		  y -= button.offsetHeight / 2;
+		  x = Math.max(0, Math.min(x, rect.width - button.offsetWidth));
+		  y = Math.max(0, Math.min(y, rect.height - button.offsetHeight));
+		  button.style.left = x + 'px';
+		  button.style.top = y + 'px';
+		});
 
-	// Hide and reset button when mouse leaves section
-	parentSection.addEventListener('mouseleave', function() {
-	  button.style.left = '0px';
-	  button.style.top = '0px';
-	  button.style.opacity = '0';
-	});
-			
+		// Hide and reset button when mouse leaves section
+		parentSection.addEventListener('mouseleave', function() {
+		  button.style.left = '0px';
+		  button.style.top = '0px';
+		  button.style.opacity = '0';
+		});
+	
+				
     const galleryGrid = document.querySelector(".gallery-grid");
     const galleryBlock = document.querySelector(".gallery-block");
     const customCursor = document.querySelector(".custom-cursor");
@@ -1104,6 +1106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = document.querySelector(".gallery-close-btn");
     const imageGalleryBlock = document.querySelector(".image-gallery-block");
     const GalleryBlock = document.querySelector(".gallery-block");
+	const dragIndicators = document.querySelectorAll(".cursor-static");
  
     
     // Check if required elements exist before proceeding
@@ -1111,11 +1114,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+	
+
     // Initially hide the close button and all drag indicators
     closeBtn.style.display = "none";
+	dragIndicators.forEach(indicator => {
+        indicator.style.display = "none";
+    });
    
     // Show only the first drag indicator (if any exist)
-   
+    if (dragIndicators.length > 0) {
+        dragIndicators[0].style.display = "block";
+    }
 
     let isDragging = false;
     let startX = 0,
@@ -1143,6 +1153,16 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Show the close button when expanded
         closeBtn.style.display = "block";
+		// Show drag indicator when expanded
+        if (dragIndicators.length > 0) {
+            dragIndicators[0].style.display = "block";
+        }
+		if (window.innerWidth < 992) {
+	        expandBtn.style.opacity = "0";
+	        expandBtn.style.pointerEvents = "none";
+	    } else {
+	        expandBtn.style.display = "none"; // desktop → just hide
+	    }
         // Hide the expand button when expanded
         expandBtn.style.display = "none";
         
@@ -1159,6 +1179,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Hide the close button when not expanded
         closeBtn.style.display = "none";
+		 // Hide drag indicator when not expanded
+        dragIndicators.forEach(indicator => {
+            indicator.style.display = "none";
+        });
   
         // Show the expand button when not expanded
         expandBtn.style.display = "block";
