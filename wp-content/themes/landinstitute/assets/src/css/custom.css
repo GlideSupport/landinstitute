@@ -295,3 +295,27 @@ html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .
     border: 2px solid var(--gb_base_brown) !important;
     border-radius: 100px !important;
 }
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control{top: inherit;}
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .gmnoprint {
+    background: var(--gb_base_cream) !important;
+    border: 2px solid var(--gb_base_brown) !important;
+    border-radius: 100px !important;
+}
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .gmnoprint>div {
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: auto !important;
+    width: auto !important;
+}
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .gmnoprint .gm-control-active[aria-label="Zoom in"] {
+    border-bottom: 2px solid var(--gb_base_brown) !important;
+}
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .gmnoprint .gm-control-active {
+    background: var(--gb_base_cream);
+    height: 42px !important;
+    width: 46px !important;
+}
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .gmnoprint .gm-control-active img {
+    display: none !important;
+}
