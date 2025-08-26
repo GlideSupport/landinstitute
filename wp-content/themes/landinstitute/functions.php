@@ -1132,6 +1132,8 @@ function handle_ajax_news_learn() {
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
+        'orderby'        => 'date', 
+    	'order'          => 'DESC',
     ];
 
     if (!empty($tax_query)) {
