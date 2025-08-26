@@ -63,6 +63,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<h3 class="heading-3 mb-0 block-title"><?php echo html_entity_decode($bst_var_posttitle); ?></h3>
 							<?php echo (!empty($li_nwd_authors) || !empty($li_nwd_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
 						</div>
+						<?php if(!empty($li_nwd_authors) || !empty($li_nwd_publication) || !empty($li_nwd_date)): ?>
+						<div class="gl-s44"></div>
 						<div class="col-content-row d-flex">
 							<?php if(!empty($li_nwd_authors)): ?>
 								<div class="column-content">
@@ -102,6 +104,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php endif; ?>
 						</div>
 						<div class="gl-s96"></div>
+						<?php endif; ?>
 					</div>
 				<?php else : ?>
 					<div class="col-left bg-lime-green">

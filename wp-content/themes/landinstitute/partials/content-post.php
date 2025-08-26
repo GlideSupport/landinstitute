@@ -69,46 +69,49 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<h3 class="heading-3 mb-0 block-title"><?php echo html_entity_decode($bst_var_posttitle); ?></h3>
 							<?php echo (!empty($li_ldo_authors) || !empty($li_ldo_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
 						</div>
-						<div class="col-content-row d-flex">
-							<?php if(!empty($li_ldo_authors)): ?>
-								<div class="column-content">
-									<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
-									<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
-									<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
-								</div>
-							<?php endif; ?>
-							<?php if(!empty($li_ldo_publication)): ?>
-								<div class="column-content">
-									<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
-									<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-									<?php if (!empty($link) && !empty($li_ldo_publication)) : ?>
-										<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
-											<span class="link-content">
-												<?php echo esc_html($li_ldo_publication); ?>
-												<span class="icon">
-													<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
-												</span>
-											</span>
-										</a>
-									<?php elseif (!empty($li_ldo_publication)) : ?>
-										<div class="body-18-16-regular block-content">
-											<?php echo esc_html($li_ldo_publication); ?>
-										</div>
-									<?php endif; ?>
-								</div>
-							<?php endif; ?>
-							<?php if ( ! empty( $li_ido_date ) ) : ?>
-								<div class="column-content">
-									<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
-									<div class="gl-s6"></div>
-									<div class="block-content body-18-16-regular">
-										<?php echo esc_html( $li_ido_date ); ?>
+						<?php if(!empty($li_ldo_authors) || !empty($li_ldo_publication) || !empty($li_ido_date)): ?>
+							<div class="gl-s30"></div>
+							<div class="col-content-row d-flex">
+								<?php if(!empty($li_ldo_authors)): ?>
+									<div class="column-content">
+										<?php echo !empty($li_ldo_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
+										<?php echo !empty($li_ldo_authors) ? '<div class="gl-s6"></div>' : ''; ?>
+										<?php echo !empty($li_ldo_authors) ? '<div class="block-content body-18-16-regular">' . $li_ldo_authors . '</div>' : ''; ?>
 									</div>
-								</div>
-							<?php endif; ?>
+								<?php endif; ?>
+								<?php if(!empty($li_ldo_publication)): ?>
+									<div class="column-content">
+										<?php echo !empty($li_ldo_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
+										<?php echo !empty($li_ldo_publication) ? '<div class="gl-s6"></div>' : ''; ?>
+										<?php if (!empty($link) && !empty($li_ldo_publication)) : ?>
+											<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
+												<span class="link-content">
+													<?php echo esc_html($li_ldo_publication); ?>
+													<span class="icon">
+														<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+													</span>
+												</span>
+											</a>
+										<?php elseif (!empty($li_ldo_publication)) : ?>
+											<div class="body-18-16-regular block-content">
+												<?php echo esc_html($li_ldo_publication); ?>
+											</div>
+										<?php endif; ?>
+									</div>
+								<?php endif; ?>
+								<?php if ( ! empty( $li_ido_date ) ) : ?>
+									<div class="column-content">
+										<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
+										<div class="gl-s6"></div>
+										<div class="block-content body-18-16-regular">
+											<?php echo esc_html( $li_ido_date ); ?>
+										</div>
+									</div>
+								<?php endif; ?>
 
-						</div>
-						<div class="gl-s96"></div>
+							</div>
+							<div class="gl-s96"></div>
+						<?php endif; ?>
 					</div>
 				<?php else : ?>
 					<div class="col-left bg-lime-green">
