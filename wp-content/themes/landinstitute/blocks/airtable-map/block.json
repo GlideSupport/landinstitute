@@ -1,0 +1,27 @@
+{
+	"name": "acf/airtable-map",
+	"title": "Airtable Map",
+	"description": "A custom Airtable Map block.",
+	"editorScript": ["block-airtable-map"],
+	"script": ["block-airtable-map"],
+	"category": "theme-blocks",
+	"icon": "cover-image",
+	"keywords": ["Airtable Map", "Global Impact Map", "Map", "Custom Map"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-airtable-map.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "airtable-map-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

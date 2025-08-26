@@ -1,0 +1,86 @@
+/* -------------------------------------------------
+>> Project Styles
+---------------------------------------------------
+>> Edit these styles as required
+------------------------------------------------- */
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+	left: -9999px;
+	position: absolute;
+}
+
+[type="checkbox"]:checked+label,
+[type="checkbox"]:not(:checked)+label,
+[type="checkbox"]:checked+span,
+[type="checkbox"]:not(:checked)+span {
+	box-sizing: border-box;
+	color: var(--gb_radio_color);
+	cursor: pointer;
+	display: inline-block;
+	@extend .ui-18-16-regular;
+	margin: 0 0;
+	padding-left: 25px;
+	position: relative;
+
+	@media(max-width: 767px) {
+		padding-left: 23px;
+	}
+}
+
+[type="checkbox"]:checked+label::before,
+[type="checkbox"]:not(:checked)+label::before,
+[type="checkbox"]:checked+span::before,
+[type="checkbox"]:not(:checked)+span::before {
+	background-color: #FBF8F0;
+	border: 1px solid #4D3016;
+	border-radius: 0;
+	box-shadow: none;
+	content: "";
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 17px;
+	height: 17px;
+
+	@media(max-width: 767px) {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+[type="checkbox"]:checked+label::after,
+[type="checkbox"]:not(:checked)+label::after,
+[type="checkbox"]:checked+span::after,
+[type="checkbox"]:not(:checked)+span::after {
+	background-color: var(--gb_primary_lime_green);
+	border-radius: 0;
+	content: "";
+	height: 17px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	transition: all .2s ease;
+	width: 17px;
+	background-image: url(../images/checkmark.svg);
+	background-position: 3px 4px;
+	background-repeat: no-repeat;
+	border: 1px solid #4d3016;
+
+	@media(max-width: 767px) {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+[type="checkbox"]:not(:checked)+label::after,
+[type="checkbox"]:not(:checked)+span::after {
+	opacity: 0;
+	transform: scale(0);
+}
+
+[type="checkbox"]:checked+label::after,
+[type="checkbox"]:checked+span::after {
+	opacity: 1;
+	transform: scale(1);
+}

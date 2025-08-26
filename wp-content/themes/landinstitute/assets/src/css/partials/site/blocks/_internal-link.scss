@@ -1,0 +1,170 @@
+.internal-link-list-block {
+    .row-flex {
+        display: grid;
+        gap: 160px;
+        grid-template-columns: clamp(375px, calc(23.4375rem + ((1vw - 9.92px) * 29.3296)), 480px) 1fr;
+
+        @media(min-width: 1441px) {
+            grid-template-columns: clamp(560px, calc(35rem + ((1vw - 16.8px) * 33.3333)), 640px) 1fr;
+            gap: clamp(186px, calc(11.625rem + ((1vw - 16.8px) * 12.5)), 216px);
+        }
+
+        @media(max-width: 1200px) {
+            grid-template-columns: 320px 1fr;
+            gap: 80px;
+        }
+
+        @media(max-width: 991px) {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .col-right {
+
+            .card-list {
+                .card-item {
+                    @media(max-width: 640px) {
+                        padding: 28px 0;
+                    }
+                }
+            }
+        }
+    }
+
+    &.with-parallax-image {
+
+        .row-flex {
+            display: flex;
+            gap: 0;
+
+            @media (max-width: 991px) {
+                flex-wrap: wrap;
+                gap: 0px;
+            }
+        }
+
+        .parallax-img {
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+            width: clamp(280px, 17.5rem + (1vw - 9.92px) * 55.8659, 480px);
+            border-right: 2px solid var(--gb_base_brown);
+            position: relative;
+
+            @media (max-width: 991px) {
+                border-bottom: 2px solid var(--gb_base_brown);
+                border-right: none;
+                flex: 100vw 0 0;
+                width: 100vw;
+            }
+
+            .parallax-fixed-bg {
+                @media(min-width: 992px) {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    z-index: -1;
+                    pointer-events: none;
+                    overflow: hidden;
+                }
+            }
+
+            img {
+                display: block;
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+
+                @media (max-width: 991px) {
+                    height: clamp(147px, calc(9.1875rem + ((1vw - 3.75px) * 21.5909)), 280px);
+                }
+            }
+        }
+
+        .col-right {
+            flex: 1 1 0;
+            padding-left: clamp(80px, calc(5rem + ((1vw - 9.92px) * 17.8571)), 160px);
+            position: relative;
+
+            @media (max-width: 991px) {
+                padding-left: 24px;
+                margin-left: -24px;
+            }
+
+            @media(min-width: 1580px) {
+                max-width: 60ch;
+            }
+
+            &:has(.card-list .card-item.hover-img) {
+                @media(min-width: 1200px) {
+                    padding-left: 160px;
+                }
+            }
+
+            .card-list {
+                .card-item {
+                    @media(max-width: 640px) {
+                        padding: 28px 0;
+                    }
+                }
+            }
+
+            &:after {
+                content: '';
+                height: 100%;
+                position: absolute;
+                left: 100%;
+                top: 0;
+                width: 100vw;
+                background-color: var(--gb_base_cream);
+            }
+
+            &.bg-lime-green {
+                &:after {
+                    background-color: var(--gb_primary_lime_green);
+                }
+            }
+
+            &.bg-butter-yellow {
+                &:after {
+                    background-color: var(--gb_primary_butter_yellow);
+                }
+            }
+
+            &.bg-lilac {
+                &:after {
+                    background-color: var(--gb_primary_lilac);
+                }
+            }
+
+            &.bg-sky-blue {
+                &:after {
+                    background-color: var(--gb_primary_sky_blue);
+                }
+            }
+
+            &.bg-sunflower-yellow {
+                &:after {
+                    background-color: var(--gb_primary_sunflower_yellow);
+                }
+            }
+
+            &.bg-lemon-yellow {
+                &:after {
+                    background-color: var(--gb_primary_lemon_yellow);
+                }
+            }
+
+            &.bg-primary-pink {
+                &:after {
+                    background-color: var(--gb_primary_pink);
+                }
+            }
+
+            &.bg-dark-green {
+                &:after {
+                    background-color: var(--primary_dark_green);
+                }
+            }
+        }
+    }
+}

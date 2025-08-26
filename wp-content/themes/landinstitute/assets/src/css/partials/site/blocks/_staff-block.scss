@@ -1,0 +1,91 @@
+.staff-list-row {
+    .staff-list-col {
+        margin-bottom: clamp(38px, calc(2.375rem + ((1vw - 7.68px) * 2.4055)), 52px);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .row-flex {
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: clamp(18px, calc(1.125rem + ((1vw - 7.68px) * 5.8419)), 52px);
+
+            .cl-left {
+                flex: clamp(109px, calc(6.8125rem + ((1vw - 7.68px) * 8.7629)), 160px) 0 0;
+
+                @media(max-width: 319px) {
+                    margin-bottom: 8px;
+                }
+
+                .team-img {
+                    height: clamp(145px, calc(9.0625rem + ((1vw - 7.68px) * 11.6838)), 213px);
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+
+            .cl-right {
+                flex: 1 0 0;
+
+                @media(min-width: 1580px) {
+                    max-width: 60ch;
+                }
+
+                @media(max-width: 319px) {
+                    flex: 100% 0 0;
+                }
+
+                .team-content {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                .team-desc {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    @media(max-width: 768px) {
+                        display: none;
+                    }
+                }
+            }
+
+            .team-desc {
+                display: none;
+
+                .team-content {
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+
+                @media(max-width: 768px) {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.staff-list-block {
+    .staff-list-row {
+        max-width: 880px;
+
+        @media(min-width: 1580px) {
+            max-width: 100%;
+        }
+    }
+}

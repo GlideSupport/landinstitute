@@ -1,0 +1,27 @@
+{
+	"name": "acf/logos-w-text",
+	"title": "Logos W Text",
+	"description": "A custom Logos W Text block.",
+	"editorScript": ["logos-w-text"],
+	"script": ["logos-w-text"],
+	"category": "theme-blocks",
+	"icon": "align-right",
+	"keywords": ["logos-w-text","logo","Logos W Text"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-logos-w-text.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "logos-w-text.webp"
+			}
+		}
+	},
+	"align": "full"
+}

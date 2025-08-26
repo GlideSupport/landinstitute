@@ -1,0 +1,27 @@
+{
+	"name": "acf/testimonial",
+	"title": "Testimonial",
+	"description": "A custom Testimonial block.",
+	"editorScript": ["block-testimonial"],
+	"script": ["block-testimonial"],
+	"category": "theme-blocks",
+	"icon": "testimonial",
+	"keywords": ["Testimonial"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-testimonial.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "testimonial-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

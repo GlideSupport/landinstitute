@@ -1,0 +1,25 @@
+{
+	"name": "acf/internal-link-list",
+	"title": "Internal Link List",
+	"description": "A custom Internal Link List block.",
+	"category": "theme-blocks",
+	"icon": "list-view",
+	"keywords": ["internal-link-list" , "Internal Link List" , "Internal Link List", "list"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-internal-link-list.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "internal-link-list-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

@@ -1,0 +1,32 @@
+{
+    "name": "acf/block-quote",
+    "title": "Block Quote",
+    "description": "A custom Block Quote block.",
+    "editorScript": [
+        "block-block-quote"
+    ],
+    "script": [ "block-block-quote" ],
+    "category": "theme-blocks",
+    "icon": "format-quote",
+    "keywords":[
+        "Block Quote",
+        "quote"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-block-quote.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "block-quote-preview.webp"
+            }
+        }
+    },
+    "align": "full"
+}

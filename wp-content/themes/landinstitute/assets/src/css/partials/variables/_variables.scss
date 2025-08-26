@@ -1,0 +1,616 @@
+:root {
+
+	--gb_base_unit: 0.125rem; // 2px
+	--base_unit-half: math.div(var(--gb_base_unit), 2); // 1px
+
+	/*-------------------------------------------------
+	>> Variables for Spaces
+	-------------------------------------------------*/
+	--space_base_unit: var(--gb_base_unit);
+
+	/* ------- [ D-2 to M-2 ] - [ gl-s2 ] ------- */
+	--gb_space_1_max: var(--space_base_unit) * 1;
+	--gb_space_1_min: var(--space_base_unit) * 1;
+	--gb_space_1: clamp(var(--gb_space_1_min), calc(0.125rem + ((1vw - 7.68px) * 0)), var(--gb_space_1_max));
+
+	/* ------- [ D-4 to M-4] - [ gl-s4] ------- */
+	--gb_space_2_max: var(--space_base_unit) * 2;
+	--gb_space_2_min: var(--space_base_unit) * 2;
+	--gb_space_2: clamp(var(--gb_space_2_min), calc(0.25rem + ((1vw - 7.68px) * 0)), var(--gb_space_2_max));
+
+	/* ------- [ D-6 to M-6] - [ gl-s6] ------- */
+	--gb_space_3_max: var(--space_base_unit) * 3;
+	--gb_space_3_min: var(--space_base_unit) * 3;
+	--gb_space_3: clamp(var(--gb_space_3_min), calc(0.375rem + ((1vw - 7.68px) * 0)), var(--gb_space_3_max));
+
+	/* ------- [ D-8 to M-8] - [ gl-s8] ------- */
+	--gb_space_4_max: var(--space_base_unit) * 4;
+	--gb_space_4_min: var(--space_base_unit) * 4;
+	--gb_space_4: clamp(var(--gb_space_4_min), calc(0.5rem + ((1vw - 7.68px) * 0)), var(--gb_space_4_max));
+
+	/* ------- [ D-12 to M-10] - [ gl-s12] ------- */
+	--gb_space_5_max: var(--space_base_unit) * 6;
+	--gb_space_5_min: var(--space_base_unit) * 5;
+	--gb_space_5: clamp(var(--gb_space_5_min), calc(0.625rem + ((1vw - 7.68px) * 0.3436)), var(--gb_space_5_max));
+
+	/* ------- [ D-16 to M-12] - [ gl-s16] ------- */
+	--gb_space_6_max: var(--space_base_unit) * 8;
+	--gb_space_6_min: var(--space_base_unit) * 6;
+	--gb_space_6: clamp(var(--gb_space_6_min), calc(0.75rem + ((1vw - 7.68px) * 0.6873)), var(--gb_space_6_max));
+
+	/* ------- [ D-20 to M-16] - [ gl-s20] ------- */
+	--gb_space_7_max: var(--space_base_unit) * 10;
+	--gb_space_7_min: var(--space_base_unit) * 8;
+	--gb_space_7: clamp(var(--gb_space_7_min), calc(1rem + ((1vw - 7.68px) * 0.6873)), var(--gb_space_7_max));
+
+	/* ------- [ D-24 to M-18] - [ gl-s24] ------- */
+	--gb_space_8_max: var(--space_base_unit) * 12;
+	--gb_space_8_min: var(--space_base_unit) * 9;
+	--gb_space_8: clamp(var(--gb_space_8_min), calc(1.125rem + ((1vw - 7.68px) * 1.0309)), var(--gb_space_8_max));
+
+	/* ------- [ D-28 to M-20] - [ gl-s28] ------- */
+	--gb_space_20_max: var(--space_base_unit) * 14;
+	--gb_space_20_min: var(--space_base_unit) * 10;
+	--gb_space_20: clamp(var(--gb_space_20_min), calc(1.25rem + ((1vw - 7.68px) * 1.3746)), var(--gb_space_20_max));
+
+	/* ------- [ D-30 to M-22] - [ gl-s30] ------- */
+	--gb_space_9_max: var(--space_base_unit) * 15;
+	--gb_space_9_min: var(--space_base_unit) * 11;
+	--gb_space_9: clamp(var(--gb_space_9_min), calc(1.375rem + ((1vw - 7.68px) * 1.3746)), var(--gb_space_9_max));
+
+	/* ------- [ D-36 to M-28] - [ gl-s36] ------- */
+	--gb_space_10_max: var(--space_base_unit) * 18;
+	--gb_space_10_min: var(--space_base_unit) * 14;
+	--gb_space_10: clamp(var(--gb_space_10_min), calc(1.75rem + ((1vw - 7.68px) * 1.3746)), var(--gb_space_10_max));
+
+	/* ------- [ D-44 to M-32] - [ gl-s44] ------- */
+	--gb_space_11_max: var(--space_base_unit) * 22;
+	--gb_space_11_min: var(--space_base_unit) * 16;
+	--gb_space_11: clamp(var(--gb_space_11_min), calc(2rem + ((1vw - 7.68px) * 2.0619)), var(--gb_space_11_max));
+
+	/* ------- [ D-52 to M-38] - [ gl-s52] ------- */
+	--gb_space_19_max: var(--space_base_unit) * 26;
+	--gb_space_19_min: var(--space_base_unit) * 19;
+	--gb_space_19: clamp(var(--gb_space_19_min), calc(2.375rem + ((1vw - 7.68px) * 2.4055)), var(--gb_space_19_max));
+
+	/* ------- [ D-64 to M-44] - [ gl-s64] ------- */
+	--gb_space_18_max: var(--space_base_unit) * 32;
+	--gb_space_18_min: var(--space_base_unit) * 22;
+	--gb_space_18: clamp(var(--gb_space_18_min), calc(2.75rem + ((1vw - 7.68px) * 2.9762)), var(--gb_space_18_max));
+
+	/* ------- [ D-80 to M-50] - [ gl-s80] ------- */
+	--gb_space_12_max: var(--space_base_unit) * 40;
+	--gb_space_12_min: var(--space_base_unit) * 25;
+	--gb_space_12: clamp(var(--gb_space_12_min), calc(3.125rem + ((1vw - 7.68px) * 5.1546)), var(--gb_space_12_max));
+
+	/* ------- [ D-96 to M-56] - [ gl-s96] ------- */
+	--gb_space_13_max: var(--space_base_unit) * 48;
+	--gb_space_13_min: var(--space_base_unit) * 28;
+	--gb_space_13: clamp(var(--gb_space_13_min), calc(3.5rem + ((1vw - 7.68px) * 6.8729)), var(--gb_space_13_max));
+
+	/* ------- [ D-128 to M-64] - [ gl-s128] ------- */
+	--gb_space_14_max: var(--space_base_unit) * 64;
+	--gb_space_14_min: var(--space_base_unit) * 32;
+	--gb_space_14: clamp(var(--gb_space_14_min), calc(4rem + ((1vw - 7.68px) * 10.9966)), var(--gb_space_14_max));
+
+	/* ------- [ D-156 to M-72] - [ gl-s156] ------- */
+	--gb_space_15_max: var(--space_base_unit) * 78;
+	--gb_space_15_min: var(--space_base_unit) * 36;
+	--gb_space_15: clamp(var(--gb_space_15_min), calc(4.5rem + ((1vw - 7.68px) * 14.433)), var(--gb_space_15_max));
+
+	/* ------- [ D-200 to M-82] - [ gl-s200] ------- */
+	--gb_space_16_max: var(--space_base_unit) * 100;
+	--gb_space_16_min: var(--space_base_unit) * 41;
+	--gb_space_16: clamp(var(--gb_space_16_min), calc(5.125rem + ((1vw - 7.68px) * 20.2749)), var(--gb_space_16_max));
+
+	/* ------- [ D-236 to M-92] - [ gl-s236] ------- */
+	--gb_space_17_max: var(--space_base_unit) * 118;
+	--gb_space_17_min: var(--space_base_unit) * 46;
+	--gb_space_17: clamp(var(--gb_space_17_min), calc(5.75rem + ((1vw - 7.68px) * 24.7423)), var(--gb_space_17_max));
+
+	/* -------------------------------------------------
+	>> Font Sizes
+	------------------------------------------------- */
+
+	--font_base_unit: var(--gb_base_unit);
+
+	/* ------- [ D-76 to M-52 ] - [ Text-76 ] ------- */
+	--gb_font_size_1_max: 76px;
+	--gb_font_size_1_min: 52px;
+	--gb_font_size_1: clamp(var(--gb_font_size_1_min), calc(3.25rem + ((1vw - 7.68px) * 4.1237)), var(--gb_font_size_1_max));
+
+	/* ------- [ D-64 to M-42 ] - [ Text-64 ] ------- */
+	--gb_font_size_2_max: 64px;
+	--gb_font_size_2_min: 42px;
+	--gb_font_size_2: clamp(var(--gb_font_size_2_min), calc(2.625rem + ((1vw - 7.68px) * 3.7801)), var(--gb_font_size_2_max));
+
+	/* ------- [ D-46 to M-31 ] - [ Text-46 ] ------- */
+	--gb_font_size_3_max: 46px;
+	--gb_font_size_3_min: 31px;
+	--gb_font_size_3: clamp(var(--gb_font_size_3_min), calc(1.9375rem + ((1vw - 7.68px) * 2.5773)), var(--gb_font_size_3_max));
+
+	/* ------- [ D-38 to M-27 ] - [ Text-38 ] ------- */
+	--gb_font_size_4_max: 38px;
+	--gb_font_size_4_min: 27px;
+	--gb_font_size_4: clamp(var(--gb_font_size_4_min), calc(1.6875rem + ((1vw - 7.68px) * 1.89)), var(--gb_font_size_4_max));
+
+	/* ------- [ D-30 to M-24 ] - [ Text-30 ] ------- */
+	--gb_font_size_5_max: 30px;
+	--gb_font_size_5_min: 24px;
+	--gb_font_size_5: clamp(var(--gb_font_size_5_min), calc(1.5rem + ((1vw - 7.68px) * 1.0309)), var(--gb_font_size_5_max));
+
+	/* ------- [ D-26 to M-22 ] - [ Text-26 ] ------- */
+	--gb_font_size_6_max: 26px;
+	--gb_font_size_6_min: 22px;
+	--gb_font_size_6: clamp(var(--gb_font_size_6_min), calc(1.375rem + ((1vw - 7.68px) * 0.6873)), var(--gb_font_size_6_max));
+
+	/* ------- [ D-24 to M-20 ] - [ Text-24 ] ------- */
+	--gb_font_size_7_max: 24px;
+	--gb_font_size_7_min: 20px;
+	--gb_font_size_7: clamp(var(--gb_font_size_7_min), calc(1.25rem + ((1vw - 7.68px) * 0.6873)), var(--gb_font_size_7_max));
+
+	/* ------- [ D-124 to M-75 ] - [ Text-124 ] ------- */
+	--gb_font_size_8_max: 124px;
+	--gb_font_size_8_min: 75px;
+	--gb_font_size_8: clamp(var(--gb_font_size_8_min), calc(4.6875rem + ((1vw - 7.68px) * 8.4192)), var(--gb_font_size_8_max));
+
+	/* ------- [ D-70 to M-50 ] - [ Text-70 ] ------- */
+	--gb_font_size_9_max: 70px;
+	--gb_font_size_9_min: 50px;
+	--gb_font_size_9: clamp(var(--gb_font_size_9_min), calc(3.125rem + ((1vw - 7.68px) * 3.4364)), var(--gb_font_size_9_max));
+
+	/* ------- [ D-32 to M-26 ] - [ Text-32 ] ------- */
+	--gb_font_size_10_max: 32px;
+	--gb_font_size_10_min: 26px;
+	--gb_font_size_10: clamp(var(--gb_font_size_10_min), calc(1.625rem + ((1vw - 7.68px) * 1.0309)), var(--gb_font_size_10_max));
+
+	/* ------- [ D-24 to M-22 ] - [ Text-24 ] ------- */
+	--gb_font_size_11_max: 24px;
+	--gb_font_size_11_min: 22px;
+	--gb_font_size_11: clamp(var(--gb_font_size_11_min), calc(1.375rem + ((1vw - 7.68px) * 0.3436)), var(--gb_font_size_11_max));
+
+	/* ------- [ D-23 to M-20 ] - [ Text-23 ] ------- */
+	--gb_font_size_12_max: 23px;
+	--gb_font_size_12_min: 20px;
+	--gb_font_size_12: clamp(var(--gb_font_size_12_min), calc(1.25rem + ((1vw - 7.68px) * 0.5155)), var(--gb_font_size_12_max));
+
+	/* ------- [ D-19 to M-17 ] - [ Text-19 ] ------- */
+	--gb_font_size_13_max: 19px;
+	--gb_font_size_13_min: 17px;
+	--gb_font_size_13: clamp(var(--gb_font_size_13_min), calc(1.0625rem + ((1vw - 7.68px) * 0.3436)), var(--gb_font_size_13_max));
+
+	/* ------- [ D-17 to M-15 ] - [ Text-17 ] ------- */
+	--gb_font_size_14_max: 17px;
+	--gb_font_size_14_min: 15px;
+	--gb_font_size_14: clamp(var(--gb_font_size_14_min), calc(0.9375rem + ((1vw - 7.68px) * 0.3436)), var(--gb_font_size_14_max));
+
+	/* ------- [ D-15 to M-14 ] - [ Text-15 ] ------- */
+	--gb_font_size_15_max: 15px;
+	--gb_font_size_15_min: 14px;
+	--gb_font_size_15: clamp(var(--gb_font_size_15_min), calc(0.875rem + ((1vw - 7.68px) * 0.1718)), var(--gb_font_size_15_max));
+
+	/* ------- [ D-13 to M-12 ] - [ Text-13 ] ------- */
+	--gb_font_size_16_max: 13px;
+	--gb_font_size_16_min: 12px;
+	--gb_font_size_16: clamp(var(--gb_font_size_16_min), calc(0.75rem + ((1vw - 7.68px) * 0.1718)), var(--gb_font_size_16_max));
+
+	/* ------- [ D-11 to M-10 ] - [ Text-11 ] ------- */
+	--gb_font_size_17_max: 11px;
+	--gb_font_size_17_min: 10px;
+	--gb_font_size_17: clamp(var(--gb_font_size_17_min), calc(0.625rem + ((1vw - 7.68px) * 0.1718)), var(--gb_font_size_17_max));
+
+	/* ------- [ D-21 to M-19 ] - [ Text-21 ] ------- */
+	--gb_font_size_18_max: 21px;
+	--gb_font_size_18_min: 19px;
+	--gb_font_size_18: clamp(var(--gb_font_size_18_min), calc(1.1875rem + ((1vw - 7.68px) * 0.3436)), var(--gb_font_size_18_max));
+
+
+
+	/* -------------------------------------------------
+		>> Line Height
+	------------------------------------------------- */
+
+	// Base Line Height
+	--gb_line_height_base_unit: 1;
+
+	// Fluid Line Heights
+	--line_height_xsmall: calc(var(--gb_line_height_base_unit) * 1);
+	--line_height_small: calc(var(--gb_line_height_base_unit) * 1.1);
+	--line_height_medium: calc(var(--gb_line_height_base_unit) * 1.3);
+	--line_height_large: calc(var(--gb_line_height_base_unit) * 1.4);
+	--line_height_xlarge: calc(var(--gb_line_height_base_unit) * 1.5);
+	--line_height_100per: calc(var(--gb_line_height_base_unit) * 100%);
+	--line_height_110per: calc(var(--gb_line_height_base_unit) * 110%);
+	--line_height_130per: calc(var(--gb_line_height_base_unit) * 130%);
+	--line_height_150per: calc(var(--gb_line_height_base_unit) * 150%);
+
+	/* -------------------------------------------------
+		>> Letter Spacing
+	------------------------------------------------- */
+
+	// Base Letter Spacing
+	--gb_letter_spacing_base_unit: 1px;
+
+	// Fluid Letter Spacings
+	--letter_spacing_xsmall: calc(var(--gb_letter_spacing_base_unit) * 0);
+	--letter_spacing_small: calc(var(--gb_letter_spacing_base_unit) * -0.5);
+	--letter_spacing_medium: normal;
+	--letter_spacing_1672: calc(var(--gb_letter_spacing_base_unit) * -1.672);
+	--letter_spacing_1144: calc(var(--gb_letter_spacing_base_unit) * -1.144);
+	--letter_spacing_1408: calc(var(--gb_letter_spacing_base_unit) * -1.408);
+	--letter_spacing_0924: calc(var(--gb_letter_spacing_base_unit) * -0.924);
+	--letter_spacing_1012: calc(var(--gb_letter_spacing_base_unit) * -1.012);
+	--letter_spacing_0682: calc(var(--gb_letter_spacing_base_unit) * -0.682);
+	--letter_spacing_076: calc(var(--gb_letter_spacing_base_unit) * -0.76);
+	--letter_spacing_054: calc(var(--gb_letter_spacing_base_unit) * -0.54);
+	--letter_spacing_06: calc(var(--gb_letter_spacing_base_unit) * -0.6);
+	--letter_spacing_048: calc(var(--gb_letter_spacing_base_unit) * -0.48);
+	--letter_spacing_052: calc(var(--gb_letter_spacing_base_unit) * -0.52);
+	--letter_spacing_044: calc(var(--gb_letter_spacing_base_unit) * -0.44);
+	--letter_spacing_04: calc(var(--gb_letter_spacing_base_unit) * -0.4);
+	--letter_spacing_256: calc(var(--gb_letter_spacing_base_unit) * -2.56);
+	--letter_spacing_156: calc(var(--gb_letter_spacing_base_unit) * -1.56);
+	--letter_spacing_144: calc(var(--gb_letter_spacing_base_unit) * -1.44);
+	--letter_spacing_104: calc(var(--gb_letter_spacing_base_unit) * -1.04);
+	--letter_spacing_068: calc(var(--gb_letter_spacing_base_unit) * -0.68);
+	--letter_spacing_056: calc(var(--gb_letter_spacing_base_unit) * -0.56);
+	--letter_spacing_046: calc(var(--gb_letter_spacing_base_unit) * -0.46);
+	--letter_spacing_042: calc(var(--gb_letter_spacing_base_unit) * -0.42);
+	--letter_spacing_036: calc(var(--gb_letter_spacing_base_unit) * -0.36);
+	--letter_spacing_032: calc(var(--gb_letter_spacing_base_unit) * -0.32);
+	--letter_spacing_03: calc(var(--gb_letter_spacing_base_unit) * -0.3);
+	--letter_spacing_028: calc(var(--gb_letter_spacing_base_unit) * -0.28);
+	--letter_spacing_026: calc(var(--gb_letter_spacing_base_unit) * -0.26);
+	--letter_spacing_024: calc(var(--gb_letter_spacing_base_unit) * -0.24);
+	--letter_spacing_022: calc(var(--gb_letter_spacing_base_unit) * -0.22);
+	--letter_spacing_02: calc(var(--gb_letter_spacing_base_unit) * -0.2);
+	--letter_spacing_018: calc(var(--gb_letter_spacing_base_unit) * -0.18);
+	--letter_spacing_016: calc(var(--gb_letter_spacing_base_unit) * -0.16);
+	--letter_spacing_2: calc(var(--gb_letter_spacing_base_unit) * 2);
+	--letter_spacing_18: calc(var(--gb_letter_spacing_base_unit) * 1.8);
+	--letter_spacing_16: calc(var(--gb_letter_spacing_base_unit) * 1.6);
+	--letter_spacing_15: calc(var(--gb_letter_spacing_base_unit) * 1.5);
+
+
+
+
+	/* -------------------------------------------------
+			>> Border Radius
+		------------------------------------------------- */
+	--border_radius_small: calc(var(--gb_base_unit) * 1);
+	--border_radius_medium: calc(var(--gb_base_unit) * 2);
+	--border_radius_large: calc(var(--gb_base_unit) * 2);
+
+	/* -------------------------------------------------
+	>> Color variables
+	------------------------------------------------- */
+
+	/*
+	>> Base Colors
+	*/
+
+	// Theme Primary
+	--gb_base_brown: #4D3016;
+	--gb_base_cream: #FBF8F0;
+
+	--gb_primary_orange: #FD7C21;
+	--gb_primary_sunflower_yellow: #FFB403;
+	--gb_primary_lemon_yellow: #FDF388;
+	--gb_primary_lilac: #E6DDEA;
+	--gb_primary_sky_blue: #C1DFDD;
+	--gb_primary_lime_green: #D9D963;
+	--gb_primary_plum: #AC2864;
+	--primary_dark_green: #637041;
+	--gb_primary_butter_yellow: #FDF9D0;
+	--gb_primary_pink: #F593A4;
+	--gb_various_error_red: #B60000;
+
+	--gb_primary_lime_green02: rgba(217, 217, 99, 0.2);
+
+
+	// Theme Secondary
+	--gb_color_secondary: #0013ff;
+
+	// Theme Dark
+	--gb_black: #000000;
+	--gb_black_1: #14191f;
+	--gb_black_2: #606364;
+
+	// Theme Light
+	--gb_white: #ffffff;
+	--gb_white_1: #f1f1f1;
+	--gb_white_2: #f1e9e9;
+
+	// Theme Colors
+	--gb_gray: #e0e0e0;
+	--gb_gray_1: #e6e6e6;
+	--gb_gray_2: #eee;
+
+	--gb_blue: #0013ff;
+	--gb_blue_1: #00a4eb;
+	--gb_blue_2: #2ca8dd;
+
+	--gb_navy: #091a17;
+	--gb_navy_1: #15332e;
+	--gb_navy_2: #2f655c;
+
+	--gb_red: var(--gb_various_error_red);
+	--gb_sea_green: #04c3b4;
+
+	--gb_transparent: transparent;
+
+	// Text Variations
+	--gb_regular_text: #4D3016;
+	--gb_dark_text: #14191f;
+	--gb_white_text: #f7f7f7;
+	--gb_light_text: #606364;
+
+	// fixed variable Colors
+
+	--gb_success: var(--primary_dark_green);
+	--gb_info: #0dcaf0;
+	--gb_warning: #ffc107;
+	--gb_danger: var(--gb_various_error_red);
+	--gb_light: #f8f9fa;
+	--gb_dark: #212529;
+
+
+	--gb_signal: var(--gb_various_error_red);
+	--gb_signal_bg: #fbede9;
+
+
+	--gb_color_background: var(--gb_base_cream);
+	--gb_color_on_background: #4D3016;
+
+	// Borders
+	--gb_border: #30353c;
+	--gb_border_1: #545454;
+	--gb_border_2: #adadad;
+	--gb_border_3: #e0e0e0;
+
+
+	/* -------------------------------------------------
+	>> Base Colors
+	>> Base colors are used for essential elements
+	such as the logo, tables, links, blockquote,
+	default buttons styling and this should't conflict
+	with theme colors
+	------------------------------------------------- */
+
+	// text Colors
+	--gb_body_color: var(--gb_color_on_background);
+	--gb_body_bg: var(--gb_color_background);
+	--gb_text_strong: var(--gb_black);
+
+	--gb_dark_text: var(--gb_black);
+	--gb_white_text: var(--gb_white);
+
+	--gb_highlight_color: var(--gb_white);
+	--gb_highlight_bg: var(--gb_base_brown);
+
+	--gb_caption: var(--gb_black_2);
+
+	// Headings
+
+	--gb_heading_color: var(--gb_base_brown);
+	--gb_heading_link_color: var(--gb_dark_text);
+	--gb_heading_link_color_hover: var(--gb_dark_text);
+
+	// link colors
+	--gb_link_color: var(--gb_color_primary);
+	--gb_link_color_hover: var(--gb_color_primary);
+	--gb_link_border_color: var(--gb_color_primary);
+	--gb_link_border_color_hover: transparent;
+
+	// lists Colors
+	--gb_list_ul_marker_color: var(--gb_base_brown);
+	--gb_list_ol_marker_color: var(--gb_base_brown);
+
+
+	// Blockquote Colors
+	--gb_blockquote_color: var(--gb_regular_text);
+	--gb_blockquote_border_color: var(--gb_regular_text);
+	--gb_quote_color: var(--gb_regular_text);
+	--gb_blockqoute_cite_color: var(--gb_light_text);
+
+	// Tables Colors
+	--gb_table_border_color: var(--gb_border);
+	--gb_table_head_border_color: var(--gb_dark_text);
+	--gb_table_foot_border_color: var(--gb_dark_text);
+
+	// Formating
+	--gb_strong_color: var(--gb_regular_text);
+	--gb_underline_border_color: var(--gb_regular_text);
+	--gb_abbr_border_color: var(--gb_regular_text);
+	--gb_delete_color: var(--gb_danger);
+	--gb_insert_color: var(--gb_success);
+	--gb_insert_border_color: var(--gb_success);
+
+	// Code
+	--gb_code_color: var(--gb_white_text);
+	--gb_code_bgcolor: var(--gb_dark_text);
+	--gb_pre_color: var(--gb_white_text);
+	--gb_pre_bgcolor: var(--gb_dark_text);
+	--gb_mark_bgcolor: var(--gb_dark_text);
+	--gb_mark_color: var(--gb_white_text);
+
+	// Graphical elements
+	--gb_hr_color: var(--gb_base_brown);
+
+	// Form Fields
+
+	--gb_input_color: var(--gb_regular_text);
+	--gb_input_bg: var(--gb_light_field_bg);
+	--gb_input_border_color: var(--gb_border);
+
+	--gb_input_focus_color: var(--gb_black);
+	--gb_input_focus_bgcolor: var(--gb_white);
+	--gb_input_focus_border_color: var(--gb_border_2);
+
+	--gb_disabled_input_bgcolor: var(--gb_field_bg);
+	--gb_disabled_input_border_color: var(--gb_border_1);
+
+	--gb_placeholder_color: var(--gb_light_text);
+	--gb_range_track_bgcolor: var(--gb_field_bg);
+	--gb_range_thumb_bgcolor: var(--gb_color_primary);
+	--gb_color_field_border_color: var(--gb_border);
+	--gb_color_field_bgcolor: var(--gb_field_bg);
+	--gb_radio_color: var(--gb_regular_text);
+	--gb_radio_border_color: var(--gb_border);
+	--gb_radio_bgcolor: var(--gb_field_bg);
+	--gb_radio_after_bgcolor: var(--gb_color_primary);
+	--gb_checkbox_color: var(--gb_regular_text);
+	--gb_checkbox_border_color: var(--gb_border);
+	--gb_checkbox_bgcolor: var(--gb_field_bg);
+	--gb_checkbox_after_bgcolor: var(--gb_color_primary);
+	--gb_progress_bgcolor: var(--gb_field_bg);
+	--gb_progress_value_bgcolor: var(--gb_color_primary);
+	--gb_meter_bgcolor: var(--gb_field_bg);
+	--gb_meter_value_bgcolor: var(--gb_color_primary);
+
+	// Button
+	--gb_button_color: var(--gb_white_text);
+	--gb_button_bgcolor: var(--gb_color_secondary);
+	--gb_button_color_hover: var(--gb_black);
+	--gb_button_bgcolor_hover: var(--gb_Primary_Pale_Blue);
+	--gb_button_border_color: var(--gb_color_secondary);
+	--gb_button_border_color_hover: var(--gb_border);
+
+	--gb_reset_button_bgcolor: var(--gb_button_bgcolor);
+	--gb_reset_button_color: var(--gb_white_text);
+
+	// Buttons layer
+	--gb_theme_btn_color: var(--gb_button_color);
+	--gb_theme_btn_bgcolor: var(--gb_button_bgcolor);
+	--gb_theme_btn_color_hover: var(--gb_button_color_hover);
+	--gb_theme_btn_bgcolor_hover: var(--gb_button_bgcolor_hover);
+	--gb_theme_btn_border_color: var(--gb_button_border_color);
+	--gb_theme_btn_border_color_hover: var(--gb_button_border_color_hover);
+
+	// --gb_wp_btn_color: var(--gb_white_text);
+	// --gb_wp_btn_bgcolor: var(--gb_button_bg);
+
+	// --gb_wp_outline_btn_color: var(--gb_white_text);
+	// --gb_wp_outline_btn_border_color: var(--gb_dark_text);
+	// --gb_wp_outline_btn_bgcolor: var(--gb_dark_text);
+
+	// Date Picker
+	--gb_datepicker_bg_color: var(--gb_gray);
+	--gb_datepicker_select_bgcolor: var(--gb_white);
+	--gb_datepicker_link_color: var(--gb_color_secondary);
+	--gb_datepicker_link_active_color: var(--gb_color_primary);
+	--gb_datepicker_calendar: var(--gb_white_text);
+	--gb_datepicker_th_bgcolor: var(--gb_border_1);
+	--gb_datepicker_even_tr_td_bgcolor: var(--gb_border_1);
+	--gb_datepicker_border_color: var(--gb_border_1);
+	--gb_datepicker_date_color: var(--gb_dark_text);
+
+	// Errors & Confirmation
+	--gb_valiation_error_bg_color: var(--gb_danger_bg);
+	--gb_valiation_message_color: var(--gb_danger);
+	--gb_error_field_border_color: var(--gb_danger);
+	--gb_valiation_error_color: var(--gb_danger);
+	--gb_confirmation_message_bgcolor: var(--gb_success_bg);
+	--gb_confirmation_message_color: var(--gb_dark_text);
+	--gb_confirmation_message_border_color: var(--gb_danger);
+	--gb_required_text_color: var(--gb_danger);
+	--gb_invalid_error_border_color: var(--gb_danger);
+	--gb_hubspot_error_label_color: var(--gb_danger);
+	--gb_hubspot_required_color: var(--gb_danger);
+	--gb_fileupload_rule_color: var(--gb_light_text);
+	--gb_error_menu_color: var(--gb_dark_text);
+
+	// Accessibility
+	--gb_acc_btn_color: var(--gb_white_text);
+	--gb_acc_btn_bgcolor: var(--gb_button_bg);
+	--gb_acc_btn_shadow: var(--gb_danger);
+
+	// Comments Box
+	--gb_comments_reply_btn_bgcolor: var(--gb_button_bg);
+	--gb_comments_reply_btn_color: var(--gb_white_text);
+	--gb_comments_reply_btn_bgcolor_hover: var(--gb_button_bg_hover);
+	--gb_comments_reply_btn_color_hover: var(--gb_white_text);
+	--gb_comment_meta_color: var(--gb_dark_text);
+	--gb_comment_metadata_color: var(--gb_light_text);
+	--gb_comments_list_border_color: var(--gb_border);
+	--gb_widget_comments_meta_color: var(--gb_light_text);
+
+	// Pagination
+	--gb_pagination_bgcolor: var(--gb_blue_1);
+	--gb_pagination_color: var(--gb_white);
+	--gb_pagination_color_hover: var(--gb_white);
+	--gb_pagination_bgcolor_hover: var(--gb_border_1);
+	--gb_pagination_bgcolor_current: var(--gb_border_1);
+	--gb_pagination_color_current: var(--gb_white);
+	--gb_pagination_first_bgcolor: var(--gb_border_1);
+	--gb_pagination_first_color: var(--gb_dark_text);
+	--gb_pagination_border: var(--gb_transparent);
+
+	// Widgets
+	--gb_widget_latest_post_meta_color: var(--gb_danger);
+	--gb_widget_rss_feed_meta_color: var(--gb_danger);
+	--gb_widget_search_button_color: var(--gb_pure_black);
+	--gb_wp_table_block_stripe_bg_color: var(--gb_gray);
+
+	// Breadcrumbs
+	--gb_breadcrumb_color: var(--gb_pure_black);
+	--gb_breadcrumb_link_color: var(--gb_pure_black);
+	--gb_breadcrumb_border_color: transparent;
+	--gb_breadcrumb_border_color_hover: var(--gb_pure_black);
+	--gb_breadcrumb_span_color: var(--gb_pure_black);
+
+	// Header
+	--gb_header_bgcolor: var(--gb_transparent);
+	--gb_header_color: var(--gb_black);
+	--gb_header_color_hover: var(--gb_black);
+	--gb_header_bgcolor_sticky: var(--gb_white);
+	--gb_header_nav_border_color: var(--gb_dark_text);
+
+	--gb_header_submenu_bgcolor: var(--gb_gray);
+	--gb_header_submenu_color: var(--gb_header_color);
+	--gb_header_submenu_color_hover: var(--gb_header_color_hover);
+
+	--gb_header_mobile_color: var(--gb_base_brown);
+	--gb_header_mobile_submenu_color: var(--gb_dark_text);
+
+	--gb_nav_overlay_bgcolor: var(--gb_white);
+	--gb_mobile_nav_icon_bgcolor: var(--gb_base_brown);
+	--gb_abbr_border: var(--gb_dark_text);
+
+	// Top Bar
+	--gb_topbar_bgcolor: var(--gb_primary_lilac);
+	--gb_topbar_color: var(--gb_base_brown);
+	--gb_topbar_link_color: var(--gb_base_brown);
+
+
+	// Footer
+	--gb_footer_bgcolor: var(--gb_dark_text);
+	--gb_footer_color: var(--gb_white_text);
+
+	--gb_footer_color_hover: var(--gb_white_text);
+
+	--gb_f_nav_color: var(--gb_footer_color);
+	--gb_f_nav_color_hover: var(--gb_footer_color_hover);
+	--gb_f_nav_border_color: var(--gb_footer_color);
+	--gb_f_nav_border_color_hover: var(--gb_footer_color_hover);
+
+	--gb_copyright_color: var(--gb_white_text);
+	--gb_legal_nav_color: var(--gb_white_text);
+	--gb_legal_nav_border_color: var(--gb_white_text);
+	--gb_legal_nav_border_color_hover: var(--gb_white_text);
+	--gb_legal_text_color: var(--gb_white_text);
+
+	// Containers
+
+	--gb_ctn_red: var(--gb_red);
+	--gb_ctn_black: var(--gb_black);
+	--gb_ctn_sea_green: var(--gb_sea_green);
+
+
+	// style variations
+
+	--gb_style_bg: #821212;
+	--gb_style_text: #000000;
+	--gb_style_link: #000000;
+	--gb_style_button: #00a4eb;
+}

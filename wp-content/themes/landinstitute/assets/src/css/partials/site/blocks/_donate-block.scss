@@ -1,0 +1,114 @@
+.sticky-part-row {
+    display: flex;
+    flex-wrap: wrap;
+
+    .col-left {
+        flex: 1 0 0;
+        margin-left: calc(-50vw + 50%);
+        padding-right: clamp(40px, calc(2.5rem + ((1vw - 9.92px) * 33.5196)), 160px);
+        position: relative;
+
+        @media(max-width: 991px) {
+            flex: 1 0 0;
+            margin-left: -24px;
+            margin-right: -24px;
+            width: 100%;
+            padding: 0 24px;
+        }
+
+        .single-logo {
+            padding-left: clamp(30px, calc(1.875rem + ((1vw - 12.8px) * 8.75)), 44px);
+
+            @media(max-width: 991px) {
+                padding: 0;
+            }
+
+            .site-logo {
+                display: flex;
+
+                img {
+                    @media(max-width: 991px) {
+                        width: 72px;
+                        height: 72px;
+                    }
+                }
+            }
+        }
+
+        .donate-content {
+            padding-left: clamp(30px, calc(1.875rem + ((1vw - 12.8px) * 81.25)), 160px);
+
+            @media(max-width: 991px) {
+                padding: 0;
+            }
+        }
+
+        .donate-form {
+            width: 100%;
+
+            #raise-donors {
+                .layout-row>* {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .col-right {
+        flex: 480px 0 0;
+        margin-right: calc(-50vw + 50%);
+        width: 50vw;
+
+        @media(max-width: 991px) {
+            display: none;
+        }
+
+        .sticky-block {
+            min-height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .donate-group {
+            // border-left: 2px solid var(--gb_base_brown);
+            min-height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .donate-image {
+            border: 1px solid var(--gb_base_brown);
+            border-bottom: 2px solid var(--gb_base_brown);
+            border-left: 0;
+            height: 343px;
+            overflow: hidden;
+            width: 100%;
+
+            img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+        .lbs-block {
+            padding: 0 clamp(24px, calc(1.5rem + ((1vw - 9.92px) * 5.5866)), 44px);
+            margin-top: auto;
+        }
+    }
+}
+
+.donate-form-block {
+    .top-sticky-top-touch {
+        min-height: 100vh;
+        border-left: 2px solid var(--gb_base_brown);
+        height: auto;
+    }
+}
+
+
+.page-template-template-donate {
+    .header-section {
+        display: none;
+    }
+}

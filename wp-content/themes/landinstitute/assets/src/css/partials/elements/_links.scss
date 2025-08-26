@@ -1,0 +1,47 @@
+/* -------------------------------------------------
+>> Base Styles
+---------------------------------------------------
+>> Do not edit these styles
+------------------------------------------------- */
+
+a {
+    text-decoration: none;
+    @include transition(all, 0.4s, ease-in-out);
+    outline: none;
+    position: relative;
+}
+
+/* -------------------------------------------------
+>> Project Styles
+---------------------------------------------------
+>> Edit these styles as required
+------------------------------------------------- */
+
+.page-section {
+
+    a,
+    &:visited {
+        border: none;
+        color: var(--gb_base_brown);
+        text-decoration: underline;
+        text-decoration-color: var(--gb_base_brown);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+
+        &:hover,
+        &:active {
+            color: var(--gb_base_brown);
+            text-decoration-color: var(--gb_base_brown);
+        }
+    }
+}
+
+
+.post-image,
+.post-title {
+
+    a,
+    &:visited {
+        border-bottom: none;
+    }
+}

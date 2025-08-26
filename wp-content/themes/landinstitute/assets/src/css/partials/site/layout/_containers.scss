@@ -1,0 +1,132 @@
+/****
+ *
+ * containers
+ *
+****/
+
+.wrapper {
+	max-width: 1300px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+
+.wrapper {
+	margin: 0 auto;
+	max-width: 1920px;
+	padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+	padding-right: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+	width: 100%;
+
+	@media(max-width: 1220px) {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+}
+
+.container-1280 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 1920px;
+		padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+		padding-right: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+		width: 100%;
+
+		@media(max-width: 1220px) {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+	}
+}
+
+.container-1120 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 1920px;
+		padding-left: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+		padding-right: clamp(20px, calc(80px + (28 * ((100vw - 1440px) / 240))), 108px);
+		width: 100%;
+
+		@media(max-width: 1220px) {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+	}
+}
+
+.container-960 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 1020px;
+		padding-left: 30px;
+		padding-right: 30px;
+		width: 100%;
+
+		@media(min-width: 1580px) {
+			max-width: 1120px;
+		}
+
+		@media(max-width: 1220px) {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+	}
+}
+
+.container-800 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 860px;
+		padding-left: 30px;
+		padding-right: 30px;
+		width: 100%;
+
+		@media(min-width: 1580px) {
+			max-width: 1120px;
+		}
+
+		@media(max-width: 1220px) {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+	}
+}
+
+.container-720 {
+	.wrapper {
+		margin: 0 auto;
+		max-width: 780px;
+		padding-left: 30px;
+		padding-right: 30px;
+		width: 100%;
+
+		@media(min-width: 1580px) {
+			max-width: 1120px;
+		}
+
+		@media(max-width: 1220px) {
+			padding-left: 24px;
+			padding-right: 24px;
+		}
+	}
+}
+
+
+.container-full {
+	.wrapper {
+		max-width: 100%;
+		width: 100%;
+		padding: 0;
+	}
+}
+
+.wrapper {
+	.wrapper {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.navy-ctn {
+	background-color: var(--wp--preset--color--navy);
+}

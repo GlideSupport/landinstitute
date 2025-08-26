@@ -1,0 +1,174 @@
+@use "sass:math";
+
+/*
+Rem output with px fallback
+*/
+@mixin font-size($sizeValue: 1) {
+	font-size: ($sizeValue * 10) * 1px;
+	font-size: $sizeValue * 10px;
+}
+
+/*
+Rem output with px fallback with !important
+*/
+@mixin font-size-imp($sizeValue: 1) {
+	font-size: ($sizeValue * 10) * 1px !important;
+	font-size: $sizeValue * 10px !important;
+}
+
+/*
+Column width with margin
+*/
+
+@mixin font($map, $variant) {
+	$reg: map-get($map, reg);
+	$variant-map: map-get($map, $variant);
+	$font-map: map-merge($reg, $variant-map); // 👈 merges reg with sbold
+
+	$font-face: map-get($font-map, font-face);
+	$family: map-get($font-map, family);
+	$weight: map-get($font-map, weight);
+	$style: map-get($font-map, style);
+	$display: map-get($font-map, font-display);
+	$path: map-get($font-face, path);
+	$formats: map-get($font-face, formats);
+
+	@font-face {
+		font-family: map-get($font-face, family);
+		src: url('/fonts/#{$path}.woff2') format('woff2');
+		font-style: #{$style};
+		font-display: #{$display};
+		font-weight: 200 800; // 👈 Must be declared to support variable weights
+	}
+}
+
+
+/*
+Column width with margin
+*/
+@mixin fluidColumns($numberColumns, $minWidth, $gap, $rowGap: 0) {
+	$noOfColumns: 100% / $numberColumns;
+	$minWidthCalc: min(clamp($minWidth, #{$noOfColumns} - #{$gap}, 100%), 100%);
+
+	grid-template-columns: repeat(auto-fit, minmax($minWidthCalc, 1fr));
+
+	@if $rowGap !=0 {
+		row-gap: $rowGap;
+		column-gap: $gap;
+	}
+
+	@else {
+		gap: $gap;
+	}
+}
+
+@mixin column($numberColumns, $gap) {
+	width: math.div(100%, $numberColumns) - math.div(($gap * ($numberColumns - 1)), $numberColumns);
+	margin-right: $gap;
+
+
+	@if $numberColumns ==2 {
+
+		&:nth-child(even) {
+			margin-right: 0;
+		}
+	}
+
+	@else {
+		&:nth-child(#{$numberColumns}n + #{$numberColumns}) {
+			margin-right: 0;
+		}
+	}
+}
+
+/*
+Mixin for transition
+*/
+@mixin transition($property, $duration, $animation) {
+	transition: $property $duration $animation;
+}
+
+@mixin background-image($image, $background_position, $background_size, $background_repeat, $background_height, $background_width) {
+
+	@if $image !="" {
+		background-image: url("../images/#{$image}");
+	}
+
+	background-repeat: $background_repeat;
+	background-position: $background_position;
+	background-size: $background_size;
+	height: $background_height;
+	width: $background_width;
+}
+
+
+// PX to Rem
+
+@mixin font-size($value) {
+	$baseFontSize: 16; // Set your base font size here
+	$remValue: math.div($value , $baseFontSize);
+
+	font-size: #{$remValue}rem;
+}
+
+
+@mixin ui-18-16-bold {
+	color: var(--gb_base_brown);
+	@include font(plusjakarta, sbold);
+	font-size: var(--gb_font_size_14);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_036);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_032);
+	}
+}
+
+@mixin ui-18-16-regular {
+	color: var(--gb_base_brown);
+	@include font(plusjakarta, reg);
+	font-size: var(--gb_font_size_14);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_036);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_032);
+	}
+}
+
+@mixin heading-4 {
+	font-size: var(--gb_font_size_4);
+	letter-spacing: var(--letter_spacing_076);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_054);
+	}
+}
+
+@mixin ui-14-13-bold {
+	color: var(--gb_base_brown);
+	@include font(plusjakarta, sbold);
+	font-size: var(--gb_font_size_16);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_028);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_026);
+	}
+}
+
+@mixin ui-24-21-bold {
+	color: var(--gb_base_brown);
+	@include font(plusjakarta, sbold);
+	font-size: var(--gb_font_size_12);
+	font-style: normal;
+	letter-spacing: var(--letter_spacing_048);
+	line-height: var(--line_height_110per);
+
+	@media(max-width: 640px) {
+		letter-spacing: var(--letter_spacing_042);
+	}
+}

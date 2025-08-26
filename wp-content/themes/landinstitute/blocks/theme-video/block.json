@@ -1,0 +1,27 @@
+{
+	"name": "acf/theme-video",
+	"title": "Theme Video",
+	"description": "A custom Theme Video block.",
+	"editorScript": ["block-theme-video"],
+	"script": ["block-theme-video"],
+	"category": "theme-blocks",
+	"icon": "video-alt3",
+	"keywords": ["Theme Video"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-theme-video.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "theme-video-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

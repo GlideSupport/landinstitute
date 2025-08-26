@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/src/images/pwa/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="../assets/src/images/pwa/favicon-16x16.png" />
+	<title>Toolkit Landing Page - Simple</title>
+	<link rel="stylesheet" href="../assets/build/styles.min.css" />
+</head>
+
+<body class="toolkit-landing">
+
+	<header class="header-section">
+		<div class="header-wrapper header-inner header-cta-variation d-flex">
+			<div class="header-logo logo">
+				<a href="#" class="site-logo"><img
+						src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/theme-logo.svg"
+						width="88" height="88" alt="Site Logo" /></a>
+			</div>
+			<div class="right-header header-navigation">
+				<div class="right-top-head">
+					<div class="top-list-menu">
+						<div class="top-bar" id="top-bar-ajax">
+							<div class="top-bar-text"><span>Don’t Miss:</span>Venenatis ac ut id cursus dictumst
+								maecenas mauris nisl consectetur.
+							</div>
+							<div class="top-bar-cross">
+								<span>
+									<img src="../assets/src/images/topbar-cross-icon.svg" width="16" height="16"
+										alt="Top bar">
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-head">
+					<div class="header-btns">
+						<a href="#" class="site-btn btn-sunflower-yellow sm-btn arrow-heart-symbol" title="Donate">CTA
+							Button</a>
+					</div>
+				</div>
+			</div>
+			<div class="right-top-head top-head-mobile">
+				<div class="top-list-menu">
+					<div class="top-bar" id="top-bar-ajax">
+						<div class="top-bar-text"><span>Don’t Miss:</span>Venenatis ac ut id cursus dictumst
+							maecenas mauris nisl consectetur.
+						</div>
+						<div class="top-bar-cross">
+							<span>
+								<img src="../assets/src/images/topbar-cross-icon.svg" width="16" height="16"
+									alt="Top bar">
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main id="main-section" class="main-section">
+		<div id="" class="page-section">
+			<section id="hero-section" class="hero-section hero-section-default hero-alongside-menu variation-equal">
+				<!-- hero start -->
+				<div class="bg-pattern">
+					<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-06-Furrow-Orange@2x-scaled-1.jpg"
+						width="" height="" alt="" />
+				</div>
+				<div class="hero-default has-border-bottom">
+					<div class="wrapper">
+						<div class="hero-alongside-block">
+							<div class="col-left bg-lime-green">
+								<div class="hero-content">
+									<h1 class="heading-1 mb-0 block-title">Headliens Goes Lorem Ipsim
+									</h1>
+									<div class="gl-s30"></div>
+									<div class="hero-content body-20-18-regular">
+										Fermentum sed senectus sit odio rutrum mattis sed. Posuere diam euismod ultrices
+										massa at aliquam et sit nibh.
+									</div>
+									<div class="gl-s44"></div>
+									<div class="hero-button">
+										<a href="" class="site-btn btn-sunflower-yellow xsm-btn">CTA Button</a>
+									</div>
+									<div class="gl-s96"></div>
+								</div>
+							</div>
+							<div class="col-right">
+								<div class="bg-pattern">
+									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/TLI-Pattern-06-Furrow-Orange@2x-scaled-1.jpg"
+										width="" height="" alt="" />
+								</div>
+								<div class="block-image-center">
+									<img src="https://landinstdev.wpenginepowered.com/wp-content/uploads/2025/05/Perennial-agriculture-ourfuture.jpg"
+										width="" height="" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../assets/build/scripts.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lity/2.4.1/lity.min.js"></script>
+</body>
+
+<script>
+	// hero banner min-height set
+	const heroHeight = document.querySelector('.header-section').offsetHeight;
+	document.querySelector('.variation-equal  .hero-alongside-block').style.minHeight = `calc(100vh - ${heroHeight}px - 2px)`;
+
+
+	// header 
+	document.addEventListener('DOMContentLoaded', function () {
+		const mainSection = document.querySelector('.main-section');
+		const herofullSection = document.querySelector('.hero-section');
+		const headerSection = document.querySelector('.header-section');
+		const navContainer = document.querySelector('.nav-container');
+		const topBar = document.querySelector('.top-bar');
+		const topBarCross = document.querySelector('.top-bar-cross');
+		let lastScrollTop = 0;
+
+		const adminBarHeight = document.getElementById('wpadminbar')?.offsetHeight || 0;
+		let headerInitialSectionHeight = adminBarHeight + (headerSection?.offsetHeight || 0);
+
+		// Set padding top based on header height
+		function setInitialPadding() {
+			if (herofullSection) {
+				herofullSection.style.paddingTop = headerInitialSectionHeight + 'px';
+			} else if (mainSection) {
+				mainSection.style.paddingTop = headerInitialSectionHeight + 'px';
+			}
+
+			if (navContainer) {
+				if (window.innerWidth < 1024) {
+					navContainer.style.paddingTop = headerInitialSectionHeight + 'px';
+				} else {
+					navContainer.style.paddingTop = '';
+				}
+			}
+		}
+
+		// Adjust header on scroll
+		// function adjustHeader() {
+		// 	if (!headerSection) return;
+
+		// 	const scrollTop = window.scrollY || document.documentElement.scrollTop;
+		// 	const headerHeight = headerSection.offsetHeight;
+
+		// 	if (scrollTop > 0) {
+		// 		headerSection.classList.add('shrink');
+		// 		document.body.classList.add('shrink');
+		// 	} else {
+		// 		headerSection.classList.remove('shrink');
+		// 		document.body.classList.remove('shrink');
+		// 	}
+
+		// 	if (scrollTop >= headerHeight / 2) {
+		// 		headerSection.classList.add('site-header-sticky');
+		// 		headerSection.style.top = `-${headerHeight}px`;
+		// 	} else {
+		// 		headerSection.classList.remove('site-header-sticky', 'site-header-show');
+		// 		headerSection.style.top = '';
+		// 	}
+
+		// 	if (headerSection.classList.contains('site-header-sticky')) {
+		// 		if (scrollTop < lastScrollTop) {
+		// 			// Scrolling up
+		// 			headerSection.classList.add('site-header-show');
+		// 			headerSection.style.top = `${adminBarHeight}px`;
+		// 		} else {
+		// 			// Scrolling down
+		// 			headerSection.classList.remove('site-header-show');
+		// 		}
+		// 	}
+
+		// 	lastScrollTop = Math.max(0, scrollTop);
+		// }
+
+		// Resize event
+		function handleResize() {
+			headerInitialSectionHeight = adminBarHeight + (headerSection?.offsetHeight || 0);
+			setInitialPadding();
+		}
+
+		// Hide top bar
+		function hideTopBar() {
+			const topBar = document.querySelector('.top-bar');
+			if (!topBar || !headerSection) return;
+
+			topBar.classList.add('hide-top-bar');
+
+			// Update header height after top bar is hidden
+			headerInitialSectionHeight = headerSection.offsetHeight - topBar.offsetHeight;
+
+			// Adjust spacing
+			if (herofullSection) {
+				herofullSection.style.paddingTop = headerInitialSectionHeight + 'px';
+			} else if (mainSection) {
+				mainSection.style.paddingTop = headerInitialSectionHeight + 'px';
+			}
+
+			if (navContainer && window.innerWidth < 1024) {
+				navContainer.style.paddingTop = headerInitialSectionHeight + 'px';
+			}
+
+			headerSection.style.top = '0';
+		}
+
+		// Bind top bar close button
+		if (topBarCross) {
+			topBarCross.addEventListener('click', hideTopBar);
+		}
+
+
+		if (topBar && getComputedStyle(topBar).display === "none") {
+			headerWrapper.classList.add("top-bar-hidden");
+		}
+
+		// Initial setup
+		setInitialPadding();
+		adjustHeader();
+
+		// Event listeners
+		window.addEventListener('scroll', adjustHeader);
+		window.addEventListener('resize', handleResize);
+	});
+
+</script>
+
+
+</html>

@@ -1,0 +1,167 @@
+body {
+    :has(.staff-detail-layout.bg-lilac) {
+        background-color: var(--gb_primary_lilac);
+    }
+
+    :has(.staff-detail-layout.bg-lime-green) {
+        background-color: var(--gb_primary_lime_green);
+    }
+
+    :has(.staff-detail-layout.bg-butter-yellow) {
+        background-color: var(--gb_primary_butter_yellow);
+    }
+
+    :has(.staff-detail-layout.bg-lilac) {
+        background-color: var(--gb_primary_lilac);
+    }
+
+    :has(.staff-detail-layout.bg-sky-blue) {
+        background-color: var(--gb_primary_sky_blue);
+    }
+
+    :has(.staff-detail-layout.bg-sunflower-yellow) {
+        background-color: var(--gb_primary_sunflower_yellow);
+    }
+
+    :has(.staff-detail-layout.bg-lemon-yellow) {
+        background-color: var(--gb_primary_lemon_yellow);
+    }
+}
+
+.staff-detail-layout {
+    // position: relative;
+
+    @media (max-width: 1580px) {
+        margin-left: calc(-50vw + 50% - 8px);
+        width: 100vw;
+    }
+
+    @media (max-width: 767px) {
+        margin-left: calc(-50vw + 50%);
+        width: 100vw;
+    }
+
+    .faq-block-column {
+        .heading-max {
+            .block-title {
+                @extend .heading-3;
+            }
+        }
+    }
+
+    >.row-flex {
+        display: grid;
+        grid-template-columns: clamp(280px, calc(17.5rem + ((1vw - 7.68px) * 48.11)), 560px) 1fr;
+        gap: clamp(36px, calc(2.25rem + ((1vw - 7.68px) * 7.5601)), 80px);
+
+        // @media (max-width: 1024px) {
+        //     grid-template-columns: 280px 1fr;
+        //     gap: 36px;
+        // }
+
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr;
+            gap: 0px;
+        }
+    }
+
+    .sticky-block {
+        position: sticky;
+        top: 0;
+
+        @media (max-width: 767px) {
+            position: inherit;
+        }
+    }
+
+    .col-left {
+        position: relative;
+
+        @media(min-width: 767px) {
+            margin-bottom: -2px;
+        }
+
+        @media(min-width: 1921px) {
+            margin-left: calc(-50vw + 850px);
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: var(--gb_base_brown);
+
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+
+        .staff-image {
+            margin-top: clamp(45px, calc(2.8125rem + ((1vw - 3.75px) * 4.6154)), 90px);
+            position: relative;
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: -2px;
+                right: 0;
+                width: 100vw;
+                height: 2px;
+                background-color: var(--gb_base_brown);
+            }
+
+            img {
+                max-height: clamp(295px, calc(18.4375rem + ((1vw - 3.75px) * 14.8718)), 440px);
+                width: 100%;
+                display: block;
+                object-fit: contain;
+            }
+        }
+
+        .back-btn {
+            position: relative;
+            margin-left: clamp(-115px, -80px - 28 * (100vw - 1440px) / 240, -20px);
+
+            @media(max-width: 1580px) {
+                margin-left: 0;
+            }
+
+            @media(min-width: 1921px) {
+                margin-left: 0;
+            }
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 100vw;
+                height: 2px;
+                background-color: var(--gb_base_brown);
+            }
+
+            .site-btn {
+                width: 100%;
+                border: none;
+            }
+        }
+    }
+
+    .col-right {
+        @media (max-width: 1580px) {
+            padding-right: clamp(36px, calc(2.25rem + ((1vw - 7.68px) * 7.5601)), 80px);
+        }
+
+        @media (max-width: 767px) {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+    }
+}

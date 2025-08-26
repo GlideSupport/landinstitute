@@ -1,0 +1,27 @@
+{
+	"name": "acf/tabbed-content",
+	"title": "Tabbed Content",
+	"description": "A custom Tabbed Content block.",
+	"editorScript": ["block-tabbed-content"],
+	"script": ["block-tabbed-content"],
+	"category": "theme-blocks",
+	"icon": "table-row-after",
+	"keywords": ["Tabbed Content", "tab"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-tabbed-content.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "tabbed-content-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

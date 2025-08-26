@@ -1,0 +1,58 @@
+{
+    "key": "group_682b323a52258",
+    "title": "BG Color Options",
+    "fields": [
+        {
+            "key": "field_682b323b7cfe9",
+            "label": "BG Color Options",
+            "name": "li_globel_bg_color_options",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "bg-color-selector",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "bg-none": "<div style=\"background-color: transparent; color: #FF0000; padding: 8px; text-align: center;\">None<\/div>",
+                "bg-lilac": "<div style=\"background-color: #E6DDEA; padding: 8px; text-align: center;\">Lilac<\/div>",
+                "bg-sky-blue": "<div style=\"background-color: #C1DFDD; padding: 8px; text-align: center;\">Sky Blue<\/div>",
+                "bg-lime-green": "<div style=\"background-color: #D9D963; padding: 8px; text-align: center;\">Lime Green<\/div>",
+                "bg-butter-yellow": "<div style=\"background-color: #FDF9D0; padding: 8px; text-align: center;\">Butter Yellow<\/div>",
+                "bg-lemon-yellow": "<div style=\"background-color: #FDF388; padding: 8px; text-align: center;\">Lemon Yellow<\/div>",
+                "bg-sunflower-yellow": "<div style=\"background-color: #FFB403; padding: 8px; text-align: center;\">Sunflower Yellow<\/div>",
+                "bg-primary-pink": "<div style=\"background-color: #F593A4; padding: 8px; text-align: center;\">Primary Pink<\/div>",
+                "bg-primary-orange": "<div style=\"background-color: #FD7C21; padding: 8px; text-align: center;\">Primary Orange<\/div>",
+                "bg-primary-plum": "<div style=\"background-color: #AC2864; padding: 8px; text-align: center;\">Primary Plum<\/div>"
+            },
+            "default_value": "",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1754572786
+}

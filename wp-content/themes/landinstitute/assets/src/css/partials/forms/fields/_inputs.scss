@@ -1,0 +1,444 @@
+/* -------------------------------------------------
+>> Base Styles
+---------------------------------------------------
+>> Edit these styles as required
+------------------------------------------------- */
+form {
+	margin: 0 0 0;
+}
+
+label {
+	display: inline-block;
+	line-height: 1.2;
+	margin: 0 0 6px;
+}
+
+fieldset {
+	display: block;
+	margin: 0 0 24px;
+
+	@media(max-width: 767px) {
+		margin-bottom: 24px;
+	}
+}
+
+legend {
+	display: block;
+	margin: 0 0 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="password"],
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="week"],
+input[type="month"],
+input[type="file"],
+input[type="range"],
+input[list],
+input[type="string"],
+select,
+textarea,
+.gform-text-input-reset,
+form .v_fw .v_fr .v_ig input,
+form .v_fw .v_fr .v_ig select,
+form .v_fw .v_fr .v_ig textarea,
+form .v_fw .v_fr .Select-control {
+	@include font(plusjakarta, reg);
+	@include transition(all, 0.2s, ease-in-out);
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	box-sizing: border-box;
+	color: var(--gb_base_brown);
+	height: 45px;
+	margin: 0;
+	max-width: 100%;
+	outline: none;
+	padding: 12px 0 12px 0;
+	width: 100%;
+	border-bottom: 1px solid var(--gb_base_brown);
+
+	@extend .ui-20-18-regular;
+
+	@media(max-width: 640px) {
+		height: 39px;
+		padding: 10px 0 10px 0;
+	}
+
+	&:focus {
+		background-color: transparent;
+		box-shadow: none;
+	}
+}
+
+
+form .v_fw .v_fr .v_ig textarea {
+	height: 100px;
+	resize: none;
+
+	@media(max-width: 767px) {
+		height: 60px;
+	}
+}
+
+form .v_fw .v_fr .Select-control {
+	padding: 0;
+}
+
+form .v_fw .v_fr .Select-control .Select-multi-value-wrapper .Select-value {
+	align-self: center;
+}
+
+form .v_fw .v_fr .Select-option,
+form .v_fw .v_fr .Select-noresults {
+	padding: 5px 5px;
+	font-size: 14px;
+	line-height: 130%;
+	color: var(--gb_base_brown);
+
+	&.is-focused {
+		background-color: var(--gb_primary_sunflower_yellow);
+	}
+}
+
+form .v_fw .v_fr .Select-control .Select-value .Select-value-label {
+	display: block !important;
+	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	@extend .ui-18-16-bold;
+	white-space: nowrap;
+}
+
+form .v_fw .v_fr .Select.is-focused:not(.is-open)>.Select-control {
+	background: transparent;
+	box-shadow: none;
+	border-bottom: 1px solid var(--gb_base_brown);
+}
+
+form .v_fw .v_ig .v_lw label {
+	display: flex;
+	margin-bottom: 0;
+	@extend .ui-18-16-bold;
+	align-self: center;
+}
+
+form .v_fw .v_ig .Select-placeholder,
+form .v_fw .v_ig .v_lw .Select--single>.Select-control .Select-value {
+	margin-bottom: 0;
+	@extend .ui-18-16-bold;
+	align-self: center;
+}
+
+form .v_fw .v_ig .Select-arrow {
+	border-color: var(--gb_base_brown) transparent transparent;
+}
+
+form .v_fw .v_ig .Select-clear-zone {
+	color: var(--gb_base_brown);
+}
+
+body form[id*="vcrm"] .v_fw .v_fr+.v_fr {
+	margin-top: 30px;
+}
+
+body form[id*=vcrm] .v_fw .v_fr+.v_fr:last-child {
+	margin-top: 0;
+}
+
+body form[id*=vcrm] .v_fw .v_fr .v_fc {
+	@media(max-width: 767px) {
+		margin: 0 0 30px;
+	}
+
+	&:last-child {
+		@media(max-width: 767px) {
+			margin-bottom: 0;
+		}
+	}
+}
+
+body form .v_fw .v_fc.v_fc__1 .v_ig.v_ig__tx .v_iw {
+	margin-top: 44px;
+	overflow: hidden;
+	position: relative;
+	text-align: left;
+	display: inline-flex;
+
+	@media(max-width: 640px) {
+		margin-top: 32px;
+	}
+}
+
+body form[id*=vcrm] .v_fw .v_ig.v_ig__tx button {
+	background-color: var(--gb_base_brown);
+	border: 2px solid var(--gb_base_brown);
+	@include font(plusjakarta, sbold);
+	border-radius: 0px;
+	color: var(--gb_white);
+	display: inline-flex;
+	font-size: var(--gb_font_size_14);
+	font-weight: 600;
+	height: auto;
+	letter-spacing: -0.51px;
+	line-height: 110%;
+	outline: none;
+	padding: 14px 50px 15px 22px;
+	position: relative;
+	text-decoration: none;
+	transition: 0.35s;
+	margin: 0;
+
+	@media(max-width: 640px) {
+		padding: 10px 47px 10px 20px;
+	}
+
+	&:after {
+		align-items: center;
+		animation: shrink-back 0.4s forwards;
+		background-color: var(--gb_primary_lilac);
+		background-image: url(../images/button-brown-arrow.svg);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 0px;
+		border-radius: 100px;
+		content: '';
+		display: flex;
+		height: 22px;
+		justify-content: center;
+		position: absolute;
+		right: 16px;
+		top: 13px;
+		transform: scale(0.27);
+		transition: transform 0.4s ease-in-out;
+		width: 22px;
+
+		@media(max-width: 640px) {
+			top: 9px;
+		}
+	}
+
+	&:hover,
+	&:focus {
+		background-color: var(--gb_base_brown);
+		border-color: var(--gb_base_brown);
+		color: var(--gb_white);
+		border-radius: 0;
+
+		&:after {
+			animation: bubble-pop 0.4s forwards;
+			background-size: 9px;
+		}
+	}
+}
+
+body form .v_fw .v_fr .v_ig input:focus,
+body form .v_fw .v_fr .v_ig select:focus,
+body form .v_fw .v_fr .v_ig textarea:focus,
+body form .v_fw .v_fr .Select-control:focus {
+	border-color: var(--gb_base_brown);
+	box-shadow: none;
+}
+
+// Placeholder Style
+::input-placeholder {
+	opacity: 0.5;
+	color: var(--gb_base_brown);
+}
+
+input:focus::input-placeholder {
+	opacity: 1;
+}
+
+::input-placeholder {
+	opacity: 0.5;
+	color: var(--gb_base_brown);
+}
+
+::placeholder {
+	opacity: 0.5;
+	color: var(--gb_base_brown);
+}
+
+input[type="text"]:disabled {
+	background-color: var(--gb_disabled_input_bgcolor);
+	border: 1px solid var(--gb_disabled_input_border_color);
+}
+
+input[type="hidden"],
+datalist {
+	display: none;
+}
+
+input[type="file"] {
+	padding: 9px;
+}
+
+// Search Field Style
+input[type="search"] {
+	background-position: center right 10px;
+	background-repeat: no-repeat;
+	padding-right: 45px;
+
+	// background-image: url(../images/search-icon.svg);
+}
+
+/* clears the ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+	display: none;
+	height: 0;
+	width: 0;
+}
+
+input[type="search"]::-ms-reveal {
+	display: none;
+	height: 0;
+	width: 0;
+}
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	display: none;
+}
+
+input[type="color"] {
+	appearance: none;
+	background-color: var(--gb_color_field_bgcolor);
+	border: 1px solid var(--gb_color_field_border_color);
+	box-sizing: border-box;
+	cursor: pointer;
+	height: 25px;
+	margin: 0 0 20px;
+	padding: 3px;
+	width: 50px;
+}
+
+::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+::-webkit-color-swatch {
+	border: 0;
+	border-radius: 0;
+}
+
+::-moz-color-swatch,
+::-moz-focus-inner {
+	border: 0;
+}
+
+::-moz-focus-inner {
+	padding: 0;
+}
+
+select {
+	appearance: none;
+	background-image: url(../images/arrow-down.svg);
+	background-position: center right 16px;
+	background-repeat: no-repeat;
+	background-size: 16px;
+	cursor: pointer;
+	padding-bottom: 5px;
+	padding-top: 5px;
+
+	@media(max-width: 640px) {
+		background-position: center right 12px;
+		background-size: 14px;
+	}
+}
+
+.ginput_container_multiselect select {
+	min-height: 77px;
+}
+
+textarea {
+	height: 200px;
+	overflow: auto;
+	padding: 16px 0 16px 0;
+	resize: none;
+
+	@media(max-width: 640px) {
+		padding: 16px 0 16px 0;
+	}
+}
+
+.gfield,
+.hs-form-field {
+	box-sizing: border-box;
+	grid-column: span 12;
+	margin-bottom: 30px;
+	position: relative;
+
+	@media(max-width: 640px) {
+		margin-bottom: 22px;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.gform_wrapper {
+	&.gform-theme {
+		fieldset {
+			margin-bottom: 0;
+			margin-bottom: 24px;
+
+			@media(max-width: 640px) {
+				margin-bottom: 20px;
+			}
+
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&.gfield {
+				.gform-grid-col {
+					display: flex;
+					flex-wrap: wrap;
+					margin-bottom: 24px;
+
+					@media(max-width: 640px) {
+						margin-bottom: 20px;
+					}
+
+					&:last-of-type {
+						margin-bottom: 0;
+					}
+
+					.gform-field-label {
+						margin-bottom: 8px;
+						margin-top: 0;
+					}
+				}
+
+				.gf_clear {
+					display: none;
+				}
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+.ginput_container_textarea {
+	display: flex;
+}
+
+.gfield_list_icons {
+	margin-top: 20px;
+}

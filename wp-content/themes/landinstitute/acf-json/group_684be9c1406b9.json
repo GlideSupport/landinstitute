@@ -1,0 +1,609 @@
+{
+    "key": "group_684be9c1406b9",
+    "title": "CPT – Events",
+    "fields": [
+        {
+            "key": "field_686bb8a3f96f9",
+            "label": "BG Pattern",
+            "name": "li_cpt_bg_pattern",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "If no image is added, the default pattern from \"Event Detail Page BG Pattern\" in Theme Options will be used.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_686cd2f410b0c",
+            "label": "Featured Event",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "To feature an event on the events page, tag it as “Featured on Homepage” in the right sidebar.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_684be9c27f577",
+            "label": "Event Start Date",
+            "name": "li_cpt_event_start_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "display_format": "Y-m-d",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6853eb4649e87",
+            "label": "Event End Date",
+            "name": "li_cpt_event_end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "display_format": "Y-m-d",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68a5c4daf7107",
+            "label": "City\/State",
+            "name": "li_cpt_event_city_state",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6853ec6149e8b",
+            "label": "All Day",
+            "name": "li_cpt_event_all_day",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Yes",
+            "ui_off_text": "No",
+            "ui": 1
+        },
+        {
+            "key": "field_6853ebae49e88",
+            "label": "Event Start Time",
+            "name": "li_cpt_event_start_time",
+            "aria-label": "",
+            "type": "time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6853ec6149e8b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "H:i:s",
+            "return_format": "H:i:s",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6853ec4349e89",
+            "label": "Event End Time",
+            "name": "li_cpt_event_end_time",
+            "aria-label": "",
+            "type": "time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6853ec6149e8b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "H:i:s",
+            "return_format": "H:i:s",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_6867c44008778",
+            "label": "Timezone",
+            "name": "timezone",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6853ec6149e8b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33.33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Pacific\/Midway": "(UTC-11:00) Midway Island",
+                "Pacific\/Honolulu": "(UTC-10:00) Hawaii",
+                "America\/Anchorage": "(UTC-09:00) Alaska",
+                "America\/Los_Angeles": "(UTC-08:00) Pacific Time (US & Canada)",
+                "America\/Denver": "(UTC-07:00) Mountain Time (US & Canada)",
+                "America\/Chicago": "(UTC-06:00) Central Time (US & Canada)",
+                "America\/New_York": "(UTC-05:00) Eastern Time (US & Canada)",
+                "America\/Caracas": "(UTC-04:30) Caracas",
+                "America\/Halifax": "(UTC-04:00) Atlantic Time (Canada)",
+                "America\/St_Johns": "(UTC-03:30) Newfoundland",
+                "America\/Argentina\/Buenos_Aires": "(UTC-03:00) Buenos Aires",
+                "Atlantic\/South_Georgia": "(UTC-02:00) Mid-Atlantic",
+                "Atlantic\/Azores": "(UTC-01:00) Azores",
+                "Europe\/London": "(UTC+00:00) London, Lisbon, Casablanca",
+                "Europe\/Berlin": "(UTC+01:00) Berlin, Paris, Rome, Madrid",
+                "Europe\/Helsinki": "(UTC+02:00) Helsinki, Kyiv, Istanbul, Cairo",
+                "Europe\/Moscow": "(UTC+03:00) Moscow, Nairobi, Baghdad",
+                "Asia\/Tehran": "(UTC+03:30) Tehran",
+                "Asia\/Dubai": "(UTC+04:00) Dubai, Abu Dhabi, Muscat",
+                "Asia\/Kabul": "(UTC+04:30) Kabul",
+                "Asia\/Karachi": "(UTC+05:00) Karachi, Tashkent",
+                "Asia\/Kolkata": "(UTC+05:30) India Standard Time",
+                "Asia\/Kathmandu": "(UTC+05:45) Kathmandu",
+                "Asia\/Dhaka": "(UTC+06:00) Dhaka, Astana",
+                "Asia\/Yangon": "(UTC+06:30) Yangon (Rangoon)",
+                "Asia\/Bangkok": "(UTC+07:00) Bangkok, Hanoi, Jakarta",
+                "Asia\/Shanghai": "(UTC+08:00) Beijing, Perth, Singapore",
+                "Asia\/Tokyo": "(UTC+09:00) Tokyo, Seoul, Yakutsk",
+                "Australia\/Adelaide": "(UTC+09:30) Adelaide",
+                "Australia\/Sydney": "(UTC+10:00) Sydney, Guam",
+                "Asia\/Magadan": "(UTC+11:00) Magadan, Solomon Is.",
+                "Pacific\/Auckland": "(UTC+12:00) Auckland, Fiji",
+                "Pacific\/Tongatapu": "(UTC+13:00) Nuku'alofa"
+            },
+            "default_value": "America\/Chicago",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 1,
+            "ajax": 1,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_686bc5c1ddd63",
+            "label": "Link",
+            "name": "li_cpt_link",
+            "aria-label": "",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "allow_in_bindings": 0
+        },
+        {
+            "key": "field_686e46d0a46e0",
+            "label": "BG Pattern Visible",
+            "name": "li_cpt_event_bg_pattern_visible",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
+        },
+        {
+            "key": "field_686e402ae5eb5",
+            "label": "Select Background Pattern (If no pattern is selected, the default background image from the theme settings will be used)",
+            "name": "li_cpt_event_bg_pattern",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "<div class=\"upload-instructions\">\r\n<b>Recommended Size:<\/b> Minimum 1440px by 480px (Regular Display) - Maximum 2880px by 960px (Retina Display) - (width x height)<br \/>\r\n<b>Image Height:<\/b> Height of the image can vary slightly due to the aspect ratio,but the width of the image must meet the recommended size.<br \/>\r\n<b>Resources:<\/b> Make sure to upload a compressed image in <i>.WEBP<\/i> image format. - <a href=\"https:\/\/image.online-convert.com\/convert-to-webp\" target=\"_blank\">Convert Images to WEBP<\/a> - <a href=\"https:\/\/tinypng.com\/\" target=\"_blank\">Compress WEBP Images<\/a>\r\n<\/div>",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686e46d0a46e0",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_686cc200dde12",
+            "label": "More Event",
+            "name": "li_cpt_more_event",
+            "aria-label": "",
+            "type": "block_title",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "instructions_title": "",
+            "instructions_title_tag": "",
+            "is_h1": "no",
+            "allow_in_bindings": 0,
+            "sub_fields": [
+                {
+                    "ID": 1,
+                    "key": "field_686cc200dde12_title",
+                    "label": "Block Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "prefix": "acf",
+                    "type": "text",
+                    "value": null,
+                    "menu_order": 0,
+                    "instructions": "",
+                    "required": "",
+                    "id": "",
+                    "class": "",
+                    "conditional_logic": 0,
+                    "parent": "",
+                    "wrapper": {
+                        "width": "70",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": ""
+                },
+                {
+                    "ID": 2,
+                    "key": "field_686cc200dde12_title_tag",
+                    "label": "HTML Tag",
+                    "name": "title_tag",
+                    "aria-label": "",
+                    "prefix": "acf",
+                    "type": "headings",
+                    "value": null,
+                    "is_h1": "no",
+                    "menu_order": 0,
+                    "instructions": "",
+                    "required": "",
+                    "id": "",
+                    "class": "",
+                    "conditional_logic": 0,
+                    "parent": "",
+                    "wrapper": {
+                        "width": "30",
+                        "class": "is-padding",
+                        "id": ""
+                    },
+                    "default_value": ""
+                }
+            ]
+        },
+        {
+            "key": "field_686ce6b3a78e3",
+            "label": "Recent\/Selected Event",
+            "name": "li_cpt_event_recentselected_event",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "recent": "Recent",
+                "selected": "Selected"
+            },
+            "default_value": "recent",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_686d1c43f7f99",
+            "label": "Recent Events",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686ce6b3a78e3",
+                        "operator": "==",
+                        "value": "recent"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "If 'Select Recent' is chosen, it will display upcoming events.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_686b84050e02d",
+            "label": "Select Events",
+            "name": "li_cpt_select_events",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686ce6b3a78e3",
+                        "operator": "==",
+                        "value": "selected"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "event"
+            ],
+            "post_status": [
+                "publish"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "return_format": "id",
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "elements": "",
+            "bidirectional": 0,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_686cb10b1950a",
+            "label": "Newsletter Form Visible",
+            "name": "li_cpt_event_newsletter_form_visible",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
+        },
+        {
+            "key": "field_686cafd519507",
+            "label": "Title",
+            "name": "li_cpt_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686cb10b1950a",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_686cb01219508",
+            "label": "Kicker",
+            "name": "li_cpt_kicker",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686cb10b1950a",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_686cb02119509",
+            "label": "Form Selector",
+            "name": "li_cpt_form_selector",
+            "aria-label": "",
+            "type": "forms",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686cb10b1950a",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "allow_null": 1,
+            "multiple": 0,
+            "allow_in_bindings": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "event"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1755694520
+}

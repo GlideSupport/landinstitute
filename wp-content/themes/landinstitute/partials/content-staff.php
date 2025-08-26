@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * Template part for displaying single staff details
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package Base Theme Package
+ * @since 1.0.0
+ */
+
+list($bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object) = BaseTheme::defaults();
+
+$staff_title        = $bst_fields['bst_var_posttitle'] ?? get_the_title();
+$staff_bio          = get_the_content();
+$staff_designation  = get_field('staff_designation', $bst_var_post_id);
+$staff_email        = get_field('staff_email_address', $bst_var_post_id);
+$bst_var_theme_default_avatar_for_staff  = $bst_option_fields['bst_var_theme_default_avatar_for_staff'] ?? null;
+$li_staff_header_bg_image  = $bst_option_fields['li_staff_header_bg_image'] ?? null;
+$li_staff_detail_page_button  = $bst_option_fields['li_staff_detail_page_button'] ?? null;
+?>
+
+<div id="page-section" class="page-section">
+	<section id="hero-section" class="hero-section hero-section-default hero-text-only">
+		<?php echo !empty($li_staff_header_bg_image) ? ' <div class="bg-pattern">' . wp_get_attachment_image($li_staff_header_bg_image, 'thumb_1600') . '</div>' : ''; ?>
+	</section>
+
+	<section class="container-1280">
+		<div class="wrapper">
+			<div class="staff-detail-layout bg-lilac">
+				<div class="row-flex">
+
+					<!-- Left Column -->
+					<div class="col-left">
+						<div class="sticky-parent">
+							<div class="sticky-top-touch">
+								<?php if ($li_staff_detail_page_button) : ?>
+									<div class="back-btn">
+										<?php echo BaseTheme::button($li_staff_detail_page_button, 'site-btn arrow-pointing-left btn-lilac'); ?>
+									</div>
+								<?php endif; ?>
+								<div class="staff-image">
+									<?php
+									if (has_post_thumbnail($bst_var_post_id)) {
+										echo get_the_post_thumbnail($bst_var_post_id, 'full');
+									} else {
+										echo wp_get_attachment_image($bst_var_theme_default_avatar_for_staff, 'full');
+									}
+									?>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<!-- Right Column -->
+					<div class="col-right">
+						<div class="gl-s80"></div>
+
+						<h1 class="block-title heading-1 mb-0"><?php echo esc_html($staff_title); ?></h1>
+
+						<?php if (!empty($staff_designation)) : ?>
+							<div class="gl-s12"></div>
+							<div class="ui-eyebrow-18-16-regular sub-head">
+								<?php echo esc_html($staff_designation); ?>
+							</div>
+						<?php endif; ?>
+
+						<?php if (!empty($staff_bio)) : ?>
+							<div class="gl-s52"></div>
+							<div class="block-inner-heading heading-3 mb-0">Bio</div>
+							<div class="gl-s16"></div>
+							<div class="block-content body-20-18-regular">
+								<?php get_template_part('partials/content'); ?>
+							</div>
+						<?php else: ?>
+							<div class="gl-s200"></div>
+						<?php endif; ?>
+
+						<div class="gl-s64"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

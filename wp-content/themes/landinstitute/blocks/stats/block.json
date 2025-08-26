@@ -1,0 +1,34 @@
+{
+    "name": "acf/stats",
+    "title": "Stats",
+    "description": "A custom stats block.",
+    "editorScript": [
+        "block-stats"
+    ],
+    "script": [ "block-stats" ],
+    "category": "theme-blocks",
+    "icon": "analytics",
+    "keywords":[
+        "stats",
+        "image",
+        "text",
+        "content"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-stats.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "stats-preview.webp"
+            }
+        }
+    },
+    "align": "full"
+}

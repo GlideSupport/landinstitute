@@ -1,0 +1,27 @@
+{
+	"name": "acf/full-width-image",
+	"title": "Full Width Image",
+	"description": "A custom Full Width Image block.",
+	"editorScript": ["block-full-width-image"],
+	"script": ["block-full-width-image"],
+	"category": "theme-blocks",
+	"icon": "format-image",
+	"keywords": ["Full Width Image", "full width image"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-full-width-image.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "full-width-image-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

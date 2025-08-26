@@ -1,0 +1,27 @@
+{
+	"name": "acf/cta-grid",
+	"title": "CTA Grid",
+	"description": "A custom CTA Grid block.",
+	"editorScript": ["block-cta-grid"],
+	"script": ["block-cta-grid"],
+	"category": "theme-blocks",
+	"icon": "grid-view",
+	"keywords": ["CTA Grid", "cta"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-cta-grid.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "cta-grid-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

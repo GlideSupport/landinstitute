@@ -1,0 +1,33 @@
+{
+	"name": "acf/lead-paragraph",
+	"title": "Lead Paragraph",
+	"description": "A custom Lead Paragraph block.",
+	"editorScript": [
+		"block-lead-paragraph"
+	],
+	"script": [
+		"block-lead-paragraph"
+	],
+	"category": "theme-blocks",
+	"icon": "editor-paragraph",
+	"keywords": [
+		"Lead Paragraph"
+	],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-lead-paragraph.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "lead-paragraph-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

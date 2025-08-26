@@ -1,0 +1,27 @@
+{
+	"name": "acf/scrolling-text",
+	"title": "Scrolling Text",
+	"description": "A custom scrolling-text block.",
+	"editorScript": ["block-scrolling-text"],
+	"script": ["block-scrolling-text"],
+	"category": "theme-blocks",
+	"icon": "text",
+	"keywords": ["scrolling-text","Scrolling Text"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-scrolling-text.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "scrolling-text-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

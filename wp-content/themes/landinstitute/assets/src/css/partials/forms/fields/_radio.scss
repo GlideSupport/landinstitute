@@ -1,0 +1,76 @@
+/* -------------------------------------------------
+>> Project Styles
+---------------------------------------------------
+>> Edit these styles as required
+------------------------------------------------- */
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+	left: -9999px;
+	position: absolute;
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label,
+[type="radio"]:checked+span,
+[type="radio"]:not(:checked)+span {
+	box-sizing: border-box;
+	color: var(--gb_radio_color);
+	cursor: pointer;
+	display: inline-block;
+	line-height: 20px;
+	margin: 0 20px 10px 0;
+	padding-left: 30px;
+	position: relative;
+
+	@media(max-width: 640px) {
+		padding-left: 28px;
+	}
+}
+
+[type="radio"]:checked+label::before,
+[type="radio"]:not(:checked)+label::before,
+[type="radio"]:checked+span::before,
+[type="radio"]:not(:checked)+span::before {
+	border-radius: 100%;
+	content: "";
+	left: 0;
+	position: absolute;
+	top: 0;
+	background-color: var(--gb_base_cream);
+	border: 1px solid var(--gb_base_brown);
+	width: 17px;
+	height: 17px;
+
+	@media(max-width: 767px) {
+		width: 16px;
+		height: 16px;
+	}
+}
+
+[type="radio"]:checked+label::after,
+[type="radio"]:not(:checked)+label::after,
+[type="radio"]:checked+span::after,
+[type="radio"]:not(:checked)+span::after {
+	background-color: var(--gb_primary_lime_green);
+	border-radius: 100%;
+	content: "";
+	height: 15px;
+	left: 1px;
+	position: absolute;
+	top: 1px;
+	transition: all 0.2s ease;
+	width: 15px;
+}
+
+[type="radio"]:not(:checked)+label::after,
+[type="radio"]:not(:checked)+span::after {
+	opacity: 0;
+	transform: scale(0);
+}
+
+[type="radio"]:checked+label::after,
+[type="radio"]:checked+span::after {
+	opacity: 1;
+	transform: scale(1);
+}

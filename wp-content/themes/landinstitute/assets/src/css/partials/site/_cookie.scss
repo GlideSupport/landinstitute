@@ -1,0 +1,70 @@
+.cky-consent-container,
+.cky-footer-wrapper {
+    .cky-notice {
+        .cky-title {
+            font-family: "Plus Jakarta Sans", arial, sans-serif !important;
+            text-transform: uppercase;
+        }
+    }
+
+    .cky-notice-btn-wrapper,
+    .cky-prefrence-btn-wrapper {
+        .cky-btn {
+            border-radius: 9999px;
+            justify-content: center;
+            border: 1px solid;
+            opacity: 1 !important;
+            font-family: "Plus Jakarta Sans", arial, sans-serif !important;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: var(--line_height_100per);
+            text-align: center;
+            text-decoration: none;
+            transition: 0.35s;
+
+            &:hover {
+                background: var(--gb_primary_lilac) !important;
+                border-color: var(--gb_primary_lilac) !important;
+                color: var(--gb_base_brown) !important;
+            }
+
+            &.cky-btn-accept {
+                &:hover {
+                    background: var(--gb_primary_lilac) !important;
+                    border-color: var(--gb_primary_lilac) !important;
+                    color: var(--gb_base_brown) !important;
+                }
+            }
+        }
+    }
+}
+
+.cky-modal {
+    .cky-preference-header {
+        .cky-preference-title {
+            font-family: "Plus Jakarta Sans", arial, sans-serif !important;
+            text-transform: uppercase;
+        }
+    }
+
+    .cky-accordion {
+        .cky-accordion-chevron {
+            i::before {
+                top: 22px;
+            }
+        }
+    }
+
+    .cky-footer-wrapper {}
+
+    .cky-footer-wrapper {
+        .cky-prefrence-btn-wrapper {
+            .cky-btn {
+                font-size: var(--gb_font_size_14);
+            }
+        }
+    }
+}

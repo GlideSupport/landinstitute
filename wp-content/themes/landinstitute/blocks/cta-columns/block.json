@@ -1,0 +1,27 @@
+{
+	"name": "acf/cta-columns",
+	"title": "CTA Columns",
+	"description": "A custom CTA Columns block.",
+	"editorScript": ["block-cta-columns"],
+	"script": ["block-cta-columns"],
+	"category": "theme-blocks",
+	"icon": "columns",
+	"keywords": ["CTA Columns","CTA", "column"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-cta-columns.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "cta-columns-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

@@ -1,0 +1,33 @@
+{
+    "name": "acf/post-teaser",
+    "title": "Post Teaser",
+    "description": "A custom post-teaser block.",
+    "editorScript": [
+        "block-post-teaser"
+    ],
+    "script": [
+        "block-post-teaser"
+    ],
+    "category": "theme-blocks",
+    "icon": "slides",
+    "keywords": [
+        "post-teaser","post"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-post-teaser.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "post-teaser-preview.webp"
+            }
+        }
+    },
+    "align": "full"
+}

@@ -1,0 +1,27 @@
+{
+	"name": "acf/video-alongside-text",
+	"title": "Video Alongside Text",
+	"description": "A custom Video Alongside Text block.",
+	"editorScript": ["block-video-alongside-text"],
+	"script": ["block-video-alongside-text"],
+	"category": "theme-blocks",
+	"icon": "admin-media",
+	"keywords": ["video alongside text"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-video-alongside-text.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "video-alongside-text-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

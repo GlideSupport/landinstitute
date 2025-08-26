@@ -1,0 +1,27 @@
+{
+	"name": "acf/image-gallery",
+	"title": "Image Gallery",
+	"description": "A custom Image Gallery block.",
+	"editorScript": ["block-image-gallery"],
+	"script": ["block-image-gallery"],
+	"category": "theme-blocks",
+	"icon": "format-gallery",
+	"keywords": ["Image Gallery","Image", "gallery"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-image-gallery.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "image-gallery-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

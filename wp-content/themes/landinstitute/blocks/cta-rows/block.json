@@ -1,0 +1,27 @@
+{
+	"name": "acf/cta-rows",
+	"title": "CTA Rows",
+	"description": "A custom CTA Rows block.",
+	"editorScript": ["block-cta-rows"],
+	"script": ["block-cta-rows"],
+	"category": "theme-blocks",
+	"icon": "editor-justify",
+	"keywords": ["CTA Rows","CTA", "row"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-cta-rows.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "cta-rows-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

@@ -1,0 +1,27 @@
+{
+	"name": "acf/download-list",
+	"title": "Download List",
+	"description": "A custom Download List block.",
+	"editorScript": ["block-download-list"],
+	"script": ["block-download-list"],
+	"category": "theme-blocks",
+	"icon": "download",
+	"keywords": ["Download List"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-download-list.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "download-list-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}

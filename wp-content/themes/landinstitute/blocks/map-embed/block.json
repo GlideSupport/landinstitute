@@ -1,0 +1,33 @@
+{
+    "name": "acf/map-embed",
+    "title": "Map Embed",
+    "description": "A custom Map Embed block.",
+    "editorScript": [
+        "block-map-embed"
+    ],
+    "script": [
+        "block-map-embed"
+    ],
+    "category": "theme-blocks",
+    "icon": "admin-site-alt",
+    "keywords": [
+        "map-embed"
+    ],
+    "supports": {
+        "align": true,
+        "anchor": true
+    },
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "block-map-embed.php"
+    },
+    "example": {
+        "attributes": {
+            "mode": "preview",
+            "data": {
+                "preview": "map-embed-preview.webp"
+            }
+        }
+    },
+    "align": "full"
+}

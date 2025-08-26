@@ -1,0 +1,46 @@
+<?php if (!empty($li_ill_headline_check) || !empty($li_ill_wysiwyg) || !empty($li_ill_show_or_hide_arrow) ||  !empty($li_ill_repeater)) { ?>
+<div class="internal-link-list-block">
+		<div class="row-flex">
+			<div class="col-left">
+				<div class="gl-s24 md-none"></div>
+				<?php echo !empty($li_ill_headline_check) ? BaseTheme::headline($li_ill_headline, 'heading-2 block-title mb-0') : ''; ?>
+				<?php echo (!empty($li_ill_headline_check) && !empty($li_ill_wysiwyg)) ? '<div class="gl-s30"></div>' : ''; ?>
+				<?php echo !empty($li_ill_wysiwyg) ? '<div class="block-content body-20-18-regular">' . html_entity_decode($li_ill_wysiwyg) . '</div>' : ''; ?>
+			</div>
+			<?php if (!empty($li_ill_repeater)) { ?>
+				<div class="col-right">
+					<div class="card-list">
+					<?php foreach ($li_ill_repeater as $li_ill_rep) {
+					$title = $li_ill_rep['title'];
+					$text = $li_ill_rep['text'];
+					$link = $li_ill_rep['link'];
+					$link_url = $link['url'] ?? '';
+					$link_target = $link['target'] ?? '_self';
+
+					if (!empty($title) || !empty($text)) { ?>
+					<?php echo !empty($link_url) 
+						? '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '" class="card-item link-with-title' . 
+						(($li_ill_show_or_hide_arrow === 'with-arrow' && !empty($link_url)) ? ' with-arrow' : '') . 
+						(!empty($image) ? ' hover-img' : '') . '">' 
+						: '<div class="card-item link-with-title' . 
+						(!empty($image) ? ' hover-img' : '') . '">'; ?>
+								<div class="card-item-left">
+									<?php echo !empty($title) ? '<div class="card-title ui-24-21-bold" role="heading">' . esc_html($title) . '</div>' : ''; ?>
+									<?php echo (!empty($title) && !empty($text)) ? '<div class="gl-s4"></div>' : ''; ?>
+									<?php echo !empty($text) ? '<div class="card-content body-18-16-regular">' . esc_html($text) . '</div>' : ''; ?>
+								</div>
+								<?php if($li_ill_show_or_hide_arrow == 'with-arrow' && !empty($link_url)){?>									<div class="card-item-right">
+										<div class="dot-btn">
+											<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" title="right-circle-arrow" alt="right-circle-arrow" />
+										</div>
+									</div>
+								<?php } ?>
+							<?php echo !empty($link_url) ? '</a>' : '</div>'; ?>
+						<?php }
+					} ?>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+<?php } ?>

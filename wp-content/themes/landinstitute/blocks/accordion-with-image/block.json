@@ -1,0 +1,27 @@
+{
+	"name": "acf/accordion-with-image",
+	"title": "Accordion with Image",
+	"description": "A custom Accordion with Image.",
+	"editorScript": ["accordion-with-image"],
+	"script": ["accordion-with-image"],
+	"category": "theme-blocks",
+	"icon": "editor-ul",
+	"keywords": ["accordion-with-image","accordion","image", "Accordion with image"],
+	"supports": {
+		"align": true,
+		"anchor": true
+	},
+	"acf": {
+		"mode": "edit",
+		"renderTemplate": "block-accordion-with-image.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview": "accordion-with-image-preview.webp"
+			}
+		}
+	},
+	"align": "full"
+}
