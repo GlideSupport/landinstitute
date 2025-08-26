@@ -293,6 +293,7 @@ html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .
     background: var(--gb_base_cream) !important;
     border: 2px solid var(--gb_base_brown) !important;
     border-radius: 100px !important;
+	overflow: hidden;
 }
 html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control .gmnoprint>div {
     background-color: transparent !important;
