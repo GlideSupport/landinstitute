@@ -1070,33 +1070,34 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Image Gallery js start
 	
 		const button = document.getElementById('followBtn');
-		// Find the closest parent <section> to the button
-		const parentSection = button.closest('section');
+		if (button) {
+			const parentSection = button.closest('section');
 
-		// Show button when mouse enters section
-		parentSection.addEventListener('mouseenter', function() {
-		  button.style.opacity = '1';
-		});
+			// Show button when mouse enters section
+			parentSection.addEventListener('mouseenter', function() {
+			  button.style.opacity = '1';
+			});
 
-		// Move button with cursor inside section
-		parentSection.addEventListener('mousemove', function(e) {
-		  const rect = parentSection.getBoundingClientRect();
-		  let x = e.clientX - rect.left;
-		  let y = e.clientY - rect.top;
-		  x -= button.offsetWidth / 2;
-		  y -= button.offsetHeight / 2;
-		  x = Math.max(0, Math.min(x, rect.width - button.offsetWidth));
-		  y = Math.max(0, Math.min(y, rect.height - button.offsetHeight));
-		  button.style.left = x + 'px';
-		  button.style.top = y + 'px';
-		});
+			// Move button with cursor inside section
+			parentSection.addEventListener('mousemove', function(e) {
+			  const rect = parentSection.getBoundingClientRect();
+			  let x = e.clientX - rect.left;
+			  let y = e.clientY - rect.top;
+			  x -= button.offsetWidth / 2;
+			  y -= button.offsetHeight / 2;
+			  x = Math.max(0, Math.min(x, rect.width - button.offsetWidth));
+			  y = Math.max(0, Math.min(y, rect.height - button.offsetHeight));
+			  button.style.left = x + 'px';
+			  button.style.top = y + 'px';
+			});
 
-		// Hide and reset button when mouse leaves section
-		parentSection.addEventListener('mouseleave', function() {
-		  button.style.left = '0px';
-		  button.style.top = '0px';
-		  button.style.opacity = '0';
-		});
+			// Hide and reset button when mouse leaves section
+			parentSection.addEventListener('mouseleave', function() {
+			  button.style.left = '0px';
+			  button.style.top = '0px';
+			  button.style.opacity = '0';
+			});
+		}
 	
 				
     const galleryGrid = document.querySelector(".gallery-grid");
