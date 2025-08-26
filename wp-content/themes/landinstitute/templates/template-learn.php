@@ -19,6 +19,8 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 $li_learn_temp_headline_text = $bst_fields['li_learn_temp_headline_text'] ?? null;
 $li_learn_headline_check  = BaseTheme::headline_check($li_learn_temp_headline_text);
 $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
+$li_ido_date = $bst_fields['li_ido_date'] ?? null;
+
 
 ?>
 <div id="page-section" class="page-section">
@@ -173,7 +175,26 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 								'posts_per_page' => 12,
 								'order'          => 'DESC',
 								'paged'          => $paged,
+								'meta_query'     => [
+									'relation' => 'OR',
+									// Case when custom field exists
+									[
+										'key'     => 'li_ido_date',
+										'compare' => 'EXISTS',
+									],
+									// Case when custom field does not exist
+									[
+										'key'     => 'li_ido_date',
+										'compare' => 'NOT EXISTS',
+									],
+								],
+								'orderby' => [
+									'meta_value' => 'DESC', // Order by li_ido_date if exists
+									'date'       => 'DESC', // Fallback to publish date
+								],
+								'meta_key' => 'li_ido_date', // Needed for meta_value order
 							];
+
 
 							// Start building tax_query
 							$tax_query = ['relation' => 'AND'];
