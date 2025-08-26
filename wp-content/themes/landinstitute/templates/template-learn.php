@@ -171,9 +171,8 @@ $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
 							$args = [
 								'post_type'      => 'post',
 								'posts_per_page' => 12,
+								'order'          => 'DESC',
 								'paged'          => $paged,
-								'orderby'        => 'date',   // order by post date
-    							'order'          => 'DESC',   // newest first (use 'ASC' for oldest first)
 							];
 
 							// Start building tax_query
