@@ -1132,25 +1132,8 @@ function handle_ajax_news_learn() {
         'post_type'      => 'post',
         'posts_per_page' => 12,
         'order'          => 'DESC',
+        'post_status'    => 'publish',
         'paged'          => $paged,
-        'meta_query'     => [
-            'relation' => 'OR',
-            // Case when custom field exists
-            [
-                'key'     => 'li_ido_date',
-                'compare' => 'EXISTS',
-            ],
-            // Case when custom field does not exist
-            [
-                'key'     => 'li_ido_date',
-                'compare' => 'NOT EXISTS',
-            ],
-        ],
-        'orderby' => [
-            'meta_value' => 'DESC', // Order by li_ido_date if exists
-            'date'       => 'DESC', // Fallback to publish date
-        ],
-        'meta_key' => 'li_ido_date', // Needed for meta_value order
     ];
 
     if (!empty($tax_query)) {
