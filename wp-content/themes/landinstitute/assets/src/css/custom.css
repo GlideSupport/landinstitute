@@ -288,3 +288,4 @@ body form .v_fw .v_fr .Select-control:focus {
 .impact-map-block .single-map-custom svg.year-2100 [data-2100="4"] {
     fill: var(--color-4);
 }
+html body .international-Initiative-map-filter .wpgmza_map .gm-bundled-control{top: inherit;}
