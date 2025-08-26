@@ -19,8 +19,6 @@ list( $bst_var_post_id, $bst_fields, $bst_option_fields ) = BaseTheme::defaults(
 $li_learn_temp_headline_text = $bst_fields['li_learn_temp_headline_text'] ?? null;
 $li_learn_headline_check  = BaseTheme::headline_check($li_learn_temp_headline_text);
 $li_learn_temp_bg_image = $bst_fields['li_learn_temp_bg_image'] ?? null;
-$li_ido_date = $bst_fields['li_ido_date'] ?? null;
-
 
 ?>
 <div id="page-section" class="page-section">
