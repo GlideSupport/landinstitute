@@ -241,7 +241,7 @@
 						{
 							"fontFamily": "Value Serif Pro",
 							"src": [
-								"https://landinstdev.wpenginepowered.com/wp-content/themes/landinstitute/assets/src/fonts/ValueSerifPro-Bold.woff2"
+								"https://landinstitute.org/wp-content/themes/landinstitute/assets/src/fonts/ValueSerifPro-Bold.woff2"
 							]
 						}
 					]
@@ -254,7 +254,7 @@
 						{
 							"fontFamily": "Plus Jakarta Sans",
 							"src": [
-								"https://landinstdev.wpenginepowered.com/wp-content/themes/landinstitute/assets/src/fonts/PlusJakartaSans-Variable.woff2"
+								"https://landinstitute.org/wp-content/themes/landinstitute/assets/src/fonts/PlusJakartaSans-Variable.woff2"
 							]
 						}
 					]
