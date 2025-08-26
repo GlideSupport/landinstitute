@@ -64,29 +64,33 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 							<?php echo (!empty($li_nwd_authors) || !empty($li_nwd_publication)) ? '<div class="gl-s44"></div>' : ''; ?>
 						</div>
 						<div class="col-content-row d-flex">
-							<div class="column-content">
-								<?php echo !empty($li_nwd_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
-								<?php echo !empty($li_nwd_authors) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php echo !empty($li_nwd_authors) ? '<div class="block-content body-18-16-regular">' . $li_nwd_authors . '</div>' : ''; ?>
-							</div>
-							<div class="column-content">
-								<?php echo !empty($li_nwd_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
-								<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
-								<?php if (!empty($link) && !empty($li_nwd_publication)) : ?>
-									<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
-										<span class="link-content">
-											<?php echo esc_html($li_nwd_publication); ?>
-											<span class="icon">
-												<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+							<?php if(!empty($li_nwd_authors)): ?>
+								<div class="column-content">
+									<?php echo !empty($li_nwd_authors) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Author</div>' : ''; ?>
+									<?php echo !empty($li_nwd_authors) ? '<div class="gl-s6"></div>' : ''; ?>
+									<?php echo !empty($li_nwd_authors) ? '<div class="block-content body-18-16-regular">' . $li_nwd_authors . '</div>' : ''; ?>
+								</div>
+							<?php endif; ?>
+							<?php if(!empty($li_nwd_publication)): ?>
+								<div class="column-content">
+									<?php echo !empty($li_nwd_publication) ? '<div class="ui-eyebrow-16-15-bold eybrow-title">Publication</div>' : ''; ?>
+									<?php echo !empty($li_nwd_publication) ? '<div class="gl-s6"></div>' : ''; ?>
+									<?php if (!empty($link) && !empty($li_nwd_publication)) : ?>
+										<a href="<?php echo esc_url($link); ?>" class="link-with-icon" target="_blank" rel="noopener">
+											<span class="link-content">
+												<?php echo esc_html($li_nwd_publication); ?>
+												<span class="icon">
+													<img src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/send-icon.svg" alt="" />
+												</span>
 											</span>
-										</span>
-									</a>
-								<?php elseif (!empty($li_nwd_publication)) : ?>
-									<div class="body-18-16-regular block-content">
-										<?php echo esc_html($li_nwd_publication); ?>
-									</div>
-								<?php endif; ?>
-							</div>
+										</a>
+									<?php elseif (!empty($li_nwd_publication)) : ?>
+										<div class="body-18-16-regular block-content">
+											<?php echo esc_html($li_nwd_publication); ?>
+										</div>
+									<?php endif; ?>
+								</div>
+							<?php endif; ?>
 							<?php if ( ! empty( $li_nwd_date ) ) : ?>
 								<div class="column-content">
 									<div class="ui-eyebrow-16-15-bold eybrow-title">Publication Date</div>
