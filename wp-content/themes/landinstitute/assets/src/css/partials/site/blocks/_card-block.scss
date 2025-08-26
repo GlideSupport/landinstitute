@@ -139,8 +139,7 @@
 
 
 .timeline-block:has(.timeline-block-fancy) {
-    .timeline-block-fancy:has(.slider-btn) {
-
+    .timeline-block-fancy {
         &.timeline-slides-block {
             .swiper-slide {
                 .border-card {
