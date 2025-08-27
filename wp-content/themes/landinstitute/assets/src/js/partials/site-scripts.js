@@ -1068,8 +1068,9 @@ function calculateBounds(galleryBlock) {
 document.addEventListener("DOMContentLoaded", () => {
 
 	// Image Gallery js start
-	
-		const button = document.getElementById('followBtn');
+	const button = document.getElementById('followBtn');
+
+	if(button) {
 		// Find the closest parent <section> to the button
 		const parentSection = button.closest('section');
 
@@ -1097,7 +1098,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		  button.style.top = '0px';
 		  button.style.opacity = '0';
 		});
-	
+	}
 				
     const galleryGrid = document.querySelector(".gallery-grid");
     const galleryBlock = document.querySelector(".gallery-block");

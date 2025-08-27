@@ -38,20 +38,13 @@
 								<!-- Add "active-search" on click of "search-popup" it will open sub menu of search  -->
 								<a href="javascript:void(0)" class="search-popup" role="button" aria-label="search icon">
 									<!-- when hover on menu add "active-hover" class -->
-									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" title="search-icon" role="presentation"/>
+									<img class="search-btn" src="<?php echo esc_url(get_stylesheet_directory_uri()); ?>/assets/src/images/search-icon.svg" width="29" height="29" alt="search-icon" title="search-icon" role="presentation" />
 								</a>
 								<div class="mega-dropdown search-mega-dropdown" id="mega-dropdown-product">
 									<div class="mega-dropdown-card">
 										<div class="col-left">
 											<?php
-											$allowed_post_types = ['staff', 'event', 'news', 'post', 'page'];
-											$excluded_post_types = get_field('li_search_exclude_post_type', 'option');
-											if (!is_array($excluded_post_types)) {
-												$excluded_post_types = [];
-											}
-
-											// Remove excluded post types from the allowed list
-											$final_post_types = array_diff($allowed_post_types, $excluded_post_types);
+											$search_dropdown_options = get_field('search_dropdown_options', 'option');
 											if (!empty($landinstitute_to_title)): ?>
 												<div class="search-everything tab-dropdown tab-dropdown-filter header-search-menu">
 													<button id="menu-search-type-btn" aria-label="search-type" aria-expanded="false" aria-haspopup="true" aria-controls="menu-search-type" class="dropdown-toggle jump-arrow btn-butter-yellow"><?php echo esc_html($landinstitute_to_title); ?>
@@ -59,19 +52,32 @@
 													</button>
 													<div class="menu-search-type-list">
 														<ul id="menu-search-type" class="dropdown-menu" role="menu" aria-labelledby="search-type-label">
-															 <span id="search-type-label" class="visually-hidden">Search Type Menu</span>
+															<span id="search-type-label" class="visually-hidden">Search Type Menu</span>
 															<li class="active" style="animation-delay: 0s;">
-																<a href="javascript:void(0)" data-post="all" data-taxonomy="search-type">Everything</a>
+																<a href="javascript:void(0)" data-post="all">Everything</a>
 																<div class="arrow-icon"></div>
 															</li>
 
 															<?php
 															$delay = 0.1;
-															foreach ($final_post_types as $post_type):
-																$label = get_post_type_label($post_type);
+
+															foreach ($search_dropdown_options as $row):
+																$select_type       = $row['select_type'];
+																$select_post_type  = $row['select_post_type'];
+																$select_learn_type = $row['select_learn_type'];
+
+																if ($select_type === 'post_type') {
+																	$post_type = $select_post_type;
+																	$label     = get_post_type_label($post_type);
+																	$extraAttr = 'data-post="' . esc_attr($post_type) . '"';
+																} else {
+																	$post_type = 'post';
+																	$label     = $select_learn_type->name;
+																	$extraAttr = 'data-post="' . esc_attr($post_type) . '" data-taxonomy="' . esc_attr($select_learn_type->slug) . '"';
+																}
 															?>
 																<li style="animation-delay: <?= esc_attr($delay) ?>s;">
-																	<a href="javascript:void(0)" data-post="<?= esc_attr($post_type) ?>" data-taxonomy="search-type">
+																	<a href="javascript:void(0)" <?= $extraAttr ?>>
 																		<?= esc_html($label) ?>
 																	</a>
 																</li>
@@ -132,6 +138,7 @@
 												<form id="header-search-form" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
 													<input type="text" name="s" placeholder="What are you searching for?" autofocus>
 													<input type="hidden" name="search-type" value="all" class="search-type-field">
+													<input type="hidden" name="learn-type" value="all" class="learn-type-field">
 													<button class="site-btn btn-lemon-yellow sm-btn" type="submit">Search</button>
 												</form>
 											</div>

@@ -668,10 +668,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			const label = formatLabel(value, fallback);
 			button.innerHTML = `${prefix}: ${label}<div class="arrow-icon"></div>`;
 
-			const top = document.querySelector('.mainlearn').getBoundingClientRect().top;
+			const top = document
+				.querySelector(".mainlearn")
+				.getBoundingClientRect().top;
 			window.scrollTo({
 				top: top,
-				behavior: "smooth" // use "smooth" if you want animated scrolling
+				behavior: "smooth", // use "smooth" if you want animated scrolling
 			});
 		}
 	}
@@ -997,6 +999,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// search ajax code start
 
 	var searcheve = "";
+	var learntaxeve = "";
 	document
 		.querySelectorAll(".search-list-filter .dropdown-menu")
 		.forEach((menu) => {
@@ -1005,6 +1008,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					e.preventDefault();
 					const taxonomy = menu.id; // e.g., 'search-type'
 					const term = link.getAttribute("data-post");
+					const termtaxonomy = link.getAttribute("data-taxonomy");
 
 					// Remove 'active' class from siblings
 					menu.querySelectorAll("li").forEach((li) =>
@@ -1012,9 +1016,12 @@ document.addEventListener("DOMContentLoaded", function () {
 					);
 					link.closest("li").classList.add("active");
 
+					console.log(term, termtaxonomy);
+
 					// Set selected term and label
 					if (taxonomy === "search-type") {
-						searcheve = term;
+						searcheve = termtaxonomy ? "post" : term;
+						learntaxeve = termtaxonomy ? termtaxonomy : "";
 						const label =
 							term === "all"
 								? "everything"
@@ -1025,10 +1032,16 @@ document.addEventListener("DOMContentLoaded", function () {
 						);
 						button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
 					}
+					document.querySelector(
+						"#searchForm .search-type-field",
+					).value = searcheve;
+					document.querySelector(
+						"#searchForm .learn-type-field",
+					).value = learntaxeve;
 
 					// Reset to page 1
 					currentPage = 1;
-					featch_search_list();
+					featch_search_list(1, true, searcheve, learntaxeve);
 				});
 			});
 		});
@@ -1040,6 +1053,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				link.addEventListener("click", (e) => {
 					e.preventDefault();
 					const term = link.getAttribute("data-post");
+					const taxonomy = link.getAttribute("data-taxonomy");
 
 					// Remove 'active' class from siblings
 					menu.querySelectorAll("li").forEach((li) =>
@@ -1049,14 +1063,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					// Set selected term and label
 					const label =
-						term === "all"
-							? "Everything"
-							: link.textContent.trim();
+						term === "all" ? "Everything" : link.textContent.trim();
 
-					const button = document.querySelector("button#menu-search-type-btn");
+					const button = document.querySelector(
+						"button#menu-search-type-btn",
+					);
 					button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
 
-					document.querySelector("#header-search-form .search-type-field").value = term;
+					document.querySelector(
+						"#header-search-form .search-type-field",
+					).value = term;
+					document.querySelector(
+						"#header-search-form .learn-type-field",
+					).value = taxonomy;
 				});
 			});
 		});
@@ -1091,7 +1110,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		searchInput.value = searchValFromURL;
 	}
 
-	function featch_search_list(paged = 1, updateURL = true) {
+	function featch_search_list(
+		paged = 1,
+		updateURL = true,
+		searcheve = "all",
+		learntaxeve = "",
+	) {
 		currentPage = paged;
 
 		if (search_append_list) {
@@ -1109,9 +1133,18 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 			if (getCurrentOrderBy()) {
 				url.searchParams.set("orderby", getCurrentOrderBy());
+			} else {
+				url.searchParams.delete("orderby");
 			}
 			if (searcheve) {
 				url.searchParams.set("search-type", searcheve);
+			} else {
+				url.searchParams.delete("search-type");
+			}
+			if (learntaxeve) {
+				url.searchParams.set("learn-type", learntaxeve);
+			} else {
+				url.searchParams.delete("learn-type");
 			}
 			window.history.pushState({}, "", url);
 		}
@@ -1129,6 +1162,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			body: new URLSearchParams({
 				action: "search_filter",
 				type: searcheve,
+				learntype: learntaxeve,
 				s: getSearchVal(),
 				paged: paged,
 				orderby: getCurrentOrderBy(),
@@ -1213,9 +1247,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				// Set the order
 				currentOrderBy = this.dataset.orderby;
-				console.log(currentOrderBy);
+
 				// Run search again
-				featch_search_list(1);
+				featch_search_list(
+					1,
+					true,
+					document.querySelector("#searchForm .search-type-field")
+						.value,
+					document.querySelector("#searchForm .learn-type-field")
+						.value,
+				);
 			});
 		});
 
@@ -1227,7 +1268,16 @@ document.addEventListener("DOMContentLoaded", function () {
 					e.preventDefault();
 					const page = parseInt(this.getAttribute("data-page"));
 					if (!isNaN(page) && page !== currentPage) {
-						featch_search_list(page);
+						featch_search_list(
+							page,
+							true,
+							document.querySelector(
+								"#searchForm .search-type-field",
+							).value,
+							document.querySelector(
+								"#searchForm .learn-type-field",
+							).value,
+						);
 					}
 				});
 			});
@@ -1239,7 +1289,16 @@ document.addEventListener("DOMContentLoaded", function () {
 					e.preventDefault();
 					const page = parseInt(this.getAttribute("data-page"));
 					if (!isNaN(page)) {
-						featch_search_list(page);
+						featch_search_list(
+							page,
+							true,
+							document.querySelector(
+								"#searchForm .search-type-field",
+							).value,
+							document.querySelector(
+								"#searchForm .learn-type-field",
+							).value,
+						);
 					}
 				});
 			});
@@ -1248,7 +1307,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	if (searchForm) {
 		searchForm.addEventListener("submit", function (e) {
 			e.preventDefault(); // prevent page reload
-			featch_search_list(1, true); // call with page 1 on new search
+			featch_search_list(
+				1,
+				true,
+				document.querySelector("#searchForm .search-type-field").value,
+				document.querySelector("#searchForm .learn-type-field").value,
+			); // call with page 1 on new search
 		});
 	}
 
@@ -1261,26 +1325,33 @@ document.addEventListener("click", function (e) {
 	}
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 	const urlParams = new URLSearchParams(window.location.search);
 	const selectedType = urlParams.get("search-type") || "all";
+	const selectedLearnType = urlParams.get("learn-type") || "";
+
+	const button = document.querySelector("button#search-type-btn");
+
+	const setButtonLabel = (postType, text) => {
+		const label = postType === "all" ? "everything" : text.trim();
+		button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
+	};
 
 	document.querySelectorAll("#search-type li").forEach((li) => {
 		const aTag = li.querySelector("a[data-post]");
-		if (aTag) {
-			const postType = aTag.getAttribute("data-post");
-			if (postType === selectedType) {
-				li.classList.add("active");
+		if (!aTag) return;
 
-				const label =
-					postType === "all" ? "everything" : aTag.textContent.trim();
+		const postType = aTag.dataset.post;
+		const postTaxonomy = aTag.dataset.taxonomy;
 
-				// Set button label with arrow icon
-				const button = document.querySelector("button#search-type-btn");
-				button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
-			} else {
-				li.classList.remove("active");
-			}
+		const isActive =
+			(selectedLearnType && postTaxonomy === selectedLearnType) ||
+			(!selectedLearnType && !postTaxonomy && postType === selectedType);
+
+		li.classList.toggle("active", isActive);
+
+		if (isActive) {
+			setButtonLabel(postType, aTag.textContent);
 		}
 	});
 });
