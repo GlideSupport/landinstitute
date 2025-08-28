@@ -1402,9 +1402,7 @@ function setGalleryMaxHeight() {
     });
   }
 }
-
 function setGalleryBlockHeights() {
-
   const blocks = document.querySelectorAll('.gallery-block');
   if (!blocks.length) {
     console.log('No .gallery-block found');
@@ -1418,38 +1416,42 @@ function setGalleryBlockHeights() {
       return;
     }
 
-    // get first and last img separately
-    const firstImg = grid.querySelector('.customheighgal .card-img.firstimg img');
-    const lastImg  = grid.querySelector('.customheighgal .card-img.lastimg img');
-
-
-// Get the URLs of the images
-const firstImgUrl = firstImg ? firstImg.src : null;
-const lastImgUrl = lastImg ? lastImg.src : null;
-
-console.log("First Image URL:", firstImgUrl);
-console.log("Last Image URL:", lastImgUrl);
-
-
-    if (!firstImg || !lastImg) {
-      console.log(`[${i}] Missing first or last image`);
+    const imgs = grid.querySelectorAll('.customheighgal .card-img img');
+    if (!imgs.length) {
+      console.log(`[${i}] No images found in gallery-grid`);
       return;
     }
 
-    const blockRect = block.getBoundingClientRect();
-    const firstRect = firstImg.getBoundingClientRect();
-    const lastRect  = lastImg.getBoundingClientRect();
+    // ensure all images are loaded before calculating
+    let allLoaded = true;
+    imgs.forEach(img => {
+      if (!img.complete) {
+        allLoaded = false;
+        img.addEventListener("load", setGalleryBlockHeights, { once: true });
+      }
+    });
+    if (!allLoaded) return;
 
-    const minTop    = firstRect.top - blockRect.top;
-    const maxBottom = lastRect.bottom - blockRect.bottom;
+    const blockRect = block.getBoundingClientRect();
+
+    let minTop = Infinity;
+    let maxBottom = -Infinity;
+
+    imgs.forEach(img => {
+      const rect = img.getBoundingClientRect();
+      const topRel = rect.top - blockRect.top;
+      const bottomRel = rect.bottom - blockRect.top;
+
+      if (topRel < minTop) minTop = topRel;
+      if (bottomRel > maxBottom) maxBottom = bottomRel;
+    });
 
     const height = Math.ceil(maxBottom - minTop);
+    block.style.height = height + "px";
 
-    block.style.height = height + 'px';
     console.log(`.gallery-block[${i}] height set to: ${height}px`);
   });
 }
-
 
 //window.addEventListener('load', setGalleryBlockHeights);
 
