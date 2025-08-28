@@ -1404,6 +1404,7 @@ function setGalleryMaxHeight() {
 }
 
 function setGalleryBlockHeights() {
+
   const blocks = document.querySelectorAll('.gallery-block');
   if (!blocks.length) {
     console.log('No .gallery-block found');
@@ -1420,6 +1421,15 @@ function setGalleryBlockHeights() {
     // get first and last img separately
     const firstImg = grid.querySelector('.customheighgal .card-img.firstimg img');
     const lastImg  = grid.querySelector('.customheighgal .card-img.lastimg img');
+
+
+// Get the URLs of the images
+const firstImgUrl = firstImg ? firstImg.src : null;
+const lastImgUrl = lastImg ? lastImg.src : null;
+
+console.log("First Image URL:", firstImgUrl);
+console.log("Last Image URL:", lastImgUrl);
+
 
     if (!firstImg || !lastImg) {
       console.log(`[${i}] Missing first or last image`);
