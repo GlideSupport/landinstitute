@@ -4071,11 +4071,12 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "choices": {
                 "post": "Learn",
                 "staff": "Staff",
                 "news": "News",
-                "event": "Event",
+                "event": "Events",
                 "page": "Pages"
             },
             "default_value": [],
@@ -4235,5 +4236,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1756375988
+    "modified": 1756381944
 }
