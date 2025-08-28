@@ -1142,7 +1142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Expand gallery function
     function expandGallery() {
         imageGalleryBlock.classList.add("expanded");
-		GalleryBlock.style.height = "100vh";
+		//GalleryBlock.style.height = "100vh";
         document.body.style.overflow = "hidden";
 		const header = document.getElementById("header-section");
 	    const headerHeight = header ? header.offsetHeight : 0;
@@ -1151,6 +1151,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	        top: sectionTop - headerHeight,
 	        behavior: "smooth"
 	    });
+
+		GalleryBlock.style.removeProperty('max-height');
+		console.log("Remove max height");
+
         
         // Show the close button when expanded
         closeBtn.style.display = "block";
@@ -1195,6 +1199,7 @@ document.addEventListener("DOMContentLoaded", () => {
         targetX = 0;
         targetY = 0;
         updateTransform();
+		setGalleryMaxHeight();
     }
 
     // Enable dragging functionality
@@ -1379,6 +1384,28 @@ document.addEventListener("DOMContentLoaded", () => {
         targetY = 0;
         updateTransform();
     });
+
+
+function setGalleryMaxHeight() {
+  const header = document.querySelector('.header-section');
+  const galleries = document.querySelectorAll('.image-gallery-block .gallery-block');
+
+  if (header && galleries.length > 0) {
+    const headerHeight = header.offsetHeight;
+    const screenHeight = window.innerHeight;
+    const maxHeight = (screenHeight - headerHeight) + "px";
+
+    galleries.forEach(gallery => {
+      gallery.style.maxHeight = maxHeight;
+    //  gallery.style.overflowY = "auto"; // optional, add scroll if needed
+    });
+  }
+}
+
+// // Run on load and on resize
+window.addEventListener('load', setGalleryMaxHeight);
+//window.addEventListener('resize', setGalleryMaxHeight);
+
 
     // ----------------------------
     // CUSTOM CURSOR HANDLING
