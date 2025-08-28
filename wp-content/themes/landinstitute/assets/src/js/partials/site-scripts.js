@@ -1394,11 +1394,11 @@ function setGalleryMaxHeight() {
   if (header && galleries.length > 0) {
     const headerHeight = header.offsetHeight;
     const screenHeight = window.innerHeight;
-    const maxHeight = (screenHeight - headerHeight) + "px";
+    const height = (screenHeight - headerHeight) + "px";
 
     galleries.forEach(gallery => {
-      gallery.style.maxHeight = maxHeight;
-    //  gallery.style.overflowY = "auto"; // optional, add scroll if needed
+      gallery.style.height = height;
+      // gallery.style.overflowY = "auto"; // optional, add scroll if needed
     });
   }
 }
