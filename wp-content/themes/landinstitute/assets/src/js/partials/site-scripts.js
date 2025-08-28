@@ -1441,7 +1441,7 @@ console.log("Last Image URL:", lastImgUrl);
     const lastRect  = lastImg.getBoundingClientRect();
 
     const minTop    = firstRect.top - blockRect.top;
-    const maxBottom = lastRect.bottom - blockRect.top;
+    const maxBottom = lastRect.bottom - blockRect.bottom;
 
     const height = Math.ceil(maxBottom - minTop);
 
