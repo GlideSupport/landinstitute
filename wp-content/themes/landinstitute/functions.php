@@ -1174,7 +1174,8 @@ function search_filter_Callback() {
     $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
     $search_query = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
     $order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
-    $search_type = isset($_POST['type']) ? $_POST['type'] : '';
+    $search_type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
+    $learn_type = isset($_POST['learntype']) ? sanitize_text_field($_POST['learntype']) : '';
 
     // Full list of allowed post types
     $allowed_post_types = ['post', 'event', 'page', 'news', 'staff'];
@@ -1211,6 +1212,17 @@ function search_filter_Callback() {
 
     if (!empty($search_query)) {
         $args['s'] = $search_query;
+    }
+
+    // Check if learn-type filter is set
+    if (!empty($learn_type)) {
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'learn-type',
+                'field'    => 'slug', // since you’re passing slug in URL
+                'terms'    => sanitize_text_field($learn_type),
+            ]
+        ];
     }
 
     $query = new WP_Query($args);
@@ -1503,6 +1515,24 @@ function limit_search_to_specific_post_types($query) {
             }
         } else {
             $query->set('post_type', $final_post_types); // default
+        }
+
+        // Handle taxonomy filters
+        $tax_query = [];
+        $taxonomies = get_taxonomies(['public' => true], 'names');
+
+        foreach ($taxonomies as $taxonomy) {
+            if (!empty($_GET[$taxonomy])) {
+                $tax_query[] = [
+                    'taxonomy' => $taxonomy,
+                    'field'    => 'slug',  // or 'id' if you pass term_id
+                    'terms'    => sanitize_text_field($_GET[$taxonomy]),
+                ];
+            }
+        }
+
+        if (!empty($tax_query)) {
+            $query->set('tax_query', $tax_query);
         }
     }
 }
