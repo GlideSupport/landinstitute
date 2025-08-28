@@ -112,7 +112,7 @@
         width: 100%;
         will-change: transform;
         z-index: 2;
-        flex-direction: column;
+        flex-wrap: wrap;
         background-image: url(../images/bg-lines-block.png);
         background-repeat: repeat;
 
