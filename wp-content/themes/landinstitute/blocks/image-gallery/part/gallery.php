@@ -10,36 +10,36 @@
 			<?php if (!empty($li_ig_repeater)) : ?>
 				<div class="gallery-grid">
 				
-					<?php 
-					// Split images into batches of 8
-						$chunks = array_chunk($li_ig_repeater, 8); 
-				foreach ($chunks as $index => $chunk): ?>
-					<div class="gallery-image customheighgal ">
-						<?php 
-						$count = 0;
-						$total = count($chunk);
-						foreach ($chunk as $li_ig_rep) :
-							if ($count >= 8) break; // stop after 8
-							$image = $li_ig_rep['image'] ?? '';
-							if (!empty($image)):
+				<?php 
+			// Split images into batches of 8
+			$chunks = array_chunk($li_ig_repeater, 8); 
+			$total_images = count($li_ig_repeater); // total overall
+			$current_index = 0;
 
-								// add class if first or last in this chunk
-								$extra_class = '';
-								if ($count === 0) {
-									$extra_class = ' firstimg';
-								} elseif ($count === $total - 1) { 
-									$extra_class = ' lastimg';
-								}
-								?>
-								<div class="card-img<?php echo $extra_class; ?>">
-									<?php echo wp_get_attachment_image($image, false); ?>
-								</div>
-							<?php 
-							$count++;    
-							endif;
-						endforeach; ?>
-					</div>
-				<?php endforeach; ?>
+			foreach ($chunks as $index => $chunk): ?>
+				<div class="gallery-image customheighgal">
+					<?php 
+					foreach ($chunk as $li_ig_rep) :
+						$image = $li_ig_rep['image'] ?? '';
+						if (!empty($image)):
+
+							// add class if very first OR very last across all images
+							$extra_class = '';
+							if ($current_index === 0) {
+								$extra_class = ' firstimg';
+							} elseif ($current_index === $total_images - 1) {
+								$extra_class = ' lastimg';
+							}
+							?>
+							<div class="card-img<?php echo $extra_class; ?>">
+								<?php echo wp_get_attachment_image($image, false); ?>
+							</div>
+						<?php 
+						endif;
+						$current_index++; // move global counter
+					endforeach; ?>
+				</div>
+			<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 		</div>
