@@ -1172,7 +1172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         expandBtn.style.display = "none";
         
         // Enable dragging
-        enableDragging();
+        //enableDragging();
         calculateBounds();
 		setGalleryBlockHeights();
     }
@@ -1194,7 +1194,7 @@ document.addEventListener("DOMContentLoaded", () => {
         expandBtn.style.display = "block";
         
         // Disable dragging
-        disableDragging();
+        //disableDragging();
         
         // Reset position when closing
         targetX = 0;
