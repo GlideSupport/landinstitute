@@ -1417,39 +1417,31 @@ function setGalleryBlockHeights() {
       return;
     }
 
-    const cards = grid.querySelectorAll('.card-img');
-    if (!cards.length) {
-      console.log(`[${i}] No .card-img found`);
+    // get first and last img separately
+    const firstImg = grid.querySelector('.customheighgal .card-img.firstimg img');
+    const lastImg  = grid.querySelector('.customheighgal .card-img.lastimg img');
+
+    if (!firstImg || !lastImg) {
+      console.log(`[${i}] Missing first or last image`);
       return;
     }
 
-    const refRect = block.getBoundingClientRect();
-    let minTop = Infinity;
-    let maxBottom = -Infinity;
+    const blockRect = block.getBoundingClientRect();
+    const firstRect = firstImg.getBoundingClientRect();
+    const lastRect  = lastImg.getBoundingClientRect();
 
-    cards.forEach(el => {
-      const r = el.getBoundingClientRect();
-      if (r.width === 0 && r.height === 0) return;
-
-      const topRel = r.top - refRect.top;
-      const bottomRel = r.bottom - refRect.top;
-
-      if (topRel < minTop) minTop = topRel;
-      if (bottomRel > maxBottom) maxBottom = bottomRel;
-    });
-
-    if (!isFinite(minTop) || !isFinite(maxBottom)) {
-      console.log(`[${i}] Could not compute bounds`);
-      return;
-    }
+    const minTop    = firstRect.top - blockRect.top;
+    const maxBottom = lastRect.bottom - blockRect.top;
 
     const height = Math.ceil(maxBottom - minTop);
 
-    block.style.height = height + 'px'; // ✅ set height directly
+    block.style.height = height + 'px';
     console.log(`.gallery-block[${i}] height set to: ${height}px`);
   });
 }
-window.addEventListener('load', setGalleryBlockHeights);
+
+
+//window.addEventListener('load', setGalleryBlockHeights);
 
 
 // // Run on load and on resize
