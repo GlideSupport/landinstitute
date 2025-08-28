@@ -1404,7 +1404,6 @@ function setGalleryMaxHeight() {
 }
 
 
-
 function setGalleryBlockHeights() {
   const blocks = document.querySelectorAll('.gallery-block');
 
@@ -1435,12 +1434,22 @@ function setGalleryBlockHeights() {
       });
       if (!allLoaded) return;
 
-      // sum heights of images in this gallery-image
-      let galleryHeight = 0;
+      // Get gallery relative rect
+      const galleryRect = gallery.getBoundingClientRect();
+
+      let minTop = Infinity;
+      let maxBottom = -Infinity;
+
       imgs.forEach(img => {
-        galleryHeight += img.offsetHeight;
+        const rect = img.getBoundingClientRect();
+        const topRel = rect.top - galleryRect.top;
+        const bottomRel = rect.bottom - galleryRect.top;
+
+        if (topRel < minTop) minTop = topRel;
+        if (bottomRel > maxBottom) maxBottom = bottomRel;
       });
 
+      const galleryHeight = Math.ceil(maxBottom - minTop);
       gallery.style.height = galleryHeight + "px";
       console.log(`.gallery-image[${gIndex}] height set to: ${galleryHeight}px`);
 
