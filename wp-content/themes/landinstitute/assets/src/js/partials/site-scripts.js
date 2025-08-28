@@ -1071,6 +1071,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	const button = document.getElementById('followBtn');
 
 	if(button) {
+
+  	
+
+
 		// Find the closest parent <section> to the button
 		const parentSection = button.closest('section');
 
@@ -1100,109 +1104,102 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 				
-    const galleryGrid = document.querySelector(".gallery-grid");
-    const galleryBlock = document.querySelector(".gallery-block");
-    const customCursor = document.querySelector(".custom-cursor");
-    const expandBtn = document.querySelector(".gallery-expand-btn");
-    const closeBtn = document.querySelector(".gallery-close-btn");
-    const imageGalleryBlock = document.querySelector(".image-gallery-block");
-    const GalleryBlock = document.querySelector(".gallery-block");
-	//const dragIndicators = document.querySelectorAll(".cursor-static");
- 
-    
-    // Check if required elements exist before proceeding
-    if (!galleryGrid || !galleryBlock || !customCursor || !expandBtn || !closeBtn || !imageGalleryBlock) {
-        return;
-    }
+   const galleryGrid = document.querySelector(".gallery-grid");
+	const galleryBlock = document.querySelector(".gallery-block");
+	const customCursor = document.querySelector(".custom-cursor");
+	const expandBtn = document.querySelector(".gallery-expand-btn");
+	const closeBtn = document.querySelector(".gallery-close-btn");
+	const imageGalleryBlock = document.querySelector(".image-gallery-block");
+	const GalleryBlock = document.querySelector(".gallery-block");
+	// const dragIndicators = document.querySelectorAll(".cursor-static");
 
-	
+	// Check if required elements exist before proceeding
+	if (
+	  !galleryGrid ||
+	  !galleryBlock ||
+	  !customCursor ||
+	  !expandBtn ||
+	  !closeBtn ||
+	  !imageGalleryBlock
+	) {
+	  return;
+	}
 
-    // Initially hide the close button and all drag indicators
-    closeBtn.style.display = "none";
-	// dragIndicators.forEach(indicator => {
-    //     indicator.style.display = "none";
-    // });
-   
-    // Show only the first drag indicator (if any exist)
-    // if (dragIndicators.length > 0) {
-    //     dragIndicators[0].style.display = "block";
-    // }
+	// Initially hide the close button
+	closeBtn.style.display = "none";
+	// dragIndicators.forEach(indicator => indicator.style.display = "none");
 
-    let isDragging = false;
-    let startX = 0,
-        startY = 0;
-    let targetX = 0,
-        targetY = 0;
-    let hasDragged = false;
-    let tween = null;
+	// Variables for drag logic
+	let isDragging = false;
+	let startX = 0,
+	  startY = 0;
+	let targetX = 0,
+	  targetY = 0;
+	let hasDragged = false;
+	let tween = null;
 
-    let maxX = 0;
-    let maxY = 0;
+	let maxX = 0;
+	let maxY = 0;
 
-    // Expand gallery function
-    function expandGallery() {
-        imageGalleryBlock.classList.add("expanded");
-		//GalleryBlock.style.height = "100vh";
-        document.body.style.overflow = "hidden";
-		const header = document.getElementById("header-section");
-	    const headerHeight = header ? header.offsetHeight : 0;
-	    const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
-	    window.scrollTo({
-	        top: sectionTop - headerHeight,
-	        behavior: "smooth"
-	    });
+	// Expand gallery function
+	function expandGallery() {
+	  
 
-		GalleryBlock.style.removeProperty('max-height');
-		console.log("Remove max height");
+	  imageGalleryBlock.classList.add("expanded");
+	  document.body.style.overflow = "hidden";
 
-        
-        // Show the close button when expanded
-        closeBtn.style.display = "block";
-		// Show drag indicator when expanded
-        // if (dragIndicators.length > 0) {
-        //     dragIndicators[0].style.display = "block";
-        // }
-		if (window.innerWidth < 992) {
-	        expandBtn.style.opacity = "0";
-	        expandBtn.style.pointerEvents = "none";
-	    } else {
-	        expandBtn.style.display = "none"; // desktop → just hide
-	    }
-        // Hide the expand button when expanded
-        expandBtn.style.display = "none";
-        
-        // Enable dragging
-        //enableDragging();
-        calculateBounds();
-		setGalleryBlockHeights();
-    }
+	  const header = document.getElementById("header-section");
+	  const headerHeight = header ? header.offsetHeight : 0;
+	  const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
 
-    // Close gallery function
-    function closeGallery() {
-        imageGalleryBlock.classList.remove("expanded");
-		GalleryBlock.style.height = "";
-        document.body.style.overflow = "";
-        
-        // Hide the close button when not expanded
-        closeBtn.style.display = "none";
-		 // Hide drag indicator when not expanded
-        // dragIndicators.forEach(indicator => {
-        //     indicator.style.display = "none";
-        // });
-  
-        // Show the expand button when not expanded
-        expandBtn.style.display = "block";
-        
-        // Disable dragging
-        //disableDragging();
-        
-        // Reset position when closing
-        targetX = 0;
-        targetY = 0;
-        updateTransform();
-		setGalleryMaxHeight();
-		
-    }
+	  window.scrollTo({
+	    top: sectionTop - headerHeight,
+	    behavior: "smooth",
+	  });
+
+	  GalleryBlock.style.removeProperty("max-height");
+	  console.log("Remove max height");
+
+	  // Show the close button when expanded
+	  closeBtn.style.display = "block";
+
+	  if (window.innerWidth < 992) {
+	    expandBtn.style.opacity = "0";
+	    expandBtn.style.pointerEvents = "none";
+	  } else {
+	    expandBtn.style.display = "none"; // desktop → just hide
+	  }
+
+	  expandBtn.innerText = "Close Gallery";
+	  expandBtn.style.display = "block";
+	  expandBtn.classList.add("cuclose");
+
+	  // Enable dragging + resize handling
+	  calculateBounds();
+	  setGalleryBlockHeights();
+	}
+
+	// Close gallery function
+	function closeGallery() {
+	  imageGalleryBlock.classList.remove("expanded");
+	  GalleryBlock.style.height = "";
+	  document.body.style.overflow = "";
+
+	  // Hide the close button
+	  closeBtn.style.display = "none";
+
+	  // Show the expand button again
+	  expandBtn.style.display = "block";
+	  expandBtn.innerText = "Browse Gallery";
+	  expandBtn.classList.remove("cuclose");
+
+	  // Reset position
+	  targetX = 0;
+	  targetY = 0;
+	  updateTransform();
+	  setGalleryMaxHeight();
+	}
+
 
     // Enable dragging functionality
     function enableDragging() {
@@ -1271,9 +1268,35 @@ document.addEventListener("DOMContentLoaded", () => {
         hideCursor();
     }
 
+	// const expandBtnn = document.querySelector(".gallery-expand-btn");
+
+	// if (expandBtnn) {
+	//   expandBtnn.addEventListener("click", () => {
+	//     if (expandBtnn.innerText === "Browse Gallery") {
+	// 		expandGallery();
+	//      // expandBtnn.innerText = "Close Gallery";
+	//     } else {
+	// 		closeGallery();
+	//      // expandBtnn.innerText = "Browse Gallery";
+	//     }
+	//   });
+	// }
+
+
     // Add event listeners for expand/close buttons
-    expandBtn.addEventListener("click", expandGallery);
+   // expandBtn.addEventListener("click", expandGallery);
+	if (expandBtn) {
+	  expandBtn.addEventListener("click", () => {
+	    if (expandBtn.classList.contains("cuclose")) {
+	      closeGallery(); // call your custom function
+	    } else {
+	      expandGallery(); // your existing function
+	    }
+	  });
+	}
+
     closeBtn.addEventListener("click", closeGallery);
+
 
     function calculateBounds() {
         // Additional safety check inside the function
