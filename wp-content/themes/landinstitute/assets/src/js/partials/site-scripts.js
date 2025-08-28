@@ -1201,6 +1201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         targetY = 0;
         updateTransform();
 		setGalleryMaxHeight();
+		
     }
 
     // Enable dragging functionality
@@ -1462,70 +1463,18 @@ function setGalleryBlockHeights() {
     }
   });
 }
-
-// run on load + resize
-//window.addEventListener("load", setGalleryBlockHeights);
-
-
-
-function setGalleryBlockHeights_s() {
-  const blocks = document.querySelectorAll('.gallery-block');
-  if (!blocks.length) {
-    console.log('No .gallery-block found');
-    return;
-  }
-
-  blocks.forEach((block, i) => {
-    const grid = block.querySelector('.gallery-grid');
-    if (!grid) {
-      console.log(`[${i}] No .gallery-grid inside .gallery-block`);
-      return;
-    }
-
-    const imgs = grid.querySelectorAll('.customheighgal .card-img img');
-    if (!imgs.length) {
-      console.log(`[${i}] No images found in gallery-grid`);
-      return;
-    }
-
-    // ensure all images are loaded before calculating
-    let allLoaded = true;
-    imgs.forEach(img => {
-      if (!img.complete) {
-        allLoaded = false;
-        img.addEventListener("load", setGalleryBlockHeights, { once: true });
-      }
-    });
-    if (!allLoaded) return;
-
-    const blockRect = block.getBoundingClientRect();
-
-    let minTop = Infinity;
-    let maxBottom = -Infinity;
-
-    imgs.forEach(img => {
-      const rect = img.getBoundingClientRect();
-      const topRel = rect.top - blockRect.top;
-      const bottomRel = rect.bottom - blockRect.top;
-
-      if (topRel < minTop) minTop = topRel;
-      if (bottomRel > maxBottom) maxBottom = bottomRel;
-    });
-
-    const height = Math.ceil(maxBottom - minTop);
-    block.style.height = height + "px";
-
-    console.log(`.gallery-block[${i}] height set to: ${height}px`);
-  });
-}
-
-//window.addEventListener('load', setGalleryBlockHeights);
-
-
 // // Run on load and on resize
 window.addEventListener('load', setGalleryMaxHeight);
-//window.addEventListener('resize', setGalleryMaxHeight);
 
+// run on resize ONLY if .image-gallery-block has .expanded
+window.addEventListener("resize", () => {
+  const expanded = document.querySelector(".image-gallery-block.expanded");
+  if (expanded) {
+    setGalleryBlockHeights();
+  }else{
+	setGalleryMaxHeight();
+  }
+});
 
     // ----------------------------
     // CUSTOM CURSOR HANDLING
