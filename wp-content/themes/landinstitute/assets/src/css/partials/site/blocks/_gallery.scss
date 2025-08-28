@@ -37,6 +37,7 @@
         transition: inherit;
         opacity: 0;
         pointer-events: auto;
+        white-space: nowrap;
     }
 
     &.expanded {
@@ -85,8 +86,9 @@
         position: absolute;
         right: 0;
         text-align: center;
-        top: 50%;
-        transform: translate(0, -50%);
+        top: 0;
+        transform: inherit;
+        margin-top: clamp(281px, calc(18.5rem + ((1vw - 7.68px) * -2.5773)), 296px);
     }
 
     .cursor-static {
