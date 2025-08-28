@@ -1402,7 +1402,64 @@ function setGalleryMaxHeight() {
     });
   }
 }
+
+
+
 function setGalleryBlockHeights() {
+  const blocks = document.querySelectorAll('.gallery-block');
+
+  if (!blocks.length) {
+    console.log('No .gallery-block found');
+    return;
+  }
+
+  blocks.forEach((block, bIndex) => {
+    const galleries = block.querySelectorAll('.gallery-grid .gallery-image.customheighgal');
+    if (!galleries.length) {
+      console.log(`[${bIndex}] No .gallery-image found in .gallery-block`);
+      return;
+    }
+
+    let blockTotalHeight = 0;
+    let allLoaded = true;
+
+    galleries.forEach((gallery, gIndex) => {
+      const imgs = gallery.querySelectorAll('.card-img img');
+      if (!imgs.length) return;
+
+      imgs.forEach(img => {
+        if (!img.complete) {
+          allLoaded = false;
+          img.addEventListener("load", setGalleryBlockHeights, { once: true });
+        }
+      });
+      if (!allLoaded) return;
+
+      // sum heights of images in this gallery-image
+      let galleryHeight = 0;
+      imgs.forEach(img => {
+        galleryHeight += img.offsetHeight;
+      });
+
+      gallery.style.height = galleryHeight + "px";
+      console.log(`.gallery-image[${gIndex}] height set to: ${galleryHeight}px`);
+
+      blockTotalHeight += galleryHeight;
+    });
+
+    if (allLoaded) {
+      block.style.height = blockTotalHeight + "px";
+      console.log(`.gallery-block[${bIndex}] total height set to: ${blockTotalHeight}px`);
+    }
+  });
+}
+
+// run on load + resize
+//window.addEventListener("load", setGalleryBlockHeights);
+
+
+
+function setGalleryBlockHeights_s() {
   const blocks = document.querySelectorAll('.gallery-block');
   if (!blocks.length) {
     console.log('No .gallery-block found');
