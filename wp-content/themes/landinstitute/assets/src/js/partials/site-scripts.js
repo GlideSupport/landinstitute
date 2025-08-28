@@ -1467,13 +1467,18 @@ function setGalleryBlockHeights() {
 window.addEventListener('load', setGalleryMaxHeight);
 
 // run on resize ONLY if .image-gallery-block has .expanded
+let resizeTimeout;
+
 window.addEventListener("resize", () => {
-  const expanded = document.querySelector(".image-gallery-block.expanded");
-  if (expanded) {
-    setGalleryBlockHeights();
-  }else{
-	setGalleryMaxHeight();
-  }
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    const expanded = document.querySelector(".image-gallery-block.expanded");
+    if (expanded) {
+      setGalleryBlockHeights();
+    } else {
+      setGalleryMaxHeight();
+    }
+  }, 100);
 });
 
     // ----------------------------
