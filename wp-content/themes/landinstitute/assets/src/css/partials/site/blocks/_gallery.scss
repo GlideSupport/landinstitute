@@ -40,7 +40,7 @@
         white-space: nowrap;
 
         @media(max-width: 991px) {
-            display: none !important;
+            opacity: 0;
         }
     }
 
