@@ -1161,8 +1161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	  if (window.innerWidth < 992) {
 	    expandBtn.style.opacity = "0";
 	    expandBtn.style.pointerEvents = "none";
+		if (customCursor) customCursor.style.display = "none";
 	  } else {
-	    expandBtn.style.display = "none"; // desktop → just hide
+	    expandBtn.style.display = "none"; 
+		if (customCursor) customCursor.style.display = "block";
 	  }
 
 	  expandBtn.innerText = "Close Gallery";
@@ -1183,10 +1185,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	  // Hide the close button
 	  closeBtn.style.display = "none";
 
-	  // Show the expand button again
-	  expandBtn.style.display = "block";
-	  expandBtn.innerText = "Browse Gallery";
-	  expandBtn.classList.remove("cuclose");
+	  if (window.innerWidth < 992) {
+	    expandBtn.style.display = "none";
+	    if (customCursor) customCursor.style.display = "none";
+	  } else {
+	    expandBtn.style.display = "block"; 
+	    expandBtn.innerText = "Browse Gallery";
+	    expandBtn.classList.remove("cuclose");
+	    if (customCursor) customCursor.style.display = "block";
+	  }
+
 
 	  // Reset position
 	  targetX = 0;
@@ -1298,7 +1306,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     
     }
-
 
     function calculateBounds() {
         // Additional safety check inside the function
