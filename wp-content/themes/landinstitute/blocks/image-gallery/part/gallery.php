@@ -4,9 +4,7 @@
 		<div class="gallery-block">
 		
 			<?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'block-heading ui-128-78-bold white_text mb-0') : ''; ?>
-			<div class="cursor-static">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/src/images/drag-button.svg" alt="Image" title="Image"/>
-			</div>
+			
 			<?php if (!empty($li_ig_repeater)) : ?>
 				<div class="gallery-grid">
 				
@@ -44,6 +42,7 @@
 			<?php endif; ?>
 		</div>
 		 <!-- Expand / Close Buttons -->
+		<button class="cursor-static">Browse Gallery</button>
         <button class="gallery-expand-btn" id="followBtn">Browse Gallery</button>
         <button class="gallery-close-btn">✕</button>
 	</div>
