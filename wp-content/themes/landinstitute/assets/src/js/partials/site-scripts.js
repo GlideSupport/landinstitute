@@ -1503,7 +1503,9 @@ window.addEventListener("resize", () => {
     if (expanded) {
       setGalleryBlockHeights();
     } else {
-      //setGalleryMaxHeight();
+      if (window.innerWidth >= 767) {
+        setGalleryMaxHeight();
+      }
     }
   }, 100);
 });
