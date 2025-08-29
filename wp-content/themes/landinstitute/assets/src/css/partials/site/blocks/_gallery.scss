@@ -38,6 +38,10 @@
         opacity: 0;
         pointer-events: auto;
         white-space: nowrap;
+
+        @media(max-width: 991px) {
+            display: none !important;
+        }
     }
 
     &.expanded {
