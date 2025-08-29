@@ -62,6 +62,7 @@
         top: 0;
         transform: inherit;
         margin-top: 401px;
+        z-index: 2;
 
         @media(max-width: 991px) {
             display: block;
