@@ -1069,12 +1069,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Image Gallery js start
 	const button = document.getElementById('followBtn');
-
 	if(button) {
-
-  	
-
-
 		// Find the closest parent <section> to the button
 		const parentSection = button.closest('section');
 
@@ -1198,6 +1193,15 @@ document.addEventListener("DOMContentLoaded", () => {
 	  targetY = 0;
 	  updateTransform();
 	  setGalleryMaxHeight();
+
+	  const header = document.getElementById("header-section");
+	  const headerHeight = header ? header.offsetHeight : 0;
+	  const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
+
+	  window.scrollTo({
+	    top: sectionTop - headerHeight,
+	    behavior: "smooth",
+	  });
 	}
 
 
@@ -1499,7 +1503,7 @@ window.addEventListener("resize", () => {
     if (expanded) {
       setGalleryBlockHeights();
     } else {
-      setGalleryMaxHeight();
+      //setGalleryMaxHeight();
     }
   }, 100);
 });
