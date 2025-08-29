@@ -17,7 +17,7 @@ if ( $custom_query->have_posts() ) :
 					<div class="gl-s6"></div>
 					
 					<h5 class="heading-5 mb-0 block-title">
-						<?php the_title(); ?>
+						<?php echo html_entity_decode( get_the_title() ); ?>
 					</h5>
 					
 					<div class="gl-s12"></div>

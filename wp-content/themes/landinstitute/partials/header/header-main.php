@@ -139,6 +139,7 @@
 													<input type="text" name="s" placeholder="What are you searching for?" autofocus>
 													<input type="hidden" name="search-type" value="all" class="search-type-field">
 													<input type="hidden" name="learn-type" value="all" class="learn-type-field">
+													<input type="hidden" name="orderby" value="date">
 													<button class="site-btn btn-lemon-yellow sm-btn" type="submit">Search</button>
 												</form>
 											</div>

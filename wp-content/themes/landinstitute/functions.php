@@ -1517,22 +1517,15 @@ function limit_search_to_specific_post_types($query) {
             $query->set('post_type', $final_post_types); // default
         }
 
-        // Handle taxonomy filters
-        $tax_query = [];
-        $taxonomies = get_taxonomies(['public' => true], 'names');
-
-        foreach ($taxonomies as $taxonomy) {
-            if (!empty($_GET[$taxonomy])) {
-                $tax_query[] = [
-                    'taxonomy' => $taxonomy,
-                    'field'    => 'slug',  // or 'id' if you pass term_id
-                    'terms'    => sanitize_text_field($_GET[$taxonomy]),
-                ];
-            }
-        }
-
-        if (!empty($tax_query)) {
-            $query->set('tax_query', $tax_query);
+        // ✅ Handle learn-type taxonomy filter from URL param
+        if (!empty($_GET['learn-type'])) {
+            $query->set('tax_query', [
+                [
+                    'taxonomy' => 'learn-type',
+                    'field'    => 'slug',
+                    'terms'    => sanitize_text_field($_GET['learn-type']),
+                ]
+            ]);
         }
     }
 }
