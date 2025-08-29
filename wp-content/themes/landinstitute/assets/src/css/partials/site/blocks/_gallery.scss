@@ -118,11 +118,11 @@
         flex-wrap: wrap;
         background-image: url(../images/bg-lines-block.png);
         background-repeat: repeat;
-        background-size: cover;
+        background-size: 100%;
 
         @media(max-width: 480px) {
             background-image: url(../images/bg-lines-block-md.png);
-            background-size: cover;
+            background-size: 100%;
         }
 
         .gallery-image {
