@@ -1106,7 +1106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const closeBtn = document.querySelector(".gallery-close-btn");
 	const imageGalleryBlock = document.querySelector(".image-gallery-block");
 	const GalleryBlock = document.querySelector(".gallery-block");
-	// const dragIndicators = document.querySelectorAll(".cursor-static");
+	const Cursorstatics = document.querySelector(".cursor-static");
 
 	// Check if required elements exist before proceeding
 	if (
@@ -1272,20 +1272,6 @@ document.addEventListener("DOMContentLoaded", () => {
         hideCursor();
     }
 
-	// const expandBtnn = document.querySelector(".gallery-expand-btn");
-
-	// if (expandBtnn) {
-	//   expandBtnn.addEventListener("click", () => {
-	//     if (expandBtnn.innerText === "Browse Gallery") {
-	// 		expandGallery();
-	//      // expandBtnn.innerText = "Close Gallery";
-	//     } else {
-	// 		closeGallery();
-	//      // expandBtnn.innerText = "Browse Gallery";
-	//     }
-	//   });
-	// }
-
 
     // Add event listeners for expand/close buttons
    // expandBtn.addEventListener("click", expandGallery);
@@ -1300,6 +1286,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
     closeBtn.addEventListener("click", closeGallery);
+	
+	if (window.innerWidth < 992) {
+        Cursorstatics.addEventListener('click', () => {
+            console.log('mobile');
+          if (imageGalleryBlock.classList.contains('expanded')) {
+            closeGallery();
+          } else {
+            expandGallery();
+          }
+        });
+    
+    }
 
 
     function calculateBounds() {
