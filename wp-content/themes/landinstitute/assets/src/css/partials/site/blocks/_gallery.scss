@@ -38,6 +38,8 @@
         opacity: 0;
         pointer-events: auto;
         white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
 
         @media(max-width: 991px) {
             opacity: 0 !important;
@@ -57,7 +59,7 @@
         left: 0;
         text-align: center;
         max-width: 196px;
-        margin: 435px auto 0;
+        margin: clamp(393px, calc(24.5625rem + ((1vw - 7.68px) * 7.2165)), 435px) auto 0;
         top: 0;
         transform: inherit;
         z-index: 2;
