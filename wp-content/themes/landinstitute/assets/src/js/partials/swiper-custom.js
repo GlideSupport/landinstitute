@@ -160,146 +160,177 @@ document.addEventListener("DOMContentLoaded", function () {
 	// CTA Slider JS end
 
 	// Map slider with counter start
-document.querySelectorAll(".impact-map-block").forEach((blockWrapper) => {
-  const mapSlides = blockWrapper.querySelector(".map-slides");
-  const mapYears = blockWrapper.querySelector(".map-years");
-  const nextBtn = blockWrapper.querySelector(".swiper-button-next");
-  const prevBtn = blockWrapper.querySelector(".swiper-button-prev");
+	document.querySelectorAll(".impact-map-block").forEach((blockWrapper) => {
+		const mapSlides = blockWrapper.querySelector(".map-slides");
+		const mapYears = blockWrapper.querySelector(".map-years");
+		const nextBtn = blockWrapper.querySelector(".swiper-button-next");
+		const prevBtn = blockWrapper.querySelector(".swiper-button-prev");
 
-  if (!mapSlides) return;
+		if (!mapSlides) return;
 
-  let animations = [];
-  const lastValues = {}; // store last visible number for each counter index
+		let animations = [];
+		const lastValues = {}; // store last visible number for each counter index
 
-  // format number with commas
-  function formatNumber(num) {
-    return num.toLocaleString("en-US");
-  }
+		// format number with commas
+		function formatNumber(num) {
+			return num.toLocaleString("en-US");
+		}
 
-  // animate counter
-  function animateCounter(counterEl, start, end, duration = 1200, index) {
-    const countSpan = counterEl.querySelector(".count");
-    let startTime = null;
+		// update all slides with the current value for a given index
+		function updateAllSlides(index, value) {
+			blockWrapper
+				.querySelectorAll(".swiper-slide-container")
+				.forEach((container, ci) => {
+					const toCounters =
+						container.querySelectorAll(".map-counter");
 
-    function update(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const current = Math.floor(start + (end - start) * progress);
-      countSpan.textContent = formatNumber(current);
+					toCounters.forEach((counter, i) => {
+						if (i === index) {
+							const countSpan = counter.querySelector(".count");
 
-      // keep track of the last animated number
-      lastValues[index] = current;
+							if (countSpan)
+								countSpan.textContent = formatNumber(value);
+						}
+					});
+				});
+		}
 
-      if (progress < 1) {
-        const frame = requestAnimationFrame(update);
-        animations.push(frame);
-      }
-    }
-    const frame = requestAnimationFrame(update);
-    animations.push(frame);
-  }
+		// animate counter
+		function animateCounter(counterEl, start, end, duration = 1200, index) {
+			const countSpan = counterEl.querySelector(".count");
+			let startTime = null;
 
-  // run counters for a specific slide
-  function runCounters(fromSlide, toSlide, isInitial = false) {
-    // cancel ongoing animations
-    animations.forEach((frame) => cancelAnimationFrame(frame));
-    animations = [];
+			function update(timestamp) {
+				if (!startTime) startTime = timestamp;
+				const progress = Math.min(
+					(timestamp - startTime) / duration,
+					1,
+				);
+				const current = Math.floor(start + (end - start) * progress);
+				countSpan.textContent = formatNumber(current);
 
-    const toCounters = toSlide.querySelectorAll(".map-counter");
+				// keep track of the last animated number
+				lastValues[index] = current;
 
-    toCounters.forEach((counter, i) => {
-      const end = parseInt(counter.dataset.end, 10);
+				if (progress < 1) {
+					const frame = requestAnimationFrame(update);
+					animations.push(frame);
+				}
+			}
+			const frame = requestAnimationFrame(update);
+			animations.push(frame);
 
-      let start;
-      if (isInitial) {
-        start = parseInt(counter.dataset.start, 10);
-      } else {
-        // if we already have a last value, use it, otherwise fall back to start
-        start = lastValues[i] !== undefined
-          ? lastValues[i]
-          : parseInt(counter.dataset.start, 10);
-      }
+			updateAllSlides(index, end);
+		}
 
-      animateCounter(counter, start, end, 1200, i);
-    });
-  }
+		// run counters for a specific slide
+		function runCounters(fromSlide, toSlide, isInitial = false) {
+			// cancel ongoing animations
+			animations.forEach((frame) => cancelAnimationFrame(frame));
+			animations = [];
 
-  // Swiper main
-  const galleryTop = new Swiper(mapSlides, {
-    spaceBetween: 0,
-    speed: 10,
-    navigation:
-      nextBtn && prevBtn
-        ? {
-            nextEl: nextBtn,
-            prevEl: prevBtn,
-          }
-        : false,
-    effect: "fade",
-    fadeEffect: { crossFade: true },
-    touchRatio: 1,
-    simulateTouch: true,
-    allowTouchMove: true,
-    on: {
-      slideChange: function () {
-        const activeSlide = this.slides[this.activeIndex];
-        const slideContainer = activeSlide.querySelector(".swiper-slide-container");
+			const toCounters = toSlide.querySelectorAll(".map-counter");
 
-        const year = slideContainer ? slideContainer.getAttribute("data-map") : null;
-        const svgMaps = document.querySelectorAll(".impact-map-block .map-image svg");
+			toCounters.forEach((counter, i) => {
+				const end = parseInt(counter.dataset.end, 10);
 
-        if (year) {
-          svgMaps.forEach((svg) => {
-            svg.classList.forEach((cls) => {
-              if (cls.startsWith("year-")) {
-                svg.classList.remove(cls);
-              }
-            });
-            svg.classList.add(`year-${year}`);
-          });
-        }
-      },
-      slideChangeTransitionEnd: function () {
-        const activeSlide = this.slides[this.activeIndex];
-        runCounters(null, activeSlide, false);
-      },
-    },
-  });
+				let start;
+				if (isInitial) {
+					start = parseInt(counter.dataset.start, 10);
+				} else {
+					// if we already have a last value, use it, otherwise fall back to start
+					start =
+						lastValues[i] !== undefined
+							? lastValues[i]
+							: parseInt(counter.dataset.start, 10);
+				}
 
-  // Swiper thumbs
-  if (mapYears) {
-    const galleryThumbs = new Swiper(mapYears, {
-      spaceBetween: 0,
-      slidesPerView: "auto",
-      slideToClickedSlide: true,
-      speed: 10,
-      centeredSlides: true,
-      a11y: {
-        slideRole: "button",
-      },
-    });
+				animateCounter(counter, start, end, 1200, i);
+			});
+		}
 
-    galleryTop.controller.control = galleryThumbs;
-    galleryThumbs.controller.control = galleryTop;
-  }
+		// Swiper main
+		const galleryTop = new Swiper(mapSlides, {
+			spaceBetween: 0,
+			speed: 10,
+			navigation:
+				nextBtn && prevBtn
+					? {
+							nextEl: nextBtn,
+							prevEl: prevBtn,
+					  }
+					: false,
+			effect: "fade",
+			fadeEffect: { crossFade: true },
+			touchRatio: 1,
+			simulateTouch: true,
+			allowTouchMove: true,
+			on: {
+				slideChange: function () {
+					const activeSlide = this.slides[this.activeIndex];
+					const slideContainer = activeSlide.querySelector(
+						".swiper-slide-container",
+					);
 
-  // IntersectionObserver for initial trigger
-  const observerOptions = { threshold: 0.3 };
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const activeSlide = galleryTop.slides[galleryTop.activeIndex];
-        runCounters(null, activeSlide, true);
+					const year = slideContainer
+						? slideContainer.getAttribute("data-map")
+						: null;
+					const svgMaps = document.querySelectorAll(
+						".impact-map-block .map-image svg",
+					);
 
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+					if (year) {
+						svgMaps.forEach((svg) => {
+							svg.classList.forEach((cls) => {
+								if (cls.startsWith("year-")) {
+									svg.classList.remove(cls);
+								}
+							});
+							svg.classList.add(`year-${year}`);
+						});
+					}
+				},
+				slideChangeTransitionEnd: function () {
+					const activeSlide = this.slides[this.activeIndex];
+					runCounters(null, activeSlide, false);
+				},
+			},
+		});
 
-  observer.observe(blockWrapper);
-});
-// Map slider with counter end
+		// Swiper thumbs
+		if (mapYears) {
+			const galleryThumbs = new Swiper(mapYears, {
+				spaceBetween: 0,
+				slidesPerView: "auto",
+				slideToClickedSlide: true,
+				speed: 10,
+				centeredSlides: true,
+				a11y: {
+					slideRole: "button",
+				},
+			});
 
+			galleryTop.controller.control = galleryThumbs;
+			galleryThumbs.controller.control = galleryTop;
+		}
+
+		// IntersectionObserver for initial trigger
+		const observerOptions = { threshold: 0.3 };
+		const observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const activeSlide =
+						galleryTop.slides[galleryTop.activeIndex];
+					runCounters(null, activeSlide, true);
+
+					observer.unobserve(entry.target);
+				}
+			});
+		}, observerOptions);
+
+		observer.observe(blockWrapper);
+	});
+	// Map slider with counter end
 
 	// Timeline js start
 	const timelineBlocks = document.querySelectorAll(".timeline-block");
