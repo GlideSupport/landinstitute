@@ -43,7 +43,6 @@
 		</div>
 		 <!-- Expand / Close Buttons -->
 		<button class="cursor-static">Browse Gallery</button>
-        <button class="gallery-expand-btn" id="followBtn">Browse Gallery</button>
         <button class="gallery-close-btn">✕</button>
 	</div>
 <?php endif; ?>
