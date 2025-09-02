@@ -56,17 +56,15 @@
         right: 0;
         left: 0;
         text-align: center;
-        display: none;
-        max-width: 157px;
-        margin: 87px auto 0;
+        max-width: 196px;
+        margin: 435px auto 0;
         top: 0;
         transform: inherit;
-        margin-top: 401px;
         z-index: 2;
         outline: none;
+        display: block;
 
         @media(max-width: 991px) {
-            display: block;
             opacity: 1;
             font-size: 14px;
             padding: 12px 24px;
