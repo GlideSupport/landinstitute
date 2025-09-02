@@ -1225,7 +1225,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	  if (header && galleries.length > 0) {
 	    const headerHeight = header.offsetHeight;
 	    const screenHeight = window.innerHeight;
-	    const height = (screenHeight * 0.85 - headerHeight) + "px";
+	    let height;
+	  	if (window.innerWidth <= 991) {
+	    	height = (screenHeight - headerHeight) + "px";
+	  	} else {
+	    	height = (screenHeight * 0.85 - headerHeight) + "px";
+	  	}
 
 	    galleries.forEach(gallery => { gallery.style.height = height; });
 	  }
