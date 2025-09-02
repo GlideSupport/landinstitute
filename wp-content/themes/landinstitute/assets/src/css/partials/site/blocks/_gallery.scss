@@ -128,6 +128,7 @@
         top: 0;
         transform: inherit;
         margin-top: clamp(281px, calc(18.5rem + ((1vw - 7.68px) * -2.5773)), 296px);
+        z-index: 3;
 
         @media(max-height: 800px) {
             margin-top: clamp(160px, calc(10rem + ((1vw - 7.68px) * 6.8729)), 200px);
