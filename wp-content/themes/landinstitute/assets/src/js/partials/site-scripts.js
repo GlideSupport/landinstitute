@@ -1339,7 +1339,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    const sectionBottom = sectionTop + gallerySection.offsetHeight;
 	    const scrollY = window.scrollY || window.pageYOffset;
 
-	    if (scrollY + headerHeight >= sectionTop && scrollY + headerHeight < sectionBottom - 100) {
+	    if (scrollY + headerHeight >= sectionTop && scrollY + headerHeight < sectionBottom - 70) {
 	      // ✅ Section is in view → fixed sticky
 	      closeBtn.classList.add("sticky");
 	      closeBtn.style.position = "fixed";
@@ -1349,7 +1349,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	      // ✅ Out of section → absolute at end
 	      closeBtn.classList.remove("sticky");
 	      closeBtn.style.position = "absolute";
-	      //closeBtn.style.top = "30px";
+	      closeBtn.style.top = "20px";
 	    }
 	  }
 
