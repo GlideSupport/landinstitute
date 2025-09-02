@@ -1118,8 +1118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Close gallery function
 	function closeGallery() {
-	  imageGalleryBlock.classList.remove("expanded");
-	  GalleryBlock.style.height = "";
+	 	imageGalleryBlock.classList.remove("expanded");
 	  document.body.style.overflow = "";
 
 	  // Hide the close button
@@ -1129,17 +1128,34 @@ document.addEventListener("DOMContentLoaded", () => {
 	  targetX = 0;
 	  targetY = 0;
 	  updateTransform();
-	  setGalleryMaxHeight();
 
 	  const header = document.getElementById("header-section");
 	  const headerHeight = header ? header.offsetHeight : 0;
 	  const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
+	  const targetScroll = sectionTop - headerHeight;
 
+	  // Step 1: scroll first
 	  window.scrollTo({
-	    top: sectionTop - headerHeight,
+	    top: targetScroll,
 	    behavior: "smooth",
 	  });
+
+	  // Step 2: wait until scroll finishes → then remove/reset height
+	  function waitForScrollEnd() {
+	    const currentScroll = window.scrollY || window.pageYOffset;
+
+	    if (Math.abs(currentScroll - targetScroll) < 2) {
+	      // 🔥 Now safe to reset height
+	      GalleryBlock.style.height = "";
+	      setGalleryMaxHeight();
+	    } else {
+	      requestAnimationFrame(waitForScrollEnd);
+	    }
+	  }
+
+	  waitForScrollEnd();
 	}
+
 
 	function updateCursorStaticText() {
 	  if (imageGalleryBlock.classList.contains('expanded')) {
