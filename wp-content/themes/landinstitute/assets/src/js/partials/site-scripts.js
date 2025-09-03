@@ -1167,14 +1167,17 @@ document.addEventListener("DOMContentLoaded", () => {
    	closeBtn.addEventListener("click", () => {
 	  closeGallery();
 	  updateCursorStaticText(); 
+	  imageGalleryBlock.classList.add("heading-center-group");
 	});
     Cursorstatics.addEventListener('click', () => {
       if (imageGalleryBlock.classList.contains('expanded')) {
         closeGallery();
-		Cursorstatics.textContent = "Browse Gallery"; // reset text
+		Cursorstatics.textContent = "Browse Gallery";
+		imageGalleryBlock.classList.add("heading-center-group");
       } else {
         expandGallery();
-		Cursorstatics.textContent = "Close Gallery"; // update text
+		Cursorstatics.textContent = "Close Gallery";
+		imageGalleryBlock.classList.remove("heading-center-group");
       }
     });
     
