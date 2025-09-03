@@ -87,20 +87,6 @@
         }
     }
 
-    &.heading-center-group {
-        .group-mid-details {
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            flex-wrap: wrap;
-            top: 50%;
-            transform: translate(0, -50%);
-            margin-top: 0;
-            z-index: 2;
-        }
-    }
-
     .group-mid-details {
         position: absolute;
         display: flex;
@@ -112,6 +98,7 @@
         margin-top: clamp(281px, calc(18.5rem + ((1vw - 7.68px) * -2.5773)), 296px);
         flex-direction: column;
         left: 0;
+        z-index: 2;
     }
 
     .block-heading {
