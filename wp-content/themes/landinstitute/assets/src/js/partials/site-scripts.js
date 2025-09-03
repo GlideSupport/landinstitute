@@ -1118,7 +1118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Close gallery function
 	function closeGallery() {
-	 	imageGalleryBlock.classList.remove("expanded");
+	  imageGalleryBlock.classList.remove("expanded");
 	  document.body.style.overflow = "";
 
 	  // Hide the close button
@@ -1145,7 +1145,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	    const currentScroll = window.scrollY || window.pageYOffset;
 
 	    if (Math.abs(currentScroll - targetScroll) < 2) {
-	      // 🔥 Now safe to reset height
 	      GalleryBlock.style.height = "";
 	      setGalleryMaxHeight();
 	    } else {
@@ -1167,17 +1166,14 @@ document.addEventListener("DOMContentLoaded", () => {
    	closeBtn.addEventListener("click", () => {
 	  closeGallery();
 	  updateCursorStaticText(); 
-	  imageGalleryBlock.classList.add("heading-center-group");
 	});
     Cursorstatics.addEventListener('click', () => {
       if (imageGalleryBlock.classList.contains('expanded')) {
         closeGallery();
-		Cursorstatics.textContent = "Browse Gallery";
-		imageGalleryBlock.classList.add("heading-center-group");
+		Cursorstatics.textContent = "Browse Gallery"; // reset text
       } else {
         expandGallery();
-		Cursorstatics.textContent = "Close Gallery";
-		imageGalleryBlock.classList.remove("heading-center-group");
+		Cursorstatics.textContent = "Close Gallery"; // update text
       }
     });
     
@@ -1240,12 +1236,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	function setGalleryMaxHeight() {
 	  const header = document.querySelector('.header-section');
 	  const galleries = document.querySelectorAll('.image-gallery-block .gallery-block');
+	  const groupDetails = document.querySelector('.group-mid-details');
 
 	  if (header && galleries.length > 0) {
 	    const headerHeight = header.offsetHeight;
 	    const screenHeight = window.innerHeight;
+		const sectionheight = screenHeight * 0.85 - headerHeight;
+		const halfScreenHeight = sectionheight / 2;
+		const groupHeight = groupDetails.offsetHeight;
+		const availableHeight = groupHeight / 2;
+		const Totalblock_sectionheight = halfScreenHeight - availableHeight;
+		groupDetails.style.marginTop = Totalblock_sectionheight + "px";
 	    const height = (screenHeight * 0.85 - headerHeight) + "px";
-
 	    galleries.forEach(gallery => { gallery.style.height = height; });
 	  }
 	}
