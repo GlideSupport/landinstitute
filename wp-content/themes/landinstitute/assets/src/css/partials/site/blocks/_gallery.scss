@@ -65,7 +65,7 @@
         z-index: 2;
         outline: none;
         display: block;
-        margin: 20px auto 0;
+        margin: 0 auto 0;
 
         // @media(max-height: 800px) {
         //     margin: clamp(250px, calc(15.625rem + ((1vw - 7.68px) * 17.1821)), 350px) auto 0;
@@ -96,6 +96,8 @@
             flex-wrap: wrap;
             top: 50%;
             transform: translate(0, -50%);
+            margin-top: 0;
+            z-index: 2;
         }
     }
 
