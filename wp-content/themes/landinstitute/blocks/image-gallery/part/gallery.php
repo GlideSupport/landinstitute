@@ -1,19 +1,21 @@
 <?php if (!empty($li_ig_headline_check) || !empty($li_ig_repeater)): ?>
-	<div class="image-gallery-block">
+	<div class="image-gallery-block heading-center-group">
 		<div class="custom-cursor mobile-hidden"></div>
 		<div class="gallery-block">
-			<?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'block-heading ui-128-78-bold white_text mb-0') : ''; ?>
-			<?php if (!empty($li_ig_repeater)) : ?>
+
+			<?php if (!empty($li_ig_repeater)): ?>
 				<div class="gallery-grid">
-				<?php 
-					$chunks = array_chunk($li_ig_repeater, 8); 
+
+					<?php
+					// Split images into batches of 8
+					$chunks = array_chunk($li_ig_repeater, 8);
 					$total_images = count($li_ig_repeater); // total overall
 					$current_index = 0;
 
 					foreach ($chunks as $index => $chunk): ?>
 						<div class="gallery-image customheighgal">
-							<?php 
-							foreach ($chunk as $li_ig_rep) :
+							<?php
+							foreach ($chunk as $li_ig_rep):
 								$image = $li_ig_rep['image'] ?? '';
 								if (!empty($image)):
 
@@ -28,18 +30,20 @@
 									<div class="card-img<?php echo $extra_class; ?>">
 										<?php echo wp_get_attachment_image($image, false); ?>
 									</div>
-								<?php 
+								<?php
 								endif;
 								$current_index++; // move global counter
 							endforeach; ?>
 						</div>
 					<?php endforeach; ?>
-						</div>
-					<?php endif; ?>
 				</div>
-		 <!-- Expand / Close Buttons -->
-		<button class="cursor-static">Browse Gallery</button>
-        <button class="gallery-expand-btn" id="followBtn">Browse Gallery</button>
-        <button class="gallery-close-btn">✕</button>
+			<?php endif; ?>
+		</div>
+		<!-- Expand / Close Buttons -->
+		<div class="group-mid-details">
+			<?php echo !empty($li_ig_headline_check) ? BaseTheme::headline($li_ig_headline, 'block-heading ui-128-78-bold white_text mb-0') : ''; ?>
+			<button class="cursor-static">Browse Gallery</button>
+		</div>
+		<button class="gallery-close-btn">✕</button>
 	</div>
 <?php endif; ?>
