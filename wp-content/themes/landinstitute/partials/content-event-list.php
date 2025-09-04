@@ -13,12 +13,12 @@
 
  if ($start_date) {
     $start_obj = new DateTime($start_date);
-    $formatedsdate =  date_i18n('l, F j, Y', $start_obj->getTimestamp());
+    $formatedsdate =  date_i18n('D, M j, Y', $start_obj->getTimestamp());
 }
 
 if ($end_date) {
     $end_obj = new DateTime($end_date);
-    $formateenddate = ' – ' . date_i18n('l, F j, Y', $end_obj->getTimestamp());
+    $formateenddate = ' – ' . date_i18n('D, M j, Y', $end_obj->getTimestamp());
 }
 
 ?>

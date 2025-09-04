@@ -25,7 +25,7 @@ $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? nu
 // Get visible taxonomies from options
 $show_learn_taxonomies_in_the_filter = $bst_option_fields['show_learn_taxonomies_in_the_filter'] ?? [];
 $show_news_taxonomies_in_the_filter = $bst_option_fields['show_news_taxonomies_in_the_filter'] ?? [];
-
+$event_date = get_formatted_event_datetime($bst_var_post_id);
 // Define all possible taxonomies
 $all_learn_taxonomies = ['learn-type', 'learn-topic', 'learn-crop', 'learn-audience'];
 $all_news_taxonomies = ['news-type', 'news-topic', 'news-crop', 'news-audience'];
@@ -258,6 +258,8 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 													}
 													?>
 												</div>
+												<?php echo !empty($event_date) ? '<div class="ui-eyebrow-18-16-regular">' . esc_html($event_date) . '</div>' : ''; ?>
+												<?php echo (!empty($event_date) && !empty($title)) ? '<div class="gl-s12"></div>' : ''; ?>
 												<div class="gl-s6"></div>
 												<div class="card-title heading-7"><?php echo html_entity_decode(get_the_title()); ?></div>
 												<div class="gl-s12"></div>

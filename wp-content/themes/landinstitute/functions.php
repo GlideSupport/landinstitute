@@ -858,23 +858,22 @@ function get_formatted_event_datetime($post_id) {
         // Single-day event
         if (!empty($event_start_time) && !empty($event_end_time)) {
             // With times
-            $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code - " .
-                             $end_datetime->format('g:i a') . " $timezone_code";
+            $event_display = $start_datetime->format('D, M j, Y g:i a') . " $timezone_code - " . $end_datetime->format('g:i a') . " $timezone_code";
         } elseif (!empty($event_start_time)) {
             // Only start time
-            $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code";
+            $event_display = $start_datetime->format('D, M j, Y g:i a') . " $timezone_code";
         } else {
             // Date only
-            $event_display = $start_datetime->format('l, F j, Y');
+            $event_display = $start_datetime->format('D, M j, Y');
         }
     } else {
         // Multi-day event
         if (!empty($event_start_time) && !empty($event_end_time)) {
-            $event_display = $start_datetime->format('l, F j, Y g:i a') . " $timezone_code - " .
-                             $end_datetime->format('l, F j, Y g:i a') . " $timezone_code";
+            $event_display = $start_datetime->format('D, M j, Y g:i a') . " $timezone_code - " .
+                             $end_datetime->format('D, M j, Y g:i a') . " $timezone_code";
         } else {
-            $event_display = $start_datetime->format('l, F j, Y') . " - " .
-                             $end_datetime->format('l, F j, Y');
+            $event_display = $start_datetime->format('D, M j, Y') . " - " .
+                             $end_datetime->format('D, M j, Y');
         }
     }
 
