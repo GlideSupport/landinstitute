@@ -1068,78 +1068,33 @@ function calculateBounds(galleryBlock) {
 document.addEventListener("DOMContentLoaded", () => {
 
 	// Image Gallery js start
-	const button = document.getElementById('followBtn');
-	if(button) {
-		// Find the closest parent <section> to the button
-		const parentSection = button.closest('section');
-
-		// Show button when mouse enters section
-		parentSection.addEventListener('mouseenter', function() {
-		  button.style.opacity = '1';
-		});
-
-		// Move button with cursor inside section
-		parentSection.addEventListener('mousemove', function(e) {
-		  const rect = parentSection.getBoundingClientRect();
-		  let x = e.clientX - rect.left;
-		  let y = e.clientY - rect.top;
-		  x -= button.offsetWidth / 2;
-		  y -= button.offsetHeight / 2;
-		  x = Math.max(0, Math.min(x, rect.width - button.offsetWidth));
-		  y = Math.max(0, Math.min(y, rect.height - button.offsetHeight));
-		  button.style.left = x + 'px';
-		  button.style.top = y + 'px';
-		});
-
-		// Hide and reset button when mouse leaves section
-		parentSection.addEventListener('mouseleave', function() {
-		  button.style.left = '0px';
-		  button.style.top = '0px';
-		  button.style.opacity = '0';
-		});
-	}
 				
-   	const galleryGrid = document.querySelector(".gallery-grid");
+  	const galleryGrid = document.querySelector(".gallery-grid");
 	const galleryBlock = document.querySelector(".gallery-block");
 	const customCursor = document.querySelector(".custom-cursor");
-	const expandBtn = document.querySelector(".gallery-expand-btn");
 	const closeBtn = document.querySelector(".gallery-close-btn");
 	const imageGalleryBlock = document.querySelector(".image-gallery-block");
 	const GalleryBlock = document.querySelector(".gallery-block");
 	const Cursorstatics = document.querySelector(".cursor-static");
 
 	// Check if required elements exist before proceeding
-	if (
-	  !galleryGrid ||
-	  !galleryBlock ||
-	  !customCursor ||
-	  !expandBtn ||
-	  !closeBtn ||
-	  !imageGalleryBlock
-	) {
-	  return;
+	if ( !galleryGrid || !galleryBlock || !customCursor || !closeBtn ||  !imageGalleryBlock ) {
+		return;
 	}
 
 	// Initially hide the close button
 	closeBtn.style.display = "none";
-	// dragIndicators.forEach(indicator => indicator.style.display = "none");
-
+	
 	// Variables for drag logic
-	let isDragging = false;
-	let startX = 0,
-	  startY = 0;
-	let targetX = 0,
-	  targetY = 0;
+	let targetX = 0, targetY = 0;
 	let hasDragged = false;
 	let tween = null;
-
 	let maxX = 0;
 	let maxY = 0;
 
 	// Expand gallery function
 	function expandGallery() {
 	  
-
 	  imageGalleryBlock.classList.add("expanded");
 	  document.body.style.overflow = "hidden";
 
@@ -1153,24 +1108,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	  });
 
 	  GalleryBlock.style.removeProperty("max-height");
-	  console.log("Remove max height");
 
 	  // Show the close button when expanded
 	  closeBtn.style.display = "block";
-
-	  if (window.innerWidth < 992) {
-	    expandBtn.style.opacity = "0";
-	    expandBtn.style.pointerEvents = "none";
-		if (customCursor) customCursor.style.display = "none";
-	  } else {
-	    expandBtn.style.display = "none"; 
-		if (customCursor) customCursor.style.display = "block";
-	  }
-
-	  expandBtn.innerText = "Close Gallery";
-	  expandBtn.style.display = "block";
-	  expandBtn.classList.add("cuclose");
-
 	  // Enable dragging + resize handling
 	  calculateBounds();
 	  setGalleryBlockHeights();
@@ -1179,134 +1119,65 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Close gallery function
 	function closeGallery() {
 	  imageGalleryBlock.classList.remove("expanded");
-	  GalleryBlock.style.height = "";
 	  document.body.style.overflow = "";
 
 	  // Hide the close button
 	  closeBtn.style.display = "none";
 
-	  if (window.innerWidth < 992) {
-	    expandBtn.style.display = "none";
-	    if (customCursor) customCursor.style.display = "none";
-	  } else {
-	    expandBtn.style.display = "block"; 
-	    expandBtn.innerText = "Browse Gallery";
-	    expandBtn.classList.remove("cuclose");
-	    if (customCursor) customCursor.style.display = "block";
-	  }
-
-
 	  // Reset position
 	  targetX = 0;
 	  targetY = 0;
 	  updateTransform();
-	  setGalleryMaxHeight();
 
 	  const header = document.getElementById("header-section");
 	  const headerHeight = header ? header.offsetHeight : 0;
 	  const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
+	  const targetScroll = sectionTop - headerHeight;
 
+	  // Step 1: scroll first
 	  window.scrollTo({
-	    top: sectionTop - headerHeight,
+	    top: targetScroll,
 	    behavior: "smooth",
 	  });
-	}
 
+	  // Step 2: wait until scroll finishes → then remove/reset height
+	  function waitForScrollEnd() {
+	    const currentScroll = window.scrollY || window.pageYOffset;
 
-    // Enable dragging functionality
-    function enableDragging() {
-        // Mouse events
-        galleryBlock.addEventListener("mousedown", startDrag);
-        window.addEventListener("mousemove", moveDrag);
-        window.addEventListener("mouseup", endDrag);
-        window.addEventListener("mouseleave", endDrag);
-
-        // Touch events
-        galleryBlock.addEventListener("touchstart", startDrag, { passive: false });
-        window.addEventListener("touchmove", moveDrag, { passive: false });
-        window.addEventListener("touchend", endDrag);
-        window.addEventListener("touchcancel", endDrag);
-
-        // Enable cursor
-        galleryBlock.style.cursor = "grab";
-        
-        // Mouse movement for cursor
-        galleryBlock.addEventListener("mousemove", updateCursorPosition);
-        galleryBlock.addEventListener("mouseenter", showCursor);
-        galleryBlock.addEventListener("mouseleave", hideCursor);
-
-        // Touch movement for cursor
-        galleryBlock.addEventListener(
-            "touchstart",
-            (e) => {
-                updateCursorPosition(e);
-                showCursor();
-            },
-            { passive: false },
-        );
-
-        galleryBlock.addEventListener("touchmove", updateCursorPosition, {
-            passive: false,
-        });
-        galleryBlock.addEventListener("touchend", hideCursor);
-        galleryBlock.addEventListener("touchcancel", hideCursor);
-    }
-
-    // Disable dragging functionality
-    function disableDragging() {
-        // Remove mouse events
-        galleryBlock.removeEventListener("mousedown", startDrag);
-        window.removeEventListener("mousemove", moveDrag);
-        window.removeEventListener("mouseup", endDrag);
-        window.removeEventListener("mouseleave", endDrag);
-
-        // Remove touch events
-        galleryBlock.removeEventListener("touchstart", startDrag);
-        window.removeEventListener("touchmove", moveDrag);
-        window.removeEventListener("touchend", endDrag);
-        window.removeEventListener("touchcancel", endDrag);
-
-        // Remove cursor events
-        galleryBlock.removeEventListener("mousemove", updateCursorPosition);
-        galleryBlock.removeEventListener("mouseenter", showCursor);
-        galleryBlock.removeEventListener("mouseleave", hideCursor);
-        galleryBlock.removeEventListener("touchstart", updateCursorPosition);
-        galleryBlock.removeEventListener("touchmove", updateCursorPosition);
-        galleryBlock.removeEventListener("touchend", hideCursor);
-        galleryBlock.removeEventListener("touchcancel", hideCursor);
-
-        // Reset cursor style
-        galleryBlock.style.cursor = "default";
-        hideCursor();
-    }
-
-
-    // Add event listeners for expand/close buttons
-   // expandBtn.addEventListener("click", expandGallery);
-	if (expandBtn) {
-	  expandBtn.addEventListener("click", () => {
-	    if (expandBtn.classList.contains("cuclose")) {
-	      closeGallery(); // call your custom function
+	    if (Math.abs(currentScroll - targetScroll) < 2) {
+	      GalleryBlock.style.height = "";
+	      setGalleryMaxHeight();
 	    } else {
-	      expandGallery(); // your existing function
+	      requestAnimationFrame(waitForScrollEnd);
 	    }
-	  });
+	  }
+
+	  waitForScrollEnd();
 	}
 
-    closeBtn.addEventListener("click", closeGallery);
-	
-	if (window.innerWidth < 992) {
-        Cursorstatics.addEventListener('click', () => {
-            console.log('mobile');
-          if (imageGalleryBlock.classList.contains('expanded')) {
-            closeGallery();
-          } else {
-            expandGallery();
-          }
-        });
-    
-    }
 
+	function updateCursorStaticText() {
+	  if (imageGalleryBlock.classList.contains('expanded')) {
+	    Cursorstatics.textContent = "Close Gallery";
+	  } else {
+	    Cursorstatics.textContent = "Browse Gallery";
+	  }
+	}
+   	closeBtn.addEventListener("click", () => {
+	  closeGallery();
+	  updateCursorStaticText(); 
+	});
+    Cursorstatics.addEventListener('click', () => {
+      if (imageGalleryBlock.classList.contains('expanded')) {
+        closeGallery();
+		Cursorstatics.textContent = "Browse Gallery"; // reset text
+      } else {
+        expandGallery();
+		Cursorstatics.textContent = "Close Gallery"; // update text
+      }
+    });
+    
+    
     function calculateBounds() {
         // Additional safety check inside the function
         if (!galleryBlock) {
@@ -1350,64 +1221,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ease: "power1.out",
         });
     }
-
-    function getEventPosition(e) {
-        if (e.type.startsWith("touch")) {
-            const touch = e.touches[0] || e.changedTouches[0];
-            return { x: touch.clientX, y: touch.clientY };
-        }
-        return { x: e.clientX, y: e.clientY };
-    }
-
-    function startDrag(e) {
-        isDragging = true;
-        hasDragged = false;
-        const pos = getEventPosition(e);
-        startX = pos.x;
-        startY = pos.y;
-        galleryBlock.style.cursor = "grabbing";
-        document.body.style.userSelect = "none";
-        if (customCursor) customCursor.classList.add("dragging");
-    }
-
-    function moveDrag(e) {
-        if (!isDragging) {
-            return;
-        }
-
-        const pos = getEventPosition(e);
-        const dx = pos.x - startX;
-        const dy = pos.y - startY;
-
-        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-            hasDragged = true;
-        }
-
-        targetX += dx;
-        targetY += dy;
-
-        targetX = Math.max(-maxX, Math.min(targetX, maxX));
-        targetY = Math.max(-maxY, Math.min(targetY, maxY));
-
-        updateTransform();
-
-        startX = pos.x;
-        startY = pos.y;
-
-        // Move custom cursor on drag
-        updateCursorPosition(e);
-    }
-
-    function endDrag() {
-        if (!isDragging) {
-            return;
-        }
-        isDragging = false;
-        galleryBlock.style.cursor = "grab";
-        document.body.style.userSelect = "";
-        if (customCursor) customCursor.classList.remove("dragging");
-    }
-
     // Reset on click/tap if not dragged
     galleryBlock.addEventListener("click", () => {
         if (hasDragged) {
@@ -1423,16 +1236,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	function setGalleryMaxHeight() {
 	  const header = document.querySelector('.header-section');
 	  const galleries = document.querySelectorAll('.image-gallery-block .gallery-block');
+	  const groupDetails = document.querySelector('.group-mid-details');
 
 	  if (header && galleries.length > 0) {
 	    const headerHeight = header.offsetHeight;
 	    const screenHeight = window.innerHeight;
-	    const height = (screenHeight - headerHeight) + "px";
-
-	    galleries.forEach(gallery => {
-	      gallery.style.height = height;
-	      // gallery.style.overflowY = "auto"; // optional, add scroll if needed
-	    });
+		const sectionheight = screenHeight * 0.85 - headerHeight;
+		const halfScreenHeight = sectionheight / 2;
+		const groupHeight = groupDetails.offsetHeight;
+		const availableHeight = groupHeight / 2;
+		const Totalblock_sectionheight = halfScreenHeight - availableHeight;
+		groupDetails.style.marginTop = Totalblock_sectionheight + "px";
+	    const height = (screenHeight * 0.85 - headerHeight) + "px";
+	    galleries.forEach(gallery => { gallery.style.height = height; });
 	  }
 	}
 
@@ -1495,7 +1311,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    }
 	  });
 	}
-	// Run on load and on resize
+	// // Run on load and on resize
 	window.addEventListener('load', setGalleryMaxHeight);
 
 	// run on resize ONLY if .image-gallery-block has .expanded
@@ -1514,35 +1330,65 @@ document.addEventListener("DOMContentLoaded", () => {
 	    }
 	  }, 100);
 	});
+	
+	function setupStickyCloseBtn() {
+	  const gallerySection = document.querySelector(".image-gallery-block");
+	  const closeBtn = document.querySelector(".gallery-close-btn");
+	  const header = document.querySelector("header"); // adjust selector if needed
 
-    // ----------------------------
-    // CUSTOM CURSOR HANDLING
-    // ----------------------------
+	  if (!gallerySection || !closeBtn || !header) return;
 
-    // Follow mouse or touch
-    function updateCursorPosition(e) {
-        const pos = getEventPosition(e);
-        if (customCursor) {
-            customCursor.style.left = `${pos.x}px`;
-            customCursor.style.top = `${pos.y}px`;
-        }
-    }
+	  function updateFixedPosition() {
+	    const headerHeight = header.offsetHeight || 0;
+	    closeBtn.style.top = headerHeight + 30 + "px";
+	  }
 
-    // Show cursor
-    function showCursor() {
-        if (customCursor) customCursor.style.opacity = "1";
-    }
+	  function handleScroll() {
+	    const isExpanded = gallerySection.classList.contains("expanded");
+	    if (!isExpanded) {
+	      // Reset if not expanded
+	      closeBtn.classList.remove("sticky");
+	      closeBtn.style.position = "";
+	      closeBtn.style.top = "";
+	      closeBtn.style.right = "";
+	      return;
+	    }
 
-    // Hide cursor
-    function hideCursor() {
-        if (customCursor) {
-            customCursor.style.opacity = "0";
-            customCursor.classList.remove("dragging");
-        }
-    }
+	    const headerHeight = header.offsetHeight || 0;
+	    const sectionRect = gallerySection.getBoundingClientRect();
+	    const sectionTop = sectionRect.top + window.scrollY;
+	    const sectionBottom = sectionTop + gallerySection.offsetHeight;
+	    const scrollY = window.scrollY || window.pageYOffset;
 
-    // Initially disable dragging
-    disableDragging();
+	    if (scrollY + headerHeight >= sectionTop && scrollY + headerHeight < sectionBottom - 70) {
+	      // ✅ Section is in view → fixed sticky
+	      closeBtn.classList.add("sticky");
+	      closeBtn.style.position = "fixed";
+		  closeBtn.style.top = headerHeight + 30 + "px";
+	      updateFixedPosition();
+	    } else {
+	      // ✅ Out of section → absolute at end
+	      closeBtn.classList.remove("sticky");
+	      closeBtn.style.position = "absolute";
+	      closeBtn.style.top = "20px";
+	    }
+	  }
+
+	  // Bind scroll + resize
+	  window.addEventListener("scroll", handleScroll);
+	  window.addEventListener("resize", handleScroll);
+
+	  // Mutation observer to detect expanded toggle
+	  const mutationObserver = new MutationObserver(handleScroll);
+	  mutationObserver.observe(gallerySection, {
+	    attributes: true,
+	    attributeFilter: ["class"],
+	  });
+	}
+
+
+	// Run after page load
+	window.addEventListener("load", setupStickyCloseBtn);
 	//Image Gallery js end
 	
 	//staff tab js
