@@ -101,7 +101,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 
 <?php
 	$today = date('Ymd');
-
+	$current_event_id = get_the_ID();
 	$args = array(
 		'post_type'      => 'event',
 		'post_status'    => 'publish',
@@ -117,6 +117,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 				'type'    => 'DATE',
 			),
 		),
+		'post__not_in'   => array($current_event_id),
 	);
 
 	// Modify args based on selection
@@ -125,7 +126,8 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 			if (!empty($li_cpt_select_events)) {
 				$args['post__in'] = $li_cpt_select_events;
 				$args['orderby'] = 'post__in';
-				unset($args['meta_query'], $args['meta_key'], $args['meta_type']); // Remove upcoming filter for manual
+				unset($args['meta_query'], $args['meta_key'], $args['meta_type']); 
+				$args['post__not_in'] = array($current_event_id);
 			}
 			break;
 
@@ -159,55 +161,11 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 								$event_id     = get_the_ID();
 								$title        = html_entity_decode(get_the_title());
 								$permalink    = get_permalink();
-								$start_date   = get_field('li_cpt_event_start_date', $event_id);
-								$end_date     = get_field('li_cpt_event_end_date', $event_id);
-								$start_time   = get_field('li_cpt_event_start_time', $event_id);
-								$end_time     = get_field('li_cpt_event_end_time', $event_id);
 								$city_state   = get_field('li_cpt_event_city_state', $event_id);
-								$all_day      = get_field('li_cpt_event_all_day', $event_id);
 								$wysiwyg      = get_the_excerpt($event_id);
 								$event_image_id = get_post_thumbnail_id($event_id);
 								$event_image_id = $event_image_id ?: $bst_var_theme_default_image;
-
-								// Date formatting
-								$start_date = $start_date ? strtotime($start_date) : false;
-								$end_date   = $end_date ? strtotime($end_date) : false;
-
-								$start_day_full  = $start_date ? date('l, F j, Y', $start_date) : '';
-								$end_day_full    = $end_date ? date('l, F j, Y', $end_date) : '';
-								$start_day_short = $start_date ? date('M j, Y', $start_date) : '';
-								$start_time_fmt  = $start_time ? date('g:i a', strtotime($start_time)) . ' CDT' : '';
-								$end_time_fmt    = $end_time ? date('g:i a', strtotime($end_time)) . ' CDT' : '';
-
-								$event_date = '';
-
-								if ($start_date && $end_date) {
-									if (date('Ymd', $start_date) !== date('Ymd', $end_date)) {
-										if ($all_day) {
-											$event_date = "$start_day_full - $end_day_full All Day";
-										} elseif ($start_time && $end_time) {
-											$event_date = "$start_day_full $start_time_fmt - $end_day_full $end_time_fmt";
-										} else {
-											$event_date = "$start_day_short";
-										}
-									} else {
-										if ($all_day) {
-											$event_date = "$start_day_full All Day";
-										} elseif ($start_time && $end_time) {
-											$event_date = "$start_day_full $start_time_fmt - $end_time_fmt";
-										} else {
-											$event_date = "$start_day_short";
-										}
-									}
-								} elseif ($start_date) {
-									if ($all_day) {
-										$event_date = "$start_day_full All Day";
-									} elseif ($start_time && $end_time) {
-										$event_date = "$start_day_full $start_time_fmt - $end_time_fmt";
-									} else {
-										$event_date = "$start_day_short";
-									}
-								}
+								$event_date = get_formatted_event_datetime($event_id);
 							?>
 								<div class="swiper-slide">
 									<div class="image-card-caption">
