@@ -109,8 +109,8 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 								<?php endif; ?>
 
 							</div>
-							<div class="gl-s96"></div>
 						<?php endif; ?>
+						<div class="gl-s96"></div>
 					</div>
 				<?php else : ?>
 					<div class="col-left bg-lime-green">
