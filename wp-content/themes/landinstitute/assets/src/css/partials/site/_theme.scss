@@ -3470,6 +3470,7 @@ body {
 body {
     .cky-revisit-bottom-left {
         z-index: 9;
+        bottom: 55px;
 
         @media(min-width: 768px) {
             bottom: 60px;
