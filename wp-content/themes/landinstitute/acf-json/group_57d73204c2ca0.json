@@ -3343,11 +3343,11 @@
             "append": ""
         },
         {
-            "key": "field_686cf12da8416",
-            "label": "Form Selector",
-            "name": "bst_var_form_selector",
+            "key": "field_68be898dc9a02",
+            "label": "Select form Type News",
+            "name": "bst_var_select_form_type",
             "aria-label": "",
-            "type": "forms",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -3356,10 +3356,74 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "gravity-form": "Gravity form",
+                "form-embed": "Form Embed"
+            },
+            "default_value": "gravity-form",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_686cf12da8416",
+            "label": "Form Selector",
+            "name": "bst_var_form_selector",
+            "aria-label": "",
+            "type": "forms",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68be898dc9a02",
+                        "operator": "==",
+                        "value": "gravity-form"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
             "return_format": "id",
             "allow_null": 1,
             "multiple": 0,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68be8972c9a01",
+            "label": "Form Embed",
+            "name": "bst_var_form_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68be898dc9a02",
+                        "operator": "==",
+                        "value": "form-embed"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_686e323684bee",
@@ -4236,5 +4300,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1756288406
+    "modified": 1757318299
 }
