@@ -587,11 +587,11 @@
             "append": ""
         },
         {
-            "key": "field_686d20212cef1",
-            "label": "Newsletter Subscription Form Selector",
-            "name": "li_ldo_form_selector",
+            "key": "field_68be87fe76402",
+            "label": "Select form Type",
+            "name": "li_ldo_select_form_type",
             "aria-label": "",
-            "type": "forms",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -608,10 +608,84 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "gravity-form": "Gravity form",
+                "form-embed": "Form Embed"
+            },
+            "default_value": "gravity-form",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_686d20212cef1",
+            "label": "Newsletter Subscription Form Selector",
+            "name": "li_ldo_form_selector",
+            "aria-label": "",
+            "type": "forms",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686d1f9d2ceee",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_68be87fe76402",
+                        "operator": "==",
+                        "value": "gravity-form"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
             "return_format": "id",
             "allow_null": 1,
             "multiple": 0,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68be884876403",
+            "label": "Form Embed",
+            "name": "li_ldo_form_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686d1f9d2ceee",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_68be87fe76402",
+                        "operator": "==",
+                        "value": "form-embed"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -632,5 +706,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1755084577
+    "modified": 1757322338
 }
