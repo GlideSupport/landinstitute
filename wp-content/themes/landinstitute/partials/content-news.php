@@ -42,7 +42,9 @@ $li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_sel
 $newsletter_form_visible = get_field('li_nwd_newsletter_form_visible') ?? '';
 $li_nwd_title = $bst_fields['li_nwd_title'] ?? $bst_var_title;
 $li_nwd_kicker = $bst_fields['li_nwd_kicker'] ?? $bst_var_kicker;
+$select_form_type  = $bst_fields['li_nwd_select_form_type'] ?? $bst_var_select_form_type;
 $form_selector = $bst_fields['li_nwd_form_selector'] ?? $bst_var_form_selector;
+$form_embed = $bst_fields['li_nwd_form_embed'] ?? $bst_var_form_embed;
 
 $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-default hero-alongside-menu variation-width variation-details' : 'hero-section hero-section-default hero-text-only';
 
@@ -323,7 +325,11 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 					<?php echo !empty($li_nwd_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_nwd_title) . '</h2>' : ''; ?>	
 					<?php echo (!empty($li_nwd_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
 					<div class="newsletter-form">
-						<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
+					<?php if (($select_form_type == 'gravity-form')): ?>
+					<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
+					<?php else :?>
+					<?php echo !empty($form_embed) ? html_entity_decode($form_embed) : ''; ?>
+					<?php endif; ?>
 					</div>
 					<div class="gl-s80"></div>
 				</div>
