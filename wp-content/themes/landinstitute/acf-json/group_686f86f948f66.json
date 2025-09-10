@@ -429,7 +429,15 @@
             "type": "button_group",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_686f86f999bbc",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -488,6 +496,11 @@
             "conditional_logic": [
                 [
                     {
+                        "field": "field_686f86f999bbc",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
                         "field": "field_68c16957e2d20",
                         "operator": "==",
                         "value": "form-embed"
@@ -525,5 +538,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757506033
+    "modified": 1757507646
 }
