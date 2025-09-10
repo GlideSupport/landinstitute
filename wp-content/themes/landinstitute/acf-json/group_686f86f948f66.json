@@ -422,6 +422,30 @@
             "append": ""
         },
         {
+            "key": "field_68c16957e2d20",
+            "label": "Select form Type",
+            "name": "li_nwd_select_form_type",
+            "aria-label": "",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "gravity-form": "Gravity form",
+                "form-embed": "Form Embed"
+            },
+            "default_value": "gravity-form",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "layout": "horizontal"
+        },
+        {
             "key": "field_686f86f9a4b50",
             "label": "Newsletter Subscription Form Selector",
             "name": "li_nwd_form_selector",
@@ -435,6 +459,11 @@
                         "field": "field_686f86f999bbc",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_68c16957e2d20",
+                        "operator": "==",
+                        "value": "gravity-form"
                     }
                 ]
             ],
@@ -447,6 +476,35 @@
             "allow_null": 1,
             "multiple": 0,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68c1695ae2d21",
+            "label": "Form Embed",
+            "name": "li_nwd_form_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68c16957e2d20",
+                        "operator": "==",
+                        "value": "form-embed"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -467,5 +525,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1755084641
+    "modified": 1757506033
 }
