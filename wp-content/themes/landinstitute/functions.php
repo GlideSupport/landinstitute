@@ -1569,3 +1569,33 @@ function get_post_type_label($post_type_slug) {
     $post_type_obj = get_post_type_object($post_type_slug);
     return $post_type_obj ? $post_type_obj->labels->name : ucfirst($post_type_slug);
 }
+
+
+add_filter( 'posts_clauses', function( $clauses, $query ) {
+    global $wpdb;
+
+    if (
+        isset( $query->query['post_type'] )
+        && $query->query['post_type'] === 'staff'
+        && isset( $query->query['orderby'] )
+        && $query->query['orderby'] === 'custom_staff_order'
+    ) {
+        // Join with staff_last_name meta
+        $clauses['join'] .= " 
+            LEFT JOIN $wpdb->postmeta AS staff_last_name
+            ON ($wpdb->posts.ID = staff_last_name.post_id 
+                AND staff_last_name.meta_key = 'staff_last_name')";
+
+        $clauses['orderby'] = "
+            CASE 
+                WHEN staff_last_name.meta_value IS NULL 
+                     OR staff_last_name.meta_value = '' 
+                THEN 1 ELSE 0 
+            END ASC,
+            staff_last_name.meta_value ASC,
+            $wpdb->posts.post_date DESC
+        ";
+    }
+
+    return $clauses;
+}, 10, 2 );

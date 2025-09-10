@@ -69,6 +69,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 				$args = [
 					'post_type'      => 'staff',
 					'posts_per_page' => -1,
+					'orderby'        => 'custom_staff_order',
 				];
 
 				if ($show_by_selector) {
@@ -80,7 +81,6 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 						'field'    => 'term_id',
 						'terms'    => wp_list_pluck($li_sl_staff_category_selector, 'term_id'),
 					]];
-					$args['orderby'] = 'menu_order';
 					$args['order']   = 'ASC';
 				}
 
