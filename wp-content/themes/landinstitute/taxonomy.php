@@ -20,7 +20,9 @@ $bst_var_dl_repeater = $bst_option_fields['bst_var_dl_repeater'] ?? null;
 $bst_var_dl_image = $bst_option_fields['bst_var_dl_image'] ?? null;
 $bst_var_tf_title = $bst_option_fields['bst_var_tf_title'] ?? null;
 $bst_var_tf_kicker = $bst_option_fields['bst_var_tf_kicker'] ?? null;
+$bst_var_select_tf_form_cat_type = $bst_option_fields['bst_var_select_tf_form_cat_type'] ?? 'gravity-form';
 $bst_var_tf_form_selector = $bst_option_fields['bst_var_tf_form_selector'] ?? null;
+$bst_var_tf_form_embed = $bst_option_fields['bst_var_tf_form_embed'] ?? null;
 
 // Get visible taxonomies from options
 $show_learn_taxonomies_in_the_filter = $bst_option_fields['show_learn_taxonomies_in_the_filter'] ?? [];
@@ -358,9 +360,11 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 						<?php echo (!empty($bst_var_tf_kicker) && !empty($bst_var_tf_title)) ? '<div class="gl-s12"></div>' : ''; ?>
 						<?php echo !empty($bst_var_tf_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($bst_var_tf_title) . '</h2>' : ''; ?>
 						<div class="gl-s44"></div>
-						<div class="newsletter-form">
-							<?php echo !empty($bst_var_tf_form_selector) ? do_shortcode('[gravityform id="' . $bst_var_tf_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
-						</div>
+						<?php if (($bst_var_select_tf_form_cat_type == 'gravity-form')): ?>
+							<div class="newsletter-form"><?php echo !empty($bst_var_tf_form_selector) ? do_shortcode('[gravityform id="' . $bst_var_tf_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?></div>
+						<?php else :?>
+							<div class="newsletter-form"><?php echo !empty($bst_var_tf_form_embed) ? html_entity_decode($bst_var_tf_form_embed) : ''; ?></div>
+						<?php endif; ?>
 						<div class="gl-s80"></div>
 					</div>
 				</div>
