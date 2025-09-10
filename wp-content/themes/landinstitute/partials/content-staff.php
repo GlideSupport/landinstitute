@@ -11,7 +11,9 @@
 
 list($bst_var_post_id, $bst_fields, $bst_option_fields, $bst_queried_object) = BaseTheme::defaults();
 
-$staff_title        = $bst_fields['bst_var_posttitle'] ?? get_the_title();
+$first_name = get_field('staff_first_name',$bst_var_post_id);
+$last_name = get_field('staff_last_name',$bst_var_post_id);
+$staff_title = (!empty($first_name) || !empty($last_name))  ? trim($first_name . ' ' . $last_name) : html_entity_decode(get_the_title());
 $staff_bio          = get_the_content();
 $staff_designation  = get_field('staff_designation', $bst_var_post_id);
 $staff_email        = get_field('staff_email_address', $bst_var_post_id);
