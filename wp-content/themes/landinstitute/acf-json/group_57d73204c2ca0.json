@@ -3683,11 +3683,11 @@
             "append": ""
         },
         {
-            "key": "field_686e3c0d7d4a8",
-            "label": "Form Selector",
-            "name": "bst_var_tf_form_selector",
+            "key": "field_68c119c870228",
+            "label": "Select form Type Category",
+            "name": "bst_var_select_tf_form_cat_type",
             "aria-label": "",
-            "type": "forms",
+            "type": "button_group",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -3696,10 +3696,74 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
+            "choices": {
+                "gravity-form": "Gravity form",
+                "form-embed": "Form Embed"
+            },
+            "default_value": "gravity-form",
+            "return_format": "value",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_686e3c0d7d4a8",
+            "label": "Form Selector",
+            "name": "bst_var_tf_form_selector",
+            "aria-label": "",
+            "type": "forms",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68c119c870228",
+                        "operator": "==",
+                        "value": "gravity-form"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
             "return_format": "id",
             "allow_null": 1,
             "multiple": 0,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_68c11a2c70229",
+            "label": "Form Embed",
+            "name": "bst_var_tf_form_embed",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_68c119c870228",
+                        "operator": "==",
+                        "value": "form-embed"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
         },
         {
             "key": "field_6878f0bbd0561",
@@ -4300,5 +4364,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757322389
+    "modified": 1757485943
 }
