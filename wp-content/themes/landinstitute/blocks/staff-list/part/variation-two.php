@@ -88,7 +88,10 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 
 				if ($staff_query->have_posts()) :
 					while ($staff_query->have_posts()) : $staff_query->the_post();
-						$title = html_entity_decode(get_the_title());
+					
+						$first_name = get_field('staff_first_name',get_the_ID());
+						$last_name = get_field('staff_last_name',get_the_ID());
+						$title = (!empty($first_name) || !empty($last_name))  ? trim($first_name . ' ' . $last_name) : html_entity_decode(get_the_title());
 						$position = get_field('staff_designation',get_the_ID());
 						$image = get_the_post_thumbnail_url(get_the_ID(), 'full');
 						if (empty($image)) {

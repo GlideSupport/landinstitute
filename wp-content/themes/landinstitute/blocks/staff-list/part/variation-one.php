@@ -19,7 +19,9 @@
                 <?php while ($staff_query->have_posts()):
                     $staff_query->the_post();
                     $post_id = get_the_ID();
-                    $title = get_the_title($post_id);
+                    $first_name = get_field('staff_first_name',$post_id);
+					$last_name = get_field('staff_last_name',$post_id);
+					$title = (!empty($first_name) || !empty($last_name))  ? trim($first_name . ' ' . $last_name) : html_entity_decode(get_the_title($post_id));
                     $position = get_field('staff_designation', $post_id);
                     $content = get_the_excerpt($post_id);
                     $image = get_post_thumbnail_id($post_id) ? wp_get_attachment_image(get_post_thumbnail_id($post_id), 'thumb_400') : '';
