@@ -1562,3 +1562,82 @@ function get_post_type_label($post_type_slug) {
     $post_type_obj = get_post_type_object($post_type_slug);
     return $post_type_obj ? $post_type_obj->labels->name : ucfirst($post_type_slug);
 }
+
+// Helper to get post type label
+function get_post_type_label($post_type_slug) {
+    $post_type_obj = get_post_type_object($post_type_slug);
+    return $post_type_obj ? $post_type_obj->labels->name : ucfirst($post_type_slug);
+}
+
+
+add_filter( 'posts_clauses', function( $clauses, $query ) {
+    global $wpdb;
+
+    if (
+        isset( $query->query['post_type'] )
+        && $query->query['post_type'] === 'staff'
+        && isset( $query->query['orderby'] )
+        && $query->query['orderby'] === 'custom_staff_order'
+    ) {
+        // Join with staff_last_name meta
+        $clauses['join'] .= " 
+            LEFT JOIN $wpdb->postmeta AS staff_last_name
+            ON ($wpdb->posts.ID = staff_last_name.post_id 
+                AND staff_last_name.meta_key = 'staff_last_name')";
+
+        $clauses['orderby'] = "
+            CASE 
+                WHEN staff_last_name.meta_value IS NULL 
+                     OR staff_last_name.meta_value = '' 
+                THEN 1 ELSE 0 
+            END ASC,
+            staff_last_name.meta_value ASC,
+            $wpdb->posts.post_date DESC
+        ";
+    }
+
+    return $clauses;
+}, 10, 2 );
+
+
+add_action('init', function () {
+    // Only run for admins to avoid accidental front-end execution
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
+
+    $staff_posts = get_posts([
+        'post_type'      => 'staff',
+        'posts_per_page' => -1,
+        'post_status'    => 'any',
+    ]);
+
+    foreach ( $staff_posts as $staff ) {
+        $title = trim( $staff->post_title );
+
+        if ( empty( $title ) ) {
+            continue;
+        }
+
+        // Split by space → assume last word is last name, rest is first name
+        $parts = preg_split('/\s+/', $title);
+
+        if ( count($parts) === 1 ) {
+            $first_name = $parts[0];
+            $last_name  = '';
+        } else {
+            $last_name  = array_pop($parts); // last word
+            $first_name = implode(' ', $parts); // remaining words
+        }
+
+        // Update ACF fields
+        update_field( 'staff_first_name', $first_name, $staff->ID );
+        update_field( 'staff_last_name', $last_name, $staff->ID );
+
+        // Optional: log what happened
+        error_log("Updated Staff #{$staff->ID}: {$first_name} | {$last_name}");
+    }
+
+    echo "✅ Staff fields updated successfully!";
+    exit;
+});
