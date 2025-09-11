@@ -1516,15 +1516,22 @@ function limit_search_to_specific_post_types($query) {
             $query->set('post_type', $final_post_types); // default
         }
 
-        // ✅ Handle learn-type taxonomy filter from URL param
-        if (!empty($_GET['learn-type'])) {
-            $query->set('tax_query', [
-                [
-                    'taxonomy' => 'learn-type',
-                    'field'    => 'slug',
-                    'terms'    => sanitize_text_field($_GET['learn-type']),
-                ]
-            ]);
+        // Handle taxonomy filters
+        $tax_query = [];
+        $taxonomies = get_taxonomies(['public' => true], 'names');
+
+        foreach ($taxonomies as $taxonomy) {
+            if (!empty($_GET[$taxonomy])) {
+                $tax_query[] = [
+                    'taxonomy' => $taxonomy,
+                    'field'    => 'slug',  // or 'id' if you pass term_id
+                    'terms'    => sanitize_text_field($_GET[$taxonomy]),
+                ];
+            }
+        }
+
+        if (!empty($tax_query)) {
+            $query->set('tax_query', $tax_query);
         }
     }
 }
@@ -1555,12 +1562,6 @@ function ll_fix_duplicate_pagination_url() {
             exit;
         }
     }
-}
-
-// Helper to get post type label
-function get_post_type_label($post_type_slug) {
-    $post_type_obj = get_post_type_object($post_type_slug);
-    return $post_type_obj ? $post_type_obj->labels->name : ucfirst($post_type_slug);
 }
 
 // Helper to get post type label
