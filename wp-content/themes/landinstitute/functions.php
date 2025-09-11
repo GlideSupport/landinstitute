@@ -1601,44 +1601,44 @@ add_filter( 'posts_clauses', function( $clauses, $query ) {
 }, 10, 2 );
 
 
-// add_action('init', function () {
-//     // Only run for admins to avoid accidental front-end execution
-//     if ( ! current_user_can('manage_options') ) {
-//         return;
-//     }
+add_action('init', function () {
+    // Only run for admins to avoid accidental front-end execution
+    if ( ! current_user_can('manage_options') ) {
+        return;
+    }
 
-//     $staff_posts = get_posts([
-//         'post_type'      => 'staff',
-//         'posts_per_page' => -1,
-//         'post_status'    => 'any',
-//     ]);
+    $staff_posts = get_posts([
+        'post_type'      => 'staff',
+        'posts_per_page' => -1,
+        'post_status'    => 'any',
+    ]);
 
-//     foreach ( $staff_posts as $staff ) {
-//         $title = trim( $staff->post_title );
+    foreach ( $staff_posts as $staff ) {
+        $title = trim( $staff->post_title );
 
-//         if ( empty( $title ) ) {
-//             continue;
-//         }
+        if ( empty( $title ) ) {
+            continue;
+        }
 
-//         // Split by space → assume last word is last name, rest is first name
-//         $parts = preg_split('/\s+/', $title);
+        // Split by space → assume last word is last name, rest is first name
+        $parts = preg_split('/\s+/', $title);
 
-//         if ( count($parts) === 1 ) {
-//             $first_name = $parts[0];
-//             $last_name  = '';
-//         } else {
-//             $last_name  = array_pop($parts); // last word
-//             $first_name = implode(' ', $parts); // remaining words
-//         }
+        if ( count($parts) === 1 ) {
+            $first_name = $parts[0];
+            $last_name  = '';
+        } else {
+            $last_name  = array_pop($parts); // last word
+            $first_name = implode(' ', $parts); // remaining words
+        }
 
-//         // Update ACF fields
-//         update_field( 'staff_first_name', $first_name, $staff->ID );
-//         update_field( 'staff_last_name', $last_name, $staff->ID );
+        // Update ACF fields
+        update_field( 'staff_first_name', $first_name, $staff->ID );
+        update_field( 'staff_last_name', $last_name, $staff->ID );
 
-//         // Optional: log what happened
-//         error_log("Updated Staff #{$staff->ID}: {$first_name} | {$last_name}");
-//     }
+        // Optional: log what happened
+        error_log("Updated Staff #{$staff->ID}: {$first_name} | {$last_name}");
+    }
 
-//     echo "✅ Staff fields updated successfully!";
-//     exit;
-// });
+    echo "✅ Staff fields updated successfully!";
+    exit;
+});
