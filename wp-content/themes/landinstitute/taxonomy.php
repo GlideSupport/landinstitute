@@ -351,26 +351,28 @@ $visible_news_taxonomies = array_intersect($all_news_taxonomies, $show_news_taxo
 				</div>
 			</div>
 		</section>
-		<section class="container-720 bg-butter-yellow">
-			<div class="gl-s156"></div>
-			<div class="wrapper">
-				<div class="newsletter-block">
-					<div class="block-row">
-						<?php echo !empty($bst_var_tf_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($bst_var_tf_kicker) . '</div>' : ''; ?>
-						<?php echo (!empty($bst_var_tf_kicker) && !empty($bst_var_tf_title)) ? '<div class="gl-s12"></div>' : ''; ?>
-						<?php echo !empty($bst_var_tf_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($bst_var_tf_title) . '</h2>' : ''; ?>
-						<div class="gl-s44"></div>
-						<?php if (($bst_var_select_tf_form_cat_type == 'gravity-form')): ?>
-							<div class="newsletter-form"><?php echo !empty($bst_var_tf_form_selector) ? do_shortcode('[gravityform id="' . $bst_var_tf_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?></div>
-						<?php else :?>
-							<div class="newsletter-form"><?php echo !empty($bst_var_tf_form_embed) ? html_entity_decode($bst_var_tf_form_embed) : ''; ?></div>
-						<?php endif; ?>
-						<div class="gl-s80"></div>
+		<?php if ($bst_var_select_tf_form_cat_type !== 'hide-form'): ?>
+			<section class="container-720 bg-butter-yellow">
+				<div class="gl-s156"></div>
+				<div class="wrapper">
+					<div class="newsletter-block">
+						<div class="block-row">
+							<?php echo !empty($bst_var_tf_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($bst_var_tf_kicker) . '</div>' : ''; ?>
+							<?php echo (!empty($bst_var_tf_kicker) && !empty($bst_var_tf_title)) ? '<div class="gl-s12"></div>' : ''; ?>
+							<?php echo !empty($bst_var_tf_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($bst_var_tf_title) . '</h2>' : ''; ?>
+							<div class="gl-s44"></div>
+							<?php if (($bst_var_select_tf_form_cat_type == 'gravity-form')): ?>
+								<div class="newsletter-form"><?php echo !empty($bst_var_tf_form_selector) ? do_shortcode('[gravityform id="' . $bst_var_tf_form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?></div>
+							<?php else :?>
+								<div class="newsletter-form"><?php echo !empty($bst_var_tf_form_embed) ? html_entity_decode($bst_var_tf_form_embed) : ''; ?></div>
+							<?php endif; ?>
+							<div class="gl-s80"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="gl-s128"></div>
-		</section>
+				<div class="gl-s128"></div>
+			</section>
+		<?php endif; ?>
 	</div>
 </main>
 
