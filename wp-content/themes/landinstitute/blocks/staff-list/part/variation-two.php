@@ -69,6 +69,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 				$args = [
 					'post_type'      => 'staff',
 					'posts_per_page' => -1,
+					'orderby'        => 'custom_staff_order',
 				];
 
 				if ($show_by_selector) {
@@ -80,7 +81,7 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 						'field'    => 'term_id',
 						'terms'    => wp_list_pluck($li_sl_staff_category_selector, 'term_id'),
 					]];
-					$args['orderby'] = 'menu_order';
+					$args['orderby'] = 'custom_staff_order';
 					$args['order']   = 'ASC';
 				}
 
@@ -88,7 +89,10 @@ if (!$show_by_category && !$show_by_selector) return; // Exit if nothing to show
 
 				if ($staff_query->have_posts()) :
 					while ($staff_query->have_posts()) : $staff_query->the_post();
-						$title = html_entity_decode(get_the_title());
+					
+						$first_name = get_field('staff_first_name',get_the_ID());
+						$last_name = get_field('staff_last_name',get_the_ID());
+						$title = (!empty($first_name) || !empty($last_name))  ? trim($first_name . ' ' . $last_name) : html_entity_decode(get_the_title());
 						$position = get_field('staff_designation',get_the_ID());
 						$image = get_the_post_thumbnail_url(get_the_ID(), 'full');
 						if (empty($image)) {
