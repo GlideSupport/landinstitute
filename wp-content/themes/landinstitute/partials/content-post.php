@@ -48,7 +48,7 @@ $bst_var_form_embed = $bst_option_fields['bst_var_form_embed'] ?? null;
 
 $li_po_bg_image_visible = array_key_exists('li_po_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_po_bg_image_visible'] : true;
 
-$newsletter_form_visible = array_key_exists('li_ldo_newsletter_form_visible', $bst_fields) ? (bool) $bst_fields['li_ldo_newsletter_form_visible'] : true;
+$newsletter_form_visible = get_field('li_ldo_newsletter_form_visible',$bst_var_post_id) ?? '';
 $li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
 $li_ldo_kicker = $bst_fields['li_ldo_kicker'] ?? $bst_var_kicker;
 $select_form_type  = $bst_fields['li_ldo_select_form_type'] ?? $bst_var_select_form_type;
@@ -331,30 +331,30 @@ if ($posts_query->have_posts()) : ?>
 		</div>
 	</section>
 <?php endif; ?>
-
-<?php if ($newsletter_form_visible): ?>
-	<section class="container-720 bg-butter-yellow">
-		<div class="gl-s156"></div>
-		<div class="wrapper">
-			<div class="newsletter-block">
-				<div class="block-row">
-					<?php echo !empty($li_ldo_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_ldo_kicker) . '</div>' : ''; ?>
-					<?php echo (!empty($li_ldo_kicker) && !empty($li_ldo_title)) ? '<div class="gl-s12"></div>' : ''; ?>
-					<?php echo !empty($li_ldo_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_ldo_title) . '</h2>' : ''; ?>
-					<?php echo (!empty($li_ldo_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
-					<div class="newsletter-form">
-					<?php if (($select_form_type == 'gravity-form')): ?>
-					<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
-					<?php else :?>
-					<?php echo !empty($form_embed) ? html_entity_decode($form_embed) : ''; ?>
-					<?php endif; ?>
+<?php if ($bst_var_select_form_type !== 'hide-form'): ?>
+	<?php if ($newsletter_form_visible !== false): ?>
+		<section class="container-720 bg-butter-yellow">
+			<div class="gl-s156"></div>
+			<div class="wrapper">
+				<div class="newsletter-block">
+					<div class="block-row">
+						<?php echo !empty($li_ldo_kicker) ? '<div class="ui-eyebrow-18-16-regular sub-head">' . esc_html($li_ldo_kicker) . '</div>' : ''; ?>
+						<?php echo (!empty($li_ldo_kicker) && !empty($li_ldo_title)) ? '<div class="gl-s12"></div>' : ''; ?>
+						<?php echo !empty($li_ldo_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_ldo_title) . '</h2>' : ''; ?>
+						<?php echo (!empty($li_ldo_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
+						<div class="newsletter-form">
+						<?php if (($select_form_type == 'gravity-form')): ?>
+						<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
+						<?php else :?>
+						<?php echo !empty($form_embed) ? html_entity_decode($form_embed) : ''; ?>
+						<?php endif; ?>
+						</div>
+						<div class="gl-s80"></div>
 					</div>
-					<div class="gl-s80"></div>
 				</div>
 			</div>
-		</div>
-		<div class="gl-s128"></div>
-	</section>
+			<div class="gl-s128"></div>
+		</section>
+	<?php endif; ?>
 <?php endif; ?>
-
 <?php get_footer(); ?>

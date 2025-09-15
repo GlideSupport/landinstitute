@@ -3359,7 +3359,8 @@
             "relevanssi_exclude": 0,
             "choices": {
                 "gravity-form": "Gravity form",
-                "form-embed": "Form Embed"
+                "form-embed": "Form Embed",
+                "hide-form": "Hide Form"
             },
             "default_value": "gravity-form",
             "return_format": "value",
@@ -4365,5 +4366,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757574586
+    "modified": 1757938226
 }
