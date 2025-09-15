@@ -8,6 +8,15 @@
 }
 
 .single-audio-video-embed {
+    div>iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+
+        iframe {
+            height: 100%;
+        }
+    }
+
     iframe {
         width: 100%;
     }
