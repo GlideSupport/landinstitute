@@ -170,11 +170,13 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 			if (!empty($li_nwd_video_url)) {
 				echo '<div class="single-audio-video-embed">';
 				echo '<div class="gl-s64"></div>';
-				echo '<div class="videoframe" itemscope itemtype="http://schema.org/VideoObject">';
+				echo '<div class="videoframe">';
+				echo '<div itemscope itemtype="http://schema.org/VideoObject">';
 				echo wp_oembed_get(esc_url($li_nwd_video_url));
 				echo '<meta itemprop="uploadDate" content="' . esc_attr(get_the_date('Y-m-d', $bst_var_post_id)) . '" />';
 				echo '<meta itemprop="embedURL" content="' . esc_url($li_nwd_video_url) . '" />';
 				echo '</div>'; // Closing VideoObject div
+				echo '</div>';
 				echo '</div>'; // Closing single-hero
 			}
 			?>

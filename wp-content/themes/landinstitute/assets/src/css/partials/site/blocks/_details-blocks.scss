@@ -8,9 +8,11 @@
 }
 
 .single-audio-video-embed {
-    div>iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
+    .videoframe {
+        >div {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
 
         iframe {
             height: 100%;
