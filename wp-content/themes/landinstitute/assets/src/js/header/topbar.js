@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Hide top bar
 	function hideTopBar() {
+		console.log('helloooo');
 		const topBar = document.querySelector('.top-bar');
 		if (!topBar || !headerSection) return;
 
