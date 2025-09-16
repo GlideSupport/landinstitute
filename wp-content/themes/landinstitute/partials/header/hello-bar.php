@@ -2,7 +2,7 @@
     if (!empty($bst_var_hb_content)) { ?>
         <div class="right-top-head">
             <div class="top-list-menu">
-                <div class="top-bar global" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
+                <div class="top-bar desktop-top-bar global" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
                     <?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
                     <div class="top-bar-text">
                         <?php
@@ -11,7 +11,7 @@
                         endif;
                         ?>
                     </div>
-                    <div class="top-bar-cross" role="button" tabindex="0"
+                    <div class="top-bar-cross desktop-click" role="button" tabindex="0"
                         aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
                         <span>
                             <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>" 
@@ -28,14 +28,14 @@
     if (!empty($base_theme_option_content)) { ?>
         <div class="right-top-head">
             <div class="top-list-menu">
-                <div class="top-bar manual" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>" <?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
+                <div class="top-bar desktop-top-bar manual" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>" <?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
                     <div class="top-bar-text">
                         <?php
                         if (!empty($base_theme_option_content)):
                             echo wp_kses_post(html_entity_decode($base_theme_option_content));
                         endif;?>
                     </div>
-                    <div class="top-bar-cross" role="button" tabindex="0"
+                    <div class="top-bar-cross desktop-click" role="button" tabindex="0"
                         aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
                         <span>
                             <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
