@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const herofullSection = document.querySelector(".hero-section");
 	const headerSection = document.querySelector(".header-section");
 	const navContainer = document.querySelector(".nav-container");
-	//const topBarCross = document.querySelector(".top-bar-cross");
+	const topBarCross = document.querySelector(".top-bar-cross");
 	let lastScrollTop = 0;
 
 	const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
@@ -90,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	// Bind top bar close button
-	// if (topBarCross) {
-	// 	topBarCross.addEventListener("click", hideTopBar);
-	// }
+	if (topBarCross) {
+		topBarCross.addEventListener("click", hideTopBar);
+	}
 
 	// Run only when all assets (images/fonts) are loaded
 	window.addEventListener("load", function () {
@@ -160,17 +160,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			helloBar.style.display = "flex"; // Show the hello bar if cookie does not exist
 		}
 		// Add event listener to the close button
-		const closeButton = helloBar.querySelector(".top-bar-cross");
-		if (closeButton) {
-			closeButton.addEventListener("click", (e) => {
+		const topBarCrosses = helloBar.querySelectorAll(".top-bar-cross");
+		topBarCrosses.forEach((crossBtn) => {
+			crossBtn.addEventListener("click", (e) => {
 				e.preventDefault();
 				hideTopBar();
 				helloBar.style.display = "none"; // Hide the hello bar
-				document.body.classList.remove("hello-bar-appear"); // Remove class from body
-				document.body.classList.add("hello-bar-remove"); // Remove class from body
-				setCookie("helloBarClosed", "true", cookieDays); // Use dynamic value from the data attribute
+				document.body.classList.remove("hello-bar-appear");
+				document.body.classList.add("hello-bar-remove");
+				setCookie("helloBarClosed", "true", cookieDays);
 			});
-		}
+		});
 	}
 
 	// Accessibility: Add aria-label to links that open in a new tab
