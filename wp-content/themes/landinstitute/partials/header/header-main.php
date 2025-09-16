@@ -139,7 +139,6 @@
 													<input type="text" name="s" placeholder="What are you searching for?" autofocus>
 													<input type="hidden" name="search-type" value="all" class="search-type-field">
 													<input type="hidden" name="learn-type" value="all" class="learn-type-field">
-													<input type="hidden" name="orderby" value="date">
 													<button class="site-btn btn-lemon-yellow sm-btn" type="submit">Search</button>
 												</form>
 											</div>
@@ -201,7 +200,7 @@
 			</div>
 			<div class="right-top-head top-head-mobile">
 				<div class="top-list-menu">
-					<div class="top-bar" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
+					<div class="top-bar mobile-top-bar" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
 						<?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
 
 						<div class="top-bar-text">
@@ -212,7 +211,7 @@
 							?>
 						</div>
 
-						<div class="top-bar-cross" role="button" tabindex="0" aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
+						<div class="top-bar-cross-mobile" role="button" tabindex="0" aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
 							<span>
 								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
 									width="16" height="16"

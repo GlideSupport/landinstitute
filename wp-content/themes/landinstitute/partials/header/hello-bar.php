@@ -2,7 +2,7 @@
     if (!empty($bst_var_hb_content)) { ?>
         <div class="right-top-head">
             <div class="top-list-menu">
-                <div class="top-bar global" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
+                <div class="top-bar desktop-top-bar global" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
                     <?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
                     <div class="top-bar-text">
                         <?php
@@ -28,7 +28,7 @@
     if (!empty($base_theme_option_content)) { ?>
         <div class="right-top-head">
             <div class="top-list-menu">
-                <div class="top-bar manual" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>" <?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
+                <div class="top-bar desktop-top-bar manual" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>" <?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
                     <div class="top-bar-text">
                         <?php
                         if (!empty($base_theme_option_content)):
