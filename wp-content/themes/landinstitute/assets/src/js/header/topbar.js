@@ -160,17 +160,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			helloBar.style.display = "flex"; // Show the hello bar if cookie does not exist
 		}
 		// Add event listener to the close button
-		const topBarCrosses = helloBar.querySelectorAll(".top-bar-cross");
-		topBarCrosses.forEach((crossBtn) => {
-			crossBtn.addEventListener("click", (e) => {
+		const closeButton = helloBar.querySelector(".top-bar-cross-mobile");
+		if (closeButton) {
+			closeButton.addEventListener("click", (e) => {
 				e.preventDefault();
 				hideTopBar();
 				helloBar.style.display = "none"; // Hide the hello bar
-				document.body.classList.remove("hello-bar-appear");
-				document.body.classList.add("hello-bar-remove");
-				setCookie("helloBarClosed", "true", cookieDays);
+				document.body.classList.remove("hello-bar-appear"); // Remove class from body
+				document.body.classList.add("hello-bar-remove"); // Remove class from body
+				setCookie("helloBarClosed", "true", cookieDays); // Use dynamic value from the data attribute
 			});
-		});
+		}
 	}
 
 	// Accessibility: Add aria-label to links that open in a new tab
