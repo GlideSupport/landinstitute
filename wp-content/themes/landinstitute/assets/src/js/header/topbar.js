@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	const herofullSection = document.querySelector(".hero-section");
 	const headerSection = document.querySelector(".header-section");
 	const navContainer = document.querySelector(".nav-container");
-	const topBarCross = document.querySelector(".desktop-click");
 	let lastScrollTop = 0;
 
 	// Function to set a cookie
@@ -84,63 +83,63 @@ document.addEventListener("DOMContentLoaded", function () {
 		adjustHeader();
 	}
 
-// Reusable function to toggle hello bar (desktop or mobile)
-function initHelloBar(barSelector, closeBtnSelector, showDisplay = "flex") {
-	const bar = document.querySelector(barSelector);
-	if (!bar) return;
+	// Reusable function to toggle hello bar (desktop or mobile)
+	function initHelloBar(barSelector, closeBtnSelector, showDisplay = "flex") {
+		const bar = document.querySelector(barSelector);
+		if (!bar) return;
 
-	// Get cookie days from data attribute
-	const cookieDays = parseInt(bar.getAttribute("data-cookie-days"), 10);
+		// Get cookie days from data attribute
+		const cookieDays = parseInt(bar.getAttribute("data-cookie-days"), 10);
 
-	// Show/hide on load
-	if (getCookie("helloBarClosed")) {
-		bar.style.display = "none";
-	} else {
-		bar.style.display = showDisplay;
+		// Show/hide on load
+		if (getCookie("helloBarClosed")) {
+			bar.style.display = "none";
+		} else {
+			bar.style.display = showDisplay;
+		}
+
+		// Bind close button(s)
+		const closeButtons = bar.querySelectorAll(closeBtnSelector);
+		closeButtons.forEach((btn) => {
+			btn.addEventListener("click", (e) => {
+				e.preventDefault();
+				bar.style.display = "none";
+				setCookie("helloBarClosed", "true", cookieDays);
+
+				// Special handling for mobile
+				if (bar.classList.contains("mobile-top-bar")) {
+					document.body.classList.remove("hello-bar-appear");
+					document.body.classList.add("hello-bar-remove");
+
+					// ✅ Remove padding when mobile bar is closed
+					if (herofullSection) herofullSection.style.paddingTop = "";
+					if (mainSection) mainSection.style.paddingTop = "";
+					if (navContainer) navContainer.style.paddingTop = "";
+				}
+
+				// Special handling for desktop header recalculation
+				if (bar.classList.contains("desktop-top-bar") && typeof headerSection !== "undefined") {
+					headerInitialSectionHeight = headerSection.offsetHeight;
+
+					if (herofullSection) {
+						herofullSection.style.paddingTop = headerInitialSectionHeight + "px";
+					} else if (mainSection) {
+						mainSection.style.paddingTop = headerInitialSectionHeight + "px";
+					}
+
+					if (navContainer && window.innerWidth < 1024) {
+						navContainer.style.paddingTop = headerInitialSectionHeight + "px";
+					}
+
+					headerSection.style.top = "0";
+				}
+			});
+		});
 	}
 
-	// Bind close button(s)
-	const closeButtons = bar.querySelectorAll(closeBtnSelector);
-	closeButtons.forEach((btn) => {
-		btn.addEventListener("click", (e) => {
-			e.preventDefault();
-			bar.style.display = "none";
-			setCookie("helloBarClosed", "true", cookieDays);
-
-			// Special handling for mobile
-			if (bar.classList.contains("mobile-top-bar")) {
-				document.body.classList.remove("hello-bar-appear");
-				document.body.classList.add("hello-bar-remove");
-
-				// ✅ Remove padding when mobile bar is closed
-				if (herofullSection) herofullSection.style.paddingTop = "";
-				if (mainSection) mainSection.style.paddingTop = "";
-				if (navContainer) navContainer.style.paddingTop = "";
-			}
-
-			// Special handling for desktop header recalculation
-			if (bar.classList.contains("desktop-top-bar") && typeof headerSection !== "undefined") {
-				headerInitialSectionHeight = headerSection.offsetHeight;
-
-				if (herofullSection) {
-					herofullSection.style.paddingTop = headerInitialSectionHeight + "px";
-				} else if (mainSection) {
-					mainSection.style.paddingTop = headerInitialSectionHeight + "px";
-				}
-
-				if (navContainer && window.innerWidth < 1024) {
-					navContainer.style.paddingTop = headerInitialSectionHeight + "px";
-				}
-
-				headerSection.style.top = "0";
-			}
-		});
-	});
-}
-
-// Init Desktop + Mobile bars
-initHelloBar(".desktop-top-bar", ".top-bar-cross", "flex");
-initHelloBar(".mobile-top-bar", ".top-bar-cross-mobile", "flex");
+	// Init Desktop + Mobile bars
+	initHelloBar(".desktop-top-bar", ".top-bar-cross", "flex");
+	initHelloBar(".mobile-top-bar", ".top-bar-cross-mobile", "flex");
 
 
 	// Run only when all assets (images/fonts) are loaded

@@ -11,7 +11,7 @@
                         endif;
                         ?>
                     </div>
-                    <div class="top-bar-cross desktop-click" role="button" tabindex="0"
+                    <div class="top-bar-cross" role="button" tabindex="0"
                         aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
                         <span>
                             <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>" 
@@ -35,7 +35,7 @@
                             echo wp_kses_post(html_entity_decode($base_theme_option_content));
                         endif;?>
                     </div>
-                    <div class="top-bar-cross desktop-click" role="button" tabindex="0"
+                    <div class="top-bar-cross" role="button" tabindex="0"
                         aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
                         <span>
                             <img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
