@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const herofullSection = document.querySelector(".hero-section");
 	const headerSection = document.querySelector(".header-section");
 	const navContainer = document.querySelector(".nav-container");
-	const topBarCross = document.querySelector(".top-bar-cross");
+	//const topBarCross = document.querySelector(".top-bar-cross");
 	let lastScrollTop = 0;
 
 	const adminBarHeight = document.getElementById("wpadminbar")?.offsetHeight || 0;
@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Hide top bar
 	function hideTopBar() {
-		console.log('helloooo');
 		const topBar = document.querySelector('.top-bar');
 		if (!topBar || !headerSection) return;
 
@@ -91,9 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	// Bind top bar close button
-	if (topBarCross) {
-		topBarCross.addEventListener("click", hideTopBar);
-	}
+	// if (topBarCross) {
+	// 	topBarCross.addEventListener("click", hideTopBar);
+	// }
 
 	// Run only when all assets (images/fonts) are loaded
 	window.addEventListener("load", function () {
@@ -165,6 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (closeButton) {
 			closeButton.addEventListener("click", (e) => {
 				e.preventDefault();
+				hideTopBar();
 				helloBar.style.display = "none"; // Hide the hello bar
 				document.body.classList.remove("hello-bar-appear"); // Remove class from body
 				document.body.classList.add("hello-bar-remove"); // Remove class from body
