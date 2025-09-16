@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	//Home Hero banner js end
 
 	// Hide hello bar if cookie exists
-	const helloBar = document.querySelector(".top-bar");
+	const helloBar = document.querySelector(".mobile-top-bar");
 	if (helloBar) {
 		const cookieDays = parseInt(
 			helloBar.getAttribute("data-cookie-days"),
@@ -164,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		if (closeButton) {
 			closeButton.addEventListener("click", (e) => {
 				e.preventDefault();
-				hideTopBar();
 				helloBar.style.display = "none"; // Hide the hello bar
 				document.body.classList.remove("hello-bar-appear"); // Remove class from body
 				document.body.classList.add("hello-bar-remove"); // Remove class from body

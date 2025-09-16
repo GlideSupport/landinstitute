@@ -200,7 +200,7 @@
 			</div>
 			<div class="right-top-head top-head-mobile">
 				<div class="top-list-menu">
-					<div class="top-bar" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
+					<div class="top-bar mobile-top-bar" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
 						<?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
 
 						<div class="top-bar-text">
