@@ -1469,8 +1469,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		const footerHeight = footer.offsetHeight;
 		const viewportHeight = window.innerHeight;
 
-		const mapHeight =
-			viewportHeight - headerHeight - footerHeight - adminHeight;
+		const mapHeight = viewportHeight - headerHeight - footerHeight - adminHeight;
+		if (window.innerWidth > 768) {
+			mapHeight += 60;
+		}
 		mapWrapper.style.height = `${mapHeight}px`;
 	}
 
