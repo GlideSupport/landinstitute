@@ -34,6 +34,7 @@ $li_nwd_select_news = $bst_fields['li_nwd_select_news'] ?? null;
 
 $bst_var_title  = $bst_option_fields['bst_var_title'] ?? null;
 $bst_var_kicker   = $bst_option_fields['bst_var_kicker'] ?? null;
+
 $bst_var_select_form_type = $bst_option_fields['bst_var_select_form_type'] ?? 'gravity-form';
 $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 $bst_var_form_embed = $bst_option_fields['bst_var_form_embed'] ?? null;
@@ -44,6 +45,7 @@ $li_no_bg_image = $bst_fields['li_no_bg_image'] ?? $bst_option_fields['li_to_sel
 $newsletter_form_visible = get_field('li_nwd_newsletter_form_visible',$bst_var_post_id) ?? '';
 $li_nwd_title = $bst_fields['li_nwd_title'] ?? $bst_var_title;
 $li_nwd_kicker = $bst_fields['li_nwd_kicker'] ?? $bst_var_kicker;
+
 $select_form_type  = $bst_fields['li_nwd_select_form_type'] ?? $bst_var_select_form_type;
 $form_selector = $bst_fields['li_nwd_form_selector'] ?? $bst_var_form_selector;
 $form_embed = $bst_fields['li_nwd_form_embed'] ?? $bst_var_form_embed;
