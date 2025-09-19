@@ -226,7 +226,7 @@ $event_date = get_formatted_event_datetime($bst_var_post_id);
 						<?php echo !empty($li_cpt_title) ? '<h2 class="heading-2 mb-0 block-title">' . esc_html($li_cpt_title) . '</h2>' : ''; ?>	
 						<?php echo (!empty($li_cpt_title) && !empty($form_selector)) ? '<div class="gl-s44"></div>' : ''; ?>
 						<div class="newsletter-form">
-							<?php if (($select_form_type == 'gravity-form')): ?>
+							<?php if (($select_form_type == 'gravity-form' && !$form_selector == '1')): ?>
 							<?php echo !empty($form_selector) ? do_shortcode('[gravityform id="' . $form_selector . '" title="false" ajax="true" tabindex="0"]') : ''; ?>
 							<?php else :?>
 							<?php echo !empty($form_embed) ? html_entity_decode($form_embed) : ''; ?>
