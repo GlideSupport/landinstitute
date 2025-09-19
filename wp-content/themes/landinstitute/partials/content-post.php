@@ -47,7 +47,7 @@ $bst_var_form_selector = $bst_option_fields['bst_var_form_selector'] ?? null;
 $bst_var_form_embed = $bst_option_fields['bst_var_form_embed'] ?? null;
 
 
-$li_po_bg_image_visible = array_key_exists('li_po_bg_image_visible', $bst_fields) ? (bool) $bst_fields['li_po_bg_image_visible'] : true;
+$li_po_bg_image_visible = get_field('li_po_bg_image_visible') ?? '';
 
 $newsletter_form_visible = get_field('li_ldo_newsletter_form_visible',$bst_var_post_id) ?? '';
 $li_ldo_title = $bst_fields['li_ldo_title'] ?? $bst_var_title;
@@ -204,7 +204,7 @@ $class = has_post_thumbnail($bst_var_post_id) ? 'hero-section hero-section-defau
 </section>
 
 
-<?php if ($li_po_bg_image_visible): ?>
+<?php if ($li_po_bg_image_visible !== false): ?>
 	<section class="container-1280 ">
 		<div class="wrapper">
 			<div class="bg-pattern-fixed has-border-top has-border-bottom">
