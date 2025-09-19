@@ -3343,6 +3343,25 @@
             "append": ""
         },
         {
+            "key": "field_68ccfcfbdeb60",
+            "label": "",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "relevanssi_exclude": 0,
+            "message": "This option is used to hide the Form Learn Details, News Details, and Event Details pages.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_68be898dc9a02",
             "label": "Select form Type",
             "name": "bst_var_select_form_type",
@@ -4366,5 +4385,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1758259277
+    "modified": 1758264773
 }
