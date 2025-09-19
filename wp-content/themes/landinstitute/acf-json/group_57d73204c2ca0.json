@@ -3344,7 +3344,7 @@
         },
         {
             "key": "field_68be898dc9a02",
-            "label": "Select form Type News",
+            "label": "Select form Type",
             "name": "bst_var_select_form_type",
             "aria-label": "",
             "type": "button_group",
@@ -4366,5 +4366,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757938226
+    "modified": 1758256899
 }
