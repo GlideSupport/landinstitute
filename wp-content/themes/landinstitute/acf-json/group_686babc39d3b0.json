@@ -521,6 +521,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "message": "",
             "default_value": 1,
             "allow_in_bindings": 1,
@@ -706,5 +707,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1757322338
+    "modified": 1758259279
 }
