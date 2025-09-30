@@ -1997,6 +1997,7 @@
                 "class": "",
                 "id": ""
             },
+            "relevanssi_exclude": 0,
             "layouts": {
                 "layout_6597e861f0f4d": {
                     "key": "layout_6597e861f0f4d",
@@ -2236,6 +2237,35 @@
                                 "id": ""
                             },
                             "default_value": "",
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": "1"
+                },
+                "layout_68db7df70dd94": {
+                    "key": "layout_68db7df70dd94",
+                    "name": "bluesky",
+                    "label": "Bluesky",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_68db7df70dd95",
+                            "label": "Social Link",
+                            "name": "social_link",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "relevanssi_exclude": 0,
+                            "default_value": "",
+                            "allow_in_bindings": 1,
                             "placeholder": ""
                         }
                     ],
@@ -4385,5 +4415,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1758264773
+    "modified": 1759216483
 }
