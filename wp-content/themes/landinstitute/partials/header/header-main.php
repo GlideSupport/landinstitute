@@ -198,30 +198,30 @@
 					<?php endif; ?>
 				</div>
 			</div>
-			<div class="right-top-head top-head-mobile">
-				<div class="top-list-menu">
-					<div class="top-bar mobile-top-bar" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
-						<?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
-
-						<div class="top-bar-text">
-							<?php
-							if (!empty($bst_var_hb_content)):
-								echo wp_kses_post(html_entity_decode($bst_var_hb_content));
-							endif;
-							?>
-						</div>
-
-						<div class="top-bar-cross-mobile" role="button" tabindex="0" aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
-							<span>
-								<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
-									width="16" height="16"
-									alt="<?php esc_attr_e('Top bar', 'land_institute'); ?>"
-									title="topbar-cross-icon">
-							</span>
+			<?php if (!empty($bst_var_hb_content)):?>
+				<div class="right-top-head top-head-mobile">
+					<div class="top-list-menu">
+						<div class="top-bar mobile-top-bar" id="top-bar-ajax" data-cookie-days="<?php echo esc_attr($cookie_days); ?>"
+							<?php echo isset($_COOKIE['helloBarClosed']) ? 'style="display: none;"' : ''; ?>>
+							<div class="top-bar-text">
+								<?php
+								if (!empty($bst_var_hb_content)):
+									echo wp_kses_post(html_entity_decode($bst_var_hb_content));
+								endif;
+								?>
+							</div>
+							<div class="top-bar-cross-mobile" role="button" tabindex="0" aria-label="<?php esc_attr_e('Close top bar', 'land_institute'); ?>" aria-pressed="false">
+								<span>
+									<img src="<?php echo esc_url(get_stylesheet_directory_uri() . '/assets/src/images/topbar-cross-icon.svg'); ?>"
+										width="16" height="16"
+										alt="<?php esc_attr_e('Top bar', 'land_institute'); ?>"
+										title="topbar-cross-icon">
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			<?php endif; ?>
 		</div>
 		</div>
 	<?php } ?>
