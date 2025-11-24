@@ -43,7 +43,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 													<img src="<?php echo esc_url($li_hero_to_image_video_thumbnail); ?>" width="129" height="85" alt="video-thumb" />
 												<?php else : ?>
 														<?php
-														$thumbnail = esc_url(BASETHEME_DEFAULT_IMAGE);
+														$thumbnail = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');
 														if ($li_hero_to_choose_video_type === 'youtube') {
 															$thumbnail = "https://img.youtube.com/vi/" . esc_attr($youtube_id) . "/sddefault.jpg";
 														}
