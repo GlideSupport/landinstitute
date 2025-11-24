@@ -88,7 +88,7 @@ if (!empty($li_hero_headline_check) || !empty($button) || !empty($image) || !emp
 											<div class="announcement-right">
 												<?php echo !empty($li_hero_to_title) ? '<div class="ui-18-16-bold cta-title">' . esc_html($li_hero_to_title) . '</div>' : ''; ?>
 												<?php echo (!empty($li_hero_to_title) || !empty($li_hero_to_text)) ? '<div class="gl-s4"></div>' : ''; ?>
-												<?php echo !empty($li_hero_to_text) ? '<div class="ui-18-16-regular cta-content">' . esc_html($li_hero_to_text) . '</div>' : ''; ?>
+												<?php echo !empty($li_hero_to_text) ? '<div class="ui-18-16-regular cta-content">' . html_entity_decode($li_hero_to_text) . '</div>' : ''; ?>
 											</div>
 										<?php endif; ?>
 									</div>
