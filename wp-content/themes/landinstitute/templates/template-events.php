@@ -174,7 +174,8 @@ $latest_featured_event = new WP_Query(array(
 						<div id="event-list-main-div" class="event-list-main-div">
 							<?php
 							$paged =  1;
-							$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+							//$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+							$current_timestamp = strtotime( date('Y-m-d') . ' 00:00:00' ); 
 
 							$eventargs = array(
 								'post_type'      => 'event',

@@ -60,7 +60,8 @@ $past_events_button = $bst_block_fields['li_past_events_button'] ?? null;
 
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-			$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+			//$current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+			$current_timestamp = strtotime( date('Y-m-d') . ' 00:00:00' ); 
 
 			$today = date('Ymd');
 			$args = [

@@ -576,7 +576,8 @@ function filter_past_events() {
 	$term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
    $today = date('Ymd'); // e.g., 20250704
-   $current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+  // $current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
+   $current_timestamp = strtotime( date('Y-m-d') . ' 00:00:00' ); 
 
    $args = [
 	 'post_type'      => 'event',
