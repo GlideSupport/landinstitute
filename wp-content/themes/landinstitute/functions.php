@@ -1211,17 +1211,29 @@ function search_filter_Callback() {
    
     if ($search_type === 'staff' && $order_by === 'title') {
  
-        $args['meta_key'] = 'staff_last_name';
- 
-        $args['orderby'] = 'meta_value';
-        $args['order']   = 'ASC';
- 
         $args['meta_query'] = [
-            [
+            'relation' => 'OR',
+            
+            // First priority: posts WITH last name
+            'has_last_name' => [
                 'key'     => 'staff_last_name',
                 'compare' => 'EXISTS',
             ],
+
+            // Second: posts WITHOUT last name
+            'no_last_name' => [
+                'key'     => 'staff_last_name',
+                'compare' => 'NOT EXISTS',
+            ],
         ];
+
+        $args['orderby'] = [
+            'has_last_name' => 'ASC',   // ensures EXISTS comes first
+            'meta_value'    => 'ASC',   // then sort alphabetically
+        ];
+
+        $args['meta_key']  = 'staff_last_name';
+        $args['meta_type'] = 'CHAR';
  
     } else {
  
@@ -1265,9 +1277,6 @@ function search_filter_Callback() {
         'pagination_html' => $pagination_html,
     ]);
 }
-
-
-
 
 //script 
 //add_action('init', 'run_event_timestamp_update_once');
