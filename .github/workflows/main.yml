@@ -13,7 +13,7 @@ jobs:
       with:
       # Deploy vars
         WPE_SSHG_KEY_PRIVATE: ${{ secrets.WPE_SSHG_KEY_PRIVATE }}
-        WPE_ENV: landinstdev
+        WPE_ENV: landinst1dev
         # Deploy Options
         PHP_LINT: TRUE
         CACHE_CLEAR: TRUE
