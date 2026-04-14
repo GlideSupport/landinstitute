@@ -1206,9 +1206,29 @@ function search_filter_Callback() {
         'posts_per_page' => 12,
         'post_status'    => 'publish',
         'paged'          => $paged,
-        'orderby'        => $order_by,
-        'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
+       
     ];
+   
+    if ($search_type === 'staff' && $order_by === 'title') {
+ 
+        $args['meta_key'] = 'staff_last_name';
+ 
+        $args['orderby'] = 'meta_value';
+        $args['order']   = 'ASC';
+ 
+        $args['meta_query'] = [
+            [
+                'key'     => 'staff_last_name',
+                'compare' => 'EXISTS',
+            ],
+        ];
+ 
+    } else {
+ 
+        $args['orderby'] = $order_by;
+        $args['order']   = ($order_by === 'title') ? 'ASC' : 'DESC';
+ 
+    }
 
     if (!empty($search_query)) {
         $args['s'] = $search_query;
