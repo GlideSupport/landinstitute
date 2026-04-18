@@ -1090,6 +1090,18 @@ document.addEventListener("DOMContentLoaded", function () {
 	let currentOrderBy = "date";
 
 	function getCurrentOrderBy() {
+
+		const path = window.location.pathname;
+	    const pageMatch = path.match(/\/page\/(\d+)/);
+	    const currentPage = pageMatch ? parseInt(pageMatch[1]) : 1;
+
+	    // 2. Extract Query Params from the Search String (?search-type=...&learn-type=...)
+	    const urlParams = new URLSearchParams(window.location.search);
+	    
+	    // Get values from URL, or fallback to the Form value, or fallback to "all"/""
+	    currentOrderBy = urlParams.get('orderby') || "date";
+
+						   
 		return currentOrderBy;
 	}
 
@@ -1317,6 +1329,42 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	initsearch_pagination();
+
+	setTimeout(() => {
+	    // Check if the target container exists first
+	    const append_search_result = document.querySelector(".append-search-result");
+	    
+	    if (append_search_result) {
+	        // 1. Extract Page Number from Path (e.g., /page/3/)
+	        const path = window.location.pathname;
+	        const pageMatch = path.match(/\/page\/(\d+)/);
+	        const currentPage = pageMatch ? parseInt(pageMatch[1]) : 1;
+
+	        // 2. Extract Query Params (?search-type=...&learn-type=...)
+	        const urlParams = new URLSearchParams(window.location.search);
+	        
+	        // Priority: URL Param > Form Input Value > Default "all"
+	        const searchType = urlParams.get('search-type') || 
+	                           document.querySelector("#searchForm .search-type-field")?.value || 
+	                           "all";
+
+	        const learnType = urlParams.get('learn-type') || 
+	                          document.querySelector("#searchForm .learn-type-field")?.value || 
+	                          "";
+
+	        console.log("Initializing Search:", { currentPage, searchType, learnType });
+
+	        // 3. Execute search list
+	        featch_search_list(
+	            currentPage, 
+	            true,
+	            searchType,
+	            learnType
+	        );
+	    }
+	}, 200);
+
+
 });
 document.addEventListener("click", function (e) {
 	const disabledLink = e.target.closest(".arrow-btn.disable");

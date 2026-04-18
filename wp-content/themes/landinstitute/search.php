@@ -16,6 +16,7 @@ set_query_var('paged_var', $paged);
 
 $posttype = isset($_GET['search-type']) ? sanitize_text_field($_GET['search-type']) : '';
 $learntype = isset($_GET['learn-type']) ? sanitize_text_field($_GET['learn-type']) : '';
+$orderby = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : 'date';
 
 ?>
 
@@ -128,18 +129,15 @@ $learntype = isset($_GET['learn-type']) ? sanitize_text_field($_GET['learn-type'
 				<div class="event-teaser-list-row">
 					<div class="category-filter">
 						<ul class="tabs" id="search-orderby-tabs">
-							<li class="tab-link current" data-orderby="date" data-tab="tab-1">Newest First</li>
-							<li class="tab-link" data-orderby="title" data-tab="tab-2">Alphabetical</li>
+							<li class="tab-link <?php echo $orderby == 'date' ? 'current' : ''; ?>" data-orderby="date" data-tab="tab-1">Newest First</li>
+							<li class="tab-link <?php echo $orderby == 'title' ? 'current' : ''; ?>" data-orderby="title" data-tab="tab-2">Alphabetical</li>
 						</ul>
 					</div>
 
-					<div class="append-search-result">
-						<?php get_template_part('partials/content', 'search-list'); ?>
-					</div>
+					<div class="append-search-result"></div>
 
 					<div class="fillter-bottom">
 						<div class="append-search-result-pagination">
-							<?php get_template_part('partials/content', 'search-pagination'); ?>
 						</div>
 					</div>
 
