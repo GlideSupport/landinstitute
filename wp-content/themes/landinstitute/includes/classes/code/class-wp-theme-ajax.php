@@ -58,15 +58,17 @@ class WP_Theme_Ajax {
             'posts_per_page' => 12,
             'paged'          => $paged,
             's'              => $search,
-            'orderby'        => $order_by,
-            'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
+            
         ];
 
         // Custom Staff Sort
         if ($type === 'staff' && $order_by === 'title') {
             $args['meta_key'] = 'staff_last_name';
             $args['orderby']  = 'meta_value';
-        }
+        }else{
+			$args['orderby']   = $order_by;
+            $args['order']     = ($order_by === 'title') ? 'ASC' : 'DESC';
+		}
 
         // Taxonomy Filter
         if (!empty($learn_type) && $learn_type !== 'all') {

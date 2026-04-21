@@ -605,7 +605,7 @@ function exclude_dynamic_learn_tax_terms_from_frontend($query) {
         }
     }
 }
-add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
+// add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
 
 
 function get_excluded_term_slugs_by_taxonomy($taxonomy) {
@@ -785,7 +785,7 @@ function limit_search_to_specific_post_types($query) {
 
     }
 }
-add_action('pre_get_posts', 'limit_search_to_specific_post_types');
+// add_action('pre_get_posts', 'limit_search_to_specific_post_types');
 
 
 add_action('template_redirect', 'll_fix_duplicate_pagination_url');
