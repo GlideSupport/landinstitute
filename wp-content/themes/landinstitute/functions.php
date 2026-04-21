@@ -605,7 +605,7 @@ function exclude_dynamic_learn_tax_terms_from_frontend($query) {
         }
     }
 }
-// add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
+add_action('pre_get_posts', 'exclude_dynamic_learn_tax_terms_from_frontend');
 
 
 function get_excluded_term_slugs_by_taxonomy($taxonomy) {
