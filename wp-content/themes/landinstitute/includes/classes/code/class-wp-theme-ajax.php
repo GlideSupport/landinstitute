@@ -57,6 +57,7 @@ class WP_Theme_Ajax {
             'post_type'      => ($type !== 'all') ? [$type] : ['post', 'event', 'page', 'news', 'staff'],
             'posts_per_page' => 12,
             'paged'          => $paged,
+            'post_status'    => 'publish',
             's'              => $search,
             
         ];
