@@ -45,14 +45,12 @@ class WP_Theme_Ajax {
 
 	// Search Filter Ajax Callback
     public function search_filter_callback() {
-		// 1. Inputs & Sanitization
 		$paged      = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
 		$search     = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
 		$type       = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : 'all';
 		$order_by   = (isset($_POST['orderby']) && $_POST['orderby'] === 'title') ? 'title' : 'date';
 		$learn_type = isset($_POST['learntype']) ? sanitize_text_field($_POST['learntype']) : '';
 
-		// 2. Query Arguments (Notice 's' is removed from here to avoid the default conflict)
 		$args = [
 			'post_type'      => ($type !== 'all') ? [$type] : ['post', 'event', 'page', 'news', 'staff'],
 			'posts_per_page' => 12,
@@ -62,31 +60,33 @@ class WP_Theme_Ajax {
 
 		// Taxonomy Filter
 		if (!empty($learn_type) && $learn_type !== 'all') {
-			$args['tax_query'] = [[
-				'taxonomy' => 'learn-type',
-				'field'    => 'slug',
-				'terms'    => $learn_type,
-			]];
+			$args['tax_query'] = [['taxonomy' => 'learn-type', 'field' => 'slug', 'terms' => $learn_type]];
 		}
 
-		// Handle Ordering
+		// Sort Logic
 		if ($type === 'staff' && $order_by === 'title') {
 			$args['meta_key'] = 'staff_last_name';
 			$args['orderby']  = 'meta_value';
 			$args['order']    = 'ASC';
 		} else {
-			$args['orderby']  = $order_by;
-			$args['order']    = ($order_by === 'title') ? 'ASC' : 'DESC';
+			$args['orderby'] = $order_by;
+			$args['order']   = ($order_by === 'title') ? 'ASC' : 'DESC';
 		}
 
-		// 3. The "Magic" Filter: Merge Search and Meta into one OR statement
+		// --- ENHANCED SEARCH FILTER ---
 		$search_filter = function( $where ) use ( $search ) {
 			global $wpdb;
 			if ( ! empty( $search ) ) {
-				$search_val = '%' . $wpdb->esc_like( $search ) . '%';
-				$where .= $wpdb->prepare(
-					" AND (
-						{$wpdb->posts}.post_title LIKE %s 
+				// Split "Cicero Rackham" into ['Cicero', 'Rackham']
+				$terms = explode( ' ', $search );
+				$search_conditions = [];
+
+				foreach ( $terms as $term ) {
+					if ( strlen( $term ) < 2 ) continue; // Skip tiny words
+					$wildcard = '%' . $wpdb->esc_like( $term ) . '%';
+					
+					$search_conditions[] = $wpdb->prepare(
+						"( {$wpdb->posts}.post_title LIKE %s 
 						OR {$wpdb->posts}.post_content LIKE %s 
 						OR EXISTS (
 							SELECT 1 FROM {$wpdb->postmeta} 
@@ -94,19 +94,24 @@ class WP_Theme_Ajax {
 							AND {$wpdb->postmeta}.meta_key IN ('staff_first_name', 'staff_last_name') 
 							AND {$wpdb->postmeta}.meta_value LIKE %s
 						)
-					)",
-					$search_val, $search_val, $search_val
-				);
+						)",
+						$wildcard, $wildcard, $wildcard
+					);
+				}
+
+				if ( ! empty( $search_conditions ) ) {
+					// Join with AND so it finds posts containing ALL parts of the name
+					$where .= ' AND (' . implode( ' AND ', $search_conditions ) . ')';
+				}
 			}
 			return $where;
 		};
 
-		// Add the filter, run the query, then immediately remove the filter
 		add_filter( 'posts_where', $search_filter );
 		$query = new \WP_Query( $args );
 		remove_filter( 'posts_where', $search_filter );
 
-		// 4. Generate Results HTML (Same as before)
+		// 3. Results HTML
 		ob_start();
 		if ($query->have_posts()) {
 			while ($query->have_posts()) {
@@ -114,11 +119,11 @@ class WP_Theme_Ajax {
 				get_template_part('partials/content', 'search-list');
 			}
 		} else {
-			echo '<p>No results found for "' . esc_html($search) . '".</p>';
+			echo '<p>No results found.</p>';
 		}
 		$results_html = ob_get_clean();
 
-		// 5. Pagination and Response
+		// 4. Pagination
 		set_query_var('search_query', $query);
 		set_query_var('paged_var', $paged);
 		ob_start();
