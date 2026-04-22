@@ -45,70 +45,155 @@ class WP_Theme_Ajax {
 
 	// Search Filter Ajax Callback
     public function search_filter_callback() {
-        // 1. Inputs & Sanitization
-        $paged      = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-        $search     = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
-        $type       = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : 'all';
-        $order_by   = (isset($_POST['orderby']) && $_POST['orderby'] === 'title') ? 'title' : 'date';
-        $learn_type = isset($_POST['learntype']) ? sanitize_text_field($_POST['learntype']) : '';
 
-        // 2. Query Arguments
-        $args = [
-            'post_type'      => ($type !== 'all') ? [$type] : ['post', 'event', 'page', 'news', 'staff'],
-            'posts_per_page' => 12,
-            'paged'          => $paged,
-            'post_status'    => 'publish',
-            's'              => $search,
-            
-        ];
+		// 1. Inputs & Sanitization
+		$paged      = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+		$search     = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
+		$type       = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : 'all';
+		$order_by   = (isset($_POST['orderby']) && $_POST['orderby'] === 'title') ? 'title' : 'date';
+		$learn_type = isset($_POST['learntype']) ? sanitize_text_field($_POST['learntype']) : '';
 
-        // Custom Staff Sort
-        if ($type === 'staff' && $order_by === 'title') {
-            $args['meta_key'] = 'staff_last_name';
-            $args['orderby']  = 'meta_value';
-        }else{
-			$args['orderby']   = $order_by;
-            $args['order']     = ($order_by === 'title') ? 'ASC' : 'DESC';
+		// 2. Query Arguments
+		$post_types = ($type !== 'all') ? [$type] : ['post', 'event', 'page', 'news', 'staff'];
+
+		$args = [
+			'post_type'      => $post_types,
+			'posts_per_page' => 12,
+			'paged'          => $paged,
+			'post_status'    => 'publish',
+			's'              => $search,
+		];
+
+		// Default ordering
+		if ($type === 'staff' && $order_by === 'title') {
+			$args['meta_key'] = 'staff_last_name';
+			$args['orderby']  = 'meta_value';
+			$args['order']    = 'ASC';
+		} else {
+			$args['orderby'] = $order_by;
+			$args['order']   = ($order_by === 'title') ? 'ASC' : 'DESC';
 		}
 
-        // Taxonomy Filter
-        if (!empty($learn_type) && $learn_type !== 'all') {
-            $args['tax_query'] = [[
-                'taxonomy' => 'learn-type',
-                'field'    => 'slug',
-                'terms'    => $learn_type,
-            ]];
-        }
+		global $wpdb;
 
-        $query = new \WP_Query($args);
+		// 3. 🔍 Extend Search (First + Last Name for staff)
+		$search_filter = null;
 
-        // 3. Generate Results HTML
-        ob_start();
-        if ($query->have_posts()) {
-            while ($query->have_posts()) {
-                $query->the_post();
-                get_template_part('partials/content', 'search-list');
-            }
-        } else {
-            echo '<p>No results found.</p>';
-        }
-        $results_html = ob_get_clean();
+		if (!empty($search) && in_array('staff', $post_types)) {
 
-        // 4. Generate Pagination HTML
-        set_query_var('search_query', $query);
+			$search_filter = function ($where, $query) use ($search, $wpdb) {
+
+				if (!$query->is_main_query()) {
+					return $where;
+				}
+
+				$like = '%' . $wpdb->esc_like($search) . '%';
+
+				$where .= $wpdb->prepare("
+					OR (
+						{$wpdb->posts}.post_type = 'staff'
+						AND (
+							EXISTS (
+								SELECT 1 FROM {$wpdb->postmeta} pm1
+								WHERE pm1.post_id = {$wpdb->posts}.ID
+								AND pm1.meta_key = 'staff_first_name'
+								AND pm1.meta_value LIKE %s
+							)
+							OR
+							EXISTS (
+								SELECT 1 FROM {$wpdb->postmeta} pm2
+								WHERE pm2.post_id = {$wpdb->posts}.ID
+								AND pm2.meta_key = 'staff_last_name'
+								AND pm2.meta_value LIKE %s
+							)
+						)
+					)
+				", $like, $like);
+
+				return $where;
+			};
+
+			add_filter('posts_where', $search_filter, 10, 2);
+		}
+
+		// 4. Custom ORDER BY (Staff last name inside ALL)
+		$orderby_filter = null;
+
+		if ($order_by === 'title' && in_array('staff', $post_types)) {
+
+			$orderby_filter = function ($orderby, $query) use ($wpdb) {
+
+				if (!$query->is_main_query()) {
+					return $orderby;
+				}
+
+				return "
+					CASE 
+						WHEN {$wpdb->posts}.post_type = 'staff' 
+						THEN (
+							SELECT pm.meta_value 
+							FROM {$wpdb->postmeta} pm 
+							WHERE pm.post_id = {$wpdb->posts}.ID 
+							AND pm.meta_key = 'staff_last_name' 
+							LIMIT 1
+						)
+						ELSE {$wpdb->posts}.post_title
+					END ASC
+				";
+			};
+
+			add_filter('posts_orderby', $orderby_filter, 10, 2);
+		}
+
+		// 5. Taxonomy Filter
+		if (!empty($learn_type) && $learn_type !== 'all') {
+			$args['tax_query'] = [[
+				'taxonomy' => 'learn-type',
+				'field'    => 'slug',
+				'terms'    => $learn_type,
+			]];
+		}
+
+		// 6. Run Query
+		$query = new \WP_Query($args);
+
+		// Remove filters
+		if ($search_filter) {
+			remove_filter('posts_where', $search_filter, 10);
+		}
+
+		if ($orderby_filter) {
+			remove_filter('posts_orderby', $orderby_filter, 10);
+		}
+
+		// 7. Generate Results HTML
+		ob_start();
+		if ($query->have_posts()) {
+			while ($query->have_posts()) {
+				$query->the_post();
+				get_template_part('partials/content', 'search-list');
+			}
+		} else {
+			echo '<div class="not-found-block"><div class="not-found">No Search results found.</div></div>';
+		}
+		$results_html = ob_get_clean();
+
+		// 8. Pagination
+		set_query_var('search_query', $query);
 		set_query_var('paged_var', $paged);
-        ob_start();
-        get_template_part('partials/content', 'search-pagination');
-        $pagination_html = ob_get_clean();
 
-        wp_reset_postdata();
+		ob_start();
+		get_template_part('partials/content', 'search-pagination');
+		$pagination_html = ob_get_clean();
 
-        // 5. Send Response
-        wp_send_json_success([
-            'news_html'       => $results_html,
-            'pagination_html' => $pagination_html,
-        ]);
-    }
+		wp_reset_postdata();
+
+		// 9. Response
+		wp_send_json_success([
+			'news_html'       => $results_html,
+			'pagination_html' => $pagination_html,
+		]);
+	}
 
 	public function filter_logo_grid_filter_callback(){
 		check_ajax_referer('ajax_nonce', 'nonce');

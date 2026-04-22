@@ -1,3 +1,14 @@
+<?php 
+$title = get_the_title();
+
+if(get_post_type() == 'staff'){
+	$first_name = get_field('staff_first_name')?? '';
+	$last_name = get_field('staff_last_name')?? '';
+
+	$title = trim($first_name . ' ' . $last_name) ?: get_the_title();
+}
+?>
+
 <div class="event-teaser-list-col">
 	<a href="<?php the_permalink(); ?>" class="event-teaser-list-card" target="_blank">
 		<div class="event-teaser-list-content">
@@ -10,7 +21,7 @@
 			<div class="gl-s6"></div>
 			
 			<h5 class="heading-5 mb-0 block-title">
-				<?php the_title(); ?>
+				<?php echo esc_html( $title ); ?>
 			</h5>
 			
 			<div class="gl-s12"></div>

@@ -1133,6 +1133,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			const url = new URL(window.location);
 			if (getSearchVal()) {
 				url.searchParams.set("s", getSearchVal());
+			} else {
+				url.searchParams.set("s", "");
 			}
 			if (getCurrentOrderBy()) {
 				url.searchParams.set("orderby", getCurrentOrderBy());
