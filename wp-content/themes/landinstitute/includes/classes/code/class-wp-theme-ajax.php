@@ -119,7 +119,7 @@ class WP_Theme_Ajax {
 				get_template_part('partials/content', 'search-list');
 			}
 		} else {
-			echo '<p>No results found.</p>';
+			echo '<div class="not-found-block"><div class="not-found">No Search results found.</div></div>';
 		}
 		$results_html = ob_get_clean();
 
