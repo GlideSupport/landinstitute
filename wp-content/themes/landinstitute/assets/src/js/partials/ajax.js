@@ -608,6 +608,9 @@ document.addEventListener("DOMContentLoaded", function () {
 					if (oldPagination) {
 						oldPagination.outerHTML = data.data.pagination_html;
 					} else {
+						//const oldPagination = document.querySelector('.news-pagination-append-container');
+						console.log(123);
+
 						new_pagination.insertAdjacentHTML(
 							"beforeend",
 							data.data.pagination_html,
@@ -1013,6 +1016,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					);
 					link.closest("li").classList.add("active");
 
+					console.log(term, termtaxonomy);
+
 					// Set selected term and label
 					if (taxonomy === "search-type") {
 						searcheve = termtaxonomy ? "post" : term;
@@ -1085,6 +1090,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	let currentOrderBy = "date";
 
 	function getCurrentOrderBy() {
+		currentOrderBy = document
+			.querySelector("#search-orderby-tabs .tab-link.current")
+			.getAttribute("data-orderby");
 		return currentOrderBy;
 	}
 
@@ -1125,6 +1133,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			const url = new URL(window.location);
 			if (getSearchVal()) {
 				url.searchParams.set("s", getSearchVal());
+			} else {
+				url.searchParams.set("s", "");
 			}
 			if (getCurrentOrderBy()) {
 				url.searchParams.set("orderby", getCurrentOrderBy());
@@ -1312,6 +1322,45 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	initsearch_pagination();
+
+	setTimeout(() => {
+		// Check if the target container exists first
+		const append_search_result = document.querySelector(
+			".append-search-result",
+		);
+
+		if (append_search_result) {
+			// 1. Extract Page Number from Path (e.g., /page/3/)
+			const path = window.location.pathname;
+			const pageMatch = path.match(/\/page\/(\d+)/);
+			const currentPage = pageMatch ? parseInt(pageMatch[1]) : 1;
+
+			// 2. Extract Query Params (?search-type=...&learn-type=...)
+			const urlParams = new URLSearchParams(window.location.search);
+
+			// Priority: URL Param > Form Input Value > Default "all"
+			const searchType =
+				urlParams.get("search-type") ||
+				document.querySelector("#searchForm .search-type-field")
+					?.value ||
+				"all";
+
+			const learnType =
+				urlParams.get("learn-type") ||
+				document.querySelector("#searchForm .learn-type-field")
+					?.value ||
+				"";
+
+			console.log("Initializing Search:", {
+				currentPage,
+				searchType,
+				learnType,
+			});
+
+			// 3. Execute search list
+			featch_search_list(currentPage, true, searchType, learnType);
+		}
+	}, 200);
 });
 document.addEventListener("click", function (e) {
 	const disabledLink = e.target.closest(".arrow-btn.disable");

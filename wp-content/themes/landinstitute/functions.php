@@ -79,245 +79,6 @@ if (!defined('BASETHEME_DEFAULT_IMAGE')) {
 	endif;
 }
 
-add_action('wp_ajax_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
-add_action('wp_ajax_nopriv_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
-
-function ajax_filter_logo_grid_filter()
-{
-	check_ajax_referer('ajax_nonce', 'nonce');
-
-	$donor_type      = $_POST['donor_type'] ?? 'all';
-	$donation_level  = $_POST['donation_level'] ?? 'all';
-	$paged           = max(1, (int) ($_POST['paged'] ?? 1));
-
-	$posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 9;
-	if ($posts_per_page <= 0) {
-		$posts_per_page = 9;
-	}
-
-	$tax_query = ['relation' => 'AND'];
-
-	if ($donor_type !== 'all') {
-		$tax_query[] = [
-			'taxonomy' => 'donor-type',
-			'field'    => 'slug',
-			'terms'    => $donor_type,
-		];
-	}
-
-	if ($donation_level !== 'all') {
-		$tax_query[] = [
-			'taxonomy' => 'donation-level',
-			'field'    => 'slug',
-			'terms'    => $donation_level,
-		];
-	}
-
-	$args = [
-		'post_type'      => 'donor',
-		'post_status'    => 'publish',
-		'posts_per_page' => $posts_per_page,
-		'paged'          => $paged,
-		'orderby'        => 'title',
-		'order'          => 'DESC',
-		'tax_query'      => $tax_query,
-	];
-
-	$donors = new WP_Query($args);
-
-	ob_start();
-
-	if ($donors->have_posts()) :
-		while ($donors->have_posts()) : $donors->the_post();
-			$image_id = get_post_thumbnail_id(get_the_ID());
-			$title    = html_entity_decode(get_the_title());
-			$title_words = explode(' ', trim($title));
-			$first_initial = !empty($title_words[0]) ? strtoupper($title_words[0][0]) : '';
-			$last_initial  = !empty($title_words[1]) ? strtoupper($title_words[1][0]) : '';
-			$initials = $first_initial . $last_initial;
-
-			$image_html = $image_id ? wp_get_attachment_image($image_id, 'full', false, [
-				'width'  => 200,
-				'height' => 102,
-				'alt'    => esc_attr($title),
-			]) : '';
-
-			$levels = get_the_terms(get_the_ID(), 'donation-level');
-			$level_name = (!empty($levels) && !is_wp_error($levels)) ? $levels[0]->name : '';
-?>
-			<div class="filter-logos-col">
-				<div class="filter-logos-click">
-					<?php if ($image_html) : ?>
-						<div class="brand-logo brand-lists"><?php echo $image_html; ?></div>
-					<?php else : ?>
-						<div class="brand-name brand-lists">
-							<div class="brand-group-name"><?php echo esc_html($initials); ?></div>
-						</div>
-					<?php endif; ?>
-					<div class="logo-content">
-						<div class="gl-s24"></div>
-						<div class="ui-20-18-bold logo-title"><?php echo html_entity_decode($title); ?></div>
-						<div class="gl-s2"></div>
-						<?php if ($level_name) : ?>
-							<div class="body-18-16-regular logo-content"><?php echo esc_html($level_name); ?></div>
-						<?php endif; ?>
-						<div class="gl-s24"></div>
-					</div>
-				</div>
-			</div>
-		<?php
-		endwhile;
-		wp_reset_postdata();
-	else :
-		echo '<div class="no-results">No donors found for this filter.</div>';
-	endif;
-	$html = ob_get_clean();
-	// --- Pagination ---
-$pagination_html = '';
-$total_pages = $donors->max_num_pages;
-$total_found_posts = $donors->found_posts;
-
-if ($total_found_posts > $posts_per_page) {
-	ob_start();
-
-	// Capture current query vars
-	$current_url = get_permalink();
-	$donor_type = isset($_GET['donor_type']) ? sanitize_text_field($_GET['donor_type']) : '';
-	$donation_level = isset($_GET['donation_level']) ? sanitize_text_field($_GET['donation_level']) : '';
-
-	// Build query array for reuse
-	$query_args = [];
-	if ($donor_type) {
-		$query_args['donor_type'] = $donor_type;
-	}
-	if ($donation_level) {
-		$query_args['donation_level'] = $donation_level;
-	}
-	?>
-	<div class="fillter-bottom">
-		<div class="pagination-container">
-			<div class="desktop-pages">
-				<div class="arrow-btn prev">
-					<a class="site-btn" href="<?php
-						if ($paged > 1) {
-							$prev_url = trailingslashit($current_url) . 'page/' . ($paged - 1) . '/';
-							if (!empty($query_args)) {
-								$prev_url .= '?' . http_build_query($query_args);
-							}
-							echo esc_url($prev_url);
-						} else {
-							echo '#';
-						}
-					?>" <?php if ($paged <= 1) echo 'style="opacity: 0.5; pointer-events: none;"'; ?>>Previous</a>
-				</div>
-
-				<div class="pagination-list">
-					<?php
-					$range = 2;
-					$show_dots = false;
-
-					for ($i = 1; $i <= $total_pages; $i++) {
-						if ($i == 1 || $i == $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
-							if ($show_dots) {
-								echo '<span class="dots">...</span>';
-								$show_dots = false;
-							}
-							$page_url = trailingslashit($current_url) . 'page/' . $i . '/';
-							if (!empty($query_args)) {
-								$page_url .= '?' . http_build_query($query_args);
-							}
-							echo '<a class="page-btn' . ($i == $paged ? ' active' : '') . '" href="' . esc_url($page_url) . '" data-page="' . esc_attr($i) . '">' . esc_html($i) . '</a>';
-						} else {
-							$show_dots = true;
-						}
-					}
-					?>
-				</div>
-
-				<div class="arrow-btn next">
-					<a class="site-btn" href="<?php
-						if ($paged < $total_pages) {
-							$next_url = trailingslashit($current_url) . 'page/' . ($paged + 1) . '/';
-							if (!empty($query_args)) {
-								$next_url .= '?' . http_build_query($query_args);
-							}
-							echo esc_url($next_url);
-						} else {
-							echo '#';
-						}
-					?>" <?php if ($paged >= $total_pages) echo 'style="opacity: 0.5; pointer-events: none;"'; ?>>Next</a>
-				</div>
-			</div>
-
-			<div class="mobile-pagination">
-				<a id="prevBtn" class="arrow-btn" href="<?php
-					if ($paged > 1) {
-						$mobile_prev = trailingslashit($current_url) . 'page/' . ($paged - 1) . '/';
-						if (!empty($query_args)) {
-							$mobile_prev .= '?' . http_build_query($query_args);
-						}
-						echo esc_url($mobile_prev);
-					} else {
-						echo '#';
-					}
-				?>" <?php if ($paged <= 1) echo 'disabled'; ?>>
-					<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Prev">
-				</a>
-
-				<span id="pageTrigger" class="page-trigger ui-18-16-bold"><?php echo esc_html($paged . '/' . $total_pages); ?></span>
-
-				<a id="nextBtn" class="arrow-btn" href="<?php
-					if ($paged < $total_pages) {
-						$mobile_next = trailingslashit($current_url) . 'page/' . ($paged + 1) . '/';
-						if (!empty($query_args)) {
-							$mobile_next .= '?' . http_build_query($query_args);
-						}
-						echo esc_url($mobile_next);
-					} else {
-						echo '#';
-					}
-				?>" <?php if ($paged >= $total_pages) echo 'disabled'; ?>>
-					<img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/src/images/right-circle-arrow.svg" alt="Next">
-				</a>
-			</div>
-
-			<div id="paginationPopup" class="pagination-popup">
-				<div class="popup-body">
-					<div id="popupGrid" class="popup-grid">
-						<?php for ($i = 1; $i <= $total_pages; $i++) :
-							$page_url = trailingslashit($current_url) . 'page/' . $i . '/';
-							if (!empty($query_args)) {
-								$page_url .= '?' . http_build_query($query_args);
-							}
-						?>
-							<a class="page-btn<?php echo ($i == $paged ? ' active' : ''); ?>" href="<?php echo esc_url($page_url); ?>" data-page="<?php echo esc_attr($i); ?>"><?php echo esc_html($i); ?></a>
-						<?php endfor; ?>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php
-	$pagination_html = ob_get_clean();
-}
-
-
-	wp_send_json_success([
-		'html'            => $html,
-		'pagination_html' => $pagination_html,
-		'max_pages'       => $total_pages,
-		'found_posts'     => $total_found_posts,
-		'current_page'    => $paged,
-	]);
-}
-
-
-
-//news list filter
-
-
-//event code
-
 
 
 function date_formatting($start_date, $end_date)
@@ -489,296 +250,14 @@ function number_to_words($num)
 	return $string = str_replace('y-eth', 'ieth', $second_word[$second_num] . '-' . $first_word[$first_num]);
 }
 
-add_action('wp_ajax_load_more_events', 'load_more_events_callback');
-add_action('wp_ajax_nopriv_load_more_events', 'load_more_events_callback');
 
-function load_more_events_callback()
-{
-	$paged = isset($_GET['page']) ? intval($_GET['page']) : 1;
-	$posts_per_page = 10;
-
-	$current_timestamp = current_time('timestamp');
-
-	$eventargs = array(
-		'post_type'      => 'event',
-		'post_status'    => 'publish',
-		'posts_per_page' => $posts_per_page,
-		'paged'          => $paged,
-		'orderby'        => 'meta_value_num',
-		'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
-		'order'          => 'ASC',
-		'meta_query'     => array(
-			array(
-				'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
-				'value'   => $current_timestamp,
-				'type'    => 'NUMERIC',
-				'compare' => '>='
-			)
-		)
-	);
-
-	$event_query = new WP_Query($eventargs);
-
-	ob_start();
-
-	if ($event_query->have_posts()) :
-		while ($event_query->have_posts()) : $event_query->the_post();
-			$post_id = get_the_ID();
-			$start_date = get_field('li_cpt_event_start_date');
-			$end_date   = get_field('li_cpt_event_end_date');
-			$event_display = get_formatted_event_datetime($post_id);
-
-			$image = wp_get_attachment_image_url(BASETHEME_DEFAULT_IMAGE, 'full');
-			if (get_the_post_thumbnail_url($post_id, 'medium')) {
-				$image = get_the_post_thumbnail_url($post_id, 'medium');
-			}
-
-			$excerpt = wp_trim_words(get_the_excerpt(), 25, '...');
-			$url = get_permalink();
-
-			set_query_var('start_date', $start_date);
-			set_query_var('end_date', $end_date);
-			set_query_var('image', $image);
-			set_query_var('excerpt', $excerpt);
-			set_query_var('url', $url);
-			set_query_var('event_display', $event_display);
-
-			get_template_part('partials/content', 'event-list');
-		endwhile;
-	else :
-		echo '<div class="no-more-events">No more events.</div>';
-	endif;
-
-	$html = ob_get_clean();
-
-	// Determine if there are more pages
-	$has_more = ($paged < $event_query->max_num_pages);
-
-	wp_reset_postdata();
-
-	wp_send_json([
-		'success'    => true,
-		'html'       => $html,
-		'has_more'   => $has_more,
-		'next_page'  => $paged + 1
-	]);
-}
-
-
-
-// Past event filter
-add_action('wp_ajax_filter_past_events', 'filter_past_events');
-add_action('wp_ajax_nopriv_filter_past_events', 'filter_past_events');
-
-function filter_past_events() {
-	check_ajax_referer('ajax_nonce', 'nonce');
-   
-	$term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
-   $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-   $today = date('Ymd'); // e.g., 20250704
-  // $current_timestamp = current_time('timestamp'); // WordPress-safe current UTC timestamp
-   $current_timestamp = strtotime( date('Y-m-d') . ' 00:00:00' ); 
-
-   $args = [
-	 'post_type'      => 'event',
-	 'post_status'    => 'publish',
-	 'posts_per_page' => 6,
-	 'paged'          => $paged,
-	 'meta_key'       => 'li_cpt_event_timestepm_with_selected_timezone',
-	 'orderby'        => 'meta_value',
-	 'order'          => 'DESC',
-	 'meta_query'     => [
-	   [
-		 'key'     => 'li_cpt_event_timestepm_with_selected_timezone_compare',
-		 'value'   => $current_timestamp,
-		 'compare' => '<',
-		 'type'    => 'NUMERIC',
-	   ],
-	 ],
-   ];
-   
-   
-	$query = new WP_Query($args);
-   
-	if ($query->have_posts()) {
-	 ob_start();
-	 
-	 while ($query->have_posts()) {
-	  $query->the_post();
-	  $post_id = get_the_ID();
-	  $event_title = get_the_title($post_id);
-	  $event_link = get_permalink($post_id);  
-	  $excerpt = get_the_excerpt( $post_id);
-	  $event_content = wp_trim_words($excerpt, 25, '...');
-	  $event_date = get_formatted_event_datetime($post_id);
-	  $city_state   = get_field('li_cpt_event_city_state', $post_id);
-   
-	  ?>
-		 <div class="filter-content-card-item">
-						   <a href="<?php echo esc_url($event_link); ?>" class="filter-content-card-link">
-							   <div class="filter-card-content">
-							   <div class="gl-s52"></div>
-							   <div class="eyebrow ui-eyebrow-16-15-regular"><?php echo $event_date; ?>
-							   </div>
-							   <div class="gl-s6"></div>
-							   <div class="eyebrow ui-eyebrow-16-15-regular"><?php echo esc_html($city_state); ?></div><div class="gl-s4"></div>
-							   <div class="card-title heading-6 mb-0"><?php echo html_entity_decode($event_title); ?></div>
-							   <div class="gl-s16"></div>
-							   <div class="description ui-18-16-regular"><?php echo $event_content; ?></div>
-							   <div class="gl-s20"></div>
-							   <div class="read-more-link">
-								   <div class="border-text-btn">Event Details</div>
-							   </div>
-							   <div class="gl-s80"></div>
-						   </div>
-						   </a>
-					   </div>
-	  <?php
-	 }
-		   
-	 wp_reset_postdata();
-		   $html        = ob_get_clean();
-		   $total_pages = $query->max_num_pages;
-   
-		   $pagination_html = '';
-		   if ($total_pages > 1) {
-			   $pagination_html .= '<div class="pagination-container pagination-append-container">';
-			   $pagination_html .= '<div class="pagination-container">';
-		   
-			   // Desktop Pagination
-			   $pagination_html .= '<div class="desktop-pages">';
-		   
-			   // Previous Button (Desktop)
-			   $prev_page = $paged - 1;
-			   $prev_disabled = $paged <= 1;
-			   $prev_url = $prev_disabled 
-				   ? 'javascript:void(0);' 
-				   : ($prev_page === 1 ? trailingslashit(home_url('/events/')) : trailingslashit(home_url('/events/')) . 'page/' . $prev_page . '/');
-			   $pagination_html .= '<a id="desktopPrev" class="arrow-btn prev page-btn ' . ($prev_disabled ? 'disabled' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '" rel="'.($prev_disabled ? '' : 'prev').'"><div class="site-btn">Previous</div></a>';
-		   
-			   // Pagination Numbers
-			   $pagination_html .= '<div id="paginationList" class="pagination-list">';
-			   $range = 2;
-			   $show_dots = false;
-			   for ($i = 1; $i <= $total_pages; $i++) {
-				   if ($i === 1 || $i === $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) {
-					   $active_class = $i === $paged ? 'active' : '';
-					   $page_url = $i === 1 
-						   ? trailingslashit(home_url('/events/')) 
-						   : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
-			   
-					   // Determine rel attribute
-					   $rel = '';
-					   if ($i === $paged + 1) {
-						   $rel = 'next';
-					   } elseif ($i === $paged - 1) {
-						   $rel = 'prev';
-					   }
-			   
-					   $pagination_html .= '<a class="page-btn ' . $active_class . '" href="' . esc_url($page_url) . '" data-page="' . $i . '"' . ($rel ? ' rel="' . $rel . '"' : '') . '>' . $i . '</a>';
-					   $show_dots = true;
-				   } elseif ($show_dots) {
-					   $pagination_html .= '<span class="dots">...</span>';
-					   $show_dots = false;
-				   }
-			   }
-			   
-			   $pagination_html .= '</div>'; // end pagination list
-		   
-			   // Next Button (Desktop)
-			   $next_page = $paged + 1;
-			   $next_disabled = $paged >= $total_pages;
-			   $next_url = $next_disabled 
-				   ? 'javascript:void(0);' 
-				   : trailingslashit(home_url('/events/')) . 'page/' . $next_page . '/';
-			   $pagination_html .= '<a id="desktopNext" class="arrow-btn next page-btn ' . ($next_disabled ? 'disabled' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '" rel="'.($next_disabled ? '' : 'next').'"><div class="site-btn">Next</div></a>';
-		   
-			   $pagination_html .= '</div>'; // end desktop-pages
-		   
-			   // Mobile Pagination
-			   $pagination_html .= '<div class="mobile-pagination">';
-		   
-			   // Prev Mobile
-			   $rel_attr = !$prev_disabled ? ' rel="prev"' : '';
-   
-			   $pagination_html .= '<a id="prevBtn" class="arrow-btn page-btn ' . ($prev_disabled ? 'disabled' : '') . '" href="' . esc_url($prev_url) . '" data-page="' . esc_attr($prev_page) . '"' . $rel_attr . '>
-				   <img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Previous">
-			   </a>';
-		   
-			   // Page Trigger Button
-			   $pagination_html .= '<button id="pageTrigger" class="page-trigger ui-18-16-bold page-btn">' . $paged . '/' . $total_pages . '</button>';
-		   
-			   // Next Mobile
-			   $rel_attr = !$next_disabled ? ' rel="next"' : '';
-			   $pagination_html .= '<a id="nextBtn" class="arrow-btn page-btn ' . ($next_disabled ? 'disabled' : '') . '" href="' . esc_url($next_url) . '" data-page="' . esc_attr($next_page) . '"' . $rel_attr . '>
-				   <img src="' . get_template_directory_uri() . '/assets/src/images/right-circle-arrow.svg" alt="Next">
-			   </a>';
-   
-		   
-			   $pagination_html .= '</div>'; // end mobile-pagination
-		   
-			   // Mobile Popup Pagination
-			   $pagination_html .= '<div id="paginationPopup" class="pagination-popup">';
-			   $pagination_html .= '<div class="popup-body">';
-			   $pagination_html .= '<div id="popupGrid" class="popup-grid">';
-		   
-			   for ($i = 1; $i <= $total_pages; $i++) {
-				   $active = $i === $paged ? 'active' : '';
-				   $page_url = $i === 1 
-					   ? trailingslashit(home_url('/events/')) 
-					   : trailingslashit(home_url('/events/')) . 'page/' . $i . '/';
-			   
-				   // Determine rel attribute
-				   $rel = '';
-				   if ($i === $paged - 1) {
-					   $rel = 'prev';
-				   } elseif ($i === $paged + 1) {
-					   $rel = 'next';
-				   }
-			   
-				   // Append rel only if needed
-				   $rel_attr = $rel ? ' rel="' . esc_attr($rel) . '"' : '';
-			   
-				   $pagination_html .= '<a class="page-trigger ui-18-16-bold page-btn ' . esc_attr($active) . '" href="' . esc_url($page_url) . '" data-page="' . esc_attr($i) . '"' . $rel_attr . '>' . esc_html($i) . '</a>';
-			   }
-			   
-		   
-			   $pagination_html .= '</div>'; // popupGrid
-		   
-			   // Optional JS-based popup nav buttons
-			   $pagination_html .= '<button id="popupPrev" class="arrow-btn"></button>';
-			   $pagination_html .= '<button id="popupNext" class="arrow-btn"></button>';
-		   
-			   $pagination_html .= '</div>'; // popup-body
-			   $pagination_html .= '</div>'; // paginationPopup
-		   
-			   $pagination_html .= '</div>'; // pagination-container
-			   $pagination_html .= '</div>'; // pagination-append-container
-		   }
-		   
-		   
-		   
-		   // Send both HTML and pagination
-		   wp_send_json_success([
-			   'html'            => $html,
-			   'pagination_html' => $pagination_html,
-			   'total_pages'     => $total_pages,
-		   ]);
-		   
-	 echo ob_get_clean();
-	} else {
-	 echo '<p>No past events found.</p>';
-	}
-   
-	wp_die();
-   }
-   
-   function custom_events_rewrite_rule() {
+function custom_events_rewrite_rule() {
 	   add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
 	   add_rewrite_rule('^news/page/([0-9]+)/?', 'index.php?pagename=news&paged=$matches[1]', 'top');
 
-   }
-   add_action('init', 'custom_events_rewrite_rule');
+}
+
+add_action('init', 'custom_events_rewrite_rule');
 
 function get_timezone_code($timezone_value) {
     $timezones = [
@@ -955,298 +434,23 @@ function save_event_timestamp_with_timezone($post_id, $post, $update) {
 
 
 
+// Custom orderby for staff last name to handle empty values
+function custom_staff_last_name_orderby($orderby, $query) {
+    global $wpdb;
 
-add_action('wp_ajax_filter_news', 'handle_ajax_news_filter');
-add_action('wp_ajax_nopriv_filter_news', 'handle_ajax_news_filter');
-function handle_ajax_news_filter() {
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-
-    $tax_query = [];
-
-	
-    if (!empty($_POST['news_type']) && $_POST['news_type'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'news-type',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['news_type']),
-        ];
+    if ($query->get('meta_key') === 'staff_last_name' OR $query->get('staff_sorting')) {
+        $orderby = "
+            CASE 
+                WHEN {$wpdb->postmeta}.meta_value = '' THEN 1
+                ELSE 0
+            END ASC,
+            {$wpdb->postmeta}.meta_value ASC
+        ";
     }
 
-    if (!empty($_POST['news_topic']) && $_POST['news_topic'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'news-topic',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['news_topic']),
-        ];
-    }
-	 if (!empty($_POST['news_crop']) && $_POST['news_crop'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'news-crop',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['news_crop']),
-        ];
-    }
-	 if (!empty($_POST['news_audience']) && $_POST['news_audience'] !== 'all') {
-        $tax_query[] = [
-            'taxonomy' => 'news-audience',
-            'field'    => 'slug',
-            'terms'    => sanitize_text_field($_POST['news_audience']),
-        ];
-    }
-
-    // Add exclusions using the helper
-    $exclude_taxonomies = ['news-crop', 'news-type', 'news-topic', 'news-audience'];
-
-    foreach ($exclude_taxonomies as $taxonomy) {
-        $exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
-        if (!empty($exclude_query)) {
-            $tax_query[] = $exclude_query;
-        }
-    }
-
-    $args = [
-        'post_type'      => 'news',
-        'posts_per_page' => 6,
-        'order'          => 'DESC',
-        'post_status'    => 'publish',
-        'paged'          => $paged,
-    ];
-
-    if (!empty($tax_query)) {
-        $args['tax_query'] = $tax_query;
-    }
-
-    set_query_var('requestdbyajax', 'yes');
-
-    $news = new WP_Query($args);
-    $datafound = $news->have_posts() ? 'yes' : 'no';
-
-    ob_start();
-    include get_template_directory() . '/partials/content-news-list.php';
-    $news_html = ob_get_clean();
-
-    ob_start();
-    include get_template_directory() . '/partials/content-news-pagination.php';
-    $pagination_html = ob_get_clean();
-
-    wp_send_json_success([
-        'news_html'       => $news_html,
-        'pagination_html' => $pagination_html,
-        'datafound'       => $datafound,
-    ]);
+    return $orderby;
 }
-
-
-
-add_action('wp_ajax_filter_learn', 'handle_ajax_news_learn');
-add_action('wp_ajax_nopriv_filter_learn', 'handle_ajax_news_learn');
-
-function handle_ajax_news_learn() {
-    // Optional: enable this if you're using nonce security
-    // check_ajax_referer('news_ajax_nonce', 'nonce');
-
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-    $tax_query = [];
-    $exclude_taxonomies = [];
-
-    $filter_setting = get_field('li_learn_filters', 131);
-
-    $enable_type     = $filter_setting['enable_learn_type'];
-    $enable_crop     = $filter_setting['enable_learn_crop'];
-    $enable_audience = $filter_setting['enable_learn_audience'];
-    $enable_topic    = $filter_setting['enable_learn_topic'];
-
-
-      $exclude_taxonomies[] = 'learn-type';
-
-        if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-type',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['post_type']),
-            ];
-        }
-
-
-    // Learn Topic
-  $exclude_taxonomies[] = 'learn-topic';
-
-        if (!empty($_POST['learn_topic']) && $_POST['learn_topic'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-topic',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['learn_topic']),
-            ];
-        }
-
-    // Learn Crop
-        $exclude_taxonomies[] = 'learn-crop';
-
-        if (!empty($_POST['learn_crops']) && $_POST['learn_crops'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-crop',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['learn_crops']),
-            ];
-        }
-
-    // Learn Audience
-    $exclude_taxonomies[] = 'learn-audience';
-
-        if (!empty($_POST['learn_audience']) && $_POST['learn_audience'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-audience',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['learn_audience']),
-            ];
-        }
-
-	
-
-    // Learn Type
-    $exclude_taxonomies[] = 'learn-type';
-
-        if (!empty($_POST['post_type']) && $_POST['post_type'] !== 'all') {
-            $tax_query[] = [
-                'taxonomy' => 'learn-type',
-                'field'    => 'slug',
-                'terms'    => sanitize_text_field($_POST['post_type']),
-            ];
-        }
-
-    // Hardcoded exclusions
-   // $exclude_taxonomies = ['learn-crop', 'learn-topic'];
-
-   if(!empty($exclude_taxonomies)){
-		foreach ($exclude_taxonomies as $taxonomy) {
-			$exclude_query = get_exclude_tax_query_for_taxonomy($taxonomy);
-
-			if (!empty($exclude_query)) {
-				$tax_query[] = $exclude_query;
-			}
-		}
-	}
-
-    // Query args
-    $args = [
-        'post_type'      => 'post',
-        'posts_per_page' => 12,
-        'order'          => 'DESC',
-        'post_status'    => 'publish',
-        'paged'          => $paged,
-    ];
-
-    if (!empty($tax_query)) {
-        $args['tax_query'] = $tax_query;
-    }
-
-	//print_r($args);
-
-    $query = new WP_Query($args);
-
-    set_query_var('learn_query', $query);
-    set_query_var('paged_var', $paged);
-    set_query_var('requestdbyajax', 'yes');
-
-    ob_start();
-    get_template_part('partials/content', 'learn-list');
-    $news_html = ob_get_clean();
-
-    ob_start();
-    get_template_part('partials/content', 'learn-pagination');
-    $pagination_html = ob_get_clean();
-
-    wp_reset_postdata();
-
-    $datafound = $query->have_posts() ? 'yes' : 'no';
-
-    wp_send_json_success([
-        'news_html'       => $news_html,
-        'pagination_html' => $pagination_html,
-        'datafound'       => $datafound,
-    ]);
-}
-
-add_action('wp_ajax_search_filter', 'search_filter_Callback');
-add_action('wp_ajax_nopriv_search_filter', 'search_filter_Callback');
-
-function search_filter_Callback() {
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-    $search_query = isset($_POST['s']) ? sanitize_text_field($_POST['s']) : '';
-    $order_by = isset($_POST['orderby']) && in_array($_POST['orderby'], ['date', 'title']) ? $_POST['orderby'] : 'date';
-    $search_type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
-    $learn_type = isset($_POST['learntype']) ? sanitize_text_field($_POST['learntype']) : '';
-
-    // Full list of allowed post types
-    $allowed_post_types = ['post', 'event', 'page', 'news', 'staff'];
-
-    // Get excluded post types from ACF Options
-    $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
-    if (!is_array($excluded_post_types)) {
-        $excluded_post_types = [];
-    }
-
-    // Remove excluded from allowed
-    $filtered_post_types = array_diff($allowed_post_types, $excluded_post_types);
-
-    // If user selected a specific post type, validate it
-    if (!empty($search_type) && $search_type !== 'all') {
-        if (in_array($search_type, $filtered_post_types)) {
-            $post_types = [$search_type];
-        } else {
-            // fallback to filtered list if user input is invalid
-            $post_types = $filtered_post_types;
-        }
-    } else {
-        $post_types = $filtered_post_types;
-    }
-
-    $args = [
-        'post_type'      => $post_types,
-        'posts_per_page' => 12,
-        'post_status'    => 'publish',
-        'paged'          => $paged,
-        'orderby'        => $order_by,
-        'order'          => ($order_by === 'title') ? 'ASC' : 'DESC',
-    ];
-
-    if (!empty($search_query)) {
-        $args['s'] = $search_query;
-    }
-
-    // Check if learn-type filter is set
-    if (!empty($learn_type)) {
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'learn-type',
-                'field'    => 'slug', // since you’re passing slug in URL
-                'terms'    => sanitize_text_field($learn_type),
-            ]
-        ];
-    }
-
-    $query = new WP_Query($args);
-
-    set_query_var('search_query', $query);
-    set_query_var('paged_var', $paged);
-
-    ob_start();
-    get_template_part('partials/content', 'search-list');
-    $results_html = ob_get_clean();
-
-    ob_start();
-    get_template_part('partials/content', 'search-pagination');
-    $pagination_html = ob_get_clean();
-
-    wp_reset_postdata();
-
-    wp_send_json_success([
-        'news_html'       => $results_html,
-        'pagination_html' => $pagination_html,
-    ]);
-}
-
-
+add_filter('posts_orderby', 'custom_staff_last_name_orderby', 10, 2);
 
 
 //script 
@@ -1344,6 +548,7 @@ function show_event_timestamp_update_notice() {
         delete_transient('event_timestamp_update_success_notice');
     }
 }
+
 function exclude_dynamic_learn_tax_terms_from_frontend($query) {
     // Only skip for admin dashboard
     if (is_admin()) {
@@ -1495,48 +700,92 @@ function limit_search_to_specific_post_types($query) {
         // Allowed post types
         $allowed_post_types = ['staff', 'event', 'news', 'post', 'page'];
 
-        // ACF field to exclude post types (array expected)
-        $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
-        if (!is_array($excluded_post_types)) {
-            $excluded_post_types = [];
-        }
-
-        // Final allowed list after exclusion
+        $excluded_post_types = get_field('li_search_exclude_post_type', 'option')??[];
+       
         $final_post_types = array_diff($allowed_post_types, $excluded_post_types);
 
-        // Sanitize user input
-        $posttype = isset($_GET['search-type']) ? sanitize_text_field($_GET['search-type']) : '';
+        $posttype   = isset($_GET['search-type']) ? sanitize_text_field($_GET['search-type']) : '';
+        $order_by   = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : '';
+        $learn_type = isset($_GET['learntype']) ? sanitize_text_field($_GET['learntype']) : '';
 
-        if ($posttype) {
-            if (in_array($posttype, $final_post_types)) {
-                $query->set('post_type', [$posttype]);
-            } else {
-                $query->set('post_type', $final_post_types); // fallback
-            }
+        if ($posttype !== "" OR $posttype !== 'all') {
+            $query->set('post_type', $allowed_post_types);
+        }else{
+            $query->set('post_type', $final_post_types);
+        }
+
+        // Apply staff-specific sorting
+        if ($posttype === 'staff' && $order_by === 'title') {
+
+        
+            $query->set('meta_query', [
+                [
+                    'relation' => 'OR',
+            
+                    // First priority: posts WITH last name
+                    'has_last_name' => [
+                        'key'     => 'staff_last_name',
+                        'compare' => 'EXISTS',
+                    ],
+
+                    // Second: posts WITHOUT last name
+                    'no_last_name' => [
+                        'relation' => 'OR',
+
+                        [
+                            'key'     => 'staff_last_name',
+                            'compare' => 'NOT EXISTS',
+                        ],
+                        [
+                            'key'     => 'staff_last_name',
+                            'value'   => '',
+                            'compare' => '=',
+                        ],
+                    ],
+                ]
+            ]);
+
+            $query->set('orderby', [
+                'has_last_name' => 'ASC',   
+                'meta_value'    => 'ASC', 
+            ]);      
+
+            $query->set('meta_key', 'staff_last_name');
+            $query->set('meta_type', 'CHAR');
+
+            // IMPORTANT: flag to use in orderby filter
+            $query->set('staff_sorting', true);
+
         } else {
-            $query->set('post_type', $final_post_types); // default
+            $query->set('orderby', $order_by ? $order_by : 'date');
+            $query->set('order', ($order_by === 'title') ? 'ASC' : 'DESC');
         }
 
-        // Handle taxonomy filters
-        $tax_query = [];
-        $taxonomies = get_taxonomies(['public' => true], 'names');
+        if($learn_type !== 'all' AND  $learn_type !== ''){
+            // Taxonomy filters
+            $tax_query = [];
+            $taxonomies = get_taxonomies(['public' => true], 'names');
 
-        foreach ($taxonomies as $taxonomy) {
-            if (!empty($_GET[$taxonomy])) {
-                $tax_query[] = [
-                    'taxonomy' => $taxonomy,
-                    'field'    => 'slug',  // or 'id' if you pass term_id
-                    'terms'    => sanitize_text_field($_GET[$taxonomy]),
-                ];
+            foreach ($taxonomies as $taxonomy) {
+                if (!empty($_GET[$taxonomy])) {
+                    $tax_query[] = [
+                        'taxonomy' => $taxonomy,
+                        'field'    => 'slug',
+                        'terms'    => sanitize_text_field($_GET[$taxonomy]),
+                    ];
+                }
             }
+
+            if (!empty($tax_query)) {
+                $query->set('tax_query', $tax_query);
+            }
+        }else{
+            $query->set('tax_query', []);
         }
 
-        if (!empty($tax_query)) {
-            $query->set('tax_query', $tax_query);
-        }
     }
 }
-add_action('pre_get_posts', 'limit_search_to_specific_post_types');
+// add_action('pre_get_posts', 'limit_search_to_specific_post_types');
 
 
 add_action('template_redirect', 'll_fix_duplicate_pagination_url');

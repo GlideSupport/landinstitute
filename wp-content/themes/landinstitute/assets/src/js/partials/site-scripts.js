@@ -1,1635 +1,1401 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-/**
- * Sticky Header
- * Adds a class to header on scroll
- */
-document.addEventListener("scroll", () => {
-	const header = document.querySelector("header");
-	if (header) {
-		if (document.documentElement.scrollTop > 0) {
-			header.classList.add("shrink");
-			document.body.classList.add("shrink");
-		} else {
-			header.classList.remove("shrink");
-			document.body.classList.remove("shrink");
-		}
-	}
-});
-
-//blog detail and category detail page popup code start
-document.addEventListener("click", function (event) {
-	const lightboxElement = event.target.closest("[data-lightbox]");
-	if (lightboxElement) {
-		lity(event);
-	}
-});
-//end
-
-// Add span tag to multi-level accordion menu for mobile menus
-const listItems = document.querySelectorAll("li.menu-item-has-children");
-if (listItems.length > 0) {
-	listItems.forEach(function (item) {
-		const anchor = item.querySelector("a:first-child");
-		if (anchor) {
-			const span = document.createElement("span");
-			span.className = "menu-expand";
-			span.setAttribute("role", "none");
-			anchor.insertAdjacentElement("afterend", span);
-		}
-	});
-}
-
-// Add hover effect to buttons start
-const btns = document.querySelectorAll('.site-btn');
-
-if (btns.length > 0) {
-	btns.forEach(btn => {
-		btn.addEventListener('mouseenter', () => {
-			btn.classList.remove('animate-out');
-			btn.classList.add('animate-in');
-		});
-
-		btn.addEventListener('mouseleave', () => {
-			btn.classList.remove('animate-in');
-			btn.classList.add('animate-out');
-		});
-	});
-} 
-// Add hover effect to buttons end
-
-// Focus and blur events for menu items with sub-menus
-document.querySelectorAll(".menu-item-has-children > a").forEach((anchor) => {
-	anchor.addEventListener("focus", () => {
-		const subMenu = anchor.nextElementSibling;
-		if (subMenu && subMenu.classList.contains("sub-menu")) {
-			subMenu.classList.add("focused");
-		}
-	});
-	anchor.addEventListener("blur", () => {
-		const subMenu = anchor.nextElementSibling;
-		if (subMenu && subMenu.classList.contains("sub-menu")) {
-			subMenu.classList.remove("focused");
-		}
-	});
-});
-
-// Toggle menu button functionality
-const menuBtn = document.querySelector(".menu-btn");
-const navOverlay = document.querySelector(".nav-overlay");
-if (menuBtn && navOverlay) {
-	menuBtn.addEventListener("click", () => {
-		menuBtn.classList.toggle("active");
-		navOverlay.classList.toggle("open");
-		document.documentElement.classList.toggle("no-overflow");
-		document.body.classList.toggle("no-overflow");
-
-		// Reset active states for menu items and hide sub-menus
-		document
-			.querySelectorAll(".header-nav ul li.active")
-			.forEach((item) => {
-				item.classList.remove("active");
-			});
-		document
-			.querySelectorAll(".header-nav ul.sub-menu")
-			.forEach((subMenu) => {
-				subMenu.style.display = "none"; // Equivalent to slideUp
-			});
-	});
-}
-
-//sticky image with scroll start
 document.addEventListener("DOMContentLoaded", function () {
-	const header = document.querySelector(".header-section");
-	const stickyWrappers = document.querySelectorAll(".sticky-img");
+	// Add hover effect to buttons start
+	function initButtonHoverAnimations(selector = ".site-btn") {
+		const btns = document.querySelectorAll(selector);
 
-	function getHeaderHeight() {
-		return header?.offsetHeight || 0;
+		if (btns.length === 0) return; // no buttons found
+
+		btns.forEach((btn) => {
+			btn.addEventListener("mouseenter", () => {
+				btn.classList.remove("animate-out");
+				btn.classList.add("animate-in");
+			});
+
+			btn.addEventListener("mouseleave", () => {
+				btn.classList.remove("animate-in");
+				btn.classList.add("animate-out");
+			});
+		});
 	}
 
-	function updateStickyPosition() {
-		if (window.innerWidth < 992) {
-			// Reset all sticky styles for mobile
-			stickyWrappers.forEach((wrapper) => {
-				const inner = wrapper.querySelector(".sticky-image-stick");
-				Object.assign(inner.style, {
-					position: "relative",
-					top: "0",
-					left: "0",
-					width: "100%",
-				});
+	//Logo Filter code start
+	const donorGrid = document.querySelector(".filter-logos-row");
+	let currentDonorType = getURLParam("donor_type") || "all";
+	let currentDonationLevel = getURLParam("donation_level") || "all";
+	let currentPage = 1;
+
+	const pathMatch = window.location.pathname.match(/\/page\/(\d+)\//);
+	if (pathMatch && pathMatch[1]) {
+		currentPage = parseInt(pathMatch[1], 10);
+	}
+	function getURLParam(param) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param);
+	}
+
+	function updateURLParams() {
+		const url = new URL(window.location);
+		const params = url.searchParams;
+		let newPath = url.pathname;
+
+		// Clean existing /page/number/ from the pathname if present
+		newPath = newPath.replace(/\/page\/\d+\/?$/, "").replace(/\/$/, "");
+
+		// Append /page/X/ if currentPage > 1
+		if (currentPage && currentPage > 1) {
+			newPath += `/page/${currentPage}/`;
+		} else {
+			newPath += "/";
+		}
+
+		// Update donor_type
+		if (currentDonorType && currentDonorType !== "all") {
+			params.set("donor_type", currentDonorType);
+		} else {
+			params.delete("donor_type");
+		}
+
+		// Update donation_level
+		if (currentDonationLevel && currentDonationLevel !== "all") {
+			params.set("donation_level", currentDonationLevel);
+		} else {
+			params.delete("donation_level");
+		}
+
+		// Push the new URL
+		const newUrl = `${newPath}?${params.toString()}`;
+		history.replaceState(
+			{},
+			"",
+			newUrl.endsWith("?") ? newUrl.slice(0, -1) : newUrl,
+		);
+	}
+
+	function fetchDonors() {
+		const postsPerPage = donorGrid.dataset.donorCount || 9;
+		const existingLoader = donorGrid.querySelector(".ajax-loader");
+		if (!existingLoader) {
+			const loader = document.createElement("div");
+			loader.className = "ajax-loader";
+			loader.innerHTML = "<p>Loading Donors...</p>";
+			donorGrid.prepend(loader);
+		}
+
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "filter_logo_grid_filter",
+				nonce: localVars.nonce,
+				donor_type: currentDonorType,
+				donation_level: currentDonationLevel,
+				paged: currentPage,
+				posts_per_page: postsPerPage,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success && data.data.html) {
+					donorGrid.innerHTML = data.data.html;
+					updatePagination(data.data.pagination_html);
+				} else {
+					donorGrid.innerHTML =
+						"<p>No donors found for this filter.</p>";
+				}
+				attachPaginationListeners();
+			})
+			.catch((err) => {
+				console.error("AJAX Error:", err);
+				donorGrid.innerHTML = "<p>Error loading donors.</p>";
 			});
+
+		updateURLParams();
+	}
+
+	function updatePagination(paginationHtml) {
+		const paginationWrapper = document.querySelector(
+			".fillter-bottom .pagination-container",
+		);
+
+		if (paginationHtml.trim() === "") {
+			if (paginationWrapper) paginationWrapper.remove();
 			return;
 		}
 
-		const headerHeight = getHeaderHeight();
+		const tempDiv = document.createElement("div");
+		tempDiv.innerHTML = paginationHtml;
 
-		stickyWrappers.forEach((wrapper) => {
-			const container = wrapper.closest(".sticky-lft-block");
-			const rightSide = container.querySelector(".cl-right");
-			const inner = wrapper.querySelector(".sticky-image-stick");
-			const image = inner.querySelector("img");
-
-			const containerTop = container.offsetTop;
-			const containerHeight = container.offsetHeight;
-			const imageHeight = image.offsetHeight;
-			const scrollY = window.scrollY;
-
-			const wrapperRect = wrapper.getBoundingClientRect();
-			const wrapperLeft = wrapperRect.left + window.scrollX;
-			const wrapperWidth = wrapperRect.width;
-
-			const rightSideBottom =
-				rightSide.offsetTop + rightSide.offsetHeight;
-			const stickyTop = scrollY + headerHeight;
-			const stickyBottom = stickyTop + imageHeight;
-
-			const maxFixedTop = rightSideBottom - imageHeight;
-
-			// Stick the image while scrolling within container bounds
-			if (stickyTop > containerTop && stickyBottom < rightSideBottom) {
-				inner.style.position = "fixed";
-				inner.style.top = `${headerHeight}px`;
-				inner.style.left = `${wrapperLeft}px`;
-				inner.style.width = `${wrapperWidth}px`;
-				inner.style.bottom = "auto";
-			}
-			// Lock image at the bottom of container
-			else if (stickyBottom >= rightSideBottom) {
-				const offsetBottom =
-					rightSideBottom - containerTop - imageHeight;
-				inner.style.position = "absolute";
-				inner.style.top = `${offsetBottom}px`;
-				inner.style.left = `0`;
-				inner.style.width = "100%";
-				inner.style.bottom = "auto";
-			}
-			// Reset to top
-			else {
-				inner.style.position = "absolute";
-				inner.style.top = "0";
-				inner.style.left = "0";
-				inner.style.width = "100%";
-				inner.style.bottom = "auto";
-			}
-		});
-	}
-
-	window.addEventListener("scroll", updateStickyPosition);
-	window.addEventListener("resize", updateStickyPosition);
-	updateStickyPosition(); // Run once on load
-});
-//end
-
-// Slide Up/Down internal sub-menu when mobile menu arrow clicked
-document.addEventListener("click", (event) => {
-	if (event.target.matches(".header-nav .menu-item span")) {
-		const link = event.target.closest("li");
-		if (link) {
-			// Remove active class and slide up siblings
-			link.parentElement
-				.querySelectorAll(".active")
-				.forEach((activeSibling) => {
-					activeSibling.classList.remove("active");
-					activeSibling.querySelectorAll("ul").forEach((ul) => {
-						ul.style.display = "none"; // Equivalent to slideUp
-					});
-				});
-
-			// Toggle active class and slide down the current sub-menu
-			if (link.classList.contains("active")) {
-				link.classList.remove("active");
-				link.closest("ul").classList.remove("disabled-menu");
-				link.querySelectorAll("ul").forEach((ul) => {
-					ul.style.display = "none"; // Equivalent to slideUp
-				});
-			} else {
-				link.classList.add("active");
-				link.closest("ul").classList.add("disabled-menu");
-				link.querySelectorAll("ul").forEach((ul) => {
-					ul.style.display = "block"; // Equivalent to slideDown
-				});
-			}
-		}
-	}
-});
-
-// Tab DropDown
-document.addEventListener("DOMContentLoaded", () => {
-	const dropdowns = document.querySelectorAll(".tab-dropdown");
-
-	document.addEventListener("click", (event) => {
-		let clickedDropdown = null;
-
-		dropdowns.forEach((dropdown) => {
-			const toggle = dropdown.querySelector(".dropdown-toggle");
-
-			// If clicked inside this dropdown
-			if (dropdown.contains(event.target)) {
-				if (event.target === toggle || toggle.contains(event.target)) {
-					clickedDropdown = dropdown;
-				}
-			} else {
-				// Close all other dropdowns
-				toggle?.setAttribute("aria-expanded", "false");
-				dropdown.classList.remove("open");
-			}
-		});
-
-		// Toggle clicked dropdown
-		if (clickedDropdown) {
-			const toggle = clickedDropdown.querySelector(".dropdown-toggle");
-			const menu = clickedDropdown.querySelector(".dropdown-menu");
-
-			if (toggle && menu) {
-				const isExpanded =
-					toggle.getAttribute("aria-expanded") === "true";
-				toggle.setAttribute("aria-expanded", String(!isExpanded));
-				clickedDropdown.classList.toggle("open", !isExpanded);
-
-				// Optional: add staggered animation delay to menu items
-				if (!isExpanded) {
-					menu.querySelectorAll("li").forEach((item, index) => {
-						item.style.animationDelay = `${index * 0.1}s`;
-					});
-				}
-			}
-		}
-	});
-
-	// Close dropdown when a menu <li> is clicked
-	document.querySelectorAll(".dropdown-menu li").forEach((item) => {
-		item.addEventListener("click", () => {
-			const dropdown = item.closest(".tab-dropdown");
-			if (dropdown) {
-				dropdown.classList.remove("open");
-				const toggle = dropdown.querySelector(".dropdown-toggle");
-				if (toggle) {
-					toggle.setAttribute("aria-expanded", "false");
-				}
-			}
-		});
-	});
-});
-
-// Sticky Social Start
-document.addEventListener("DOMContentLoaded", () => {
-	if (document.body.classList.contains("single-post")) {
-		const stickySocial = document.querySelector(".sticky-social");
-
-		// Function to update sticky-social top position
-		const updateStickySocial = () => {
-			if (stickySocial) {
-				stickySocial.style.position = "sticky";
-				stickySocial.style.top = "25px"; // Fixed top position
-			}
-		};
-
-		// Initial update on DOMContentLoaded
-		updateStickySocial();
-
-		// Apply style to body tag
-		document.body.style.overflowX = "unset";
-		document.body.style.setProperty("overflow-x", "unset", "important");
-	}
-});
-
-// Counter js start
-document.addEventListener("DOMContentLoaded", function () {
-	const counters = document.querySelectorAll(".counter-number .count");
-	const speed = 3000; // Duration for all counters to finish counting (in milliseconds)
-
-	const getMaxTarget = () => {
-		return Math.max(
-			...Array.from(counters).map(
-				(counter) =>
-					+counter
-						.closest(".counter-number")
-						.getAttribute("data-target"),
-			),
+		const newPaginationContainer = tempDiv.querySelector(
+			".pagination-container",
 		);
-	};
-
-	const maxTarget = getMaxTarget(); // Find the highest target value
-
-	const countUp = (counter) => {
-		const target = +counter
-			.closest(".counter-number")
-			.getAttribute("data-target");
-		const startTime = performance.now();
-
-		const updateCount = (currentTime) => {
-			const elapsedTime = currentTime - startTime;
-			const progress = Math.min(elapsedTime / speed, 1); // Progress from 0 to 1 over the speed duration
-			const currentCount = Math.ceil(progress * target);
-
-			counter.innerText = currentCount.toLocaleString();
-
-			if (progress < 1) {
-				requestAnimationFrame(updateCount);
+		if (newPaginationContainer) {
+			if (paginationWrapper) {
+				paginationWrapper.replaceWith(newPaginationContainer);
 			} else {
-				counter.innerText = target.toLocaleString(); // Ensure the final value is the target
-			}
-		};
-
-		requestAnimationFrame(updateCount);
-	};
-
-	const options = {
-		threshold: 0.1,
-	};
-
-	const observer = new IntersectionObserver((entries, observer) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				const counter = entry.target.querySelector(".count");
-				countUp(counter);
-				observer.unobserve(entry.target);
-			}
-		});
-	}, options);
-
-	counters.forEach((counter) => {
-		observer.observe(counter.closest(".counter-number"));
-	});
-});
-//counter js end
-
-// Header Mega menu append js start
-const HeadermenuAppend = [
-	{ dropdownId: "#mega-dropdown-our-work", menuClass: "our-work" },
-	{ dropdownId: "#mega-dropdown-learn", menuClass: "learn" },
-];
-
-HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
-	const dropdown = document.querySelector(dropdownId);
-	const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
-	const triggerLink = menuItem?.querySelector('a');
-
-	if (dropdown && menuItem) {
-		menuItem.appendChild(dropdown);
-
-		const currentUrl = window.location.href;
-		const links = dropdown.querySelectorAll("a");
-
-		links.forEach(link => {
-			if (link.href === currentUrl) {
-				const iconCol = link.closest(".icon-content-col");
-				if (iconCol) {
-					iconCol.classList.add("active");
+				const fillterBottom = document.querySelector(".fillter-bottom");
+				if (fillterBottom) {
+					fillterBottom.appendChild(newPaginationContainer);
+				} else {
+					donorGrid.insertAdjacentElement(
+						"afterend",
+						newPaginationContainer,
+					);
 				}
 			}
-		});
-
-		// Set ARIA attributes
-		if (triggerLink) {
-			triggerLink.setAttribute("aria-haspopup", "true");
-			triggerLink.setAttribute("aria-expanded", "false");
 		}
 
-		// Show on hover
-		const showDropdown = () => {
-			dropdown.style.display = "block";
-			dropdown.style.opacity = "1";
-			dropdown.style.overflow = "visible";
-			dropdown.style.visibility = "visible";
-			document.body.classList.add("megamenu-hover-active");
-
-			if (triggerLink) {
-				triggerLink.setAttribute("aria-expanded", "true");
+		attachPaginationListeners();
+		setTimeout(() => {
+			const scrollTarget = document.querySelector(
+				".logo-grid-filters-row",
+			);
+			if (scrollTarget) {
+				const offset = 100;
+				const top =
+					scrollTarget.getBoundingClientRect().top +
+					window.pageYOffset -
+					offset;
+				window.scrollTo({ top, behavior: "instant" });
 			}
-		};
-
-		// Hide when leaving dropdown or menu item
-		const hideDropdown = () => {
-			dropdown.style.display = "none";
-			dropdown.style.opacity = "0";
-			dropdown.style.overflow = "hidden";
-			dropdown.style.visibility = "hidden";
-			document.body.classList.remove("megamenu-hover-active");
-
-			if (triggerLink) {
-				triggerLink.setAttribute("aria-expanded", "false");
-			}
-		};
-
-		if (window.innerWidth > 1200) {
-			menuItem.addEventListener("mouseover", showDropdown);
-			menuItem.addEventListener("mouseleave", hideDropdown);
-			menuItem.addEventListener("focusin", showDropdown);
-			menuItem.addEventListener("focusout", hideDropdown);
-
-			// Also hide when mouse leaves the inner container
-			const inner = dropdown.querySelector(".mega-dropdown-inner");
-			if (inner) {
-			inner.addEventListener("mouseleave", hideDropdown);
-			}
-		}
-	}
-});
-// Close mega menu on scroll
-window.addEventListener("scroll", () => {
-	HeadermenuAppend.forEach(({ dropdownId, menuClass }) => {
-		const dropdown = document.querySelector(dropdownId);
-		const menuItem = document.querySelector(`.header-nav ul.menu li.${menuClass}`);
-		const triggerLink = menuItem?.querySelector('a');
-
-		if (dropdown && menuItem) {
-			dropdown.style.display = "none";
-			dropdown.style.opacity = "0";
-			//dropdown.style.overflow = "hidden";
-			//dropdown.style.visibility = "hidden";
-			document.body.classList.remove("megamenu-hover-active");
-
-			if (triggerLink) {
-				triggerLink.setAttribute("aria-expanded", "false");
-			}
-		}
-	});
-});
-// Header Mega menu append js End
-
-
-function applyCardSpacing() {
-	const rowFlex = document.querySelector(
-		".two-column-text.text-featured-block .row-flex",
-	);
-	const cards = rowFlex?.querySelectorAll(".text-card-col");
-
-	if (!rowFlex || !cards.length) {
-		return;
+		}, 50);
 	}
 
-	// Clear all margin-related classes first
-	cards.forEach((card) => {
-		card.classList.remove("no-margin-top", "no-margin-bottom");
-	});
-
-	// Only apply logic above 991px (2-column layout)
-	if (window.innerWidth > 991) {
-		const columnCount = 2;
-		const totalRows = Math.ceil(cards.length / columnCount);
-
-		cards.forEach((card, index) => {
-			const currentRow = Math.floor(index / columnCount);
-
-			// Add margin-top reset to every card in each row
-			card.classList.add("no-margin-top");
-
-			// Remove margin-bottom from all but the last row
-			if (currentRow < totalRows - 1) {
-				card.classList.add("no-margin-bottom");
-			}
-		});
-	}
-}
-
-// Run on page load and on window resize
-document.addEventListener("DOMContentLoaded", applyCardSpacing);
-window.addEventListener("resize", applyCardSpacing);
-
-document.addEventListener("DOMContentLoaded", function () {
-	// Search button click search popup js start
-	const searchBtn = document.querySelector(".search-btn");
-	const searchPopup = document.querySelector(".search-drop");
-	const searchContainer = document.querySelector(".search-mega-dropdown");
-
-	if (searchBtn && searchPopup) {
-		searchBtn.addEventListener("click", function (e) {
-			e.preventDefault(); // prevent default anchor link behavior
-			searchPopup.classList.toggle("active-search");
-		});
-
-		// Close search popup if clicking outside search elements
-		document.addEventListener("click", function (e) {
-			const isInsideSearch =
-				searchPopup.contains(e.target) ||
-				searchBtn.contains(e.target) ||
-				searchContainer?.contains(e.target);
-
-			if (!isInsideSearch) {
-				searchPopup.classList.remove("active-search");
-			}
-		});
-	}
-
-	// Search button click search popup js End
-
-	//hover add class in menu js start
-	/**
-	 * Adds hover behavior on items:
-	 * When hovering one item, add class to all others;
-	 * remove class on mouse leave.
-	 *
-	 * @param {string} selector   - CSS selector for items
-	 * @param {string} hoverClass - class to toggle on other items
-	 */
-	function addHoverEffect(selector, hoverClass) {
-		const items = document.querySelectorAll(selector);
-
-		items.forEach((item) => {
-			item.addEventListener("mouseenter", () => {
-				items.forEach((otherItem) => {
-					if (otherItem !== item) {
-						otherItem.classList.add(hoverClass);
+	function attachPaginationListeners() {
+		document
+			.querySelectorAll(".logo-grid-filters .page-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const newPage = parseInt(this.dataset.page);
+					if (!isNaN(newPage) && newPage !== currentPage) {
+						currentPage = newPage;
+						fetchDonors();
 					}
 				});
 			});
 
-			item.addEventListener("mouseleave", () => {
-				items.forEach((otherItem) => {
-					otherItem.classList.remove(hoverClass);
+		const prevBtn = document.querySelector(
+			".logo-grid-filters .arrow-btn.prev .site-btn",
+		);
+		const nextBtn = document.querySelector(
+			".logo-grid-filters .arrow-btn.next .site-btn",
+		);
+
+		if (prevBtn) {
+			prevBtn.addEventListener("click", (e) => {
+				e.preventDefault();
+				if (currentPage > 1) {
+					currentPage--;
+					fetchDonors();
+				}
+			});
+		}
+
+		if (nextBtn) {
+			nextBtn.addEventListener("click", (e) => {
+				e.preventDefault();
+				currentPage++;
+				fetchDonors();
+			});
+		}
+
+		const mobilePrev = document.querySelector(
+			".logo-grid-filters #prevBtn",
+		);
+		const mobileNext = document.querySelector(
+			".logo-grid-filters #nextBtn",
+		);
+
+		if (mobilePrev) {
+			mobilePrev.addEventListener("click", (e) => {
+				e.preventDefault();
+				if (currentPage > 1) {
+					currentPage--;
+					fetchDonors();
+				}
+			});
+		}
+
+		if (mobileNext) {
+			mobileNext.addEventListener("click", (e) => {
+				e.preventDefault();
+				currentPage++;
+				fetchDonors();
+			});
+		}
+
+		document
+			.querySelectorAll(".logo-grid-filters #popupGrid .page-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", (e) => {
+					e.preventDefault();
+					const popupPage = parseInt(btn.dataset.page);
+					if (!isNaN(popupPage)) {
+						currentPage = popupPage;
+						fetchDonors();
+					}
+				});
+			});
+	}
+
+	document
+		.querySelectorAll(".logo-filter-main .dropdown-menu")
+		.forEach((menu) => {
+			menu.querySelectorAll("a[data-term]").forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const taxonomy = menu.id;
+					const term = link.getAttribute("data-term");
+
+					menu.querySelectorAll("li").forEach((li) =>
+						li.classList.remove("active"),
+					);
+					link.closest("li").classList.add("active");
+
+					if (taxonomy === "donor-type") {
+						currentDonorType = term;
+						document.querySelector("button#donor-type").innerHTML =
+							"Donor type: " +
+							(term === "all"
+								? "All types"
+								: term.replace(/-/g, " "));
+					} else if (taxonomy === "donation-level") {
+						currentDonationLevel = term;
+						document.querySelector(
+							"button#donation-level",
+						).innerHTML =
+							"Donation level: " +
+							(term === "all"
+								? "All levels"
+								: term.replace(/-/g, " "));
+					}
+
+					currentPage = 1;
+					fetchDonors();
 				});
 			});
 		});
-	}
 
-	addHoverEffect(".header-nav .menu > li", "hover-active");
-	addHoverEffect(".mega-two .icon-content-col", "active-hover");
-	addHoverEffect( ".mega-bottom-menu ul#menu-sub-nav-issues > li","hover-active");
-	addHoverEffect(".social-icons a", "active-hover");
-	addHoverEffect(".legal-nav nav .menu > li", "active-hover");
+	attachPaginationListeners();
 
-	//hover add class in menu js end
+	//logo filter code end
 
-	// Tab Content js start
-	const tabContainers = document.querySelectorAll(".tabbed-block-content");
-	if (!tabContainers.length) {
-		return;
-	} // Exit early if no tab blocks on the page
-	tabContainers.forEach((container) => {
-		const tabs = container.querySelectorAll("ul.tabs li");
-		const contents = container.querySelectorAll(".tab-content");
+	// Past Event Filter JS Code Start
+	// Past Event Pagination JS Start
 
-		// Skip if either tabs or contents are missing in this container
-		if (!tabs.length || !contents.length) {
-			return;
+	const teaserList = document.querySelector(".filter-content-cards-grid");
+
+	function fetchPastEvents(paged = 1, updateURL = true) {
+		currentPage = paged;
+
+		if (teaserList) {
+			const loadingElem = document.createElement("div");
+			loadingElem.className = "loading-placeholder";
+			loadingElem.innerHTML = "<p>Loading...</p>";
+			teaserList.appendChild(loadingElem);
 		}
 
-		tabs.forEach((tab) => {
-			tab.addEventListener("click", function () {
-				const tabId = this.getAttribute("data-tab");
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "filter_past_events",
+				paged: paged,
+				nonce: localVars.nonce,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					if (teaserList) teaserList.innerHTML = data.data.html;
 
-				tabs.forEach((t) => t.classList.remove("current"));
-				contents.forEach((content) => {
-					content.classList.remove("current", "fade-in");
-					content.style.opacity = 0;
+					const oldPagination = document.querySelector(
+						".pagination-append-container",
+					);
+					if (oldPagination) {
+						oldPagination.outerHTML = data.data.pagination_html;
+					} else {
+						teaserList.insertAdjacentHTML(
+							"afterend",
+							data.data.pagination_html,
+						);
+					}
+
+					initPaginationListeners(); // reattach buttons
+					attachPaginationEventListeners(); // reattach popup toggle
+					initButtonHoverAnimations();
+
+					// Update browser URL without reload
+					if (updateURL) {
+						const { pathname, search } = window.location;
+
+						// Remove trailing slash and match ending /page/{n}
+						const cleanedPath = pathname.replace(
+							/\/page\/\d+\/?$/,
+							"",
+						);
+
+						// Ensure trailing slash
+						let newPath = cleanedPath.replace(/\/$/, "") + "/";
+
+						// Add pagination segment if needed
+						if (paged > 1) {
+							newPath += `page/${paged}/`;
+						}
+
+						// Combine with query string
+						const newURL = newPath + search;
+
+						// Push new URL into browser history
+						history.pushState({ paged: paged }, "", newURL);
+					}
+
+					// Scroll to top of the list
+					setTimeout(() => {
+						const newTeaserList = document.querySelector(
+							".filter-content-cards-grid",
+						);
+						if (newTeaserList) {
+							const offset = 100; // adjust for sticky headers
+							const top =
+								newTeaserList.getBoundingClientRect().top +
+								window.pageYOffset -
+								offset;
+							window.scrollTo({ top: top, behavior: "instant" });
+						}
+					}, 50);
+				} else {
+					teaserList.innerHTML = "<p>No past events found.</p>";
+				}
+			})
+			.catch((error) => {
+				console.error("AJAX error:", error);
+				teaserList.innerHTML = "<p>Error loading events.</p>";
+			});
+	}
+
+	function initPaginationListeners() {
+		document
+			.querySelectorAll(".pastevent .pagination-container .page-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					console.log("click" + currentPage);
+
+					e.preventDefault(); // ✅ prevent default link behavior
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page) && page !== currentPage) {
+						fetchPastEvents(page);
+					}
 				});
+			});
 
+		const prevBtns = document.querySelectorAll(
+			".pastevent #desktopPrev, .pastevent #prevBtn, .pastevent #popupPrev",
+		);
+		const nextBtns = document.querySelectorAll(
+			".pastevent #desktopNext, .pastevent #nextBtn, .pastevent #popupNext",
+		);
+	}
+
+	function attachPaginationEventListeners() {
+		const pageTrigger = document.getElementById("pageTrigger");
+		const paginationPopup = document.getElementById("paginationPopup");
+
+		if (pageTrigger && paginationPopup) {
+			pageTrigger.addEventListener("click", function () {
+				paginationPopup.classList.toggle("active");
+			});
+
+			document.addEventListener("click", function (e) {
+				if (
+					paginationPopup.classList.contains("active") &&
+					!paginationPopup.contains(e.target) &&
+					e.target !== pageTrigger
+				) {
+					paginationPopup.classList.remove("active");
+				}
+			});
+		}
+	}
+
+	// Initialize listeners on first load
+	initPaginationListeners();
+	attachPaginationEventListeners();
+
+	// Past Event Pagination JS End
+
+	//new code
+	var currentnewsType = "";
+	var currentnewstopic = "";
+	var currentnewsaudience = "";
+	var currentnewscrop = "";
+
+	document
+		.querySelectorAll(".news-list-filter .dropdown-menu")
+		.forEach((menu) => {
+			menu.querySelectorAll("a[data-term]").forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const taxonomy = menu.id; // donor-type or donation-level
+					const term = link.getAttribute("data-term");
+
+					// Remove 'active' class from siblings
+					menu.querySelectorAll("li").forEach((li) =>
+						li.classList.remove("active"),
+					);
+					link.closest("li").classList.add("active");
+
+					// Set selected term
+					if (taxonomy === "news-type") {
+						currentnewsType = term;
+						const typeBtn =
+							document.querySelector("button#news-type");
+						if (typeBtn) {
+							typeBtn.innerHTML =
+								"News type: " +
+								(term === "all"
+									? "All types"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					} else if (taxonomy === "news-topic") {
+						currentnewstopic = term;
+						const topicBtn =
+							document.querySelector("button#topic-view");
+						if (topicBtn) {
+							topicBtn.innerHTML =
+								"Topic: " +
+								(term === "all"
+									? "All Topics"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					} else if (taxonomy === "news-audience") {
+						currentnewsaudience = term;
+						const audienceBtn = document.querySelector(
+							"button#news-audience",
+						);
+						if (audienceBtn) {
+							audienceBtn.innerHTML =
+								"Audience: " +
+								(term === "all"
+									? "All Audiences"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					} else if (taxonomy === "news-crop") {
+						currentnewscrop = term;
+						const cropBtn =
+							document.querySelector("button#types-view");
+						if (cropBtn) {
+							cropBtn.innerHTML =
+								"Crop: " +
+								(term === "all"
+									? "All Crops"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					}
+
+					// Reset to page 1
+					currentPage = 1;
+					fetchnews();
+				});
+			});
+		});
+
+	const news_append_list = document.querySelector(
+		".newsmain .filter-content-cards-grid",
+	);
+	const new_pagination = document.querySelector(".newsmain .fillter-bottom");
+	const newnotfound = document.querySelector(".newsmain .not-found-append");
+
+	function fetchnews(paged = 1, updateURL = true) {
+		currentPage = paged;
+
+		if (news_append_list) {
+			const loadingElem = document.createElement("div");
+			loadingElem.className = "loading-placeholder";
+			loadingElem.innerHTML = '<div class="spin-loader"></div>';
+			news_append_list.appendChild(loadingElem);
+		}
+
+		if (updateURL) {
+			const url = new URL(window.location);
+			if (currentnewsType) {
+				if (currentnewsType === "all") {
+					url.searchParams.delete("type");
+				} else {
+					url.searchParams.set("type", currentnewsType || "");
+				}
+			}
+			if (currentnewstopic) {
+				if (currentnewstopic === "all") {
+					url.searchParams.delete("topic");
+				} else {
+					url.searchParams.set("topic", currentnewstopic || "");
+				}
+			}
+			if (currentnewsaudience) {
+				if (currentnewsaudience === "all") {
+					url.searchParams.delete("audience");
+				} else {
+					url.searchParams.set("audience", currentnewsaudience || "");
+				}
+			}
+			if (currentnewscrop) {
+				if (currentnewscrop === "all") {
+					url.searchParams.delete("crop");
+				} else {
+					url.searchParams.set("crop", currentnewscrop || "");
+				}
+			}
+			//	url.searchParams.set("page", paged);
+			window.history.pushState({}, "", url);
+		}
+
+		setTimeout(() => {
+			const newTeaserList = document.querySelector(".newsmain");
+			if (newTeaserList) {
+				const offset = 100;
+				const top =
+					newTeaserList.getBoundingClientRect().top +
+					window.pageYOffset -
+					offset;
+				window.scrollTo({ top: top, behavior: "instant" });
+			}
+		}, 50);
+
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "filter_news",
+				paged: paged,
+				news_type: currentnewsType,
+				news_topic: currentnewstopic,
+				news_audience: currentnewsaudience,
+				news_crop: currentnewscrop,
+				nonce: localVars.nonce,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					// ✅ Corrected this line
+					if (new_pagination)
+						news_append_list.innerHTML = data.data.news_html;
+
+					if (data.data.datafound == "yes") {
+						if (news_append_list) {
+							news_append_list.innerHTML = data.data.news_html;
+						}
+						newnotfound.innerHTML = "";
+					} else {
+						news_append_list.innerHTML = "";
+						newnotfound.innerHTML = data.data.news_html;
+					}
+
+					const oldPagination = document.querySelector(
+						".news-pagination-append-container",
+					);
+					if (oldPagination) {
+						oldPagination.outerHTML = data.data.pagination_html;
+					} else {
+						//const oldPagination = document.querySelector('.news-pagination-append-container');
+						console.log(123);
+
+						new_pagination.insertAdjacentHTML(
+							"beforeend",
+							data.data.pagination_html,
+						);
+					}
+
+					initnewsPaginationListeners();
+					attachPaginationEventListeners?.(); // Safe optional chaining
+					initButtonHoverAnimations();
+
+					if (updateURL) {
+						const { pathname, search } = window.location;
+						const cleanedPath = pathname.replace(
+							/\/page\/\d+\/?$/,
+							"",
+						);
+						let newPath = cleanedPath.replace(/\/$/, "") + "/";
+						if (paged > 1) {
+							newPath += `page/${paged}/`;
+						}
+						const newURL = newPath + search;
+						history.pushState({ paged: paged }, "", newURL);
+					}
+				} else {
+					news_append_list.innerHTML = "<p>No news posts found.</p>";
+				}
+			})
+			.catch((error) => {
+				console.error("AJAX error:", error);
+				news_append_list.innerHTML = "<p>Error loading news.</p>";
+			});
+	}
+
+	//new code
+	var learntype = "";
+	var learntopic = "";
+	var learncrops = "";
+	var learnaudiance = "";
+	//var currentPage = 1;
+
+	// Helper function to get query param
+	function getQueryParam(param) {
+		const urlParams = new URLSearchParams(window.location.search);
+		return urlParams.get(param);
+	}
+
+	// Helper to format label
+	function formatLabel(label, fallback) {
+		return label === "all" ? fallback : label.replace(/-/g, " ");
+	}
+
+	function updateFilterButton(selector, prefix, value, fallback) {
+		const button = document.querySelector(selector);
+		if (button) {
+			const label = formatLabel(value, fallback);
+			button.innerHTML = `${prefix}: ${label}<div class="arrow-icon"></div>`;
+
+			const top = document
+				.querySelector(".mainlearn")
+				.getBoundingClientRect().top;
+			window.scrollTo({
+				top: top,
+				behavior: "smooth", // use "smooth" if you want animated scrolling
+			});
+		}
+	}
+
+	// Load values from URL
+	window.addEventListener("DOMContentLoaded", () => {
+		// Get values from URL if present
+		learntype = getQueryParam("learn-type") || "";
+		learntopic = getQueryParam("learn-topic") || "";
+		learncrops = getQueryParam("learn-crop") || "";
+		learnaudiance = getQueryParam("audience-view") || "";
+
+		//console
+		// Set initial button labels and active states
+		if (learntype) {
+			updateFilterButton("button#type-view", "Type", learntype, "Type");
+			document
+				.querySelector(`#learn-type a[data-term="${learntype}"]`)
+				?.closest("li")
+				?.classList.add("active");
+		}
+		if (learntopic) {
+			updateFilterButton(
+				"button#topic-view",
+				"Topic",
+				learntopic,
+				"All Topics",
+			);
+			document
+				.querySelector(`#learn-topic a[data-term="${learntopic}"]`)
+				?.closest("li")
+				?.classList.add("active");
+		}
+		if (learncrops) {
+			updateFilterButton(
+				"button#category-view",
+				"Crop",
+				learncrops,
+				"All Crops",
+			);
+			document
+				.querySelector(`#learn-crops a[data-term="${learncrops}"]`)
+				?.closest("li")
+				?.classList.add("active");
+		}
+		if (learnaudiance) {
+			updateFilterButton(
+				"button#audience-view",
+				"Audience",
+				learnaudiance,
+				"All Audiences",
+			);
+			document
+				.querySelector(`#audience-view a[data-term="${learnaudiance}"]`)
+				?.closest("li")
+				?.classList.add("active");
+		}
+
+		//fetchlearn(); // Initial fetch with values from URL
+	});
+	document
+		.querySelectorAll(".learn-list-filter .dropdown-menu")
+		.forEach((menu) => {
+			menu.querySelectorAll("a[data-term]").forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const taxonomy = menu.id; // donor-type or donation-level
+					const term = link.getAttribute("data-term");
+
+					console.log(term + "seleceted term");
+
+					// Remove 'active' class from siblings
+					menu.querySelectorAll("li").forEach((li) =>
+						li.classList.remove("active"),
+					);
+					link.closest("li").classList.add("active");
+					console.log(taxonomy + "taxo");
+					// Set selected term
+					if (taxonomy === "learn-type") {
+						learntype = term;
+						const typeBtn =
+							document.querySelector("button#type-view");
+						if (typeBtn) {
+							typeBtn.innerHTML =
+								"Type: " +
+								(term === "all"
+									? "Type"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					} else if (taxonomy === "learn-topic") {
+						learntopic = term;
+						const topicBtn =
+							document.querySelector("button#topic-view");
+						if (topicBtn) {
+							topicBtn.innerHTML =
+								"Topic: " +
+								(term === "all"
+									? "All Topics"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					} else if (taxonomy === "learn-crops") {
+						learncrops = term;
+						const cropBtn = document.querySelector(
+							"button#category-view",
+						);
+						if (cropBtn) {
+							cropBtn.innerHTML =
+								"Crop: " +
+								(term === "all"
+									? "All Crops"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					} else if (taxonomy === "audience-view") {
+						learnaudiance = term;
+						const audience = document.querySelector(
+							"button#audience-view",
+						);
+						if (audience) {
+							audience.innerHTML =
+								"Audience: " +
+								(term === "all"
+									? "All Audiences"
+									: term.replace(/-/g, " ")) +
+								'<div class="arrow-icon"></div>';
+						}
+					}
+
+					// Reset to page 1
+					currentPage = 1;
+					fetchlearn();
+				});
+			});
+		});
+
+	//learn code start
+	const learn_append_list = document.querySelector(
+		".mainlearn .filter-cards-grid",
+	);
+	const learn_pagination = document.querySelector(
+		".mainlearn .fillter-bottom",
+	);
+	const notfound = document.querySelector(".mainlearn .not-found-append");
+
+	function fetchlearn(paged = 1, updateURL = true) {
+		currentPage = paged;
+
+		if (learn_append_list) {
+			const loadingElem = document.createElement("div");
+			loadingElem.className = "loading-placeholder";
+			loadingElem.innerHTML = '<div class="spin-loader"></div>';
+			learn_append_list.appendChild(loadingElem);
+		}
+		if (updateURL) {
+			const url = new URL(window.location);
+			if (learntype === "all") {
+				url.searchParams.delete("learn-type");
+			} else if (learntype) {
+				url.searchParams.set("learn-type", learntype);
+			}
+
+			if (learntopic === "all") {
+				url.searchParams.delete("learn-topic");
+			} else if (learntopic) {
+				url.searchParams.set("learn-topic", learntopic);
+			}
+
+			if (learncrops === "all") {
+				url.searchParams.delete("learn-crop");
+			} else if (learncrops) {
+				url.searchParams.set("learn-crop", learncrops);
+			}
+
+			if (learnaudiance === "all") {
+				url.searchParams.delete("learn-audience");
+			} else if (learnaudiance) {
+				url.searchParams.set("learn-audience", learnaudiance);
+			}
+
+			//	url.searchParams.set("page", paged);
+			window.history.pushState({}, "", url);
+		}
+
+		setTimeout(() => {
+			const newTeaserList = document.querySelector(
+				".resoruce-filter-title",
+			);
+			if (newTeaserList) {
+				const offset = 100;
+				const top =
+					newTeaserList.getBoundingClientRect().top +
+					window.pageYOffset -
+					offset;
+				window.scrollTo({ top: top, behavior: "instant" });
+			}
+		}, 50);
+
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "filter_learn",
+				paged: paged,
+				post_type: learntype,
+				learn_topic: learntopic,
+				learn_crops: learncrops,
+				learn_audience: learnaudiance,
+				nonce: localVars.nonce,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					// ✅ Corrected this line
+					if (data.data.datafound == "yes") {
+						if (learn_append_list) {
+							learn_append_list.innerHTML = data.data.news_html;
+						}
+						notfound.innerHTML = "";
+					} else {
+						learn_append_list.innerHTML = "";
+						notfound.innerHTML = data.data.news_html;
+					}
+
+					const oldPagination = document.querySelector(
+						".learn-pagination-append-container",
+					);
+					if (oldPagination) {
+						oldPagination.outerHTML = data.data.pagination_html;
+					} else {
+						learn_pagination.insertAdjacentHTML(
+							"beforeend",
+							`${data.data.pagination_html}`,
+						);
+					}
+
+					initLearnPaginationListeners();
+					attachPaginationEventListeners?.(); // Safe optional chaining
+					initButtonHoverAnimations();
+
+					if (updateURL) {
+						const { pathname, search } = window.location;
+						const cleanedPath = pathname.replace(
+							/\/page\/\d+\/?$/,
+							"",
+						);
+						let newPath = cleanedPath.replace(/\/$/, "") + "/";
+						if (paged > 1) {
+							newPath += `page/${paged}/`;
+						}
+						const newURL = newPath + search;
+						history.pushState({ paged: paged }, "", newURL);
+					}
+				} else {
+					learn_append_list.innerHTML = "<p>No news posts found.</p>";
+				}
+			})
+			.catch((error) => {
+				console.error("AJAX error:", error);
+				learn_append_list.innerHTML = "<p>Error loading news.</p>";
+			});
+	}
+
+	function initnewsPaginationListeners() {
+		document
+			.querySelectorAll(".newsmain .pagination-container .page-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page) && page !== currentPage) {
+						fetchnews(page);
+					}
+				});
+			});
+
+		document
+			.querySelectorAll(".newsmain .pagination-container .site-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page)) {
+						fetchnews(page);
+					}
+				});
+			});
+	}
+
+	function initLearnPaginationListeners() {
+		document
+			.querySelectorAll(".mainlearn .pagination-container .page-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page) && page !== currentPage) {
+						fetchlearn(page);
+					}
+				});
+			});
+
+		document
+			.querySelectorAll(".mainlearn .pagination-container .site-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page)) {
+						fetchlearn(page);
+					}
+				});
+			});
+	}
+
+	initnewsPaginationListeners();
+	initLearnPaginationListeners();
+
+	// search ajax code start
+
+	var searcheve = "";
+	var learntaxeve = "";
+	document
+		.querySelectorAll(".search-list-filter .dropdown-menu")
+		.forEach((menu) => {
+			menu.querySelectorAll("a[data-post]").forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const taxonomy = menu.id; // e.g., 'search-type'
+					const term = link.getAttribute("data-post");
+					const termtaxonomy = link.getAttribute("data-taxonomy");
+
+					// Remove 'active' class from siblings
+					menu.querySelectorAll("li").forEach((li) =>
+						li.classList.remove("active"),
+					);
+					link.closest("li").classList.add("active");
+
+					console.log(term, termtaxonomy);
+
+					// Set selected term and label
+					if (taxonomy === "search-type") {
+						searcheve = termtaxonomy ? "post" : term;
+						learntaxeve = termtaxonomy ? termtaxonomy : "";
+						const label =
+							term === "all"
+								? "everything"
+								: link.textContent.trim();
+
+						const button = document.querySelector(
+							"button#search-type-btn",
+						);
+						button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
+					}
+					document.querySelector(
+						"#searchForm .search-type-field",
+					).value = searcheve;
+					document.querySelector(
+						"#searchForm .learn-type-field",
+					).value = learntaxeve;
+
+					// Reset to page 1
+					currentPage = 1;
+					featch_search_list(1, true, searcheve, learntaxeve);
+				});
+			});
+		});
+
+	document
+		.querySelectorAll(".menu-search-type-list .dropdown-menu")
+		.forEach((menu) => {
+			menu.querySelectorAll("a[data-post]").forEach((link) => {
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const term = link.getAttribute("data-post");
+					const taxonomy = link.getAttribute("data-taxonomy");
+
+					// Remove 'active' class from siblings
+					menu.querySelectorAll("li").forEach((li) =>
+						li.classList.remove("active"),
+					);
+					link.closest("li").classList.add("active");
+
+					// Set selected term and label
+					const label =
+						term === "all" ? "Everything" : link.textContent.trim();
+
+					const button = document.querySelector(
+						"button#menu-search-type-btn",
+					);
+					button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
+
+					document.querySelector(
+						"#header-search-form .search-type-field",
+					).value = term;
+					document.querySelector(
+						"#header-search-form .learn-type-field",
+					).value = taxonomy;
+				});
+			});
+		});
+
+	const search_append_list = document.querySelector(".append-search-result"); // ✅ updated selector
+	const search_pagination = document.querySelector(
+		".append-search-result-pagination",
+	);
+	const searchForm = document.getElementById("searchForm");
+	const searchType = document.getElementById("search-type");
+
+	let currentOrderBy = "date";
+
+	function getCurrentOrderBy() {
+		currentOrderBy = document
+			.querySelector("#search-orderby-tabs .tab-link.current")
+			.getAttribute("data-orderby");
+		return currentOrderBy;
+	}
+
+	function getSearchType() {
+		return searchType ? searchType.value.trim() : "";
+	}
+
+	const searchInput = document.getElementById("search-field");
+
+	function getSearchVal() {
+		return searchInput ? searchInput.value.trim() : "";
+	}
+
+	// Set input from URL on page load
+	if (searchInput) {
+		const urlParams = new URLSearchParams(window.location.search);
+		const searchValFromURL = urlParams.get("s") || "";
+		searchInput.value = searchValFromURL;
+	}
+
+	function featch_search_list(
+		paged = 1,
+		updateURL = true,
+		searcheve = "all",
+		learntaxeve = "",
+	) {
+		currentPage = paged;
+
+		if (search_append_list) {
+			const loadingElem = document.createElement("div");
+			loadingElem.className = "loading-placeholder";
+			loadingElem.innerHTML = "<p>Loading...</p>";
+			search_append_list.appendChild(loadingElem);
+		}
+
+		// Update query param in address bar
+		if (updateURL) {
+			const url = new URL(window.location);
+			if (getSearchVal()) {
+				url.searchParams.set("s", getSearchVal());
+			} else {
+				url.searchParams.set("s", "");
+			}
+			if (getCurrentOrderBy()) {
+				url.searchParams.set("orderby", getCurrentOrderBy());
+			} else {
+				url.searchParams.delete("orderby");
+			}
+			if (searcheve) {
+				url.searchParams.set("search-type", searcheve);
+			} else {
+				url.searchParams.delete("search-type");
+			}
+			if (learntaxeve) {
+				url.searchParams.set("learn-type", learntaxeve);
+			} else {
+				url.searchParams.delete("learn-type");
+			}
+			window.history.pushState({}, "", url);
+		}
+
+		const searchHeading = document.getElementById("search-heading");
+		if (searchHeading) {
+			searchHeading.textContent = `Results for "${getSearchVal()}"`;
+		}
+
+		fetch(localVars.ajax_url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				action: "search_filter",
+				type: searcheve,
+				learntype: learntaxeve,
+				s: getSearchVal(),
+				paged: paged,
+				orderby: getCurrentOrderBy(),
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.success) {
+					// ✅ Insert search result HTML
+					if (search_append_list) {
+						search_append_list.innerHTML = data.data.news_html;
+					}
+
+					// ✅ Update or insert pagination
+					const oldPagination = document.querySelector(
+						".append-search-result-pagination",
+					);
+					if (oldPagination) {
+						oldPagination.outerHTML = data.data.pagination_html;
+					} else if (search_pagination) {
+						search_pagination.insertAdjacentHTML(
+							"beforeend",
+							data.data.pagination_html,
+						);
+					}
+
+					initsearch_pagination();
+					attachPaginationEventListeners();
+					initButtonHoverAnimations();
+
+					// ✅ Push pretty permalink
+					if (updateURL) {
+						const { pathname, search } = window.location;
+						const cleanedPath = pathname.replace(
+							/\/page\/\d+\/?$/,
+							"",
+						);
+						let newPath = cleanedPath.replace(/\/$/, "") + "/";
+						if (paged > 1) {
+							newPath += `page/${paged}/`;
+						}
+						const newURL = newPath + search;
+						history.pushState({ paged: paged }, "", newURL);
+					}
+
+					// ✅ instant scroll to results
+					setTimeout(() => {
+						const newTeaserList = document.querySelector(
+							".append-search-result",
+						);
+						if (newTeaserList) {
+							const offset = 100;
+							const top =
+								newTeaserList.getBoundingClientRect().top +
+								window.pageYOffset -
+								offset;
+							window.scrollTo({ top: top, behavior: "instant" });
+						}
+					}, 50);
+				} else {
+					search_append_list.innerHTML = "<p>No results found.</p>";
+				}
+			})
+			.catch((error) => {
+				console.error("AJAX error:", error);
+				search_append_list.innerHTML = "<p>Error loading results.</p>";
+			});
+	}
+
+	document
+		.querySelectorAll("#search-orderby-tabs .tab-link")
+		.forEach((tab) => {
+			tab.addEventListener("click", function (e) {
+				e.preventDefault();
+
+				// Remove current from all
+				document
+					.querySelectorAll("#search-orderby-tabs .tab-link")
+					.forEach((t) => t.classList.remove("current"));
+				// Add current to this one
 				this.classList.add("current");
 
-				const activeContent = container.querySelector("#" + tabId);
-				if (activeContent) {
-					activeContent.classList.add("current");
+				// Set the order
+				currentOrderBy = this.dataset.orderby;
 
-					// Trigger reflow
-					void activeContent.offsetWidth;
-
-					activeContent.classList.add("fade-in");
-					activeContent.style.opacity = 1;
-				}
+				// Run search again
+				featch_search_list(
+					1,
+					true,
+					document.querySelector("#searchForm .search-type-field")
+						.value,
+					document.querySelector("#searchForm .learn-type-field")
+						.value,
+				);
 			});
 		});
-	});
-	// Tab Content js end
-});
-function initDropdownMenus() {
-	const tabDropdowns = document.querySelectorAll(".menu-dropdown");
 
-	if (!tabDropdowns.length) {
-		return;
+	function initsearch_pagination() {
+		document
+			.querySelectorAll(".search-main .pagination-container .page-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page) && page !== currentPage) {
+						featch_search_list(
+							page,
+							true,
+							document.querySelector(
+								"#searchForm .search-type-field",
+							).value,
+							document.querySelector(
+								"#searchForm .learn-type-field",
+							).value,
+						);
+					}
+				});
+			});
+
+		document
+			.querySelectorAll(".search-main .pagination-container .site-btn")
+			.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					e.preventDefault();
+					const page = parseInt(this.getAttribute("data-page"));
+					if (!isNaN(page)) {
+						featch_search_list(
+							page,
+							true,
+							document.querySelector(
+								"#searchForm .search-type-field",
+							).value,
+							document.querySelector(
+								"#searchForm .learn-type-field",
+							).value,
+						);
+					}
+				});
+			});
 	}
 
-	tabDropdowns.forEach((tabDropdown) => {
-		if (!tabDropdown) {
-			return;
-		}
-
-		const toggleButton = tabDropdown.querySelector(".menu-dropdown .dropdown-toggle");
-		const dropdownMenu = tabDropdown.querySelector(".menu-dropdown .dropdown-menu");
-
-		if (!toggleButton || !dropdownMenu) {
-			return;
-		}
-
-		function positionDropdown() {
-			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop =
-				window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft =
-				window.pageXOffset || document.documentElement.scrollLeft;
-
-			dropdownMenu.style.position = "absolute";
-			dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
-			dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
-			dropdownMenu.style.width = `${rect.width}px`; // match width to toggle button
-		}
-
-		function closeDropdown() {
-			toggleButton.setAttribute("aria-expanded", "false");
-			dropdownMenu.style.display = "none";
-			tabDropdown.classList.remove("open");
-			dropdownMenu.classList.remove("open");
-		}
-
-		// Toggle dropdown on button click
-		toggleButton.addEventListener("click", (event) => {
-			event.stopPropagation();
-
-			const isExpanded =
-				toggleButton.getAttribute("aria-expanded") === "true";
-			toggleButton.setAttribute("aria-expanded", !isExpanded);
-
-			if (!isExpanded) {
-				dropdownMenu.style.display = "block";
-				tabDropdown.classList.add("open");
-				dropdownMenu.classList.add("open");
-				positionDropdown();
-
-				const listItems = dropdownMenu.querySelectorAll("li");
-				if (listItems.length) {
-					listItems.forEach((item, index) => {
-						if (item) {
-							item.style.animationDelay = `${index * 0.1}s`;
-						}
-					});
-				}
-			} else {
-				closeDropdown();
-			}
+	if (searchForm) {
+		searchForm.addEventListener("submit", function (e) {
+			e.preventDefault(); // prevent page reload
+			featch_search_list(
+				1,
+				true,
+				document.querySelector("#searchForm .search-type-field").value,
+				document.querySelector("#searchForm .learn-type-field").value,
+			); // call with page 1 on new search
 		});
+	}
 
-		// Close dropdown when clicking outside
-		document.addEventListener("click", (event) => {
-			if (!tabDropdown.contains(event.target)) {
-				closeDropdown();
-			}
-		});
+	initsearch_pagination();
 
-		// Reposition on window resize
-		window.addEventListener("resize", () => {
-			if (toggleButton.getAttribute("aria-expanded") === "true") {
-				positionDropdown();
-			}
-		});
-		window.addEventListener("scroll", () => {
-			if (toggleButton.getAttribute("aria-expanded") === "true") {
-				closeDropdown();
-			}
-		});
-	});
-}
-
-// Run on DOM ready
-document.addEventListener("DOMContentLoaded", initDropdownMenus);
-
-// For ACF block preview / dynamic load
-if (typeof window.acf !== "undefined") {
-	window.acf.addAction("render_block_preview", initDropdownMenus);
-}
-
-//dropdown menu js start
-document.addEventListener("DOMContentLoaded", () => {
-	// Wait a bit for all DOM elements to load
 	setTimeout(() => {
-		initDropdowns();
-	}, 100);
-});
-
-function initDropdowns() {
-	const tabDropdowns = document.querySelectorAll(".tab-dropdown");
-
-	tabDropdowns.forEach((tabDropdown) => {
-		const toggleButton = tabDropdown.querySelector(".dropdown-toggle");
-		if (!toggleButton) {
-			return;
-		}
-
-		const menuId = toggleButton.getAttribute("aria-controls");
-
-		// Try to find the dropdown menu - it might be outside the tabDropdown
-		const dropdownMenu = document.querySelector(
-			`ul#${menuId}.dropdown-menu`,
+		// Check if the target container exists first
+		const append_search_result = document.querySelector(
+			".append-search-result",
 		);
 
-		// If not found, skip this dropdown for now - it might load later
-		if (!dropdownMenu) {
-			console.warn(`Dropdown menu with ID ${menuId} not found yet`);
-			return;
-		}
+		if (append_search_result) {
+			// 1. Extract Page Number from Path (e.g., /page/3/)
+			const path = window.location.pathname;
+			const pageMatch = path.match(/\/page\/(\d+)/);
+			const currentPage = pageMatch ? parseInt(pageMatch[1]) : 1;
 
-		function positionDropdown() {
-			const rect = toggleButton.getBoundingClientRect();
-			const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-			const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+			// 2. Extract Query Params (?search-type=...&learn-type=...)
+			const urlParams = new URLSearchParams(window.location.search);
 
-			dropdownMenu.style.position = "absolute";
-			dropdownMenu.style.zIndex = "1";
-			const insideHeaderSearchMenu = toggleButton.closest('.header-search-menu') !== null;
-			    if (!insideHeaderSearchMenu) {
-			        dropdownMenu.style.top = `${rect.top + rect.height + scrollTop}px`;
-			        dropdownMenu.style.left = `${rect.left + scrollLeft}px`;
-			        dropdownMenu.style.width = `${rect.width}px`;
-			    }
-		}
+			// Priority: URL Param > Form Input Value > Default "all"
+			const searchType =
+				urlParams.get("search-type") ||
+				document.querySelector("#searchForm .search-type-field")
+					?.value ||
+				"all";
 
-		function closeDropdown() {
-			toggleButton.setAttribute("aria-expanded", "false");
-			dropdownMenu.style.display = "none";
-			tabDropdown.classList.remove("open");
-			dropdownMenu.classList.remove("open");
-		}
+			const learnType =
+				urlParams.get("learn-type") ||
+				document.querySelector("#searchForm .learn-type-field")
+					?.value ||
+				"";
 
-		function closeAllDropdowns() {
-			document.querySelectorAll(".dropdown-menu").forEach((menu) => {
-				menu.style.display = "none";
-				menu.classList.remove("open");
-			});
-			document.querySelectorAll(".tab-dropdown").forEach((drop) => {
-				drop.classList.remove("open");
-			});
-			document.querySelectorAll(".dropdown-toggle").forEach((btn) => {
-				btn.setAttribute("aria-expanded", "false");
-			});
-		}
-
-		function updateButtonText(selectedText) {
-			const buttonTextNode = toggleButton.childNodes[0];
-			if (buttonTextNode && buttonTextNode.nodeType === Node.TEXT_NODE) {
-				// Get the original button text to extract the prefix
-				const originalText = buttonTextNode.textContent;
-
-				// Find the colon to split prefix from current value
-				const colonIndex = originalText.indexOf(":");
-
-				if (colonIndex !== -1) {
-					// Extract the prefix (everything before and including the colon + space)
-					const prefix =
-						originalText.substring(0, colonIndex + 1) + " ";
-					buttonTextNode.textContent = prefix + selectedText;
-				} else {
-					// Fallback: if no colon found, just replace the entire text
-					buttonTextNode.textContent = selectedText;
-				}
-			}
-		}
-
-		// Toggle dropdown on button click
-		toggleButton.addEventListener("click", (event) => {
-			event.preventDefault();
-			event.stopPropagation();
-
-			const isExpanded =
-				toggleButton.getAttribute("aria-expanded") === "true";
-
-			// Close all dropdowns first
-			closeAllDropdowns();
-
-			// If this dropdown wasn't expanded, open it
-			if (!isExpanded) {
-				toggleButton.setAttribute("aria-expanded", "true");
-				dropdownMenu.style.display = "block";
-				dropdownMenu.classList.add("open");
-				tabDropdown.classList.add("open");
-				positionDropdown();
-
-				// Add staggered animation delay
-				dropdownMenu.querySelectorAll("li").forEach((li, index) => {
-					li.style.animationDelay = `${index * 0.1}s`;
-				});
-			}
-		});
-
-		// Handle dropdown item selection - This is the key fix!
-		dropdownMenu.addEventListener("click", (event) => {
-			// Check if clicked element is a link or inside a link
-			const clickedLink = event.target.closest("a");
-			if (!clickedLink) {
-				return;
-			}
-
-			const href = clickedLink.getAttribute("href");
-			const selectedTerm = clickedLink.getAttribute("data-term");
-			const selectedText = clickedLink.textContent.trim();
-
-			// Check if this is a filter dropdown (has data-term) or a navigation menu
-			const isFilterDropdown =
-				selectedTerm !== null && selectedTerm !== undefined;
-			const isJavascriptVoid =
-				href === "javascript:void(0)" || href === "#" || href === "";
-
-			// If it's a real URL and not a filter, update button text then navigate
-			if (
-				!isJavascriptVoid &&
-				!isFilterDropdown &&
-				href &&
-				href.length > 0
-			) {
-				// Prevent immediate navigation to show the update first
-				event.preventDefault();
-				event.stopPropagation();
-
-				// Update button text to show selection
-				updateButtonText(selectedText);
-
-				// Close the dropdown
-				closeDropdown();
-
-				// Navigate after a short delay to show the text update
-				setTimeout(() => {
-					window.location.href = href;
-				}, 300); // 300ms delay to show the text change
-
-				return;
-			}
-
-			// If it's a filter dropdown or javascript:void(0), handle as filter
-			if (isFilterDropdown || isJavascriptVoid) {
-				event.preventDefault();
-				event.stopPropagation();
-
-				// Only update UI if it's a filter dropdown
-				if (isFilterDropdown) {
-					// Remove active class from all items in this dropdown
-					dropdownMenu
-						.querySelectorAll("li")
-						.forEach((li) => li.classList.remove("active"));
-
-					// Add active class to selected item
-					const selectedLi = clickedLink.closest("li");
-					if (selectedLi) {
-						selectedLi.classList.add("active");
-					}
-
-					// Update button text
-					updateButtonText(selectedText);
-				}
-
-				// Close the dropdown FIRST
-				closeDropdown();
-
-				// Only trigger filtering if it's actually a filter dropdown
-				if (isFilterDropdown) {
-					// Add your AJAX filtering logic here
-					if (typeof filterContent === "function") {
-						filterContent(toggleButton.id, selectedTerm);
-					}
-
-					// Or trigger a custom event for your AJAX handler
-					const filterEvent = new CustomEvent(
-						"dropdownFilterChanged",
-						{
-							detail: {
-								filterType: toggleButton.id,
-								selectedTerm,
-								selectedText,
-							},
-						},
-					);
-					document.dispatchEvent(filterEvent);
-				}
-			}
-		});
-
-		// Close dropdown when clicking outside
-		document.addEventListener("click", (event) => {
-			if (
-				!tabDropdown.contains(event.target) &&
-				!dropdownMenu.contains(event.target)
-			) {
-				closeDropdown();
-			}
-		});
-
-		// Reposition on window resize
-		window.addEventListener("resize", () => {
-			if (toggleButton.getAttribute("aria-expanded") === "true") {
-				positionDropdown();
-			}
-		});
-	});
-}
-//dropdown menu js end
-
-//Scrolling Text block js start
-document.addEventListener("DOMContentLoaded", function () {
-	// Find all sticky elements and their related components
-	const stickyElements = document.querySelectorAll(".sticky-top-touch");
-
-	if (!stickyElements.length) {
-		return;
-	}
-
-	stickyElements.forEach(function (subNav) {
-		const headerSection = document.querySelector(".header-section");
-		const wpAdminBar = document.getElementById("wpadminbar");
-		const parentSection = subNav.closest(".sticky-parent")?.parentElement?.parentElement;
-		const stickyParent = subNav.closest(".sticky-parent");
-
-		if (!headerSection || !parentSection || !stickyParent) {
-			return;
-		}
-
-		let headerHeight = headerSection.offsetHeight;
-		let wpAdminBarHeight = wpAdminBar ? wpAdminBar.offsetHeight : 0;
-
-		function updateStickyWidth() {
-			const stickyParentWidth = stickyParent.offsetWidth;
-			subNav.style.width = stickyParentWidth + "px";
-		}
-		function updateParentHeight() {
-			const stickyHeight = subNav.offsetHeight;
-			stickyParent.style.height = stickyHeight + "px";
-		}
-
-		function onScroll() {
-	if (window.innerWidth <= 991) {
-		// Reset styles on smaller screens
-		subNav.classList.remove("scrolled");
-		subNav.style.position = "";
-		subNav.style.top = "";
-		subNav.style.bottom = "";
-		subNav.style.width = "";
-		return;
-	}
-
-	// ✅ Recalculate every scroll
-	const headerHeight = headerSection.offsetHeight;
-	const wpAdminBarHeight = wpAdminBar ? wpAdminBar.offsetHeight : 0;
-	const totalOffset = headerHeight + wpAdminBarHeight;
-
-	const scrollY = window.scrollY || window.pageYOffset;
-	const parentTop = parentSection.offsetTop;
-	const parentHeight = parentSection.offsetHeight;
-	const parentBottom = parentTop + parentHeight;
-
-	const stickyHeight = subNav.offsetHeight;
-	updateParentHeight();
-
-	if (scrollY + totalOffset >= parentTop && scrollY + totalOffset < parentBottom - stickyHeight) {
-		subNav.classList.add("scrolled");
-		subNav.style.position = "fixed";
-		subNav.style.top = totalOffset + "px"; // ✅ always fresh
-		updateStickyWidth();
-		subNav.style.bottom = "";
-	} else if (scrollY + totalOffset >= parentBottom - stickyHeight) {
-		subNav.classList.remove("scrolled");
-		subNav.style.position = "absolute";
-		subNav.style.top = "";
-		subNav.style.bottom = "0";
-		updateStickyWidth();
-	} else {
-		subNav.classList.remove("scrolled");
-		subNav.style.position = "";
-		subNav.style.top = "";
-		subNav.style.bottom = "";
-		subNav.style.width = "";
-	}
-}
-
-		window.addEventListener("scroll", onScroll);
-
-		// Only add one resize listener that handles all instances
-		if (!window.stickyResizeHandlerAdded) {
-			window.addEventListener("resize", function () {
-				headerHeight = headerSection.offsetHeight;
-
-				stickyElements.forEach(function (nav) {
-					if (window.innerWidth > 991 && (nav.style.position === "fixed" || nav.style.position === "absolute")) {
-						const navStickyParent = nav.closest(".sticky-parent");
-						if (navStickyParent) {
-							nav.style.width =
-								navStickyParent.offsetWidth + "px";
-						}
-						if (navStickyParent) {
-						    navStickyParent.style.height = nav.offsetHeight + "px";
-						}
-					} else {
-						nav.style.width = "";
-						nav.style.position = "";
-						nav.style.top = "";
-						nav.style.bottom = "";
-						nav.classList.remove("scrolled");
-					}
-
-					// Trigger the scroll handler for each element
-					const scrollHandler = nav.onScrollHandler;
-					if (scrollHandler) {
-						scrollHandler();
-					}
-				});
+			console.log("Initializing Search:", {
+				currentPage,
+				searchType,
+				learnType,
 			});
 
-			window.stickyResizeHandlerAdded = true;
+			// 3. Execute search list
+			featch_search_list(currentPage, true, searchType, learnType);
 		}
-
-		// Store the onScroll function reference on the element
-		subNav.onScrollHandler = onScroll;
-
-		onScroll();
-	});
+	}, 200);
 });
-
-//Scrolling Text block js end
+document.addEventListener("click", function (e) {
+	const disabledLink = e.target.closest(".arrow-btn.disable");
+	if (disabledLink) {
+		e.preventDefault();
+	}
+});
 
 document.addEventListener("DOMContentLoaded", () => {
-	const galleryGrid = document.querySelector(".gallery-grid");
-	const galleryBlock = document.querySelector(".gallery-block");
-	const customCursor = document.querySelector(".custom-cursor");
+	const urlParams = new URLSearchParams(window.location.search);
+	const selectedType = urlParams.get("search-type") || "all";
+	const selectedLearnType = urlParams.get("learn-type") || "";
 
-	if (!galleryGrid || !galleryBlock || !customCursor) {
-		return;
-	}
+	const button = document.querySelector("button#search-type-btn");
 
-	calculateBounds(galleryBlock);
-});
+	const setButtonLabel = (postType, text) => {
+		const label = postType === "all" ? "everything" : text.trim();
+		button.innerHTML = `Search: ${label} <div class="arrow-icon"></div>`;
+	};
 
-function calculateBounds(galleryBlock) {
-	if (!galleryBlock) {
-		return;
-	}
-	const isMobile = window.innerWidth <= 767;
+	document.querySelectorAll("#search-type li").forEach((li) => {
+		const aTag = li.querySelector("a[data-post]");
+		if (!aTag) return;
 
-	let maxX, maxY;
+		const postType = aTag.dataset.post;
+		const postTaxonomy = aTag.dataset.taxonomy;
 
-	if (isMobile) {
-		maxX = galleryBlock.clientWidth / 0.6;
-		maxY = galleryBlock.clientHeight / 1.5;
-	} else {
-		maxX = galleryBlock.clientWidth / 2;
-		maxY = galleryBlock.clientHeight / 1.5;
-	}
-}
+		const isActive =
+			(selectedLearnType && postTaxonomy === selectedLearnType) ||
+			(!selectedLearnType && !postTaxonomy && postType === selectedType);
 
+		li.classList.toggle("active", isActive);
 
-document.addEventListener("DOMContentLoaded", () => {
-
-	// Image Gallery js start
-				
-  	const galleryGrid = document.querySelector(".gallery-grid");
-	const galleryBlock = document.querySelector(".gallery-block");
-	const customCursor = document.querySelector(".custom-cursor");
-	const closeBtn = document.querySelector(".gallery-close-btn");
-	const imageGalleryBlock = document.querySelector(".image-gallery-block");
-	const GalleryBlock = document.querySelector(".gallery-block");
-	const Cursorstatics = document.querySelector(".cursor-static");
-
-	// Check if required elements exist before proceeding
-	if ( !galleryGrid || !galleryBlock || !customCursor || !closeBtn ||  !imageGalleryBlock ) {
-		return;
-	}
-
-	// Initially hide the close button
-	closeBtn.style.display = "none";
-	
-	// Variables for drag logic
-	let targetX = 0, targetY = 0;
-	let hasDragged = false;
-	let tween = null;
-	let maxX = 0;
-	let maxY = 0;
-
-	// Expand gallery function
-	function expandGallery() {
-	  
-	  imageGalleryBlock.classList.add("expanded");
-	  document.body.style.overflow = "hidden";
-
-	  const header = document.getElementById("header-section");
-	  const headerHeight = header ? header.offsetHeight : 0;
-	  const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
-
-	  window.scrollTo({
-	    top: sectionTop - headerHeight,
-	    behavior: "smooth",
-	  });
-
-	  GalleryBlock.style.removeProperty("max-height");
-
-	  // Show the close button when expanded
-	  closeBtn.style.display = "block";
-	  // Enable dragging + resize handling
-	  calculateBounds();
-	  setGalleryBlockHeights();
-	}
-
-	// Close gallery function
-	function closeGallery() {
-	  imageGalleryBlock.classList.remove("expanded");
-	  document.body.style.overflow = "";
-
-	  // Hide the close button
-	  closeBtn.style.display = "none";
-
-	  // Reset position
-	  targetX = 0;
-	  targetY = 0;
-	  updateTransform();
-
-	  const header = document.getElementById("header-section");
-	  const headerHeight = header ? header.offsetHeight : 0;
-	  const sectionTop = GalleryBlock.getBoundingClientRect().top + window.scrollY;
-	  const targetScroll = sectionTop - headerHeight;
-
-	  // Step 1: scroll first
-	  window.scrollTo({
-	    top: targetScroll,
-	    behavior: "smooth",
-	  });
-
-	  // Step 2: wait until scroll finishes → then remove/reset height
-	  function waitForScrollEnd() {
-	    const currentScroll = window.scrollY || window.pageYOffset;
-
-	    if (Math.abs(currentScroll - targetScroll) < 2) {
-	      GalleryBlock.style.height = "";
-	      setGalleryMaxHeight();
-	    } else {
-	      requestAnimationFrame(waitForScrollEnd);
-	    }
-	  }
-
-	  waitForScrollEnd();
-	}
-
-
-	function updateCursorStaticText() {
-	  if (imageGalleryBlock.classList.contains('expanded')) {
-	    Cursorstatics.textContent = "Close Gallery";
-	  } else {
-	    Cursorstatics.textContent = "Browse Gallery";
-	  }
-	}
-   	closeBtn.addEventListener("click", () => {
-	  closeGallery();
-	  updateCursorStaticText(); 
-	});
-    Cursorstatics.addEventListener('click', () => {
-      if (imageGalleryBlock.classList.contains('expanded')) {
-        closeGallery();
-		Cursorstatics.textContent = "Browse Gallery"; // reset text
-      } else {
-        expandGallery();
-		Cursorstatics.textContent = "Close Gallery"; // update text
-      }
-    });
-    
-    
-    function calculateBounds() {
-        // Additional safety check inside the function
-        if (!galleryBlock) {
-            return;
-        }
-
-        const isMobile = window.innerWidth <= 767;
-
-        if (isMobile) {
-            maxX = galleryBlock.clientWidth / 0.6;
-            maxY = galleryBlock.clientHeight / 1.5;
-        } else {
-            maxX = galleryBlock.clientWidth / 2;
-            maxY = galleryBlock.clientHeight / 1.5;
-        }
-    }
-
-    calculateBounds();
-
-    window.addEventListener("resize", () => {
-        calculateBounds();
-        targetX = Math.max(-maxX, Math.min(targetX, maxX));
-        targetY = Math.max(-maxY, Math.min(targetY, maxY));
-        updateTransform();
-    });
-
-    document.querySelectorAll(".gallery-grid img").forEach((img) => {
-        img.setAttribute("draggable", "false");
-        img.style.userSelect = "none";
-        img.style.pointerEvents = "none";
-    });
-
-    function updateTransform() {
-        if (tween) {
-            tween.kill();
-        }
-        tween = gsap.to(galleryGrid, {
-            x: targetX,
-            y: targetY,
-            duration: 0.1,
-            ease: "power1.out",
-        });
-    }
-    // Reset on click/tap if not dragged
-    galleryBlock.addEventListener("click", () => {
-        if (hasDragged) {
-            hasDragged = false;
-            return;
-        }
-        targetX = 0;
-        targetY = 0;
-        updateTransform();
-    });
-
-
-	function setGalleryMaxHeight() {
-	  const header = document.querySelector('.header-section');
-	  const galleries = document.querySelectorAll('.image-gallery-block .gallery-block');
-	  const groupDetails = document.querySelector('.group-mid-details');
-
-	  if (header && galleries.length > 0) {
-	    const headerHeight = header.offsetHeight;
-	    const screenHeight = window.innerHeight;
-		const sectionheight = screenHeight * 0.85 - headerHeight;
-		const halfScreenHeight = sectionheight / 2;
-		const groupHeight = groupDetails.offsetHeight;
-		const availableHeight = groupHeight / 2;
-		const Totalblock_sectionheight = halfScreenHeight - availableHeight;
-		groupDetails.style.marginTop = Totalblock_sectionheight + "px";
-	    const height = (screenHeight * 0.85 - headerHeight) + "px";
-	    galleries.forEach(gallery => { gallery.style.height = height; });
-	  }
-	}
-
-
-	function setGalleryBlockHeights() {
-	  const blocks = document.querySelectorAll('.gallery-block');
-
-	  if (!blocks.length) {
-	    console.log('No .gallery-block found');
-	    return;
-	  }
-
-	  blocks.forEach((block, bIndex) => {
-	    const galleries = block.querySelectorAll('.gallery-grid .gallery-image.customheighgal');
-	    if (!galleries.length) {
-	      console.log(`[${bIndex}] No .gallery-image found in .gallery-block`);
-	      return;
-	    }
-
-	    let blockTotalHeight = 0;
-	    let allLoaded = true;
-
-	    galleries.forEach((gallery, gIndex) => {
-	      const imgs = gallery.querySelectorAll('.card-img img');
-	      if (!imgs.length) return;
-
-	      imgs.forEach(img => {
-	        if (!img.complete) {
-	          allLoaded = false;
-	          img.addEventListener("load", setGalleryBlockHeights, { once: true });
-	        }
-	      });
-	      if (!allLoaded) return;
-
-	      // Get gallery relative rect
-	      const galleryRect = gallery.getBoundingClientRect();
-
-	      let minTop = Infinity;
-	      let maxBottom = -Infinity;
-
-	      imgs.forEach(img => {
-	        const rect = img.getBoundingClientRect();
-	        const topRel = rect.top - galleryRect.top;
-	        const bottomRel = rect.bottom - galleryRect.top;
-
-	        if (topRel < minTop) minTop = topRel;
-	        if (bottomRel > maxBottom) maxBottom = bottomRel;
-	      });
-
-	      const galleryHeight = Math.ceil(maxBottom - minTop);
-	      gallery.style.height = galleryHeight + "px";
-	      console.log(`.gallery-image[${gIndex}] height set to: ${galleryHeight}px`);
-
-	      blockTotalHeight += galleryHeight;
-	    });
-
-	    if (allLoaded) {
-	      block.style.height = blockTotalHeight + "px";
-	      console.log(`.gallery-block[${bIndex}] total height set to: ${blockTotalHeight}px`);
-	    }
-	  });
-	}
-	// // Run on load and on resize
-	window.addEventListener('load', setGalleryMaxHeight);
-
-	// run on resize ONLY if .image-gallery-block has .expanded
-	let resizeTimeout;
-
-	window.addEventListener("resize", () => {
-	  clearTimeout(resizeTimeout);
-	  resizeTimeout = setTimeout(() => {
-	    const expanded = document.querySelector(".image-gallery-block.expanded");
-	    if (expanded) {
-	      setGalleryBlockHeights();
-	    } else {
-	      if (window.innerWidth >= 767) {
-	        setGalleryMaxHeight();
-	      }
-	    }
-	  }, 100);
-	});
-	
-	function setupStickyCloseBtn() {
-	  const gallerySection = document.querySelector(".image-gallery-block");
-	  const closeBtn = document.querySelector(".gallery-close-btn");
-	  const header = document.querySelector("header"); // adjust selector if needed
-
-	  if (!gallerySection || !closeBtn || !header) return;
-
-	  function updateFixedPosition() {
-	    const headerHeight = header.offsetHeight || 0;
-	    closeBtn.style.top = headerHeight + 30 + "px";
-	  }
-
-	  function handleScroll() {
-	    const isExpanded = gallerySection.classList.contains("expanded");
-	    if (!isExpanded) {
-	      // Reset if not expanded
-	      closeBtn.classList.remove("sticky");
-	      closeBtn.style.position = "";
-	      closeBtn.style.top = "";
-	      closeBtn.style.right = "";
-	      return;
-	    }
-
-	    const headerHeight = header.offsetHeight || 0;
-	    const sectionRect = gallerySection.getBoundingClientRect();
-	    const sectionTop = sectionRect.top + window.scrollY;
-	    const sectionBottom = sectionTop + gallerySection.offsetHeight;
-	    const scrollY = window.scrollY || window.pageYOffset;
-
-	    if (scrollY + headerHeight >= sectionTop && scrollY + headerHeight < sectionBottom - 70) {
-	      // ✅ Section is in view → fixed sticky
-	      closeBtn.classList.add("sticky");
-	      closeBtn.style.position = "fixed";
-		  closeBtn.style.top = headerHeight + 30 + "px";
-	      updateFixedPosition();
-	    } else {
-	      // ✅ Out of section → absolute at end
-	      closeBtn.classList.remove("sticky");
-	      closeBtn.style.position = "absolute";
-	      closeBtn.style.top = "20px";
-	    }
-	  }
-
-	  // Bind scroll + resize
-	  window.addEventListener("scroll", handleScroll);
-	  window.addEventListener("resize", handleScroll);
-
-	  // Mutation observer to detect expanded toggle
-	  const mutationObserver = new MutationObserver(handleScroll);
-	  mutationObserver.observe(gallerySection, {
-	    attributes: true,
-	    attributeFilter: ["class"],
-	  });
-	}
-
-
-	// Run after page load
-	window.addEventListener("load", setupStickyCloseBtn);
-	//Image Gallery js end
-	
-	//staff tab js
-	const tabs = document.querySelectorAll("ul.tabs li");
-	const contents = document.querySelectorAll(".tab-content");
-
-	tabs.forEach(function (tab) {
-		tab.addEventListener("click", function () {
-			const tab_id = this.getAttribute("data-tab");
-
-			tabs.forEach((t) => t.classList.remove("current"));
-
-			contents.forEach((content) => {
-				content.classList.remove("current", "fade-in");
-				content.style.opacity = 0;
-			});
-
-			this.classList.add("current");
-
-			const activeContent = document.getElementById(tab_id);
-			if (activeContent) {
-				activeContent.classList.add("current");
-
-				// Trigger reflow to enable transition
-				void activeContent.offsetWidth;
-
-				activeContent.classList.add("fade-in");
-				activeContent.style.opacity = 1;
-			}
-		});
-	});
-	//staff js end
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-	const container = document.querySelector(".wpgmza-standalone-component");
-	const filter = container?.querySelector(
-		".wpgmza-marker-listing-category-filter",
-	);
-	const mapWrapper = document.querySelector(
-		".international-Initiative-map-filter",
-	);
-
-	if (!container || !filter || !mapWrapper) return;
-
-	// Hide filter initially
-	filter.style.display = "none";
-
-	// Create toggle button
-	const toggleBtn = document.createElement("div");
-	toggleBtn.className = "map-filter-toggle";
-	toggleBtn.textContent = "Show Map Filter";
-	toggleBtn.style.cursor = "pointer";
-
-	// Insert toggle above filter
-	container.insertBefore(toggleBtn, container.firstChild);
-
-	// Toggle logic
-	toggleBtn.addEventListener("click", () => {
-		const isHidden = filter.style.display === "none";
-		filter.style.display = isHidden ? "block" : "none";
-		toggleBtn.textContent = isHidden
-			? "Hide Map Filter"
-			: "Show Map Filter";
-		container.classList.toggle("filter-visible", isHidden);
-	});
-
-	// Set map height based on viewport and header/footer
-	function setMapHeight() {
-		const adminBar = document.getElementById("wpadminbar");
-		const header = document.querySelector(".header-section");
-		const footer = document.querySelector(".footer-sub-nav-sticky");
-
-		if (!header || !footer) return;
-
-		const adminHeight = adminBar?.offsetHeight || 0;
-		const headerHeight = header.offsetHeight;
-		const footerHeight = footer.offsetHeight;
-		const viewportHeight = window.innerHeight;
-
-		const mapHeight = viewportHeight - headerHeight - footerHeight - adminHeight;
-		
-		mapWrapper.style.height = `${mapHeight}px`;
-	}
-
-	// Initial + responsive resize handling
-	setMapHeight();
-	window.addEventListener("resize", setMapHeight);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-	const tabLinks = document.querySelectorAll(".staff-list .tab-link");
-	const staffMembers = document.querySelectorAll(".staff-list .staff-member");
-	const noStaffMessage = document.querySelector(
-		".staff-list .no-staff-message",
-	);
-
-	function filterStaff(categoryId, bgColor) {
-		let visibleCount = 0;
-
-		staffMembers.forEach(function (member) {
-			const memberCategories = member
-				.getAttribute("data-categories")
-				.split(",");
-			const shouldShow =
-				categoryId === "all" || memberCategories.includes(categoryId);
-
-			if (shouldShow) {
-				member.style.display = "flex";
-				member.classList.add("fade-in");
-				// Remove all classes that start with 'bg-'
-				member.classList.forEach((cls) => {
-					if (cls.startsWith("bg-")) {
-						member.classList.remove(cls);
-					}
-				});
-				member.classList.add(bgColor);
-
-				visibleCount++;
-			} else {
-				member.style.display = "none";
-				member.classList.remove("fade-in");
-			}
-		});
-
-		// Show/hide no staff message
-		if (noStaffMessage) {
-			if (visibleCount === 0) {
-				noStaffMessage.style.display = "block";
-			} else {
-				noStaffMessage.style.display = "none";
-			}
-		}
-	}
-
-	// Tab click handlers
-	tabLinks.forEach(function (link) {
-		link.addEventListener("click", function (e) {
-			e.preventDefault();
-
-			// Remove active class from all tabs
-			tabLinks.forEach(function (tab) {
-				tab.classList.remove("current");
-			});
-
-			// Add active class to clicked tab
-			this.classList.add("current");
-
-			// Get category ID and filter
-			const categoryId = this.getAttribute("data-category");
-			const bgColor = this.getAttribute("data-bg-color");
-			filterStaff(categoryId, bgColor);
-		});
-	});
-
-	// Initialize with first tab active
-	if (tabLinks.length > 0) {
-		const firstTab = tabLinks[0];
-		const initialCategory = firstTab.getAttribute("data-category");
-		const bgColor = firstTab.getAttribute("data-bg-color");
-		filterStaff(initialCategory, bgColor);
-	}
-});
-
-// mobile filter dropdown open and close
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.querySelector('.filter-mobile-dropdown');
-  const dropdownRow = document.querySelector('.filter-dropdown-row');
-
-  if (toggleBtn && dropdownRow) {
-    toggleBtn.addEventListener('click', function () {
-      const isActive = dropdownRow.classList.contains('active');
-
-      dropdownRow.classList.toggle('active');
-      toggleBtn.classList.toggle('active');
-    });
-  }
-});
-
-// Header Mega menu append js Start
-document.addEventListener("DOMContentLoaded", function () {
-	const currentPath = window.location.pathname;
-	document.querySelectorAll(".mega-btns a.site-btn").forEach((btn) => {
-		const href = btn.getAttribute("href");
-
-		if (!href || href.startsWith("#")) return;
-
-		const btnPath = new URL(href, window.location.origin).pathname;
-
-		if (btnPath === currentPath) {
-			btn.classList.add("btn-lilac");
-			btn.classList.remove("btn-lime-green");
+		if (isActive) {
+			setButtonLabel(postType, aTag.textContent);
 		}
 	});
 });
-// Header Mega menu append js End
-
-document.addEventListener('DOMContentLoaded', function () {
-	const isMobileView = () => window.innerWidth >= 1200;
-	if (!isMobileView()) return;
-	const logoImg = document.querySelector('.site-logo img');
-	if (!logoImg) return;
-
-	const maxHeight = 88;
-	const minHeight = 54;
-	const maxScroll = 120; // adjust based on your design
-
-	window.addEventListener('scroll', function () {
-		const scrollY = Math.min(window.scrollY, maxScroll);
-		const scale = 1 - ((scrollY / maxScroll) * (1 - (minHeight / maxHeight)));
-		const size = maxHeight * scale;
-
-		logoImg.style.width = `${size}px`;
-		logoImg.style.height = `${size}px`;
-	});
-});
-
-//Footer Menu accordion js start
-document.querySelectorAll(".footer-nav-title").forEach((title) => {
-	title.addEventListener("click", () => {
-		if (window.innerWidth <= 991) {
-			const parent = title.closest(".footer-nav");
-
-			// Close all others
-			document.querySelectorAll(".footer-nav").forEach((nav) => {
-				if (nav !== parent) {
-					nav.classList.remove("active");
-				}
-			});
-
-			// Toggle the clicked one
-			parent.classList.toggle("active");
-		}
-	});
-});
-
-window.addEventListener("resize", () => {
-	if (window.innerWidth > 991) {
-		document.querySelectorAll(".footer-nav").forEach((nav) => {
-			nav.classList.remove("active");
-		});
-	}
-});
-//Footer Menu accordion end start
