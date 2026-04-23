@@ -608,6 +608,12 @@ document.addEventListener("DOMContentLoaded", function () {
 					if (oldPagination) {
 						oldPagination.outerHTML = data.data.pagination_html;
 					} else {
+<<<<<<< HEAD
+=======
+						//const oldPagination = document.querySelector('.news-pagination-append-container');
+						console.log(123);
+
+>>>>>>> origin/development
 						new_pagination.insertAdjacentHTML(
 							"beforeend",
 							data.data.pagination_html,
@@ -1013,6 +1019,11 @@ document.addEventListener("DOMContentLoaded", function () {
 					);
 					link.closest("li").classList.add("active");
 
+<<<<<<< HEAD
+=======
+					console.log(term, termtaxonomy);
+
+>>>>>>> origin/development
 					// Set selected term and label
 					if (taxonomy === "search-type") {
 						searcheve = termtaxonomy ? "post" : term;
@@ -1085,6 +1096,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	let currentOrderBy = "date";
 
 	function getCurrentOrderBy() {
+<<<<<<< HEAD
+=======
+		currentOrderBy = document
+			.querySelector("#search-orderby-tabs .tab-link.current")
+			.getAttribute("data-orderby");
+>>>>>>> origin/development
 		return currentOrderBy;
 	}
 
@@ -1125,6 +1142,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			const url = new URL(window.location);
 			if (getSearchVal()) {
 				url.searchParams.set("s", getSearchVal());
+<<<<<<< HEAD
+=======
+			} else {
+				url.searchParams.set("s", "");
+>>>>>>> origin/development
 			}
 			if (getCurrentOrderBy()) {
 				url.searchParams.set("orderby", getCurrentOrderBy());
@@ -1312,6 +1334,48 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	initsearch_pagination();
+<<<<<<< HEAD
+=======
+
+	setTimeout(() => {
+		// Check if the target container exists first
+		const append_search_result = document.querySelector(
+			".append-search-result",
+		);
+
+		if (append_search_result) {
+			// 1. Extract Page Number from Path (e.g., /page/3/)
+			const path = window.location.pathname;
+			const pageMatch = path.match(/\/page\/(\d+)/);
+			const currentPage = pageMatch ? parseInt(pageMatch[1]) : 1;
+
+			// 2. Extract Query Params (?search-type=...&learn-type=...)
+			const urlParams = new URLSearchParams(window.location.search);
+
+			// Priority: URL Param > Form Input Value > Default "all"
+			const searchType =
+				urlParams.get("search-type") ||
+				document.querySelector("#searchForm .search-type-field")
+					?.value ||
+				"all";
+
+			const learnType =
+				urlParams.get("learn-type") ||
+				document.querySelector("#searchForm .learn-type-field")
+					?.value ||
+				"";
+
+			console.log("Initializing Search:", {
+				currentPage,
+				searchType,
+				learnType,
+			});
+
+			// 3. Execute search list
+			featch_search_list(currentPage, true, searchType, learnType);
+		}
+	}, 200);
+>>>>>>> origin/development
 });
 document.addEventListener("click", function (e) {
 	const disabledLink = e.target.closest(".arrow-btn.disable");
