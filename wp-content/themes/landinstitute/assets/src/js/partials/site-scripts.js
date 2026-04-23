@@ -1389,16 +1389,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Run after page load
 	window.addEventListener("load", setupStickyCloseBtn);
-<<<<<<< HEAD
 	//Image Gallery js end
 	
-=======
-
-
-	//Image Gallery js end
-	
-	
->>>>>>> origin/development
 	//staff tab js
 	const tabs = document.querySelectorAll("ul.tabs li");
 	const contents = document.querySelectorAll(".tab-content");
@@ -1478,13 +1470,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const viewportHeight = window.innerHeight;
 
 		const mapHeight = viewportHeight - headerHeight - footerHeight - adminHeight;
-<<<<<<< HEAD
 		
-=======
-		if (window.innerWidth > 768) {
-			mapHeight += 60;
-		}
->>>>>>> origin/development
 		mapWrapper.style.height = `${mapHeight}px`;
 	}
 

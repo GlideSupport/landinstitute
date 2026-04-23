@@ -79,7 +79,6 @@ if (!defined('BASETHEME_DEFAULT_IMAGE')) {
 	endif;
 }
 
-<<<<<<< HEAD
 add_action('wp_ajax_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
 add_action('wp_ajax_nopriv_filter_logo_grid_filter', 'ajax_filter_logo_grid_filter');
 
@@ -319,8 +318,6 @@ if ($total_found_posts > $posts_per_page) {
 
 //event code
 
-=======
->>>>>>> origin/development
 
 
 function date_formatting($start_date, $end_date)
@@ -492,7 +489,6 @@ function number_to_words($num)
 	return $string = str_replace('y-eth', 'ieth', $second_word[$second_num] . '-' . $first_word[$first_num]);
 }
 
-<<<<<<< HEAD
 add_action('wp_ajax_load_more_events', 'load_more_events_callback');
 add_action('wp_ajax_nopriv_load_more_events', 'load_more_events_callback');
 
@@ -783,16 +779,6 @@ function filter_past_events() {
 
    }
    add_action('init', 'custom_events_rewrite_rule');
-=======
-
-function custom_events_rewrite_rule() {
-	   add_rewrite_rule('^events/page/([0-9]+)/?', 'index.php?pagename=events&paged=$matches[1]', 'top');
-	   add_rewrite_rule('^news/page/([0-9]+)/?', 'index.php?pagename=news&paged=$matches[1]', 'top');
-
-}
-
-add_action('init', 'custom_events_rewrite_rule');
->>>>>>> origin/development
 
 function get_timezone_code($timezone_value) {
     $timezones = [
@@ -969,7 +955,6 @@ function save_event_timestamp_with_timezone($post_id, $post, $update) {
 
 
 
-<<<<<<< HEAD
 
 add_action('wp_ajax_filter_news', 'handle_ajax_news_filter');
 add_action('wp_ajax_nopriv_filter_news', 'handle_ajax_news_filter');
@@ -1262,25 +1247,6 @@ function search_filter_Callback() {
 }
 
 
-=======
-// Custom orderby for staff last name to handle empty values
-function custom_staff_last_name_orderby($orderby, $query) {
-    global $wpdb;
-
-    if ($query->get('meta_key') === 'staff_last_name' OR $query->get('staff_sorting')) {
-        $orderby = "
-            CASE 
-                WHEN {$wpdb->postmeta}.meta_value = '' THEN 1
-                ELSE 0
-            END ASC,
-            {$wpdb->postmeta}.meta_value ASC
-        ";
-    }
-
-    return $orderby;
-}
-add_filter('posts_orderby', 'custom_staff_last_name_orderby', 10, 2);
->>>>>>> origin/development
 
 
 //script 
@@ -1378,10 +1344,6 @@ function show_event_timestamp_update_notice() {
         delete_transient('event_timestamp_update_success_notice');
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/development
 function exclude_dynamic_learn_tax_terms_from_frontend($query) {
     // Only skip for admin dashboard
     if (is_admin()) {
@@ -1533,7 +1495,6 @@ function limit_search_to_specific_post_types($query) {
         // Allowed post types
         $allowed_post_types = ['staff', 'event', 'news', 'post', 'page'];
 
-<<<<<<< HEAD
         // ACF field to exclude post types (array expected)
         $excluded_post_types = get_field('li_search_exclude_post_type', 'option');
         if (!is_array($excluded_post_types)) {
@@ -1576,94 +1537,6 @@ function limit_search_to_specific_post_types($query) {
     }
 }
 add_action('pre_get_posts', 'limit_search_to_specific_post_types');
-=======
-        $excluded_post_types = get_field('li_search_exclude_post_type', 'option')??[];
-       
-        $final_post_types = array_diff($allowed_post_types, $excluded_post_types);
-
-        $posttype   = isset($_GET['search-type']) ? sanitize_text_field($_GET['search-type']) : '';
-        $order_by   = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : '';
-        $learn_type = isset($_GET['learntype']) ? sanitize_text_field($_GET['learntype']) : '';
-
-        if ($posttype !== "" OR $posttype !== 'all') {
-            $query->set('post_type', $allowed_post_types);
-        }else{
-            $query->set('post_type', $final_post_types);
-        }
-
-        // Apply staff-specific sorting
-        if ($posttype === 'staff' && $order_by === 'title') {
-
-        
-            $query->set('meta_query', [
-                [
-                    'relation' => 'OR',
-            
-                    // First priority: posts WITH last name
-                    'has_last_name' => [
-                        'key'     => 'staff_last_name',
-                        'compare' => 'EXISTS',
-                    ],
-
-                    // Second: posts WITHOUT last name
-                    'no_last_name' => [
-                        'relation' => 'OR',
-
-                        [
-                            'key'     => 'staff_last_name',
-                            'compare' => 'NOT EXISTS',
-                        ],
-                        [
-                            'key'     => 'staff_last_name',
-                            'value'   => '',
-                            'compare' => '=',
-                        ],
-                    ],
-                ]
-            ]);
-
-            $query->set('orderby', [
-                'has_last_name' => 'ASC',   
-                'meta_value'    => 'ASC', 
-            ]);      
-
-            $query->set('meta_key', 'staff_last_name');
-            $query->set('meta_type', 'CHAR');
-
-            // IMPORTANT: flag to use in orderby filter
-            $query->set('staff_sorting', true);
-
-        } else {
-            $query->set('orderby', $order_by ? $order_by : 'date');
-            $query->set('order', ($order_by === 'title') ? 'ASC' : 'DESC');
-        }
-
-        if($learn_type !== 'all' AND  $learn_type !== ''){
-            // Taxonomy filters
-            $tax_query = [];
-            $taxonomies = get_taxonomies(['public' => true], 'names');
-
-            foreach ($taxonomies as $taxonomy) {
-                if (!empty($_GET[$taxonomy])) {
-                    $tax_query[] = [
-                        'taxonomy' => $taxonomy,
-                        'field'    => 'slug',
-                        'terms'    => sanitize_text_field($_GET[$taxonomy]),
-                    ];
-                }
-            }
-
-            if (!empty($tax_query)) {
-                $query->set('tax_query', $tax_query);
-            }
-        }else{
-            $query->set('tax_query', []);
-        }
-
-    }
-}
-// add_action('pre_get_posts', 'limit_search_to_specific_post_types');
->>>>>>> origin/development
 
 
 add_action('template_redirect', 'll_fix_duplicate_pagination_url');
