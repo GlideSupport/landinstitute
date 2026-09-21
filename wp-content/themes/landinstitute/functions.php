@@ -849,3 +849,24 @@ add_filter( 'posts_clauses', function( $clauses, $query ) {
 
     return $clauses;
 }, 10, 2 );
+
+/**
+ * Exclude main theme stylesheet from WP Rocket's Remove Unused CSS
+ */
+// add_filter( 'rocket_rucss_excluded_stylesheets', function( $excluded ) {
+//     $excluded[] = 'wp-theme-styles';
+//     return $excluded;
+// });
+
+/**
+ * Force WP Rocket to completely ignore the main theme stylesheet
+ * by injecting the data-no-optimize attribute directly into the HTML tag.
+ */
+add_filter( 'style_loader_tag', function( $html, $handle, $href, $media ) {
+    if ( 'wp-theme-styles' === $handle ) {
+        // Add data-no-optimize="1" attribute to force WP Rocket to skip it
+        $html = str_replace( "rel='stylesheet'", "rel='stylesheet' data-no-optimize='1'", $html );
+        $html = str_replace( 'rel="stylesheet"', 'rel="stylesheet" data-no-optimize="1"', $html );
+    }
+    return $html;
+}, 10, 4 );
