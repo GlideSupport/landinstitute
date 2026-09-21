@@ -870,3 +870,60 @@ add_filter( 'style_loader_tag', function( $html, $handle, $href, $media ) {
     }
     return $html;
 }, 10, 4 );
+
+
+// YoastSEO Text length issue fix
+
+add_action('enqueue_block_editor_assets', function() {
+    $js = "
+    window.addEventListener('load', function() {
+        var checkYoast = setInterval(function() {
+            if (window.YoastSEO && window.YoastSEO.app && window.wp && window.wp.data && window.wp.data.select('core/block-editor')) {
+                clearInterval(checkYoast);
+
+                function extractText(obj) {
+                    var str = '';
+                    if (!obj || typeof obj !== 'object') return str;
+                    for (var k in obj) {
+                        if (k.startsWith('_')) continue;
+                        var v = obj[k];
+                        if (typeof v === 'string') {
+                            if (!v.startsWith('s-') && v !== 'side' && v !== 'simple' && v !== 'right' && v !== 'h2' && v !== 'h3') {
+                                str += ' ' + v;
+                            }
+                        } else if (typeof v === 'object') {
+                            str += ' ' + extractText(v);
+                        }
+                    }
+                    return str;
+                }
+
+                var AcfYoastApp = function() {
+                    YoastSEO.app.registerPlugin('AcfYoastApp', { status: 'ready' });
+                    YoastSEO.app.registerModification('content', this.modifyContent, 'AcfYoastApp', 5);
+                };
+
+                AcfYoastApp.prototype.modifyContent = function(content) {
+                    var blocks = wp.data.select('core/block-editor').getBlocks();
+                    var customText = '';
+                    function parse(list) {
+                        list.forEach(function(b) {
+                            if (b.attributes && b.attributes.data) {
+                                customText += ' ' + extractText(b.attributes.data);
+                            }
+                            if (b.innerBlocks && b.innerBlocks.length) {
+                                parse(b.innerBlocks);
+                            }
+                        });
+                    }
+                    parse(blocks);
+                    return content + ' ' + customText;
+                };
+
+                new AcfYoastApp();
+            }
+        }, 500);
+    });
+    ";
+    wp_add_inline_script('wp-edit-post', $js);
+});
